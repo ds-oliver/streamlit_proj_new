@@ -8,6 +8,12 @@ import sqlite3
 
 # function to load this csv /Users/hogan/dev/streamlit_proj_new/data/data_out/final_data/db_files/players.db and /Users/hogan/dev/streamlit_proj_new/data/data_out/final_data/csv_files/players.csv
 
+file_path = '/Users/hogan/dev/streamlit_proj_new/data/data_out/final_data/csv_files/players.csv'
+if os.path.exists(file_path):
+    print(f"File {file_path} found.")
+else:
+    print(f"File {file_path} not found.")
+
 @st.cache
 def load_data_from_db():
     """
