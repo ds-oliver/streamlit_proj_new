@@ -58,6 +58,7 @@ def create_multiselect_seasons(results_df):
     Args:
         results_df (pandas DataFrame): The results df.
 
+        
     Returns:
         selected_seasons (list): The selected seasons.
     """
