@@ -147,7 +147,7 @@ def main():
     
     # Load the data from the db
     
-    players_df, results_df = load_db_and_csv_data()
+    players_df, results_df = load_data_from_csv()
 
     # Create a multiselect for the seasons
     selected_seasons = create_multiselect_seasons(results_df)
@@ -170,5 +170,5 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
+
 
