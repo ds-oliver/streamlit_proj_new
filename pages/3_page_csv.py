@@ -29,7 +29,7 @@ def load_data_from_db():
 
     return players_table, results_table
 
-@st.cache
+# @st.cache
 def load_data_from_csv():
     """
     This function loads the data from the csvs.
