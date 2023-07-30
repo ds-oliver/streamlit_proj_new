@@ -62,15 +62,16 @@ def create_multiselect_seasons(results_df):
     """
     # Create a multiselect for the seasons
     seasons = results_df["season"].unique()
-    selected_seasons = st.multiselect(
-        "Select Season(s)", seasons, default=seasons)
+
+    selected_seasons = st.selectbox(
+        "Select Season(s)", seasons, key="seasons")
 
     return selected_seasons
 
-def create_multiselect_teams(results_df, selected_seasons):
+def create_dropdown_teams(results_df, selected_seasons):
     """
     Summary:
-        This function creates a multiselect for the teams. Based on the selected_seasons list, this function creates a multiselect for the teams from those seasons. 
+        This function creates a dropdown for the teams. Based on the selected_seasons list, this function creates a dropdown for the teams from those seasons.
 
     Args:
         results_df (pandas DataFrame): The results df.
@@ -84,11 +85,10 @@ def create_multiselect_teams(results_df, selected_seasons):
     # Create a multiselect for the teams
     teams = filtered_df["team"].unique()
 
-    # only allow two teams to be selected
-    selected_teams = st.multiselect(
-        "Select Team(s)", teams, default=teams)
+    selected_teams = st.selectbox(
+        "Select Team(s)", teams, key="teams")
 
-    return selected_teams, filtered_df
+    return selected_teams
 
 def prepare_df_for_streamlit(filtered_df):
     """
@@ -159,10 +159,11 @@ def main():
     selected_seasons = create_multiselect_seasons(results_df)
 
     # Create a multiselect for the teams
-    selected_teams, filtered_df = create_multiselect_teams(results_df, selected_seasons)
+    selected_teams, filtered_df = create_dropdown_teams(
+        results_df, selected_seasons)
 
     # Prepare the df for streamlit
-    grouped_df = prepare_df_for_streamlit(filtered_df, selected_teams)
+    grouped_df = prepare_df_for_streamlit(filtered_df)
 
     # Show the stats for the two teams selected
     show_stats_for_teams(grouped_df, selected_teams)
