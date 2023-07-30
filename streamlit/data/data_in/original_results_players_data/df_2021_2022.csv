@@ -1,0 +1,381 @@
+,gameweek,dayofweek,date,start_time,home_team,home_xg,score,away_xg,away_team,attendance,venue,referee,match_report,notes,season,home_score,away_score
+0,1,Fri,2021-08-13,20:00,Brentford,1.2,2–0,1.3,Arsenal,"16,479",Brentford Community Stadium,Michael Oliver,Match Report,,2021,2.0,0.0
+1,1,Sat,2021-08-14,12:30,Manchester Utd,1.5,5–1,0.5,Leeds United,"72,732",Old Trafford,Paul Tierney,Match Report,,2021,5.0,1.0
+2,1,Sat,2021-08-14,15:00,Leicester City,0.5,1–0,1.3,Wolves,"31,983",King Power Stadium,Craig Pawson,Match Report,,2021,1.0,0.0
+3,1,Sat,2021-08-14,15:00,Burnley,1.5,1–2,1.0,Brighton,"16,910",Turf Moor,David Coote,Match Report,,2021,1.0,2.0
+4,1,Sat,2021-08-14,15:00,Chelsea,0.7,3–0,0.2,Crystal Palace,"38,965",Stamford Bridge,Jonathan Moss,Match Report,,2021,3.0,0.0
+5,1,Sat,2021-08-14,15:00,Watford,1.2,3–2,1.2,Aston Villa,"20,051",Vicarage Road Stadium,Mike Dean,Match Report,,2021,3.0,2.0
+6,1,Sat,2021-08-14,15:00,Everton,2.4,3–1,0.8,Southampton,"38,487",Goodison Park,Andy Madley,Match Report,,2021,3.0,1.0
+7,1,Sat,2021-08-14,17:30,Norwich City,1.4,0–3,1.6,Liverpool,"27,023",Carrow Road,Andre Marriner,Match Report,,2021,0.0,3.0
+8,1,Sun,2021-08-15,14:00,Newcastle Utd,1.8,2–4,2.7,West Ham,"50,673",St. James' Park,Martin Atkinson,Match Report,,2021,2.0,4.0
+9,1,Sun,2021-08-15,16:30,Tottenham,1.0,1–0,1.8,Manchester City,"58,262",Tottenham Hotspur Stadium,Anthony Taylor,Match Report,,2021,1.0,0.0
+11,2,Sat,2021-08-21,12:30,Liverpool,2.7,2–0,0.9,Burnley,"52,591",Anfield,Mike Dean,Match Report,,2021,2.0,0.0
+12,2,Sat,2021-08-21,15:00,Aston Villa,1.2,2–0,0.7,Newcastle Utd,"41,964",Villa Park,David Coote,Match Report,,2021,2.0,0.0
+13,2,Sat,2021-08-21,15:00,Manchester City,2.6,5–0,0.1,Norwich City,"51,437",Etihad Stadium,Graham Scott,Match Report,,2021,5.0,0.0
+14,2,Sat,2021-08-21,15:00,Leeds United,1.2,2–2,1.8,Everton,"36,293",Elland Road,Darren England,Match Report,,2021,2.0,2.0
+15,2,Sat,2021-08-21,15:00,Crystal Palace,0.5,0–0,0.9,Brentford,"23,091",Selhurst Park,Martin Atkinson,Match Report,,2021,0.0,0.0
+16,2,Sat,2021-08-21,17:30,Brighton,1.3,2–0,0.5,Watford,"29,485",The American Express Community Stadium,Anthony Taylor,Match Report,,2021,2.0,0.0
+17,2,Sun,2021-08-22,14:00,Wolves,1.7,0–1,1.7,Tottenham,"30,368",Molineux Stadium,Stuart Attwell,Match Report,,2021,0.0,1.0
+18,2,Sun,2021-08-22,14:00,Southampton,0.7,1–1,1.8,Manchester Utd,"32,000",St. Mary's Stadium,Craig Pawson,Match Report,,2021,1.0,1.0
+19,2,Sun,2021-08-22,16:30,Arsenal,0.3,0–2,3.1,Chelsea,"58,729",Emirates Stadium,Paul Tierney,Match Report,,2021,0.0,2.0
+20,2,Mon,2021-08-23,20:00,West Ham,2.3,4–1,0.6,Leicester City,"59,901",London Stadium,Michael Oliver,Match Report,,2021,4.0,1.0
+22,3,Sat,2021-08-28,12:30,Manchester City,4.4,5–0,0.2,Arsenal,"52,276",Etihad Stadium,Martin Atkinson,Match Report,,2021,5.0,0.0
+23,3,Sat,2021-08-28,15:00,Norwich City,1.5,1–2,1.5,Leicester City,"26,765",Carrow Road,Robert Jones,Match Report,,2021,1.0,2.0
+24,3,Sat,2021-08-28,15:00,West Ham,1.3,2–2,1.1,Crystal Palace,"59,751",London Stadium,Stuart Attwell,Match Report,,2021,2.0,2.0
+25,3,Sat,2021-08-28,15:00,Aston Villa,0.7,1–1,0.9,Brentford,"42,045",Villa Park,Peter Bankes,Match Report,,2021,1.0,1.0
+26,3,Sat,2021-08-28,15:00,Newcastle Utd,1.0,2–2,3.6,Southampton,"44,017",St. James' Park,Paul Tierney,Match Report,,2021,2.0,2.0
+27,3,Sat,2021-08-28,15:00,Brighton,0.7,0–2,1.4,Everton,"30,548",The American Express Community Stadium,Jonathan Moss,Match Report,,2021,0.0,2.0
+28,3,Sat,2021-08-28,17:30,Liverpool,2.5,1–1,0.6,Chelsea,"54,000",Anfield,Anthony Taylor,Match Report,,2021,1.0,1.0
+29,3,Sun,2021-08-29,14:00,Burnley,1.0,1–1,1.2,Leeds United,"20,000",Turf Moor,Michael Oliver,Match Report,,2021,1.0,1.0
+30,3,Sun,2021-08-29,14:00,Tottenham,1.0,1–0,0.8,Watford,"57,672",Tottenham Hotspur Stadium,Andre Marriner,Match Report,,2021,1.0,0.0
+31,3,Sun,2021-08-29,16:30,Wolves,2.1,0–1,0.6,Manchester Utd,"30,621",Molineux Stadium,Mike Dean,Match Report,,2021,0.0,1.0
+33,4,Sat,2021-09-11,12:30,Crystal Palace,2.1,3–0,0.1,Tottenham,"26,000",Selhurst Park,Jonathan Moss,Match Report,,2021,3.0,0.0
+34,4,Sat,2021-09-11,15:00,Watford,0.2,0–2,2.2,Wolves,"20,019",Vicarage Road Stadium,Peter Bankes,Match Report,,2021,0.0,2.0
+35,4,Sat,2021-09-11,15:00,Brentford,0.4,0–1,0.3,Brighton,"16,518",Brentford Community Stadium,Graham Scott,Match Report,,2021,0.0,1.0
+36,4,Sat,2021-09-11,15:00,Arsenal,2.7,1–0,0.7,Norwich City,"58,000",Emirates Stadium,Michael Oliver,Match Report,,2021,1.0,0.0
+37,4,Sat,2021-09-11,15:00,Manchester Utd,2.5,4–1,0.4,Newcastle Utd,"72,732",Old Trafford,Anthony Taylor,Match Report,,2021,4.0,1.0
+38,4,Sat,2021-09-11,15:00,Leicester City,0.6,0–1,2.8,Manchester City,"32,087",King Power Stadium,Paul Tierney,Match Report,,2021,0.0,1.0
+39,4,Sat,2021-09-11,15:00,Southampton,0.7,0–0,0.7,West Ham,"30,000",St. Mary's Stadium,David Coote,Match Report,,2021,0.0,0.0
+40,4,Sat,2021-09-11,17:30,Chelsea,1.3,3–0,1.2,Aston Villa,"39,969",Stamford Bridge,Stuart Attwell,Match Report,,2021,3.0,0.0
+41,4,Sun,2021-09-12,16:30,Leeds United,1.2,0–3,4.3,Liverpool,"36,507",Elland Road,Craig Pawson,Match Report,,2021,0.0,3.0
+42,4,Mon,2021-09-13,20:00,Everton,1.4,3–1,1.0,Burnley,"30,000",Goodison Park,Martin Atkinson,Match Report,,2021,3.0,1.0
+44,5,Fri,2021-09-17,20:00,Newcastle Utd,1.3,1–1,1.5,Leeds United,"50,407",St. James' Park,Mike Dean,Match Report,,2021,1.0,1.0
+45,5,Sat,2021-09-18,12:30,Wolves,0.6,0–2,2.5,Brentford,"30,000",Molineux Stadium,Darren England,Match Report,,2021,0.0,2.0
+46,5,Sat,2021-09-18,15:00,Manchester City,1.0,0–0,0.4,Southampton,"52,698",Etihad Stadium,Jonathan Moss,Match Report,,2021,0.0,0.0
+47,5,Sat,2021-09-18,15:00,Liverpool,3.1,3–0,0.6,Crystal Palace,"52,000",Anfield,Andy Madley,Match Report,,2021,3.0,0.0
+48,5,Sat,2021-09-18,15:00,Norwich City,1.0,1–3,2.4,Watford,"26,649",Carrow Road,Robert Jones,Match Report,,2021,1.0,3.0
+49,5,Sat,2021-09-18,15:00,Burnley,1.0,0–1,1.1,Arsenal,"20,000",Turf Moor,Anthony Taylor,Match Report,,2021,0.0,1.0
+50,5,Sat,2021-09-18,17:30,Aston Villa,0.8,3–0,0.7,Everton,"41,888",Villa Park,Craig Pawson,Match Report,,2021,3.0,0.0
+51,5,Sun,2021-09-19,14:00,West Ham,1.6,1–2,2.0,Manchester Utd,"60,000",London Stadium,Martin Atkinson,Match Report,,2021,1.0,2.0
+52,5,Sun,2021-09-19,14:00,Brighton,1.7,2–1,1.6,Leicester City,"31,078",The American Express Community Stadium,Stuart Attwell,Match Report,,2021,2.0,1.0
+53,5,Sun,2021-09-19,16:30,Tottenham,0.5,0–3,2.1,Chelsea,"60,059",Tottenham Hotspur Stadium,Paul Tierney,Match Report,,2021,0.0,3.0
+55,6,Sat,2021-09-25,12:30,Manchester Utd,2.2,0–1,1.0,Aston Villa,"72,922",Old Trafford,Mike Dean,Match Report,,2021,0.0,1.0
+56,6,Sat,2021-09-25,12:30,Chelsea,0.2,0–1,1.7,Manchester City,"40,036",Stamford Bridge,Michael Oliver,Match Report,,2021,0.0,1.0
+57,6,Sat,2021-09-25,15:00,Leicester City,2.4,2–2,0.5,Burnley,"31,650",King Power Stadium,Chris Kavanagh,Match Report,,2021,2.0,2.0
+58,6,Sat,2021-09-25,15:00,Leeds United,1.2,1–2,1.6,West Ham,"36,417",Elland Road,Kevin Friend,Match Report,,2021,1.0,2.0
+59,6,Sat,2021-09-25,15:00,Watford,0.9,1–1,1.9,Newcastle Utd,"20,650",Vicarage Road Stadium,Jarred Gillett,Match Report,,2021,1.0,1.0
+60,6,Sat,2021-09-25,15:00,Everton,1.9,2–0,0.5,Norwich City,"38,821",Goodison Park,David Coote,Match Report,,2021,2.0,0.0
+61,6,Sat,2021-09-25,17:30,Brentford,2.1,3–3,2.8,Liverpool,"16,876",Brentford Community Stadium,Stuart Attwell,Match Report,,2021,3.0,3.0
+62,6,Sun,2021-09-26,14:00,Southampton,1.0,0–1,1.0,Wolves,"28,002",St. Mary's Stadium,Andy Madley,Match Report,,2021,0.0,1.0
+63,6,Sun,2021-09-26,16:30,Arsenal,1.1,3–1,1.0,Tottenham,"59,919",Emirates Stadium,Craig Pawson,Match Report,,2021,3.0,1.0
+64,6,Mon,2021-09-27,20:00,Crystal Palace,1.4,1–1,0.8,Brighton,"22,975",Selhurst Park,Andre Marriner,Match Report,,2021,1.0,1.0
+66,7,Sat,2021-10-02,12:30,Manchester Utd,1.0,1–1,1.3,Everton,"73,128",Old Trafford,Michael Oliver,Match Report,,2021,1.0,1.0
+67,7,Sat,2021-10-02,15:00,Wolves,1.0,2–1,0.6,Newcastle Utd,"30,483",Molineux Stadium,Graham Scott,Match Report,,2021,2.0,1.0
+68,7,Sat,2021-10-02,15:00,Burnley,1.2,0–0,0.6,Norwich City,"17,427",Turf Moor,Kevin Friend,Match Report,,2021,0.0,0.0
+69,7,Sat,2021-10-02,15:00,Chelsea,3.3,3–1,1.3,Southampton,"40,109",Stamford Bridge,Martin Atkinson,Match Report,,2021,3.0,1.0
+70,7,Sat,2021-10-02,15:00,Leeds United,1.3,1–0,0.2,Watford,"36,261",Elland Road,Simon Hooper,Match Report,,2021,1.0,0.0
+71,7,Sat,2021-10-02,17:30,Brighton,1.1,0–0,0.4,Arsenal,"31,266",The American Express Community Stadium,Jonathan Moss,Match Report,,2021,0.0,0.0
+72,7,Sun,2021-10-03,14:00,Tottenham,1.3,2–1,1.2,Aston Villa,"53,076",Tottenham Hotspur Stadium,Chris Kavanagh,Match Report,,2021,2.0,1.0
+73,7,Sun,2021-10-03,14:00,Crystal Palace,1.5,2–2,1.2,Leicester City,"25,000",Selhurst Park,Anthony Taylor,Match Report,,2021,2.0,2.0
+74,7,Sun,2021-10-03,14:00,West Ham,1.5,1–2,1.2,Brentford,"49,940",London Stadium,Peter Bankes,Match Report,,2021,1.0,2.0
+75,7,Sun,2021-10-03,16:30,Liverpool,0.9,2–2,1.2,Manchester City,"53,102",Anfield,Paul Tierney,Match Report,,2021,2.0,2.0
+77,8,Sat,2021-10-16,12:30,Watford,0.5,0–5,3.3,Liverpool,"21,085",Vicarage Road Stadium,Jonathan Moss,Match Report,,2021,0.0,5.0
+78,8,Sat,2021-10-16,15:00,Leicester City,2.4,4–2,1.2,Manchester Utd,"32,219",King Power Stadium,Craig Pawson,Match Report,,2021,4.0,2.0
+79,8,Sat,2021-10-16,15:00,Manchester City,2.1,2–0,0.9,Burnley,"52,711",Etihad Stadium,Martin Atkinson,Match Report,,2021,2.0,0.0
+80,8,Sat,2021-10-16,15:00,Southampton,1.9,1–0,0.2,Leeds United,"30,506",St. Mary's Stadium,David Coote,Match Report,,2021,1.0,0.0
+81,8,Sat,2021-10-16,15:00,Aston Villa,1.0,2–3,2.0,Wolves,"41,951",Villa Park,Michael Oliver,Match Report,,2021,2.0,3.0
+82,8,Sat,2021-10-16,15:00,Norwich City,1.2,0–0,0.8,Brighton,"26,777",Carrow Road,Peter Bankes,Match Report,,2021,0.0,0.0
+83,8,Sat,2021-10-16,17:30,Brentford,1.4,0–1,0.3,Chelsea,"16,940",Brentford Community Stadium,Anthony Taylor,Match Report,,2021,0.0,1.0
+84,8,Sun,2021-10-17,14:00,Everton,0.9,0–1,1.2,West Ham,"39,132",Goodison Park,Stuart Attwell,Match Report,,2021,0.0,1.0
+85,8,Sun,2021-10-17,16:30,Newcastle Utd,0.4,2–3,1.7,Tottenham,"52,214",St. James' Park,Andre Marriner,Match Report,,2021,2.0,3.0
+86,8,Mon,2021-10-18,20:00,Arsenal,1.7,2–2,0.7,Crystal Palace,"59,475",Emirates Stadium,Mike Dean,Match Report,,2021,2.0,2.0
+88,9,Fri,2021-10-22,20:00,Arsenal,2.7,3–1,1.4,Aston Villa,"59,496",Emirates Stadium,Craig Pawson,Match Report,,2021,3.0,1.0
+89,9,Sat,2021-10-23,12:30,Chelsea,3.1,7–0,0.1,Norwich City,"40,113",Stamford Bridge,Andy Madley,Match Report,,2021,7.0,0.0
+90,9,Sat,2021-10-23,15:00,Leeds United,1.6,1–1,0.9,Wolves,"36,475",Elland Road,Robert Jones,Match Report,,2021,1.0,1.0
+91,9,Sat,2021-10-23,15:00,Crystal Palace,1.9,1–1,0.3,Newcastle Utd,"24,609",Selhurst Park,Darren England,Match Report,,2021,1.0,1.0
+92,9,Sat,2021-10-23,15:00,Everton,1.5,2–5,3.7,Watford,"38,834",Goodison Park,Graham Scott,Match Report,,2021,2.0,5.0
+93,9,Sat,2021-10-23,15:00,Southampton,1.6,2–2,0.7,Burnley,"29,145",St. Mary's Stadium,Chris Kavanagh,Match Report,,2021,2.0,2.0
+94,9,Sat,2021-10-23,17:30,Brighton,1.3,1–4,3.8,Manchester City,"31,215",The American Express Community Stadium,Kevin Friend,Match Report,,2021,1.0,4.0
+95,9,Sun,2021-10-24,14:00,West Ham,1.3,1–0,0.7,Tottenham,"59,924",London Stadium,Paul Tierney,Match Report,,2021,1.0,0.0
+96,9,Sun,2021-10-24,14:00,Brentford,1.0,1–2,1.5,Leicester City,"16,814",Brentford Community Stadium,Simon Hooper,Match Report,,2021,1.0,2.0
+97,9,Sun,2021-10-24,16:30,Manchester Utd,1.6,0–5,3.4,Liverpool,"73,088",Old Trafford,Anthony Taylor,Match Report,,2021,0.0,5.0
+99,10,Sat,2021-10-30,12:30,Leicester City,1.3,0–2,0.7,Arsenal,"32,209",King Power Stadium,Michael Oliver,Match Report,,2021,0.0,2.0
+100,10,Sat,2021-10-30,15:00,Newcastle Utd,0.2,0–3,2.2,Chelsea,"52,208",St. James' Park,Paul Tierney,Match Report,,2021,0.0,3.0
+101,10,Sat,2021-10-30,15:00,Liverpool,1.5,2–2,1.0,Brighton,"52,598",Anfield,Mike Dean,Match Report,,2021,2.0,2.0
+102,10,Sat,2021-10-30,15:00,Burnley,2.3,3–1,0.8,Brentford,"18,821",Turf Moor,Jonathan Moss,Match Report,,2021,3.0,1.0
+103,10,Sat,2021-10-30,15:00,Watford,1.0,0–1,1.8,Southampton,"20,869",Vicarage Road Stadium,Peter Bankes,Match Report,,2021,0.0,1.0
+104,10,Sat,2021-10-30,15:00,Manchester City,0.7,0–2,0.7,Crystal Palace,"53,014",Etihad Stadium,Andre Marriner,Match Report,,2021,0.0,2.0
+105,10,Sat,2021-10-30,17:30,Tottenham,1.0,0–3,1.5,Manchester Utd,"60,356",Tottenham Hotspur Stadium,Stuart Attwell,Match Report,,2021,0.0,3.0
+106,10,Sun,2021-10-31,14:00,Norwich City,0.8,1–2,0.7,Leeds United,"26,913",Carrow Road,Anthony Taylor,Match Report,,2021,1.0,2.0
+107,10,Sun,2021-10-31,16:30,Aston Villa,0.7,1–4,2.3,West Ham,"41,874",Villa Park,Chris Kavanagh,Match Report,,2021,1.0,4.0
+108,10,Mon,2021-11-01,20:00,Wolves,1.7,2–1,1.5,Everton,"30,617",Molineux Stadium,Martin Atkinson,Match Report,,2021,2.0,1.0
+110,11,Fri,2021-11-05,20:00,Southampton,0.6,1–0,0.6,Aston Villa,"30,178",St. Mary's Stadium,Andy Madley,Match Report,,2021,1.0,0.0
+111,11,Sat,2021-11-06,12:30,Manchester Utd,0.9,0–2,1.6,Manchester City,"73,086",Old Trafford,Michael Oliver,Match Report,,2021,0.0,2.0
+112,11,Sat,2021-11-06,15:00,Brentford,2.5,1–2,1.2,Norwich City,"16,837",Brentford Community Stadium,Jarred Gillett,Match Report,,2021,1.0,2.0
+113,11,Sat,2021-11-06,15:00,Chelsea,1.8,1–1,0.7,Burnley,"39,798",Stamford Bridge,Andre Marriner,Match Report,,2021,1.0,1.0
+114,11,Sat,2021-11-06,15:00,Crystal Palace,1.9,2–0,0.3,Wolves,"24,390",Selhurst Park,Graham Scott,Match Report,,2021,2.0,0.0
+115,11,Sat,2021-11-06,17:30,Brighton,1.5,1–1,0.3,Newcastle Utd,"31,267",The American Express Community Stadium,David Coote,Match Report,,2021,1.0,1.0
+116,11,Sun,2021-11-07,14:00,Everton,0.6,0–0,0.7,Tottenham,"39,059",Goodison Park,Chris Kavanagh,Match Report,,2021,0.0,0.0
+117,11,Sun,2021-11-07,14:00,Leeds United,1.3,1–1,0.7,Leicester City,"36,478",Elland Road,Darren England,Match Report,,2021,1.0,1.0
+118,11,Sun,2021-11-07,14:00,Arsenal,1.6,1–0,0.5,Watford,"59,833",Emirates Stadium,Kevin Friend,Match Report,,2021,1.0,0.0
+119,11,Sun,2021-11-07,16:30,West Ham,1.0,3–2,1.2,Liverpool,"59,909",London Stadium,Craig Pawson,Match Report,,2021,3.0,2.0
+121,12,Sat,2021-11-20,12:30,Leicester City,0.4,0–3,2.0,Chelsea,"35,497",King Power Stadium,Paul Tierney,Match Report,,2021,0.0,3.0
+122,12,Sat,2021-11-20,15:00,Wolves,1.4,1–0,0.4,West Ham,"30,667",Molineux Stadium,Mike Dean,Match Report,,2021,1.0,0.0
+123,12,Sat,2021-11-20,15:00,Watford,2.7,4–1,1.4,Manchester Utd,"21,087",Vicarage Road Stadium,Jonathan Moss,Match Report,,2021,4.0,1.0
+124,12,Sat,2021-11-20,15:00,Norwich City,0.5,2–1,1.0,Southampton,"26,885",Carrow Road,Martin Atkinson,Match Report,,2021,2.0,1.0
+125,12,Sat,2021-11-20,15:00,Aston Villa,0.7,2–0,0.4,Brighton,"41,925",Villa Park,Anthony Taylor,Match Report,,2021,2.0,0.0
+126,12,Sat,2021-11-20,15:00,Newcastle Utd,1.5,3–3,0.9,Brentford,"52,131",St. James' Park,Robert Jones,Match Report,,2021,3.0,3.0
+127,12,Sat,2021-11-20,15:00,Burnley,1.5,3–3,1.9,Crystal Palace,"18,028",Turf Moor,Simon Hooper,Match Report,,2021,3.0,3.0
+128,12,Sat,2021-11-20,17:30,Liverpool,4.3,4–0,0.4,Arsenal,"53,092",Anfield,Michael Oliver,Match Report,,2021,4.0,0.0
+129,12,Sun,2021-11-21,14:00,Manchester City,2.5,3–0,0.2,Everton,"52,571",Etihad Stadium,Stuart Attwell,Match Report,,2021,3.0,0.0
+130,12,Sun,2021-11-21,16:30,Tottenham,2.1,2–1,1.4,Leeds United,"58,989",Tottenham Hotspur Stadium,Andre Marriner,Match Report,,2021,2.0,1.0
+132,13,Sat,2021-11-27,12:30,Arsenal,2.5,2–0,0.3,Newcastle Utd,"59,886",Emirates Stadium,Stuart Attwell,Match Report,,2021,2.0,0.0
+133,13,Sat,2021-11-27,15:00,Crystal Palace,1.0,1–2,0.5,Aston Villa,"25,203",Selhurst Park,Michael Salisbury,Match Report,,2021,1.0,2.0
+134,13,Sat,2021-11-27,15:00,Liverpool,2.9,4–0,1.0,Southampton,"53,040",Anfield,Andre Marriner,Match Report,,2021,4.0,0.0
+135,13,Sat,2021-11-27,15:00,Norwich City,1.6,0–0,0.3,Wolves,"26,911",Carrow Road,Simon Hooper,Match Report,,2021,0.0,0.0
+136,13,Sat,2021-11-27,17:30,Brighton,2.1,0–0,0.6,Leeds United,"31,166",The American Express Community Stadium,Craig Pawson,Match Report,,2021,0.0,0.0
+137,13,Sun,2021-11-28,14:00,Brentford,1.2,1–0,1.0,Everton,"16,957",Brentford Community Stadium,Darren England,Match Report,,2021,1.0,0.0
+138,13,Sun,2021-11-28,14:00,Leicester City,2.1,4–2,2.8,Watford,"32,020",King Power Stadium,Andy Madley,Match Report,,2021,4.0,2.0
+139,13,Sun,2021-11-28,14:00,Manchester City,2.1,2–1,0.2,West Ham,"53,245",Etihad Stadium,Michael Oliver,Match Report,,2021,2.0,1.0
+140,13,Sun,2021-11-28,16:30,Chelsea,2.7,1–1,0.9,Manchester Utd,"40,041",Stamford Bridge,Anthony Taylor,Match Report,,2021,1.0,1.0
+142,14,Tue,2021-11-30,19:30,Newcastle Utd,1.1,1–1,1.2,Norwich City,"50,757",St. James' Park,Andy Madley,Match Report,,2021,1.0,1.0
+143,14,Tue,2021-11-30,20:15,Leeds United,1.4,1–0,1.1,Crystal Palace,"35,558",Elland Road,Kevin Friend,Match Report,,2021,1.0,0.0
+144,14,Wed,2021-12-01,19:30,Southampton,1.5,2–2,1.5,Leicester City,"26,951",St. Mary's Stadium,Robert Jones,Match Report,,2021,2.0,2.0
+145,14,Wed,2021-12-01,19:30,West Ham,1.3,1–1,1.3,Brighton,"59,626",London Stadium,Chris Kavanagh,Match Report,,2021,1.0,1.0
+146,14,Wed,2021-12-01,19:30,Wolves,0.7,0–0,0.2,Burnley,"30,328",Molineux Stadium,John Brooks,Match Report,,2021,0.0,0.0
+147,14,Wed,2021-12-01,19:30,Watford,1.0,1–2,0.9,Chelsea,"20,388",Vicarage Road Stadium,David Coote,Match Report,,2021,1.0,2.0
+148,14,Wed,2021-12-01,20:15,Aston Villa,0.8,1–2,1.0,Manchester City,"41,400",Villa Park,Mike Dean,Match Report,,2021,1.0,2.0
+149,14,Wed,2021-12-01,20:15,Everton,0.7,1–4,2.4,Liverpool,"39,641",Goodison Park,Paul Tierney,Match Report,,2021,1.0,4.0
+150,14,Thu,2021-12-02,19:30,Tottenham,1.9,2–0,0.3,Brentford,"54,202",Tottenham Hotspur Stadium,Jonathan Moss,Match Report,,2021,2.0,0.0
+151,14,Thu,2021-12-02,20:15,Manchester Utd,1.9,3–2,1.4,Arsenal,"73,123",Old Trafford,Martin Atkinson,Match Report,,2021,3.0,2.0
+153,15,Sat,2021-12-04,12:30,West Ham,1.8,3–2,1.1,Chelsea,"59,942",London Stadium,Andre Marriner,Match Report,,2021,3.0,2.0
+154,15,Sat,2021-12-04,15:00,Newcastle Utd,1.0,1–0,0.6,Burnley,"51,948",St. James' Park,Paul Tierney,Match Report,,2021,1.0,0.0
+155,15,Sat,2021-12-04,15:00,Southampton,1.6,1–1,1.6,Brighton,"28,706",St. Mary's Stadium,Anthony Taylor,Match Report,,2021,1.0,1.0
+156,15,Sat,2021-12-04,15:00,Wolves,0.1,0–1,2.7,Liverpool,"30,729",Molineux Stadium,Chris Kavanagh,Match Report,,2021,0.0,1.0
+157,15,Sat,2021-12-04,17:30,Watford,0.8,1–3,3.1,Manchester City,"20,673",Vicarage Road Stadium,Simon Hooper,Match Report,,2021,1.0,3.0
+158,15,Sun,2021-12-05,14:00,Leeds United,1.2,2–2,1.0,Brentford,"35,639",Elland Road,David Coote,Match Report,,2021,2.0,2.0
+159,15,Sun,2021-12-05,14:00,Tottenham,1.6,3–0,1.2,Norwich City,"57,088",Tottenham Hotspur Stadium,Jarred Gillett,Match Report,,2021,3.0,0.0
+160,15,Sun,2021-12-05,14:00,Manchester Utd,0.9,1–0,0.5,Crystal Palace,"73,172",Old Trafford,Craig Pawson,Match Report,,2021,1.0,0.0
+161,15,Sun,2021-12-05,16:30,Aston Villa,2.1,2–1,1.1,Leicester City,"41,572",Villa Park,Michael Oliver,Match Report,,2021,2.0,1.0
+162,15,Mon,2021-12-06,20:00,Everton,0.9,2–1,1.0,Arsenal,"38,906",Goodison Park,Mike Dean,Match Report,,2021,2.0,1.0
+164,16,Fri,2021-12-10,20:00,Brentford,1.6,2–1,0.5,Watford,"16,861",Brentford Community Stadium,Michael Oliver,Match Report,,2021,2.0,1.0
+165,16,Sat,2021-12-11,12:30,Manchester City,3.2,1–0,0.2,Wolves,"52,613",Etihad Stadium,Jonathan Moss,Match Report,,2021,1.0,0.0
+166,16,Sat,2021-12-11,15:00,Liverpool,2.2,1–0,0.2,Aston Villa,"53,093",Anfield,Stuart Attwell,Match Report,,2021,1.0,0.0
+167,16,Sat,2021-12-11,15:00,Arsenal,1.8,3–0,0.6,Southampton,"59,653",Emirates Stadium,Jarred Gillett,Match Report,,2021,3.0,0.0
+168,16,Sat,2021-12-11,15:00,Chelsea,2.5,3–2,1.4,Leeds United,"39,959",Stamford Bridge,Chris Kavanagh,Match Report,,2021,3.0,2.0
+169,16,Sat,2021-12-11,17:30,Norwich City,1.2,0–1,2.0,Manchester Utd,"27,606",Carrow Road,Darren England,Match Report,,2021,0.0,1.0
+170,16,Sun,2021-12-12,14:00,Burnley,0.8,0–0,0.8,West Ham,"18,065",Turf Moor,Graham Scott,Match Report,,2021,0.0,0.0
+171,16,Sun,2021-12-12,14:00,Leicester City,2.6,4–0,1.0,Newcastle Utd,"31,959",King Power Stadium,Peter Bankes,Match Report,,2021,4.0,0.0
+172,16,Sun,2021-12-12,16:30,Crystal Palace,1.8,3–1,1.0,Everton,"24,066",Selhurst Park,Andy Madley,Match Report,,2021,3.0,1.0
+174,17,Tue,2021-12-14,19:45,Norwich City,0.5,0–2,2.0,Aston Villa,"26,836",Carrow Road,David Coote,Match Report,,2021,0.0,2.0
+175,17,Tue,2021-12-14,20:00,Manchester City,3.1,7–0,0.3,Leeds United,"52,401",Etihad Stadium,Paul Tierney,Match Report,,2021,7.0,0.0
+176,17,Wed,2021-12-15,19:30,Brighton,1.2,0–1,1.0,Wolves,"30,362",The American Express Community Stadium,Tony Harrington,Match Report,,2021,0.0,1.0
+177,17,Wed,2021-12-15,19:30,Crystal Palace,1.2,2–2,0.6,Southampton,"22,861",Selhurst Park,Simon Hooper,Match Report,,2021,2.0,2.0
+178,17,Wed,2021-12-15,20:00,Arsenal,2.8,2–0,0.4,West Ham,"59,777",Emirates Stadium,Anthony Taylor,Match Report,,2021,2.0,0.0
+179,17,Thu,2021-12-16,19:45,Chelsea,2.9,1–1,0.6,Everton,"13,933",Stamford Bridge,Michael Oliver,Match Report,,2021,1.0,1.0
+180,17,Thu,2021-12-16,20:00,Liverpool,2.7,3–1,0.3,Newcastle Utd,"52,951",Anfield,Mike Dean,Match Report,,2021,3.0,1.0
+182,18,Sat,2021-12-18,17:30,Leeds United,1.6,1–4,3.5,Arsenal,"36,166",Elland Road,Andre Marriner,Match Report,,2021,1.0,4.0
+183,18,Sun,2021-12-19,14:00,Wolves,0.2,0–0,0.9,Chelsea,"30,631",Molineux Stadium,David Coote,Match Report,,2021,0.0,0.0
+184,18,Sun,2021-12-19,14:15,Newcastle Utd,0.3,0–4,2.9,Manchester City,"52,127",St. James' Park,Martin Atkinson,Match Report,,2021,0.0,4.0
+185,18,Sun,2021-12-19,16:30,Tottenham,3.0,2–2,1.1,Liverpool,"45,421",Tottenham Hotspur Stadium,Paul Tierney,Match Report,,2021,2.0,2.0
+187,19,Sun,2021-12-26,15:00,West Ham,1.6,2–3,1.2,Southampton,"41,027",London Stadium,Kevin Friend,Match Report,,2021,2.0,3.0
+188,19,Sun,2021-12-26,15:00,Manchester City,3.6,6–3,2.7,Leicester City,"53,226",Etihad Stadium,Chris Kavanagh,Match Report,,2021,6.0,3.0
+189,19,Sun,2021-12-26,15:00,Norwich City,0.1,0–5,2.5,Arsenal,"26,940",Carrow Road,Graham Scott,Match Report,,2021,0.0,5.0
+190,19,Sun,2021-12-26,15:00,Tottenham,2.3,3–0,0.2,Crystal Palace,"40,539",Tottenham Hotspur Stadium,Jonathan Moss,Match Report,,2021,3.0,0.0
+191,19,Sun,2021-12-26,17:30,Aston Villa,0.4,1–3,2.6,Chelsea,"41,907",Villa Park,Martin Atkinson,Match Report,,2021,1.0,3.0
+192,19,Sun,2021-12-26,20:00,Brighton,0.8,2–0,0.7,Brentford,"30,141",The American Express Community Stadium,Darren England,Match Report,,2021,2.0,0.0
+193,19,Mon,2021-12-27,20:00,Newcastle Utd,1.3,1–1,1.6,Manchester Utd,"52,178",St. James' Park,Craig Pawson,Match Report,,2021,1.0,1.0
+195,20,Tue,2021-12-28,15:00,Southampton,0.4,1–1,2.3,Tottenham,"31,304",St. Mary's Stadium,Anthony Taylor,Match Report,,2021,1.0,1.0
+196,20,Tue,2021-12-28,15:00,Crystal Palace,1.9,3–0,0.9,Norwich City,"24,433",Selhurst Park,Paul Tierney,Match Report,,2021,3.0,0.0
+197,20,Tue,2021-12-28,15:00,Watford,1.6,1–4,3.6,West Ham,"20,073",Vicarage Road Stadium,Darren England,Match Report,,2021,1.0,4.0
+198,20,Tue,2021-12-28,20:00,Leicester City,0.4,1–0,2.3,Liverpool,"32,230",King Power Stadium,Michael Oliver,Match Report,,2021,1.0,0.0
+199,20,Wed,2021-12-29,19:30,Chelsea,0.7,1–1,0.9,Brighton,"40,080",Stamford Bridge,Mike Dean,Match Report,,2021,1.0,1.0
+200,20,Wed,2021-12-29,20:15,Brentford,0.4,0–1,1.1,Manchester City,"17,009",Brentford Community Stadium,David Coote,Match Report,,2021,0.0,1.0
+201,20,Thu,2021-12-30,20:15,Manchester Utd,2.4,3–1,1.1,Burnley,"73,121",Old Trafford,Jonathan Moss,Match Report,,2021,3.0,1.0
+203,21,Sat,2022-01-01,12:30,Arsenal,0.8,1–2,2.0,Manchester City,"59,757",Emirates Stadium,Stuart Attwell,Match Report,,2021,1.0,2.0
+204,21,Sat,2022-01-01,15:00,Watford,0.3,0–1,2.2,Tottenham,"20,391",Vicarage Road Stadium,Robert Jones,Match Report,,2021,0.0,1.0
+205,21,Sat,2022-01-01,17:30,Crystal Palace,2.4,2–3,2.2,West Ham,"24,351",Selhurst Park,Darren England,Match Report,,2021,2.0,3.0
+206,21,Sun,2022-01-02,14:00,Leeds United,1.9,3–1,1.0,Burnley,"36,083",Elland Road,Paul Tierney,Match Report,,2021,3.0,1.0
+207,21,Sun,2022-01-02,14:00,Brentford,0.6,2–1,0.8,Aston Villa,"16,876",Brentford Community Stadium,Craig Pawson,Match Report,,2021,2.0,1.0
+208,21,Sun,2022-01-02,14:00,Everton,1.6,2–3,1.7,Brighton,"38,203",Goodison Park,John Brooks,Match Report,,2021,2.0,3.0
+209,21,Sun,2022-01-02,16:30,Chelsea,1.2,2–2,1.3,Liverpool,"40,072",Stamford Bridge,Anthony Taylor,Match Report,,2021,2.0,2.0
+210,21,Mon,2022-01-03,17:30,Manchester Utd,0.8,0–1,0.7,Wolves,"73,045",Old Trafford,Mike Dean,Match Report,,2021,0.0,1.0
+212,18,Tue,2022-01-11,19:45,Southampton,1.4,4–1,0.5,Brentford,"27,383",St. Mary's Stadium,Stuart Attwell,Match Report,,2021,4.0,1.0
+213,18,Wed,2022-01-12,19:45,West Ham,2.5,2–0,0.3,Norwich City,"59,775",London Stadium,Simon Hooper,Match Report,,2021,2.0,0.0
+215,22,Fri,2022-01-14,20:00,Brighton,2.0,1–1,0.2,Crystal Palace,"30,675",The American Express Community Stadium,Robert Jones,Match Report,,2021,1.0,1.0
+216,22,Sat,2022-01-15,12:30,Manchester City,1.0,1–0,0.3,Chelsea,"53,319",Etihad Stadium,Craig Pawson,Match Report,,2021,1.0,0.0
+217,22,Sat,2022-01-15,15:00,Norwich City,1.0,2–1,0.6,Everton,"26,629",Carrow Road,Andy Madley,Match Report,,2021,2.0,1.0
+218,22,Sat,2022-01-15,15:00,Newcastle Utd,1.2,1–1,1.4,Watford,"52,223",St. James' Park,Paul Tierney,Match Report,,2021,1.0,1.0
+219,22,Sat,2022-01-15,15:00,Wolves,2.5,3–1,0.8,Southampton,"30,057",Molineux Stadium,Michael Salisbury,Match Report,,2021,3.0,1.0
+220,22,Sat,2022-01-15,17:30,Aston Villa,1.9,2–2,1.0,Manchester Utd,"41,968",Villa Park,David Coote,Match Report,,2021,2.0,2.0
+221,22,Sun,2022-01-16,14:00,West Ham,2.4,2–3,2.2,Leeds United,"59,951",London Stadium,Mike Dean,Match Report,,2021,2.0,3.0
+222,22,Sun,2022-01-16,14:00,Liverpool,2.7,3–0,0.7,Brentford,"52,824",Anfield,Jonathan Moss,Match Report,,2021,3.0,0.0
+224,24,Tue,2022-01-18,20:00,Brighton,0.7,1–1,0.7,Chelsea,"30,880",The American Express Community Stadium,Kevin Friend,Match Report,,2021,1.0,1.0
+226,17,Wed,2022-01-19,19:30,Leicester City,1.2,2–3,3.1,Tottenham,"31,986",King Power Stadium,Jonathan Moss,Match Report,,2021,2.0,3.0
+227,17,Wed,2022-01-19,20:00,Brentford,2.3,1–3,2.3,Manchester Utd,"17,094",Brentford Community Stadium,Andre Marriner,Match Report,,2021,1.0,3.0
+229,23,Fri,2022-01-21,20:00,Watford,1.2,0–3,1.1,Norwich City,"20,782",Vicarage Road Stadium,Mike Dean,Match Report,,2021,0.0,3.0
+230,23,Sat,2022-01-22,12:30,Everton,1.6,0–1,0.8,Aston Villa,"38,203",Goodison Park,Craig Pawson,Match Report,,2021,0.0,1.0
+231,23,Sat,2022-01-22,15:00,Leeds United,0.7,0–1,0.9,Newcastle Utd,"36,405",Elland Road,Chris Kavanagh,Match Report,,2021,0.0,1.0
+232,23,Sat,2022-01-22,15:00,Manchester Utd,1.9,1–0,0.3,West Ham,"73,130",Old Trafford,Jonathan Moss,Match Report,,2021,1.0,0.0
+233,23,Sat,2022-01-22,15:00,Brentford,1.1,1–2,0.2,Wolves,"16,982",Brentford Community Stadium,Peter Bankes,Match Report,,2021,1.0,2.0
+234,23,Sat,2022-01-22,17:30,Southampton,0.8,1–1,1.8,Manchester City,"31,178",St. Mary's Stadium,Simon Hooper,Match Report,,2021,1.0,1.0
+235,23,Sun,2022-01-23,14:00,Crystal Palace,2.2,1–3,1.9,Liverpool,"25,002",Selhurst Park,Kevin Friend,Match Report,,2021,1.0,3.0
+236,23,Sun,2022-01-23,14:00,Arsenal,1.2,0–0,0.4,Burnley,"59,255",Emirates Stadium,David Coote,Match Report,,2021,0.0,0.0
+237,23,Sun,2022-01-23,14:00,Leicester City,1.4,1–1,1.1,Brighton,"31,231",King Power Stadium,Martin Atkinson,Match Report,,2021,1.0,1.0
+238,23,Sun,2022-01-23,16:30,Chelsea,1.2,2–0,0.5,Tottenham,"40,020",Stamford Bridge,Paul Tierney,Match Report,,2021,2.0,0.0
+240,17,Sat,2022-02-05,18:00,Burnley,0.6,0–0,0.8,Watford,"19,527",Turf Moor,Craig Pawson,Match Report,,2021,0.0,0.0
+242,24,Tue,2022-02-08,19:45,West Ham,0.8,1–0,0.3,Watford,"59,581",London Stadium,Martin Atkinson,Match Report,,2021,1.0,0.0
+243,24,Tue,2022-02-08,19:45,Newcastle Utd,1.9,3–1,0.7,Everton,"52,186",St. James' Park,Anthony Taylor,Match Report,,2021,3.0,1.0
+244,24,Tue,2022-02-08,20:00,Burnley,0.4,1–1,1.8,Manchester Utd,"21,233",Turf Moor,Mike Dean,Match Report,,2021,1.0,1.0
+245,24,Wed,2022-02-09,19:45,Tottenham,1.4,2–3,2.2,Southampton,"54,012",Tottenham Hotspur Stadium,David Coote,Match Report,,2021,2.0,3.0
+246,24,Wed,2022-02-09,19:45,Norwich City,0.4,1–1,1.3,Crystal Palace,"26,652",Carrow Road,Paul Tierney,Match Report,,2021,1.0,1.0
+247,24,Wed,2022-02-09,19:45,Manchester City,1.9,2–0,0.4,Brentford,"51,658",Etihad Stadium,Darren England,Match Report,,2021,2.0,0.0
+248,24,Wed,2022-02-09,20:00,Aston Villa,1.6,3–3,1.8,Leeds United,"41,927",Villa Park,Jarred Gillett,Match Report,,2021,3.0,3.0
+249,24,Thu,2022-02-10,19:45,Liverpool,1.8,2–0,0.5,Leicester City,"53,050",Anfield,Chris Kavanagh,Match Report,,2021,2.0,0.0
+250,24,Thu,2022-02-10,19:45,Wolves,0.8,0–1,1.8,Arsenal,"31,523",Molineux Stadium,Michael Oliver,Match Report,,2021,0.0,1.0
+252,25,Sat,2022-02-12,12:30,Manchester Utd,2.1,1–1,0.8,Southampton,"73,084",Old Trafford,Stuart Attwell,Match Report,,2021,1.0,1.0
+253,25,Sat,2022-02-12,15:00,Everton,2.7,3–0,0.3,Leeds United,"39,150",Goodison Park,Graham Scott,Match Report,,2021,3.0,0.0
+254,25,Sat,2022-02-12,15:00,Brentford,1.6,0–0,0.3,Crystal Palace,"16,958",Brentford Community Stadium,Simon Hooper,Match Report,,2021,0.0,0.0
+255,25,Sat,2022-02-12,15:00,Watford,0.5,0–2,1.6,Brighton,"20,795",Vicarage Road Stadium,Jonathan Moss,Match Report,,2021,0.0,2.0
+256,25,Sat,2022-02-12,17:30,Norwich City,0.4,0–4,4.6,Manchester City,"27,010",Carrow Road,Andre Marriner,Match Report,,2021,0.0,4.0
+257,25,Sun,2022-02-13,14:00,Newcastle Utd,0.5,1–0,0.6,Aston Villa,"52,207",St. James' Park,Craig Pawson,Match Report,,2021,1.0,0.0
+258,25,Sun,2022-02-13,14:00,Burnley,1.5,0–1,1.7,Liverpool,"19,563",Turf Moor,Martin Atkinson,Match Report,,2021,0.0,1.0
+259,25,Sun,2022-02-13,14:00,Tottenham,1.2,0–2,1.3,Wolves,"56,452",Tottenham Hotspur Stadium,Kevin Friend,Match Report,,2021,0.0,2.0
+260,25,Sun,2022-02-13,16:30,Leicester City,1.4,2–2,1.1,West Ham,"32,061",King Power Stadium,Michael Oliver,Match Report,,2021,2.0,2.0
+262,18,Tue,2022-02-15,20:15,Manchester Utd,1.7,2–0,0.7,Brighton,"73,012",Old Trafford,Peter Bankes,Match Report,,2021,2.0,0.0
+264,26,Sat,2022-02-19,12:30,West Ham,0.6,1–1,0.8,Newcastle Utd,"59,949",London Stadium,Chris Kavanagh,Match Report,,2021,1.0,1.0
+265,26,Sat,2022-02-19,15:00,Aston Villa,1.3,0–1,1.2,Watford,"41,936",Villa Park,Robert Jones,Match Report,,2021,0.0,1.0
+266,26,Sat,2022-02-19,15:00,Arsenal,1.7,2–1,0.6,Brentford,"59,249",Emirates Stadium,Jonathan Moss,Match Report,,2021,2.0,1.0
+267,26,Sat,2022-02-19,15:00,Southampton,2.5,2–0,0.3,Everton,"31,312",St. Mary's Stadium,Andy Madley,Match Report,,2021,2.0,0.0
+268,26,Sat,2022-02-19,15:00,Liverpool,3.6,3–1,0.6,Norwich City,"53,135",Anfield,Mike Dean,Match Report,,2021,3.0,1.0
+269,26,Sat,2022-02-19,15:00,Brighton,0.6,0–3,0.7,Burnley,"30,361",The American Express Community Stadium,Kevin Friend,Match Report,,2021,0.0,3.0
+270,26,Sat,2022-02-19,15:00,Crystal Palace,0.5,0–1,0.9,Chelsea,"25,109",Selhurst Park,David Coote,Match Report,,2021,0.0,1.0
+271,26,Sat,2022-02-19,17:30,Manchester City,2.1,2–3,1.4,Tottenham,"53,201",Etihad Stadium,Anthony Taylor,Match Report,,2021,2.0,3.0
+272,26,Sun,2022-02-20,14:00,Leeds United,1.8,2–4,2.2,Manchester Utd,"36,715",Elland Road,Paul Tierney,Match Report,,2021,2.0,4.0
+273,26,Sun,2022-02-20,16:30,Wolves,0.5,2–1,1.7,Leicester City,"31,587",Molineux Stadium,Craig Pawson,Match Report,,2021,2.0,1.0
+275,13,Wed,2022-02-23,19:30,Burnley,0.9,1–0,0.7,Tottenham,"19,488",Turf Moor,Graham Scott,Match Report,,2021,1.0,0.0
+277,18,Wed,2022-02-23,19:30,Watford,1.4,1–4,1.1,Crystal Palace,"20,012",Vicarage Road Stadium,Andre Marriner,Match Report,,2021,1.0,4.0
+279,19,Wed,2022-02-23,19:45,Liverpool,5.9,6–0,0.2,Leeds United,"53,018",Anfield,Michael Oliver,Match Report,,2021,6.0,0.0
+281,20,Thu,2022-02-24,19:45,Arsenal,3.1,2–1,1.0,Wolves,"59,888",Emirates Stadium,Martin Atkinson,Match Report,,2021,2.0,1.0
+283,27,Fri,2022-02-25,20:00,Southampton,2.6,2–0,0.6,Norwich City,"31,182",St. Mary's Stadium,Simon Hooper,Match Report,,2021,2.0,0.0
+284,27,Sat,2022-02-26,12:30,Leeds United,1.5,0–4,1.9,Tottenham,"36,599",Elland Road,Craig Pawson,Match Report,,2021,0.0,4.0
+285,27,Sat,2022-02-26,15:00,Crystal Palace,1.0,1–1,0.2,Burnley,"24,203",Selhurst Park,Jonathan Moss,Match Report,,2021,1.0,1.0
+286,27,Sat,2022-02-26,15:00,Manchester Utd,2.8,0–0,0.6,Watford,"73,152",Old Trafford,Kevin Friend,Match Report,,2021,0.0,0.0
+287,27,Sat,2022-02-26,15:00,Brighton,0.7,0–2,1.0,Aston Villa,"31,475",The American Express Community Stadium,John Brooks,Match Report,,2021,0.0,2.0
+288,27,Sat,2022-02-26,15:00,Brentford,0.4,0–2,2.7,Newcastle Utd,"17,039",Brentford Community Stadium,Mike Dean,Match Report,,2021,0.0,2.0
+289,27,Sat,2022-02-26,17:30,Everton,0.5,0–1,1.8,Manchester City,"39,105",Goodison Park,Paul Tierney,Match Report,,2021,0.0,1.0
+290,27,Sun,2022-02-27,14:00,West Ham,1.8,1–0,0.7,Wolves,"59,946",London Stadium,Anthony Taylor,Match Report,,2021,1.0,0.0
+292,22,Tue,2022-03-01,19:45,Burnley,0.9,0–2,1.5,Leicester City,"17,825",Turf Moor,Chris Kavanagh,Match Report,,2021,0.0,2.0
+294,28,Sat,2022-03-05,12:30,Leicester City,0.4,1–0,1.7,Leeds United,"32,236",King Power Stadium,David Coote,Match Report,,2021,1.0,0.0
+295,28,Sat,2022-03-05,15:00,Newcastle Utd,1.7,2–1,1.5,Brighton,"52,214",St. James' Park,Martin Atkinson,Match Report,,2021,2.0,1.0
+296,28,Sat,2022-03-05,15:00,Aston Villa,2.5,4–0,1.1,Southampton,"41,855",Villa Park,Peter Bankes,Match Report,,2021,4.0,0.0
+297,28,Sat,2022-03-05,15:00,Burnley,0.7,0–4,2.3,Chelsea,"19,439",Turf Moor,Andre Marriner,Match Report,,2021,0.0,4.0
+298,28,Sat,2022-03-05,15:00,Wolves,0.7,0–2,2.7,Crystal Palace,"31,395",Molineux Stadium,Andy Madley,Match Report,,2021,0.0,2.0
+299,28,Sat,2022-03-05,15:00,Norwich City,1.0,1–3,2.0,Brentford,"26,887",Carrow Road,Anthony Taylor,Match Report,,2021,1.0,3.0
+300,28,Sat,2022-03-05,17:30,Liverpool,2.4,1–0,1.3,West Ham,"59,925",Anfield,Jonathan Moss,Match Report,,2021,1.0,0.0
+301,28,Sun,2022-03-06,14:00,Watford,1.0,2–3,1.0,Arsenal,"21,142",Vicarage Road Stadium,Craig Pawson,Match Report,,2021,2.0,3.0
+302,28,Sun,2022-03-06,16:30,Manchester City,2.7,4–1,0.5,Manchester Utd,"53,165",Etihad Stadium,Michael Oliver,Match Report,,2021,4.0,1.0
+303,28,Mon,2022-03-07,20:00,Tottenham,2.5,5–0,0.2,Everton,"59,647",Tottenham Hotspur Stadium,Stuart Attwell,Match Report,,2021,5.0,0.0
+305,19,Thu,2022-03-10,19:30,Wolves,0.7,4–0,0.6,Watford,"29,658",Molineux Stadium,Darren England,Match Report,,2021,4.0,0.0
+307,21,Thu,2022-03-10,19:30,Southampton,1.1,1–2,0.6,Newcastle Utd,"30,056",St. Mary's Stadium,Kevin Friend,Match Report,,2021,1.0,2.0
+309,30,Thu,2022-03-10,19:30,Norwich City,1.0,1–3,1.8,Chelsea,"26,684",Carrow Road,Martin Atkinson,Match Report,,2021,1.0,3.0
+311,20,Thu,2022-03-10,19:45,Leeds United,0.2,0–3,1.5,Aston Villa,"36,400",Elland Road,Simon Hooper,Match Report,,2021,0.0,3.0
+313,29,Sat,2022-03-12,12:30,Brighton,0.5,0–2,2.2,Liverpool,"31,474",The American Express Community Stadium,Mike Dean,Match Report,,2021,0.0,2.0
+314,29,Sat,2022-03-12,15:00,Brentford,1.9,2–0,0.7,Burnley,"17,088",Brentford Community Stadium,Paul Tierney,Match Report,,2021,2.0,0.0
+315,29,Sat,2022-03-12,17:30,Manchester Utd,1.0,3–2,1.5,Tottenham,"73,458",Old Trafford,Jonathan Moss,Match Report,,2021,3.0,2.0
+316,29,Sun,2022-03-13,14:00,Chelsea,1.1,1–0,0.3,Newcastle Utd,"40,026",Stamford Bridge,David Coote,Match Report,,2021,1.0,0.0
+317,29,Sun,2022-03-13,14:00,Southampton,1.4,1–2,1.7,Watford,"28,863",St. Mary's Stadium,Graham Scott,Match Report,,2021,1.0,2.0
+318,29,Sun,2022-03-13,14:00,West Ham,1.2,2–1,1.1,Aston Villa,"59,957",London Stadium,Jarred Gillett,Match Report,,2021,2.0,1.0
+319,29,Sun,2022-03-13,14:00,Everton,0.4,0–1,0.8,Wolves,"39,112",Goodison Park,Michael Oliver,Match Report,,2021,0.0,1.0
+320,29,Sun,2022-03-13,14:00,Leeds United,2.5,2–1,1.5,Norwich City,"36,321",Elland Road,Stuart Attwell,Match Report,,2021,2.0,1.0
+321,29,Sun,2022-03-13,16:30,Arsenal,2.4,2–0,0.4,Leicester City,"60,111",Emirates Stadium,Anthony Taylor,Match Report,,2021,2.0,0.0
+322,29,Mon,2022-03-14,20:00,Crystal Palace,0.6,0–0,2.8,Manchester City,"25,309",Selhurst Park,Martin Atkinson,Match Report,,2021,0.0,0.0
+324,16,Wed,2022-03-16,19:30,Brighton,0.7,0–2,2.2,Tottenham,"31,144",The American Express Community Stadium,Robert Jones,Match Report,,2021,0.0,2.0
+326,27,Wed,2022-03-16,20:15,Arsenal,0.5,0–2,0.8,Liverpool,"59,968",Emirates Stadium,Andre Marriner,Match Report,,2021,0.0,2.0
+328,20,Thu,2022-03-17,19:45,Everton,0.7,1–0,0.9,Newcastle Utd,"39,068",Goodison Park,Craig Pawson,Match Report,,2021,1.0,0.0
+330,30,Fri,2022-03-18,20:00,Wolves,1.2,2–3,2.0,Leeds United,"31,842",Molineux Stadium,Kevin Friend,Match Report,,2021,2.0,3.0
+331,30,Sat,2022-03-19,12:30,Aston Villa,0.5,0–1,1.3,Arsenal,"41,956",Villa Park,Andy Madley,Match Report,,2021,0.0,1.0
+332,30,Sun,2022-03-20,14:00,Leicester City,1.0,2–1,1.3,Brentford,"31,830",King Power Stadium,Darren England,Match Report,,2021,2.0,1.0
+333,30,Sun,2022-03-20,16:30,Tottenham,3.0,3–1,0.6,West Ham,"58,685",Tottenham Hotspur Stadium,Anthony Taylor,Match Report,,2021,3.0,1.0
+335,31,Sat,2022-04-02,12:30,Liverpool,2.2,2–0,0.6,Watford,"53,104",Anfield,Stuart Attwell,Match Report,,2021,2.0,0.0
+336,31,Sat,2022-04-02,15:00,Wolves,1.3,2–1,2.1,Aston Villa,"31,012",Molineux Stadium,Darren England,Match Report,,2021,2.0,1.0
+337,31,Sat,2022-04-02,15:00,Leeds United,1.2,1–1,1.4,Southampton,"36,580",Elland Road,Anthony Taylor,Match Report,,2021,1.0,1.0
+338,31,Sat,2022-04-02,15:00,Chelsea,1.3,1–4,1.8,Brentford,"39,061",Stamford Bridge,Andy Madley,Match Report,,2021,1.0,4.0
+339,31,Sat,2022-04-02,15:00,Burnley,0.1,0–2,1.8,Manchester City,"21,249",Turf Moor,Craig Pawson,Match Report,,2021,0.0,2.0
+340,31,Sat,2022-04-02,15:00,Brighton,2.8,0–0,0.4,Norwich City,"31,245",The American Express Community Stadium,Simon Hooper,Match Report,,2021,0.0,0.0
+341,31,Sat,2022-04-02,17:30,Manchester Utd,0.9,1–1,0.8,Leicester City,"73,444",Old Trafford,Andre Marriner,Match Report,,2021,1.0,1.0
+342,31,Sun,2022-04-03,14:00,West Ham,1.2,2–1,0.7,Everton,"59,953",London Stadium,Michael Oliver,Match Report,,2021,2.0,1.0
+343,31,Sun,2022-04-03,16:30,Tottenham,3.1,5–1,0.5,Newcastle Utd,"57,553",Tottenham Hotspur Stadium,Martin Atkinson,Match Report,,2021,5.0,1.0
+344,31,Mon,2022-04-04,20:00,Crystal Palace,1.5,3–0,0.8,Arsenal,"25,149",Selhurst Park,Paul Tierney,Match Report,,2021,3.0,0.0
+346,19,Wed,2022-04-06,19:30,Burnley,2.0,3–2,2.4,Everton,"19,830",Turf Moor,Mike Dean,Match Report,,2021,3.0,2.0
+348,32,Fri,2022-04-08,20:00,Newcastle Utd,1.5,1–0,0.4,Wolves,"52,164",St. James' Park,Peter Bankes,Match Report,,2021,1.0,0.0
+349,32,Sat,2022-04-09,12:30,Everton,0.4,1–0,0.8,Manchester Utd,"39,080",Goodison Park,Jonathan Moss,Match Report,,2021,1.0,0.0
+350,32,Sat,2022-04-09,15:00,Arsenal,1.9,1–2,0.6,Brighton,"60,112",Emirates Stadium,David Coote,Match Report,,2021,1.0,2.0
+351,32,Sat,2022-04-09,15:00,Southampton,0.5,0–6,4.2,Chelsea,"31,359",St. Mary's Stadium,Kevin Friend,Match Report,,2021,0.0,6.0
+352,32,Sat,2022-04-09,15:00,Watford,1.1,0–3,0.7,Leeds United,"20,957",Vicarage Road Stadium,Andre Marriner,Match Report,,2021,0.0,3.0
+353,32,Sat,2022-04-09,17:30,Aston Villa,1.6,0–4,1.1,Tottenham,"41,949",Villa Park,Graham Scott,Match Report,,2021,0.0,4.0
+354,32,Sun,2022-04-10,14:00,Brentford,1.4,2–0,0.3,West Ham,"17,032",Brentford Community Stadium,Martin Atkinson,Match Report,,2021,2.0,0.0
+355,32,Sun,2022-04-10,14:00,Leicester City,1.0,2–1,1.4,Crystal Palace,"31,896",King Power Stadium,Robert Jones,Match Report,,2021,2.0,1.0
+356,32,Sun,2022-04-10,14:00,Norwich City,1.7,2–0,1.7,Burnley,"26,361",Carrow Road,Michael Oliver,Match Report,,2021,2.0,0.0
+357,32,Sun,2022-04-10,16:30,Manchester City,1.3,2–2,1.3,Liverpool,"53,197",Etihad Stadium,Anthony Taylor,Match Report,,2021,2.0,2.0
+359,33,Sat,2022-04-16,12:30,Tottenham,0.5,0–1,0.6,Brighton,"58,685",Tottenham Hotspur Stadium,Craig Pawson,Match Report,,2021,0.0,1.0
+360,33,Sat,2022-04-16,15:00,Manchester Utd,1.9,3–2,1.5,Norwich City,"73,381",Old Trafford,Andy Madley,Match Report,,2021,3.0,2.0
+361,33,Sat,2022-04-16,15:00,Watford,1.7,1–2,1.9,Brentford,"21,045",Vicarage Road Stadium,Simon Hooper,Match Report,,2021,1.0,2.0
+362,33,Sat,2022-04-16,15:00,Southampton,0.8,1–0,1.7,Arsenal,"31,465",St. Mary's Stadium,Peter Bankes,Match Report,,2021,1.0,0.0
+363,33,Sun,2022-04-17,14:15,Newcastle Utd,1.8,2–1,0.6,Leicester City,"52,104",St. James' Park,Jarred Gillett,Match Report,,2021,2.0,1.0
+364,33,Sun,2022-04-17,14:15,West Ham,2.2,1–1,1.8,Burnley,"59,958",London Stadium,Paul Tierney,Match Report,,2021,1.0,1.0
+366,30,Tue,2022-04-19,20:00,Liverpool,2.0,4–0,0.1,Manchester Utd,"52,686",Anfield,Martin Atkinson,Match Report,,2021,4.0,0.0
+368,18,Wed,2022-04-20,19:45,Everton,1.8,1–1,0.9,Leicester City,"39,153",Goodison Park,David Coote,Match Report,,2021,1.0,1.0
+370,25,Wed,2022-04-20,19:45,Chelsea,0.7,2–4,2.0,Arsenal,"32,249",Stamford Bridge,Jonathan Moss,Match Report,,2021,2.0,4.0
+372,30,Wed,2022-04-20,19:45,Newcastle Utd,0.9,1–0,0.5,Crystal Palace,"51,938",St. James' Park,Tony Harrington,Match Report,,2021,1.0,0.0
+373,30,Wed,2022-04-20,20:00,Manchester City,1.3,3–0,0.2,Brighton,"52,226",Etihad Stadium,Mike Dean,Match Report,,2021,3.0,0.0
+374,30,Thu,2022-04-21,19:45,Burnley,1.5,2–0,0.9,Southampton,"17,384",Turf Moor,Stuart Attwell,Match Report,,2021,2.0,0.0
+376,34,Sat,2022-04-23,12:30,Arsenal,2.3,3–1,1.8,Manchester Utd,"60,223",Emirates Stadium,Craig Pawson,Match Report,,2021,3.0,1.0
+377,34,Sat,2022-04-23,15:00,Leicester City,0.3,0–0,0.9,Aston Villa,"32,185",King Power Stadium,Andy Madley,Match Report,,2021,0.0,0.0
+378,34,Sat,2022-04-23,15:00,Manchester City,3.6,5–1,0.5,Watford,"53,013",Etihad Stadium,Kevin Friend,Match Report,,2021,5.0,1.0
+379,34,Sat,2022-04-23,15:00,Norwich City,0.6,0–3,1.9,Newcastle Utd,"26,910",Carrow Road,Chris Kavanagh,Match Report,,2021,0.0,3.0
+380,34,Sat,2022-04-23,17:30,Brentford,0.9,0–0,0.6,Tottenham,"17,072",Brentford Community Stadium,Martin Atkinson,Match Report,,2021,0.0,0.0
+381,34,Sun,2022-04-24,14:00,Brighton,1.7,2–2,0.9,Southampton,"31,335",The American Express Community Stadium,Robert Jones,Match Report,,2021,2.0,2.0
+382,34,Sun,2022-04-24,14:00,Burnley,1.4,1–0,0.6,Wolves,"19,246",Turf Moor,Anthony Taylor,Match Report,,2021,1.0,0.0
+383,34,Sun,2022-04-24,14:00,Chelsea,3.0,1–0,0.5,West Ham,"32,231",Stamford Bridge,Michael Oliver,Match Report,,2021,1.0,0.0
+384,34,Sun,2022-04-24,16:30,Liverpool,1.7,2–0,0.4,Everton,"53,213",Anfield,Stuart Attwell,Match Report,,2021,2.0,0.0
+385,34,Mon,2022-04-25,20:00,Crystal Palace,1.9,0–0,0.5,Leeds United,"25,357",Selhurst Park,Darren England,Match Report,,2021,0.0,0.0
+387,37,Thu,2022-04-28,19:45,Manchester Utd,0.5,1–1,1.9,Chelsea,"73,564",Old Trafford,Mike Dean,Match Report,,2021,1.0,1.0
+389,35,Sat,2022-04-30,12:30,Newcastle Utd,0.2,0–1,2.3,Liverpool,"52,281",St. James' Park,Andre Marriner,Match Report,,2021,0.0,1.0
+390,35,Sat,2022-04-30,15:00,Watford,1.0,1–2,1.6,Burnley,"20,738",Vicarage Road Stadium,Craig Pawson,Match Report,,2021,1.0,2.0
+391,35,Sat,2022-04-30,15:00,Wolves,0.7,0–3,2.6,Brighton,"31,243",Molineux Stadium,Simon Hooper,Match Report,,2021,0.0,3.0
+392,35,Sat,2022-04-30,15:00,Aston Villa,1.8,2–0,0.5,Norwich City,"40,290",Villa Park,John Brooks,Match Report,,2021,2.0,0.0
+393,35,Sat,2022-04-30,15:00,Southampton,0.6,1–2,1.1,Crystal Palace,"31,359",St. Mary's Stadium,Jarred Gillett,Match Report,,2021,1.0,2.0
+394,35,Sat,2022-04-30,17:30,Leeds United,1.3,0–4,2.4,Manchester City,"35,771",Elland Road,Paul Tierney,Match Report,,2021,0.0,4.0
+395,35,Sun,2022-05-01,14:00,Tottenham,1.2,3–1,0.5,Leicester City,"59,482",Tottenham Hotspur Stadium,Jonathan Moss,Match Report,,2021,3.0,1.0
+396,35,Sun,2022-05-01,14:00,Everton,0.8,1–0,0.8,Chelsea,"39,256",Goodison Park,Kevin Friend,Match Report,,2021,1.0,0.0
+397,35,Sun,2022-05-01,16:30,West Ham,0.5,1–2,0.9,Arsenal,"59,959",London Stadium,Mike Dean,Match Report,,2021,1.0,2.0
+398,35,Mon,2022-05-02,20:00,Manchester Utd,2.0,3–0,0.6,Brentford,"73,482",Old Trafford,Chris Kavanagh,Match Report,,2021,3.0,0.0
+400,36,Sat,2022-05-07,15:00,Crystal Palace,2.2,1–0,0.4,Watford,"24,622",Selhurst Park,Graham Scott,Match Report,,2021,1.0,0.0
+401,36,Sat,2022-05-07,15:00,Brentford,2.6,3–0,1.4,Southampton,"17,051",Brentford Community Stadium,Michael Salisbury,Match Report,,2021,3.0,0.0
+402,36,Sat,2022-05-07,15:00,Chelsea,1.7,2–2,2.0,Wolves,"32,190",Stamford Bridge,Peter Bankes,Match Report,,2021,2.0,2.0
+403,36,Sat,2022-05-07,15:00,Burnley,1.9,1–3,2.1,Aston Villa,"20,891",Turf Moor,David Coote,Match Report,,2021,1.0,3.0
+404,36,Sat,2022-05-07,17:30,Brighton,2.3,4–0,0.9,Manchester Utd,"31,637",The American Express Community Stadium,Andy Madley,Match Report,,2021,4.0,0.0
+405,36,Sat,2022-05-07,19:45,Liverpool,1.3,1–1,0.9,Tottenham,"53,177",Anfield,Michael Oliver,Match Report,,2021,1.0,1.0
+406,36,Sun,2022-05-08,14:00,Leicester City,1.5,1–2,1.1,Everton,"32,001",King Power Stadium,Craig Pawson,Match Report,,2021,1.0,2.0
+407,36,Sun,2022-05-08,14:00,Norwich City,0.8,0–4,3.0,West Ham,"26,428",Carrow Road,Robert Jones,Match Report,,2021,0.0,4.0
+408,36,Sun,2022-05-08,14:00,Arsenal,2.0,2–1,0.3,Leeds United,"60,108",Emirates Stadium,Chris Kavanagh,Match Report,,2021,2.0,1.0
+409,36,Sun,2022-05-08,16:30,Manchester City,3.1,5–0,0.8,Newcastle Utd,"53,336",Etihad Stadium,Stuart Attwell,Match Report,,2021,5.0,0.0
+411,33,Tue,2022-05-10,20:00,Aston Villa,1.4,1–2,1.8,Liverpool,"41,919",Villa Park,Jonathan Moss,Match Report,,2021,1.0,2.0
+412,33,Wed,2022-05-11,19:30,Leeds United,0.4,0–3,1.3,Chelsea,"36,549",Elland Road,Anthony Taylor,Match Report,,2021,0.0,3.0
+414,21,Wed,2022-05-11,19:45,Leicester City,2.0,3–0,1.1,Norwich City,"38,092",King Power Stadium,Simon Hooper,Match Report,,2021,3.0,0.0
+416,30,Wed,2022-05-11,19:45,Watford,0.3,0–0,0.7,Everton,"20,653",Vicarage Road Stadium,Mike Dean,Match Report,,2021,0.0,0.0
+418,33,Wed,2022-05-11,20:15,Wolves,0.5,1–5,2.3,Manchester City,"32,000",Molineux Stadium,Martin Atkinson,Match Report,,2021,1.0,5.0
+420,22,Thu,2022-05-12,19:45,Tottenham,2.7,3–0,0.5,Arsenal,"62,027",Tottenham Hotspur Stadium,Paul Tierney,Match Report,,2021,3.0,0.0
+422,37,Sun,2022-05-15,12:00,Tottenham,2.2,1–0,0.7,Burnley,"61,729",Tottenham Hotspur Stadium,Kevin Friend,Match Report,,2021,1.0,0.0
+423,37,Sun,2022-05-15,14:00,Leeds United,1.6,1–1,2.2,Brighton,"36,638",Elland Road,Mike Dean,Match Report,,2021,1.0,1.0
+424,37,Sun,2022-05-15,14:00,Watford,1.4,1–5,2.5,Leicester City,"20,257",Vicarage Road Stadium,Jarred Gillett,Match Report,,2021,1.0,5.0
+425,37,Sun,2022-05-15,14:00,Wolves,0.9,1–1,1.1,Norwich City,"31,219",Molineux Stadium,Tony Harrington,Match Report,,2021,1.0,1.0
+426,37,Sun,2022-05-15,14:00,Aston Villa,1.0,1–1,1.4,Crystal Palace,"41,136",Villa Park,Chris Kavanagh,Match Report,,2021,1.0,1.0
+427,37,Sun,2022-05-15,14:00,West Ham,1.1,2–2,2.4,Manchester City,"59,972",London Stadium,Anthony Taylor,Match Report,,2021,2.0,2.0
+428,37,Sun,2022-05-15,16:30,Everton,2.1,2–3,1.4,Brentford,"38,819",Goodison Park,Michael Oliver,Match Report,,2021,2.0,3.0
+429,37,Mon,2022-05-16,20:00,Newcastle Utd,1.6,2–0,0.6,Arsenal,"52,274",St. James' Park,Darren England,Match Report,,2021,2.0,0.0
+430,37,Tue,2022-05-17,19:45,Southampton,0.1,1–2,1.3,Liverpool,"31,588",St. Mary's Stadium,Martin Atkinson,Match Report,,2021,1.0,2.0
+432,33,Thu,2022-05-19,19:45,Everton,0.8,3–2,1.1,Crystal Palace,"38,448",Goodison Park,Anthony Taylor,Match Report,,2021,3.0,2.0
+434,18,Thu,2022-05-19,20:00,Aston Villa,1.5,1–1,1.6,Burnley,"40,468",Villa Park,Paul Tierney,Match Report,,2021,1.0,1.0
+436,27,Thu,2022-05-19,20:00,Chelsea,1.6,1–1,0.1,Leicester City,"31,478",Stamford Bridge,Stuart Attwell,Match Report,,2021,1.0,1.0
+438,38,Sun,2022-05-22,16:00,Brentford,0.8,1–2,1.3,Leeds United,"16,957",Brentford Community Stadium,Paul Tierney,Match Report,,2021,1.0,2.0
+439,38,Sun,2022-05-22,16:00,Leicester City,3.4,4–1,1.1,Southampton,"32,003",King Power Stadium,Jonathan Moss,Match Report,,2021,4.0,1.0
+440,38,Sun,2022-05-22,16:00,Crystal Palace,0.6,1–0,0.7,Manchester Utd,"25,434",Selhurst Park,Martin Atkinson,Match Report,,2021,1.0,0.0
+441,38,Sun,2022-05-22,16:00,Arsenal,4.2,5–1,1.1,Everton,"60,201",Emirates Stadium,Andre Marriner,Match Report,,2021,5.0,1.0
+442,38,Sun,2022-05-22,16:00,Brighton,1.6,3–1,0.2,West Ham,"31,604",The American Express Community Stadium,Kevin Friend,Match Report,,2021,3.0,1.0
+443,38,Sun,2022-05-22,16:00,Norwich City,0.5,0–5,3.4,Tottenham,"27,022",Carrow Road,Chris Kavanagh,Match Report,,2021,0.0,5.0
+444,38,Sun,2022-05-22,16:00,Manchester City,3.4,3–2,0.2,Aston Villa,"53,395",Etihad Stadium,Michael Oliver,Match Report,,2021,3.0,2.0
+445,38,Sun,2022-05-22,16:00,Liverpool,2.7,3–1,1.3,Wolves,"53,097",Anfield,Anthony Taylor,Match Report,,2021,3.0,1.0
+446,38,Sun,2022-05-22,16:00,Burnley,1.6,1–2,1.8,Newcastle Utd,"21,361",Turf Moor,Craig Pawson,Match Report,,2021,1.0,2.0
+447,38,Sun,2022-05-22,16:00,Chelsea,2.2,2–1,0.6,Watford,"32,089",Stamford Bridge,Mike Dean,Match Report,,2021,2.0,1.0
