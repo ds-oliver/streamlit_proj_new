@@ -90,7 +90,7 @@ def create_multiselect_teams(results_df, selected_seasons):
 
     return selected_teams, filtered_df
 
-def prepare_df_for_streamlit(filtered_df, selected_teams):
+def prepare_df_for_streamlit(filtered_df):
     """
     Summary:
         This function prepares the df for streamlit, the goals is to show the statistics for the two teams selected.
@@ -174,7 +174,7 @@ def main():
     st_write_df(grouped_df)
 
 
+# run the main function
 if __name__ == "__main__":
     main()
-
 
