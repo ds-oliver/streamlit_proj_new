@@ -13,19 +13,19 @@ import pickle
 # At the top of chunk_and_save_data.py
 import sys
 sys.path.append(
-    '/Users/hogan/dev/streamlit_proj_new/streamlit/helper_functions/')
+    '/Users/hogan/dev/streamlit_proj_new/helper_functions')
 from log_it import set_up_logs, log_start_of_script, log_end_of_script, log_start_of_function, log_end_of_function, log_start_of_app, log_end_of_app, log_dataframe_details, log_specific_info_message, log_dict_contents
 
 # Constants
-DATA_IN_PATH = 'streamlit/data/data_in/original_results_players_data/'
+DATA_IN_PATH = 'data/data_in/original_results_players_data/'
 
-PLAYERS_CHUNKED_CSVS_PATH = 'streamlit/data/data_out/chunked_data/players/'
-RESULTS_CHUNKED_CSVS_PATH = 'streamlit/data/data_out/chunked_data/results/'
+PLAYERS_CHUNKED_CSVS_PATH = 'data/data_out/chunked_data/players/'
+RESULTS_CHUNKED_CSVS_PATH = 'data/data_out/chunked_data/results/'
 
-FINAL_DICTS_PATH = 'streamlit/data/data_out/final_data/pickle_files/'
-FINAL_CSVS_PATH = 'streamlit/data/data_out/final_data/csv_files/'
+FINAL_DICTS_PATH = 'data/data_out/final_data/pickle_files/'
+FINAL_CSVS_PATH = 'data/data_out/final_data/csv_files/'
 
-FINAL_DB_PATH = "streamlit/data/data_out/final_data/db_files/"
+FINAL_DB_PATH = "data/data_out/final_data/db_files/"
 
 # make directory if it doesn't exist
 if not os.path.exists(FINAL_DB_PATH):
