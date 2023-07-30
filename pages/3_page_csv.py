@@ -49,6 +49,50 @@ def load_data_from_csv():
     
     return players_df, results_df
 
+def clean_data(players_df, results_df):
+    """
+    This function cleans the data.
+    """
+    print("Cleaning data...")
+
+    print(players_df.columns.tolist())
+    print(results_df.columns.tolist())
+
+    # merge ['season', 'gameweek', 'home_team', 'away_team'] columns from results_df to players_df
+    players_df = players_df.merge(results_df[['season', 'gameweek', 'home_team', 'away_team']], how='left', on=[
+                                    'season', 'gameweek', 'home_team', 'away_team'])
+    
+    # drop ['home_team', 'away_team'] columns from players_df
+
+    # create team column from home_team and opponent from away_team
+    players_df["team"] = players_df["winning_team"]
+    players_df["opponent"] = players_df["losing_team"]
+
+    results_df["team"] = results_df["winning_team"]
+    results_df["opponent"] = results_df["losing_team"]
+
+    # convert season to int
+    results_df["season"] = results_df["season"].astype(int)
+    players_df["season"] = players_df["season"].astype(int)
+
+    # Create a new column in the results_df called "winning_score"
+    results_df["winning_score"] = results_df.apply(
+        lambda x: x["score"] if x["score"] > x["opponent_score"] else x["opponent_score"], axis=1)
+
+    # Create a new column in the results_df called "losing_score"
+    results_df["losing_score"] = results_df.apply(
+        lambda x: x["score"] if x["score"] < x["opponent_score"] else x["opponent_score"], axis=1)
+
+    # Create a new column in the results_df called "winning_xG"
+    results_df["winning_xG"] = results_df.apply(
+        lambda x: x["xG"] if x["score"] > x["opponent_score"] else x["xGA"], axis=1)
+
+    # Create a new column in the results_df called "losing_xG"
+    results_df["losing_xG"] = results_df.apply(
+        lambda x: x["xG"] if x["score"] < x["opponent_score"] else x["xGA"], axis=1)
+    
+    return players_df, results_df
+
 
 def create_multiselect_seasons(results_df):
     """
@@ -93,11 +137,133 @@ def create_dropdown_teams(results_df, selected_seasons):
         teams = []
 
     # Create a dropdown for the teams
+    # st.info("Select two teams to compare.\nSelect first team:")
+
     selected_team = st.selectbox(
         "Select Team", teams, key="teams")
+    
+    # st.info("Select opponent:")
 
-    return selected_team
+    opponents = [team for team in teams if team != selected_team]
 
+    selected_opponent = st.selectbox(
+        "Select Opponent", opponents, key="opponents")
+
+    return selected_team, selected_opponent, filtered_df
+
+def get_teams_stats(df, team, opponent):
+    stats_for_team = {
+        'total_games': 0,
+        'total_wins': 0,
+        'total_losses': 0,
+        'total_goals_scored': 0,
+        'total_goals_conceded': 0,
+        'xG For': 0,
+        'xG Against': 0,
+        'Clean Sheets': 0
+    }
+    stats_for_opponent = {
+        'total_games': 0,
+        'total_wins': 0,
+        'total_losses': 0,
+        'total_goals_scored': 0,
+        'total_goals_conceded': 0,
+        'xG For': 0,
+        'xG Against': 0,
+        'Clean Sheets': 0
+    }
+
+    df_filtered = df[(df['team'] == team) | (df['team'] == opponent)]
+
+    for index, row in df_filtered.iterrows():
+        if row['team'] == team:
+            stats_for_team['total_games'] += 1
+            stats_for_team['total_goals_scored'] += row['score']
+            stats_for_team['total_goals_conceded'] += row['opponent_score']
+            stats_for_team['xG For'] += row['xG']
+            stats_for_team['xG Against'] += row['xGA']
+            stats_for_team['Clean Sheets'] += 1 if row['opponent_score'] == 0 else 0
+            if row['winning_team'] == team:
+                stats_for_team['total_wins'] += 1
+            elif row['losing_team'] == team:
+                stats_for_team['total_losses'] += 1
+
+        if row['team'] == opponent:
+            stats_for_opponent['total_games'] += 1
+            stats_for_opponent['total_goals_scored'] += row['opponent_score']
+            stats_for_opponent['total_goals_conceded'] += row['score']
+            stats_for_opponent['xG For'] += row['xGA']
+            stats_for_opponent['xG Against'] += row['xG']
+            stats_for_opponent['Clean Sheets'] += 1 if row['score'] == 0 else 0
+            if row['winning_team'] == opponent:
+                stats_for_opponent['total_wins'] += 1
+            elif row['losing_team'] == opponent:
+                stats_for_opponent['total_losses'] += 1
+
+    return stats_for_team, stats_for_opponent
+
+def get_players_stats(players_df, selected_seasons ,selected_team, selected_opponent):
+    
+    players_df_filtered = players_df[(players_df['season'].isin(selected_seasons)) & ((players_df['team'] == selected_team) | (players_df['team'] == selected_opponent))]
+
+    players_df_filtered = players_df_filtered.groupby(['player_name', 'team']).sum().reset_index()
+
+    # make sure numerical columns are rounded to 2 decimals
+
+    """
+
+    for index, row in df_filtered.iterrows():
+        if row['home_team'] == team1:
+            stats_team1['total_games'] += 1
+            stats_team1['total_goals_scored'] += row['home_score']
+            stats_team1['total_goals_conceded'] += row['away_score']
+            stats_team1['xG For'] += row['home_xg']
+            stats_team1['xG Against'] += row['away_xg']
+            stats_team1['Clean Sheets'] += 1 if row['away_score'] == 0 else 0
+            if row['winning_team'] == team1:
+                stats_team1['total_wins'] += 1
+            elif row['losing_team'] == team1:
+                stats_team1['total_losses'] += 1
+
+        if row['away_team'] == team1:
+            stats_team1['total_games'] += 1
+            stats_team1['total_goals_scored'] += row['away_score']
+            stats_team1['total_goals_conceded'] += row['home_score']
+            stats_team1['xG For'] += row['away_xg']
+            stats_team1['xG Against'] += row['home_xg']
+            stats_team1['Clean Sheets'] += 1 if row['home_score'] == 0 else 0
+            if row['winning_team'] == team1:
+                stats_team1['total_wins'] += 1
+            elif row['losing_team'] == team1:
+                stats_team1['total_losses'] += 1
+
+        if row['home_team'] == team2:
+            stats_team2['total_games'] += 1
+            stats_team2['total_goals_scored'] += row['home_score']
+            stats_team2['total_goals_conceded'] += row['away_score']
+            stats_team2['xG For'] += row['home_xg']
+            stats_team2['xG Against'] += row['away_xg']
+            stats_team2['Clean Sheets'] += 1 if row['away_score'] == 0 else 0
+            if row['winning_team'] == team2:
+                stats_team2['total_wins'] += 1
+            elif row['losing_team'] == team2:
+                stats_team2['total_losses'] += 1
+
+        if row['away_team'] == team2:
+            stats_team2['total_games'] += 1
+            stats_team2['total_goals_scored'] += row['away_score']
+            stats_team2['total_goals_conceded'] += row['home_score']
+            stats_team2['xG For'] += row['away_xg']
+            stats_team2['xG Against'] += row['home_xg']
+            stats_team2['Clean Sheets'] += 1 if row['home_score'] == 0 else 0
+            if row['winning_team'] == team2:
+                stats_team2['total_wins'] += 1
+            elif row['losing_team'] == team2:
+                stats_team2['total_losses'] += 1
+
+    return stats_team1, stats_team2
+
+    """
 
 def prepare_df_for_streamlit(filtered_df):
     """
@@ -164,18 +330,21 @@ def main():
     
     players_df, results_df = load_data_from_csv()
 
+    # clean the data
+    players_df, results_df = clean_data(players_df, results_df)
+
     # Create a multiselect for the seasons
     selected_seasons = create_multiselect_seasons(results_df)
 
     # Create a multiselect for the teams
-    selected_teams, filtered_df = create_dropdown_teams(
+    selected_team, selected_opponent, filtered_df = create_dropdown_teams(
         results_df, selected_seasons)
 
     # Prepare the df for streamlit
     grouped_df = prepare_df_for_streamlit(filtered_df)
 
     # Show the stats for the two teams selected
-    show_stats_for_teams(grouped_df, selected_teams)
+    show_stats_for_teams(grouped_df, selected_team)
 
     # Select the season from the db using sqlite3
 

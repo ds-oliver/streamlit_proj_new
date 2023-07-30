@@ -347,27 +347,19 @@ def filter_into_smaller_tables(players_table, results_table):
 
 
 def clean_duplicate_columns(merged_df):
-    """
-    This function cleans the dataframe after a merge operation by removing duplicate columns.
+    # Create sets of '_x' and '_y' columns
+    cols_x = {col for col in merged_df.columns if col.endswith('_x')}
+    cols_y = {col for col in merged_df.columns if col.endswith('_y')}
 
-    The function identifies duplicate columns based on their names. After a merge operation,
-    pandas typically adds suffixes to columns with identical names (except the key used for merging).
-    By default, these suffixes are '_x' and '_y'. This function removes these duplicate columns by
-    keeping only the ones without these suffixes, and removing the ones with these suffixes.
+    # Find overlapping column names (without suffixes)
+    overlapping_cols = {col[:-2] for col in cols_x & cols_y}
 
-    Args:
-        merged_df (pd.DataFrame): The dataframe to be cleaned.
+    # Rename '_x' columns and drop '_y' columns for overlapping names only
+    merged_df = merged_df.rename(columns={col: col[:-2] for col in cols_x if col[:-2] in overlapping_cols})
+    merged_df = merged_df.drop(columns=[col for col in cols_y if col[:-2] in overlapping_cols])
 
-    Returns:
-        pd.DataFrame: The cleaned dataframe with duplicate columns removed.
-    """
-    # Filter out the columns that end with '_x' or '_y' suffixes (as they are duplicates).
-    # You might need to modify this if your pandas merge operation uses different suffixes.
-    columns_to_keep = [col for col in merged_df.columns if not (col.endswith('_x') or col.endswith('_y'))]
+    return merged_df
 
-    cleaned_df = merged_df[columns_to_keep]
-
-    return cleaned_df
 
 def main():
     
