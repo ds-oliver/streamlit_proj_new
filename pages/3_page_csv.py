@@ -49,6 +49,7 @@ def load_data_from_csv():
     
     return players_df, results_df
 
+
 def create_multiselect_seasons(results_df):
     """
     Summary:
@@ -60,13 +61,15 @@ def create_multiselect_seasons(results_df):
     Returns:
         selected_seasons (list): The selected seasons.
     """
-    # Create a multiselect for the seasons
-    seasons = results_df["season"].unique()
+    # Get all unique seasons from the dataframe
+    seasons = sorted(results_df["season"].unique())
 
-    selected_seasons = st.selectbox(
+    # Create a multiselect for the seasons
+    selected_seasons = st.multiselect(
         "Select Season(s)", seasons, key="seasons")
 
     return selected_seasons
+
 
 def create_dropdown_teams(results_df, selected_seasons):
     """
@@ -78,17 +81,22 @@ def create_dropdown_teams(results_df, selected_seasons):
         selected_seasons (list): The selected seasons.
 
     Returns:
-        selected_teams (list): The selected teams.
+        selected_teams (str): The selected team.
     """
-    # filter by seasons selected
-    filtered_df = results_df[results_df["season"].isin(selected_seasons)]
-    # Create a multiselect for the teams
-    teams = filtered_df["team"].unique()
+    # Filter the DataFrame based on selected seasons
+    if selected_seasons:  # Only if there are any selected seasons
+        filtered_df = results_df[results_df["season"].isin(selected_seasons)]
+        # Get all unique teams from the filtered dataframe
+        teams = sorted(filtered_df["team"].unique())
+    else:
+        teams = []
 
-    selected_teams = st.selectbox(
-        "Select Team(s)", teams, key="teams")
+    # Create a dropdown for the teams
+    selected_team = st.selectbox(
+        "Select Team", teams, key="teams")
 
-    return selected_teams
+    return selected_team
+
 
 def prepare_df_for_streamlit(filtered_df):
     """
