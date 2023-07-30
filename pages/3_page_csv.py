@@ -8,7 +8,7 @@ import sqlite3
 
 # function to load this csv /Users/hogan/dev/streamlit_proj_new/data/data_out/final_data/db_files/players.db and /Users/hogan/dev/streamlit_proj_new/data/data_out/final_data/csv_files/players.csv
 
-file_path = '/Users/hogan/dev/streamlit_proj_new/data/data_out/final_data/csv_files/players.csv'
+file_path = 'data/data_out/final_data/csv_files/players.csv'
 if os.path.exists(file_path):
     print(f"File {file_path} found.")
 else:
@@ -22,7 +22,7 @@ def load_data_from_db():
     """
     # Create a connection to the database
     conn = sqlite3.connect(
-        '/Users/hogan/dev/streamlit_proj_new/data/mydatabase.db')
+        'data/data_out/final_data/db_files/results.db')
 
     # Load data from the 'players' table into a DataFrame
     players_table = pd.read_sql_query("SELECT * from players", conn)
@@ -43,9 +43,9 @@ def load_data_from_csv():
     # Load the data from the csv
 
     players_df = pd.read_csv(
-        "/Users/hogan/dev/streamlit_proj_new/data/data_out/final_data/csv_files/players.csv")
+        "data/data_out/final_data/csv_files/players.csv")
     results_df = pd.read_csv(   
-        "/Users/hogan/dev/streamlit_proj_new/data/data_out/final_data/csv_files/results.csv")
+        "data/data_out/final_data/csv_files/results.csv")
     
     return players_df, results_df
 
