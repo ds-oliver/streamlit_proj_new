@@ -1,1 +1,4 @@
 *.pkl filter=lfs diff=lfs merge=lfs -text
+data/data_in/original_results_players_data/players_all_seasons_data.csv filter=lfs diff=lfs merge=lfs -text
+data/data_out/final_data/csv_files/players.csv filter=lfs diff=lfs merge=lfs -text
+data/data_out/final_data/db_files/players.db filter=lfs diff=lfs merge=lfs -text
