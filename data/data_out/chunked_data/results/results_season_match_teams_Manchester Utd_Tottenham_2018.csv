@@ -1,0 +1,3 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2018,3,Manchester Utd,1.5,1.2,Tottenham,0.0,3.0,2018-08-27,Craig Pawson,Old Trafford,Mon,20:00,"74,400",31,Tottenham,Manchester Utd,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2018
+2018,22,Tottenham,1.8,0.8,Manchester Utd,0.0,1.0,2019-01-13,Mike Dean,Tottenham Hotspur Stadium,Sun,16:30,"80,062",239,Manchester Utd,Tottenham,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2018

@@ -1,0 +1,5 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2021,2,Crystal Palace,0.5,0.9,Brentford,0.0,0.0,2021-08-21,Martin Atkinson,Selhurst Park,Sat,15:00,"23,091",15,draw,draw,Crystal Palace,Brentford,Brentford_Crystal_Palace,Brentford_Crystal Palace_2021
+2021,25,Brentford,1.6,0.3,Crystal Palace,0.0,0.0,2022-02-12,Simon Hooper,Brentford Community Stadium,Sat,15:00,"16,958",254,draw,draw,Brentford,Crystal Palace,Brentford_Crystal_Palace,Brentford_Crystal Palace_2021
+2022,5,Crystal Palace,1.0,1.4,Brentford,1.0,1.0,2022-08-30,Simon Hooper,Selhurst Park,Tue,19:30,"25,043",45,draw,draw,Crystal Palace,Brentford,Brentford_Crystal_Palace,Brentford_Crystal Palace_2022
+2022,24,Brentford,0.9,1.1,Crystal Palace,1.0,1.0,2023-02-18,Paul Tierney,Brentford Community Stadium,Sat,15:00,"17,122",253,draw,draw,Brentford,Crystal Palace,Brentford_Crystal_Palace,Brentford_Crystal Palace_2022

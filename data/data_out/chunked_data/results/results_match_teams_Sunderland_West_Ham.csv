@@ -1,0 +1,29 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+1996,5,Sunderland,0.0,0.0,West Ham,0.0,0.0,0,Graham Poll,0,0,0,0,1814,draw,draw,Sunderland,West Ham,Sunderland_West_Ham,Sunderland_West Ham_1996
+1996,20,West Ham,0.0,0.0,Sunderland,2.0,0.0,0,Roger Dilkes,0,0,0,0,1959,West Ham,Sunderland,West Ham,Sunderland,Sunderland_West_Ham,Sunderland_West Ham_1996
+1999,12,West Ham,0.0,0.0,Sunderland,1.0,1.0,0,Mark Halsey,0,0,0,0,3019,draw,draw,West Ham,Sunderland,Sunderland_West_Ham,Sunderland_West Ham_1999
+1999,37,Sunderland,0.0,0.0,West Ham,1.0,0.0,0,Neale Barry,0,0,0,0,3267,Sunderland,West Ham,Sunderland,West Ham,Sunderland_West_Ham,Sunderland_West Ham_1999
+2000,4,Sunderland,0.0,0.0,West Ham,1.0,1.0,0,Peter Jones,0,0,0,0,3316,draw,draw,Sunderland,West Ham,Sunderland_West_Ham,Sunderland_West Ham_2000
+2000,23,West Ham,0.0,0.0,Sunderland,0.0,2.0,0,Matt Messias,0,0,0,0,3509,Sunderland,West Ham,West Ham,Sunderland,Sunderland_West_Ham,Sunderland_West Ham_2000
+2001,15,Sunderland,0.0,0.0,West Ham,1.0,0.0,0,Peter Jones,0,0,0,0,3802,Sunderland,West Ham,Sunderland,West Ham,Sunderland_West_Ham,Sunderland_West Ham_2001
+2001,36,West Ham,0.0,0.0,Sunderland,3.0,0.0,0,Stephen Bennett,0,0,0,0,4014,West Ham,Sunderland,West Ham,Sunderland,Sunderland_West_Ham,Sunderland_West Ham_2001
+2002,10,Sunderland,0.0,0.0,West Ham,0.0,1.0,0,Graham Barber,0,0,0,0,4134,West Ham,Sunderland,Sunderland,West Ham,Sunderland_West_Ham,Sunderland_West Ham_2002
+2002,31,West Ham,0.0,0.0,Sunderland,2.0,0.0,0,Rob Styles,0,0,0,0,4349,West Ham,Sunderland,West Ham,Sunderland,Sunderland_West_Ham,Sunderland_West Ham_2002
+2005,8,Sunderland,0.0,0.0,West Ham,1.0,1.0,0,Martin Atkinson,0,0,0,0,5256,draw,draw,Sunderland,West Ham,Sunderland_West_Ham,Sunderland_West Ham_2005
+2005,25,West Ham,0.0,0.0,Sunderland,2.0,0.0,0,Rob Styles,0,0,0,0,5424,West Ham,Sunderland,West Ham,Sunderland,Sunderland_West_Ham,Sunderland_West Ham_2005
+2007,10,West Ham,0.0,0.0,Sunderland,3.0,1.0,0,Chris Foy,0,0,0,0,6041,West Ham,Sunderland,West Ham,Sunderland,Sunderland_West_Ham,Sunderland_West Ham_2007
+2007,32,Sunderland,0.0,0.0,West Ham,2.0,1.0,0,Andre Marriner,0,0,0,0,6256,Sunderland,West Ham,Sunderland,West Ham,Sunderland_West_Ham,Sunderland_West Ham_2007
+2008,14,Sunderland,0.0,0.0,West Ham,0.0,1.0,0,Mike Dean,0,0,0,0,6462,West Ham,Sunderland,Sunderland,West Ham,Sunderland_West_Ham,Sunderland_West Ham_2008
+2008,31,West Ham,0.0,0.0,Sunderland,2.0,0.0,0,Mike Jones,0,0,0,0,6630,West Ham,Sunderland,West Ham,Sunderland,Sunderland_West_Ham,Sunderland_West Ham_2008
+2009,11,Sunderland,0.0,0.0,West Ham,2.0,2.0,0,Andre Marriner,0,0,0,0,6803,draw,draw,Sunderland,West Ham,Sunderland_West_Ham,Sunderland_West Ham_2009
+2009,34,West Ham,0.0,0.0,Sunderland,1.0,0.0,0,Mike Jones,0,0,0,0,7034,West Ham,Sunderland,West Ham,Sunderland,Sunderland_West_Ham,Sunderland_West Ham_2009
+2010,16,Sunderland,0.0,0.0,West Ham,1.0,0.0,0,Martin Atkinson,0,0,0,0,7243,Sunderland,West Ham,Sunderland,West Ham,Sunderland_West_Ham,Sunderland_West Ham_2010
+2010,38,West Ham,0.0,0.0,Sunderland,0.0,3.0,0,Anthony Taylor,0,0,0,0,7463,Sunderland,West Ham,West Ham,Sunderland,Sunderland_West_Ham,Sunderland_West Ham_2010
+2012,5,West Ham,0.0,0.0,Sunderland,1.0,1.0,0,Lee Mason,0,0,0,0,7887,draw,draw,West Ham,Sunderland,Sunderland_West_Ham,Sunderland_West Ham_2012
+2012,22,Sunderland,0.0,0.0,West Ham,3.0,0.0,0,Neil Swarbrick,0,0,0,0,8057,Sunderland,West Ham,Sunderland,West Ham,Sunderland_West_Ham,Sunderland_West Ham_2012
+2013,16,West Ham,0.0,0.0,Sunderland,0.0,0.0,0,Andre Marriner,0,0,0,0,8377,draw,draw,West Ham,Sunderland,Sunderland_West_Ham,Sunderland_West Ham_2013
+2013,32,Sunderland,0.0,0.0,West Ham,1.0,2.0,0,Howard Webb,0,0,0,0,8541,West Ham,Sunderland,Sunderland,West Ham,Sunderland_West_Ham,Sunderland_West Ham_2013
+2014,16,Sunderland,0.0,0.0,West Ham,1.0,1.0,0,Philip Dowd,0,0,0,0,8759,draw,draw,Sunderland,West Ham,Sunderland_West_Ham,Sunderland_West Ham_2014
+2014,30,West Ham,0.0,0.0,Sunderland,1.0,0.0,0,Lee Mason,0,0,0,0,8901,West Ham,Sunderland,West Ham,Sunderland,Sunderland_West_Ham,Sunderland_West Ham_2014
+2015,8,Sunderland,0.0,0.0,West Ham,2.0,2.0,0,Niel Swarbrick,0,0,0,0,9060,draw,draw,Sunderland,West Ham,Sunderland_West_Ham,Sunderland_West Ham_2015
+2015,27,West Ham,0.0,0.0,Sunderland,1.0,0.0,0,Mike Dean,0,0,0,0,9246,West Ham,Sunderland,West Ham,Sunderland,Sunderland_West_Ham,Sunderland_West Ham_2015

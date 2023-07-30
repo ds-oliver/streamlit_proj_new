@@ -1,0 +1,57 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2019,15,Chelsea,1.8,1.0,Aston Villa,2.0,1.0,2019-12-04,Chris Kavanagh,Stamford Bridge,Wed,19:30,"40,628",158,Chelsea,Aston Villa,Chelsea,Aston Villa,Aston_Villa_Chelsea,Aston Villa_Chelsea_2019
+2019,30,Aston Villa,1.0,1.1,Chelsea,1.0,2.0,2020-06-21,Paul Tierney,Villa Park,Sun,16:15,0,328,Chelsea,Aston Villa,Aston Villa,Chelsea,Aston_Villa_Chelsea,Aston Villa_Chelsea_2019
+2020,16,Chelsea,1.7,0.7,Aston Villa,1.0,1.0,2020-12-28,Stuart Attwell,Stamford Bridge,Mon,17:30,0,163,draw,draw,Chelsea,Aston Villa,Aston_Villa_Chelsea,Aston Villa_Chelsea_2020
+2020,38,Aston Villa,1.1,3.3,Chelsea,2.0,1.0,2021-05-23,Stuart Attwell,Villa Park,Sun,16:00,"10,000",430,Aston Villa,Chelsea,Aston Villa,Chelsea,Aston_Villa_Chelsea,Aston Villa_Chelsea_2020
+2021,4,Chelsea,1.3,1.2,Aston Villa,3.0,0.0,2021-09-11,Stuart Attwell,Stamford Bridge,Sat,17:30,"39,969",40,Chelsea,Aston Villa,Chelsea,Aston Villa,Aston_Villa_Chelsea,Aston Villa_Chelsea_2021
+2021,19,Aston Villa,0.4,2.6,Chelsea,1.0,3.0,2021-12-26,Martin Atkinson,Villa Park,Sun,17:30,"41,907",191,Chelsea,Aston Villa,Aston Villa,Chelsea,Aston_Villa_Chelsea,Aston Villa_Chelsea_2021
+2022,11,Aston Villa,1.8,0.9,Chelsea,0.0,2.0,2022-10-16,Robert Jones,Villa Park,Sun,14:00,"41,754",102,Chelsea,Aston Villa,Aston Villa,Chelsea,Aston_Villa_Chelsea,Aston Villa_Chelsea_2022
+2022,29,Chelsea,2.1,0.9,Aston Villa,0.0,2.0,2023-04-01,Andy Madley,Stamford Bridge,Sat,17:30,"40,082",310,Aston Villa,Chelsea,Chelsea,Aston Villa,Aston_Villa_Chelsea,Aston Villa_Chelsea_2022
+1992,6,Aston Villa,0.0,0.0,Chelsea,1.0,3.0,0,Peter Foakes,0,0,0,0,59,Chelsea,Aston Villa,Aston Villa,Chelsea,Aston_Villa_Chelsea,Aston Villa_Chelsea_1992
+1992,29,Chelsea,0.0,0.0,Aston Villa,0.0,1.0,0,Mike Peck,0,0,0,0,301,Aston Villa,Chelsea,Chelsea,Aston Villa,Aston_Villa_Chelsea,Aston Villa_Chelsea_1992
+1993,12,Aston Villa,0.0,0.0,Chelsea,1.0,0.0,0,David Allison,0,0,0,0,587,Aston Villa,Chelsea,Aston Villa,Chelsea,Aston_Villa_Chelsea,Aston Villa_Chelsea_1993
+1993,27,Chelsea,0.0,0.0,Aston Villa,1.0,1.0,0,Graham Poll,0,0,0,0,744,draw,draw,Chelsea,Aston Villa,Aston_Villa_Chelsea,Aston Villa_Chelsea_1993
+1994,21,Aston Villa,0.0,0.0,Chelsea,3.0,0.0,0,Keith Burge,0,0,0,0,1152,Aston Villa,Chelsea,Aston Villa,Chelsea,Aston_Villa_Chelsea,Aston Villa_Chelsea_1994
+1994,38,Chelsea,0.0,0.0,Aston Villa,1.0,0.0,0,Keith Burge,0,0,0,0,1328,Chelsea,Aston Villa,Chelsea,Aston Villa,Aston_Villa_Chelsea,Aston Villa_Chelsea_1994
+1995,9,Aston Villa,0.0,0.0,Chelsea,0.0,1.0,0,Steve Dunn,0,0,0,0,1467,Chelsea,Aston Villa,Aston Villa,Chelsea,Aston_Villa_Chelsea,Aston Villa_Chelsea_1995
+1995,34,Chelsea,0.0,0.0,Aston Villa,1.0,2.0,0,Graham Poll,0,0,0,0,1711,Aston Villa,Chelsea,Chelsea,Aston Villa,Aston_Villa_Chelsea,Aston Villa_Chelsea_1995
+1996,6,Chelsea,0.0,0.0,Aston Villa,1.0,1.0,0,Jeff Winter,0,0,0,0,1824,draw,draw,Chelsea,Aston Villa,Aston_Villa_Chelsea,Aston Villa_Chelsea_1996
+1996,19,Aston Villa,0.0,0.0,Chelsea,0.0,2.0,0,Paul Danson,0,0,0,0,1946,Chelsea,Aston Villa,Aston Villa,Chelsea,Aston_Villa_Chelsea,Aston Villa_Chelsea_1996
+1997,13,Aston Villa,0.0,0.0,Chelsea,0.0,2.0,0,Steve Dunn,0,0,0,0,2264,Chelsea,Aston Villa,Aston Villa,Chelsea,Aston_Villa_Chelsea,Aston Villa_Chelsea_1997
+1997,29,Chelsea,0.0,0.0,Aston Villa,0.0,1.0,0,Stephen Lodge,0,0,0,0,2424,Aston Villa,Chelsea,Chelsea,Aston Villa,Aston_Villa_Chelsea,Aston Villa_Chelsea_1997
+1998,11,Chelsea,0.0,0.0,Aston Villa,2.0,1.0,0,Alan Wilkie,0,0,0,0,2684,Chelsea,Aston Villa,Chelsea,Aston Villa,Aston_Villa_Chelsea,Aston Villa_Chelsea_1998
+1998,30,Aston Villa,0.0,0.0,Chelsea,0.0,3.0,0,Graham Barber,0,0,0,0,2820,Chelsea,Aston Villa,Aston Villa,Chelsea,Aston_Villa_Chelsea,Aston Villa_Chelsea_1998
+1999,4,Chelsea,0.0,0.0,Aston Villa,1.0,0.0,0,Neale Barry,0,0,0,0,2934,Chelsea,Aston Villa,Chelsea,Aston Villa,Aston_Villa_Chelsea,Aston Villa_Chelsea_1999
+1999,23,Aston Villa,0.0,0.0,Chelsea,0.0,0.0,0,Alan Wilkie,0,0,0,0,3123,draw,draw,Aston Villa,Chelsea,Aston_Villa_Chelsea,Aston Villa_Chelsea_1999
+2000,3,Aston Villa,0.0,0.0,Chelsea,1.0,1.0,0,Paul Durkin,0,0,0,0,3314,draw,draw,Aston Villa,Chelsea,Aston_Villa_Chelsea,Aston Villa_Chelsea_2000
+2000,22,Chelsea,0.0,0.0,Aston Villa,1.0,0.0,0,Paul Durkin,0,0,0,0,3491,Chelsea,Aston Villa,Chelsea,Aston Villa,Aston_Villa_Chelsea,Aston Villa_Chelsea_2000
+2001,26,Aston Villa,0.0,0.0,Chelsea,1.0,1.0,0,Phil Dowd,0,0,0,0,3920,draw,draw,Aston Villa,Chelsea,Aston_Villa_Chelsea,Aston Villa_Chelsea_2001
+2001,38,Chelsea,0.0,0.0,Aston Villa,1.0,3.0,0,Stephen Bennett,0,0,0,0,4040,Aston Villa,Chelsea,Chelsea,Aston Villa,Aston_Villa_Chelsea,Aston Villa_Chelsea_2001
+2002,19,Chelsea,0.0,0.0,Aston Villa,2.0,0.0,0,Mike Riley,0,0,0,0,4231,Chelsea,Aston Villa,Chelsea,Aston Villa,Aston_Villa_Chelsea,Aston Villa_Chelsea_2002
+2002,34,Aston Villa,0.0,0.0,Chelsea,2.0,1.0,0,Rob Styles,0,0,0,0,4385,Aston Villa,Chelsea,Aston Villa,Chelsea,Aston_Villa_Chelsea,Aston Villa_Chelsea_2002
+2003,7,Chelsea,0.0,0.0,Aston Villa,1.0,0.0,0,Jeff Winter,0,0,0,0,4486,Chelsea,Aston Villa,Chelsea,Aston Villa,Aston_Villa_Chelsea,Aston Villa_Chelsea_2003
+2003,33,Aston Villa,0.0,0.0,Chelsea,3.0,2.0,0,Jeff Winter,0,0,0,0,4750,Aston Villa,Chelsea,Aston Villa,Chelsea,Aston_Villa_Chelsea,Aston Villa_Chelsea_2003
+2004,5,Aston Villa,0.0,0.0,Chelsea,0.0,0.0,0,Rob Styles,0,0,0,0,4846,draw,draw,Aston Villa,Chelsea,Aston_Villa_Chelsea,Aston Villa_Chelsea_2004
+2004,19,Chelsea,0.0,0.0,Aston Villa,1.0,0.0,0,Peter Walton,0,0,0,0,4988,Chelsea,Aston Villa,Chelsea,Aston Villa,Aston_Villa_Chelsea,Aston Villa_Chelsea_2004
+2005,7,Chelsea,0.0,0.0,Aston Villa,2.0,1.0,0,Barry Knight,0,0,0,0,5248,Chelsea,Aston Villa,Chelsea,Aston Villa,Aston_Villa_Chelsea,Aston Villa_Chelsea_2005
+2005,24,Aston Villa,0.0,0.0,Chelsea,1.0,1.0,0,Rob Styles,0,0,0,0,5416,draw,draw,Aston Villa,Chelsea,Aston_Villa_Chelsea,Aston Villa_Chelsea_2005
+2006,7,Chelsea,0.0,0.0,Aston Villa,1.0,1.0,0,Graham Poll,0,0,0,0,5627,draw,draw,Chelsea,Aston Villa,Aston_Villa_Chelsea,Aston Villa_Chelsea_2006
+2006,22,Aston Villa,0.0,0.0,Chelsea,0.0,0.0,0,Phil Dowd,0,0,0,0,5783,draw,draw,Aston Villa,Chelsea,Aston_Villa_Chelsea,Aston Villa_Chelsea_2006
+2007,5,Aston Villa,0.0,0.0,Chelsea,2.0,0.0,0,Mark Clattenburg,0,0,0,0,5990,Aston Villa,Chelsea,Aston Villa,Chelsea,Aston_Villa_Chelsea,Aston Villa_Chelsea_2007
+2007,19,Chelsea,0.0,0.0,Aston Villa,4.0,4.0,0,Phil Dowd,0,0,0,0,6132,draw,draw,Chelsea,Aston Villa,Aston_Villa_Chelsea,Aston Villa_Chelsea_2007
+2008,7,Chelsea,0.0,0.0,Aston Villa,2.0,0.0,0,Chris Foy,0,0,0,0,6394,Chelsea,Aston Villa,Chelsea,Aston Villa,Aston_Villa_Chelsea,Aston Villa_Chelsea_2008
+2008,26,Aston Villa,0.0,0.0,Chelsea,0.0,1.0,0,Mark Halsey,0,0,0,0,6580,Chelsea,Aston Villa,Aston Villa,Chelsea,Aston_Villa_Chelsea,Aston Villa_Chelsea_2008
+2009,9,Aston Villa,0.0,0.0,Chelsea,2.0,1.0,0,Kevin Friend,0,0,0,0,6783,Aston Villa,Chelsea,Aston Villa,Chelsea,Aston_Villa_Chelsea,Aston Villa_Chelsea_2009
+2009,32,Chelsea,0.0,0.0,Aston Villa,7.0,1.0,0,Peter Walton,0,0,0,0,7014,Chelsea,Aston Villa,Chelsea,Aston Villa,Aston_Villa_Chelsea,Aston Villa_Chelsea_2009
+2010,8,Aston Villa,0.0,0.0,Chelsea,0.0,0.0,0,Lee Mason,0,0,0,0,7156,draw,draw,Aston Villa,Chelsea,Aston_Villa_Chelsea,Aston Villa_Chelsea_2010
+2010,21,Chelsea,0.0,0.0,Aston Villa,3.0,3.0,0,Lee Mason,0,0,0,0,7285,draw,draw,Chelsea,Aston Villa,Aston_Villa_Chelsea,Aston Villa_Chelsea_2010
+2011,19,Chelsea,0.0,0.0,Aston Villa,1.0,3.0,0,Mark Halsey,0,0,0,0,7649,Aston Villa,Chelsea,Chelsea,Aston Villa,Aston_Villa_Chelsea,Aston Villa_Chelsea_2011
+2011,31,Aston Villa,0.0,0.0,Chelsea,2.0,4.0,0,Lee Mason,0,0,0,0,7770,Chelsea,Aston Villa,Aston Villa,Chelsea,Aston_Villa_Chelsea,Aston Villa_Chelsea_2011
+2012,18,Chelsea,0.0,0.0,Aston Villa,8.0,0.0,0,Phil Dowd,0,0,0,0,8024,Chelsea,Aston Villa,Chelsea,Aston Villa,Aston_Villa_Chelsea,Aston Villa_Chelsea_2012
+2012,37,Aston Villa,0.0,0.0,Chelsea,1.0,2.0,0,Lee Mason,0,0,0,0,8206,Chelsea,Aston Villa,Aston Villa,Chelsea,Aston_Villa_Chelsea,Aston Villa_Chelsea_2012
+2013,3,Chelsea,0.0,0.0,Aston Villa,2.0,1.0,0,Kevin Friend,0,0,0,0,8236,Chelsea,Aston Villa,Chelsea,Aston Villa,Aston_Villa_Chelsea,Aston Villa_Chelsea_2013
+2013,30,Aston Villa,0.0,0.0,Chelsea,1.0,0.0,0,Chris Foy,0,0,0,0,8509,Aston Villa,Chelsea,Aston Villa,Chelsea,Aston_Villa_Chelsea,Aston Villa_Chelsea_2013
+2014,6,Chelsea,0.0,0.0,Aston Villa,3.0,0.0,0,Philip Dowd,0,0,0,0,8661,Chelsea,Aston Villa,Chelsea,Aston Villa,Aston_Villa_Chelsea,Aston Villa_Chelsea_2014
+2014,24,Aston Villa,0.0,0.0,Chelsea,1.0,2.0,0,Niel Swarbrick,0,0,0,0,8837,Chelsea,Aston Villa,Aston Villa,Chelsea,Aston_Villa_Chelsea,Aston Villa_Chelsea_2014
+2015,9,Chelsea,0.0,0.0,Aston Villa,2.0,0.0,0,Roger East,0,0,0,0,9069,Chelsea,Aston Villa,Chelsea,Aston Villa,Aston_Villa_Chelsea,Aston Villa_Chelsea_2015
+2015,32,Aston Villa,0.0,0.0,Chelsea,0.0,4.0,0,Niel Swarbrick,0,0,0,0,9289,Chelsea,Aston Villa,Aston Villa,Chelsea,Aston_Villa_Chelsea,Aston Villa_Chelsea_2015

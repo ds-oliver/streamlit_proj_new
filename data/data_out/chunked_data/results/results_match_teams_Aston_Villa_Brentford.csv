@@ -1,0 +1,5 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2021,3,Aston Villa,0.7,0.9,Brentford,1.0,1.0,2021-08-28,Peter Bankes,Villa Park,Sat,15:00,"42,045",25,draw,draw,Aston Villa,Brentford,Aston_Villa_Brentford,Aston Villa_Brentford_2021
+2021,21,Brentford,0.6,0.8,Aston Villa,2.0,1.0,2022-01-02,Craig Pawson,Brentford Community Stadium,Sun,14:00,"16,876",207,Brentford,Aston Villa,Brentford,Aston Villa,Aston_Villa_Brentford,Aston Villa_Brentford_2021
+2022,13,Aston Villa,2.8,0.9,Brentford,4.0,0.0,2022-10-23,Darren England,Villa Park,Sun,14:00,"41,693",121,Aston Villa,Brentford,Aston Villa,Brentford,Aston_Villa_Brentford,Aston Villa_Brentford_2022
+2022,32,Brentford,2.7,1.5,Aston Villa,1.0,1.0,2023-04-22,Michael Salisbury,Brentford Community Stadium,Sat,15:00,"17,098",350,draw,draw,Brentford,Aston Villa,Aston_Villa_Brentford,Aston Villa_Brentford_2022

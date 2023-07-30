@@ -1,0 +1,27 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,2,Liverpool,2.5,0.7,Crystal Palace,1.0,0.0,2017-08-19,Kevin Friend,Anfield,Sat,15:00,"53,138",16,Liverpool,Crystal Palace,Liverpool,Crystal Palace,Crystal_Palace_Liverpool,Crystal Palace_Liverpool_2017
+2017,32,Crystal Palace,1.9,1.8,Liverpool,1.0,2.0,2018-03-31,Niel Swarbrick,Selhurst Park,Sat,12:30,"25,807",336,Liverpool,Crystal Palace,Crystal Palace,Liverpool,Crystal_Palace_Liverpool,Crystal Palace_Liverpool_2017
+2018,2,Crystal Palace,0.4,2.6,Liverpool,0.0,2.0,2018-08-20,Michael Oliver,Selhurst Park,Mon,20:00,"25,750",20,Liverpool,Crystal Palace,Crystal Palace,Liverpool,Crystal_Palace_Liverpool,Crystal Palace_Liverpool_2018
+2018,23,Liverpool,2.6,0.7,Crystal Palace,4.0,3.0,2019-01-19,Jonathan Moss,Anfield,Sat,15:00,"53,171",247,Liverpool,Crystal Palace,Liverpool,Crystal Palace,Crystal_Palace_Liverpool,Crystal Palace_Liverpool_2018
+2019,13,Crystal Palace,1.0,1.4,Liverpool,1.0,2.0,2019-11-23,Kevin Friend,Selhurst Park,Sat,15:00,"25,486",133,Liverpool,Crystal Palace,Crystal Palace,Liverpool,Crystal_Palace_Liverpool,Crystal Palace_Liverpool_2019
+2019,31,Liverpool,2.4,0.1,Crystal Palace,4.0,0.0,2020-06-24,Martin Atkinson,Anfield,Wed,20:15,0,338,Liverpool,Crystal Palace,Liverpool,Crystal Palace,Crystal_Palace_Liverpool,Crystal Palace_Liverpool_2019
+2020,14,Crystal Palace,0.3,2.5,Liverpool,0.0,7.0,2020-12-19,Jonathan Moss,Selhurst Park,Sat,12:30,0,140,Liverpool,Crystal Palace,Crystal Palace,Liverpool,Crystal_Palace_Liverpool,Crystal Palace_Liverpool_2020
+2020,38,Liverpool,1.6,0.6,Crystal Palace,2.0,0.0,2021-05-23,Craig Pawson,Anfield,Sun,16:00,"9,901",438,Liverpool,Crystal Palace,Liverpool,Crystal Palace,Crystal_Palace_Liverpool,Crystal Palace_Liverpool_2020
+2021,5,Liverpool,3.1,0.6,Crystal Palace,3.0,0.0,2021-09-18,Andy Madley,Anfield,Sat,15:00,"52,000",47,Liverpool,Crystal Palace,Liverpool,Crystal Palace,Crystal_Palace_Liverpool,Crystal Palace_Liverpool_2021
+2021,23,Crystal Palace,2.2,1.9,Liverpool,1.0,3.0,2022-01-23,Kevin Friend,Selhurst Park,Sun,14:00,"25,002",235,Liverpool,Crystal Palace,Crystal Palace,Liverpool,Crystal_Palace_Liverpool,Crystal Palace_Liverpool_2021
+2022,2,Liverpool,2.0,1.0,Crystal Palace,1.0,1.0,2022-08-15,Paul Tierney,Anfield,Mon,20:00,"52,970",20,draw,draw,Liverpool,Crystal Palace,Crystal_Palace_Liverpool,Crystal Palace_Liverpool_2022
+2022,25,Crystal Palace,0.7,0.9,Liverpool,0.0,0.0,2023-02-25,Darren England,Selhurst Park,Sat,19:45,"25,842",264,draw,draw,Crystal Palace,Liverpool,Crystal_Palace_Liverpool,Crystal Palace_Liverpool_2022
+1992,17,Liverpool,0.0,0.0,Crystal Palace,5.0,0.0,0,Stephen Lodge,0,0,0,0,183,Liverpool,Crystal Palace,Liverpool,Crystal Palace,Crystal_Palace_Liverpool,Crystal Palace_Liverpool_1992
+1992,36,Crystal Palace,0.0,0.0,Liverpool,1.0,1.0,0,Roger Dilkes,0,0,0,0,370,draw,draw,Crystal Palace,Liverpool,Crystal_Palace_Liverpool,Crystal Palace_Liverpool_1992
+1994,1,Crystal Palace,0.0,0.0,Liverpool,1.0,6.0,0,Robbie Hart,0,0,0,0,928,Liverpool,Crystal Palace,Crystal Palace,Liverpool,Crystal_Palace_Liverpool,Crystal Palace_Liverpool_1994
+1994,18,Liverpool,0.0,0.0,Crystal Palace,0.0,0.0,0,Kelvin Morton,0,0,0,0,1120,draw,draw,Liverpool,Crystal Palace,Crystal_Palace_Liverpool,Crystal Palace_Liverpool_1994
+1997,18,Crystal Palace,0.0,0.0,Liverpool,0.0,3.0,0,Neale Barry,0,0,0,0,2317,Liverpool,Crystal Palace,Crystal Palace,Liverpool,Crystal_Palace_Liverpool,Crystal Palace_Liverpool_1997
+1997,34,Liverpool,0.0,0.0,Crystal Palace,2.0,1.0,0,Graham Barber,0,0,0,0,2476,Liverpool,Crystal Palace,Liverpool,Crystal Palace,Crystal_Palace_Liverpool,Crystal Palace_Liverpool_1997
+2004,13,Liverpool,0.0,0.0,Crystal Palace,3.0,2.0,0,Phil Dowd,0,0,0,0,4927,Liverpool,Crystal Palace,Liverpool,Crystal Palace,Crystal_Palace_Liverpool,Crystal Palace_Liverpool_2004
+2004,35,Crystal Palace,0.0,0.0,Liverpool,1.0,0.0,0,Dermot Gallagher,0,0,0,0,5143,Crystal Palace,Liverpool,Crystal Palace,Liverpool,Crystal_Palace_Liverpool,Crystal Palace_Liverpool_2004
+2013,7,Liverpool,0.0,0.0,Crystal Palace,3.0,1.0,0,Anthony Taylor,0,0,0,0,8287,Liverpool,Crystal Palace,Liverpool,Crystal Palace,Crystal_Palace_Liverpool,Crystal Palace_Liverpool_2013
+2013,37,Crystal Palace,0.0,0.0,Liverpool,3.0,3.0,0,Mark Clattenburg,0,0,0,0,8592,draw,draw,Crystal Palace,Liverpool,Crystal_Palace_Liverpool,Crystal Palace_Liverpool_2013
+2014,12,Crystal Palace,0.0,0.0,Liverpool,3.0,1.0,0,Jonathan Moss,0,0,0,0,8723,Crystal Palace,Liverpool,Crystal Palace,Liverpool,Crystal_Palace_Liverpool,Crystal Palace_Liverpool_2014
+2014,37,Liverpool,0.0,0.0,Crystal Palace,1.0,3.0,0,Jonathan Moss,0,0,0,0,8971,Crystal Palace,Liverpool,Liverpool,Crystal Palace,Crystal_Palace_Liverpool,Crystal Palace_Liverpool_2014
+2015,12,Liverpool,0.0,0.0,Crystal Palace,1.0,2.0,0,Niel Swarbrick,0,0,0,0,9104,Crystal Palace,Liverpool,Liverpool,Crystal Palace,Crystal_Palace_Liverpool,Crystal Palace_Liverpool_2015
+2015,29,Crystal Palace,0.0,0.0,Liverpool,1.0,2.0,0,Andre Marriner,0,0,0,0,9272,Liverpool,Crystal Palace,Crystal Palace,Liverpool,Crystal_Palace_Liverpool,Crystal Palace_Liverpool_2015

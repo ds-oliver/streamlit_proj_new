@@ -1,0 +1,3 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2022,2,Liverpool,2.0,1.0,Crystal Palace,1.0,1.0,2022-08-15,Paul Tierney,Anfield,Mon,20:00,"52,970",20,draw,draw,Liverpool,Crystal Palace,Crystal_Palace_Liverpool,Crystal Palace_Liverpool_2022
+2022,25,Crystal Palace,0.7,0.9,Liverpool,0.0,0.0,2023-02-25,Darren England,Selhurst Park,Sat,19:45,"25,842",264,draw,draw,Crystal Palace,Liverpool,Crystal_Palace_Liverpool,Crystal Palace_Liverpool_2022

@@ -1,0 +1,11 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,18,Bournemouth,0.6,2.5,Liverpool,0.0,4.0,2017-12-17,Andre Marriner,Vitality Stadium,Sun,16:30,"10,780",195,Liverpool,Bournemouth,Bournemouth,Liverpool,Bournemouth_Liverpool,Bournemouth_Liverpool_2017
+2017,34,Liverpool,2.0,0.3,Bournemouth,3.0,0.0,2018-04-14,Chris Kavanagh,Anfield,Sat,17:30,"52,959",363,Liverpool,Bournemouth,Liverpool,Bournemouth,Bournemouth_Liverpool,Bournemouth_Liverpool_2017
+2018,16,Bournemouth,0.3,1.6,Liverpool,0.0,4.0,2018-12-08,Lee Mason,Vitality Stadium,Sat,12:30,"10,752",165,Liverpool,Bournemouth,Bournemouth,Liverpool,Bournemouth_Liverpool,Bournemouth_Liverpool_2018
+2018,26,Liverpool,2.0,0.4,Bournemouth,3.0,0.0,2019-02-09,Anthony Taylor,Anfield,Sat,15:00,"53,178",279,Liverpool,Bournemouth,Liverpool,Bournemouth,Bournemouth_Liverpool,Bournemouth_Liverpool_2018
+2019,16,Bournemouth,0.1,2.4,Liverpool,0.0,3.0,2019-12-07,Chris Kavanagh,Vitality Stadium,Sat,15:00,"10,832",168,Liverpool,Bournemouth,Bournemouth,Liverpool,Bournemouth_Liverpool,Bournemouth_Liverpool_2019
+2019,29,Liverpool,1.8,1.4,Bournemouth,2.0,1.0,2020-03-07,Paul Tierney,Anfield,Sat,12:30,"53,323",307,Liverpool,Bournemouth,Liverpool,Bournemouth,Bournemouth_Liverpool,Bournemouth_Liverpool_2019
+2022,4,Liverpool,3.3,0.3,Bournemouth,9.0,0.0,2022-08-27,Stuart Attwell,Anfield,Sat,15:00,"53,328",38,Liverpool,Bournemouth,Liverpool,Bournemouth,Bournemouth_Liverpool,Bournemouth_Liverpool_2022
+2022,27,Bournemouth,0.9,1.7,Liverpool,1.0,0.0,2023-03-11,John Brooks,Vitality Stadium,Sat,12:30,"10,536",281,Bournemouth,Liverpool,Bournemouth,Liverpool,Bournemouth_Liverpool,Bournemouth_Liverpool_2022
+2015,2,Liverpool,0.0,0.0,Bournemouth,1.0,0.0,0,Craig Pawson,0,0,0,0,9005,Liverpool,Bournemouth,Liverpool,Bournemouth,Bournemouth_Liverpool,Bournemouth_Liverpool_2015
+2015,34,Bournemouth,0.0,0.0,Liverpool,1.0,2.0,0,Mike Jones,0,0,0,0,9316,Liverpool,Bournemouth,Bournemouth,Liverpool,Bournemouth_Liverpool,Bournemouth_Liverpool_2015

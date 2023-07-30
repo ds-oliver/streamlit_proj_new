@@ -3007,3 +3007,261 @@ tail:
 2023-07-29 00:30:46,575 Function main() ended
 2023-07-29 00:30:46,575 Function main() took 176.61 seconds
 2023-07-29 00:30:46,575 176.61 seconds have elapsed since the start of the app
+2023-07-29 19:16:34,667 Streamlit app started
+2023-07-29 19:16:34,673 Script ('/Users/hogan/dev/streamlit_proj_new/streamlit_app_logs.log', '/Users/hogan/dev/streamlit_proj_new/streamlit_app_logs.log') started
+2023-07-29 19:16:34,674 Function main() started
+2023-07-29 19:16:38,500 Function clean_results started
+2023-07-29 19:16:38,844 Dataframe only_results_df has 11646 rows and 21 columns
+columns: Index(['season', 'gameweek', 'home_team', 'home_xg', 'away_xg', 'away_team',
+       'home_score', 'away_score', 'date', 'referee', 'venue', 'dayofweek',
+       'start_time', 'attendance', 'Unnamed: 0', 'winning_team', 'losing_team',
+       'team', 'opponent', 'match_teams', 'season_match_teams'],
+      dtype='object')
+head:
+   season  gameweek       home_team  home_xg  away_xg       away_team  home_score  away_score  ... attendance Unnamed: 0  winning_team     losing_team            team        opponent                  match_teams                season_match_teams
+0    2017         1         Arsenal      2.5      1.5  Leicester City         4.0         3.0  ...     59,387          0       Arsenal  Leicester City         Arsenal  Leicester City       Arsenal_Leicester_City       Arsenal_Leicester City_2017
+1    2017         1         Watford      2.1      2.6       Liverpool         3.0         3.0  ...     20,407          1          draw            draw         Watford       Liverpool            Liverpool_Watford            Liverpool_Watford_2017
+2    2017         1  Crystal Palace      1.1      1.5    Huddersfield         0.0         3.0  ...     25,448          2  Huddersfield  Crystal Palace  Crystal Palace    Huddersfield  Crystal_Palace_Huddersfield  Crystal Palace_Huddersfield_2017
+3    2017         1       West Brom      1.3      0.5     Bournemouth         1.0         0.0  ...     25,011          3     West Brom     Bournemouth       West Brom     Bournemouth        Bournemouth_West_Brom        Bournemouth_West Brom_2017
+4    2017         1         Chelsea      1.5      0.6         Burnley         2.0         3.0  ...     41,616          4       Burnley         Chelsea         Chelsea         Burnley              Burnley_Chelsea              Burnley_Chelsea_2017
+
+[5 rows x 21 columns]
+tail:
+      season  gameweek       home_team  home_xg  away_xg       away_team  home_score  away_score  ... attendance Unnamed: 0    winning_team   losing_team            team        opponent                 match_teams               season_match_teams
+9361    2015        38         Chelsea      0.0      0.0  Leicester City         1.0         1.0  ...          0       9361            draw          draw         Chelsea  Leicester City      Chelsea_Leicester_City      Chelsea_Leicester City_2015
+9362    2015        38         Everton      0.0      0.0    Norwich City         3.0         0.0  ...          0       9362         Everton  Norwich City         Everton    Norwich City        Everton_Norwich_City        Everton_Norwich City_2015
+9363    2015        38         Arsenal      0.0      0.0     Aston Villa         4.0         0.0  ...          0       9363         Arsenal   Aston Villa         Arsenal     Aston Villa         Arsenal_Aston_Villa         Arsenal_Aston Villa_2015
+9364    2015        38      Stoke City      0.0      0.0        West Ham         2.0         1.0  ...          0       9364      Stoke City      West Ham      Stoke City        West Ham         Stoke_City_West_Ham         Stoke City_West Ham_2015
+9365    2015        38  Manchester Utd      0.0      0.0     Bournemouth         3.0         1.0  ...          0       9365  Manchester Utd   Bournemouth  Manchester Utd     Bournemouth  Bournemouth_Manchester_Utd  Bournemouth_Manchester Utd_2015
+
+[5 rows x 21 columns]
+2023-07-29 19:16:38,975 Dataframe matching_results_df has 2280 rows and 21 columns
+columns: Index(['season', 'gameweek', 'home_team', 'home_xg', 'away_xg', 'away_team',
+       'home_score', 'away_score', 'date', 'referee', 'venue', 'dayofweek',
+       'start_time', 'attendance', 'Unnamed: 0', 'winning_team', 'losing_team',
+       'team', 'opponent', 'match_teams', 'season_match_teams'],
+      dtype='object')
+head:
+   season  gameweek       home_team  home_xg  away_xg       away_team  home_score  away_score  ... attendance Unnamed: 0  winning_team     losing_team            team        opponent                  match_teams                season_match_teams
+0    2017         1         Arsenal      2.5      1.5  Leicester City         4.0         3.0  ...     59,387          0       Arsenal  Leicester City         Arsenal  Leicester City       Arsenal_Leicester_City       Arsenal_Leicester City_2017
+1    2017         1         Watford      2.1      2.6       Liverpool         3.0         3.0  ...     20,407          1          draw            draw         Watford       Liverpool            Liverpool_Watford            Liverpool_Watford_2017
+2    2017         1  Crystal Palace      1.1      1.5    Huddersfield         0.0         3.0  ...     25,448          2  Huddersfield  Crystal Palace  Crystal Palace    Huddersfield  Crystal_Palace_Huddersfield  Crystal Palace_Huddersfield_2017
+3    2017         1       West Brom      1.3      0.5     Bournemouth         1.0         0.0  ...     25,011          3     West Brom     Bournemouth       West Brom     Bournemouth        Bournemouth_West_Brom        Bournemouth_West Brom_2017
+4    2017         1         Chelsea      1.5      0.6         Burnley         2.0         3.0  ...     41,616          4       Burnley         Chelsea         Chelsea         Burnley              Burnley_Chelsea              Burnley_Chelsea_2017
+
+[5 rows x 21 columns]
+tail:
+     season  gameweek       home_team  home_xg  away_xg        away_team  home_score  away_score  ... attendance Unnamed: 0    winning_team      losing_team            team         opponent                match_teams              season_match_teams
+375    2022        38         Everton      1.0      0.5      Bournemouth         1.0         0.0  ...     39,201        425         Everton      Bournemouth         Everton      Bournemouth        Bournemouth_Everton        Bournemouth_Everton_2022
+376    2022        38  Leicester City      1.4      1.4         West Ham         2.0         1.0  ...     32,183        426  Leicester City         West Ham  Leicester City         West Ham    Leicester_City_West_Ham    Leicester City_West Ham_2022
+377    2022        38     Aston Villa      2.8      1.4         Brighton         2.0         1.0  ...          0        427     Aston Villa         Brighton     Aston Villa         Brighton       Aston_Villa_Brighton       Aston Villa_Brighton_2022
+378    2022        38    Leeds United      1.5      2.2        Tottenham         1.0         4.0  ...     36,871        428       Tottenham     Leeds United    Leeds United        Tottenham     Leeds_United_Tottenham     Leeds United_Tottenham_2022
+379    2022        38       Brentford      1.3      1.6  Manchester City         1.0         0.0  ...     17,120        429       Brentford  Manchester City       Brentford  Manchester City  Brentford_Manchester_City  Brentford_Manchester City_2022
+
+[5 rows x 21 columns]
+2023-07-29 19:16:40,452 Dataframe players_df has 63408 rows and 114 columns
+columns: Index(['player', 'nationality', 'age', 'minutes', 'goals', 'assists',
+       'pens_made', 'pens_att', 'shots', 'shots_on_target',
+       ...
+       'position', 'position_2', 'position_3', 'position_4', 'season',
+       'minutes_per90', 'match_teams', 'season_match_teams', 'home_team',
+       'away_team'],
+      dtype='object', length=114)
+head:
+                player nationality  age  minutes  goals  assists  pens_made  pens_att  shots  shots_on_target  ...  position  position_2  position_3  position_4  season  minutes_per90             match_teams           season_match_teams  home_team       away_team
+0  Alexandre Lacazette         FRA   26     90.0      1        0          0         0      3                2  ...        FW          LW          LM        None    2017       1.000000  Arsenal_Leicester_City  Arsenal_Leicester_City_2017    Arsenal  Leicester City
+1        Danny Welbeck         ENG   26     74.0      1        0          0         0      3                1  ...        AM          FW        None        None    2017       0.822222  Arsenal_Leicester_City  Arsenal_Leicester_City_2017    Arsenal  Leicester City
+2         Theo Walcott         ENG   28     16.0      0        0          0         0      0                0  ...        RW        None        None        None    2017       0.177778  Arsenal_Leicester_City  Arsenal_Leicester_City_2017    Arsenal  Leicester City
+3           Mesut Ozil         GER   28     90.0      0        0          0         0      3                0  ...        AM          RM        None        None    2017       1.000000  Arsenal_Leicester_City  Arsenal_Leicester_City_2017    Arsenal  Leicester City
+4         Granit Xhaka         SUI   24     90.0      0        2          0         0      4                1  ...        CM          DM        None        None    2017       1.000000  Arsenal_Leicester_City  Arsenal_Leicester_City_2017    Arsenal  Leicester City
+
+[5 rows x 114 columns]
+tail:
+                player nationality  age  minutes  goals  assists  pens_made  pens_att  shots  ...  position_2  position_3  position_4  season  minutes_per90                match_teams              season_match_teams  home_team        away_team
+63403       Nathan Ake         NED   28     62.0      0        0          0         0      0  ...        None        None        None    2022       0.688889  Brentford_Manchester_City  Brentford_Manchester_City_2022  Brentford  Manchester City
+63404     Shea Charles         NIR   19     28.0      0        0          0         0      0  ...        None        None        None    2022       0.311111  Brentford_Manchester_City  Brentford_Manchester_City_2022  Brentford  Manchester City
+63405  Aymeric Laporte         ESP   29     90.0      0        0          0         0      1  ...        None        None        None    2022       1.000000  Brentford_Manchester_City  Brentford_Manchester_City_2022  Brentford  Manchester City
+63406      Kyle Walker         ENG   33     90.0      0        0          0         0      1  ...        None        None        None    2022       1.000000  Brentford_Manchester_City  Brentford_Manchester_City_2022  Brentford  Manchester City
+63407          Ederson         BRA   29     90.0      0        0          0         0      0  ...        None        None        None    2022       1.000000  Brentford_Manchester_City  Brentford_Manchester_City_2022  Brentford  Manchester City
+
+[5 rows x 114 columns]
+2023-07-29 19:16:40,454 Function clean_results ended
+2023-07-29 19:16:40,454 Function clean_results took 1.95 seconds
+2023-07-29 19:16:40,454 5.79 seconds have elapsed since the start of the app
+2023-07-29 19:16:43,019 Function merge started
+2023-07-29 19:16:43,240 Function merge ended
+2023-07-29 19:16:43,242 Function merge took 0.22 seconds
+2023-07-29 19:16:43,242 8.57 seconds have elapsed since the start of the app
+2023-07-29 19:16:43,633 Dataframe left_merge_players_df has 63408 rows and 135 columns
+columns: Index(['player', 'nationality', 'age', 'minutes', 'goals', 'assists',
+       'pens_made', 'pens_att', 'shots', 'shots_on_target',
+       ...
+       'dayofweek', 'start_time', 'attendance', 'Unnamed: 0', 'winning_team',
+       'losing_team', 'team_y', 'opponent_y', 'match_teams_y',
+       'season_match_teams_y'],
+      dtype='object', length=135)
+head:
+                player nationality  age  minutes  goals  assists  pens_made  pens_att  shots  ...  start_time  attendance  Unnamed: 0  winning_team     losing_team   team_y      opponent_y           match_teams_y         season_match_teams_y
+0  Alexandre Lacazette         FRA   26     90.0      1        0          0         0      3  ...       19:45      59,387           0       Arsenal  Leicester City  Arsenal  Leicester City  Arsenal_Leicester_City  Arsenal_Leicester City_2017
+1        Danny Welbeck         ENG   26     74.0      1        0          0         0      3  ...       19:45      59,387           0       Arsenal  Leicester City  Arsenal  Leicester City  Arsenal_Leicester_City  Arsenal_Leicester City_2017
+2         Theo Walcott         ENG   28     16.0      0        0          0         0      0  ...       19:45      59,387           0       Arsenal  Leicester City  Arsenal  Leicester City  Arsenal_Leicester_City  Arsenal_Leicester City_2017
+3           Mesut Ozil         GER   28     90.0      0        0          0         0      3  ...       19:45      59,387           0       Arsenal  Leicester City  Arsenal  Leicester City  Arsenal_Leicester_City  Arsenal_Leicester City_2017
+4         Granit Xhaka         SUI   24     90.0      0        2          0         0      4  ...       19:45      59,387           0       Arsenal  Leicester City  Arsenal  Leicester City  Arsenal_Leicester_City  Arsenal_Leicester City_2017
+
+[5 rows x 135 columns]
+tail:
+                player nationality  age  minutes  goals  assists  pens_made  pens_att  shots  ...  start_time  attendance  Unnamed: 0  winning_team      losing_team     team_y       opponent_y              match_teams_y            season_match_teams_y
+63403       Nathan Ake         NED   28     62.0      0        0          0         0      0  ...       16:30      17,120         429     Brentford  Manchester City  Brentford  Manchester City  Brentford_Manchester_City  Brentford_Manchester City_2022
+63404     Shea Charles         NIR   19     28.0      0        0          0         0      0  ...       16:30      17,120         429     Brentford  Manchester City  Brentford  Manchester City  Brentford_Manchester_City  Brentford_Manchester City_2022
+63405  Aymeric Laporte         ESP   29     90.0      0        0          0         0      1  ...       16:30      17,120         429     Brentford  Manchester City  Brentford  Manchester City  Brentford_Manchester_City  Brentford_Manchester City_2022
+63406      Kyle Walker         ENG   33     90.0      0        0          0         0      1  ...       16:30      17,120         429     Brentford  Manchester City  Brentford  Manchester City  Brentford_Manchester_City  Brentford_Manchester City_2022
+63407          Ederson         BRA   29     90.0      0        0          0         0      0  ...       16:30      17,120         429     Brentford  Manchester City  Brentford  Manchester City  Brentford_Manchester_City  Brentford_Manchester City_2022
+
+[5 rows x 135 columns]
+2023-07-29 19:16:43,634 Function clean_duplicate_columns started
+2023-07-29 19:16:44,010 Function clean_duplicate_columns ended
+2023-07-29 19:16:44,010 Function clean_duplicate_columns took 0.38 seconds
+2023-07-29 19:16:44,011 9.34 seconds have elapsed since the start of the app
+2023-07-29 19:16:44,011 Function cut_df started
+2023-07-29 19:17:05,520 Function cut_df ended
+2023-07-29 19:17:05,520 Function cut_df took 21.51 seconds
+2023-07-29 19:17:05,520 30.85 seconds have elapsed since the start of the app
+2023-07-29 19:17:05,520 Function calculate_per90s started
+2023-07-29 19:19:42,926 Function calculate_per90s ended
+2023-07-29 19:19:42,927 Function calculate_per90s took 157.41 seconds
+2023-07-29 19:19:42,927 188.26 seconds have elapsed since the start of the app
+2023-07-29 19:19:42,927 Function save_csvs started
+2023-07-29 19:19:48,371 Function save_csvs ended
+2023-07-29 19:19:48,371 Function save_csvs took 5.44 seconds
+2023-07-29 19:19:48,371 193.7 seconds have elapsed since the start of the app
+2023-07-29 19:19:48,371 Function save_dicts started
+2023-07-29 19:21:05,890 Function save_dicts ended
+2023-07-29 19:21:05,892 Function save_dicts took 77.52 seconds
+2023-07-29 19:21:05,892 271.22 seconds have elapsed since the start of the app
+2023-07-29 19:21:05,892 Function save_as_dbs started
+2023-07-29 19:21:09,372 Function save_as_dbs ended
+2023-07-29 19:21:09,372 Function save_as_dbs took 3.48 seconds
+2023-07-29 19:21:09,373 274.71 seconds have elapsed since the start of the app
+2023-07-29 19:21:09,384 Function main() ended
+2023-07-29 19:21:09,385 Function main() took 274.71 seconds
+2023-07-29 19:21:09,385 274.72 seconds have elapsed since the start of the app
+2023-07-29 19:23:59,126 Streamlit app started
+2023-07-29 19:23:59,168 Script ('/Users/hogan/dev/streamlit_proj_new/streamlit_app_logs.log', '/Users/hogan/dev/streamlit_proj_new/streamlit_app_logs.log') started
+2023-07-29 19:23:59,171 Function main() started
+2023-07-29 19:24:01,649 Function clean_results started
+2023-07-29 19:24:02,303 Dataframe only_results_df has 11646 rows and 21 columns
+columns: Index(['season', 'gameweek', 'home_team', 'home_xg', 'away_xg', 'away_team',
+       'home_score', 'away_score', 'date', 'referee', 'venue', 'dayofweek',
+       'start_time', 'attendance', 'Unnamed: 0', 'winning_team', 'losing_team',
+       'team', 'opponent', 'match_teams', 'season_match_teams'],
+      dtype='object')
+head:
+   season  gameweek       home_team  home_xg  away_xg       away_team  home_score  away_score  ... attendance Unnamed: 0  winning_team     losing_team            team        opponent                  match_teams                season_match_teams
+0    2017         1         Arsenal      2.5      1.5  Leicester City         4.0         3.0  ...     59,387          0       Arsenal  Leicester City         Arsenal  Leicester City       Arsenal_Leicester_City       Arsenal_Leicester City_2017
+1    2017         1         Watford      2.1      2.6       Liverpool         3.0         3.0  ...     20,407          1          draw            draw         Watford       Liverpool            Liverpool_Watford            Liverpool_Watford_2017
+2    2017         1  Crystal Palace      1.1      1.5    Huddersfield         0.0         3.0  ...     25,448          2  Huddersfield  Crystal Palace  Crystal Palace    Huddersfield  Crystal_Palace_Huddersfield  Crystal Palace_Huddersfield_2017
+3    2017         1       West Brom      1.3      0.5     Bournemouth         1.0         0.0  ...     25,011          3     West Brom     Bournemouth       West Brom     Bournemouth        Bournemouth_West_Brom        Bournemouth_West Brom_2017
+4    2017         1         Chelsea      1.5      0.6         Burnley         2.0         3.0  ...     41,616          4       Burnley         Chelsea         Chelsea         Burnley              Burnley_Chelsea              Burnley_Chelsea_2017
+
+[5 rows x 21 columns]
+tail:
+      season  gameweek       home_team  home_xg  away_xg       away_team  home_score  away_score  ... attendance Unnamed: 0    winning_team   losing_team            team        opponent                 match_teams               season_match_teams
+9361    2015        38         Chelsea      0.0      0.0  Leicester City         1.0         1.0  ...          0       9361            draw          draw         Chelsea  Leicester City      Chelsea_Leicester_City      Chelsea_Leicester City_2015
+9362    2015        38         Everton      0.0      0.0    Norwich City         3.0         0.0  ...          0       9362         Everton  Norwich City         Everton    Norwich City        Everton_Norwich_City        Everton_Norwich City_2015
+9363    2015        38         Arsenal      0.0      0.0     Aston Villa         4.0         0.0  ...          0       9363         Arsenal   Aston Villa         Arsenal     Aston Villa         Arsenal_Aston_Villa         Arsenal_Aston Villa_2015
+9364    2015        38      Stoke City      0.0      0.0        West Ham         2.0         1.0  ...          0       9364      Stoke City      West Ham      Stoke City        West Ham         Stoke_City_West_Ham         Stoke City_West Ham_2015
+9365    2015        38  Manchester Utd      0.0      0.0     Bournemouth         3.0         1.0  ...          0       9365  Manchester Utd   Bournemouth  Manchester Utd     Bournemouth  Bournemouth_Manchester_Utd  Bournemouth_Manchester Utd_2015
+
+[5 rows x 21 columns]
+2023-07-29 19:24:02,513 Dataframe matching_results_df has 2280 rows and 21 columns
+columns: Index(['season', 'gameweek', 'home_team', 'home_xg', 'away_xg', 'away_team',
+       'home_score', 'away_score', 'date', 'referee', 'venue', 'dayofweek',
+       'start_time', 'attendance', 'Unnamed: 0', 'winning_team', 'losing_team',
+       'team', 'opponent', 'match_teams', 'season_match_teams'],
+      dtype='object')
+head:
+   season  gameweek       home_team  home_xg  away_xg       away_team  home_score  away_score  ... attendance Unnamed: 0  winning_team     losing_team            team        opponent                  match_teams                season_match_teams
+0    2017         1         Arsenal      2.5      1.5  Leicester City         4.0         3.0  ...     59,387          0       Arsenal  Leicester City         Arsenal  Leicester City       Arsenal_Leicester_City       Arsenal_Leicester City_2017
+1    2017         1         Watford      2.1      2.6       Liverpool         3.0         3.0  ...     20,407          1          draw            draw         Watford       Liverpool            Liverpool_Watford            Liverpool_Watford_2017
+2    2017         1  Crystal Palace      1.1      1.5    Huddersfield         0.0         3.0  ...     25,448          2  Huddersfield  Crystal Palace  Crystal Palace    Huddersfield  Crystal_Palace_Huddersfield  Crystal Palace_Huddersfield_2017
+3    2017         1       West Brom      1.3      0.5     Bournemouth         1.0         0.0  ...     25,011          3     West Brom     Bournemouth       West Brom     Bournemouth        Bournemouth_West_Brom        Bournemouth_West Brom_2017
+4    2017         1         Chelsea      1.5      0.6         Burnley         2.0         3.0  ...     41,616          4       Burnley         Chelsea         Chelsea         Burnley              Burnley_Chelsea              Burnley_Chelsea_2017
+
+[5 rows x 21 columns]
+tail:
+     season  gameweek       home_team  home_xg  away_xg        away_team  home_score  away_score  ... attendance Unnamed: 0    winning_team      losing_team            team         opponent                match_teams              season_match_teams
+375    2022        38         Everton      1.0      0.5      Bournemouth         1.0         0.0  ...     39,201        425         Everton      Bournemouth         Everton      Bournemouth        Bournemouth_Everton        Bournemouth_Everton_2022
+376    2022        38  Leicester City      1.4      1.4         West Ham         2.0         1.0  ...     32,183        426  Leicester City         West Ham  Leicester City         West Ham    Leicester_City_West_Ham    Leicester City_West Ham_2022
+377    2022        38     Aston Villa      2.8      1.4         Brighton         2.0         1.0  ...          0        427     Aston Villa         Brighton     Aston Villa         Brighton       Aston_Villa_Brighton       Aston Villa_Brighton_2022
+378    2022        38    Leeds United      1.5      2.2        Tottenham         1.0         4.0  ...     36,871        428       Tottenham     Leeds United    Leeds United        Tottenham     Leeds_United_Tottenham     Leeds United_Tottenham_2022
+379    2022        38       Brentford      1.3      1.6  Manchester City         1.0         0.0  ...     17,120        429       Brentford  Manchester City       Brentford  Manchester City  Brentford_Manchester_City  Brentford_Manchester City_2022
+
+[5 rows x 21 columns]
+2023-07-29 19:24:04,030 Dataframe players_df has 63408 rows and 114 columns
+columns: Index(['player', 'nationality', 'age', 'minutes', 'goals', 'assists',
+       'pens_made', 'pens_att', 'shots', 'shots_on_target',
+       ...
+       'position', 'position_2', 'position_3', 'position_4', 'season',
+       'minutes_per90', 'match_teams', 'season_match_teams', 'home_team',
+       'away_team'],
+      dtype='object', length=114)
+head:
+                player nationality  age  minutes  goals  assists  pens_made  pens_att  shots  shots_on_target  ...  position  position_2  position_3  position_4  season  minutes_per90             match_teams           season_match_teams  home_team       away_team
+0  Alexandre Lacazette         FRA   26     90.0      1        0          0         0      3                2  ...        FW          LW          LM        None    2017       1.000000  Arsenal_Leicester_City  Arsenal_Leicester_City_2017    Arsenal  Leicester City
+1        Danny Welbeck         ENG   26     74.0      1        0          0         0      3                1  ...        AM          FW        None        None    2017       0.822222  Arsenal_Leicester_City  Arsenal_Leicester_City_2017    Arsenal  Leicester City
+2         Theo Walcott         ENG   28     16.0      0        0          0         0      0                0  ...        RW        None        None        None    2017       0.177778  Arsenal_Leicester_City  Arsenal_Leicester_City_2017    Arsenal  Leicester City
+3           Mesut Ozil         GER   28     90.0      0        0          0         0      3                0  ...        AM          RM        None        None    2017       1.000000  Arsenal_Leicester_City  Arsenal_Leicester_City_2017    Arsenal  Leicester City
+4         Granit Xhaka         SUI   24     90.0      0        2          0         0      4                1  ...        CM          DM        None        None    2017       1.000000  Arsenal_Leicester_City  Arsenal_Leicester_City_2017    Arsenal  Leicester City
+
+[5 rows x 114 columns]
+tail:
+                player nationality  age  minutes  goals  assists  pens_made  pens_att  shots  ...  position_2  position_3  position_4  season  minutes_per90                match_teams              season_match_teams  home_team        away_team
+63403       Nathan Ake         NED   28     62.0      0        0          0         0      0  ...        None        None        None    2022       0.688889  Brentford_Manchester_City  Brentford_Manchester_City_2022  Brentford  Manchester City
+63404     Shea Charles         NIR   19     28.0      0        0          0         0      0  ...        None        None        None    2022       0.311111  Brentford_Manchester_City  Brentford_Manchester_City_2022  Brentford  Manchester City
+63405  Aymeric Laporte         ESP   29     90.0      0        0          0         0      1  ...        None        None        None    2022       1.000000  Brentford_Manchester_City  Brentford_Manchester_City_2022  Brentford  Manchester City
+63406      Kyle Walker         ENG   33     90.0      0        0          0         0      1  ...        None        None        None    2022       1.000000  Brentford_Manchester_City  Brentford_Manchester_City_2022  Brentford  Manchester City
+63407          Ederson         BRA   29     90.0      0        0          0         0      0  ...        None        None        None    2022       1.000000  Brentford_Manchester_City  Brentford_Manchester_City_2022  Brentford  Manchester City
+
+[5 rows x 114 columns]
+2023-07-29 19:24:04,030 Function clean_results ended
+2023-07-29 19:24:04,031 Function clean_results took 2.38 seconds
+2023-07-29 19:24:04,031 4.9 seconds have elapsed since the start of the app
+2023-07-29 19:24:07,819 Function merge started
+2023-07-29 19:24:08,205 Function merge ended
+2023-07-29 19:24:08,207 Function merge took 0.39 seconds
+2023-07-29 19:24:08,207 9.08 seconds have elapsed since the start of the app
+2023-07-29 19:24:08,602 Dataframe left_merge_players_df has 63408 rows and 135 columns
+columns: Index(['player', 'nationality', 'age', 'minutes', 'goals', 'assists',
+       'pens_made', 'pens_att', 'shots', 'shots_on_target',
+       ...
+       'dayofweek', 'start_time', 'attendance', 'Unnamed: 0', 'winning_team',
+       'losing_team', 'team_y', 'opponent_y', 'match_teams_y',
+       'season_match_teams_y'],
+      dtype='object', length=135)
+head:
+                player nationality  age  minutes  goals  assists  pens_made  pens_att  shots  ...  start_time  attendance  Unnamed: 0  winning_team     losing_team   team_y      opponent_y           match_teams_y         season_match_teams_y
+0  Alexandre Lacazette         FRA   26     90.0      1        0          0         0      3  ...       19:45      59,387           0       Arsenal  Leicester City  Arsenal  Leicester City  Arsenal_Leicester_City  Arsenal_Leicester City_2017
+1        Danny Welbeck         ENG   26     74.0      1        0          0         0      3  ...       19:45      59,387           0       Arsenal  Leicester City  Arsenal  Leicester City  Arsenal_Leicester_City  Arsenal_Leicester City_2017
+2         Theo Walcott         ENG   28     16.0      0        0          0         0      0  ...       19:45      59,387           0       Arsenal  Leicester City  Arsenal  Leicester City  Arsenal_Leicester_City  Arsenal_Leicester City_2017
+3           Mesut Ozil         GER   28     90.0      0        0          0         0      3  ...       19:45      59,387           0       Arsenal  Leicester City  Arsenal  Leicester City  Arsenal_Leicester_City  Arsenal_Leicester City_2017
+4         Granit Xhaka         SUI   24     90.0      0        2          0         0      4  ...       19:45      59,387           0       Arsenal  Leicester City  Arsenal  Leicester City  Arsenal_Leicester_City  Arsenal_Leicester City_2017
+
+[5 rows x 135 columns]
+tail:
+                player nationality  age  minutes  goals  assists  pens_made  pens_att  shots  ...  start_time  attendance  Unnamed: 0  winning_team      losing_team     team_y       opponent_y              match_teams_y            season_match_teams_y
+63403       Nathan Ake         NED   28     62.0      0        0          0         0      0  ...       16:30      17,120         429     Brentford  Manchester City  Brentford  Manchester City  Brentford_Manchester_City  Brentford_Manchester City_2022
+63404     Shea Charles         NIR   19     28.0      0        0          0         0      0  ...       16:30      17,120         429     Brentford  Manchester City  Brentford  Manchester City  Brentford_Manchester_City  Brentford_Manchester City_2022
+63405  Aymeric Laporte         ESP   29     90.0      0        0          0         0      1  ...       16:30      17,120         429     Brentford  Manchester City  Brentford  Manchester City  Brentford_Manchester_City  Brentford_Manchester City_2022
+63406      Kyle Walker         ENG   33     90.0      0        0          0         0      1  ...       16:30      17,120         429     Brentford  Manchester City  Brentford  Manchester City  Brentford_Manchester_City  Brentford_Manchester City_2022
+63407          Ederson         BRA   29     90.0      0        0          0         0      0  ...       16:30      17,120         429     Brentford  Manchester City  Brentford  Manchester City  Brentford_Manchester_City  Brentford_Manchester City_2022
+
+[5 rows x 135 columns]
+2023-07-29 19:24:08,603 Function clean_duplicate_columns started
+2023-07-29 19:24:08,946 Function clean_duplicate_columns ended
+2023-07-29 19:24:08,946 Function clean_duplicate_columns took 0.34 seconds
+2023-07-29 19:24:08,946 9.82 seconds have elapsed since the start of the app
+2023-07-29 19:24:08,946 Function cut_df started
+2023-07-29 19:24:37,007 Function cut_df ended
+2023-07-29 19:24:37,008 Function cut_df took 28.06 seconds
+2023-07-29 19:24:37,009 37.88 seconds have elapsed since the start of the app
+2023-07-29 19:24:37,009 Function calculate_per90s started

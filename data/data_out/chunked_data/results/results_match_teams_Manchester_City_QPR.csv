@@ -1,0 +1,15 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+1992,1,Manchester City,0.0,0.0,QPR,1.0,1.0,0,Martin Bodenham,0,0,0,0,10,draw,draw,Manchester City,QPR,Manchester_City_QPR,Manchester City_QPR_1992
+1992,27,QPR,0.0,0.0,Manchester City,1.0,1.0,0,Mike Reed,0,0,0,0,285,draw,draw,QPR,Manchester City,Manchester_City_QPR,Manchester City_QPR_1992
+1993,7,Manchester City,0.0,0.0,QPR,3.0,0.0,0,Alan Wilkie,0,0,0,0,535,Manchester City,QPR,Manchester City,QPR,Manchester_City_QPR,Manchester City_QPR_1993
+1993,32,QPR,0.0,0.0,Manchester City,1.0,1.0,0,Stephen Lodge,0,0,0,0,794,draw,draw,QPR,Manchester City,Manchester_City_QPR,Manchester City_QPR_1993
+1994,10,QPR,0.0,0.0,Manchester City,1.0,2.0,0,Gary Willard,0,0,0,0,1027,Manchester City,QPR,QPR,Manchester City,Manchester_City_QPR,Manchester City_QPR_1994
+1994,42,Manchester City,0.0,0.0,QPR,2.0,3.0,0,Mike Reed,0,0,0,0,1383,QPR,Manchester City,Manchester City,QPR,Manchester_City_QPR,Manchester City_QPR_1994
+1995,3,QPR,0.0,0.0,Manchester City,1.0,0.0,0,Paul Danson,0,0,0,0,1411,QPR,Manchester City,QPR,Manchester City,Manchester_City_QPR,Manchester City_QPR_1995
+1995,25,Manchester City,0.0,0.0,QPR,2.0,0.0,0,Graham Poll,0,0,0,0,1627,Manchester City,QPR,Manchester City,QPR,Manchester_City_QPR,Manchester City_QPR_1995
+2011,11,QPR,0.0,0.0,Manchester City,2.0,3.0,0,Martin Atkinson,0,0,0,0,7569,Manchester City,QPR,QPR,Manchester City,Manchester_City_QPR,Manchester City_QPR_2011
+2011,38,Manchester City,0.0,0.0,QPR,3.0,2.0,0,Mike Dean,0,0,0,0,7845,Manchester City,QPR,Manchester City,QPR,Manchester_City_QPR,Manchester City_QPR_2011
+2012,3,Manchester City,0.0,0.0,QPR,3.0,1.0,0,Chris Foy,0,0,0,0,7866,Manchester City,QPR,Manchester City,QPR,Manchester_City_QPR,Manchester City_QPR_2012
+2012,24,QPR,0.0,0.0,Manchester City,0.0,0.0,0,Phil Dowd,0,0,0,0,8076,draw,draw,QPR,Manchester City,Manchester_City_QPR,Manchester City_QPR_2012
+2014,11,QPR,0.0,0.0,Manchester City,2.0,2.0,0,Mike Dean,0,0,0,0,8711,draw,draw,QPR,Manchester City,Manchester_City_QPR,Manchester City_QPR_2014
+2014,36,Manchester City,0.0,0.0,QPR,6.0,0.0,0,Mike Dean,0,0,0,0,8962,Manchester City,QPR,Manchester City,QPR,Manchester_City_QPR,Manchester City_QPR_2014

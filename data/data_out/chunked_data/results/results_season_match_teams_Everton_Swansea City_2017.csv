@@ -1,0 +1,3 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,18,Everton,2.0,0.8,Swansea City,3.0,1.0,2017-12-18,Jonathan Moss,Goodison Park,Mon,20:00,"37,580",196,Everton,Swansea City,Everton,Swansea City,Everton_Swansea_City,Everton_Swansea City_2017
+2017,34,Swansea City,1.3,1.6,Everton,1.0,1.0,2018-04-14,Lee Mason,Liberty Stadium,Sat,15:00,"20,933",362,draw,draw,Swansea City,Everton,Everton_Swansea_City,Everton_Swansea City_2017

@@ -1,0 +1,57 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2019,3,Aston Villa,1.0,1.3,Everton,2.0,0.0,2019-08-23,Michael Oliver,Villa Park,Fri,20:00,"41,922",22,Aston Villa,Everton,Aston Villa,Everton,Aston_Villa_Everton,Aston Villa_Everton_2019
+2019,36,Everton,0.9,1.3,Aston Villa,1.0,1.0,2020-07-16,Anthony Taylor,Goodison Park,Thu,18:00,0,393,draw,draw,Everton,Aston Villa,Aston_Villa_Everton,Aston Villa_Everton_2019
+2020,34,Everton,1.0,1.6,Aston Villa,1.0,2.0,2021-05-01,Simon Hooper,Goodison Park,Sat,20:00,0,383,Aston Villa,Everton,Everton,Aston Villa,Aston_Villa_Everton,Aston Villa_Everton_2020
+2020,19,Aston Villa,0.6,1.0,Everton,0.0,0.0,2021-05-13,Martin Atkinson,Villa Park,Thu,18:00,0,406,draw,draw,Aston Villa,Everton,Aston_Villa_Everton,Aston Villa_Everton_2020
+2021,5,Aston Villa,0.8,0.7,Everton,3.0,0.0,2021-09-18,Craig Pawson,Villa Park,Sat,17:30,"41,888",50,Aston Villa,Everton,Aston Villa,Everton,Aston_Villa_Everton,Aston Villa_Everton_2021
+2021,23,Everton,1.6,0.8,Aston Villa,0.0,1.0,2022-01-22,Craig Pawson,Goodison Park,Sat,12:30,"38,203",230,Aston Villa,Everton,Everton,Aston Villa,Aston_Villa_Everton,Aston Villa_Everton_2021
+2022,2,Aston Villa,2.3,1.6,Everton,2.0,1.0,2022-08-13,Michael Oliver,Villa Park,Sat,12:30,"41,883",11,Aston Villa,Everton,Aston Villa,Everton,Aston_Villa_Everton,Aston Villa_Everton_2022
+2022,25,Everton,1.6,1.9,Aston Villa,0.0,2.0,2023-02-25,Anthony Taylor,Goodison Park,Sat,15:00,"39,309",260,Aston Villa,Everton,Everton,Aston Villa,Aston_Villa_Everton,Aston Villa_Everton_2022
+1992,4,Everton,0.0,0.0,Aston Villa,1.0,0.0,0,Martin Bodenham,0,0,0,0,38,Everton,Aston Villa,Everton,Aston Villa,Aston_Villa_Everton,Aston Villa_Everton_1992
+1992,30,Aston Villa,0.0,0.0,Everton,2.0,1.0,0,Tony Ward,0,0,0,0,306,Aston Villa,Everton,Aston Villa,Everton,Aston_Villa_Everton,Aston Villa_Everton_1992
+1993,6,Everton,0.0,0.0,Aston Villa,0.0,1.0,0,Alan Gunn,0,0,0,0,519,Aston Villa,Everton,Everton,Aston Villa,Aston_Villa_Everton,Aston Villa_Everton_1993
+1993,31,Aston Villa,0.0,0.0,Everton,0.0,0.0,0,Rodger Gifford,0,0,0,0,836,draw,draw,Aston Villa,Everton,Aston_Villa_Everton,Aston Villa_Everton_1993
+1994,1,Everton,0.0,0.0,Aston Villa,2.0,2.0,0,Kelvin Morton,0,0,0,0,932,draw,draw,Everton,Aston Villa,Aston_Villa_Everton,Aston Villa_Everton_1994
+1994,18,Aston Villa,0.0,0.0,Everton,0.0,0.0,0,Rodger Gifford,0,0,0,0,1118,draw,draw,Aston Villa,Everton,Aston_Villa_Everton,Aston Villa_Everton_1994
+1995,11,Aston Villa,0.0,0.0,Everton,1.0,0.0,0,Keith Burge,0,0,0,0,1491,Aston Villa,Everton,Aston Villa,Everton,Aston_Villa_Everton,Aston Villa_Everton_1995
+1995,38,Everton,0.0,0.0,Aston Villa,1.0,0.0,0,Robbie Hart,0,0,0,0,1757,Everton,Aston Villa,Everton,Aston Villa,Aston_Villa_Everton,Aston Villa_Everton_1995
+1996,4,Everton,0.0,0.0,Aston Villa,0.0,1.0,0,Martin Bodenham,0,0,0,0,1802,Aston Villa,Everton,Everton,Aston Villa,Aston_Villa_Everton,Aston Villa_Everton_1996
+1996,33,Aston Villa,0.0,0.0,Everton,3.0,1.0,0,Jeff Winter,0,0,0,0,2079,Aston Villa,Everton,Aston Villa,Everton,Aston_Villa_Everton,Aston Villa_Everton_1996
+1997,15,Aston Villa,0.0,0.0,Everton,2.0,1.0,0,Uriah Rennie,0,0,0,0,2282,Aston Villa,Everton,Aston Villa,Everton,Aston_Villa_Everton,Aston Villa_Everton_1997
+1997,31,Everton,0.0,0.0,Aston Villa,1.0,4.0,0,Neale Barry,0,0,0,0,2445,Aston Villa,Everton,Everton,Aston Villa,Aston_Villa_Everton,Aston Villa_Everton_1997
+1998,1,Everton,0.0,0.0,Aston Villa,0.0,0.0,0,Alan Wilkie,0,0,0,0,2533,draw,draw,Everton,Aston Villa,Aston_Villa_Everton,Aston Villa_Everton_1998
+1998,22,Aston Villa,0.0,0.0,Everton,3.0,0.0,0,Neale Barry,0,0,0,0,2745,Aston Villa,Everton,Aston Villa,Everton,Aston_Villa_Everton,Aston Villa_Everton_1998
+1999,2,Aston Villa,0.0,0.0,Everton,3.0,0.0,0,Graham Barber,0,0,0,0,2920,Aston Villa,Everton,Aston Villa,Everton,Aston_Villa_Everton,Aston Villa_Everton_1999
+1999,16,Everton,0.0,0.0,Aston Villa,0.0,0.0,0,Peter Jones,0,0,0,0,3057,draw,draw,Everton,Aston Villa,Aston_Villa_Everton,Aston Villa_Everton_1999
+2000,12,Everton,0.0,0.0,Aston Villa,0.0,1.0,0,Stephen Lodge,0,0,0,0,3403,Aston Villa,Everton,Everton,Aston Villa,Aston_Villa_Everton,Aston Villa_Everton_2000
+2000,33,Aston Villa,0.0,0.0,Everton,2.0,1.0,0,Paul Taylor,0,0,0,0,3611,Aston Villa,Everton,Aston Villa,Everton,Aston_Villa_Everton,Aston Villa_Everton_2000
+2001,10,Everton,0.0,0.0,Aston Villa,3.0,2.0,0,Rob Styles,0,0,0,0,3747,Everton,Aston Villa,Everton,Aston Villa,Aston_Villa_Everton,Aston Villa_Everton_2001
+2001,24,Aston Villa,0.0,0.0,Everton,0.0,0.0,0,Chris Foy,0,0,0,0,3904,draw,draw,Aston Villa,Everton,Aston_Villa_Everton,Aston Villa_Everton_2001
+2002,7,Aston Villa,0.0,0.0,Everton,3.0,2.0,0,Jeff Winter,0,0,0,0,4111,Aston Villa,Everton,Aston Villa,Everton,Aston_Villa_Everton,Aston Villa_Everton_2002
+2002,36,Everton,0.0,0.0,Aston Villa,2.0,1.0,0,Graham Poll,0,0,0,0,4397,Everton,Aston Villa,Everton,Aston Villa,Aston_Villa_Everton,Aston Villa_Everton_2002
+2003,10,Aston Villa,0.0,0.0,Everton,0.0,0.0,0,Andy D'Urso,0,0,0,0,4519,draw,draw,Aston Villa,Everton,Aston_Villa_Everton,Aston Villa_Everton_2003
+2003,27,Everton,0.0,0.0,Aston Villa,2.0,0.0,0,Matt Messias,0,0,0,0,4686,Everton,Aston Villa,Everton,Aston Villa,Aston_Villa_Everton,Aston Villa_Everton_2003
+2004,11,Everton,0.0,0.0,Aston Villa,1.0,1.0,0,Steve Dunn,0,0,0,0,4910,draw,draw,Everton,Aston Villa,Aston_Villa_Everton,Aston Villa_Everton_2004
+2004,28,Aston Villa,0.0,0.0,Everton,1.0,3.0,0,Graham Poll,0,0,0,0,5076,Everton,Aston Villa,Aston Villa,Everton,Aston_Villa_Everton,Aston Villa_Everton_2004
+2005,18,Aston Villa,0.0,0.0,Everton,4.0,0.0,0,Mike Riley,0,0,0,0,5357,Aston Villa,Everton,Aston Villa,Everton,Aston_Villa_Everton,Aston Villa_Everton_2005
+2005,30,Everton,0.0,0.0,Aston Villa,4.0,1.0,0,Rob Styles,0,0,0,0,5476,Everton,Aston Villa,Everton,Aston Villa,Aston_Villa_Everton,Aston Villa_Everton_2005
+2006,12,Everton,0.0,0.0,Aston Villa,0.0,1.0,0,Phil Dowd,0,0,0,0,5677,Aston Villa,Everton,Everton,Aston Villa,Aston_Villa_Everton,Aston Villa_Everton_2006
+2006,31,Aston Villa,0.0,0.0,Everton,1.0,1.0,0,Howard Webb,0,0,0,0,5874,draw,draw,Aston Villa,Everton,Aston_Villa_Everton,Aston Villa_Everton_2006
+2007,7,Aston Villa,0.0,0.0,Everton,2.0,0.0,0,Lee Probert,0,0,0,0,6008,Aston Villa,Everton,Aston Villa,Everton,Aston_Villa_Everton,Aston Villa_Everton_2007
+2007,36,Everton,0.0,0.0,Aston Villa,2.0,2.0,0,Phil Dowd,0,0,0,0,6303,draw,draw,Everton,Aston Villa,Aston_Villa_Everton,Aston Villa_Everton_2007
+2008,16,Everton,0.0,0.0,Aston Villa,2.0,3.0,0,Martin Atkinson,0,0,0,0,6482,Aston Villa,Everton,Everton,Aston Villa,Aston_Villa_Everton,Aston Villa_Everton_2008
+2008,32,Aston Villa,0.0,0.0,Everton,3.0,3.0,0,Howard Webb,0,0,0,0,6643,draw,draw,Aston Villa,Everton,Aston_Villa_Everton,Aston Villa_Everton_2008
+2009,11,Everton,0.0,0.0,Aston Villa,1.0,1.0,0,Lee Probert,0,0,0,0,6802,draw,draw,Everton,Aston Villa,Aston_Villa_Everton,Aston Villa_Everton_2009
+2009,34,Aston Villa,0.0,0.0,Everton,2.0,2.0,0,Martin Atkinson,0,0,0,0,7042,draw,draw,Aston Villa,Everton,Aston_Villa_Everton,Aston Villa_Everton_2009
+2010,3,Aston Villa,0.0,0.0,Everton,1.0,0.0,0,Mike Jones,0,0,0,0,7115,Aston Villa,Everton,Aston Villa,Everton,Aston_Villa_Everton,Aston Villa_Everton_2010
+2010,31,Everton,0.0,0.0,Aston Villa,2.0,2.0,0,Mike Jones,0,0,0,0,7391,draw,draw,Everton,Aston Villa,Aston_Villa_Everton,Aston Villa_Everton_2010
+2011,4,Everton,0.0,0.0,Aston Villa,2.0,2.0,0,Michael Oliver,0,0,0,0,7501,draw,draw,Everton,Aston Villa,Aston_Villa_Everton,Aston Villa_Everton_2011
+2011,21,Aston Villa,0.0,0.0,Everton,1.0,1.0,0,Mark Clattenburg,0,0,0,0,7672,draw,draw,Aston Villa,Everton,Aston_Villa_Everton,Aston Villa_Everton_2011
+2012,2,Aston Villa,0.0,0.0,Everton,1.0,3.0,0,Michael Oliver,0,0,0,0,7861,Everton,Aston Villa,Aston Villa,Everton,Aston_Villa_Everton,Aston Villa_Everton_2012
+2012,25,Everton,0.0,0.0,Aston Villa,3.0,3.0,0,Mike Jones,0,0,0,0,8091,draw,draw,Everton,Aston Villa,Aston_Villa_Everton,Aston Villa_Everton_2012
+2013,9,Aston Villa,0.0,0.0,Everton,0.0,2.0,0,Anthony Taylor,0,0,0,0,8306,Everton,Aston Villa,Aston Villa,Everton,Aston_Villa_Everton,Aston Villa_Everton_2013
+2013,24,Everton,0.0,0.0,Aston Villa,2.0,1.0,0,Bobby Madley,0,0,0,0,8458,Everton,Aston Villa,Everton,Aston Villa,Aston_Villa_Everton,Aston Villa_Everton_2013
+2014,8,Everton,0.0,0.0,Aston Villa,3.0,0.0,0,Anthony Taylor,0,0,0,0,8678,Everton,Aston Villa,Everton,Aston Villa,Aston_Villa_Everton,Aston Villa_Everton_2014
+2014,35,Aston Villa,0.0,0.0,Everton,3.0,2.0,0,Mark Clattenburg,0,0,0,0,8949,Aston Villa,Everton,Aston Villa,Everton,Aston_Villa_Everton,Aston Villa_Everton_2014
+2015,13,Everton,0.0,0.0,Aston Villa,4.0,0.0,0,Michael Oliver,0,0,0,0,9110,Everton,Aston Villa,Everton,Aston Villa,Aston_Villa_Everton,Aston Villa_Everton_2015
+2015,28,Aston Villa,0.0,0.0,Everton,1.0,3.0,0,Roger East,0,0,0,0,9256,Everton,Aston Villa,Aston Villa,Everton,Aston_Villa_Everton,Aston Villa_Everton_2015

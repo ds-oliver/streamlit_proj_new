@@ -1,0 +1,3 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2018,16,Everton,1.7,1.7,Watford,2.0,2.0,2018-12-10,Kevin Friend,Goodison Park,Mon,20:00,"38,400",174,draw,draw,Everton,Watford,Everton_Watford,Everton_Watford_2018
+2018,26,Watford,1.3,0.7,Everton,1.0,0.0,2019-02-09,Lee Probert,Vicarage Road Stadium,Sat,15:00,"20,333",281,Watford,Everton,Watford,Everton,Everton_Watford,Everton_Watford_2018

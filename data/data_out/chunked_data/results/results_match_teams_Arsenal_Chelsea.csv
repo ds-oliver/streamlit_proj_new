@@ -1,0 +1,61 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,5,Chelsea,0.8,1.4,Arsenal,0.0,0.0,2017-09-17,Michael Oliver,Stamford Bridge,Sun,13:30,"41,478",52,draw,draw,Chelsea,Arsenal,Arsenal_Chelsea,Arsenal_Chelsea_2017
+2017,22,Arsenal,1.2,3.0,Chelsea,2.0,2.0,2018-01-03,Anthony Taylor,Emirates Stadium,Wed,19:45,"59,379",239,draw,draw,Arsenal,Chelsea,Arsenal_Chelsea,Arsenal_Chelsea_2017
+2018,2,Chelsea,1.6,2.4,Arsenal,3.0,2.0,2018-08-18,Martin Atkinson,Stamford Bridge,Sat,17:30,"40,491",16,Chelsea,Arsenal,Chelsea,Arsenal,Arsenal_Chelsea,Arsenal_Chelsea_2018
+2018,23,Arsenal,1.5,0.9,Chelsea,2.0,0.0,2019-01-19,Anthony Taylor,Emirates Stadium,Sat,17:30,"59,979",249,Arsenal,Chelsea,Arsenal,Chelsea,Arsenal_Chelsea,Arsenal_Chelsea_2018
+2019,20,Arsenal,0.5,1.4,Chelsea,1.0,2.0,2019-12-29,Craig Pawson,Emirates Stadium,Sun,14:00,"60,309",215,Chelsea,Arsenal,Arsenal,Chelsea,Arsenal_Chelsea,Arsenal_Chelsea_2019
+2019,24,Chelsea,2.9,0.4,Arsenal,2.0,2.0,2020-01-21,Stuart Attwell,Stamford Bridge,Tue,20:15,"40,577",257,draw,draw,Chelsea,Arsenal,Arsenal_Chelsea,Arsenal_Chelsea_2019
+2020,15,Arsenal,2.0,2.6,Chelsea,3.0,1.0,2020-12-26,Michael Oliver,Emirates Stadium,Sat,17:30,0,154,Arsenal,Chelsea,Arsenal,Chelsea,Arsenal_Chelsea,Arsenal_Chelsea_2020
+2020,36,Chelsea,1.8,0.6,Arsenal,0.0,1.0,2021-05-12,Andre Marriner,Stamford Bridge,Wed,20:15,0,404,Arsenal,Chelsea,Chelsea,Arsenal,Arsenal_Chelsea,Arsenal_Chelsea_2020
+2021,2,Arsenal,0.3,3.1,Chelsea,0.0,2.0,2021-08-22,Paul Tierney,Emirates Stadium,Sun,16:30,"58,729",19,Chelsea,Arsenal,Arsenal,Chelsea,Arsenal_Chelsea,Arsenal_Chelsea_2021
+2021,25,Chelsea,0.7,2.0,Arsenal,2.0,4.0,2022-04-20,Jonathan Moss,Stamford Bridge,Wed,19:45,"32,249",370,Arsenal,Chelsea,Chelsea,Arsenal,Arsenal_Chelsea,Arsenal_Chelsea_2021
+2022,15,Chelsea,0.3,2.1,Arsenal,0.0,1.0,2022-11-06,Michael Oliver,Stamford Bridge,Sun,12:00,"40,142",144,Arsenal,Chelsea,Chelsea,Arsenal,Arsenal_Chelsea,Arsenal_Chelsea_2022
+2022,34,Arsenal,1.7,0.8,Chelsea,3.0,1.0,2023-05-02,Robert Jones,Emirates Stadium,Tue,20:00,"60,144",376,Arsenal,Chelsea,Arsenal,Chelsea,Arsenal_Chelsea,Arsenal_Chelsea_2022
+1992,11,Arsenal,0.0,0.0,Chelsea,2.0,1.0,0,Kelvin Morton,0,0,0,0,117,Arsenal,Chelsea,Arsenal,Chelsea,Arsenal_Chelsea,Arsenal_Chelsea_1992
+1992,31,Chelsea,0.0,0.0,Arsenal,1.0,0.0,0,Tony Ward,0,0,0,0,328,Chelsea,Arsenal,Chelsea,Arsenal,Arsenal_Chelsea,Arsenal_Chelsea_1992
+1993,15,Chelsea,0.0,0.0,Arsenal,0.0,2.0,0,Philip Don,0,0,0,0,621,Arsenal,Chelsea,Chelsea,Arsenal,Arsenal_Chelsea,Arsenal_Chelsea_1993
+1993,39,Arsenal,0.0,0.0,Chelsea,1.0,0.0,0,Alan Wilkie,0,0,0,0,870,Arsenal,Chelsea,Arsenal,Chelsea,Arsenal_Chelsea,Arsenal_Chelsea_1993
+1994,10,Arsenal,0.0,0.0,Chelsea,3.0,1.0,0,Dermot Gallagher,0,0,0,0,1024,Arsenal,Chelsea,Arsenal,Chelsea,Arsenal_Chelsea,Arsenal_Chelsea_1994
+1994,42,Chelsea,0.0,0.0,Arsenal,2.0,1.0,0,Joe Worrall,0,0,0,0,1376,Chelsea,Arsenal,Chelsea,Arsenal,Arsenal_Chelsea,Arsenal_Chelsea_1994
+1995,8,Chelsea,0.0,0.0,Arsenal,1.0,0.0,0,Martin Bodenham,0,0,0,0,1461,Chelsea,Arsenal,Chelsea,Arsenal,Arsenal_Chelsea,Arsenal_Chelsea_1995
+1995,18,Arsenal,0.0,0.0,Chelsea,1.0,1.0,0,Gerald Ashby,0,0,0,0,1561,draw,draw,Arsenal,Chelsea,Arsenal_Chelsea,Arsenal_Chelsea_1995
+1996,4,Arsenal,0.0,0.0,Chelsea,3.0,3.0,0,Keith Burge,0,0,0,0,1798,draw,draw,Arsenal,Chelsea,Arsenal_Chelsea,Arsenal_Chelsea_1996
+1996,33,Chelsea,0.0,0.0,Arsenal,0.0,3.0,0,Roger Dilkes,0,0,0,0,2083,Arsenal,Chelsea,Chelsea,Arsenal,Arsenal_Chelsea,Arsenal_Chelsea_1996
+1997,7,Chelsea,0.0,0.0,Arsenal,2.0,3.0,0,Dermot Gallagher,0,0,0,0,2210,Arsenal,Chelsea,Chelsea,Arsenal,Arsenal_Chelsea,Arsenal_Chelsea_1997
+1997,25,Arsenal,0.0,0.0,Chelsea,2.0,0.0,0,Dermot Gallagher,0,0,0,0,2393,Arsenal,Chelsea,Arsenal,Chelsea,Arsenal_Chelsea,Arsenal_Chelsea_1997
+1998,4,Chelsea,0.0,0.0,Arsenal,0.0,0.0,0,Stephen Lodge,0,0,0,0,2563,draw,draw,Chelsea,Arsenal,Arsenal_Chelsea,Arsenal_Chelsea_1998
+1998,23,Arsenal,0.0,0.0,Chelsea,1.0,0.0,0,Graham Poll,0,0,0,0,2754,Arsenal,Chelsea,Arsenal,Chelsea,Arsenal_Chelsea,Arsenal_Chelsea_1998
+1999,12,Chelsea,0.0,0.0,Arsenal,2.0,3.0,0,Alan Wilkie,0,0,0,0,3013,Arsenal,Chelsea,Chelsea,Arsenal,Arsenal_Chelsea,Arsenal_Chelsea_1999
+1999,37,Arsenal,0.0,0.0,Chelsea,2.0,1.0,0,Mike Reed,0,0,0,0,3271,Arsenal,Chelsea,Arsenal,Chelsea,Arsenal_Chelsea,Arsenal_Chelsea_1999
+2000,4,Chelsea,0.0,0.0,Arsenal,2.0,2.0,0,Mike Riley,0,0,0,0,3322,draw,draw,Chelsea,Arsenal,Arsenal_Chelsea,Arsenal_Chelsea_2000
+2000,23,Arsenal,0.0,0.0,Chelsea,1.0,1.0,0,David Elleray,0,0,0,0,3506,draw,draw,Arsenal,Chelsea,Arsenal_Chelsea,Arsenal_Chelsea_2000
+2001,4,Chelsea,0.0,0.0,Arsenal,1.0,1.0,0,Mike Riley,0,0,0,0,3693,draw,draw,Chelsea,Arsenal,Arsenal_Chelsea,Arsenal_Chelsea_2001
+2001,19,Arsenal,0.0,0.0,Chelsea,2.0,1.0,0,Graham Barber,0,0,0,0,3848,Arsenal,Chelsea,Arsenal,Chelsea,Arsenal_Chelsea,Arsenal_Chelsea_2001
+2002,4,Chelsea,0.0,0.0,Arsenal,1.0,1.0,0,Andy D'Urso,0,0,0,0,4081,draw,draw,Chelsea,Arsenal,Arsenal_Chelsea,Arsenal_Chelsea_2002
+2002,22,Arsenal,0.0,0.0,Chelsea,3.0,2.0,0,Uriah Rennie,0,0,0,0,4257,Arsenal,Chelsea,Arsenal,Chelsea,Arsenal_Chelsea,Arsenal_Chelsea_2002
+2003,9,Arsenal,0.0,0.0,Chelsea,2.0,1.0,0,Paul Durkin,0,0,0,0,4509,Arsenal,Chelsea,Arsenal,Chelsea,Arsenal_Chelsea,Arsenal_Chelsea_2003
+2003,26,Chelsea,0.0,0.0,Arsenal,1.0,2.0,0,Mike Riley,0,0,0,0,4679,Arsenal,Chelsea,Chelsea,Arsenal,Arsenal_Chelsea,Arsenal_Chelsea_2003
+2004,17,Arsenal,0.0,0.0,Chelsea,2.0,2.0,0,Graham Poll,0,0,0,0,4973,draw,draw,Arsenal,Chelsea,Arsenal_Chelsea,Arsenal_Chelsea_2004
+2004,34,Chelsea,0.0,0.0,Arsenal,0.0,0.0,0,Stephen Bennett,0,0,0,0,5134,draw,draw,Chelsea,Arsenal,Arsenal_Chelsea,Arsenal_Chelsea_2004
+2005,2,Chelsea,0.0,0.0,Arsenal,1.0,0.0,0,Graham Poll,0,0,0,0,5205,Chelsea,Arsenal,Chelsea,Arsenal,Arsenal_Chelsea,Arsenal_Chelsea_2005
+2005,17,Arsenal,0.0,0.0,Chelsea,0.0,2.0,0,Rob Styles,0,0,0,0,5351,Chelsea,Arsenal,Arsenal,Chelsea,Arsenal_Chelsea,Arsenal_Chelsea_2005
+2006,17,Chelsea,0.0,0.0,Arsenal,1.0,1.0,0,Alan Wiley,0,0,0,0,5731,draw,draw,Chelsea,Arsenal,Arsenal_Chelsea,Arsenal_Chelsea_2006
+2006,37,Arsenal,0.0,0.0,Chelsea,1.0,1.0,0,Alan Wiley,0,0,0,0,5932,draw,draw,Arsenal,Chelsea,Arsenal_Chelsea,Arsenal_Chelsea_2006
+2007,17,Arsenal,0.0,0.0,Chelsea,1.0,0.0,0,Alan Wiley,0,0,0,0,6113,Arsenal,Chelsea,Arsenal,Chelsea,Arsenal_Chelsea,Arsenal_Chelsea_2007
+2007,31,Chelsea,0.0,0.0,Arsenal,2.0,1.0,0,Mark Clattenburg,0,0,0,0,6254,Chelsea,Arsenal,Chelsea,Arsenal,Arsenal_Chelsea,Arsenal_Chelsea_2007
+2008,15,Chelsea,0.0,0.0,Arsenal,1.0,2.0,0,Mike Dean,0,0,0,0,6473,Arsenal,Chelsea,Chelsea,Arsenal,Arsenal_Chelsea,Arsenal_Chelsea_2008
+2008,36,Arsenal,0.0,0.0,Chelsea,1.0,4.0,0,Phil Dowd,0,0,0,0,6683,Chelsea,Arsenal,Arsenal,Chelsea,Arsenal_Chelsea,Arsenal_Chelsea_2008
+2009,14,Arsenal,0.0,0.0,Chelsea,0.0,3.0,0,Andre Marriner,0,0,0,0,6844,Chelsea,Arsenal,Arsenal,Chelsea,Arsenal_Chelsea,Arsenal_Chelsea_2009
+2009,25,Chelsea,0.0,0.0,Arsenal,2.0,0.0,0,Mike Dean,0,0,0,0,6946,Chelsea,Arsenal,Chelsea,Arsenal,Arsenal_Chelsea,Arsenal_Chelsea_2009
+2010,7,Chelsea,0.0,0.0,Arsenal,2.0,0.0,0,Mike Dean,0,0,0,0,7154,Chelsea,Arsenal,Chelsea,Arsenal,Arsenal_Chelsea,Arsenal_Chelsea_2010
+2010,19,Arsenal,0.0,0.0,Chelsea,3.0,1.0,0,Mark Clattenburg,0,0,0,0,7265,Arsenal,Chelsea,Arsenal,Chelsea,Arsenal_Chelsea,Arsenal_Chelsea_2010
+2011,10,Chelsea,0.0,0.0,Arsenal,3.0,5.0,0,Andre Marriner,0,0,0,0,7557,Arsenal,Chelsea,Chelsea,Arsenal,Arsenal_Chelsea,Arsenal_Chelsea_2011
+2011,35,Arsenal,0.0,0.0,Chelsea,0.0,0.0,0,Mike Dean,0,0,0,0,7805,draw,draw,Arsenal,Chelsea,Arsenal_Chelsea,Arsenal_Chelsea_2011
+2012,6,Arsenal,0.0,0.0,Chelsea,1.0,2.0,0,Martin Atkinson,0,0,0,0,7895,Chelsea,Arsenal,Arsenal,Chelsea,Arsenal_Chelsea,Arsenal_Chelsea_2012
+2012,23,Chelsea,0.0,0.0,Arsenal,2.0,1.0,0,Martin Atkinson,0,0,0,0,8073,Chelsea,Arsenal,Chelsea,Arsenal,Arsenal_Chelsea,Arsenal_Chelsea_2012
+2013,17,Arsenal,0.0,0.0,Chelsea,0.0,0.0,0,Mike Dean,0,0,0,0,8395,draw,draw,Arsenal,Chelsea,Arsenal_Chelsea,Arsenal_Chelsea_2013
+2013,31,Chelsea,0.0,0.0,Arsenal,6.0,0.0,0,Andre Marriner,0,0,0,0,8522,Chelsea,Arsenal,Chelsea,Arsenal,Arsenal_Chelsea,Arsenal_Chelsea_2013
+2014,7,Chelsea,0.0,0.0,Arsenal,2.0,0.0,0,Martin Atkinson,0,0,0,0,8673,Chelsea,Arsenal,Chelsea,Arsenal,Arsenal_Chelsea,Arsenal_Chelsea_2014
+2014,34,Arsenal,0.0,0.0,Chelsea,0.0,0.0,0,Michael Oliver,0,0,0,0,8942,draw,draw,Arsenal,Chelsea,Arsenal_Chelsea,Arsenal_Chelsea_2014
+2015,6,Chelsea,0.0,0.0,Arsenal,2.0,0.0,0,Mike Dean,0,0,0,0,9036,Chelsea,Arsenal,Chelsea,Arsenal,Arsenal_Chelsea,Arsenal_Chelsea_2015
+2015,23,Arsenal,0.0,0.0,Chelsea,0.0,1.0,0,Mark Clattenburg,0,0,0,0,9215,Chelsea,Arsenal,Arsenal,Chelsea,Arsenal_Chelsea,Arsenal_Chelsea_2015

@@ -1,0 +1,15 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,9,Manchester City,3.1,0.2,Burnley,3.0,0.0,2017-10-21,Roger East,Etihad Stadium,Sat,15:00,"54,118",90,Manchester City,Burnley,Manchester City,Burnley,Burnley_Manchester_City,Burnley_Manchester City_2017
+2017,26,Burnley,0.9,1.8,Manchester City,1.0,1.0,2018-02-03,Martin Atkinson,Turf Moor,Sat,12:30,"21,658",276,draw,draw,Burnley,Manchester City,Burnley_Manchester_City,Burnley_Manchester City_2017
+2018,9,Manchester City,4.0,0.4,Burnley,5.0,0.0,2018-10-20,Jonathan Moss,Etihad Stadium,Sat,15:00,"54,094",90,Manchester City,Burnley,Manchester City,Burnley,Burnley_Manchester_City,Burnley_Manchester City_2018
+2018,36,Burnley,0.1,2.5,Manchester City,0.0,1.0,2019-04-28,Paul Tierney,Turf Moor,Sun,14:05,"21,605",401,Manchester City,Burnley,Burnley,Manchester City,Burnley_Manchester_City,Burnley_Manchester City_2018
+2019,15,Burnley,0.6,2.2,Manchester City,1.0,4.0,2019-12-03,Jonathan Moss,Turf Moor,Tue,20:15,"20,101",155,Manchester City,Burnley,Burnley,Manchester City,Burnley_Manchester_City,Burnley_Manchester City_2019
+2019,30,Manchester City,2.4,0.0,Burnley,5.0,0.0,2020-06-22,Andre Marriner,Etihad Stadium,Mon,20:00,0,330,Manchester City,Burnley,Manchester City,Burnley,Burnley_Manchester_City,Burnley_Manchester City_2019
+2020,10,Manchester City,1.7,0.5,Burnley,5.0,0.0,2020-11-28,Lee Mason,Etihad Stadium,Sat,15:00,0,99,Manchester City,Burnley,Manchester City,Burnley,Burnley_Manchester_City,Burnley_Manchester City_2020
+2020,22,Burnley,0.1,2.0,Manchester City,0.0,2.0,2021-02-03,Martin Atkinson,Turf Moor,Wed,18:00,0,238,Manchester City,Burnley,Burnley,Manchester City,Burnley_Manchester_City,Burnley_Manchester City_2020
+2021,8,Manchester City,2.1,0.9,Burnley,2.0,0.0,2021-10-16,Martin Atkinson,Etihad Stadium,Sat,15:00,"52,711",79,Manchester City,Burnley,Manchester City,Burnley,Burnley_Manchester_City,Burnley_Manchester City_2021
+2021,31,Burnley,0.1,1.8,Manchester City,0.0,2.0,2022-04-02,Craig Pawson,Turf Moor,Sat,15:00,"21,249",339,Manchester City,Burnley,Burnley,Manchester City,Burnley_Manchester_City,Burnley_Manchester City_2021
+2009,12,Manchester City,0.0,0.0,Burnley,3.0,3.0,0,Stuart Attwell,0,0,0,0,6815,draw,draw,Manchester City,Burnley,Burnley_Manchester_City,Burnley_Manchester City_2009
+2009,33,Burnley,0.0,0.0,Manchester City,1.0,6.0,0,Alan Wiley,0,0,0,0,7024,Manchester City,Burnley,Burnley,Manchester City,Burnley_Manchester_City,Burnley_Manchester City_2009
+2014,19,Manchester City,0.0,0.0,Burnley,2.0,2.0,0,Kevin Friend,0,0,0,0,8789,draw,draw,Manchester City,Burnley,Burnley_Manchester_City,Burnley_Manchester City_2014
+2014,29,Burnley,0.0,0.0,Manchester City,1.0,0.0,0,Andre Marriner,0,0,0,0,8890,Burnley,Manchester City,Burnley,Manchester City,Burnley_Manchester_City,Burnley_Manchester City_2014

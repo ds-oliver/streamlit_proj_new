@@ -1,0 +1,37 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+1992,13,Blackburn,0.0,0.0,Manchester Utd,0.0,0.0,0,Mike Reed,0,0,0,0,138,draw,draw,Blackburn,Manchester Utd,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_1992
+1992,41,Manchester Utd,0.0,0.0,Blackburn,3.0,1.0,0,Jim Borrett,0,0,0,0,441,Manchester Utd,Blackburn,Manchester Utd,Blackburn,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_1992
+1993,22,Manchester Utd,0.0,0.0,Blackburn,1.0,1.0,0,Dermot Gallagher,0,0,0,0,691,draw,draw,Manchester Utd,Blackburn,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_1993
+1993,36,Blackburn,0.0,0.0,Manchester Utd,2.0,0.0,0,Roger Milford,0,0,0,0,838,Blackburn,Manchester Utd,Blackburn,Manchester Utd,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_1993
+1994,11,Blackburn,0.0,0.0,Manchester Utd,2.0,4.0,0,Gerald Ashby,0,0,0,0,1041,Manchester Utd,Blackburn,Blackburn,Manchester Utd,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_1994
+1994,25,Manchester Utd,0.0,0.0,Blackburn,1.0,0.0,0,Paul Durkin,0,0,0,0,1190,Manchester Utd,Blackburn,Manchester Utd,Blackburn,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_1994
+1995,4,Blackburn,0.0,0.0,Manchester Utd,1.0,2.0,0,David Elleray,0,0,0,0,1415,Manchester Utd,Blackburn,Blackburn,Manchester Utd,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_1995
+1995,26,Manchester Utd,0.0,0.0,Blackburn,1.0,0.0,0,Keith Burge,0,0,0,0,1639,Manchester Utd,Blackburn,Manchester Utd,Blackburn,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_1995
+1996,3,Manchester Utd,0.0,0.0,Blackburn,2.0,2.0,0,Steve Dunn,0,0,0,0,1794,draw,draw,Manchester Utd,Blackburn,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_1996
+1996,34,Blackburn,0.0,0.0,Manchester Utd,2.0,3.0,0,Martin Bodenham,0,0,0,0,2092,Manchester Utd,Blackburn,Blackburn,Manchester Utd,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_1996
+1997,16,Manchester Utd,0.0,0.0,Blackburn,4.0,0.0,0,Alan Wilkie,0,0,0,0,2300,Manchester Utd,Blackburn,Manchester Utd,Blackburn,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_1997
+1997,32,Blackburn,0.0,0.0,Manchester Utd,1.0,3.0,0,Gerald Ashby,0,0,0,0,2460,Manchester Utd,Blackburn,Blackburn,Manchester Utd,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_1997
+1998,13,Manchester Utd,0.0,0.0,Blackburn,3.0,2.0,0,Mike Reed,0,0,0,0,2650,Manchester Utd,Blackburn,Manchester Utd,Blackburn,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_1998
+1998,33,Blackburn,0.0,0.0,Manchester Utd,0.0,0.0,0,Mike Reed,0,0,0,0,2895,draw,draw,Blackburn,Manchester Utd,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_1998
+2001,2,Blackburn,0.0,0.0,Manchester Utd,2.0,2.0,0,Alan Wiley,0,0,0,0,3681,draw,draw,Blackburn,Manchester Utd,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_2001
+2001,23,Manchester Utd,0.0,0.0,Blackburn,2.0,1.0,0,Uriah Rennie,0,0,0,0,3887,Manchester Utd,Blackburn,Manchester Utd,Blackburn,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_2001
+2002,19,Blackburn,0.0,0.0,Manchester Utd,1.0,0.0,0,David Elleray,0,0,0,0,4232,Blackburn,Manchester Utd,Blackburn,Manchester Utd,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_2002
+2002,34,Manchester Utd,0.0,0.0,Blackburn,3.0,1.0,0,Andy D'Urso,0,0,0,0,4382,Manchester Utd,Blackburn,Manchester Utd,Blackburn,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_2002
+2003,13,Manchester Utd,0.0,0.0,Blackburn,2.0,1.0,0,Mark Halsey,0,0,0,0,4547,Manchester Utd,Blackburn,Manchester Utd,Blackburn,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_2003
+2003,36,Blackburn,0.0,0.0,Manchester Utd,1.0,0.0,0,Mike Dean,0,0,0,0,4774,Blackburn,Manchester Utd,Blackburn,Manchester Utd,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_2003
+2004,4,Blackburn,0.0,0.0,Manchester Utd,1.0,1.0,0,Alan Wiley,0,0,0,0,4836,draw,draw,Blackburn,Manchester Utd,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_2004
+2004,31,Manchester Utd,0.0,0.0,Blackburn,0.0,0.0,0,Mike Riley,0,0,0,0,5110,draw,draw,Manchester Utd,Blackburn,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_2004
+2005,7,Manchester Utd,0.0,0.0,Blackburn,1.0,2.0,0,Phil Dowd,0,0,0,0,5245,Blackburn,Manchester Utd,Manchester Utd,Blackburn,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_2005
+2005,24,Blackburn,0.0,0.0,Manchester Utd,4.0,3.0,0,Phil Dowd,0,0,0,0,5419,Blackburn,Manchester Utd,Blackburn,Manchester Utd,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_2005
+2006,12,Blackburn,0.0,0.0,Manchester Utd,0.0,1.0,0,Mike Riley,0,0,0,0,5682,Manchester Utd,Blackburn,Blackburn,Manchester Utd,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_2006
+2006,31,Manchester Utd,0.0,0.0,Blackburn,4.0,1.0,0,Chris Foy,0,0,0,0,5871,Manchester Utd,Blackburn,Manchester Utd,Blackburn,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_2006
+2007,13,Manchester Utd,0.0,0.0,Blackburn,2.0,0.0,0,Chris Foy,0,0,0,0,6070,Manchester Utd,Blackburn,Manchester Utd,Blackburn,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_2007
+2007,35,Blackburn,0.0,0.0,Manchester Utd,1.0,1.0,0,Rob Styles,0,0,0,0,6292,draw,draw,Blackburn,Manchester Utd,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_2007
+2008,7,Blackburn,0.0,0.0,Manchester Utd,0.0,2.0,0,Stephen Bennett,0,0,0,0,6387,Manchester Utd,Blackburn,Blackburn,Manchester Utd,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_2008
+2008,26,Manchester Utd,0.0,0.0,Blackburn,2.0,1.0,0,Howard Webb,0,0,0,0,6575,Manchester Utd,Blackburn,Manchester Utd,Blackburn,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_2008
+2009,11,Manchester Utd,0.0,0.0,Blackburn,2.0,0.0,0,Phil Dowd,0,0,0,0,6807,Manchester Utd,Blackburn,Manchester Utd,Blackburn,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_2009
+2009,34,Blackburn,0.0,0.0,Manchester Utd,0.0,0.0,0,Peter Walton,0,0,0,0,7037,draw,draw,Blackburn,Manchester Utd,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_2009
+2010,15,Manchester Utd,0.0,0.0,Blackburn,7.0,1.0,0,Lee Probert,0,0,0,0,7232,Manchester Utd,Blackburn,Manchester Utd,Blackburn,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_2010
+2010,37,Blackburn,0.0,0.0,Manchester Utd,1.0,1.0,0,Phil Dowd,0,0,0,0,7448,draw,draw,Blackburn,Manchester Utd,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_2010
+2011,19,Manchester Utd,0.0,0.0,Blackburn,2.0,3.0,0,Mike Dean,0,0,0,0,7650,Blackburn,Manchester Utd,Manchester Utd,Blackburn,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_2011
+2011,31,Blackburn,0.0,0.0,Manchester Utd,0.0,2.0,0,Howard Webb,0,0,0,0,7774,Manchester Utd,Blackburn,Blackburn,Manchester Utd,Blackburn_Manchester_Utd,Blackburn_Manchester Utd_2011

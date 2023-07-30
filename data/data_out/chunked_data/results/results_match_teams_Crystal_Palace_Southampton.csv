@@ -1,0 +1,27 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,5,Crystal Palace,2.0,1.0,Southampton,0.0,1.0,2017-09-16,Robert Madley,Selhurst Park,Sat,12:30,"24,199",45,Southampton,Crystal Palace,Crystal Palace,Southampton,Crystal_Palace_Southampton,Crystal Palace_Southampton_2017
+2017,22,Southampton,0.4,1.3,Crystal Palace,1.0,2.0,2018-01-02,Stuart Attwell,St. Mary's Stadium,Tue,19:45,"28,411",237,Crystal Palace,Southampton,Southampton,Crystal Palace,Crystal_Palace_Southampton,Crystal Palace_Southampton_2017
+2018,4,Crystal Palace,2.4,2.7,Southampton,0.0,2.0,2018-09-01,Martin Atkinson,Selhurst Park,Sat,15:00,"25,495",34,Southampton,Crystal Palace,Crystal Palace,Southampton,Crystal_Palace_Southampton,Crystal Palace_Southampton_2018
+2018,24,Southampton,1.2,1.1,Crystal Palace,1.0,1.0,2019-01-30,Andre Marriner,St. Mary's Stadium,Wed,19:45,"28,339",260,draw,draw,Southampton,Crystal Palace,Crystal_Palace_Southampton,Crystal Palace_Southampton_2018
+2019,20,Southampton,1.4,0.3,Crystal Palace,1.0,1.0,2019-12-28,Andy Madley,St. Mary's Stadium,Sat,15:00,"31,108",211,draw,draw,Southampton,Crystal Palace,Crystal_Palace_Southampton,Crystal Palace_Southampton_2019
+2019,24,Crystal Palace,0.6,1.1,Southampton,0.0,2.0,2020-01-21,Andre Marriner,Selhurst Park,Tue,19:30,"23,739",252,Southampton,Crystal Palace,Crystal Palace,Southampton,Crystal_Palace_Southampton,Crystal Palace_Southampton_2019
+2020,1,Crystal Palace,1.1,0.9,Southampton,1.0,0.0,2020-09-12,Jonathan Moss,Selhurst Park,Sat,15:00,0,1,Crystal Palace,Southampton,Crystal Palace,Southampton,Crystal_Palace_Southampton,Crystal Palace_Southampton_2020
+2020,32,Southampton,1.2,1.5,Crystal Palace,3.0,1.0,2021-05-11,Andy Madley,St. Mary's Stadium,Tue,20:15,0,402,Southampton,Crystal Palace,Southampton,Crystal Palace,Crystal_Palace_Southampton,Crystal Palace_Southampton_2020
+2021,17,Crystal Palace,1.2,0.6,Southampton,2.0,2.0,2021-12-15,Simon Hooper,Selhurst Park,Wed,19:30,"22,861",177,draw,draw,Crystal Palace,Southampton,Crystal_Palace_Southampton,Crystal Palace_Southampton_2021
+2021,35,Southampton,0.6,1.1,Crystal Palace,1.0,2.0,2022-04-30,Jarred Gillett,St. Mary's Stadium,Sat,15:00,"31,359",393,Crystal Palace,Southampton,Southampton,Crystal Palace,Crystal_Palace_Southampton,Crystal Palace_Southampton_2021
+2022,14,Crystal Palace,0.9,1.3,Southampton,1.0,0.0,2022-10-29,Michael Salisbury,Selhurst Park,Sat,15:00,"25,130",130,Crystal Palace,Southampton,Crystal Palace,Southampton,Crystal_Palace_Southampton,Crystal Palace_Southampton_2022
+2022,31,Southampton,0.8,0.9,Crystal Palace,0.0,2.0,2023-04-15,Michael Oliver,St. Mary's Stadium,Sat,15:00,"30,309",338,Crystal Palace,Southampton,Southampton,Crystal Palace,Crystal_Palace_Southampton,Crystal Palace_Southampton_2022
+1992,10,Crystal Palace,0.0,0.0,Southampton,1.0,2.0,0,Jim Borrett,0,0,0,0,104,Southampton,Crystal Palace,Crystal Palace,Southampton,Crystal_Palace_Southampton,Crystal Palace_Southampton_1992
+1992,24,Southampton,0.0,0.0,Crystal Palace,1.0,0.0,0,Philip Don,0,0,0,0,256,Southampton,Crystal Palace,Southampton,Crystal Palace,Crystal_Palace_Southampton,Crystal Palace_Southampton_1992
+1994,16,Crystal Palace,0.0,0.0,Southampton,0.0,0.0,0,Paul Danson,0,0,0,0,1098,draw,draw,Crystal Palace,Southampton,Crystal_Palace_Southampton,Crystal Palace_Southampton_1994
+1994,29,Southampton,0.0,0.0,Crystal Palace,3.0,1.0,0,Graham Poll,0,0,0,0,1355,Southampton,Crystal Palace,Southampton,Crystal Palace,Crystal_Palace_Southampton,Crystal Palace_Southampton_1994
+1997,4,Southampton,0.0,0.0,Crystal Palace,1.0,0.0,0,Jeff Winter,0,0,0,0,2178,Southampton,Crystal Palace,Southampton,Crystal Palace,Crystal_Palace_Southampton,Crystal Palace_Southampton_1997
+1997,20,Crystal Palace,0.0,0.0,Southampton,1.0,1.0,0,Paul Alcock,0,0,0,0,2334,draw,draw,Crystal Palace,Southampton,Crystal_Palace_Southampton,Crystal Palace_Southampton_1997
+2004,15,Southampton,0.0,0.0,Crystal Palace,2.0,2.0,0,Peter Walton,0,0,0,0,4948,draw,draw,Southampton,Crystal Palace,Crystal_Palace_Southampton,Crystal Palace_Southampton_2004
+2004,37,Crystal Palace,0.0,0.0,Southampton,2.0,2.0,0,Howard Webb,0,0,0,0,5165,draw,draw,Crystal Palace,Southampton,Crystal_Palace_Southampton,Crystal Palace_Southampton_2004
+2013,6,Southampton,0.0,0.0,Crystal Palace,2.0,0.0,0,Martin Atkinson,0,0,0,0,8277,Southampton,Crystal Palace,Southampton,Crystal Palace,Crystal_Palace_Southampton,Crystal Palace_Southampton_2013
+2013,29,Crystal Palace,0.0,0.0,Southampton,0.0,1.0,0,Howard Webb,0,0,0,0,8504,Southampton,Crystal Palace,Crystal Palace,Southampton,Crystal_Palace_Southampton,Crystal Palace_Southampton_2013
+2014,18,Crystal Palace,0.0,0.0,Southampton,1.0,3.0,0,Mike Dean,0,0,0,0,8783,Southampton,Crystal Palace,Crystal Palace,Southampton,Crystal_Palace_Southampton,Crystal Palace_Southampton_2014
+2014,28,Southampton,0.0,0.0,Crystal Palace,1.0,0.0,0,Martin Atkinson,0,0,0,0,8876,Southampton,Crystal Palace,Southampton,Crystal Palace,Crystal_Palace_Southampton,Crystal Palace_Southampton_2014
+2015,16,Crystal Palace,0.0,0.0,Southampton,1.0,0.0,0,Mike Dean,0,0,0,0,9138,Crystal Palace,Southampton,Crystal Palace,Southampton,Crystal_Palace_Southampton,Crystal Palace_Southampton_2015
+2015,38,Southampton,0.0,0.0,Crystal Palace,4.0,1.0,0,Michael Oliver,0,0,0,0,9356,Southampton,Crystal Palace,Southampton,Crystal Palace,Crystal_Palace_Southampton,Crystal Palace_Southampton_2015

@@ -1,0 +1,3 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,14,Leicester City,0.6,2.4,Tottenham,2.0,1.0,2017-11-28,Anthony Taylor,King Power Stadium,Tue,19:45,"31,950",144,Leicester City,Tottenham,Leicester City,Tottenham,Leicester_City_Tottenham,Leicester City_Tottenham_2017
+2017,38,Tottenham,1.8,1.4,Leicester City,5.0,4.0,2018-05-13,Craig Pawson,Wembley Stadium,Sun,15:00,"77,841",422,Tottenham,Leicester City,Tottenham,Leicester City,Leicester_City_Tottenham,Leicester City_Tottenham_2017

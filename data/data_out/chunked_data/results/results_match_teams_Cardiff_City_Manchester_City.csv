@@ -1,0 +1,5 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2018,6,Cardiff City,0.1,2.5,Manchester City,0.0,5.0,2018-09-22,Michael Oliver,Cardiff City Stadium,Sat,15:00,"32,321",57,Manchester City,Cardiff City,Cardiff City,Manchester City,Cardiff_City_Manchester_City,Cardiff City_Manchester City_2018
+2018,33,Manchester City,3.2,0.1,Cardiff City,2.0,0.0,2019-04-03,Jonathan Moss,Etihad Stadium,Wed,19:45,"53,559",354,Manchester City,Cardiff City,Manchester City,Cardiff City,Cardiff_City_Manchester_City,Cardiff City_Manchester City_2018
+2013,2,Cardiff City,0.0,0.0,Manchester City,3.0,2.0,0,Lee Probert,0,0,0,0,8245,Cardiff City,Manchester City,Cardiff City,Manchester City,Cardiff_City_Manchester_City,Cardiff City_Manchester City_2013
+2013,22,Manchester City,0.0,0.0,Cardiff City,4.0,2.0,0,Neil Swarbrick,0,0,0,0,8439,Manchester City,Cardiff City,Manchester City,Cardiff City,Cardiff_City_Manchester_City,Cardiff City_Manchester City_2013

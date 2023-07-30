@@ -1,0 +1,13 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,15,West Brom,1.9,0.6,Crystal Palace,0.0,0.0,2017-12-02,Michael Oliver,The Hawthorns,Sat,15:00,"23,531",156,draw,draw,West Brom,Crystal Palace,Crystal_Palace_West_Brom,Crystal Palace_West Brom_2017
+2017,38,Crystal Palace,2.2,0.2,West Brom,2.0,0.0,2018-05-13,Jonathan Moss,Selhurst Park,Sun,15:00,"25,357",416,Crystal Palace,West Brom,Crystal Palace,West Brom,Crystal_Palace_West_Brom,Crystal Palace_West Brom_2017
+2020,11,West Brom,0.7,1.6,Crystal Palace,1.0,5.0,2020-12-06,Paul Tierney,The Hawthorns,Sun,12:00,0,112,Crystal Palace,West Brom,West Brom,Crystal Palace,Crystal_Palace_West_Brom,Crystal Palace_West Brom_2020
+2020,28,Crystal Palace,1.2,0.8,West Brom,1.0,0.0,2021-03-13,Simon Hooper,Selhurst Park,Sat,15:00,0,320,Crystal Palace,West Brom,Crystal Palace,West Brom,Crystal_Palace_West_Brom,Crystal Palace_West Brom_2020
+2004,10,Crystal Palace,0.0,0.0,West Brom,3.0,0.0,0,Matt Messias,0,0,0,0,4896,Crystal Palace,West Brom,Crystal Palace,West Brom,Crystal_Palace_West_Brom,Crystal Palace_West Brom_2004
+2004,25,West Brom,0.0,0.0,Crystal Palace,2.0,2.0,0,Dermot Gallagher,0,0,0,0,5049,draw,draw,West Brom,Crystal Palace,Crystal_Palace_West_Brom,Crystal Palace_West Brom_2004
+2013,10,West Brom,0.0,0.0,Crystal Palace,2.0,0.0,0,Neil Swarbrick,0,0,0,0,8323,West Brom,Crystal Palace,West Brom,Crystal Palace,Crystal_Palace_West_Brom,Crystal Palace_West Brom_2013
+2013,25,Crystal Palace,0.0,0.0,West Brom,3.0,1.0,0,Chris Foy,0,0,0,0,8467,Crystal Palace,West Brom,Crystal Palace,West Brom,Crystal_Palace_West_Brom,Crystal Palace_West Brom_2013
+2014,9,West Brom,0.0,0.0,Crystal Palace,2.0,2.0,0,Mark Clattenburg,0,0,0,0,8689,draw,draw,West Brom,Crystal Palace,Crystal_Palace_West_Brom,Crystal Palace_West Brom_2014
+2014,33,Crystal Palace,0.0,0.0,West Brom,0.0,2.0,0,Jonathan Moss,0,0,0,0,8928,West Brom,Crystal Palace,Crystal Palace,West Brom,Crystal_Palace_West_Brom,Crystal Palace_West Brom_2014
+2015,8,Crystal Palace,0.0,0.0,West Brom,2.0,0.0,0,Jonathan Moss,0,0,0,0,9056,Crystal Palace,West Brom,Crystal Palace,West Brom,Crystal_Palace_West_Brom,Crystal Palace_West Brom_2015
+2015,27,West Brom,0.0,0.0,Crystal Palace,3.0,2.0,0,Jonathan Moss,0,0,0,0,9251,West Brom,Crystal Palace,West Brom,Crystal Palace,Crystal_Palace_West_Brom,Crystal Palace_West Brom_2015

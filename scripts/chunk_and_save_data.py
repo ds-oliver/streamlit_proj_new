@@ -72,55 +72,6 @@ warnings.filterwarnings("ignore", message=".*is private.*", category=Deprecation
 warnings.filterwarnings("ignore", message=".*is private.*", category=FutureWarning)
 warnings.filterwarnings("ignore", message="DataFrame is highly fragmented.*", category=UserWarning)
 
-# def test_database(FINAL_DB_PATH):
-#     """
-#     Tests the SQLite database by checking whether the connection can be established,
-#     whether specific tables exist, and whether data can be fetched from those tables.
-#     """
-#     conn = None
-#     try:
-#         # Connect to the database
-#         conn = sqlite3.connect(FINAL_DB_PATH + ONLY_RESULTS_DB_FILENAME)
-
-#         # Create a cursor
-#         cur = conn.cursor()
-
-#         # Execute a SELECT statement to fetch data from the database
-#         cur.execute("SELECT name FROM sqlite_master WHERE type='table';")
-#         tables = cur.fetchall()
-
-#         # Check if tables exist
-#         if len(tables) == 0:
-#             print("There are no tables in the database. Something might have gone wrong.")
-#             return False
-
-#         # Fetch data from each table and check if it can be fetched
-#         for table in tables:
-#             try:
-#                 cur.execute(f"SELECT * FROM {table[0]} LIMIT 5;")
-#                 rows = cur.fetchall()
-#                 if len(rows) == 0:
-#                     print(f"No data can be fetched from the table '{table[0]}'. Something might have gone wrong.")
-#                     return False
-#                 else:
-#                     print(f"Data successfully fetched from the table '{table[0]}'.")
-
-#             except sqlite3.Error as e:
-#                 print(f"An error occurred when trying to fetch data from the table '{table[0]}': {e}")
-#                 return False
-
-#         print("The database seems to be operational.")
-
-#     except sqlite3.Error as e:
-#         print(f"An error occurred when trying to connect to the database: {e}")
-#         return False
-
-#     finally:
-#         if conn:
-#             conn.close()
-
-#     return True
-
 # set up logs
 log_file_path = set_up_logs()
 
@@ -154,15 +105,6 @@ def clean_results(results_df):
 
     results_df['winning_team'] = np.where(results_df['home_score'] > results_df['away_score'], results_df['home_team'], np.where(results_df['home_score'] < results_df['away_score'], results_df['away_team'], 'draw'))
     results_df['losing_team'] = np.where(results_df['home_score'] < results_df['away_score'], results_df['home_team'], np.where(results_df['home_score'] > results_df['away_score'], results_df['away_team'], 'draw'))
-
-    # results_df['match_id'] = [uuid.uuid5(uuid.NAMESPACE_DNS, ''.join(map(str, row))) for row in zip(results_df['home_team'], results_df['away_team'], results_df['season'])]
-    # results_df['matchup_merge_key'] = [uuid.uuid5(uuid.NAMESPACE_DNS, ''.join(sorted(map(str, row)))) for row in zip(results_df['home_team'], results_df['away_team'])]
-    # results_df['season_merge_key'] = [uuid.uuid5(uuid.NAMESPACE_DNS, ''.join(sorted(map(str, row)))) for row in zip(results_df['home_team'], results_df['away_team'], results_df['season'])]
-
-    # # convert uuids to strings
-    # results_df['match_id'] = results_df['match_id'].astype(str)
-    # results_df['matchup_merge_key'] = results_df['matchup_merge_key'].astype(str)
-    # results_df['season_merge_key'] = results_df['season_merge_key'].astype(str)
 
     results_df['team'] = results_df['home_team']
     results_df['opponent'] = results_df['away_team']
@@ -210,12 +152,6 @@ def clean_players(players_df):
     players_df['home_team'] = np.select(conditions, choices_team)
     players_df['away_team'] = np.select(conditions, choices_opponent)
 
-    # Create matchup_merge_key and season_merge_key columns that are unique numeric identifiers for each matchup and season
-    # players_df['matchup_merge_key'] = [uuid.uuid5(uuid.NAMESPACE_DNS, ''.join(sorted(map(str, row)))) for row in zip(players_df['home_team'], players_df['away_team'])]
-    # players_df['season_merge_key'] = [uuid.uuid5(uuid.NAMESPACE_DNS, ''.join(sorted(map(str, row)))) for row in zip(players_df['home_team'], players_df['away_team'], players_df['season'])]
-    # explain the above code
-    # numeric identifiers are created by hashing the sorted string of the home_team, away_team, and season
-
     # make sure there is no whitespace in match_teams and season_match_teams
     players_df['match_teams'] = players_df['match_teams'].str.replace(' ', '_')
     players_df['season_match_teams'] = players_df['season_match_teams'].str.replace(' ', '_')
@@ -223,10 +159,6 @@ def clean_players(players_df):
     # convert to string
     players_df['match_teams'] = players_df['match_teams'].astype(str)
     players_df['season_match_teams'] = players_df['season_match_teams'].astype(str)
-
-    # convert uuids to strings
-    # players_df['matchup_merge_key'] = players_df['matchup_merge_key'].astype(str)
-    # players_df['season_merge_key'] = players_df['season_merge_key'].astype(str)
 
     return players_df
 
@@ -307,54 +239,6 @@ def save_dicts(dictionary, dictionary_name):
     with open(FINAL_DICTS_PATH + pickle_filename, 'wb') as f:
         pickle.dump(dictionary, f)
     print(f'Saved {dictionary_name} as {pickle_filename} in {FINAL_DICTS_PATH}')
-
-
-# def save_as_csvs(df_dict, dataframe, players_chunked_csvs_path=PLAYERS_CHUNKED_CSVS_PATH, results_chunked_csvs_path=RESULTS_CHUNKED_CSVS_PATH, final_csvs_path=FINAL_CSVS_PATH, is_players_df=False):  
-#     """
-#     Summary: 
-#         saves each df in df_dict as a csv file and as a SQLite3 db file
-
-#     Args:
-#         df_dict (dict): dictionary of dataframes
-#         csv_path (str): directory to save csv files
-#         FINAL_DB_PATH (str): path to SQLite3 db file
-#         conn (Connection, optional): SQLite3 connection. Defaults to None.
-
-#     Returns:
-#         None
-#     """
-#     # Ensure directory for CSV files exists
-#     os.makedirs(os.path.dirname(players_chunked_csvs_path), exist_ok=True)
-#     os.makedirs(os.path.dirname(results_chunked_csvs_path), exist_ok=True)
-#     os.makedirs(os.path.dirname(final_csvs_path), exist_ok=True)
-
-#     # save df as a csv file
-#     # if database has player columns, save as players.csv else save as results.csv
-#     if 'player' in dataframe.columns:
-#         dataframe.to_csv(os.path.join(final_csvs_path, 'players.csv'), index=False)
-#     else:
-#         dataframe.to_csv(os.path.join(final_csvs_path, 'results.csv'), index=False)
-
-    
-#     for key, df in df_dict.items():
-#         if is_players_df:
-#             # Convert key to a string and replace spaces with underscores
-#             key = str(key).replace(" ", "_")  
-
-#             # Save as a csv file
-#             df.to_csv(os.path.join(players_chunked_csvs_path, f"{key}.csv"), index=False)
-
-#         else:
-#             # Convert key to a string and replace spaces with underscores
-#             key = str(key).replace(" ", "_")  
-
-#             # Save as a csv file
-#             df.to_csv(os.path.join(results_chunked_csvs_path, f"{key}.csv"), index=False)
-
-
-
-
-# def function to access these dataframes from save_as_csvs(df_dict, dataframe, csv_path=CSV_PATH, final_csvs_path=FINAL_CSVS_PATH) for analysis of specific matchups and players
 
 def load_players_data_from_csvs(players_chunked_csvs_path=PLAYERS_CHUNKED_CSVS_PATH):
     """
@@ -484,52 +368,6 @@ def clean_duplicate_columns(merged_df):
     cleaned_df = merged_df[columns_to_keep]
 
     return cleaned_df
-
-# def load_data(is_dataframe=False, dataframe_type='players', seasons=None, teams=None):
-#     """
-#     Load data from CSV files or pickle files.
-
-#     Args:
-#         is_dataframe (bool): if True, loads dataframe, else loads dictionary
-#         dataframe_type (str): can be 'players' or 'results', used only if is_dataframe is True
-#         seasons (list): list of seasons to load, used only if is_dataframe is False
-#         teams (list): list of teams to load, used only if is_dataframe is False
-
-#     Returns:
-#         DataFrame or dict: Loaded data
-#     """
-
-#     if is_dataframe:
-#         if dataframe_type == 'players':
-#             return pd.read_csv(PLAYERS_PATH)
-#         elif dataframe_type == 'results':
-#             return pd.read_csv(RESULTS_PATH)
-#         else:
-#             raise ValueError("dataframe_type must be 'players' or 'results'")
-#     else:
-#         # Loading data from chunked files and pickle files
-#         if seasons is None or teams is None:
-#             raise ValueError("Both seasons and teams must be provided when loading dictionary data")
-
-#         loaded_data = {}
-#         for season in seasons:
-#             for team in teams:
-#                 try:
-#                     # Attempt to load data from chunked CSV files
-#                     path = os.path.join(PLAYERS_CHUNKED_CSVS_PATH if len(season) > 50 else RESULTS_CHUNKED_CSVS_PATH, f"{team}_{season}.csv")
-#                     loaded_data[(team, season)] = pd.read_csv(path)
-#                 except FileNotFoundError:
-#                     pass  # Ignore if file not found
-
-#                 try:
-#                     # Attempt to load data from pickle files
-#                     path = os.path.join(FINAL_DICTS_PATH, f"{team}_{season}_dict.pkl")
-#                     with open(path, 'rb') as f:
-#                         loaded_data[(team, season)] = pickle.load(f)
-#                 except FileNotFoundError:
-#                     pass  # Ignore if file not found
-
-#         return loaded_data
 
 def main():
     
@@ -750,11 +588,5 @@ def main():
 
 if __name__ == "__main__":
     left_merge_players_df, only_results_df = main()
-    print(left_merge_players_df.shape)
-    print(left_merge_players_df.head())
-    print(left_merge_players_df.info())
-    print(left_merge_players_df.describe())
-    print(left_merge_players_df.isnull().sum())
-    print(left_merge_players_df['match_teams'].nunique())
-    print(left_merge_players_df['season_match_teams'].value_counts())
+
 

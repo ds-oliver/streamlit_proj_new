@@ -1,0 +1,53 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,6,West Ham,0.6,1.2,Tottenham,2.0,3.0,2017-09-23,Michael Oliver,London Stadium,Sat,12:30,"56,988",55,Tottenham,West Ham,West Ham,Tottenham,Tottenham_West_Ham,Tottenham_West Ham_2017
+2017,21,Tottenham,1.8,0.5,West Ham,1.0,1.0,2018-01-04,Mike Dean,Wembley Stadium,Thu,20:00,"50,034",241,draw,draw,Tottenham,West Ham,Tottenham_West_Ham,Tottenham_West Ham_2017
+2018,9,West Ham,0.8,0.9,Tottenham,0.0,1.0,2018-10-20,Martin Atkinson,London Stadium,Sat,15:00,"56,921",91,Tottenham,West Ham,West Ham,Tottenham,Tottenham_West_Ham,Tottenham_West Ham_2018
+2018,36,Tottenham,1.6,1.1,West Ham,0.0,1.0,2019-04-27,Anthony Taylor,Tottenham Hotspur Stadium,Sat,12:30,"60,043",394,West Ham,Tottenham,Tottenham,West Ham,Tottenham_West_Ham,Tottenham_West Ham_2018
+2019,13,West Ham,0.7,2.1,Tottenham,2.0,3.0,2019-11-23,Michael Oliver,London Stadium,Sat,12:30,"59,930",132,Tottenham,West Ham,West Ham,Tottenham,Tottenham_West_Ham,Tottenham_West Ham_2019
+2019,31,Tottenham,2.3,1.2,West Ham,2.0,0.0,2020-06-23,Craig Pawson,Tottenham Hotspur Stadium,Tue,20:15,0,333,Tottenham,West Ham,Tottenham,West Ham,Tottenham_West_Ham,Tottenham_West Ham_2019
+2020,5,Tottenham,1.7,1.9,West Ham,3.0,3.0,2020-10-18,Paul Tierney,Tottenham Hotspur Stadium,Sun,16:30,0,48,draw,draw,Tottenham,West Ham,Tottenham_West_Ham,Tottenham_West Ham_2020
+2020,25,West Ham,1.1,1.1,Tottenham,2.0,1.0,2021-02-21,Craig Pawson,London Stadium,Sun,12:00,0,276,West Ham,Tottenham,West Ham,Tottenham,Tottenham_West_Ham,Tottenham_West Ham_2020
+2021,9,West Ham,1.3,0.7,Tottenham,1.0,0.0,2021-10-24,Paul Tierney,London Stadium,Sun,14:00,"59,924",95,West Ham,Tottenham,West Ham,Tottenham,Tottenham_West_Ham,Tottenham_West Ham_2021
+2021,30,Tottenham,3.0,0.6,West Ham,3.0,1.0,2022-03-20,Anthony Taylor,Tottenham Hotspur Stadium,Sun,16:30,"58,685",333,Tottenham,West Ham,Tottenham,West Ham,Tottenham_West_Ham,Tottenham_West Ham_2021
+2022,5,West Ham,1.2,0.6,Tottenham,1.0,1.0,2022-08-31,Peter Bankes,London Stadium,Wed,19:45,"62,450",51,draw,draw,West Ham,Tottenham,Tottenham_West_Ham,Tottenham_West Ham_2022
+2022,24,Tottenham,1.5,0.5,West Ham,2.0,0.0,2023-02-19,Michael Oliver,Tottenham Hotspur Stadium,Sun,16:30,"61,476",256,Tottenham,West Ham,Tottenham,West Ham,Tottenham_West_Ham,Tottenham_West Ham_2022
+1993,23,West Ham,0.0,0.0,Tottenham,1.0,3.0,0,Gerald Ashby,0,0,0,0,700,Tottenham,West Ham,West Ham,Tottenham,Tottenham_West_Ham,Tottenham_West Ham_1993
+1993,37,Tottenham,0.0,0.0,West Ham,1.0,4.0,0,Philip Don,0,0,0,0,856,West Ham,Tottenham,Tottenham,West Ham,Tottenham_West_Ham,Tottenham_West Ham_1993
+1994,12,Tottenham,0.0,0.0,West Ham,3.0,1.0,0,Kelvin Morton,0,0,0,0,1045,Tottenham,West Ham,Tottenham,West Ham,Tottenham_West_Ham,Tottenham_West Ham_1994
+1994,24,West Ham,0.0,0.0,Tottenham,1.0,2.0,0,Brian Hill,0,0,0,0,1177,Tottenham,West Ham,West Ham,Tottenham,Tottenham_West_Ham,Tottenham_West Ham_1994
+1995,4,West Ham,0.0,0.0,Tottenham,1.0,1.0,0,Mike Reed,0,0,0,0,1420,draw,draw,West Ham,Tottenham,Tottenham_West_Ham,Tottenham_West Ham_1995
+1995,26,Tottenham,0.0,0.0,West Ham,0.0,1.0,0,Jeff Winter,0,0,0,0,1642,West Ham,Tottenham,Tottenham,West Ham,Tottenham_West_Ham,Tottenham_West Ham_1995
+1996,12,Tottenham,0.0,0.0,West Ham,1.0,0.0,0,Jeff Winter,0,0,0,0,1878,Tottenham,West Ham,Tottenham,West Ham,Tottenham_West_Ham,Tottenham_West Ham_1996
+1996,27,West Ham,0.0,0.0,Tottenham,4.0,3.0,0,Gary Willard,0,0,0,0,2025,West Ham,Tottenham,West Ham,Tottenham,Tottenham_West_Ham,Tottenham_West Ham_1996
+1997,2,West Ham,0.0,0.0,Tottenham,2.0,1.0,0,Stephen Lodge,0,0,0,0,2161,West Ham,Tottenham,West Ham,Tottenham,Tottenham_West_Ham,Tottenham_West Ham_1997
+1997,23,Tottenham,0.0,0.0,West Ham,1.0,0.0,0,David Elleray,0,0,0,0,2368,Tottenham,West Ham,Tottenham,West Ham,Tottenham_West_Ham,Tottenham_West Ham_1997
+1998,15,West Ham,0.0,0.0,Tottenham,2.0,1.0,0,Dermot Gallagher,0,0,0,0,2666,West Ham,Tottenham,West Ham,Tottenham,Tottenham_West_Ham,Tottenham_West Ham_1998
+1998,35,Tottenham,0.0,0.0,West Ham,1.0,2.0,0,Uriah Rennie,0,0,0,0,2863,West Ham,Tottenham,Tottenham,West Ham,Tottenham_West_Ham,Tottenham_West Ham_1998
+1999,1,West Ham,0.0,0.0,Tottenham,1.0,0.0,0,David Elleray,0,0,0,0,2913,West Ham,Tottenham,West Ham,Tottenham,Tottenham_West_Ham,Tottenham_West Ham_1999
+1999,17,Tottenham,0.0,0.0,West Ham,0.0,0.0,0,Peter Jones,0,0,0,0,3071,draw,draw,Tottenham,West Ham,Tottenham_West_Ham,Tottenham_West Ham_1999
+2000,5,Tottenham,0.0,0.0,West Ham,1.0,0.0,0,Steve Dunn,0,0,0,0,3334,Tottenham,West Ham,Tottenham,West Ham,Tottenham_West_Ham,Tottenham_West Ham_2000
+2000,25,West Ham,0.0,0.0,Tottenham,0.0,0.0,0,Neale Barry,0,0,0,0,3524,draw,draw,West Ham,Tottenham,Tottenham_West_Ham,Tottenham_West Ham_2000
+2001,14,West Ham,0.0,0.0,Tottenham,0.0,1.0,0,David Elleray,0,0,0,0,3791,Tottenham,West Ham,West Ham,Tottenham,Tottenham_West_Ham,Tottenham_West Ham_2001
+2001,35,Tottenham,0.0,0.0,West Ham,1.0,1.0,0,Neale Barry,0,0,0,0,4005,draw,draw,Tottenham,West Ham,Tottenham_West_Ham,Tottenham_West Ham_2001
+2002,6,Tottenham,0.0,0.0,West Ham,3.0,2.0,0,Uriah Rennie,0,0,0,0,4101,Tottenham,West Ham,Tottenham,West Ham,Tottenham_West_Ham,Tottenham_West Ham_2002
+2002,29,West Ham,0.0,0.0,Tottenham,2.0,0.0,0,Neale Barry,0,0,0,0,4328,West Ham,Tottenham,West Ham,Tottenham,Tottenham_West_Ham,Tottenham_West Ham_2002
+2005,13,Tottenham,0.0,0.0,West Ham,1.0,1.0,0,Alan Wiley,0,0,0,0,5309,draw,draw,Tottenham,West Ham,Tottenham_West_Ham,Tottenham_West Ham_2005
+2005,38,West Ham,0.0,0.0,Tottenham,2.0,1.0,0,Chris Foy,0,0,0,0,5562,West Ham,Tottenham,West Ham,Tottenham,Tottenham_West_Ham,Tottenham_West Ham_2005
+2006,9,Tottenham,0.0,0.0,West Ham,1.0,0.0,0,Stephen Bennett,0,0,0,0,5652,Tottenham,West Ham,Tottenham,West Ham,Tottenham_West_Ham,Tottenham_West Ham_2006
+2006,29,West Ham,0.0,0.0,Tottenham,3.0,4.0,0,Mike Dean,0,0,0,0,5852,Tottenham,West Ham,West Ham,Tottenham,Tottenham_West_Ham,Tottenham_West Ham_2006
+2007,14,West Ham,0.0,0.0,Tottenham,1.0,1.0,0,Mike Riley,0,0,0,0,6082,draw,draw,West Ham,Tottenham,Tottenham_West_Ham,Tottenham_West Ham_2007
+2007,29,Tottenham,0.0,0.0,West Ham,4.0,0.0,0,Chris Foy,0,0,0,0,6230,Tottenham,West Ham,Tottenham,West Ham,Tottenham_West_Ham,Tottenham_West Ham_2007
+2008,16,West Ham,0.0,0.0,Tottenham,0.0,2.0,0,Chris Foy,0,0,0,0,6484,Tottenham,West Ham,West Ham,Tottenham,Tottenham_West_Ham,Tottenham_West Ham_2008
+2008,32,Tottenham,0.0,0.0,West Ham,1.0,0.0,0,Martin Atkinson,0,0,0,0,6636,Tottenham,West Ham,Tottenham,West Ham,Tottenham_West_Ham,Tottenham_West Ham_2008
+2009,3,West Ham,0.0,0.0,Tottenham,1.0,2.0,0,Mark Clattenburg,0,0,0,0,6729,Tottenham,West Ham,West Ham,Tottenham,Tottenham_West_Ham,Tottenham_West Ham_2009
+2009,20,Tottenham,0.0,0.0,West Ham,2.0,0.0,0,Chris Foy,0,0,0,0,6895,Tottenham,West Ham,Tottenham,West Ham,Tottenham_West_Ham,Tottenham_West Ham_2009
+2010,6,West Ham,0.0,0.0,Tottenham,1.0,0.0,0,Martin Atkinson,0,0,0,0,7140,West Ham,Tottenham,West Ham,Tottenham,Tottenham_West_Ham,Tottenham_West Ham_2010
+2010,30,Tottenham,0.0,0.0,West Ham,0.0,0.0,0,Mike Dean,0,0,0,0,7380,draw,draw,Tottenham,West Ham,Tottenham_West_Ham,Tottenham_West Ham_2010
+2012,13,Tottenham,0.0,0.0,West Ham,3.0,1.0,0,Andre Marriner,0,0,0,0,7974,Tottenham,West Ham,Tottenham,West Ham,Tottenham_West_Ham,Tottenham_West Ham_2012
+2012,27,West Ham,0.0,0.0,Tottenham,2.0,3.0,0,Howard Webb,0,0,0,0,8115,Tottenham,West Ham,West Ham,Tottenham,Tottenham_West_Ham,Tottenham_West Ham_2012
+2013,7,Tottenham,0.0,0.0,West Ham,0.0,3.0,0,Lee Probert,0,0,0,0,8293,West Ham,Tottenham,Tottenham,West Ham,Tottenham_West_Ham,Tottenham_West Ham_2013
+2013,37,West Ham,0.0,0.0,Tottenham,2.0,0.0,0,Phil Dowd,0,0,0,0,8589,West Ham,Tottenham,West Ham,Tottenham,Tottenham_West_Ham,Tottenham_West Ham_2013
+2014,1,West Ham,0.0,0.0,Tottenham,0.0,1.0,0,Chris Foy,0,0,0,0,8610,Tottenham,West Ham,West Ham,Tottenham,Tottenham_West_Ham,Tottenham_West Ham_2014
+2014,26,Tottenham,0.0,0.0,West Ham,2.0,2.0,0,Jonathan Moss,0,0,0,0,8863,draw,draw,Tottenham,West Ham,Tottenham_West_Ham,Tottenham_West Ham_2014
+2015,13,Tottenham,0.0,0.0,West Ham,4.0,1.0,0,Anthony Taylor,0,0,0,0,9114,Tottenham,West Ham,Tottenham,West Ham,Tottenham_West_Ham,Tottenham_West Ham_2015
+2015,28,West Ham,0.0,0.0,Tottenham,1.0,0.0,0,Andre Marriner,0,0,0,0,9260,West Ham,Tottenham,West Ham,Tottenham,Tottenham_West_Ham,Tottenham_West Ham_2015

@@ -1,0 +1,57 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2019,6,Arsenal,2.4,1.5,Aston Villa,3.0,2.0,2019-09-22,Jonathan Moss,Emirates Stadium,Sun,16:30,"60,331",64,Arsenal,Aston Villa,Arsenal,Aston Villa,Arsenal_Aston_Villa,Arsenal_Aston Villa_2019
+2019,37,Aston Villa,0.6,0.6,Arsenal,1.0,0.0,2020-07-21,Chris Kavanagh,Villa Park,Tue,20:15,0,405,Aston Villa,Arsenal,Aston Villa,Arsenal,Arsenal_Aston_Villa,Arsenal_Aston Villa_2019
+2020,8,Arsenal,1.5,1.8,Aston Villa,0.0,3.0,2020-11-08,Martin Atkinson,Emirates Stadium,Sun,19:15,0,84,Aston Villa,Arsenal,Arsenal,Aston Villa,Arsenal_Aston_Villa,Arsenal_Aston Villa_2020
+2020,23,Aston Villa,1.2,0.8,Arsenal,1.0,0.0,2021-02-06,Chris Kavanagh,Villa Park,Sat,12:30,0,245,Aston Villa,Arsenal,Aston Villa,Arsenal,Arsenal_Aston_Villa,Arsenal_Aston Villa_2020
+2021,9,Arsenal,2.7,1.4,Aston Villa,3.0,1.0,2021-10-22,Craig Pawson,Emirates Stadium,Fri,20:00,"59,496",88,Arsenal,Aston Villa,Arsenal,Aston Villa,Arsenal_Aston_Villa,Arsenal_Aston Villa_2021
+2021,30,Aston Villa,0.5,1.3,Arsenal,0.0,1.0,2022-03-19,Andy Madley,Villa Park,Sat,12:30,"41,956",331,Arsenal,Aston Villa,Aston Villa,Arsenal,Arsenal_Aston_Villa,Arsenal_Aston Villa_2021
+2022,5,Arsenal,2.4,0.4,Aston Villa,2.0,1.0,2022-08-31,Robert Jones,Emirates Stadium,Wed,19:30,"60,012",50,Arsenal,Aston Villa,Arsenal,Aston Villa,Arsenal_Aston_Villa,Arsenal_Aston Villa_2022
+2022,24,Aston Villa,0.5,3.2,Arsenal,2.0,4.0,2023-02-18,Simon Hooper,Villa Park,Sat,12:30,"42,066",247,Arsenal,Aston Villa,Aston Villa,Arsenal,Arsenal_Aston_Villa,Arsenal_Aston Villa_2022
+1992,22,Aston Villa,0.0,0.0,Arsenal,1.0,0.0,0,Martin Bodenham,0,0,0,0,229,Aston Villa,Arsenal,Aston Villa,Arsenal,Arsenal_Aston_Villa,Arsenal_Aston Villa_1992
+1992,39,Arsenal,0.0,0.0,Aston Villa,0.0,1.0,0,Gerald Ashby,0,0,0,0,409,Aston Villa,Arsenal,Arsenal,Aston Villa,Arsenal_Aston_Villa,Arsenal_Aston Villa_1992
+1993,14,Arsenal,0.0,0.0,Aston Villa,1.0,2.0,0,Martin Bodenham,0,0,0,0,606,Aston Villa,Arsenal,Arsenal,Aston Villa,Arsenal_Aston_Villa,Arsenal_Aston Villa_1993
+1993,40,Aston Villa,0.0,0.0,Arsenal,1.0,2.0,0,Keith Cooper,0,0,0,0,885,Arsenal,Aston Villa,Aston Villa,Arsenal,Arsenal_Aston_Villa,Arsenal_Aston Villa_1993
+1994,20,Arsenal,0.0,0.0,Aston Villa,0.0,0.0,0,Kelvin Morton,0,0,0,0,1136,draw,draw,Arsenal,Aston Villa,Arsenal_Aston_Villa,Arsenal_Aston Villa_1994
+1994,39,Aston Villa,0.0,0.0,Arsenal,0.0,4.0,0,Kelvin Morton,0,0,0,0,1335,Arsenal,Aston Villa,Aston Villa,Arsenal,Arsenal_Aston_Villa,Arsenal_Aston Villa_1994
+1995,10,Arsenal,0.0,0.0,Aston Villa,2.0,0.0,0,Robbie Hart,0,0,0,0,1479,Arsenal,Aston Villa,Arsenal,Aston Villa,Arsenal_Aston_Villa,Arsenal_Aston Villa_1995
+1995,16,Aston Villa,0.0,0.0,Arsenal,1.0,1.0,0,Jeff Winter,0,0,0,0,1539,draw,draw,Aston Villa,Arsenal,Arsenal_Aston_Villa,Arsenal_Aston Villa_1995
+1996,5,Aston Villa,0.0,0.0,Arsenal,2.0,2.0,0,Mike Riley,0,0,0,0,1813,draw,draw,Aston Villa,Arsenal,Arsenal_Aston_Villa,Arsenal_Aston Villa_1996
+1996,20,Arsenal,0.0,0.0,Aston Villa,2.0,2.0,0,Jeff Winter,0,0,0,0,1955,draw,draw,Arsenal,Aston Villa,Arsenal_Aston_Villa,Arsenal_Aston Villa_1996
+1997,12,Arsenal,0.0,0.0,Aston Villa,0.0,0.0,0,Paul Durkin,0,0,0,0,2260,draw,draw,Arsenal,Aston Villa,Arsenal_Aston_Villa,Arsenal_Aston Villa_1997
+1997,38,Aston Villa,0.0,0.0,Arsenal,1.0,0.0,0,Graham Poll,0,0,0,0,2521,Aston Villa,Arsenal,Aston Villa,Arsenal,Arsenal_Aston_Villa,Arsenal_Aston Villa_1997
+1998,17,Aston Villa,0.0,0.0,Arsenal,3.0,2.0,0,Stephen Lodge,0,0,0,0,2693,Aston Villa,Arsenal,Aston Villa,Arsenal,Arsenal_Aston_Villa,Arsenal_Aston Villa_1998
+1998,38,Arsenal,0.0,0.0,Aston Villa,1.0,0.0,0,Dermot Gallagher,0,0,0,0,2902,Arsenal,Aston Villa,Arsenal,Aston Villa,Arsenal_Aston_Villa,Arsenal_Aston Villa_1998
+1999,7,Arsenal,0.0,0.0,Aston Villa,3.0,1.0,0,David Elleray,0,0,0,0,2966,Arsenal,Aston Villa,Arsenal,Aston Villa,Arsenal_Aston_Villa,Arsenal_Aston Villa_1999
+1999,27,Aston Villa,0.0,0.0,Arsenal,1.0,1.0,0,Graham Poll,0,0,0,0,3173,draw,draw,Aston Villa,Arsenal,Arsenal_Aston_Villa,Arsenal_Aston Villa_1999
+2000,9,Arsenal,0.0,0.0,Aston Villa,1.0,0.0,0,Rob Harris,0,0,0,0,3368,Arsenal,Aston Villa,Arsenal,Aston Villa,Arsenal_Aston_Villa,Arsenal_Aston Villa_2000
+2000,30,Aston Villa,0.0,0.0,Arsenal,0.0,0.0,0,Barry Knight,0,0,0,0,3581,draw,draw,Aston Villa,Arsenal,Arsenal_Aston_Villa,Arsenal_Aston Villa_2000
+2001,16,Arsenal,0.0,0.0,Aston Villa,3.0,2.0,0,Alan Wiley,0,0,0,0,3817,Arsenal,Aston Villa,Arsenal,Aston Villa,Arsenal_Aston_Villa,Arsenal_Aston Villa_2001
+2001,30,Aston Villa,0.0,0.0,Arsenal,1.0,2.0,0,Steve Dunn,0,0,0,0,3964,Arsenal,Aston Villa,Aston Villa,Arsenal,Arsenal_Aston_Villa,Arsenal_Aston Villa_2001
+2002,16,Arsenal,0.0,0.0,Aston Villa,3.0,1.0,0,Graham Barber,0,0,0,0,4196,Arsenal,Aston Villa,Arsenal,Aston Villa,Arsenal_Aston_Villa,Arsenal_Aston Villa_2002
+2002,32,Aston Villa,0.0,0.0,Arsenal,1.0,1.0,0,Uriah Rennie,0,0,0,0,4360,draw,draw,Aston Villa,Arsenal,Arsenal_Aston_Villa,Arsenal_Aston Villa_2002
+2003,3,Arsenal,0.0,0.0,Aston Villa,2.0,0.0,0,Mike Dean,0,0,0,0,4452,Arsenal,Aston Villa,Arsenal,Aston Villa,Arsenal_Aston_Villa,Arsenal_Aston Villa_2003
+2003,22,Aston Villa,0.0,0.0,Arsenal,0.0,2.0,0,Mark Halsey,0,0,0,0,4641,Arsenal,Aston Villa,Aston Villa,Arsenal,Arsenal_Aston_Villa,Arsenal_Aston Villa_2003
+2004,9,Arsenal,0.0,0.0,Aston Villa,3.0,1.0,0,Graham Poll,0,0,0,0,4888,Arsenal,Aston Villa,Arsenal,Aston Villa,Arsenal_Aston_Villa,Arsenal_Aston Villa_2004
+2004,26,Aston Villa,0.0,0.0,Arsenal,1.0,3.0,0,Stephen Bennett,0,0,0,0,5058,Arsenal,Aston Villa,Aston Villa,Arsenal,Arsenal_Aston_Villa,Arsenal_Aston Villa_2004
+2005,20,Aston Villa,0.0,0.0,Arsenal,0.0,0.0,0,Uriah Rennie,0,0,0,0,5378,draw,draw,Aston Villa,Arsenal,Arsenal_Aston_Villa,Arsenal_Aston Villa_2005
+2005,32,Arsenal,0.0,0.0,Aston Villa,5.0,0.0,0,Martin Atkinson,0,0,0,0,5494,Arsenal,Aston Villa,Arsenal,Aston Villa,Arsenal_Aston_Villa,Arsenal_Aston Villa_2005
+2006,1,Arsenal,0.0,0.0,Aston Villa,1.0,1.0,0,Graham Poll,0,0,0,0,5569,draw,draw,Arsenal,Aston Villa,Arsenal_Aston_Villa,Arsenal_Aston Villa_2006
+2006,28,Aston Villa,0.0,0.0,Arsenal,0.0,1.0,0,Martin Atkinson,0,0,0,0,5853,Arsenal,Aston Villa,Aston Villa,Arsenal,Arsenal_Aston_Villa,Arsenal_Aston Villa_2006
+2007,15,Aston Villa,0.0,0.0,Arsenal,1.0,2.0,0,Chris Foy,0,0,0,0,6086,Arsenal,Aston Villa,Aston Villa,Arsenal,Arsenal_Aston_Villa,Arsenal_Aston Villa_2007
+2007,28,Arsenal,0.0,0.0,Aston Villa,1.0,1.0,0,Mark Clattenburg,0,0,0,0,6214,draw,draw,Arsenal,Aston Villa,Arsenal_Aston_Villa,Arsenal_Aston Villa_2007
+2008,13,Arsenal,0.0,0.0,Aston Villa,0.0,2.0,0,Mike Riley,0,0,0,0,6446,Aston Villa,Arsenal,Arsenal,Aston Villa,Arsenal_Aston_Villa,Arsenal_Aston Villa_2008
+2008,19,Aston Villa,0.0,0.0,Arsenal,2.0,2.0,0,Lee Mason,0,0,0,0,6505,draw,draw,Aston Villa,Arsenal,Arsenal_Aston_Villa,Arsenal_Aston Villa_2008
+2009,19,Arsenal,0.0,0.0,Aston Villa,3.0,0.0,0,Phil Dowd,0,0,0,0,6891,Arsenal,Aston Villa,Arsenal,Aston Villa,Arsenal_Aston_Villa,Arsenal_Aston Villa_2009
+2009,23,Aston Villa,0.0,0.0,Arsenal,0.0,0.0,0,Lee Probert,0,0,0,0,6924,draw,draw,Aston Villa,Arsenal,Arsenal_Aston_Villa,Arsenal_Aston Villa_2009
+2010,15,Aston Villa,0.0,0.0,Arsenal,2.0,4.0,0,Mark Clattenburg,0,0,0,0,7229,Arsenal,Aston Villa,Aston Villa,Arsenal,Arsenal_Aston_Villa,Arsenal_Aston Villa_2010
+2010,37,Arsenal,0.0,0.0,Aston Villa,1.0,2.0,0,Michael Oliver,0,0,0,0,7453,Aston Villa,Arsenal,Arsenal,Aston Villa,Arsenal_Aston_Villa,Arsenal_Aston Villa_2010
+2011,17,Aston Villa,0.0,0.0,Arsenal,1.0,2.0,0,Jon Moss,0,0,0,0,7630,Arsenal,Aston Villa,Aston Villa,Arsenal,Arsenal_Aston_Villa,Arsenal_Aston Villa_2011
+2011,30,Arsenal,0.0,0.0,Aston Villa,3.0,0.0,0,Phil Dowd,0,0,0,0,7757,Arsenal,Aston Villa,Arsenal,Aston Villa,Arsenal_Aston_Villa,Arsenal_Aston Villa_2011
+2012,13,Aston Villa,0.0,0.0,Arsenal,0.0,0.0,0,Lee Mason,0,0,0,0,7970,draw,draw,Aston Villa,Arsenal,Arsenal_Aston_Villa,Arsenal_Aston Villa_2012
+2012,27,Arsenal,0.0,0.0,Aston Villa,2.0,1.0,0,Martin Atkinson,0,0,0,0,8110,Arsenal,Aston Villa,Arsenal,Aston Villa,Arsenal_Aston_Villa,Arsenal_Aston Villa_2012
+2013,1,Arsenal,0.0,0.0,Aston Villa,1.0,3.0,0,Anthony Taylor,0,0,0,0,8232,Aston Villa,Arsenal,Arsenal,Aston Villa,Arsenal_Aston_Villa,Arsenal_Aston Villa_2013
+2013,21,Aston Villa,0.0,0.0,Arsenal,1.0,2.0,0,Neil Swarbrick,0,0,0,0,8435,Arsenal,Aston Villa,Aston Villa,Arsenal,Arsenal_Aston_Villa,Arsenal_Aston Villa_2013
+2014,5,Aston Villa,0.0,0.0,Arsenal,0.0,3.0,0,Mike Jones,0,0,0,0,8650,Arsenal,Aston Villa,Aston Villa,Arsenal,Arsenal_Aston_Villa,Arsenal_Aston Villa_2014
+2014,23,Arsenal,0.0,0.0,Aston Villa,5.0,0.0,0,Anthony Taylor,0,0,0,0,8834,Arsenal,Aston Villa,Arsenal,Aston Villa,Arsenal_Aston_Villa,Arsenal_Aston Villa_2014
+2015,16,Aston Villa,0.0,0.0,Arsenal,0.0,2.0,0,Kevin Friend,0,0,0,0,9142,Arsenal,Aston Villa,Aston Villa,Arsenal,Arsenal_Aston_Villa,Arsenal_Aston Villa_2015
+2015,38,Arsenal,0.0,0.0,Aston Villa,4.0,0.0,0,Mark Clattenburg,0,0,0,0,9363,Arsenal,Aston Villa,Arsenal,Aston Villa,Arsenal_Aston_Villa,Arsenal_Aston Villa_2015

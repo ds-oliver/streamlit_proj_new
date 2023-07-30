@@ -1,0 +1,15 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2003,3,Portsmouth,0.0,0.0,Bolton,4.0,0.0,0,Dermot Gallagher,0,0,0,0,4447,Portsmouth,Bolton,Portsmouth,Bolton,Bolton_Portsmouth,Bolton_Portsmouth_2003
+2003,22,Bolton,0.0,0.0,Portsmouth,1.0,0.0,0,Phil Dowd,0,0,0,0,4640,Bolton,Portsmouth,Bolton,Portsmouth,Bolton_Portsmouth,Bolton_Portsmouth_2003
+2004,15,Bolton,0.0,0.0,Portsmouth,0.0,1.0,0,Steve Dunn,0,0,0,0,4950,Portsmouth,Bolton,Bolton,Portsmouth,Bolton_Portsmouth,Bolton_Portsmouth_2004
+2004,37,Portsmouth,0.0,0.0,Bolton,1.0,1.0,0,Matt Messias,0,0,0,0,5169,draw,draw,Portsmouth,Bolton,Bolton_Portsmouth,Bolton_Portsmouth_2004
+2005,7,Bolton,0.0,0.0,Portsmouth,1.0,0.0,0,Mark Clattenburg,0,0,0,0,5247,Bolton,Portsmouth,Bolton,Portsmouth,Bolton_Portsmouth,Bolton_Portsmouth_2005
+2005,24,Portsmouth,0.0,0.0,Bolton,1.0,1.0,0,Dermot Gallagher,0,0,0,0,5415,draw,draw,Portsmouth,Bolton,Bolton_Portsmouth,Bolton_Portsmouth_2005
+2006,6,Portsmouth,0.0,0.0,Bolton,0.0,1.0,0,Uriah Rennie,0,0,0,0,5624,Bolton,Portsmouth,Portsmouth,Bolton,Bolton_Portsmouth,Bolton_Portsmouth_2006
+2006,21,Bolton,0.0,0.0,Portsmouth,3.0,2.0,0,Peter Walton,0,0,0,0,5771,Bolton,Portsmouth,Bolton,Portsmouth,Bolton_Portsmouth,Bolton_Portsmouth_2006
+2007,3,Portsmouth,0.0,0.0,Bolton,3.0,1.0,0,Steve Tanner,0,0,0,0,5965,Portsmouth,Bolton,Portsmouth,Bolton,Bolton_Portsmouth,Bolton_Portsmouth_2007
+2007,26,Bolton,0.0,0.0,Portsmouth,0.0,1.0,0,Peter Walton,0,0,0,0,6197,Portsmouth,Bolton,Bolton,Portsmouth,Bolton_Portsmouth,Bolton_Portsmouth_2007
+2008,18,Bolton,0.0,0.0,Portsmouth,2.0,1.0,0,Martin Atkinson,0,0,0,0,6498,Bolton,Portsmouth,Bolton,Portsmouth,Bolton_Portsmouth,Bolton_Portsmouth_2008
+2008,33,Portsmouth,0.0,0.0,Bolton,1.0,0.0,0,Phil Dowd,0,0,0,0,6646,Portsmouth,Bolton,Portsmouth,Bolton,Bolton_Portsmouth,Bolton_Portsmouth_2008
+2009,5,Portsmouth,0.0,0.0,Bolton,2.0,3.0,0,Chris Foy,0,0,0,0,6746,Bolton,Portsmouth,Portsmouth,Bolton,Bolton_Portsmouth,Bolton_Portsmouth_2009
+2009,36,Bolton,0.0,0.0,Portsmouth,2.0,2.0,0,Howard Webb,0,0,0,0,7054,draw,draw,Bolton,Portsmouth,Bolton_Portsmouth,Bolton_Portsmouth_2009

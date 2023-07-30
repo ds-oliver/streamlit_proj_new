@@ -1,0 +1,11 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,16,Crystal Palace,3.9,0.7,Bournemouth,2.0,2.0,2017-12-09,Kevin Friend,Selhurst Park,Sat,15:00,"24,823",167,draw,draw,Crystal Palace,Bournemouth,Bournemouth_Crystal_Palace,Bournemouth_Crystal Palace_2017
+2017,33,Bournemouth,1.9,1.1,Crystal Palace,2.0,2.0,2018-04-07,Jonathan Moss,Vitality Stadium,Sat,15:00,"10,730",352,draw,draw,Bournemouth,Crystal Palace,Bournemouth_Crystal_Palace,Bournemouth_Crystal Palace_2017
+2018,7,Bournemouth,1.8,0.4,Crystal Palace,2.0,1.0,2018-10-01,Mike Dean,Vitality Stadium,Mon,20:00,"10,199",75,Bournemouth,Crystal Palace,Bournemouth,Crystal Palace,Bournemouth_Crystal_Palace,Bournemouth_Crystal Palace_2018
+2018,38,Crystal Palace,2.8,1.6,Bournemouth,5.0,3.0,2019-05-12,Roger East,Selhurst Park,Sun,15:00,"25,433",418,Crystal Palace,Bournemouth,Crystal Palace,Bournemouth,Bournemouth_Crystal_Palace,Bournemouth_Crystal Palace_2018
+2019,15,Crystal Palace,0.3,0.4,Bournemouth,1.0,0.0,2019-12-03,Anthony Taylor,Selhurst Park,Tue,19:30,"23,497",154,Crystal Palace,Bournemouth,Crystal Palace,Bournemouth,Bournemouth_Crystal_Palace,Bournemouth_Crystal Palace_2019
+2019,30,Bournemouth,0.5,0.8,Crystal Palace,0.0,2.0,2020-06-20,Stuart Attwell,Vitality Stadium,Sat,19:45,0,326,Crystal Palace,Bournemouth,Bournemouth,Crystal Palace,Bournemouth_Crystal_Palace,Bournemouth_Crystal Palace_2019
+2022,18,Bournemouth,0.6,1.6,Crystal Palace,0.0,2.0,2022-12-31,Andre Marriner,Vitality Stadium,Sat,15:00,"9,972",178,Crystal Palace,Bournemouth,Bournemouth,Crystal Palace,Bournemouth_Crystal_Palace,Bournemouth_Crystal Palace_2022
+2022,36,Crystal Palace,1.5,0.3,Bournemouth,2.0,0.0,2023-05-13,Michael Salisbury,Selhurst Park,Sat,15:00,"25,034",396,Crystal Palace,Bournemouth,Crystal Palace,Bournemouth,Bournemouth_Crystal_Palace,Bournemouth_Crystal Palace_2022
+2015,18,Bournemouth,0.0,0.0,Crystal Palace,0.0,0.0,0,Michael Oliver,0,0,0,0,9157,draw,draw,Bournemouth,Crystal Palace,Bournemouth_Crystal_Palace,Bournemouth_Crystal Palace_2015
+2015,24,Crystal Palace,0.0,0.0,Bournemouth,1.0,2.0,0,Mike Jones,0,0,0,0,9222,Bournemouth,Crystal Palace,Crystal Palace,Bournemouth,Bournemouth_Crystal_Palace,Bournemouth_Crystal Palace_2015

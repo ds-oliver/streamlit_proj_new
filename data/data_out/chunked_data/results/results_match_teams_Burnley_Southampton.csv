@@ -1,0 +1,13 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,11,Southampton,0.7,0.2,Burnley,0.0,1.0,2017-11-04,Lee Probert,St. Mary's Stadium,Sat,15:00,"30,491",111,Burnley,Southampton,Southampton,Burnley,Burnley_Southampton,Burnley_Southampton_2017
+2017,28,Burnley,1.3,0.8,Southampton,1.0,1.0,2018-02-24,Robert Madley,Turf Moor,Sat,15:00,"20,982",302,draw,draw,Burnley,Southampton,Burnley_Southampton,Burnley_Southampton_2017
+2018,1,Southampton,1.1,1.4,Burnley,0.0,0.0,2018-08-12,Graham Scott,St. Mary's Stadium,Sun,13:30,"30,784",7,draw,draw,Southampton,Burnley,Burnley_Southampton,Burnley_Southampton_2018
+2018,25,Burnley,2.4,0.7,Southampton,1.0,1.0,2019-02-02,Anthony Taylor,Turf Moor,Sat,15:00,"19,787",268,draw,draw,Burnley,Southampton,Burnley_Southampton,Burnley_Southampton_2018
+2019,1,Burnley,0.9,1.2,Southampton,3.0,0.0,2019-08-10,Graham Scott,Turf Moor,Sat,15:00,"19,784",2,Burnley,Southampton,Burnley,Southampton,Burnley_Southampton,Burnley_Southampton_2019
+2019,26,Southampton,0.8,0.8,Burnley,1.0,2.0,2020-02-15,Simon Hooper,St. Mary's Stadium,Sat,12:30,"26,302",280,Burnley,Southampton,Southampton,Burnley,Burnley_Southampton,Burnley_Southampton_2019
+2020,3,Burnley,0.5,0.6,Southampton,0.0,1.0,2020-09-26,Andre Marriner,Turf Moor,Sat,20:00,0,23,Southampton,Burnley,Burnley,Southampton,Burnley_Southampton,Burnley_Southampton_2020
+2020,30,Southampton,2.2,1.5,Burnley,3.0,2.0,2021-04-04,Andre Marriner,St. Mary's Stadium,Sun,12:00,0,339,Southampton,Burnley,Southampton,Burnley,Burnley_Southampton,Burnley_Southampton_2020
+2021,9,Southampton,1.6,0.7,Burnley,2.0,2.0,2021-10-23,Chris Kavanagh,St. Mary's Stadium,Sat,15:00,"29,145",93,draw,draw,Southampton,Burnley,Burnley_Southampton,Burnley_Southampton_2021
+2021,30,Burnley,1.5,0.9,Southampton,2.0,0.0,2022-04-21,Stuart Attwell,Turf Moor,Thu,19:45,"17,384",374,Burnley,Southampton,Burnley,Southampton,Burnley_Southampton,Burnley_Southampton_2021
+2014,16,Burnley,0.0,0.0,Southampton,1.0,0.0,0,Mark Clattenburg,0,0,0,0,8760,Burnley,Southampton,Burnley,Southampton,Burnley_Southampton,Burnley_Southampton_2014
+2014,30,Southampton,0.0,0.0,Burnley,2.0,0.0,0,Roger East,0,0,0,0,8896,Southampton,Burnley,Southampton,Burnley,Burnley_Southampton,Burnley_Southampton_2014

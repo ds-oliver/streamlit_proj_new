@@ -1,0 +1,47 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,13,Southampton,2.0,0.2,Everton,4.0,1.0,2017-11-26,Kevin Friend,St. Mary's Stadium,Sun,13:30,"30,461",139,Southampton,Everton,Southampton,Everton,Everton_Southampton,Everton_Southampton_2017
+2017,37,Everton,0.5,0.7,Southampton,1.0,1.0,2018-05-05,Jonathan Moss,Goodison Park,Sat,17:30,"38,225",399,draw,draw,Everton,Southampton,Everton_Southampton,Everton_Southampton_2017
+2018,2,Everton,1.5,1.7,Southampton,2.0,1.0,2018-08-18,Lee Mason,Goodison Park,Sat,15:00,"38,601",13,Everton,Southampton,Everton,Southampton,Everton_Southampton,Everton_Southampton_2018
+2018,23,Southampton,0.7,0.9,Everton,2.0,1.0,2019-01-19,Graham Scott,St. Mary's Stadium,Sat,15:00,"29,989",246,Southampton,Everton,Southampton,Everton,Everton_Southampton,Everton_Southampton_2018
+2019,12,Southampton,0.9,1.8,Everton,1.0,2.0,2019-11-09,Paul Tierney,St. Mary's Stadium,Sat,15:00,"29,754",123,Everton,Southampton,Southampton,Everton,Everton_Southampton,Everton_Southampton_2019
+2019,34,Everton,1.0,2.4,Southampton,1.0,1.0,2020-07-09,Lee Mason,Goodison Park,Thu,18:00,0,372,draw,draw,Everton,Southampton,Everton_Southampton,Everton_Southampton_2019
+2020,6,Southampton,0.7,0.4,Everton,2.0,0.0,2020-10-25,Kevin Friend,St. Mary's Stadium,Sun,14:00,0,58,Southampton,Everton,Southampton,Everton,Everton_Southampton,Everton_Southampton_2020
+2020,26,Everton,1.2,0.6,Southampton,1.0,0.0,2021-03-01,Martin Atkinson,Goodison Park,Mon,20:00,0,293,Everton,Southampton,Everton,Southampton,Everton_Southampton,Everton_Southampton_2020
+2021,1,Everton,2.4,0.8,Southampton,3.0,1.0,2021-08-14,Andy Madley,Goodison Park,Sat,15:00,"38,487",6,Everton,Southampton,Everton,Southampton,Everton_Southampton,Everton_Southampton_2021
+2021,26,Southampton,2.5,0.3,Everton,2.0,0.0,2022-02-19,Andy Madley,St. Mary's Stadium,Sat,15:00,"31,312",267,Southampton,Everton,Southampton,Everton,Everton_Southampton,Everton_Southampton_2021
+2022,9,Southampton,1.7,2.0,Everton,1.0,2.0,2022-10-01,Andre Marriner,St. Mary's Stadium,Sat,15:00,"30,510",75,Everton,Southampton,Southampton,Everton,Everton_Southampton,Everton_Southampton_2022
+2022,20,Everton,1.4,1.2,Southampton,1.0,2.0,2023-01-14,John Brooks,Goodison Park,Sat,15:00,"39,305",198,Southampton,Everton,Everton,Southampton,Everton_Southampton,Everton_Southampton_2022
+1992,20,Everton,0.0,0.0,Southampton,2.0,1.0,0,Mike Peck,0,0,0,0,210,Everton,Southampton,Everton,Southampton,Everton_Southampton,Everton_Southampton_1992
+1992,40,Southampton,0.0,0.0,Everton,0.0,0.0,0,Martin Bodenham,0,0,0,0,420,draw,draw,Southampton,Everton,Everton_Southampton,Everton_Southampton_1992
+1993,1,Southampton,0.0,0.0,Everton,0.0,2.0,0,Keith Cooper,0,0,0,0,465,Everton,Southampton,Southampton,Everton,Everton_Southampton,Everton_Southampton_1993
+1993,18,Everton,0.0,0.0,Southampton,1.0,0.0,0,Keith Burge,0,0,0,0,657,Everton,Southampton,Everton,Southampton,Everton_Southampton,Everton_Southampton_1993
+1994,9,Southampton,0.0,0.0,Everton,2.0,0.0,0,Brian Hill,0,0,0,0,1015,Southampton,Everton,Southampton,Everton,Everton_Southampton,Everton_Southampton_1994
+1994,41,Everton,0.0,0.0,Southampton,0.0,0.0,0,Terence Holbrook,0,0,0,0,1362,draw,draw,Everton,Southampton,Everton_Southampton,Everton_Southampton_1994
+1995,3,Everton,0.0,0.0,Southampton,2.0,0.0,0,Jeff Winter,0,0,0,0,1409,Everton,Southampton,Everton,Southampton,Everton_Southampton,Everton_Southampton_1995
+1995,25,Southampton,0.0,0.0,Everton,2.0,2.0,0,David Elleray,0,0,0,0,1626,draw,draw,Southampton,Everton,Everton_Southampton,Everton_Southampton_1995
+1996,13,Everton,0.0,0.0,Southampton,7.0,1.0,0,Mike Riley,0,0,0,0,1887,Everton,Southampton,Everton,Southampton,Everton_Southampton,Everton_Southampton_1996
+1996,29,Southampton,0.0,0.0,Everton,2.0,2.0,0,Paul Durkin,0,0,0,0,2039,draw,draw,Southampton,Everton,Everton_Southampton,Everton_Southampton_1996
+1997,13,Everton,0.0,0.0,Southampton,0.0,2.0,0,Alan Wilkie,0,0,0,0,2270,Southampton,Everton,Everton,Southampton,Everton_Southampton,Everton_Southampton_1997
+1997,29,Southampton,0.0,0.0,Everton,2.0,1.0,0,David Elleray,0,0,0,0,2422,Southampton,Everton,Southampton,Everton,Everton_Southampton,Everton_Southampton_1997
+1998,17,Everton,0.0,0.0,Southampton,1.0,0.0,0,Alan Wilkie,0,0,0,0,2687,Everton,Southampton,Everton,Southampton,Everton_Southampton,Everton_Southampton_1998
+1998,38,Southampton,0.0,0.0,Everton,2.0,0.0,0,Graham Barber,0,0,0,0,2901,Southampton,Everton,Southampton,Everton,Everton_Southampton,Everton_Southampton_1998
+1999,4,Everton,0.0,0.0,Southampton,4.0,1.0,0,Barry Knight,0,0,0,0,2939,Everton,Southampton,Everton,Southampton,Everton_Southampton,Everton_Southampton_1999
+1999,23,Southampton,0.0,0.0,Everton,2.0,0.0,0,Andy D'Urso,0,0,0,0,3127,Southampton,Everton,Southampton,Everton,Everton_Southampton,Everton_Southampton_1999
+2000,9,Everton,0.0,0.0,Southampton,1.0,1.0,0,David Elleray,0,0,0,0,3367,draw,draw,Everton,Southampton,Everton_Southampton,Everton_Southampton_2000
+2000,30,Southampton,0.0,0.0,Everton,1.0,0.0,0,Mark Halsey,0,0,0,0,3576,Southampton,Everton,Southampton,Everton,Everton_Southampton,Everton_Southampton_2000
+2001,15,Everton,0.0,0.0,Southampton,2.0,0.0,0,Jeff Winter,0,0,0,0,3807,Everton,Southampton,Everton,Southampton,Everton_Southampton,Everton_Southampton_2001
+2001,36,Southampton,0.0,0.0,Everton,0.0,1.0,0,Mark Halsey,0,0,0,0,4017,Everton,Southampton,Southampton,Everton,Everton_Southampton,Everton_Southampton_2001
+2002,5,Southampton,0.0,0.0,Everton,1.0,0.0,0,Stephen Bennett,0,0,0,0,4091,Southampton,Everton,Southampton,Everton,Everton_Southampton,Everton_Southampton_2002
+2002,28,Everton,0.0,0.0,Southampton,2.0,1.0,0,David Elleray,0,0,0,0,4316,Everton,Southampton,Everton,Southampton,Everton_Southampton,Everton_Southampton_2002
+2003,9,Everton,0.0,0.0,Southampton,0.0,0.0,0,Matt Messias,0,0,0,0,4511,draw,draw,Everton,Southampton,Everton_Southampton,Everton_Southampton_2003
+2003,26,Southampton,0.0,0.0,Everton,3.0,3.0,0,Phil Dowd,0,0,0,0,4680,draw,draw,Southampton,Everton,Everton_Southampton,Everton_Southampton_2003
+2004,9,Everton,0.0,0.0,Southampton,1.0,0.0,0,Barry Knight,0,0,0,0,4891,Everton,Southampton,Everton,Southampton,Everton_Southampton,Everton_Southampton_2004
+2004,26,Southampton,0.0,0.0,Everton,2.0,2.0,0,Andy D'Urso,0,0,0,0,5065,draw,draw,Southampton,Everton,Everton_Southampton,Everton_Southampton_2004
+2012,6,Everton,0.0,0.0,Southampton,3.0,1.0,0,Lee Probert,0,0,0,0,7900,Everton,Southampton,Everton,Southampton,Everton_Southampton,Everton_Southampton_2012
+2012,23,Southampton,0.0,0.0,Everton,0.0,0.0,0,Neil Swarbrick,0,0,0,0,8074,draw,draw,Southampton,Everton,Everton_Southampton,Everton_Southampton_2012
+2013,19,Everton,0.0,0.0,Southampton,2.0,1.0,0,Mark Clattenburg,0,0,0,0,8414,Everton,Southampton,Everton,Southampton,Everton_Southampton,Everton_Southampton_2013
+2013,36,Southampton,0.0,0.0,Everton,2.0,0.0,0,Michael Oliver,0,0,0,0,8576,Southampton,Everton,Southampton,Everton,Everton_Southampton,Everton_Southampton_2013
+2014,17,Southampton,0.0,0.0,Everton,3.0,0.0,0,Jonathan Moss,0,0,0,0,8768,Southampton,Everton,Southampton,Everton,Everton_Southampton,Everton_Southampton_2014
+2014,31,Everton,0.0,0.0,Southampton,1.0,0.0,0,Lee Mason,0,0,0,0,8908,Everton,Southampton,Everton,Southampton,Everton_Southampton,Everton_Southampton_2014
+2015,2,Southampton,0.0,0.0,Everton,0.0,3.0,0,Michael Oliver,0,0,0,0,8997,Everton,Southampton,Southampton,Everton,Everton_Southampton,Everton_Southampton_2015
+2015,34,Everton,0.0,0.0,Southampton,1.0,1.0,0,Craig Pawson,0,0,0,0,9312,draw,draw,Everton,Southampton,Everton_Southampton,Everton_Southampton_2015

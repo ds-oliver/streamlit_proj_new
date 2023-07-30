@@ -1,0 +1,15 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2003,13,Fulham,0.0,0.0,Portsmouth,2.0,0.0,0,Alan Wiley,0,0,0,0,4555,Fulham,Portsmouth,Fulham,Portsmouth,Fulham_Portsmouth,Fulham_Portsmouth_2003
+2003,36,Portsmouth,0.0,0.0,Fulham,1.0,1.0,0,Steve Dunn,0,0,0,0,4775,draw,draw,Portsmouth,Fulham,Fulham_Portsmouth,Fulham_Portsmouth_2003
+2004,4,Portsmouth,0.0,0.0,Fulham,4.0,3.0,0,Barry Knight,0,0,0,0,4844,Portsmouth,Fulham,Portsmouth,Fulham,Fulham_Portsmouth,Fulham_Portsmouth_2004
+2004,31,Fulham,0.0,0.0,Portsmouth,3.0,1.0,0,Mark Clattenburg,0,0,0,0,5113,Fulham,Portsmouth,Fulham,Portsmouth,Fulham_Portsmouth,Fulham_Portsmouth_2004
+2005,20,Portsmouth,0.0,0.0,Fulham,1.0,0.0,0,Mike Riley,0,0,0,0,5377,Portsmouth,Fulham,Portsmouth,Fulham,Fulham_Portsmouth,Fulham_Portsmouth_2005
+2005,32,Fulham,0.0,0.0,Portsmouth,1.0,3.0,0,Graham Poll,0,0,0,0,5499,Portsmouth,Fulham,Fulham,Portsmouth,Fulham_Portsmouth,Fulham_Portsmouth_2005
+2006,12,Portsmouth,0.0,0.0,Fulham,1.0,1.0,0,Stephen Bennett,0,0,0,0,5675,draw,draw,Portsmouth,Fulham,Fulham_Portsmouth,Fulham_Portsmouth_2006
+2006,31,Fulham,0.0,0.0,Portsmouth,1.0,1.0,0,Mike Riley,0,0,0,0,5865,draw,draw,Fulham,Portsmouth,Fulham_Portsmouth,Fulham_Portsmouth_2006
+2007,9,Fulham,0.0,0.0,Portsmouth,0.0,2.0,0,Howard Webb,0,0,0,0,6030,Portsmouth,Fulham,Fulham,Portsmouth,Fulham_Portsmouth,Fulham_Portsmouth_2007
+2007,38,Portsmouth,0.0,0.0,Fulham,0.0,1.0,0,Mark Clattenburg,0,0,0,0,6321,Fulham,Portsmouth,Portsmouth,Fulham,Fulham_Portsmouth,Fulham_Portsmouth_2007
+2008,9,Portsmouth,0.0,0.0,Fulham,1.0,1.0,0,Mark Halsey,0,0,0,0,6414,draw,draw,Portsmouth,Fulham,Fulham_Portsmouth,Fulham_Portsmouth_2008
+2008,24,Fulham,0.0,0.0,Portsmouth,3.0,1.0,0,Alan Wiley,0,0,0,0,6559,Fulham,Portsmouth,Fulham,Portsmouth,Fulham_Portsmouth,Fulham_Portsmouth_2008
+2009,1,Portsmouth,0.0,0.0,Fulham,0.0,1.0,0,Martin Atkinson,0,0,0,0,6709,Fulham,Portsmouth,Portsmouth,Fulham,Fulham_Portsmouth,Fulham_Portsmouth_2009
+2009,21,Fulham,0.0,0.0,Portsmouth,1.0,0.0,0,Anthony Taylor,0,0,0,0,6937,Fulham,Portsmouth,Fulham,Portsmouth,Fulham_Portsmouth,Fulham_Portsmouth_2009

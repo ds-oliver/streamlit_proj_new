@@ -1,0 +1,11 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2018,10,Brighton,0.9,1.4,Wolves,1.0,0.0,2018-10-27,Anthony Taylor,The American Express Community Stadium,Sat,15:00,"30,654",99,Brighton,Wolves,Brighton,Wolves,Brighton_Wolves,Brighton_Wolves_2018
+2018,35,Wolves,2.7,0.2,Brighton,0.0,0.0,2019-04-20,Craig Pawson,Molineux Stadium,Sat,15:00,"31,096",379,draw,draw,Wolves,Brighton,Brighton_Wolves,Brighton_Wolves_2018
+2019,16,Brighton,1.2,1.5,Wolves,2.0,2.0,2019-12-08,Jonathan Moss,The American Express Community Stadium,Sun,16:30,"30,189",173,draw,draw,Brighton,Wolves,Brighton_Wolves,Brighton_Wolves_2019
+2019,29,Wolves,0.8,0.3,Brighton,0.0,0.0,2020-03-07,Andre Marriner,Molineux Stadium,Sat,15:00,"31,490",308,draw,draw,Wolves,Brighton,Brighton_Wolves,Brighton_Wolves_2019
+2020,17,Brighton,2.2,1.6,Wolves,3.0,3.0,2021-01-02,Andy Madley,The American Express Community Stadium,Sat,17:30,0,175,draw,draw,Brighton,Wolves,Brighton_Wolves,Brighton_Wolves_2020
+2020,35,Wolves,1.1,0.3,Brighton,2.0,1.0,2021-05-09,Jonathan Moss,Molineux Stadium,Sun,12:00,0,394,Wolves,Brighton,Wolves,Brighton,Brighton_Wolves,Brighton_Wolves_2020
+2021,17,Brighton,1.2,1.0,Wolves,0.0,1.0,2021-12-15,Tony Harrington,The American Express Community Stadium,Wed,19:30,"30,362",176,Wolves,Brighton,Brighton,Wolves,Brighton_Wolves,Brighton_Wolves_2021
+2021,35,Wolves,0.7,2.6,Brighton,0.0,3.0,2022-04-30,Simon Hooper,Molineux Stadium,Sat,15:00,"31,243",391,Brighton,Wolves,Wolves,Brighton,Brighton_Wolves,Brighton_Wolves_2021
+2022,15,Wolves,1.2,1.5,Brighton,2.0,3.0,2022-11-05,Graham Scott,Molineux Stadium,Sat,15:00,"30,732",142,Brighton,Wolves,Wolves,Brighton,Brighton_Wolves,Brighton_Wolves_2022
+2022,34,Brighton,3.3,0.8,Wolves,6.0,0.0,2023-04-29,David Coote,The American Express Community Stadium,Sat,15:00,"31,584",368,Brighton,Wolves,Brighton,Wolves,Brighton_Wolves,Brighton_Wolves_2022

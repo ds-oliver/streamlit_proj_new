@@ -1,0 +1,11 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,15,Bournemouth,0.9,1.5,Southampton,1.0,1.0,2017-12-03,Jonathan Moss,Vitality Stadium,Sun,13:30,"10,764",162,draw,draw,Bournemouth,Southampton,Bournemouth_Southampton,Bournemouth_Southampton_2017
+2017,36,Southampton,1.5,0.7,Bournemouth,2.0,1.0,2018-04-28,Anthony Taylor,St. Mary's Stadium,Sat,15:00,"31,778",384,Southampton,Bournemouth,Southampton,Bournemouth,Bournemouth_Southampton,Bournemouth_Southampton_2017
+2018,9,Bournemouth,0.9,0.5,Southampton,0.0,0.0,2018-10-20,Lee Probert,Vitality Stadium,Sat,15:00,"10,986",89,draw,draw,Bournemouth,Southampton,Bournemouth_Southampton,Bournemouth_Southampton_2018
+2018,36,Southampton,2.5,2.3,Bournemouth,3.0,3.0,2019-04-27,Graham Scott,St. Mary's Stadium,Sat,15:00,"31,310",397,draw,draw,Southampton,Bournemouth,Bournemouth_Southampton,Bournemouth_Southampton_2018
+2019,6,Southampton,2.5,1.2,Bournemouth,1.0,3.0,2019-09-20,Chris Kavanagh,St. Mary's Stadium,Fri,20:00,"30,168",55,Bournemouth,Southampton,Southampton,Bournemouth,Bournemouth_Southampton,Bournemouth_Southampton_2019
+2019,37,Bournemouth,0.5,2.5,Southampton,0.0,2.0,2020-07-19,Craig Pawson,Vitality Stadium,Sun,14:00,0,399,Southampton,Bournemouth,Bournemouth,Southampton,Bournemouth_Southampton,Bournemouth_Southampton_2019
+2022,12,Bournemouth,1.0,1.0,Southampton,0.0,1.0,2022-10-19,John Brooks,Vitality Stadium,Wed,19:30,"10,405",109,Southampton,Bournemouth,Bournemouth,Southampton,Bournemouth_Southampton,Bournemouth_Southampton_2022
+2022,33,Southampton,0.5,0.9,Bournemouth,0.0,1.0,2023-04-27,Darren England,St. Mary's Stadium,Thu,19:45,"30,414",364,Bournemouth,Southampton,Southampton,Bournemouth,Bournemouth_Southampton,Bournemouth_Southampton_2022
+2015,11,Southampton,0.0,0.0,Bournemouth,2.0,0.0,0,Craig Pawson,0,0,0,0,9094,Southampton,Bournemouth,Southampton,Bournemouth,Bournemouth_Southampton,Bournemouth_Southampton_2015
+2015,28,Bournemouth,0.0,0.0,Southampton,2.0,0.0,0,Mike Dean,0,0,0,0,9257,Bournemouth,Southampton,Bournemouth,Southampton,Bournemouth_Southampton,Bournemouth_Southampton_2015

@@ -1,0 +1,3 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2018,7,Wolves,1.6,0.8,Southampton,2.0,0.0,2018-09-29,Stuart Attwell,Molineux Stadium,Sat,15:00,"31,147",69,Wolves,Southampton,Wolves,Southampton,Southampton_Wolves,Southampton_Wolves_2018
+2018,34,Southampton,2.9,0.8,Wolves,3.0,1.0,2019-04-13,Jonathan Moss,St. Mary's Stadium,Sat,15:00,"31,708",366,Southampton,Wolves,Southampton,Wolves,Southampton_Wolves,Southampton_Wolves_2018

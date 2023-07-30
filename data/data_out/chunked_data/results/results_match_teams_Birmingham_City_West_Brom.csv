@@ -1,0 +1,9 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2002,10,West Brom,0.0,0.0,Birmingham City,1.0,1.0,0,Graham Poll,0,0,0,0,4139,draw,draw,West Brom,Birmingham City,Birmingham_City_West_Brom,Birmingham City_West Brom_2002
+2002,31,Birmingham City,0.0,0.0,West Brom,1.0,0.0,0,Paul Durkin,0,0,0,0,4347,Birmingham City,West Brom,Birmingham City,West Brom,Birmingham_City_West_Brom,Birmingham City_West Brom_2002
+2004,18,Birmingham City,0.0,0.0,West Brom,4.0,0.0,0,Mike Riley,0,0,0,0,4978,Birmingham City,West Brom,Birmingham City,West Brom,Birmingham_City_West_Brom,Birmingham City_West Brom_2004
+2004,29,West Brom,0.0,0.0,Birmingham City,2.0,0.0,0,Steve Dunn,0,0,0,0,5089,West Brom,Birmingham City,West Brom,Birmingham City,Birmingham_City_West_Brom,Birmingham City_West Brom_2004
+2005,4,West Brom,0.0,0.0,Birmingham City,2.0,3.0,0,Graham Poll,0,0,0,0,5214,Birmingham City,West Brom,West Brom,Birmingham City,Birmingham_City_West_Brom,Birmingham City_West Brom_2005
+2005,29,Birmingham City,0.0,0.0,West Brom,1.0,1.0,0,Phil Dowd,0,0,0,0,5464,draw,draw,Birmingham City,West Brom,Birmingham_City_West_Brom,Birmingham City_West Brom_2005
+2010,5,West Brom,0.0,0.0,Birmingham City,3.0,1.0,0,Chris Foy,0,0,0,0,7127,West Brom,Birmingham City,West Brom,Birmingham City,Birmingham_City_West_Brom,Birmingham City_West Brom_2010
+2010,29,Birmingham City,0.0,0.0,West Brom,1.0,3.0,0,Mike Jones,0,0,0,0,7365,West Brom,Birmingham City,Birmingham City,West Brom,Birmingham_City_West_Brom,Birmingham City_West Brom_2010

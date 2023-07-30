@@ -1,0 +1,51 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,7,Chelsea,0.5,0.9,Manchester City,0.0,1.0,2017-09-30,Martin Atkinson,Stamford Bridge,Sat,17:30,"41,530",72,Manchester City,Chelsea,Chelsea,Manchester City,Chelsea_Manchester_City,Chelsea_Manchester City_2017
+2017,29,Manchester City,0.9,0.1,Chelsea,1.0,0.0,2018-03-04,Michael Oliver,Etihad Stadium,Sun,16:00,"54,328",317,Manchester City,Chelsea,Manchester City,Chelsea,Chelsea_Manchester_City,Chelsea_Manchester City_2017
+2018,16,Chelsea,0.6,0.9,Manchester City,2.0,0.0,2018-12-08,Michael Oliver,Stamford Bridge,Sat,17:30,"40,571",171,Chelsea,Manchester City,Chelsea,Manchester City,Chelsea_Manchester_City,Chelsea_Manchester City_2018
+2018,26,Manchester City,3.0,0.9,Chelsea,6.0,0.0,2019-02-10,Mike Dean,Etihad Stadium,Sun,16:00,"54,452",285,Manchester City,Chelsea,Manchester City,Chelsea,Chelsea_Manchester_City,Chelsea_Manchester City_2018
+2019,13,Manchester City,1.0,0.9,Chelsea,2.0,1.0,2019-11-23,Martin Atkinson,Etihad Stadium,Sat,17:30,"54,486",139,Manchester City,Chelsea,Manchester City,Chelsea,Chelsea_Manchester_City,Chelsea_Manchester City_2019
+2019,31,Chelsea,3.2,0.8,Manchester City,2.0,1.0,2020-06-25,Stuart Attwell,Stamford Bridge,Thu,20:15,0,341,Chelsea,Manchester City,Chelsea,Manchester City,Chelsea_Manchester_City,Chelsea_Manchester City_2019
+2020,17,Chelsea,0.8,2.7,Manchester City,1.0,3.0,2021-01-03,Anthony Taylor,Stamford Bridge,Sun,16:30,0,178,Manchester City,Chelsea,Chelsea,Manchester City,Chelsea_Manchester_City,Chelsea_Manchester City_2020
+2020,35,Manchester City,1.8,0.7,Chelsea,1.0,2.0,2021-05-08,Anthony Taylor,Etihad Stadium,Sat,17:30,0,392,Chelsea,Manchester City,Manchester City,Chelsea,Chelsea_Manchester_City,Chelsea_Manchester City_2020
+2021,6,Chelsea,0.2,1.7,Manchester City,0.0,1.0,2021-09-25,Michael Oliver,Stamford Bridge,Sat,12:30,"40,036",56,Manchester City,Chelsea,Chelsea,Manchester City,Chelsea_Manchester_City,Chelsea_Manchester City_2021
+2021,22,Manchester City,1.0,0.3,Chelsea,1.0,0.0,2022-01-15,Craig Pawson,Etihad Stadium,Sat,12:30,"53,319",216,Manchester City,Chelsea,Manchester City,Chelsea,Chelsea_Manchester_City,Chelsea_Manchester City_2021
+2022,19,Chelsea,0.4,2.1,Manchester City,0.0,1.0,2023-01-05,Paul Tierney,Stamford Bridge,Thu,20:00,"39,998",192,Manchester City,Chelsea,Chelsea,Manchester City,Chelsea_Manchester_City,Chelsea_Manchester City_2022
+2022,37,Manchester City,1.2,1.2,Chelsea,1.0,0.0,2023-05-21,Michael Oliver,Etihad Stadium,Sun,16:00,"53,490",414,Manchester City,Chelsea,Manchester City,Chelsea,Chelsea_Manchester_City,Chelsea_Manchester City_2022
+1992,9,Manchester City,0.0,0.0,Chelsea,0.0,1.0,0,Keith Hackett,0,0,0,0,96,Chelsea,Manchester City,Manchester City,Chelsea,Chelsea_Manchester_City,Chelsea_Manchester City_1992
+1992,23,Chelsea,0.0,0.0,Manchester City,2.0,4.0,0,Vic Callow,0,0,0,0,246,Manchester City,Chelsea,Chelsea,Manchester City,Chelsea_Manchester_City,Chelsea_Manchester City_1992
+1993,16,Chelsea,0.0,0.0,Manchester City,0.0,0.0,0,Mike Reed,0,0,0,0,627,draw,draw,Chelsea,Manchester City,Chelsea_Manchester_City,Chelsea_Manchester City_1993
+1993,41,Manchester City,0.0,0.0,Chelsea,2.0,2.0,0,Graham Poll,0,0,0,0,901,draw,draw,Manchester City,Chelsea,Chelsea_Manchester_City,Chelsea_Manchester City_1993
+1994,4,Chelsea,0.0,0.0,Manchester City,3.0,0.0,0,Mike Reed,0,0,0,0,962,Chelsea,Manchester City,Chelsea,Manchester City,Chelsea_Manchester_City,Chelsea_Manchester City_1994
+1994,33,Manchester City,0.0,0.0,Chelsea,1.0,2.0,0,David Elleray,0,0,0,0,1262,Chelsea,Manchester City,Manchester City,Chelsea,Chelsea_Manchester_City,Chelsea_Manchester City_1994
+1995,19,Manchester City,0.0,0.0,Chelsea,0.0,1.0,0,Gary Willard,0,0,0,0,1571,Chelsea,Manchester City,Manchester City,Chelsea,Chelsea_Manchester_City,Chelsea_Manchester City_1995
+1995,30,Chelsea,0.0,0.0,Manchester City,1.0,1.0,0,Paul Durkin,0,0,0,0,1674,draw,draw,Chelsea,Manchester City,Chelsea_Manchester_City,Chelsea_Manchester City_1995
+2000,16,Chelsea,0.0,0.0,Manchester City,2.0,1.0,0,Dermot Gallagher,0,0,0,0,3443,Chelsea,Manchester City,Chelsea,Manchester City,Chelsea_Manchester_City,Chelsea_Manchester City_2000
+2000,38,Manchester City,0.0,0.0,Chelsea,1.0,2.0,0,Mike Riley,0,0,0,0,3658,Chelsea,Manchester City,Manchester City,Chelsea,Chelsea_Manchester_City,Chelsea_Manchester City_2000
+2002,10,Manchester City,0.0,0.0,Chelsea,0.0,3.0,0,Dermot Gallagher,0,0,0,0,4140,Chelsea,Manchester City,Manchester City,Chelsea,Chelsea_Manchester_City,Chelsea_Manchester City_2002
+2002,31,Chelsea,0.0,0.0,Manchester City,5.0,0.0,0,Phil Dowd,0,0,0,0,4350,Chelsea,Manchester City,Chelsea,Manchester City,Chelsea_Manchester_City,Chelsea_Manchester City_2002
+2003,10,Chelsea,0.0,0.0,Manchester City,1.0,0.0,0,Phil Dowd,0,0,0,0,4522,Chelsea,Manchester City,Chelsea,Manchester City,Chelsea_Manchester_City,Chelsea_Manchester City_2003
+2003,27,Manchester City,0.0,0.0,Chelsea,0.0,1.0,0,Rob Styles,0,0,0,0,4685,Chelsea,Manchester City,Manchester City,Chelsea,Chelsea_Manchester_City,Chelsea_Manchester City_2003
+2004,9,Manchester City,0.0,0.0,Chelsea,1.0,0.0,0,Howard Webb,0,0,0,0,4889,Manchester City,Chelsea,Manchester City,Chelsea,Chelsea_Manchester_City,Chelsea_Manchester City_2004
+2004,26,Chelsea,0.0,0.0,Manchester City,0.0,0.0,0,Howard Webb,0,0,0,0,5064,draw,draw,Chelsea,Manchester City,Chelsea_Manchester_City,Chelsea_Manchester City_2004
+2005,19,Manchester City,0.0,0.0,Chelsea,0.0,1.0,0,Uriah Rennie,0,0,0,0,5365,Chelsea,Manchester City,Manchester City,Chelsea,Chelsea_Manchester_City,Chelsea_Manchester City_2005
+2005,31,Chelsea,0.0,0.0,Manchester City,2.0,0.0,0,Rob Styles,0,0,0,0,5488,Chelsea,Manchester City,Chelsea,Manchester City,Chelsea_Manchester_City,Chelsea_Manchester City_2005
+2006,1,Chelsea,0.0,0.0,Manchester City,3.0,0.0,0,Stephen Bennett,0,0,0,0,5574,Chelsea,Manchester City,Chelsea,Manchester City,Chelsea_Manchester_City,Chelsea_Manchester City_2006
+2006,28,Manchester City,0.0,0.0,Chelsea,0.0,1.0,0,Alan Wiley,0,0,0,0,5854,Chelsea,Manchester City,Manchester City,Chelsea,Chelsea_Manchester_City,Chelsea_Manchester City_2006
+2007,11,Chelsea,0.0,0.0,Manchester City,6.0,0.0,0,Mike Riley,0,0,0,0,6048,Chelsea,Manchester City,Chelsea,Manchester City,Chelsea_Manchester_City,Chelsea_Manchester City_2007
+2007,33,Manchester City,0.0,0.0,Chelsea,0.0,2.0,0,Chris Foy,0,0,0,0,6269,Chelsea,Manchester City,Manchester City,Chelsea,Chelsea_Manchester_City,Chelsea_Manchester City_2007
+2008,4,Manchester City,0.0,0.0,Chelsea,1.0,3.0,0,Mark Halsey,0,0,0,0,6356,Chelsea,Manchester City,Manchester City,Chelsea,Chelsea_Manchester_City,Chelsea_Manchester City_2008
+2008,29,Chelsea,0.0,0.0,Manchester City,1.0,0.0,0,Mike Riley,0,0,0,0,6613,Chelsea,Manchester City,Chelsea,Manchester City,Chelsea_Manchester_City,Chelsea_Manchester City_2008
+2009,15,Manchester City,0.0,0.0,Chelsea,2.0,1.0,0,Howard Webb,0,0,0,0,6850,Manchester City,Chelsea,Manchester City,Chelsea,Chelsea_Manchester_City,Chelsea_Manchester City_2009
+2009,28,Chelsea,0.0,0.0,Manchester City,2.0,4.0,0,Mike Dean,0,0,0,0,6973,Manchester City,Chelsea,Chelsea,Manchester City,Chelsea_Manchester_City,Chelsea_Manchester City_2009
+2010,6,Manchester City,0.0,0.0,Chelsea,1.0,0.0,0,Andre Marriner,0,0,0,0,7141,Manchester City,Chelsea,Manchester City,Chelsea,Chelsea_Manchester_City,Chelsea_Manchester City_2010
+2010,30,Chelsea,0.0,0.0,Manchester City,2.0,0.0,0,Chris Foy,0,0,0,0,7383,Chelsea,Manchester City,Chelsea,Manchester City,Chelsea_Manchester_City,Chelsea_Manchester City_2010
+2011,15,Chelsea,0.0,0.0,Manchester City,2.0,1.0,0,Mark Clattenburg,0,0,0,0,7614,Chelsea,Manchester City,Chelsea,Manchester City,Chelsea_Manchester_City,Chelsea_Manchester City_2011
+2011,29,Manchester City,0.0,0.0,Chelsea,2.0,1.0,0,Mike Dean,0,0,0,0,7751,Manchester City,Chelsea,Manchester City,Chelsea,Chelsea_Manchester_City,Chelsea_Manchester City_2011
+2012,13,Chelsea,0.0,0.0,Manchester City,0.0,0.0,0,Chris Foy,0,0,0,0,7971,draw,draw,Chelsea,Manchester City,Chelsea_Manchester_City,Chelsea_Manchester City_2012
+2012,27,Manchester City,0.0,0.0,Chelsea,2.0,0.0,0,Andre Marriner,0,0,0,0,8114,Manchester City,Chelsea,Manchester City,Chelsea,Chelsea_Manchester_City,Chelsea_Manchester City_2012
+2013,9,Chelsea,0.0,0.0,Manchester City,2.0,1.0,0,Howard Webb,0,0,0,0,8315,Chelsea,Manchester City,Chelsea,Manchester City,Chelsea_Manchester_City,Chelsea_Manchester City_2013
+2013,24,Manchester City,0.0,0.0,Chelsea,0.0,1.0,0,Mike Dean,0,0,0,0,8465,Chelsea,Manchester City,Manchester City,Chelsea,Chelsea_Manchester_City,Chelsea_Manchester City_2013
+2014,5,Manchester City,0.0,0.0,Chelsea,1.0,1.0,0,Mike Dean,0,0,0,0,8655,draw,draw,Manchester City,Chelsea,Chelsea_Manchester_City,Chelsea_Manchester City_2014
+2014,23,Chelsea,0.0,0.0,Manchester City,1.0,1.0,0,Mark Clattenburg,0,0,0,0,8833,draw,draw,Chelsea,Manchester City,Chelsea_Manchester_City,Chelsea_Manchester City_2014
+2015,2,Manchester City,0.0,0.0,Chelsea,3.0,0.0,0,Martin Atkinson,0,0,0,0,9004,Manchester City,Chelsea,Manchester City,Chelsea,Chelsea_Manchester_City,Chelsea_Manchester City_2015
+2015,34,Chelsea,0.0,0.0,Manchester City,0.0,3.0,0,Mike Dean,0,0,0,0,9315,Manchester City,Chelsea,Chelsea,Manchester City,Chelsea_Manchester_City,Chelsea_Manchester City_2015

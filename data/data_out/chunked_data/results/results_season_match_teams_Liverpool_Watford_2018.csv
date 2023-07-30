@@ -1,0 +1,3 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2018,13,Watford,0.4,1.2,Liverpool,0.0,3.0,2018-11-24,Jonathan Moss,Vicarage Road Stadium,Sat,15:00,"20,540",137,Liverpool,Watford,Watford,Liverpool,Liverpool_Watford,Liverpool_Watford_2018
+2018,28,Liverpool,1.9,0.3,Watford,5.0,0.0,2019-02-27,Graham Scott,Anfield,Wed,20:00,"53,316",305,Liverpool,Watford,Liverpool,Watford,Liverpool_Watford,Liverpool_Watford_2018

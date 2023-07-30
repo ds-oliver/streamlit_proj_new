@@ -1,0 +1,21 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2019,1,Liverpool,1.8,0.9,Norwich City,4.0,1.0,2019-08-09,Michael Oliver,Anfield,Fri,20:00,"53,333",0,Liverpool,Norwich City,Liverpool,Norwich City,Liverpool_Norwich_City,Liverpool_Norwich City_2019
+2019,26,Norwich City,0.3,2.0,Liverpool,0.0,1.0,2020-02-15,Stuart Attwell,Carrow Road,Sat,17:30,"27,110",281,Liverpool,Norwich City,Norwich City,Liverpool,Liverpool_Norwich_City,Liverpool_Norwich City_2019
+2021,1,Norwich City,1.4,1.6,Liverpool,0.0,3.0,2021-08-14,Andre Marriner,Carrow Road,Sat,17:30,"27,023",7,Liverpool,Norwich City,Norwich City,Liverpool,Liverpool_Norwich_City,Liverpool_Norwich City_2021
+2021,26,Liverpool,3.6,0.6,Norwich City,3.0,1.0,2022-02-19,Mike Dean,Anfield,Sat,15:00,"53,135",268,Liverpool,Norwich City,Liverpool,Norwich City,Liverpool_Norwich_City,Liverpool_Norwich City_2021
+1992,13,Liverpool,0.0,0.0,Norwich City,4.0,1.0,0,Raymond Lewis,0,0,0,0,142,Liverpool,Norwich City,Liverpool,Norwich City,Liverpool_Norwich_City,Liverpool_Norwich City_1992
+1992,41,Norwich City,0.0,0.0,Liverpool,1.0,0.0,0,David Elleray,0,0,0,0,435,Norwich City,Liverpool,Norwich City,Liverpool,Liverpool_Norwich_City,Liverpool_Norwich City_1992
+1993,16,Norwich City,0.0,0.0,Liverpool,2.0,2.0,0,Dermot Gallagher,0,0,0,0,749,draw,draw,Norwich City,Liverpool,Liverpool_Norwich_City,Liverpool_Norwich City_1993
+1993,41,Liverpool,0.0,0.0,Norwich City,0.0,1.0,0,Brian Hill,0,0,0,0,896,Norwich City,Liverpool,Liverpool,Norwich City,Liverpool_Norwich_City,Liverpool_Norwich City_1993
+1994,23,Liverpool,0.0,0.0,Norwich City,4.0,0.0,0,Keith Cooper,0,0,0,0,1170,Liverpool,Norwich City,Liverpool,Norwich City,Liverpool_Norwich_City,Liverpool_Norwich City_1994
+1994,40,Norwich City,0.0,0.0,Liverpool,1.0,2.0,0,Brian Hill,0,0,0,0,1343,Liverpool,Norwich City,Norwich City,Liverpool,Liverpool_Norwich_City,Liverpool_Norwich City_1994
+2004,7,Liverpool,0.0,0.0,Norwich City,3.0,0.0,0,Alan Wiley,0,0,0,0,4869,Liverpool,Norwich City,Liverpool,Norwich City,Liverpool_Norwich_City,Liverpool_Norwich City_2004
+2004,22,Norwich City,0.0,0.0,Liverpool,1.0,2.0,0,Howard Webb,0,0,0,0,5016,Liverpool,Norwich City,Norwich City,Liverpool,Liverpool_Norwich_City,Liverpool_Norwich City_2004
+2011,9,Liverpool,0.0,0.0,Norwich City,1.0,1.0,0,Peter Walton,0,0,0,0,7545,draw,draw,Liverpool,Norwich City,Liverpool_Norwich_City,Liverpool_Norwich City_2011
+2011,36,Norwich City,0.0,0.0,Liverpool,0.0,3.0,0,Mark Halsey,0,0,0,0,7813,Liverpool,Norwich City,Norwich City,Liverpool,Liverpool_Norwich_City,Liverpool_Norwich City_2011
+2012,6,Norwich City,0.0,0.0,Liverpool,2.0,5.0,0,Mike Jones,0,0,0,0,7897,Liverpool,Norwich City,Norwich City,Liverpool,Liverpool_Norwich_City,Liverpool_Norwich City_2012
+2012,23,Liverpool,0.0,0.0,Norwich City,5.0,0.0,0,Michael Oliver,0,0,0,0,8071,Liverpool,Norwich City,Liverpool,Norwich City,Liverpool_Norwich_City,Liverpool_Norwich City_2012
+2013,14,Liverpool,0.0,0.0,Norwich City,5.0,1.0,0,Anthony Taylor,0,0,0,0,8359,Liverpool,Norwich City,Liverpool,Norwich City,Liverpool_Norwich_City,Liverpool_Norwich City_2013
+2013,35,Norwich City,0.0,0.0,Liverpool,2.0,3.0,0,Andre Marriner,0,0,0,0,8570,Liverpool,Norwich City,Norwich City,Liverpool,Liverpool_Norwich_City,Liverpool_Norwich City_2013
+2015,6,Liverpool,0.0,0.0,Norwich City,1.0,1.0,0,Anthony Taylor,0,0,0,0,9044,draw,draw,Liverpool,Norwich City,Liverpool_Norwich_City,Liverpool_Norwich City_2015
+2015,23,Norwich City,0.0,0.0,Liverpool,4.0,5.0,0,Lee Mason,0,0,0,0,9206,Liverpool,Norwich City,Norwich City,Liverpool,Liverpool_Norwich_City,Liverpool_Norwich City_2015

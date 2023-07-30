@@ -1,0 +1,11 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2022,1,Newcastle Utd,1.7,0.3,Nott'ham Forest,2.0,0.0,2022-08-06,Simon Hooper,St James' Park,Sat,15:00,"52,245",3,Newcastle Utd,Nott'ham Forest,Newcastle Utd,Nott'ham Forest,Newcastle_Utd_Nott'ham_Forest,Newcastle Utd_Nott'ham Forest_2022
+2022,28,Nott'ham Forest,0.4,2.4,Newcastle Utd,1.0,2.0,2023-03-17,Paul Tierney,The City Ground,Fri,20:00,"29,362",296,Newcastle Utd,Nott'ham Forest,Nott'ham Forest,Newcastle Utd,Newcastle_Utd_Nott'ham_Forest,Newcastle Utd_Nott'ham Forest_2022
+1994,13,Nott'ham Forest,0.0,0.0,Newcastle Utd,0.0,0.0,0,Keith Burge,0,0,0,0,1072,draw,draw,Nott'ham Forest,Newcastle Utd,Newcastle_Utd_Nott'ham_Forest,Newcastle Utd_Nott'ham Forest_1994
+1994,28,Newcastle Utd,0.0,0.0,Nott'ham Forest,2.0,1.0,0,Kelvin Morton,0,0,0,0,1221,Newcastle Utd,Nott'ham Forest,Newcastle Utd,Nott'ham Forest,Newcastle_Utd_Nott'ham_Forest,Newcastle Utd_Nott'ham Forest_1994
+1995,19,Newcastle Utd,0.0,0.0,Nott'ham Forest,3.0,1.0,0,David Elleray,0,0,0,0,1572,Newcastle Utd,Nott'ham Forest,Newcastle Utd,Nott'ham Forest,Newcastle_Utd_Nott'ham_Forest,Newcastle Utd_Nott'ham Forest_1995
+1995,30,Nott'ham Forest,0.0,0.0,Newcastle Utd,1.0,1.0,0,Roger Dilkes,0,0,0,0,1755,draw,draw,Nott'ham Forest,Newcastle Utd,Newcastle_Utd_Nott'ham_Forest,Newcastle Utd_Nott'ham Forest_1995
+1996,16,Nott'ham Forest,0.0,0.0,Newcastle Utd,0.0,0.0,0,David Elleray,0,0,0,0,1928,draw,draw,Nott'ham Forest,Newcastle Utd,Newcastle_Utd_Nott'ham_Forest,Newcastle Utd_Nott'ham Forest_1996
+1996,38,Newcastle Utd,0.0,0.0,Nott'ham Forest,5.0,0.0,0,Mike Reed,0,0,0,0,2144,Newcastle Utd,Nott'ham Forest,Newcastle Utd,Nott'ham Forest,Newcastle_Utd_Nott'ham_Forest,Newcastle Utd_Nott'ham Forest_1996
+1998,7,Newcastle Utd,0.0,0.0,Nott'ham Forest,2.0,0.0,0,David Elleray,0,0,0,0,2588,Newcastle Utd,Nott'ham Forest,Newcastle Utd,Nott'ham Forest,Newcastle_Utd_Nott'ham_Forest,Newcastle Utd_Nott'ham Forest_1998
+1998,28,Nott'ham Forest,0.0,0.0,Newcastle Utd,1.0,2.0,0,Jeff Winter,0,0,0,0,2800,Newcastle Utd,Nott'ham Forest,Nott'ham Forest,Newcastle Utd,Newcastle_Utd_Nott'ham_Forest,Newcastle Utd_Nott'ham Forest_1998

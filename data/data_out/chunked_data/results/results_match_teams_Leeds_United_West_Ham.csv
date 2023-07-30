@@ -1,0 +1,27 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2020,12,Leeds United,1.6,1.3,West Ham,1.0,2.0,2020-12-11,Michael Oliver,Elland Road,Fri,20:00,0,118,West Ham,Leeds United,Leeds United,West Ham,Leeds_United_West_Ham,Leeds United_West Ham_2020
+2020,27,West Ham,1.8,1.4,Leeds United,2.0,0.0,2021-03-08,Mike Dean,London Stadium,Mon,20:00,0,314,West Ham,Leeds United,West Ham,Leeds United,Leeds_United_West_Ham,Leeds United_West Ham_2020
+2021,6,Leeds United,1.2,1.6,West Ham,1.0,2.0,2021-09-25,Kevin Friend,Elland Road,Sat,15:00,"36,417",58,West Ham,Leeds United,Leeds United,West Ham,Leeds_United_West_Ham,Leeds United_West Ham_2021
+2021,22,West Ham,2.4,2.2,Leeds United,2.0,3.0,2022-01-16,Mike Dean,London Stadium,Sun,14:00,"59,951",221,Leeds United,West Ham,West Ham,Leeds United,Leeds_United_West_Ham,Leeds United_West Ham_2021
+2022,19,Leeds United,1.6,1.4,West Ham,2.0,2.0,2023-01-04,David Coote,Elland Road,Wed,19:45,"36,173",189,draw,draw,Leeds United,West Ham,Leeds_United_West_Ham,Leeds United_West Ham_2022
+2022,37,West Ham,2.1,0.9,Leeds United,3.0,1.0,2023-05-21,Peter Bankes,London Stadium,Sun,13:30,"62,478",412,West Ham,Leeds United,West Ham,Leeds United,Leeds_United_West_Ham,Leeds United_West Ham_2022
+1993,2,Leeds United,0.0,0.0,West Ham,1.0,0.0,0,Roger Dilkes,0,0,0,0,476,Leeds United,West Ham,Leeds United,West Ham,Leeds_United_West_Ham,Leeds United_West Ham_1993
+1993,19,West Ham,0.0,0.0,Leeds United,0.0,1.0,0,Jim Borrett,0,0,0,0,662,Leeds United,West Ham,West Ham,Leeds United,Leeds_United_West_Ham,Leeds United_West Ham_1993
+1994,1,West Ham,0.0,0.0,Leeds United,0.0,0.0,0,Keith Burge,0,0,0,0,933,draw,draw,West Ham,Leeds United,Leeds_United_West_Ham,Leeds United_West Ham_1994
+1994,18,Leeds United,0.0,0.0,West Ham,2.0,2.0,0,Robbie Hart,0,0,0,0,1119,draw,draw,Leeds United,West Ham,Leeds_United_West_Ham,Leeds United_West Ham_1994
+1995,1,West Ham,0.0,0.0,Leeds United,1.0,2.0,0,Keith Burge,0,0,0,0,1390,Leeds United,West Ham,West Ham,Leeds United,Leeds_United_West_Ham,Leeds United_West Ham_1995
+1995,23,Leeds United,0.0,0.0,West Ham,2.0,0.0,0,Paul Danson,0,0,0,0,1603,Leeds United,West Ham,Leeds United,West Ham,Leeds_United_West_Ham,Leeds United_West Ham_1995
+1996,23,West Ham,0.0,0.0,Leeds United,0.0,2.0,0,Graham Poll,0,0,0,0,1991,Leeds United,West Ham,West Ham,Leeds United,Leeds_United_West_Ham,Leeds United_West Ham_1996
+1996,28,Leeds United,0.0,0.0,West Ham,1.0,0.0,0,Peter Jones,0,0,0,0,2028,Leeds United,West Ham,Leeds United,West Ham,Leeds_United_West_Ham,Leeds United_West Ham_1996
+1997,15,Leeds United,0.0,0.0,West Ham,3.0,1.0,0,Gerald Ashby,0,0,0,0,2289,Leeds United,West Ham,Leeds United,West Ham,Leeds_United_West_Ham,Leeds United_West Ham_1997
+1997,31,West Ham,0.0,0.0,Leeds United,3.0,0.0,0,Alan Wilkie,0,0,0,0,2449,West Ham,Leeds United,West Ham,Leeds United,Leeds_United_West_Ham,Leeds United_West Ham_1997
+1998,16,Leeds United,0.0,0.0,West Ham,4.0,0.0,0,Jeff Winter,0,0,0,0,2674,Leeds United,West Ham,Leeds United,West Ham,Leeds_United_West_Ham,Leeds United_West Ham_1998
+1998,36,West Ham,0.0,0.0,Leeds United,1.0,5.0,0,Rob Harris,0,0,0,0,2874,Leeds United,West Ham,West Ham,Leeds United,Leeds_United_West_Ham,Leeds United_West Ham_1998
+1999,13,Leeds United,0.0,0.0,West Ham,1.0,0.0,0,Graham Poll,0,0,0,0,3028,Leeds United,West Ham,Leeds United,West Ham,Leeds_United_West_Ham,Leeds United_West Ham_1999
+1999,38,West Ham,0.0,0.0,Leeds United,0.0,0.0,0,Graham Barber,0,0,0,0,3283,draw,draw,West Ham,Leeds United,Leeds_United_West_Ham,Leeds United_West Ham_1999
+2000,14,Leeds United,0.0,0.0,West Ham,0.0,1.0,0,Paul Taylor,0,0,0,0,3417,West Ham,Leeds United,Leeds United,West Ham,Leeds_United_West_Ham,Leeds United_West Ham_2000
+2000,35,West Ham,0.0,0.0,Leeds United,0.0,2.0,0,Graham Poll,0,0,0,0,3627,Leeds United,West Ham,West Ham,Leeds United,Leeds_United_West_Ham,Leeds United_West Ham_2000
+2001,3,West Ham,0.0,0.0,Leeds United,0.0,0.0,0,Paul Durkin,0,0,0,0,3686,draw,draw,West Ham,Leeds United,Leeds_United_West_Ham,Leeds United_West Ham_2001
+2001,21,Leeds United,0.0,0.0,West Ham,3.0,0.0,0,Steve Dunn,0,0,0,0,3866,Leeds United,West Ham,Leeds United,West Ham,Leeds_United_West_Ham,Leeds United_West Ham_2001
+2002,13,West Ham,0.0,0.0,Leeds United,3.0,4.0,0,Steve Dunn,0,0,0,0,4173,Leeds United,West Ham,West Ham,Leeds United,Leeds_United_West_Ham,Leeds United_West Ham_2002
+2002,27,Leeds United,0.0,0.0,West Ham,1.0,0.0,0,Dermot Gallagher,0,0,0,0,4310,Leeds United,West Ham,Leeds United,West Ham,Leeds_United_West_Ham,Leeds United_West Ham_2002

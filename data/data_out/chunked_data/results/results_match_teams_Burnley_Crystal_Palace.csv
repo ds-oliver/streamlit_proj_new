@@ -1,0 +1,13 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,4,Burnley,0.3,2.0,Crystal Palace,1.0,0.0,2017-09-10,Michael Oliver,Turf Moor,Sun,13:30,"18,862",40,Burnley,Crystal Palace,Burnley,Crystal Palace,Burnley_Crystal_Palace,Burnley_Crystal Palace_2017
+2017,23,Crystal Palace,1.4,0.7,Burnley,1.0,0.0,2018-01-13,Michael Oliver,Selhurst Park,Sat,15:00,"24,696",244,Crystal Palace,Burnley,Crystal Palace,Burnley,Burnley_Crystal_Palace,Burnley_Crystal Palace_2017
+2018,14,Crystal Palace,1.6,0.7,Burnley,2.0,0.0,2018-12-01,Lee Probert,Selhurst Park,Sat,15:00,"25,098",145,Crystal Palace,Burnley,Crystal Palace,Burnley,Burnley_Crystal_Palace,Burnley_Crystal Palace_2018
+2018,29,Burnley,2.1,0.5,Crystal Palace,1.0,3.0,2019-03-02,Lee Probert,Turf Moor,Sat,15:00,"19,223",313,Crystal Palace,Burnley,Burnley,Crystal Palace,Burnley_Crystal_Palace,Burnley_Crystal Palace_2018
+2019,14,Burnley,1.9,0.7,Crystal Palace,0.0,2.0,2019-11-30,Peter Bankes,Turf Moor,Sat,15:00,"19,818",146,Crystal Palace,Burnley,Burnley,Crystal Palace,Burnley_Crystal_Palace,Burnley_Crystal Palace_2019
+2019,32,Crystal Palace,0.9,0.4,Burnley,0.0,1.0,2020-06-29,Simon Hooper,Selhurst Park,Mon,20:00,0,345,Burnley,Crystal Palace,Crystal Palace,Burnley,Burnley_Crystal_Palace,Burnley_Crystal Palace_2019
+2020,9,Burnley,1.5,1.5,Crystal Palace,1.0,0.0,2020-11-23,Kevin Friend,Turf Moor,Mon,17:30,0,94,Burnley,Crystal Palace,Burnley,Crystal Palace,Burnley_Crystal_Palace,Burnley_Crystal Palace_2020
+2020,24,Crystal Palace,0.5,1.4,Burnley,0.0,3.0,2021-02-13,Michael Oliver,Selhurst Park,Sat,15:00,0,257,Burnley,Crystal Palace,Crystal Palace,Burnley,Burnley_Crystal_Palace,Burnley_Crystal Palace_2020
+2021,12,Burnley,1.5,1.9,Crystal Palace,3.0,3.0,2021-11-20,Simon Hooper,Turf Moor,Sat,15:00,"18,028",127,draw,draw,Burnley,Crystal Palace,Burnley_Crystal_Palace,Burnley_Crystal Palace_2021
+2021,27,Crystal Palace,1.0,0.2,Burnley,1.0,1.0,2022-02-26,Jonathan Moss,Selhurst Park,Sat,15:00,"24,203",285,draw,draw,Crystal Palace,Burnley,Burnley_Crystal_Palace,Burnley_Crystal Palace_2021
+2014,4,Crystal Palace,0.0,0.0,Burnley,0.0,0.0,0,Mike Dean,0,0,0,0,8641,draw,draw,Crystal Palace,Burnley,Burnley_Crystal_Palace,Burnley_Crystal Palace_2014
+2014,22,Burnley,0.0,0.0,Crystal Palace,2.0,3.0,0,Philip Dowd,0,0,0,0,8817,Crystal Palace,Burnley,Burnley,Crystal Palace,Burnley_Crystal_Palace,Burnley_Crystal Palace_2014

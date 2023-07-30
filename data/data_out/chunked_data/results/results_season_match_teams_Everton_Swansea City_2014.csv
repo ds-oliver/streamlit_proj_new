@@ -1,0 +1,3 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2014,10,Everton,0.0,0.0,Swansea City,0.0,0.0,0,Kevin Friend,0,0,0,0,8699,draw,draw,Everton,Swansea City,Everton_Swansea_City,Everton_Swansea City_2014
+2014,32,Swansea City,0.0,0.0,Everton,1.0,1.0,0,Michael Oliver,0,0,0,0,8916,draw,draw,Swansea City,Everton,Everton_Swansea_City,Everton_Swansea City_2014

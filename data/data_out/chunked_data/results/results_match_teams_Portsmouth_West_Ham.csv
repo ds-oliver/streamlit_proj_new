@@ -1,0 +1,11 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2005,18,Portsmouth,0.0,0.0,West Ham,1.0,1.0,0,Alan Wiley,0,0,0,0,5353,draw,draw,Portsmouth,West Ham,Portsmouth_West_Ham,Portsmouth_West Ham_2005
+2005,30,West Ham,0.0,0.0,Portsmouth,2.0,4.0,0,Alan Wiley,0,0,0,0,5481,Portsmouth,West Ham,West Ham,Portsmouth,Portsmouth_West_Ham,Portsmouth_West Ham_2005
+2006,8,Portsmouth,0.0,0.0,West Ham,2.0,0.0,0,Graham Poll,0,0,0,0,5637,Portsmouth,West Ham,Portsmouth,West Ham,Portsmouth_West_Ham,Portsmouth_West Ham_2006
+2006,20,West Ham,0.0,0.0,Portsmouth,1.0,2.0,0,Martin Atkinson,0,0,0,0,5758,Portsmouth,West Ham,West Ham,Portsmouth,Portsmouth_West_Ham,Portsmouth_West Ham_2006
+2007,11,Portsmouth,0.0,0.0,West Ham,0.0,0.0,0,Mike Dean,0,0,0,0,6043,draw,draw,Portsmouth,West Ham,Portsmouth_West_Ham,Portsmouth_West Ham_2007
+2007,33,West Ham,0.0,0.0,Portsmouth,0.0,1.0,0,Lee Probert,0,0,0,0,6275,Portsmouth,West Ham,West Ham,Portsmouth,Portsmouth_West_Ham,Portsmouth_West Ham_2007
+2008,13,West Ham,0.0,0.0,Portsmouth,0.0,0.0,0,Martin Atkinson,0,0,0,0,6451,draw,draw,West Ham,Portsmouth,Portsmouth_West_Ham,Portsmouth_West Ham_2008
+2008,19,Portsmouth,0.0,0.0,West Ham,1.0,4.0,0,Stephen Bennett,0,0,0,0,6510,West Ham,Portsmouth,Portsmouth,West Ham,Portsmouth_West_Ham,Portsmouth_West Ham_2008
+2009,19,West Ham,0.0,0.0,Portsmouth,2.0,0.0,0,Lee Probert,0,0,0,0,6882,West Ham,Portsmouth,West Ham,Portsmouth,Portsmouth_West_Ham,Portsmouth_West Ham_2009
+2009,23,Portsmouth,0.0,0.0,West Ham,1.0,1.0,0,Andre Marriner,0,0,0,0,6918,draw,draw,Portsmouth,West Ham,Portsmouth_West_Ham,Portsmouth_West Ham_2009

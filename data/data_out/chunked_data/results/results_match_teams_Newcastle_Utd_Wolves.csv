@@ -1,0 +1,17 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2018,16,Newcastle Utd,0.6,1.8,Wolves,1.0,2.0,2018-12-09,Mike Dean,St. James' Park,Sun,16:00,"50,223",173,Wolves,Newcastle Utd,Newcastle Utd,Wolves,Newcastle_Utd_Wolves,Newcastle Utd_Wolves_2018
+2018,26,Wolves,2.3,0.4,Newcastle Utd,1.0,1.0,2019-02-11,Graham Scott,Molineux Stadium,Mon,20:00,"30,687",286,draw,draw,Wolves,Newcastle Utd,Newcastle_Utd_Wolves,Newcastle Utd_Wolves_2018
+2019,10,Newcastle Utd,1.0,2.1,Wolves,1.0,1.0,2019-10-27,Kevin Friend,St. James' Park,Sun,14:00,"46,019",105,draw,draw,Newcastle Utd,Wolves,Newcastle_Utd_Wolves,Newcastle Utd_Wolves_2019
+2019,22,Wolves,1.6,0.2,Newcastle Utd,1.0,1.0,2020-01-11,Peter Bankes,Molineux Stadium,Sat,15:00,"31,570",235,draw,draw,Wolves,Newcastle Utd,Newcastle_Utd_Wolves,Newcastle Utd_Wolves_2019
+2020,6,Wolves,0.7,0.3,Newcastle Utd,1.0,1.0,2020-10-25,Lee Mason,Molineux Stadium,Sun,16:30,0,59,draw,draw,Wolves,Newcastle Utd,Newcastle_Utd_Wolves,Newcastle Utd_Wolves_2020
+2020,26,Newcastle Utd,1.7,1.1,Wolves,1.0,1.0,2021-02-27,Mike Dean,St. James' Park,Sat,20:00,0,287,draw,draw,Newcastle Utd,Wolves,Newcastle_Utd_Wolves,Newcastle Utd_Wolves_2020
+2021,7,Wolves,1.0,0.6,Newcastle Utd,2.0,1.0,2021-10-02,Graham Scott,Molineux Stadium,Sat,15:00,"30,483",67,Wolves,Newcastle Utd,Wolves,Newcastle Utd,Newcastle_Utd_Wolves,Newcastle Utd_Wolves_2021
+2021,32,Newcastle Utd,1.5,0.4,Wolves,1.0,0.0,2022-04-08,Peter Bankes,St. James' Park,Fri,20:00,"52,164",348,Newcastle Utd,Wolves,Newcastle Utd,Wolves,Newcastle_Utd_Wolves,Newcastle Utd_Wolves_2021
+2022,4,Wolves,0.7,1.7,Newcastle Utd,1.0,1.0,2022-08-28,Peter Bankes,Molineux Stadium,Sun,14:00,"31,311",40,draw,draw,Wolves,Newcastle Utd,Newcastle_Utd_Wolves,Newcastle Utd_Wolves_2022
+2022,27,Newcastle Utd,1.8,1.1,Wolves,2.0,1.0,2023-03-12,Andy Madley,St James' Park,Sun,16:30,"52,240",290,Newcastle Utd,Wolves,Newcastle Utd,Wolves,Newcastle_Utd_Wolves,Newcastle Utd_Wolves_2022
+2003,14,Wolves,0.0,0.0,Newcastle Utd,1.0,1.0,0,Stephen Bennett,0,0,0,0,4556,draw,draw,Wolves,Newcastle Utd,Newcastle_Utd_Wolves,Newcastle Utd_Wolves_2003
+2003,37,Newcastle Utd,0.0,0.0,Wolves,1.0,1.0,0,Matt Messias,0,0,0,0,4794,draw,draw,Newcastle Utd,Wolves,Newcastle_Utd_Wolves,Newcastle Utd_Wolves_2003
+2010,3,Wolves,0.0,0.0,Newcastle Utd,1.0,1.0,0,Stuart Attwell,0,0,0,0,7110,draw,draw,Wolves,Newcastle Utd,Newcastle_Utd_Wolves,Newcastle Utd_Wolves_2010
+2010,31,Newcastle Utd,0.0,0.0,Wolves,4.0,1.0,0,Mike Dean,0,0,0,0,7384,Newcastle Utd,Wolves,Newcastle Utd,Wolves,Newcastle_Utd_Wolves,Newcastle Utd_Wolves_2010
+2011,7,Wolves,0.0,0.0,Newcastle Utd,1.0,2.0,0,Mark Halsey,0,0,0,0,7525,Newcastle Utd,Wolves,Wolves,Newcastle Utd,Newcastle_Utd_Wolves,Newcastle Utd_Wolves_2011
+2011,26,Newcastle Utd,0.0,0.0,Wolves,2.0,2.0,0,Peter Walton,0,0,0,0,7717,draw,draw,Newcastle Utd,Wolves,Newcastle_Utd_Wolves,Newcastle Utd_Wolves_2011

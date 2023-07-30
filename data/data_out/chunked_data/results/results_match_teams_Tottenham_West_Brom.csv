@@ -1,0 +1,25 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,13,Tottenham,1.8,0.7,West Brom,1.0,1.0,2017-11-25,Mike Jones,Wembley Stadium,Sat,15:00,"65,905",133,draw,draw,Tottenham,West Brom,Tottenham_West_Brom,Tottenham_West Brom_2017
+2017,37,West Brom,1.6,1.2,Tottenham,1.0,0.0,2018-05-05,Mike Jones,The Hawthorns,Sat,15:00,"23,685",396,West Brom,Tottenham,West Brom,Tottenham,Tottenham_West_Brom,Tottenham_West Brom_2017
+2020,8,West Brom,0.8,1.9,Tottenham,0.0,1.0,2020-11-08,Andy Madley,The Hawthorns,Sun,12:00,0,81,Tottenham,West Brom,West Brom,Tottenham,Tottenham_West_Brom,Tottenham_West Brom_2020
+2020,23,Tottenham,1.5,0.6,West Brom,2.0,0.0,2021-02-07,Stuart Attwell,Tottenham Hotspur Stadium,Sun,12:00,0,250,Tottenham,West Brom,Tottenham,West Brom,Tottenham_West_Brom,Tottenham_West Brom_2020
+2002,17,Tottenham,0.0,0.0,West Brom,3.0,1.0,0,Alan Wiley,0,0,0,0,4213,Tottenham,West Brom,Tottenham,West Brom,Tottenham_West_Brom,Tottenham_West Brom_2002
+2002,35,West Brom,0.0,0.0,Tottenham,2.0,3.0,0,Phil Dowd,0,0,0,0,4389,Tottenham,West Brom,West Brom,Tottenham,Tottenham_West_Brom,Tottenham_West Brom_2002
+2004,3,West Brom,0.0,0.0,Tottenham,1.0,1.0,0,Barry Knight,0,0,0,0,4829,draw,draw,West Brom,Tottenham,Tottenham_West_Brom,Tottenham_West Brom_2004
+2004,34,Tottenham,0.0,0.0,West Brom,1.0,1.0,0,Chris Foy,0,0,0,0,5135,draw,draw,Tottenham,West Brom,Tottenham_West_Brom,Tottenham_West Brom_2004
+2005,19,West Brom,0.0,0.0,Tottenham,2.0,0.0,0,Mike Riley,0,0,0,0,5368,West Brom,Tottenham,West Brom,Tottenham,Tottenham_West_Brom,Tottenham_West Brom_2005
+2005,31,Tottenham,0.0,0.0,West Brom,2.0,1.0,0,Chris Foy,0,0,0,0,5492,Tottenham,West Brom,Tottenham,West Brom,Tottenham_West_Brom,Tottenham_West Brom_2005
+2008,20,West Brom,0.0,0.0,Tottenham,2.0,0.0,0,Steve Tanner,0,0,0,0,6516,West Brom,Tottenham,West Brom,Tottenham,Tottenham_West_Brom,Tottenham_West Brom_2008
+2008,35,Tottenham,0.0,0.0,West Brom,1.0,0.0,0,Rob Styles,0,0,0,0,6665,Tottenham,West Brom,Tottenham,West Brom,Tottenham_West_Brom,Tottenham_West Brom_2008
+2010,4,West Brom,0.0,0.0,Tottenham,1.0,1.0,0,Howard Webb,0,0,0,0,7122,draw,draw,West Brom,Tottenham,Tottenham_West_Brom,Tottenham_West Brom_2010
+2010,34,Tottenham,0.0,0.0,West Brom,2.0,2.0,0,Stuart Attwell,0,0,0,0,7417,draw,draw,Tottenham,West Brom,Tottenham_West_Brom,Tottenham_West Brom_2010
+2011,13,West Brom,0.0,0.0,Tottenham,1.0,3.0,0,Lee Probert,0,0,0,0,7588,Tottenham,West Brom,West Brom,Tottenham,Tottenham_West_Brom,Tottenham_West Brom_2011
+2011,20,Tottenham,0.0,0.0,West Brom,1.0,0.0,0,Mark Halsey,0,0,0,0,7660,Tottenham,West Brom,Tottenham,West Brom,Tottenham_West_Brom,Tottenham_West Brom_2011
+2012,2,Tottenham,0.0,0.0,West Brom,1.0,1.0,0,Mike Dean,0,0,0,0,7863,draw,draw,Tottenham,West Brom,Tottenham_West_Brom,Tottenham_West Brom_2012
+2012,25,West Brom,0.0,0.0,Tottenham,0.0,1.0,0,Mark Clattenburg,0,0,0,0,8095,Tottenham,West Brom,West Brom,Tottenham,Tottenham_West_Brom,Tottenham_West Brom_2012
+2013,18,Tottenham,0.0,0.0,West Brom,1.0,1.0,0,Anthony Taylor,0,0,0,0,8402,draw,draw,Tottenham,West Brom,Tottenham_West_Brom,Tottenham_West Brom_2013
+2013,34,West Brom,0.0,0.0,Tottenham,3.0,3.0,0,Neil Swarbrick,0,0,0,0,8555,draw,draw,West Brom,Tottenham,Tottenham_West_Brom,Tottenham_West Brom_2013
+2014,5,Tottenham,0.0,0.0,West Brom,0.0,1.0,0,Kevin Friend,0,0,0,0,8652,West Brom,Tottenham,Tottenham,West Brom,Tottenham_West_Brom,Tottenham_West Brom_2014
+2014,23,West Brom,0.0,0.0,Tottenham,0.0,3.0,0,Kevin Friend,0,0,0,0,8832,Tottenham,West Brom,West Brom,Tottenham,Tottenham_West_Brom,Tottenham_West Brom_2014
+2015,15,West Brom,0.0,0.0,Tottenham,1.0,1.0,0,Jonathan Moss,0,0,0,0,9129,draw,draw,West Brom,Tottenham,Tottenham_West_Brom,Tottenham_West Brom_2015
+2015,35,Tottenham,0.0,0.0,West Brom,1.0,1.0,0,Mike Jones,0,0,0,0,9331,draw,draw,Tottenham,West Brom,Tottenham_West_Brom,Tottenham_West Brom_2015

@@ -1,0 +1,51 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,18,Manchester City,3.4,0.2,Tottenham,4.0,1.0,2017-12-16,Craig Pawson,Etihad Stadium,Sat,17:30,"54,214",193,Manchester City,Tottenham,Manchester City,Tottenham,Manchester_City_Tottenham,Manchester City_Tottenham_2017
+2017,34,Tottenham,0.4,2.9,Manchester City,1.0,3.0,2018-04-14,Jonathan Moss,Wembley Stadium,Sat,19:45,"80,811",364,Manchester City,Tottenham,Tottenham,Manchester City,Manchester_City_Tottenham,Manchester City_Tottenham_2017
+2018,10,Tottenham,0.4,1.6,Manchester City,0.0,1.0,2018-10-29,Kevin Friend,Tottenham Hotspur Stadium,Mon,20:00,"56,854",108,Manchester City,Tottenham,Tottenham,Manchester City,Manchester_City_Tottenham,Manchester City_Tottenham_2018
+2018,35,Manchester City,1.9,1.0,Tottenham,1.0,0.0,2019-04-20,Michael Oliver,Etihad Stadium,Sat,12:30,"54,489",375,Manchester City,Tottenham,Manchester City,Tottenham,Manchester_City_Tottenham,Manchester City_Tottenham_2018
+2019,2,Manchester City,2.9,0.1,Tottenham,2.0,2.0,2019-08-17,Michael Oliver,Etihad Stadium,Sat,17:30,"54,503",17,draw,draw,Manchester City,Tottenham,Manchester_City_Tottenham,Manchester City_Tottenham_2019
+2019,25,Tottenham,0.3,2.4,Manchester City,2.0,0.0,2020-02-02,Mike Dean,Tottenham Hotspur Stadium,Sun,16:30,"61,022",274,Tottenham,Manchester City,Tottenham,Manchester City,Manchester_City_Tottenham,Manchester City_Tottenham_2019
+2020,9,Tottenham,0.7,1.4,Manchester City,2.0,0.0,2020-11-21,Mike Dean,Tottenham Hotspur Stadium,Sat,17:30,0,88,Tottenham,Manchester City,Tottenham,Manchester City,Manchester_City_Tottenham,Manchester City_Tottenham_2020
+2020,24,Manchester City,2.2,0.3,Tottenham,3.0,0.0,2021-02-13,Paul Tierney,Etihad Stadium,Sat,17:30,0,258,Manchester City,Tottenham,Manchester City,Tottenham,Manchester_City_Tottenham,Manchester City_Tottenham_2020
+2021,1,Tottenham,1.0,1.8,Manchester City,1.0,0.0,2021-08-15,Anthony Taylor,Tottenham Hotspur Stadium,Sun,16:30,"58,262",9,Tottenham,Manchester City,Tottenham,Manchester City,Manchester_City_Tottenham,Manchester City_Tottenham_2021
+2021,26,Manchester City,2.1,1.4,Tottenham,2.0,3.0,2022-02-19,Anthony Taylor,Etihad Stadium,Sat,17:30,"53,201",271,Tottenham,Manchester City,Manchester City,Tottenham,Manchester_City_Tottenham,Manchester City_Tottenham_2021
+2022,7,Manchester City,2.3,0.8,Tottenham,4.0,2.0,2023-01-19,Simon Hooper,Etihad Stadium,Thu,20:00,"53,088",208,Manchester City,Tottenham,Manchester City,Tottenham,Manchester_City_Tottenham,Manchester City_Tottenham_2022
+2022,22,Tottenham,1.4,1.3,Manchester City,1.0,0.0,2023-02-05,Andy Madley,Tottenham Hotspur Stadium,Sun,16:30,"61,747",230,Tottenham,Manchester City,Tottenham,Manchester City,Manchester_City_Tottenham,Manchester City_Tottenham_2022
+1992,17,Manchester City,0.0,0.0,Tottenham,0.0,1.0,0,David Allison,0,0,0,0,177,Tottenham,Manchester City,Manchester City,Tottenham,Manchester_City_Tottenham,Manchester City_Tottenham_1992
+1992,36,Tottenham,0.0,0.0,Manchester City,3.0,1.0,0,John Martin,0,0,0,0,372,Tottenham,Manchester City,Tottenham,Manchester City,Manchester_City_Tottenham,Manchester City_Tottenham_1992
+1993,3,Tottenham,0.0,0.0,Manchester City,1.0,0.0,0,Keith Hackett,0,0,0,0,488,Tottenham,Manchester City,Tottenham,Manchester City,Manchester_City_Tottenham,Manchester City_Tottenham_1993
+1993,20,Manchester City,0.0,0.0,Tottenham,0.0,2.0,0,Graham Poll,0,0,0,0,673,Tottenham,Manchester City,Manchester City,Tottenham,Manchester_City_Tottenham,Manchester City_Tottenham_1993
+1994,11,Manchester City,0.0,0.0,Tottenham,5.0,2.0,0,David Elleray,0,0,0,0,1039,Manchester City,Tottenham,Manchester City,Tottenham,Manchester_City_Tottenham,Manchester City_Tottenham_1994
+1994,25,Tottenham,0.0,0.0,Manchester City,2.0,1.0,0,Alan Wilkie,0,0,0,0,1315,Tottenham,Manchester City,Tottenham,Manchester City,Manchester_City_Tottenham,Manchester City_Tottenham_1994
+1995,1,Manchester City,0.0,0.0,Tottenham,1.0,1.0,0,Graham Poll,0,0,0,0,1393,draw,draw,Manchester City,Tottenham,Manchester_City_Tottenham,Manchester City_Tottenham_1995
+1995,23,Tottenham,0.0,0.0,Manchester City,1.0,0.0,0,Dermot Gallagher,0,0,0,0,1607,Tottenham,Manchester City,Tottenham,Manchester City,Manchester_City_Tottenham,Manchester City_Tottenham_1995
+2000,7,Tottenham,0.0,0.0,Manchester City,0.0,0.0,0,Stephen Bennett,0,0,0,0,3353,draw,draw,Tottenham,Manchester City,Manchester_City_Tottenham,Manchester City_Tottenham_2000
+2000,27,Manchester City,0.0,0.0,Tottenham,0.0,1.0,0,Steve Dunn,0,0,0,0,3547,Tottenham,Manchester City,Manchester City,Tottenham,Manchester_City_Tottenham,Manchester City_Tottenham_2000
+2002,19,Manchester City,0.0,0.0,Tottenham,2.0,3.0,0,Jeff Winter,0,0,0,0,4234,Tottenham,Manchester City,Manchester City,Tottenham,Manchester_City_Tottenham,Manchester City_Tottenham_2002
+2002,34,Tottenham,0.0,0.0,Manchester City,0.0,2.0,0,Mike Riley,0,0,0,0,4376,Manchester City,Tottenham,Tottenham,Manchester City,Manchester_City_Tottenham,Manchester City_Tottenham_2002
+2003,7,Manchester City,0.0,0.0,Tottenham,0.0,0.0,0,Neale Barry,0,0,0,0,4491,draw,draw,Manchester City,Tottenham,Manchester_City_Tottenham,Manchester City_Tottenham_2003
+2003,33,Tottenham,0.0,0.0,Manchester City,1.0,1.0,0,Chris Foy,0,0,0,0,4745,draw,draw,Tottenham,Manchester City,Manchester_City_Tottenham,Manchester City_Tottenham_2003
+2004,17,Manchester City,0.0,0.0,Tottenham,0.0,1.0,0,Dermot Gallagher,0,0,0,0,4968,Tottenham,Manchester City,Manchester City,Tottenham,Manchester_City_Tottenham,Manchester City_Tottenham_2004
+2004,30,Tottenham,0.0,0.0,Manchester City,2.0,1.0,0,Barry Knight,0,0,0,0,5101,Tottenham,Manchester City,Tottenham,Manchester City,Manchester_City_Tottenham,Manchester City_Tottenham_2004
+2005,21,Manchester City,0.0,0.0,Tottenham,0.0,2.0,0,Alan Wiley,0,0,0,0,5389,Tottenham,Manchester City,Manchester City,Tottenham,Manchester_City_Tottenham,Manchester City_Tottenham_2005
+2005,33,Tottenham,0.0,0.0,Manchester City,2.0,1.0,0,Dermot Gallagher,0,0,0,0,5506,Tottenham,Manchester City,Tottenham,Manchester City,Manchester_City_Tottenham,Manchester City_Tottenham_2005
+2006,18,Manchester City,0.0,0.0,Tottenham,1.0,2.0,0,Rob Styles,0,0,0,0,5743,Tottenham,Manchester City,Manchester City,Tottenham,Manchester_City_Tottenham,Manchester City_Tottenham_2006
+2006,38,Tottenham,0.0,0.0,Manchester City,2.0,1.0,0,Stephen Bennett,0,0,0,0,5942,Tottenham,Manchester City,Tottenham,Manchester City,Manchester_City_Tottenham,Manchester City_Tottenham_2006
+2007,16,Tottenham,0.0,0.0,Manchester City,2.0,1.0,0,Mark Halsey,0,0,0,0,6104,Tottenham,Manchester City,Tottenham,Manchester City,Manchester_City_Tottenham,Manchester City_Tottenham_2007
+2007,30,Manchester City,0.0,0.0,Tottenham,2.0,1.0,0,Mark Clattenburg,0,0,0,0,6241,Manchester City,Tottenham,Manchester City,Tottenham,Manchester_City_Tottenham,Manchester City_Tottenham_2007
+2008,12,Manchester City,0.0,0.0,Tottenham,1.0,2.0,0,Mike Dean,0,0,0,0,6444,Tottenham,Manchester City,Manchester City,Tottenham,Manchester_City_Tottenham,Manchester City_Tottenham_2008
+2008,37,Tottenham,0.0,0.0,Manchester City,2.0,1.0,0,Mark Halsey,0,0,0,0,6688,Tottenham,Manchester City,Tottenham,Manchester City,Manchester_City_Tottenham,Manchester City_Tottenham_2008
+2009,17,Tottenham,0.0,0.0,Manchester City,3.0,0.0,0,Alan Wiley,0,0,0,0,6869,Tottenham,Manchester City,Tottenham,Manchester City,Manchester_City_Tottenham,Manchester City_Tottenham_2009
+2009,29,Manchester City,0.0,0.0,Tottenham,0.0,1.0,0,Stephen Bennett,0,0,0,0,7075,Tottenham,Manchester City,Manchester City,Tottenham,Manchester_City_Tottenham,Manchester City_Tottenham_2009
+2010,1,Tottenham,0.0,0.0,Manchester City,0.0,0.0,0,Andre Marriner,0,0,0,0,7088,draw,draw,Tottenham,Manchester City,Manchester_City_Tottenham,Manchester City_Tottenham_2010
+2010,33,Manchester City,0.0,0.0,Tottenham,1.0,0.0,0,Mike Dean,0,0,0,0,7445,Manchester City,Tottenham,Manchester City,Tottenham,Manchester_City_Tottenham,Manchester City_Tottenham_2010
+2011,3,Tottenham,0.0,0.0,Manchester City,1.0,5.0,0,Phil Dowd,0,0,0,0,7492,Manchester City,Tottenham,Tottenham,Manchester City,Manchester_City_Tottenham,Manchester City_Tottenham_2011
+2011,22,Manchester City,0.0,0.0,Tottenham,3.0,2.0,0,Howard Webb,0,0,0,0,7685,Manchester City,Tottenham,Manchester City,Tottenham,Manchester_City_Tottenham,Manchester City_Tottenham_2011
+2012,11,Manchester City,0.0,0.0,Tottenham,2.0,1.0,0,Michael Oliver,0,0,0,0,7952,Manchester City,Tottenham,Manchester City,Tottenham,Manchester_City_Tottenham,Manchester City_Tottenham_2012
+2012,34,Tottenham,0.0,0.0,Manchester City,3.0,1.0,0,Lee Mason,0,0,0,0,8180,Tottenham,Manchester City,Tottenham,Manchester City,Manchester_City_Tottenham,Manchester City_Tottenham_2012
+2013,12,Manchester City,0.0,0.0,Tottenham,6.0,0.0,0,Howard Webb,0,0,0,0,8344,Manchester City,Tottenham,Manchester City,Tottenham,Manchester_City_Tottenham,Manchester City_Tottenham_2013
+2013,23,Tottenham,0.0,0.0,Manchester City,1.0,5.0,0,Andre Marriner,0,0,0,0,8453,Manchester City,Tottenham,Tottenham,Manchester City,Manchester_City_Tottenham,Manchester City_Tottenham_2013
+2014,8,Manchester City,0.0,0.0,Tottenham,4.0,1.0,0,Jonathan Moss,0,0,0,0,8676,Manchester City,Tottenham,Manchester City,Tottenham,Manchester_City_Tottenham,Manchester City_Tottenham_2014
+2014,35,Tottenham,0.0,0.0,Manchester City,0.0,1.0,0,Andre Marriner,0,0,0,0,8953,Manchester City,Tottenham,Tottenham,Manchester City,Manchester_City_Tottenham,Manchester City_Tottenham_2014
+2015,7,Tottenham,0.0,0.0,Manchester City,4.0,1.0,0,Mark Clattenburg,0,0,0,0,9046,Tottenham,Manchester City,Tottenham,Manchester City,Manchester_City_Tottenham,Manchester City_Tottenham_2015
+2015,26,Manchester City,0.0,0.0,Tottenham,1.0,2.0,0,Mark Clattenburg,0,0,0,0,9245,Tottenham,Manchester City,Manchester City,Tottenham,Manchester_City_Tottenham,Manchester City_Tottenham_2015

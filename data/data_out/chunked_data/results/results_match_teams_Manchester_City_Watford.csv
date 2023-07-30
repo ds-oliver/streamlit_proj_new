@@ -1,0 +1,13 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,5,Watford,0.5,3.3,Manchester City,0.0,6.0,2017-09-16,Anthony Taylor,Vicarage Road Stadium,Sat,15:00,"20,305",50,Manchester City,Watford,Watford,Manchester City,Manchester_City_Watford,Manchester City_Watford_2017
+2017,22,Manchester City,2.1,1.0,Watford,3.0,1.0,2018-01-02,Lee Mason,Etihad Stadium,Tue,20:00,"53,556",238,Manchester City,Watford,Manchester City,Watford,Manchester_City_Watford,Manchester City_Watford_2017
+2018,15,Watford,1.8,2.5,Manchester City,1.0,2.0,2018-12-04,Paul Tierney,Vicarage Road Stadium,Tue,20:00,"20,389",157,Manchester City,Watford,Watford,Manchester City,Manchester_City_Watford,Manchester City_Watford_2018
+2018,30,Manchester City,3.4,0.2,Watford,3.0,1.0,2019-03-09,Paul Tierney,Etihad Stadium,Sat,17:30,"54,104",325,Manchester City,Watford,Manchester City,Watford,Manchester_City_Watford,Manchester City_Watford_2018
+2019,6,Manchester City,5.9,0.4,Watford,8.0,0.0,2019-09-21,Mike Dean,Etihad Stadium,Sat,15:00,"54,273",57,Manchester City,Watford,Manchester City,Watford,Manchester_City_Watford,Manchester City_Watford_2019
+2019,37,Watford,0.1,3.3,Manchester City,0.0,4.0,2020-07-21,Michael Oliver,Vicarage Road Stadium,Tue,18:00,0,404,Manchester City,Watford,Watford,Manchester City,Manchester_City_Watford,Manchester City_Watford_2019
+2021,15,Watford,0.8,3.1,Manchester City,1.0,3.0,2021-12-04,Simon Hooper,Vicarage Road Stadium,Sat,17:30,"20,673",157,Manchester City,Watford,Watford,Manchester City,Manchester_City_Watford,Manchester City_Watford_2021
+2021,34,Manchester City,3.6,0.5,Watford,5.0,1.0,2022-04-23,Kevin Friend,Etihad Stadium,Sat,15:00,"53,013",378,Manchester City,Watford,Manchester City,Watford,Manchester_City_Watford,Manchester City_Watford_2021
+2006,16,Manchester City,0.0,0.0,Watford,0.0,0.0,0,Mark Clattenburg,0,0,0,0,5718,draw,draw,Manchester City,Watford,Manchester_City_Watford,Manchester City_Watford_2006
+2006,35,Watford,0.0,0.0,Manchester City,1.0,1.0,0,Rob Styles,0,0,0,0,5906,draw,draw,Watford,Manchester City,Manchester_City_Watford,Manchester City_Watford_2006
+2015,4,Manchester City,0.0,0.0,Watford,2.0,0.0,0,Mark Clattenburg,0,0,0,0,9022,Manchester City,Watford,Manchester City,Watford,Manchester_City_Watford,Manchester City_Watford_2015
+2015,20,Watford,0.0,0.0,Manchester City,1.0,2.0,0,Martin Atkinson,0,0,0,0,9183,Manchester City,Watford,Watford,Manchester City,Manchester_City_Watford,Manchester City_Watford_2015

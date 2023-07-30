@@ -1,0 +1,11 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,4,Arsenal,2.2,0.6,Bournemouth,3.0,0.0,2017-09-09,Anthony Taylor,Emirates Stadium,Sat,15:00,"59,262",35,Arsenal,Bournemouth,Arsenal,Bournemouth,Arsenal_Bournemouth,Arsenal_Bournemouth_2017
+2017,23,Bournemouth,0.8,1.1,Arsenal,2.0,1.0,2018-01-14,Kevin Friend,Vitality Stadium,Sun,13:30,"10,836",250,Bournemouth,Arsenal,Bournemouth,Arsenal,Arsenal_Bournemouth,Arsenal_Bournemouth_2017
+2018,13,Bournemouth,0.6,1.6,Arsenal,1.0,2.0,2018-11-25,Craig Pawson,Vitality Stadium,Sun,13:30,"10,792",139,Arsenal,Bournemouth,Bournemouth,Arsenal,Arsenal_Bournemouth,Arsenal_Bournemouth_2018
+2018,28,Arsenal,2.5,0.9,Bournemouth,5.0,1.0,2019-02-27,Chris Kavanagh,Emirates Stadium,Wed,19:45,"59,618",301,Arsenal,Bournemouth,Arsenal,Bournemouth,Arsenal_Bournemouth,Arsenal_Bournemouth_2018
+2019,8,Arsenal,1.2,0.6,Bournemouth,1.0,0.0,2019-10-06,Martin Atkinson,Emirates Stadium,Sun,14:00,"60,326",85,Arsenal,Bournemouth,Arsenal,Bournemouth,Arsenal_Bournemouth,Arsenal_Bournemouth_2019
+2019,19,Bournemouth,2.0,1.4,Arsenal,1.0,1.0,2019-12-26,Stuart Attwell,Vitality Stadium,Thu,15:00,"10,234",200,draw,draw,Bournemouth,Arsenal,Arsenal_Bournemouth,Arsenal_Bournemouth_2019
+2022,3,Bournemouth,0.3,1.3,Arsenal,0.0,3.0,2022-08-20,Craig Pawson,Vitality Stadium,Sat,17:30,"10,423",27,Arsenal,Bournemouth,Bournemouth,Arsenal,Arsenal_Bournemouth,Arsenal_Bournemouth_2022
+2022,26,Arsenal,2.1,1.3,Bournemouth,3.0,2.0,2023-03-04,Chris Kavanagh,Emirates Stadium,Sat,15:00,"60,222",271,Arsenal,Bournemouth,Arsenal,Bournemouth,Arsenal_Bournemouth,Arsenal_Bournemouth_2022
+2015,19,Arsenal,0.0,0.0,Bournemouth,2.0,0.0,0,Roger East,0,0,0,0,9172,Arsenal,Bournemouth,Arsenal,Bournemouth,Arsenal_Bournemouth,Arsenal_Bournemouth_2015
+2015,25,Bournemouth,0.0,0.0,Arsenal,0.0,2.0,0,Kevin Friend,0,0,0,0,9234,Arsenal,Bournemouth,Bournemouth,Arsenal,Arsenal_Bournemouth,Arsenal_Bournemouth_2015

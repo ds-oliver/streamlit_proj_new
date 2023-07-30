@@ -1,0 +1,61 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,11,Chelsea,1.6,0.7,Manchester Utd,1.0,0.0,2017-11-05,Anthony Taylor,Stamford Bridge,Sun,16:30,"41,615",119,Chelsea,Manchester Utd,Chelsea,Manchester Utd,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2017
+2017,28,Manchester Utd,1.2,1.7,Chelsea,2.0,1.0,2018-02-25,Martin Atkinson,Old Trafford,Sun,14:05,"75,060",306,Manchester Utd,Chelsea,Manchester Utd,Chelsea,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2017
+2018,9,Chelsea,1.8,0.8,Manchester Utd,2.0,2.0,2018-10-20,Mike Dean,Stamford Bridge,Sat,12:30,"40,721",88,draw,draw,Chelsea,Manchester Utd,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2018
+2018,36,Manchester Utd,1.1,1.7,Chelsea,1.0,1.0,2019-04-28,Martin Atkinson,Old Trafford,Sun,16:30,"74,526",402,draw,draw,Manchester Utd,Chelsea,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2018
+2019,1,Manchester Utd,2.2,1.0,Chelsea,4.0,0.0,2019-08-11,Anthony Taylor,Old Trafford,Sun,16:30,"73,620",9,Manchester Utd,Chelsea,Manchester Utd,Chelsea,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2019
+2019,26,Chelsea,0.9,0.6,Manchester Utd,0.0,2.0,2020-02-17,Anthony Taylor,Stamford Bridge,Mon,20:00,"40,504",284,Manchester Utd,Chelsea,Chelsea,Manchester Utd,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2019
+2020,6,Manchester Utd,0.6,0.2,Chelsea,0.0,0.0,2020-10-24,Martin Atkinson,Old Trafford,Sat,17:30,0,56,draw,draw,Manchester Utd,Chelsea,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2020
+2020,26,Chelsea,1.1,0.4,Manchester Utd,0.0,0.0,2021-02-28,Stuart Attwell,Stamford Bridge,Sun,16:30,0,291,draw,draw,Chelsea,Manchester Utd,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2020
+2021,13,Chelsea,2.7,0.9,Manchester Utd,1.0,1.0,2021-11-28,Anthony Taylor,Stamford Bridge,Sun,16:30,"40,041",140,draw,draw,Chelsea,Manchester Utd,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2021
+2021,37,Manchester Utd,0.5,1.9,Chelsea,1.0,1.0,2022-04-28,Mike Dean,Old Trafford,Thu,19:45,"73,564",387,draw,draw,Manchester Utd,Chelsea,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2021
+2022,13,Chelsea,1.1,0.8,Manchester Utd,1.0,1.0,2022-10-22,Stuart Attwell,Stamford Bridge,Sat,17:30,"39,503",120,draw,draw,Chelsea,Manchester Utd,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2022
+2022,32,Manchester Utd,5.2,1.9,Chelsea,4.0,1.0,2023-05-25,Stuart Attwell,Old Trafford,Thu,20:00,"73,561",418,Manchester Utd,Chelsea,Manchester Utd,Chelsea,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2022
+1992,20,Chelsea,0.0,0.0,Manchester Utd,1.0,1.0,0,Raymond Lewis,0,0,0,0,215,draw,draw,Chelsea,Manchester Utd,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_1992
+1992,40,Manchester Utd,0.0,0.0,Chelsea,3.0,0.0,0,Howard King,0,0,0,0,419,Manchester Utd,Chelsea,Manchester Utd,Chelsea,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_1992
+1993,7,Chelsea,0.0,0.0,Manchester Utd,1.0,0.0,0,Peter Foakes,0,0,0,0,536,Chelsea,Manchester Utd,Chelsea,Manchester Utd,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_1993
+1993,32,Manchester Utd,0.0,0.0,Chelsea,0.0,1.0,0,Dermot Gallagher,0,0,0,0,792,Chelsea,Manchester Utd,Manchester Utd,Chelsea,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_1993
+1994,20,Chelsea,0.0,0.0,Manchester Utd,2.0,3.0,0,Mike Reed,0,0,0,0,1141,Manchester Utd,Chelsea,Chelsea,Manchester Utd,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_1994
+1994,39,Manchester Utd,0.0,0.0,Chelsea,0.0,0.0,0,Stephen Lodge,0,0,0,0,1336,draw,draw,Manchester Utd,Chelsea,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_1994
+1995,10,Chelsea,0.0,0.0,Manchester Utd,1.0,4.0,0,Alan Wilkie,0,0,0,0,1480,Manchester Utd,Chelsea,Chelsea,Manchester Utd,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_1995
+1995,16,Manchester Utd,0.0,0.0,Chelsea,1.0,1.0,0,Martin Bodenham,0,0,0,0,1538,draw,draw,Manchester Utd,Chelsea,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_1995
+1996,12,Manchester Utd,0.0,0.0,Chelsea,1.0,2.0,0,Keith Burge,0,0,0,0,1880,Chelsea,Manchester Utd,Manchester Utd,Chelsea,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_1996
+1996,27,Chelsea,0.0,0.0,Manchester Utd,1.0,1.0,0,Gerald Ashby,0,0,0,0,2017,draw,draw,Chelsea,Manchester Utd,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_1996
+1997,8,Manchester Utd,0.0,0.0,Chelsea,2.0,2.0,0,Gary Willard,0,0,0,0,2215,draw,draw,Manchester Utd,Chelsea,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_1997
+1997,28,Chelsea,0.0,0.0,Manchester Utd,0.0,1.0,0,Steve Dunn,0,0,0,0,2411,Manchester Utd,Chelsea,Chelsea,Manchester Utd,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_1997
+1998,3,Manchester Utd,0.0,0.0,Chelsea,1.0,1.0,0,Graham Barber,0,0,0,0,2695,draw,draw,Manchester Utd,Chelsea,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_1998
+1998,20,Chelsea,0.0,0.0,Manchester Utd,0.0,0.0,0,Mike Riley,0,0,0,0,2725,draw,draw,Chelsea,Manchester Utd,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_1998
+1999,10,Chelsea,0.0,0.0,Manchester Utd,5.0,0.0,0,Dermot Gallagher,0,0,0,0,3000,Chelsea,Manchester Utd,Chelsea,Manchester Utd,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_1999
+1999,35,Manchester Utd,0.0,0.0,Chelsea,3.0,2.0,0,Steve Dunn,0,0,0,0,3249,Manchester Utd,Chelsea,Manchester Utd,Chelsea,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_1999
+2000,7,Manchester Utd,0.0,0.0,Chelsea,3.0,3.0,0,Peter Jones,0,0,0,0,3351,draw,draw,Manchester Utd,Chelsea,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2000
+2000,27,Chelsea,0.0,0.0,Manchester Utd,1.0,1.0,0,David Elleray,0,0,0,0,3545,draw,draw,Chelsea,Manchester Utd,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2000
+2001,15,Manchester Utd,0.0,0.0,Chelsea,0.0,3.0,0,Alan Wiley,0,0,0,0,3804,Chelsea,Manchester Utd,Manchester Utd,Chelsea,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2001
+2001,36,Chelsea,0.0,0.0,Manchester Utd,0.0,3.0,0,Graham Barber,0,0,0,0,4013,Manchester Utd,Chelsea,Chelsea,Manchester Utd,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2001
+2002,2,Chelsea,0.0,0.0,Manchester Utd,2.0,2.0,0,Graham Poll,0,0,0,0,4056,draw,draw,Chelsea,Manchester Utd,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2002
+2002,24,Manchester Utd,0.0,0.0,Chelsea,2.0,1.0,0,Paul Durkin,0,0,0,0,4277,Manchester Utd,Chelsea,Manchester Utd,Chelsea,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2002
+2003,14,Chelsea,0.0,0.0,Manchester Utd,1.0,0.0,0,Alan Wiley,0,0,0,0,4563,Chelsea,Manchester Utd,Chelsea,Manchester Utd,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2003
+2003,37,Manchester Utd,0.0,0.0,Chelsea,1.0,1.0,0,Stephen Bennett,0,0,0,0,4787,draw,draw,Manchester Utd,Chelsea,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2003
+2004,1,Chelsea,0.0,0.0,Manchester Utd,1.0,0.0,0,Graham Poll,0,0,0,0,4814,Chelsea,Manchester Utd,Chelsea,Manchester Utd,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2004
+2004,33,Manchester Utd,0.0,0.0,Chelsea,1.0,3.0,0,Graham Poll,0,0,0,0,5174,Chelsea,Manchester Utd,Manchester Utd,Chelsea,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2004
+2005,12,Manchester Utd,0.0,0.0,Chelsea,1.0,0.0,0,Graham Poll,0,0,0,0,5299,Manchester Utd,Chelsea,Manchester Utd,Chelsea,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2005
+2005,37,Chelsea,0.0,0.0,Manchester Utd,3.0,0.0,0,Mike Dean,0,0,0,0,5546,Chelsea,Manchester Utd,Chelsea,Manchester Utd,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2005
+2006,14,Manchester Utd,0.0,0.0,Chelsea,1.0,1.0,0,Howard Webb,0,0,0,0,5703,draw,draw,Manchester Utd,Chelsea,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2006
+2006,34,Chelsea,0.0,0.0,Manchester Utd,0.0,0.0,0,Graham Poll,0,0,0,0,5934,draw,draw,Chelsea,Manchester Utd,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2006
+2007,7,Manchester Utd,0.0,0.0,Chelsea,2.0,0.0,0,Mike Dean,0,0,0,0,6009,Manchester Utd,Chelsea,Manchester Utd,Chelsea,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2007
+2007,36,Chelsea,0.0,0.0,Manchester Utd,2.0,1.0,0,Alan Wiley,0,0,0,0,6302,Chelsea,Manchester Utd,Chelsea,Manchester Utd,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2007
+2008,5,Chelsea,0.0,0.0,Manchester Utd,1.0,1.0,0,Mike Riley,0,0,0,0,6372,draw,draw,Chelsea,Manchester Utd,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2008
+2008,21,Manchester Utd,0.0,0.0,Chelsea,3.0,0.0,0,Howard Webb,0,0,0,0,6530,Manchester Utd,Chelsea,Manchester Utd,Chelsea,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2008
+2009,12,Chelsea,0.0,0.0,Manchester Utd,1.0,0.0,0,Martin Atkinson,0,0,0,0,6821,Chelsea,Manchester Utd,Chelsea,Manchester Utd,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2009
+2009,33,Manchester Utd,0.0,0.0,Chelsea,1.0,2.0,0,Mike Dean,0,0,0,0,7027,Chelsea,Manchester Utd,Manchester Utd,Chelsea,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2009
+2010,18,Chelsea,0.0,0.0,Manchester Utd,2.0,1.0,0,Martin Atkinson,0,0,0,0,7362,Chelsea,Manchester Utd,Chelsea,Manchester Utd,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2010
+2010,36,Manchester Utd,0.0,0.0,Chelsea,2.0,1.0,0,Howard Webb,0,0,0,0,7443,Manchester Utd,Chelsea,Manchester Utd,Chelsea,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2010
+2011,5,Manchester Utd,0.0,0.0,Chelsea,3.0,1.0,0,Phil Dowd,0,0,0,0,7512,Manchester Utd,Chelsea,Manchester Utd,Chelsea,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2011
+2011,24,Chelsea,0.0,0.0,Manchester Utd,3.0,3.0,0,Howard Webb,0,0,0,0,7704,draw,draw,Chelsea,Manchester Utd,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2011
+2012,9,Chelsea,0.0,0.0,Manchester Utd,2.0,3.0,0,Mark Clattenburg,0,0,0,0,7932,Manchester Utd,Chelsea,Chelsea,Manchester Utd,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2012
+2012,36,Manchester Utd,0.0,0.0,Chelsea,0.0,1.0,0,Howard Webb,0,0,0,0,8200,Chelsea,Manchester Utd,Manchester Utd,Chelsea,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2012
+2013,2,Manchester Utd,0.0,0.0,Chelsea,0.0,0.0,0,Martin Atkinson,0,0,0,0,8246,draw,draw,Manchester Utd,Chelsea,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2013
+2013,22,Chelsea,0.0,0.0,Manchester Utd,3.0,1.0,0,Phil Dowd,0,0,0,0,8443,Chelsea,Manchester Utd,Chelsea,Manchester Utd,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2013
+2014,9,Manchester Utd,0.0,0.0,Chelsea,1.0,1.0,0,Philip Dowd,0,0,0,0,8694,draw,draw,Manchester Utd,Chelsea,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2014
+2014,33,Chelsea,0.0,0.0,Manchester Utd,1.0,0.0,0,Mike Dean,0,0,0,0,8930,Chelsea,Manchester Utd,Chelsea,Manchester Utd,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2014
+2015,19,Manchester Utd,0.0,0.0,Chelsea,0.0,0.0,0,Martin Atkinson,0,0,0,0,9173,draw,draw,Manchester Utd,Chelsea,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2015
+2015,25,Chelsea,0.0,0.0,Manchester Utd,1.0,1.0,0,Michael Oliver,0,0,0,0,9235,draw,draw,Chelsea,Manchester Utd,Chelsea_Manchester_Utd,Chelsea_Manchester Utd_2015

@@ -1,0 +1,13 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,17,Tottenham,1.5,0.4,Brighton,2.0,0.0,2017-12-13,Robert Madley,Wembley Stadium,Wed,20:00,"46,438",184,Tottenham,Brighton,Tottenham,Brighton,Brighton_Tottenham,Brighton_Tottenham_2017
+2017,35,Brighton,1.1,1.3,Tottenham,1.0,1.0,2018-04-17,Kevin Friend,The American Express Community Stadium,Tue,19:45,"30,440",369,draw,draw,Brighton,Tottenham,Brighton_Tottenham,Brighton_Tottenham_2017
+2018,6,Brighton,0.8,1.9,Tottenham,1.0,2.0,2018-09-22,Chris Kavanagh,The American Express Community Stadium,Sat,17:30,"30,531",62,Tottenham,Brighton,Brighton,Tottenham,Brighton_Tottenham,Brighton_Tottenham_2018
+2018,33,Tottenham,1.3,0.3,Brighton,1.0,0.0,2019-04-23,Chris Kavanagh,Tottenham Hotspur Stadium,Tue,19:45,"56,251",388,Tottenham,Brighton,Tottenham,Brighton,Brighton_Tottenham,Brighton_Tottenham_2018
+2019,8,Brighton,2.4,0.4,Tottenham,3.0,0.0,2019-10-05,Jonathan Moss,The American Express Community Stadium,Sat,12:30,"30,610",77,Brighton,Tottenham,Brighton,Tottenham,Brighton_Tottenham,Brighton_Tottenham_2019
+2019,19,Tottenham,0.8,1.0,Brighton,2.0,1.0,2019-12-26,Graham Scott,Tottenham Hotspur Stadium,Thu,12:30,"56,308",197,Tottenham,Brighton,Tottenham,Brighton,Brighton_Tottenham,Brighton_Tottenham_2019
+2020,7,Tottenham,1.7,0.3,Brighton,2.0,1.0,2020-11-01,Graham Scott,Tottenham Hotspur Stadium,Sun,19:15,0,71,Tottenham,Brighton,Tottenham,Brighton,Brighton_Tottenham,Brighton_Tottenham_2020
+2020,21,Brighton,1.6,0.4,Tottenham,1.0,0.0,2021-01-31,Peter Bankes,The American Express Community Stadium,Sun,19:15,0,232,Brighton,Tottenham,Brighton,Tottenham,Brighton_Tottenham,Brighton_Tottenham_2020
+2021,16,Brighton,0.7,2.2,Tottenham,0.0,2.0,2022-03-16,Robert Jones,The American Express Community Stadium,Wed,19:30,"31,144",324,Tottenham,Brighton,Brighton,Tottenham,Brighton_Tottenham,Brighton_Tottenham_2021
+2021,33,Tottenham,0.5,0.6,Brighton,0.0,1.0,2022-04-16,Craig Pawson,Tottenham Hotspur Stadium,Sat,12:30,"58,685",359,Brighton,Tottenham,Tottenham,Brighton,Brighton_Tottenham,Brighton_Tottenham_2021
+2022,10,Brighton,0.7,0.8,Tottenham,0.0,1.0,2022-10-08,Tony Harrington,The American Express Community Stadium,Sat,17:30,"31,498",89,Tottenham,Brighton,Brighton,Tottenham,Brighton_Tottenham,Brighton_Tottenham_2022
+2022,30,Tottenham,0.8,1.4,Brighton,2.0,1.0,2023-04-08,Stuart Attwell,Tottenham Hotspur Stadium,Sat,15:00,"61,405",331,Tottenham,Brighton,Tottenham,Brighton,Brighton_Tottenham,Brighton_Tottenham_2022

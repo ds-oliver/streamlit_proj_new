@@ -1,0 +1,61 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,12,Arsenal,2.1,0.7,Tottenham,2.0,0.0,2017-11-18,Mike Dean,Emirates Stadium,Sat,12:30,"59,530",121,Arsenal,Tottenham,Arsenal,Tottenham,Arsenal_Tottenham,Arsenal_Tottenham_2017
+2017,27,Tottenham,2.6,0.6,Arsenal,1.0,0.0,2018-02-10,Anthony Taylor,Wembley Stadium,Sat,12:30,"83,222",287,Tottenham,Arsenal,Tottenham,Arsenal,Arsenal_Tottenham,Arsenal_Tottenham_2017
+2018,14,Arsenal,2.7,1.2,Tottenham,4.0,2.0,2018-12-02,Mike Dean,Emirates Stadium,Sun,14:05,"59,973",151,Arsenal,Tottenham,Arsenal,Tottenham,Arsenal_Tottenham,Arsenal_Tottenham_2018
+2018,29,Tottenham,1.6,2.6,Arsenal,1.0,1.0,2019-03-02,Anthony Taylor,Tottenham Hotspur Stadium,Sat,12:30,"81,332",308,draw,draw,Tottenham,Arsenal,Arsenal_Tottenham,Arsenal_Tottenham_2018
+2019,4,Arsenal,2.4,2.0,Tottenham,2.0,2.0,2019-09-01,Martin Atkinson,Emirates Stadium,Sun,16:30,"60,333",42,draw,draw,Arsenal,Tottenham,Arsenal_Tottenham,Arsenal_Tottenham_2019
+2019,35,Tottenham,2.0,0.6,Arsenal,2.0,1.0,2020-07-12,Michael Oliver,Tottenham Hotspur Stadium,Sun,16:30,0,383,Tottenham,Arsenal,Tottenham,Arsenal,Arsenal_Tottenham,Arsenal_Tottenham_2019
+2020,11,Tottenham,0.3,0.6,Arsenal,2.0,0.0,2020-12-06,Martin Atkinson,Tottenham Hotspur Stadium,Sun,16:30,"2,000",114,Tottenham,Arsenal,Tottenham,Arsenal,Arsenal_Tottenham,Arsenal_Tottenham_2020
+2020,28,Arsenal,1.7,0.4,Tottenham,2.0,1.0,2021-03-14,Michael Oliver,Emirates Stadium,Sun,16:30,0,325,Arsenal,Tottenham,Arsenal,Tottenham,Arsenal_Tottenham,Arsenal_Tottenham_2020
+2021,6,Arsenal,1.1,1.0,Tottenham,3.0,1.0,2021-09-26,Craig Pawson,Emirates Stadium,Sun,16:30,"59,919",63,Arsenal,Tottenham,Arsenal,Tottenham,Arsenal_Tottenham,Arsenal_Tottenham_2021
+2021,22,Tottenham,2.7,0.5,Arsenal,3.0,0.0,2022-05-12,Paul Tierney,Tottenham Hotspur Stadium,Thu,19:45,"62,027",420,Tottenham,Arsenal,Tottenham,Arsenal,Arsenal_Tottenham,Arsenal_Tottenham_2021
+2022,9,Arsenal,2.4,1.6,Tottenham,3.0,1.0,2022-10-01,Anthony Taylor,Emirates Stadium,Sat,12:30,"60,278",74,Arsenal,Tottenham,Arsenal,Tottenham,Arsenal_Tottenham,Arsenal_Tottenham_2022
+2022,20,Tottenham,1.6,1.8,Arsenal,0.0,2.0,2023-01-15,Craig Pawson,Tottenham Hotspur Stadium,Sun,16:30,"61,870",205,Arsenal,Tottenham,Tottenham,Arsenal,Arsenal_Tottenham,Arsenal_Tottenham_2022
+1992,19,Tottenham,0.0,0.0,Arsenal,1.0,0.0,0,Alf Buksh,0,0,0,0,204,Tottenham,Arsenal,Tottenham,Arsenal,Arsenal_Tottenham,Arsenal_Tottenham_1992
+1992,37,Arsenal,0.0,0.0,Tottenham,1.0,3.0,0,Keith Cooper,0,0,0,0,460,Tottenham,Arsenal,Arsenal,Tottenham,Arsenal_Tottenham,Arsenal_Tottenham_1992
+1993,2,Tottenham,0.0,0.0,Arsenal,0.0,1.0,0,David Elleray,0,0,0,0,473,Arsenal,Tottenham,Tottenham,Arsenal,Arsenal_Tottenham,Arsenal_Tottenham_1993
+1993,19,Arsenal,0.0,0.0,Tottenham,1.0,1.0,0,Philip Don,0,0,0,0,659,draw,draw,Arsenal,Tottenham,Arsenal_Tottenham,Arsenal_Tottenham_1993
+1994,23,Tottenham,0.0,0.0,Arsenal,1.0,0.0,0,Mike Reed,0,0,0,0,1169,Tottenham,Arsenal,Tottenham,Arsenal,Arsenal_Tottenham,Arsenal_Tottenham_1994
+1994,40,Arsenal,0.0,0.0,Tottenham,1.0,1.0,0,Robbie Hart,0,0,0,0,1349,draw,draw,Arsenal,Tottenham,Arsenal_Tottenham,Arsenal_Tottenham_1994
+1995,13,Tottenham,0.0,0.0,Arsenal,2.0,1.0,0,Alan Wilkie,0,0,0,0,1515,Tottenham,Arsenal,Tottenham,Arsenal,Arsenal_Tottenham,Arsenal_Tottenham_1995
+1995,36,Arsenal,0.0,0.0,Tottenham,0.0,0.0,0,Mike Reed,0,0,0,0,1735,draw,draw,Arsenal,Tottenham,Arsenal_Tottenham,Arsenal_Tottenham_1995
+1996,14,Arsenal,0.0,0.0,Tottenham,3.0,1.0,0,David Elleray,0,0,0,0,1904,Arsenal,Tottenham,Arsenal,Tottenham,Arsenal_Tottenham,Arsenal_Tottenham_1996
+1996,26,Tottenham,0.0,0.0,Arsenal,0.0,0.0,0,Graham Poll,0,0,0,0,2011,draw,draw,Tottenham,Arsenal,Arsenal_Tottenham,Arsenal_Tottenham_1996
+1997,5,Arsenal,0.0,0.0,Tottenham,0.0,0.0,0,Gary Willard,0,0,0,0,2187,draw,draw,Arsenal,Tottenham,Arsenal_Tottenham,Arsenal_Tottenham_1997
+1997,21,Tottenham,0.0,0.0,Arsenal,1.0,1.0,0,Mike Riley,0,0,0,0,2348,draw,draw,Tottenham,Arsenal,Arsenal_Tottenham,Arsenal_Tottenham_1997
+1998,13,Arsenal,0.0,0.0,Tottenham,0.0,0.0,0,Alan Wilkie,0,0,0,0,2646,draw,draw,Arsenal,Tottenham,Arsenal_Tottenham,Arsenal_Tottenham_1998
+1998,33,Tottenham,0.0,0.0,Arsenal,1.0,3.0,0,Steve Dunn,0,0,0,0,2884,Arsenal,Tottenham,Tottenham,Arsenal,Arsenal_Tottenham,Arsenal_Tottenham_1998
+1999,14,Tottenham,0.0,0.0,Arsenal,2.0,1.0,0,David Elleray,0,0,0,0,3042,Tottenham,Arsenal,Tottenham,Arsenal,Arsenal_Tottenham,Arsenal_Tottenham_1999
+1999,29,Arsenal,0.0,0.0,Tottenham,2.0,1.0,0,Paul Durkin,0,0,0,0,3194,Arsenal,Tottenham,Arsenal,Tottenham,Arsenal_Tottenham,Arsenal_Tottenham_1999
+2000,18,Tottenham,0.0,0.0,Arsenal,1.0,1.0,0,Jeff Winter,0,0,0,0,3464,draw,draw,Tottenham,Arsenal,Arsenal_Tottenham,Arsenal_Tottenham_2000
+2000,31,Arsenal,0.0,0.0,Tottenham,2.0,0.0,0,Paul Durkin,0,0,0,0,3582,Arsenal,Tottenham,Arsenal,Tottenham,Arsenal_Tottenham,Arsenal_Tottenham_2000
+2001,13,Tottenham,0.0,0.0,Arsenal,1.0,1.0,0,Jeff Winter,0,0,0,0,3781,draw,draw,Tottenham,Arsenal,Arsenal_Tottenham,Arsenal_Tottenham_2001
+2001,34,Arsenal,0.0,0.0,Tottenham,2.0,1.0,0,Mark Halsey,0,0,0,0,3994,Arsenal,Tottenham,Arsenal,Tottenham,Arsenal_Tottenham,Arsenal_Tottenham_2001
+2002,14,Arsenal,0.0,0.0,Tottenham,3.0,0.0,0,Mike Riley,0,0,0,0,4176,Arsenal,Tottenham,Arsenal,Tottenham,Arsenal_Tottenham,Arsenal_Tottenham_2002
+2002,18,Tottenham,0.0,0.0,Arsenal,1.0,1.0,0,Neale Barry,0,0,0,0,4221,draw,draw,Tottenham,Arsenal,Arsenal_Tottenham,Arsenal_Tottenham_2002
+2003,12,Arsenal,0.0,0.0,Tottenham,2.0,1.0,0,Mark Halsey,0,0,0,0,4538,Arsenal,Tottenham,Arsenal,Tottenham,Arsenal_Tottenham,Arsenal_Tottenham_2003
+2003,35,Tottenham,0.0,0.0,Arsenal,2.0,2.0,0,Mark Halsey,0,0,0,0,4772,draw,draw,Tottenham,Arsenal,Arsenal_Tottenham,Arsenal_Tottenham_2003
+2004,13,Tottenham,0.0,0.0,Arsenal,4.0,5.0,0,Stephen Bennett,0,0,0,0,4925,Arsenal,Tottenham,Tottenham,Arsenal,Arsenal_Tottenham,Arsenal_Tottenham_2004
+2004,35,Arsenal,0.0,0.0,Tottenham,1.0,0.0,0,Mike Riley,0,0,0,0,5150,Arsenal,Tottenham,Arsenal,Tottenham,Arsenal_Tottenham,Arsenal_Tottenham_2004
+2005,11,Tottenham,0.0,0.0,Arsenal,1.0,1.0,0,Stephen Bennett,0,0,0,0,5289,draw,draw,Tottenham,Arsenal,Arsenal_Tottenham,Arsenal_Tottenham_2005
+2005,36,Arsenal,0.0,0.0,Tottenham,1.0,1.0,0,Stephen Bennett,0,0,0,0,5536,draw,draw,Arsenal,Tottenham,Arsenal_Tottenham,Arsenal_Tottenham_2005
+2006,16,Arsenal,0.0,0.0,Tottenham,3.0,0.0,0,Graham Poll,0,0,0,0,5714,Arsenal,Tottenham,Arsenal,Tottenham,Arsenal_Tottenham,Arsenal_Tottenham_2006
+2006,35,Tottenham,0.0,0.0,Arsenal,2.0,2.0,0,Mike Dean,0,0,0,0,5907,draw,draw,Tottenham,Arsenal,Arsenal_Tottenham,Arsenal_Tottenham_2006
+2007,6,Tottenham,0.0,0.0,Arsenal,1.0,3.0,0,Mark Clattenburg,0,0,0,0,5997,Arsenal,Tottenham,Tottenham,Arsenal,Arsenal_Tottenham,Arsenal_Tottenham_2007
+2007,18,Arsenal,0.0,0.0,Tottenham,2.0,1.0,0,Rob Styles,0,0,0,0,6120,Arsenal,Tottenham,Arsenal,Tottenham,Arsenal_Tottenham,Arsenal_Tottenham_2007
+2008,10,Arsenal,0.0,0.0,Tottenham,4.0,4.0,0,Martin Atkinson,0,0,0,0,6416,draw,draw,Arsenal,Tottenham,Arsenal_Tottenham,Arsenal_Tottenham_2008
+2008,25,Tottenham,0.0,0.0,Arsenal,0.0,0.0,0,Mike Dean,0,0,0,0,6572,draw,draw,Tottenham,Arsenal,Arsenal_Tottenham,Arsenal_Tottenham_2008
+2009,11,Arsenal,0.0,0.0,Tottenham,3.0,0.0,0,Mark Clattenburg,0,0,0,0,6805,Arsenal,Tottenham,Arsenal,Tottenham,Arsenal_Tottenham,Arsenal_Tottenham_2009
+2009,34,Tottenham,0.0,0.0,Arsenal,2.0,1.0,0,Mark Clattenburg,0,0,0,0,7041,Tottenham,Arsenal,Tottenham,Arsenal,Arsenal_Tottenham,Arsenal_Tottenham_2009
+2010,14,Arsenal,0.0,0.0,Tottenham,2.0,3.0,0,Phil Dowd,0,0,0,0,7218,Tottenham,Arsenal,Arsenal,Tottenham,Arsenal_Tottenham,Arsenal_Tottenham_2010
+2010,28,Tottenham,0.0,0.0,Arsenal,3.0,3.0,0,Martin Atkinson,0,0,0,0,7412,draw,draw,Tottenham,Arsenal,Arsenal_Tottenham,Arsenal_Tottenham_2010
+2011,7,Tottenham,0.0,0.0,Arsenal,2.0,1.0,0,Mike Dean,0,0,0,0,7532,Tottenham,Arsenal,Tottenham,Arsenal,Arsenal_Tottenham,Arsenal_Tottenham_2011
+2011,26,Arsenal,0.0,0.0,Tottenham,5.0,2.0,0,Mike Dean,0,0,0,0,7723,Arsenal,Tottenham,Arsenal,Tottenham,Arsenal_Tottenham,Arsenal_Tottenham_2011
+2012,12,Arsenal,0.0,0.0,Tottenham,5.0,2.0,0,Howard Webb,0,0,0,0,7962,Arsenal,Tottenham,Arsenal,Tottenham,Arsenal_Tottenham,Arsenal_Tottenham_2012
+2012,28,Tottenham,0.0,0.0,Arsenal,2.0,1.0,0,Mark Clattenburg,0,0,0,0,8124,Tottenham,Arsenal,Tottenham,Arsenal,Arsenal_Tottenham,Arsenal_Tottenham_2012
+2013,3,Arsenal,0.0,0.0,Tottenham,1.0,0.0,0,Michael Oliver,0,0,0,0,8253,Arsenal,Tottenham,Arsenal,Tottenham,Arsenal_Tottenham,Arsenal_Tottenham_2013
+2013,30,Tottenham,0.0,0.0,Arsenal,0.0,1.0,0,Mike Dean,0,0,0,0,8515,Arsenal,Tottenham,Tottenham,Arsenal,Arsenal_Tottenham,Arsenal_Tottenham_2013
+2014,6,Arsenal,0.0,0.0,Tottenham,1.0,1.0,0,Michael Oliver,0,0,0,0,8663,draw,draw,Arsenal,Tottenham,Arsenal_Tottenham,Arsenal_Tottenham_2014
+2014,24,Tottenham,0.0,0.0,Arsenal,2.0,1.0,0,Martin Atkinson,0,0,0,0,8836,Tottenham,Arsenal,Tottenham,Arsenal,Arsenal_Tottenham,Arsenal_Tottenham_2014
+2015,12,Arsenal,0.0,0.0,Tottenham,1.0,1.0,0,Martin Atkinson,0,0,0,0,9105,draw,draw,Arsenal,Tottenham,Arsenal_Tottenham,Arsenal_Tottenham_2015
+2015,29,Tottenham,0.0,0.0,Arsenal,2.0,2.0,0,Michael Oliver,0,0,0,0,9264,draw,draw,Tottenham,Arsenal,Arsenal_Tottenham,Arsenal_Tottenham_2015

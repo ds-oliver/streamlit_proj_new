@@ -1,0 +1,25 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,17,Liverpool,2.1,0.4,West Brom,0.0,0.0,2017-12-13,Paul Tierney,Anfield,Wed,20:00,"53,243",182,draw,draw,Liverpool,West Brom,Liverpool_West_Brom,Liverpool_West Brom_2017
+2017,35,West Brom,1.3,1.3,Liverpool,2.0,2.0,2018-04-21,Stuart Attwell,The Hawthorns,Sat,12:30,"24,520",375,draw,draw,West Brom,Liverpool,Liverpool_West_Brom,Liverpool_West Brom_2017
+2020,15,Liverpool,1.5,0.6,West Brom,1.0,1.0,2020-12-27,Kevin Friend,Anfield,Sun,16:30,"2,000",159,draw,draw,Liverpool,West Brom,Liverpool_West_Brom,Liverpool_West Brom_2020
+2020,36,West Brom,1.0,1.9,Liverpool,1.0,2.0,2021-05-16,Mike Dean,The Hawthorns,Sun,16:30,0,416,Liverpool,West Brom,West Brom,Liverpool,Liverpool_West_Brom,Liverpool_West Brom_2020
+2002,7,Liverpool,0.0,0.0,West Brom,2.0,0.0,0,David Elleray,0,0,0,0,4108,Liverpool,West Brom,Liverpool,West Brom,Liverpool_West_Brom,Liverpool_West Brom_2002
+2002,36,West Brom,0.0,0.0,Liverpool,0.0,6.0,0,Dermot Gallagher,0,0,0,0,4402,Liverpool,West Brom,West Brom,Liverpool,Liverpool_West_Brom,Liverpool_West Brom_2002
+2004,5,Liverpool,0.0,0.0,West Brom,3.0,0.0,0,Steve Dunn,0,0,0,0,4845,Liverpool,West Brom,Liverpool,West Brom,Liverpool_West_Brom,Liverpool_West Brom_2004
+2004,19,West Brom,0.0,0.0,Liverpool,0.0,5.0,0,Rob Styles,0,0,0,0,4992,Liverpool,West Brom,West Brom,Liverpool,Liverpool_West_Brom,Liverpool_West Brom_2004
+2005,20,Liverpool,0.0,0.0,West Brom,1.0,0.0,0,Alan Wiley,0,0,0,0,5372,Liverpool,West Brom,Liverpool,West Brom,Liverpool_West_Brom,Liverpool_West Brom_2005
+2005,32,West Brom,0.0,0.0,Liverpool,0.0,2.0,0,Uriah Rennie,0,0,0,0,5496,Liverpool,West Brom,West Brom,Liverpool,Liverpool_West_Brom,Liverpool_West Brom_2005
+2008,12,Liverpool,0.0,0.0,West Brom,3.0,0.0,0,Peter Walton,0,0,0,0,6438,Liverpool,West Brom,Liverpool,West Brom,Liverpool_West_Brom,Liverpool_West Brom_2008
+2008,37,West Brom,0.0,0.0,Liverpool,0.0,2.0,0,Martin Atkinson,0,0,0,0,6693,Liverpool,West Brom,West Brom,Liverpool,Liverpool_West_Brom,Liverpool_West Brom_2008
+2010,3,Liverpool,0.0,0.0,West Brom,1.0,0.0,0,Lee Probert,0,0,0,0,7112,Liverpool,West Brom,Liverpool,West Brom,Liverpool_West_Brom,Liverpool_West Brom_2010
+2010,31,West Brom,0.0,0.0,Liverpool,2.0,1.0,0,Martin Atkinson,0,0,0,0,7386,West Brom,Liverpool,West Brom,Liverpool,Liverpool_West_Brom,Liverpool_West Brom_2010
+2011,10,West Brom,0.0,0.0,Liverpool,0.0,2.0,0,Lee Mason,0,0,0,0,7556,Liverpool,West Brom,West Brom,Liverpool,Liverpool_West_Brom,Liverpool_West Brom_2011
+2011,35,Liverpool,0.0,0.0,West Brom,0.0,1.0,0,Neil Swarbrick,0,0,0,0,7810,West Brom,Liverpool,Liverpool,West Brom,Liverpool_West_Brom,Liverpool_West Brom_2011
+2012,1,West Brom,0.0,0.0,Liverpool,3.0,0.0,0,Phil Dowd,0,0,0,0,7847,West Brom,Liverpool,West Brom,Liverpool,Liverpool_West_Brom,Liverpool_West Brom_2012
+2012,26,Liverpool,0.0,0.0,West Brom,0.0,2.0,0,Jon Moss,0,0,0,0,8105,West Brom,Liverpool,Liverpool,West Brom,Liverpool_West_Brom,Liverpool_West Brom_2012
+2013,9,Liverpool,0.0,0.0,West Brom,4.0,1.0,0,Jon Moss,0,0,0,0,8307,Liverpool,West Brom,Liverpool,West Brom,Liverpool_West_Brom,Liverpool_West Brom_2013
+2013,24,West Brom,0.0,0.0,Liverpool,1.0,1.0,0,Kevin Friend,0,0,0,0,8463,draw,draw,West Brom,Liverpool,Liverpool_West_Brom,Liverpool_West Brom_2013
+2014,7,Liverpool,0.0,0.0,West Brom,2.0,1.0,0,Michael Oliver,0,0,0,0,8667,Liverpool,West Brom,Liverpool,West Brom,Liverpool_West_Brom,Liverpool_West Brom_2014
+2014,34,West Brom,0.0,0.0,Liverpool,0.0,0.0,0,Roger East,0,0,0,0,8939,draw,draw,West Brom,Liverpool,Liverpool_West_Brom,Liverpool_West Brom_2014
+2015,16,Liverpool,0.0,0.0,West Brom,2.0,2.0,0,Craig Pawson,0,0,0,0,9143,draw,draw,Liverpool,West Brom,Liverpool_West_Brom,Liverpool_West Brom_2015
+2015,38,West Brom,0.0,0.0,Liverpool,1.0,1.0,0,Robert Madley,0,0,0,0,9359,draw,draw,West Brom,Liverpool,Liverpool_West_Brom,Liverpool_West Brom_2015

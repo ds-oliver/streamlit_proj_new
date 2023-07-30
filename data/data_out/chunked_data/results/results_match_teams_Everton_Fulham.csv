@@ -1,0 +1,33 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2018,7,Everton,2.3,0.5,Fulham,3.0,0.0,2018-09-29,Roger East,Goodison Park,Sat,15:00,"38,788",68,Everton,Fulham,Everton,Fulham,Everton_Fulham,Everton_Fulham_2018
+2018,34,Fulham,1.5,1.1,Everton,2.0,0.0,2019-04-13,Lee Probert,Craven Cottage,Sat,15:00,"24,971",365,Fulham,Everton,Fulham,Everton,Everton_Fulham,Everton_Fulham_2018
+2020,9,Fulham,1.9,2.0,Everton,2.0,3.0,2020-11-22,Andy Madley,Craven Cottage,Sun,12:00,0,90,Everton,Fulham,Fulham,Everton,Everton_Fulham,Everton_Fulham_2020
+2020,24,Everton,0.3,2.5,Fulham,0.0,2.0,2021-02-14,Andy Madley,Goodison Park,Sun,19:00,0,263,Fulham,Everton,Everton,Fulham,Everton_Fulham,Everton_Fulham_2020
+2022,14,Fulham,1.9,0.9,Everton,0.0,0.0,2022-10-29,John Brooks,Craven Cottage,Sat,17:30,"23,534",134,draw,draw,Fulham,Everton,Everton_Fulham,Everton_Fulham_2022
+2022,31,Everton,1.4,1.8,Fulham,1.0,3.0,2023-04-15,Anthony Taylor,Goodison Park,Sat,15:00,"39,241",341,Fulham,Everton,Everton,Fulham,Everton_Fulham,Everton_Fulham_2022
+2001,16,Fulham,0.0,0.0,Everton,2.0,0.0,0,Phil Dowd,0,0,0,0,3815,Fulham,Everton,Fulham,Everton,Everton_Fulham,Everton_Fulham_2001
+2001,30,Everton,0.0,0.0,Fulham,2.0,1.0,0,Graham Barber,0,0,0,0,3963,Everton,Fulham,Everton,Fulham,Everton_Fulham,Everton_Fulham_2001
+2002,8,Everton,0.0,0.0,Fulham,2.0,0.0,0,Steve Dunn,0,0,0,0,4122,Everton,Fulham,Everton,Fulham,Everton_Fulham,Everton_Fulham_2002
+2002,37,Fulham,0.0,0.0,Everton,2.0,0.0,0,Graham Barber,0,0,0,0,4405,Fulham,Everton,Fulham,Everton,Everton_Fulham,Everton_Fulham_2002
+2003,2,Everton,0.0,0.0,Fulham,3.0,1.0,0,Neale Barry,0,0,0,0,4439,Everton,Fulham,Everton,Fulham,Everton_Fulham,Everton_Fulham_2003
+2003,21,Fulham,0.0,0.0,Everton,2.0,1.0,0,Graham Poll,0,0,0,0,4626,Fulham,Everton,Fulham,Everton,Everton_Fulham,Everton_Fulham_2003
+2004,14,Everton,0.0,0.0,Fulham,1.0,0.0,0,Graham Poll,0,0,0,0,4936,Everton,Fulham,Everton,Fulham,Everton_Fulham,Everton_Fulham_2004
+2004,36,Fulham,0.0,0.0,Everton,2.0,0.0,0,Stephen Bennett,0,0,0,0,5154,Fulham,Everton,Fulham,Everton,Everton_Fulham,Everton_Fulham_2004
+2005,4,Fulham,0.0,0.0,Everton,1.0,0.0,0,Mike Riley,0,0,0,0,5217,Fulham,Everton,Fulham,Everton,Everton_Fulham,Everton_Fulham_2005
+2005,29,Everton,0.0,0.0,Fulham,3.0,1.0,0,Uriah Rennie,0,0,0,0,5469,Everton,Fulham,Everton,Fulham,Everton_Fulham,Everton_Fulham_2005
+2006,11,Fulham,0.0,0.0,Everton,1.0,0.0,0,Martin Atkinson,0,0,0,0,5670,Fulham,Everton,Fulham,Everton,Everton_Fulham,Everton_Fulham_2006
+2006,32,Everton,0.0,0.0,Fulham,4.0,1.0,0,Dermot Gallagher,0,0,0,0,5875,Everton,Fulham,Everton,Fulham,Everton_Fulham,Everton_Fulham_2006
+2007,16,Everton,0.0,0.0,Fulham,3.0,0.0,0,Stephen Bennett,0,0,0,0,6098,Everton,Fulham,Everton,Fulham,Everton_Fulham,Everton_Fulham_2007
+2007,30,Fulham,0.0,0.0,Everton,1.0,0.0,0,Stephen Bennett,0,0,0,0,6242,Fulham,Everton,Fulham,Everton,Everton_Fulham,Everton_Fulham_2007
+2008,11,Everton,0.0,0.0,Fulham,1.0,0.0,0,Lee Mason,0,0,0,0,6428,Everton,Fulham,Everton,Fulham,Everton_Fulham,Everton_Fulham_2008
+2008,38,Fulham,0.0,0.0,Everton,0.0,2.0,0,Mike Riley,0,0,0,0,6701,Everton,Fulham,Fulham,Everton,Everton_Fulham,Everton_Fulham_2008
+2009,5,Fulham,0.0,0.0,Everton,2.0,1.0,0,Peter Walton,0,0,0,0,6750,Fulham,Everton,Fulham,Everton,Everton_Fulham,Everton_Fulham_2009
+2009,36,Everton,0.0,0.0,Fulham,2.0,1.0,0,Lee Mason,0,0,0,0,7061,Everton,Fulham,Everton,Fulham,Everton_Fulham,Everton_Fulham_2009
+2010,6,Fulham,0.0,0.0,Everton,0.0,0.0,0,Howard Webb,0,0,0,0,7136,draw,draw,Fulham,Everton,Everton_Fulham,Everton_Fulham_2010
+2010,30,Everton,0.0,0.0,Fulham,2.0,1.0,0,Michael Oliver,0,0,0,0,7376,Everton,Fulham,Everton,Fulham,Everton_Fulham,Everton_Fulham_2010
+2011,9,Fulham,0.0,0.0,Everton,1.0,3.0,0,Lee Probert,0,0,0,0,7550,Everton,Fulham,Fulham,Everton,Everton_Fulham,Everton_Fulham_2011
+2011,36,Everton,0.0,0.0,Fulham,4.0,0.0,0,Phil Dowd,0,0,0,0,7815,Everton,Fulham,Everton,Fulham,Everton_Fulham,Everton_Fulham_2011
+2012,10,Fulham,0.0,0.0,Everton,2.0,2.0,0,Neil Swarbrick,0,0,0,0,7935,draw,draw,Fulham,Everton,Everton_Fulham,Everton_Fulham_2012
+2012,35,Everton,0.0,0.0,Fulham,1.0,0.0,0,Jon Moss,0,0,0,0,8186,Everton,Fulham,Everton,Fulham,Everton_Fulham,Everton_Fulham_2012
+2013,16,Everton,0.0,0.0,Fulham,4.0,1.0,0,Anthony Taylor,0,0,0,0,8376,Everton,Fulham,Everton,Fulham,Everton_Fulham,Everton_Fulham_2013
+2013,32,Fulham,0.0,0.0,Everton,1.0,3.0,0,Anthony Taylor,0,0,0,0,8539,Everton,Fulham,Fulham,Everton,Everton_Fulham,Everton_Fulham_2013

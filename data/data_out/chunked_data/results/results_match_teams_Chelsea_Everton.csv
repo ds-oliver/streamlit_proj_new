@@ -1,0 +1,61 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,3,Chelsea,1.0,0.4,Everton,2.0,0.0,2017-08-27,Jonathan Moss,Stamford Bridge,Sun,13:30,"41,382",28,Chelsea,Everton,Chelsea,Everton,Chelsea_Everton,Chelsea_Everton_2017
+2017,19,Everton,0.3,1.8,Chelsea,0.0,0.0,2017-12-23,Robert Madley,Goodison Park,Sat,12:30,"39,191",199,draw,draw,Everton,Chelsea,Chelsea_Everton,Chelsea_Everton_2017
+2018,12,Chelsea,1.2,0.3,Everton,0.0,0.0,2018-11-11,Kevin Friend,Stamford Bridge,Sun,14:15,"40,345",128,draw,draw,Chelsea,Everton,Chelsea_Everton,Chelsea_Everton_2018
+2018,31,Everton,2.3,1.4,Chelsea,2.0,0.0,2019-03-17,Anthony Taylor,Goodison Park,Sun,16:30,"39,356",334,Everton,Chelsea,Everton,Chelsea,Chelsea_Everton,Chelsea_Everton_2018
+2019,16,Everton,1.8,1.1,Chelsea,3.0,1.0,2019-12-07,Craig Pawson,Goodison Park,Sat,12:30,"39,114",165,Everton,Chelsea,Everton,Chelsea,Chelsea_Everton,Chelsea_Everton_2019
+2019,29,Chelsea,1.8,0.5,Everton,4.0,0.0,2020-03-08,Kevin Friend,Stamford Bridge,Sun,14:00,"40,694",314,Chelsea,Everton,Chelsea,Everton,Chelsea_Everton,Chelsea_Everton_2019
+2020,12,Everton,1.2,0.7,Chelsea,1.0,0.0,2020-12-12,Jonathan Moss,Goodison Park,Sat,20:00,"2,000",122,Everton,Chelsea,Everton,Chelsea,Chelsea_Everton,Chelsea_Everton_2020
+2020,27,Chelsea,2.4,0.3,Everton,2.0,0.0,2021-03-08,David Coote,Stamford Bridge,Mon,18:00,0,313,Chelsea,Everton,Chelsea,Everton,Chelsea_Everton,Chelsea_Everton_2020
+2021,17,Chelsea,2.9,0.6,Everton,1.0,1.0,2021-12-16,Michael Oliver,Stamford Bridge,Thu,19:45,"13,933",179,draw,draw,Chelsea,Everton,Chelsea_Everton,Chelsea_Everton_2021
+2021,35,Everton,0.8,0.8,Chelsea,1.0,0.0,2022-05-01,Kevin Friend,Goodison Park,Sun,14:00,"39,256",396,Everton,Chelsea,Everton,Chelsea,Chelsea_Everton,Chelsea_Everton_2021
+2022,1,Everton,0.7,1.5,Chelsea,0.0,1.0,2022-08-06,Craig Pawson,Goodison Park,Sat,17:30,"39,254",6,Chelsea,Everton,Everton,Chelsea,Chelsea_Everton,Chelsea_Everton_2022
+2022,28,Chelsea,2.3,1.2,Everton,2.0,2.0,2023-03-18,Darren England,Stamford Bridge,Sat,17:30,"40,025",301,draw,draw,Chelsea,Everton,Chelsea_Everton,Chelsea_Everton_2022
+1992,16,Everton,0.0,0.0,Chelsea,0.0,1.0,0,Mike Reed,0,0,0,0,169,Chelsea,Everton,Everton,Chelsea,Chelsea_Everton,Chelsea_Everton_1992
+1992,33,Chelsea,0.0,0.0,Everton,2.0,1.0,0,Martin Bodenham,0,0,0,0,344,Chelsea,Everton,Chelsea,Everton,Chelsea_Everton,Chelsea_Everton_1992
+1993,25,Chelsea,0.0,0.0,Everton,4.0,2.0,0,Keren Barratt,0,0,0,0,723,Chelsea,Everton,Chelsea,Everton,Chelsea_Everton,Chelsea_Everton_1993
+1993,28,Everton,0.0,0.0,Chelsea,4.0,2.0,0,Brian Hill,0,0,0,0,751,Everton,Chelsea,Everton,Chelsea,Chelsea_Everton,Chelsea_Everton_1993
+1994,16,Chelsea,0.0,0.0,Everton,0.0,1.0,0,Robbie Hart,0,0,0,0,1092,Everton,Chelsea,Chelsea,Everton,Chelsea_Everton,Chelsea_Everton_1994
+1994,29,Everton,0.0,0.0,Chelsea,3.0,3.0,0,Brian Hill,0,0,0,0,1354,draw,draw,Everton,Chelsea,Chelsea_Everton,Chelsea_Everton_1994
+1995,1,Chelsea,0.0,0.0,Everton,0.0,0.0,0,Mike Reed,0,0,0,0,1394,draw,draw,Chelsea,Everton,Chelsea_Everton,Chelsea_Everton_1995
+1995,23,Everton,0.0,0.0,Chelsea,1.0,1.0,0,Robbie Hart,0,0,0,0,1606,draw,draw,Everton,Chelsea,Chelsea_Everton,Chelsea_Everton_1995
+1996,16,Chelsea,0.0,0.0,Everton,2.0,2.0,0,Paul Durkin,0,0,0,0,1922,draw,draw,Chelsea,Everton,Chelsea_Everton,Chelsea_Everton_1996
+1996,38,Everton,0.0,0.0,Chelsea,1.0,2.0,0,Peter Jones,0,0,0,0,2138,Chelsea,Everton,Everton,Chelsea,Chelsea_Everton,Chelsea_Everton_1996
+1997,2,Chelsea,0.0,0.0,Everton,2.0,0.0,0,Neale Barry,0,0,0,0,2291,Chelsea,Everton,Chelsea,Everton,Chelsea_Everton,Chelsea_Everton_1997
+1997,23,Everton,0.0,0.0,Chelsea,3.0,1.0,0,Alan Wilkie,0,0,0,0,2372,Everton,Chelsea,Everton,Chelsea,Chelsea_Everton,Chelsea_Everton_1997
+1998,16,Everton,0.0,0.0,Chelsea,0.0,0.0,0,Gary Willard,0,0,0,0,2680,draw,draw,Everton,Chelsea,Chelsea_Everton,Chelsea_Everton_1998
+1998,36,Chelsea,0.0,0.0,Everton,3.0,1.0,0,Dermot Gallagher,0,0,0,0,2878,Chelsea,Everton,Chelsea,Everton,Chelsea_Everton,Chelsea_Everton_1998
+1999,15,Everton,0.0,0.0,Chelsea,1.0,1.0,0,Mark Halsey,0,0,0,0,3043,draw,draw,Everton,Chelsea,Chelsea_Everton,Chelsea_Everton_1999
+1999,28,Chelsea,0.0,0.0,Everton,1.0,1.0,0,David Elleray,0,0,0,0,3177,draw,draw,Chelsea,Everton,Chelsea_Everton,Chelsea_Everton_1999
+2000,15,Everton,0.0,0.0,Chelsea,2.0,1.0,0,Rob Styles,0,0,0,0,3427,Everton,Chelsea,Everton,Chelsea,Chelsea_Everton,Chelsea_Everton_2000
+2000,37,Chelsea,0.0,0.0,Everton,2.0,1.0,0,Rob Harris,0,0,0,0,3644,Chelsea,Everton,Chelsea,Everton,Chelsea_Everton,Chelsea_Everton_2000
+2001,13,Everton,0.0,0.0,Chelsea,0.0,0.0,0,Mark Halsey,0,0,0,0,3786,draw,draw,Everton,Chelsea,Chelsea_Everton,Chelsea_Everton_2001
+2001,34,Chelsea,0.0,0.0,Everton,3.0,0.0,0,David Elleray,0,0,0,0,3996,Chelsea,Everton,Chelsea,Everton,Chelsea_Everton,Chelsea_Everton_2001
+2002,17,Everton,0.0,0.0,Chelsea,1.0,3.0,0,Eddie Wolstenholme,0,0,0,0,4211,Chelsea,Everton,Everton,Chelsea,Chelsea_Everton,Chelsea_Everton_2002
+2002,35,Chelsea,0.0,0.0,Everton,4.0,1.0,0,Mike Riley,0,0,0,0,4392,Chelsea,Everton,Chelsea,Everton,Chelsea_Everton,Chelsea_Everton_2002
+2003,11,Everton,0.0,0.0,Chelsea,0.0,1.0,0,Jeff Winter,0,0,0,0,4526,Chelsea,Everton,Everton,Chelsea,Chelsea_Everton,Chelsea_Everton_2003
+2003,34,Chelsea,0.0,0.0,Everton,0.0,0.0,0,Graham Poll,0,0,0,0,4755,draw,draw,Chelsea,Everton,Chelsea_Everton,Chelsea_Everton_2003
+2004,12,Chelsea,0.0,0.0,Everton,1.0,0.0,0,Mike Riley,0,0,0,0,4919,Chelsea,Everton,Chelsea,Everton,Chelsea_Everton,Chelsea_Everton_2004
+2004,27,Everton,0.0,0.0,Chelsea,0.0,1.0,0,Mike Riley,0,0,0,0,5070,Chelsea,Everton,Everton,Chelsea,Chelsea_Everton,Chelsea_Everton_2004
+2005,10,Everton,0.0,0.0,Chelsea,1.0,1.0,0,Mark Clattenburg,0,0,0,0,5281,draw,draw,Everton,Chelsea,Chelsea_Everton,Chelsea_Everton_2005
+2005,35,Chelsea,0.0,0.0,Everton,3.0,0.0,0,Rob Styles,0,0,0,0,5529,Chelsea,Everton,Chelsea,Everton,Chelsea_Everton,Chelsea_Everton_2005
+2006,18,Everton,0.0,0.0,Chelsea,2.0,3.0,0,Mark Halsey,0,0,0,0,5741,Chelsea,Everton,Everton,Chelsea,Chelsea_Everton,Chelsea_Everton_2006
+2006,38,Chelsea,0.0,0.0,Everton,1.0,1.0,0,Mark Halsey,0,0,0,0,5943,draw,draw,Chelsea,Everton,Chelsea_Everton,Chelsea_Everton_2006
+2007,13,Chelsea,0.0,0.0,Everton,1.0,1.0,0,Alan Wiley,0,0,0,0,6071,draw,draw,Chelsea,Everton,Chelsea_Everton,Chelsea_Everton_2007
+2007,35,Everton,0.0,0.0,Chelsea,0.0,1.0,0,Martin Atkinson,0,0,0,0,6286,Chelsea,Everton,Everton,Chelsea,Chelsea_Everton,Chelsea_Everton_2007
+2008,18,Everton,0.0,0.0,Chelsea,0.0,0.0,0,Phil Dowd,0,0,0,0,6503,draw,draw,Everton,Chelsea,Chelsea_Everton,Chelsea_Everton_2008
+2008,33,Chelsea,0.0,0.0,Everton,0.0,0.0,0,Mark Halsey,0,0,0,0,6654,draw,draw,Chelsea,Everton,Chelsea_Everton,Chelsea_Everton_2008
+2009,16,Chelsea,0.0,0.0,Everton,3.0,3.0,0,Phil Dowd,0,0,0,0,6856,draw,draw,Chelsea,Everton,Chelsea_Everton,Chelsea_Everton_2009
+2009,26,Everton,0.0,0.0,Chelsea,2.0,1.0,0,Alan Wiley,0,0,0,0,6955,Everton,Chelsea,Everton,Chelsea,Chelsea_Everton,Chelsea_Everton_2009
+2010,16,Chelsea,0.0,0.0,Everton,1.0,1.0,0,Lee Probert,0,0,0,0,7237,draw,draw,Chelsea,Everton,Chelsea_Everton,Chelsea_Everton_2010
+2010,38,Everton,0.0,0.0,Chelsea,1.0,0.0,0,Peter Walton,0,0,0,0,7458,Everton,Chelsea,Everton,Chelsea,Chelsea_Everton,Chelsea_Everton_2010
+2011,8,Chelsea,0.0,0.0,Everton,3.0,1.0,0,Mike Jones,0,0,0,0,7538,Chelsea,Everton,Chelsea,Everton,Chelsea_Everton,Chelsea_Everton_2011
+2011,25,Everton,0.0,0.0,Chelsea,2.0,0.0,0,Mike Jones,0,0,0,0,7712,Everton,Chelsea,Everton,Chelsea,Chelsea_Everton,Chelsea_Everton_2011
+2012,20,Everton,0.0,0.0,Chelsea,1.0,2.0,0,Howard Webb,0,0,0,0,8042,Chelsea,Everton,Everton,Chelsea,Chelsea_Everton,Chelsea_Everton_2012
+2012,38,Chelsea,0.0,0.0,Everton,2.0,1.0,0,Anthony Taylor,0,0,0,0,8218,Chelsea,Everton,Chelsea,Everton,Chelsea_Everton,Chelsea_Everton_2012
+2013,4,Everton,0.0,0.0,Chelsea,1.0,0.0,0,Howard Webb,0,0,0,0,8257,Everton,Chelsea,Everton,Chelsea,Chelsea_Everton,Chelsea_Everton_2013
+2013,27,Chelsea,0.0,0.0,Everton,1.0,0.0,0,Lee Probert,0,0,0,0,8490,Chelsea,Everton,Chelsea,Everton,Chelsea_Everton,Chelsea_Everton_2013
+2014,3,Everton,0.0,0.0,Chelsea,3.0,6.0,0,Jonathan Moss,0,0,0,0,8632,Chelsea,Everton,Everton,Chelsea,Chelsea_Everton,Chelsea_Everton_2014
+2014,25,Chelsea,0.0,0.0,Everton,1.0,0.0,0,Jonathan Moss,0,0,0,0,8851,Chelsea,Everton,Chelsea,Everton,Chelsea_Everton,Chelsea_Everton_2014
+2015,5,Everton,0.0,0.0,Chelsea,3.0,1.0,0,Andre Marriner,0,0,0,0,9026,Everton,Chelsea,Everton,Chelsea,Chelsea_Everton,Chelsea_Everton_2015
+2015,22,Chelsea,0.0,0.0,Everton,3.0,3.0,0,Mike Jones,0,0,0,0,9199,draw,draw,Chelsea,Everton,Chelsea_Everton,Chelsea_Everton_2015

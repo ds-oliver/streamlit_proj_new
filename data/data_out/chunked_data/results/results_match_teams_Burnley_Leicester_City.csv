@@ -1,0 +1,13 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,15,Leicester City,1.4,1.0,Burnley,1.0,0.0,2017-12-02,Paul Tierney,King Power Stadium,Sat,15:00,"30,714",160,Leicester City,Burnley,Leicester City,Burnley,Burnley_Leicester_City,Burnley_Leicester City_2017
+2017,34,Burnley,0.9,1.9,Leicester City,2.0,1.0,2018-04-14,Martin Atkinson,Turf Moor,Sat,15:00,"21,727",361,Burnley,Leicester City,Burnley,Leicester City,Burnley_Leicester_City,Burnley_Leicester City_2017
+2018,12,Leicester City,1.8,0.4,Burnley,0.0,0.0,2018-11-10,Mike Dean,King Power Stadium,Sat,15:00,"32,184",124,draw,draw,Leicester City,Burnley,Burnley_Leicester_City,Burnley_Leicester City_2018
+2018,31,Burnley,1.0,0.9,Leicester City,1.0,2.0,2019-03-16,Michael Oliver,Turf Moor,Sat,15:00,"20,719",331,Leicester City,Burnley,Burnley,Leicester City,Burnley_Leicester_City,Burnley_Leicester City_2018
+2019,9,Leicester City,1.0,1.5,Burnley,2.0,1.0,2019-10-19,Jonathan Moss,King Power Stadium,Sat,15:00,"32,105",90,Leicester City,Burnley,Leicester City,Burnley,Burnley_Leicester_City,Burnley_Leicester City_2019
+2019,23,Burnley,1.4,2.5,Leicester City,2.0,1.0,2020-01-19,Anthony Taylor,Turf Moor,Sun,14:00,"19,788",249,Burnley,Leicester City,Burnley,Leicester City,Burnley_Leicester_City,Burnley_Leicester City_2019
+2020,2,Leicester City,1.2,1.4,Burnley,4.0,2.0,2020-09-20,Lee Mason,King Power Stadium,Sun,19:00,0,16,Leicester City,Burnley,Leicester City,Burnley,Burnley_Leicester_City,Burnley_Leicester City_2020
+2020,29,Burnley,1.8,1.2,Leicester City,1.0,1.0,2021-03-03,Andy Madley,Turf Moor,Wed,18:00,0,297,draw,draw,Burnley,Leicester City,Burnley_Leicester_City,Burnley_Leicester City_2020
+2021,6,Leicester City,2.4,0.5,Burnley,2.0,2.0,2021-09-25,Chris Kavanagh,King Power Stadium,Sat,15:00,"31,650",57,draw,draw,Leicester City,Burnley,Burnley_Leicester_City,Burnley_Leicester City_2021
+2021,22,Burnley,0.9,1.5,Leicester City,0.0,2.0,2022-03-01,Chris Kavanagh,Turf Moor,Tue,19:45,"17,825",292,Leicester City,Burnley,Burnley,Leicester City,Burnley_Leicester_City,Burnley_Leicester City_2021
+2014,7,Leicester City,0.0,0.0,Burnley,2.0,2.0,0,Philip Dowd,0,0,0,0,8670,draw,draw,Leicester City,Burnley,Burnley_Leicester_City,Burnley_Leicester City_2014
+2014,34,Burnley,0.0,0.0,Leicester City,0.0,1.0,0,Anthony Taylor,0,0,0,0,8934,Leicester City,Burnley,Burnley,Leicester City,Burnley_Leicester_City,Burnley_Leicester City_2014

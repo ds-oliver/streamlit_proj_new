@@ -1,0 +1,3 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2021,7,West Ham,1.5,1.2,Brentford,1.0,2.0,2021-10-03,Peter Bankes,London Stadium,Sun,14:00,"49,940",74,Brentford,West Ham,West Ham,Brentford,Brentford_West_Ham,Brentford_West Ham_2021
+2021,32,Brentford,1.4,0.3,West Ham,2.0,0.0,2022-04-10,Martin Atkinson,Brentford Community Stadium,Sun,14:00,"17,032",354,Brentford,West Ham,Brentford,West Ham,Brentford_West_Ham,Brentford_West Ham_2021

@@ -1,0 +1,61 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,10,Manchester Utd,0.8,1.2,Tottenham,1.0,0.0,2017-10-28,Jonathan Moss,Old Trafford,Sat,12:30,"75,034",99,Manchester Utd,Tottenham,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2017
+2017,25,Tottenham,1.5,1.0,Manchester Utd,2.0,0.0,2018-01-31,Andre Marriner,Wembley Stadium,Wed,20:00,"81,978",274,Tottenham,Manchester Utd,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2017
+2018,3,Manchester Utd,1.5,1.2,Tottenham,0.0,3.0,2018-08-27,Craig Pawson,Old Trafford,Mon,20:00,"74,400",31,Tottenham,Manchester Utd,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2018
+2018,22,Tottenham,1.8,0.8,Manchester Utd,0.0,1.0,2019-01-13,Mike Dean,Tottenham Hotspur Stadium,Sun,16:30,"80,062",239,Manchester Utd,Tottenham,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2018
+2019,15,Manchester Utd,1.4,0.9,Tottenham,2.0,1.0,2019-12-04,Paul Tierney,Old Trafford,Wed,19:30,"73,252",159,Manchester Utd,Tottenham,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2019
+2019,30,Tottenham,0.4,1.7,Manchester Utd,1.0,1.0,2020-06-19,Jonathan Moss,Tottenham Hotspur Stadium,Fri,20:15,0,322,draw,draw,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2019
+2020,4,Manchester Utd,0.9,3.4,Tottenham,1.0,6.0,2020-10-04,Anthony Taylor,Old Trafford,Sun,16:30,0,39,Tottenham,Manchester Utd,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2020
+2020,31,Tottenham,0.9,2.1,Manchester Utd,1.0,3.0,2021-04-11,Chris Kavanagh,Tottenham Hotspur Stadium,Sun,16:30,0,352,Manchester Utd,Tottenham,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2020
+2021,10,Tottenham,1.0,1.5,Manchester Utd,0.0,3.0,2021-10-30,Stuart Attwell,Tottenham Hotspur Stadium,Sat,17:30,"60,356",105,Manchester Utd,Tottenham,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2021
+2021,29,Manchester Utd,1.0,1.5,Tottenham,3.0,2.0,2022-03-12,Jonathan Moss,Old Trafford,Sat,17:30,"73,458",315,Manchester Utd,Tottenham,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2021
+2022,12,Manchester Utd,1.5,0.6,Tottenham,2.0,0.0,2022-10-19,Simon Hooper,Old Trafford,Wed,20:15,"73,677",113,Manchester Utd,Tottenham,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2022
+2022,33,Tottenham,2.5,2.0,Manchester Utd,2.0,2.0,2023-04-27,Anthony Taylor,Tottenham Hotspur Stadium,Thu,20:15,"61,586",365,draw,draw,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2022
+1992,9,Tottenham,0.0,0.0,Manchester Utd,1.0,1.0,0,Ron Groves,0,0,0,0,91,draw,draw,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_1992
+1992,23,Manchester Utd,0.0,0.0,Tottenham,4.0,1.0,0,Mike Peck,0,0,0,0,241,Manchester Utd,Tottenham,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_1992
+1993,11,Manchester Utd,0.0,0.0,Tottenham,2.0,1.0,0,Keith Burge,0,0,0,0,574,Manchester Utd,Tottenham,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_1993
+1993,26,Tottenham,0.0,0.0,Manchester Utd,0.0,1.0,0,Roger Milford,0,0,0,0,726,Manchester Utd,Tottenham,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_1993
+1994,3,Tottenham,0.0,0.0,Manchester Utd,0.0,1.0,0,Keith Burge,0,0,0,0,951,Manchester Utd,Tottenham,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_1994
+1994,34,Manchester Utd,0.0,0.0,Tottenham,0.0,0.0,0,Kelvin Morton,0,0,0,0,1276,draw,draw,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_1994
+1995,22,Tottenham,0.0,0.0,Manchester Utd,4.0,1.0,0,Gerald Ashby,0,0,0,0,1591,Tottenham,Manchester Utd,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_1995
+1995,32,Manchester Utd,0.0,0.0,Tottenham,1.0,0.0,0,Gerald Ashby,0,0,0,0,1697,Manchester Utd,Tottenham,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_1995
+1996,8,Manchester Utd,0.0,0.0,Tottenham,2.0,0.0,0,Gary Willard,0,0,0,0,1843,Manchester Utd,Tottenham,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_1996
+1996,22,Tottenham,0.0,0.0,Manchester Utd,1.0,2.0,0,Martin Bodenham,0,0,0,0,1981,Manchester Utd,Tottenham,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_1996
+1997,1,Tottenham,0.0,0.0,Manchester Utd,0.0,2.0,0,Graham Poll,0,0,0,0,2155,Manchester Utd,Tottenham,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_1997
+1997,22,Manchester Utd,0.0,0.0,Tottenham,2.0,0.0,0,Paul Alcock,0,0,0,0,2354,Manchester Utd,Tottenham,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_1997
+1998,17,Tottenham,0.0,0.0,Manchester Utd,2.0,2.0,0,Uriah Rennie,0,0,0,0,2686,draw,draw,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_1998
+1998,38,Manchester Utd,0.0,0.0,Tottenham,2.0,1.0,0,Graham Poll,0,0,0,0,2903,Manchester Utd,Tottenham,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_1998
+1999,12,Tottenham,0.0,0.0,Manchester Utd,3.0,1.0,0,Jeff Winter,0,0,0,0,3014,Tottenham,Manchester Utd,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_1999
+1999,37,Manchester Utd,0.0,0.0,Tottenham,3.0,1.0,0,Alan Wilkie,0,0,0,0,3269,Manchester Utd,Tottenham,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_1999
+2000,16,Manchester Utd,0.0,0.0,Tottenham,2.0,0.0,0,Graham Poll,0,0,0,0,3441,Manchester Utd,Tottenham,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2000
+2000,38,Tottenham,0.0,0.0,Manchester Utd,3.0,1.0,0,Andy D'Urso,0,0,0,0,3661,Tottenham,Manchester Utd,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2000
+2001,8,Tottenham,0.0,0.0,Manchester Utd,3.0,5.0,0,Jeff Winter,0,0,0,0,3726,Manchester Utd,Tottenham,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2001
+2001,29,Manchester Utd,0.0,0.0,Tottenham,4.0,0.0,0,Mike Riley,0,0,0,0,3949,Manchester Utd,Tottenham,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2001
+2002,7,Manchester Utd,0.0,0.0,Tottenham,1.0,0.0,0,Rob Styles,0,0,0,0,4106,Manchester Utd,Tottenham,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2002
+2002,36,Tottenham,0.0,0.0,Manchester Utd,0.0,2.0,0,Jeff Winter,0,0,0,0,4403,Manchester Utd,Tottenham,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2002
+2003,17,Tottenham,0.0,0.0,Manchester Utd,1.0,2.0,0,Rob Styles,0,0,0,0,4591,Manchester Utd,Tottenham,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2003
+2003,29,Manchester Utd,0.0,0.0,Tottenham,3.0,0.0,0,Dermot Gallagher,0,0,0,0,4706,Manchester Utd,Tottenham,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2003
+2004,7,Tottenham,0.0,0.0,Manchester Utd,0.0,1.0,0,Peter Walton,0,0,0,0,4865,Manchester Utd,Tottenham,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2004
+2004,22,Manchester Utd,0.0,0.0,Tottenham,0.0,0.0,0,Mark Clattenburg,0,0,0,0,5021,draw,draw,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2004
+2005,10,Manchester Utd,0.0,0.0,Tottenham,1.0,1.0,0,Uriah Rennie,0,0,0,0,5273,draw,draw,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2005
+2005,35,Tottenham,0.0,0.0,Manchester Utd,1.0,2.0,0,Mark Halsey,0,0,0,0,5528,Manchester Utd,Tottenham,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2005
+2006,4,Manchester Utd,0.0,0.0,Tottenham,1.0,0.0,0,Mike Riley,0,0,0,0,5599,Manchester Utd,Tottenham,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2006
+2006,26,Tottenham,0.0,0.0,Manchester Utd,0.0,4.0,0,Mark Clattenburg,0,0,0,0,5822,Manchester Utd,Tottenham,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2006
+2007,4,Manchester Utd,0.0,0.0,Tottenham,1.0,0.0,0,Howard Webb,0,0,0,0,5981,Manchester Utd,Tottenham,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2007
+2007,25,Tottenham,0.0,0.0,Manchester Utd,1.0,1.0,0,Mark Clattenburg,0,0,0,0,6186,draw,draw,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2007
+2008,17,Tottenham,0.0,0.0,Manchester Utd,0.0,0.0,0,Mike Dean,0,0,0,0,6489,draw,draw,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2008
+2008,34,Manchester Utd,0.0,0.0,Tottenham,5.0,2.0,0,Howard Webb,0,0,0,0,6657,Manchester Utd,Tottenham,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2008
+2009,5,Tottenham,0.0,0.0,Manchester Utd,1.0,3.0,0,Andre Marriner,0,0,0,0,6745,Manchester Utd,Tottenham,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2009
+2009,36,Manchester Utd,0.0,0.0,Tottenham,3.0,1.0,0,Andre Marriner,0,0,0,0,7058,Manchester Utd,Tottenham,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2009
+2010,10,Manchester Utd,0.0,0.0,Tottenham,2.0,0.0,0,Mark Clattenburg,0,0,0,0,7177,Manchester Utd,Tottenham,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2010
+2010,23,Tottenham,0.0,0.0,Manchester Utd,0.0,0.0,0,Mike Dean,0,0,0,0,7306,draw,draw,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2010
+2011,2,Manchester Utd,0.0,0.0,Tottenham,3.0,0.0,0,Lee Probert,0,0,0,0,7484,Manchester Utd,Tottenham,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2011
+2011,27,Tottenham,0.0,0.0,Manchester Utd,1.0,3.0,0,Martin Atkinson,0,0,0,0,7734,Manchester Utd,Tottenham,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2011
+2012,6,Manchester Utd,0.0,0.0,Tottenham,2.0,3.0,0,Chris Foy,0,0,0,0,7902,Tottenham,Manchester Utd,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2012
+2012,23,Tottenham,0.0,0.0,Manchester Utd,1.0,1.0,0,Chris Foy,0,0,0,0,8072,draw,draw,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2012
+2013,13,Tottenham,0.0,0.0,Manchester Utd,2.0,2.0,0,Mike Dean,0,0,0,0,8353,draw,draw,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2013
+2013,20,Manchester Utd,0.0,0.0,Tottenham,1.0,2.0,0,Howard Webb,0,0,0,0,8421,Tottenham,Manchester Utd,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2013
+2014,19,Tottenham,0.0,0.0,Manchester Utd,0.0,0.0,0,Jonathan Moss,0,0,0,0,8786,draw,draw,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2014
+2014,29,Manchester Utd,0.0,0.0,Tottenham,3.0,0.0,0,Mark Clattenburg,0,0,0,0,8893,Manchester Utd,Tottenham,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2014
+2015,1,Manchester Utd,0.0,0.0,Tottenham,1.0,0.0,0,Jonathan Moss,0,0,0,0,8986,Manchester Utd,Tottenham,Manchester Utd,Tottenham,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2015
+2015,33,Tottenham,0.0,0.0,Manchester Utd,3.0,0.0,0,Mike Dean,0,0,0,0,9307,Tottenham,Manchester Utd,Tottenham,Manchester Utd,Manchester_Utd_Tottenham,Manchester Utd_Tottenham_2015

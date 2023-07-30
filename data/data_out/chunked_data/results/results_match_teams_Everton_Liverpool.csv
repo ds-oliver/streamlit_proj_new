@@ -1,0 +1,61 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,16,Liverpool,1.6,0.9,Everton,1.0,1.0,2017-12-10,Craig Pawson,Anfield,Sun,14:15,"53,082",173,draw,draw,Liverpool,Everton,Everton_Liverpool,Everton_Liverpool_2017
+2017,33,Everton,0.6,0.9,Liverpool,0.0,0.0,2018-04-07,Michael Oliver,Goodison Park,Sat,12:30,"39,220",347,draw,draw,Everton,Liverpool,Everton_Liverpool,Everton_Liverpool_2017
+2018,14,Liverpool,2.9,1.1,Everton,1.0,0.0,2018-12-02,Chris Kavanagh,Anfield,Sun,16:15,"51,756",152,Liverpool,Everton,Liverpool,Everton,Everton_Liverpool,Everton_Liverpool_2018
+2018,29,Everton,0.3,1.1,Liverpool,0.0,0.0,2019-03-03,Martin Atkinson,Goodison Park,Sun,16:15,"39,335",317,draw,draw,Everton,Liverpool,Everton_Liverpool,Everton_Liverpool_2018
+2019,15,Liverpool,2.0,1.5,Everton,5.0,2.0,2019-12-04,Mike Dean,Anfield,Wed,20:15,"53,094",161,Liverpool,Everton,Liverpool,Everton,Everton_Liverpool,Everton_Liverpool_2019
+2019,30,Everton,0.9,0.7,Liverpool,0.0,0.0,2020-06-21,Mike Dean,Goodison Park,Sun,19:00,0,329,draw,draw,Everton,Liverpool,Everton_Liverpool,Everton_Liverpool_2019
+2020,5,Everton,1.2,2.6,Liverpool,2.0,2.0,2020-10-17,Michael Oliver,Goodison Park,Sat,12:30,0,42,draw,draw,Everton,Liverpool,Everton_Liverpool,Everton_Liverpool_2020
+2020,25,Liverpool,1.4,1.6,Everton,0.0,2.0,2021-02-20,Chris Kavanagh,Anfield,Sat,17:30,0,274,Everton,Liverpool,Liverpool,Everton,Everton_Liverpool,Everton_Liverpool_2020
+2021,14,Everton,0.7,2.4,Liverpool,1.0,4.0,2021-12-01,Paul Tierney,Goodison Park,Wed,20:15,"39,641",149,Liverpool,Everton,Everton,Liverpool,Everton_Liverpool,Everton_Liverpool_2021
+2021,34,Liverpool,1.7,0.4,Everton,2.0,0.0,2022-04-24,Stuart Attwell,Anfield,Sun,16:30,"53,213",384,Liverpool,Everton,Liverpool,Everton,Everton_Liverpool,Everton_Liverpool_2021
+2022,6,Everton,1.7,2.1,Liverpool,0.0,0.0,2022-09-03,Anthony Taylor,Goodison Park,Sat,12:30,"39,240",55,draw,draw,Everton,Liverpool,Everton_Liverpool,Everton_Liverpool_2022
+2022,23,Liverpool,2.3,0.4,Everton,2.0,0.0,2023-02-13,Simon Hooper,Anfield,Mon,20:00,"53,027",243,Liverpool,Everton,Liverpool,Everton,Everton_Liverpool,Everton_Liverpool_2022
+1992,18,Everton,0.0,0.0,Liverpool,2.0,1.0,0,Martin Bodenham,0,0,0,0,197,Everton,Liverpool,Everton,Liverpool,Everton_Liverpool,Everton_Liverpool_1992
+1992,35,Liverpool,0.0,0.0,Everton,1.0,0.0,0,Philip Don,0,0,0,0,366,Liverpool,Everton,Liverpool,Everton,Everton_Liverpool,Everton_Liverpool_1992
+1993,8,Everton,0.0,0.0,Liverpool,2.0,0.0,0,David Elleray,0,0,0,0,542,Everton,Liverpool,Everton,Liverpool,Everton_Liverpool,Everton_Liverpool_1993
+1993,33,Liverpool,0.0,0.0,Everton,2.0,1.0,0,Keith Cooper,0,0,0,0,802,Liverpool,Everton,Liverpool,Everton,Everton_Liverpool,Everton_Liverpool_1993
+1994,15,Everton,0.0,0.0,Liverpool,2.0,0.0,0,Dermot Gallagher,0,0,0,0,1086,Everton,Liverpool,Everton,Liverpool,Everton_Liverpool,Everton_Liverpool_1994
+1994,26,Liverpool,0.0,0.0,Everton,0.0,0.0,0,Brian Hill,0,0,0,0,1194,draw,draw,Liverpool,Everton,Everton_Liverpool,Everton_Liverpool_1994
+1995,13,Liverpool,0.0,0.0,Everton,1.0,2.0,0,Gerald Ashby,0,0,0,0,1509,Everton,Liverpool,Liverpool,Everton,Everton_Liverpool,Everton_Liverpool_1995
+1995,36,Everton,0.0,0.0,Liverpool,1.0,1.0,0,David Elleray,0,0,0,0,1736,draw,draw,Everton,Liverpool,Everton_Liverpool,Everton_Liverpool_1995
+1996,10,Liverpool,0.0,0.0,Everton,1.0,1.0,0,Stephen Lodge,0,0,0,0,1895,draw,draw,Liverpool,Everton,Everton_Liverpool,Everton_Liverpool_1996
+1996,36,Everton,0.0,0.0,Liverpool,1.0,1.0,0,Stephen Lodge,0,0,0,0,2101,draw,draw,Everton,Liverpool,Everton_Liverpool,Everton_Liverpool_1996
+1997,11,Everton,0.0,0.0,Liverpool,2.0,0.0,0,Mike Reed,0,0,0,0,2246,Everton,Liverpool,Everton,Liverpool,Everton_Liverpool,Everton_Liverpool_1997
+1997,27,Liverpool,0.0,0.0,Everton,1.0,1.0,0,Peter Jones,0,0,0,0,2409,draw,draw,Liverpool,Everton,Everton_Liverpool,Everton_Liverpool_1997
+1998,9,Everton,0.0,0.0,Liverpool,0.0,0.0,0,Paul Durkin,0,0,0,0,2609,draw,draw,Everton,Liverpool,Everton_Liverpool,Everton_Liverpool_1998
+1998,31,Liverpool,0.0,0.0,Everton,3.0,2.0,0,David Elleray,0,0,0,0,2826,Liverpool,Everton,Liverpool,Everton,Everton_Liverpool,Everton_Liverpool_1998
+1999,9,Liverpool,0.0,0.0,Everton,0.0,1.0,0,Mike Riley,0,0,0,0,2991,Everton,Liverpool,Liverpool,Everton,Everton_Liverpool,Everton_Liverpool_1999
+1999,34,Everton,0.0,0.0,Liverpool,0.0,0.0,0,Graham Poll,0,0,0,0,3239,draw,draw,Everton,Liverpool,Everton_Liverpool,Everton_Liverpool_1999
+2000,11,Liverpool,0.0,0.0,Everton,3.0,1.0,0,Paul Durkin,0,0,0,0,3394,Liverpool,Everton,Liverpool,Everton,Everton_Liverpool,Everton_Liverpool_2000
+2000,34,Everton,0.0,0.0,Liverpool,2.0,3.0,0,Jeff Winter,0,0,0,0,3614,Liverpool,Everton,Everton,Liverpool,Everton_Liverpool,Everton_Liverpool_2000
+2001,5,Everton,0.0,0.0,Liverpool,1.0,3.0,0,Paul Durkin,0,0,0,0,3704,Liverpool,Everton,Everton,Liverpool,Everton_Liverpool,Everton_Liverpool_2001
+2001,27,Liverpool,0.0,0.0,Everton,1.0,1.0,0,David Elleray,0,0,0,0,3932,draw,draw,Liverpool,Everton,Everton_Liverpool,Everton_Liverpool_2001
+2002,19,Liverpool,0.0,0.0,Everton,0.0,0.0,0,Graham Poll,0,0,0,0,4233,draw,draw,Liverpool,Everton,Everton_Liverpool,Everton_Liverpool_2002
+2002,34,Everton,0.0,0.0,Liverpool,1.0,2.0,0,Paul Durkin,0,0,0,0,4379,Liverpool,Everton,Everton,Liverpool,Everton_Liverpool,Everton_Liverpool_2002
+2003,4,Everton,0.0,0.0,Liverpool,0.0,3.0,0,Mike Riley,0,0,0,0,4460,Liverpool,Everton,Everton,Liverpool,Everton_Liverpool,Everton_Liverpool_2003
+2003,23,Liverpool,0.0,0.0,Everton,0.0,0.0,0,Stephen Bennett,0,0,0,0,4652,draw,draw,Liverpool,Everton,Everton_Liverpool,Everton_Liverpool_2003
+2004,17,Everton,0.0,0.0,Liverpool,1.0,0.0,0,Stephen Bennett,0,0,0,0,4967,Everton,Liverpool,Everton,Liverpool,Everton_Liverpool,Everton_Liverpool_2004
+2004,30,Liverpool,0.0,0.0,Everton,2.0,1.0,0,Rob Styles,0,0,0,0,5102,Liverpool,Everton,Liverpool,Everton,Everton_Liverpool,Everton_Liverpool_2004
+2005,19,Everton,0.0,0.0,Liverpool,1.0,3.0,0,Graham Poll,0,0,0,0,5367,Liverpool,Everton,Everton,Liverpool,Everton_Liverpool,Everton_Liverpool_2005
+2005,31,Liverpool,0.0,0.0,Everton,3.0,1.0,0,Phil Dowd,0,0,0,0,5486,Liverpool,Everton,Liverpool,Everton,Everton_Liverpool,Everton_Liverpool_2005
+2006,4,Everton,0.0,0.0,Liverpool,3.0,0.0,0,Graham Poll,0,0,0,0,5597,Everton,Liverpool,Everton,Liverpool,Everton_Liverpool,Everton_Liverpool_2006
+2006,26,Liverpool,0.0,0.0,Everton,0.0,0.0,0,Alan Wiley,0,0,0,0,5813,draw,draw,Liverpool,Everton,Everton_Liverpool,Everton_Liverpool_2006
+2007,10,Everton,0.0,0.0,Liverpool,1.0,2.0,0,Mark Clattenburg,0,0,0,0,6034,Liverpool,Everton,Everton,Liverpool,Everton_Liverpool,Everton_Liverpool_2007
+2007,32,Liverpool,0.0,0.0,Everton,1.0,0.0,0,Howard Webb,0,0,0,0,6265,Liverpool,Everton,Liverpool,Everton,Everton_Liverpool,Everton_Liverpool_2007
+2008,6,Everton,0.0,0.0,Liverpool,0.0,2.0,0,Mike Riley,0,0,0,0,6380,Liverpool,Everton,Everton,Liverpool,Everton_Liverpool,Everton_Liverpool_2008
+2008,22,Liverpool,0.0,0.0,Everton,1.0,1.0,0,Howard Webb,0,0,0,0,6542,draw,draw,Liverpool,Everton,Everton_Liverpool,Everton_Liverpool_2008
+2009,14,Everton,0.0,0.0,Liverpool,0.0,2.0,0,Alan Wiley,0,0,0,0,6842,Liverpool,Everton,Everton,Liverpool,Everton_Liverpool,Everton_Liverpool_2009
+2009,25,Liverpool,0.0,0.0,Everton,1.0,0.0,0,Martin Atkinson,0,0,0,0,6945,Liverpool,Everton,Liverpool,Everton,Everton_Liverpool,Everton_Liverpool_2009
+2010,8,Everton,0.0,0.0,Liverpool,2.0,0.0,0,Howard Webb,0,0,0,0,7163,Everton,Liverpool,Everton,Liverpool,Everton_Liverpool,Everton_Liverpool_2010
+2010,23,Liverpool,0.0,0.0,Everton,2.0,2.0,0,Phil Dowd,0,0,0,0,7305,draw,draw,Liverpool,Everton,Everton_Liverpool,Everton_Liverpool_2010
+2011,7,Everton,0.0,0.0,Liverpool,0.0,2.0,0,Martin Atkinson,0,0,0,0,7529,Liverpool,Everton,Everton,Liverpool,Everton_Liverpool,Everton_Liverpool_2011
+2011,26,Liverpool,0.0,0.0,Everton,3.0,0.0,0,Phil Dowd,0,0,0,0,7745,Liverpool,Everton,Liverpool,Everton,Everton_Liverpool,Everton_Liverpool_2011
+2012,9,Everton,0.0,0.0,Liverpool,2.0,2.0,0,Andre Marriner,0,0,0,0,7934,draw,draw,Everton,Liverpool,Everton_Liverpool,Everton_Liverpool_2012
+2012,36,Liverpool,0.0,0.0,Everton,0.0,0.0,0,Michael Oliver,0,0,0,0,8201,draw,draw,Liverpool,Everton,Everton_Liverpool,Everton_Liverpool_2012
+2013,12,Everton,0.0,0.0,Liverpool,3.0,3.0,0,Phil Dowd,0,0,0,0,8342,draw,draw,Everton,Liverpool,Everton_Liverpool,Everton_Liverpool_2013
+2013,23,Liverpool,0.0,0.0,Everton,4.0,0.0,0,Martin Atkinson,0,0,0,0,8447,Liverpool,Everton,Liverpool,Everton,Everton_Liverpool,Everton_Liverpool_2013
+2014,6,Liverpool,0.0,0.0,Everton,1.0,1.0,0,Martin Atkinson,0,0,0,0,8656,draw,draw,Liverpool,Everton,Everton_Liverpool,Everton_Liverpool_2014
+2014,24,Everton,0.0,0.0,Liverpool,0.0,0.0,0,Anthony Taylor,0,0,0,0,8842,draw,draw,Everton,Liverpool,Everton_Liverpool,Everton_Liverpool_2014
+2015,8,Everton,0.0,0.0,Liverpool,1.0,1.0,0,Martin Atkinson,0,0,0,0,9063,draw,draw,Everton,Liverpool,Everton_Liverpool,Everton_Liverpool_2015
+2015,27,Liverpool,0.0,0.0,Everton,4.0,0.0,0,Robert Madley,0,0,0,0,9322,Liverpool,Everton,Liverpool,Everton,Everton_Liverpool,Everton_Liverpool_2015

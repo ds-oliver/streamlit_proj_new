@@ -1,0 +1,47 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,16,Southampton,1.3,0.7,Arsenal,1.0,1.0,2017-12-10,Robert Madley,St. Mary's Stadium,Sun,12:00,"31,643",172,draw,draw,Southampton,Arsenal,Arsenal_Southampton,Arsenal_Southampton_2017
+2017,33,Arsenal,1.6,2.0,Southampton,3.0,2.0,2018-04-08,Andre Marriner,Emirates Stadium,Sun,14:15,"59,374",355,Arsenal,Southampton,Arsenal,Southampton,Arsenal_Southampton,Arsenal_Southampton_2017
+2018,17,Southampton,1.3,1.9,Arsenal,3.0,2.0,2018-12-16,Chris Kavanagh,St. Mary's Stadium,Sun,13:30,"29,497",183,Southampton,Arsenal,Southampton,Arsenal,Arsenal_Southampton,Arsenal_Southampton_2018
+2018,27,Arsenal,2.1,0.8,Southampton,2.0,0.0,2019-02-24,Graham Scott,Emirates Stadium,Sun,14:05,"59,877",294,Arsenal,Southampton,Arsenal,Southampton,Arsenal_Southampton,Arsenal_Southampton_2018
+2019,13,Arsenal,1.8,2.4,Southampton,2.0,2.0,2019-11-23,Stuart Attwell,Emirates Stadium,Sat,15:00,"60,295",134,draw,draw,Arsenal,Southampton,Arsenal_Southampton,Arsenal_Southampton_2019
+2019,31,Southampton,0.9,1.9,Arsenal,0.0,2.0,2020-06-25,Graham Scott,St. Mary's Stadium,Thu,18:00,0,339,Arsenal,Southampton,Southampton,Arsenal,Arsenal_Southampton,Arsenal_Southampton_2019
+2020,13,Arsenal,0.6,1.2,Southampton,1.0,1.0,2020-12-16,Paul Tierney,Emirates Stadium,Wed,18:00,0,131,draw,draw,Arsenal,Southampton,Arsenal_Southampton,Arsenal_Southampton_2020
+2020,20,Southampton,0.8,2.2,Arsenal,1.0,3.0,2021-01-26,Kevin Friend,St. Mary's Stadium,Tue,20:15,0,215,Arsenal,Southampton,Southampton,Arsenal,Arsenal_Southampton,Arsenal_Southampton_2020
+2021,16,Arsenal,1.8,0.6,Southampton,3.0,0.0,2021-12-11,Jarred Gillett,Emirates Stadium,Sat,15:00,"59,653",167,Arsenal,Southampton,Arsenal,Southampton,Arsenal_Southampton,Arsenal_Southampton_2021
+2021,33,Southampton,0.8,1.7,Arsenal,1.0,0.0,2022-04-16,Peter Bankes,St. Mary's Stadium,Sat,15:00,"31,465",362,Southampton,Arsenal,Southampton,Arsenal,Arsenal_Southampton,Arsenal_Southampton_2021
+2022,13,Southampton,0.7,1.0,Arsenal,1.0,1.0,2022-10-23,Robert Jones,St. Mary's Stadium,Sun,14:00,"31,145",124,draw,draw,Southampton,Arsenal,Arsenal_Southampton,Arsenal_Southampton_2022
+2022,32,Arsenal,2.5,1.3,Southampton,3.0,3.0,2023-04-21,Simon Hooper,Emirates Stadium,Fri,20:00,"60,175",347,draw,draw,Arsenal,Southampton,Arsenal_Southampton,Arsenal_Southampton_2022
+1992,18,Southampton,0.0,0.0,Arsenal,2.0,0.0,0,John Key,0,0,0,0,191,Southampton,Arsenal,Southampton,Arsenal,Arsenal_Southampton,Arsenal_Southampton_1992
+1992,35,Arsenal,0.0,0.0,Southampton,4.0,3.0,0,Keren Barratt,0,0,0,0,362,Arsenal,Southampton,Arsenal,Southampton,Arsenal_Southampton,Arsenal_Southampton_1992
+1993,9,Arsenal,0.0,0.0,Southampton,1.0,0.0,0,Kelvin Morton,0,0,0,0,553,Arsenal,Southampton,Arsenal,Southampton,Arsenal_Southampton,Arsenal_Southampton_1993
+1993,34,Southampton,0.0,0.0,Arsenal,0.0,4.0,0,David Frampton,0,0,0,0,809,Arsenal,Southampton,Southampton,Arsenal,Arsenal_Southampton,Arsenal_Southampton_1993
+1994,15,Southampton,0.0,0.0,Arsenal,1.0,0.0,0,Roger Dilkes,0,0,0,0,1083,Southampton,Arsenal,Southampton,Arsenal,Arsenal_Southampton,Arsenal_Southampton_1994
+1994,26,Arsenal,0.0,0.0,Southampton,1.0,1.0,0,Dermot Gallagher,0,0,0,0,1192,draw,draw,Arsenal,Southampton,Arsenal_Southampton,Arsenal_Southampton_1994
+1995,7,Arsenal,0.0,0.0,Southampton,4.0,2.0,0,Robbie Hart,0,0,0,0,1453,Arsenal,Southampton,Arsenal,Southampton,Arsenal_Southampton,Arsenal_Southampton_1995
+1995,17,Southampton,0.0,0.0,Arsenal,0.0,0.0,0,Paul Danson,0,0,0,0,1546,draw,draw,Southampton,Arsenal,Arsenal_Southampton,Arsenal_Southampton_1995
+1996,17,Arsenal,0.0,0.0,Southampton,3.0,1.0,0,Peter Jones,0,0,0,0,1917,Arsenal,Southampton,Arsenal,Southampton,Arsenal_Southampton,Arsenal_Southampton_1996
+1996,31,Southampton,0.0,0.0,Arsenal,0.0,2.0,0,Jeff Winter,0,0,0,0,2054,Arsenal,Southampton,Southampton,Arsenal,Arsenal_Southampton,Arsenal_Southampton_1996
+1997,3,Southampton,0.0,0.0,Arsenal,1.0,3.0,0,David Elleray,0,0,0,0,2166,Arsenal,Southampton,Southampton,Arsenal,Arsenal_Southampton,Arsenal_Southampton_1997
+1997,24,Arsenal,0.0,0.0,Southampton,3.0,0.0,0,Peter Jones,0,0,0,0,2383,Arsenal,Southampton,Arsenal,Southampton,Arsenal_Southampton,Arsenal_Southampton_1997
+1998,9,Arsenal,0.0,0.0,Southampton,1.0,1.0,0,Jeff Winter,0,0,0,0,2612,draw,draw,Arsenal,Southampton,Arsenal_Southampton,Arsenal_Southampton_1998
+1998,31,Southampton,0.0,0.0,Arsenal,0.0,0.0,0,Peter Jones,0,0,0,0,2829,draw,draw,Southampton,Arsenal,Arsenal_Southampton,Arsenal_Southampton_1998
+1999,8,Southampton,0.0,0.0,Arsenal,0.0,1.0,0,Graham Barber,0,0,0,0,2976,Arsenal,Southampton,Southampton,Arsenal,Arsenal_Southampton,Arsenal_Southampton_1999
+1999,26,Arsenal,0.0,0.0,Southampton,3.0,1.0,0,Jeff Winter,0,0,0,0,3162,Arsenal,Southampton,Arsenal,Southampton,Arsenal_Southampton,Arsenal_Southampton_1999
+2000,16,Arsenal,0.0,0.0,Southampton,1.0,0.0,0,Steve Dunn,0,0,0,0,3437,Arsenal,Southampton,Arsenal,Southampton,Arsenal_Southampton,Arsenal_Southampton_2000
+2000,38,Southampton,0.0,0.0,Arsenal,3.0,2.0,0,Paul Taylor,0,0,0,0,3660,Southampton,Arsenal,Southampton,Arsenal,Arsenal_Southampton,Arsenal_Southampton_2000
+2001,9,Southampton,0.0,0.0,Arsenal,0.0,2.0,0,Graham Barber,0,0,0,0,3740,Arsenal,Southampton,Southampton,Arsenal,Arsenal_Southampton,Arsenal_Southampton_2001
+2001,25,Arsenal,0.0,0.0,Southampton,1.0,1.0,0,Clive Wilkes,0,0,0,0,3911,draw,draw,Arsenal,Southampton,Arsenal_Southampton,Arsenal_Southampton_2001
+2002,15,Southampton,0.0,0.0,Arsenal,3.0,2.0,0,Paul Durkin,0,0,0,0,4185,Southampton,Arsenal,Southampton,Arsenal,Arsenal_Southampton,Arsenal_Southampton_2002
+2002,33,Arsenal,0.0,0.0,Southampton,6.0,1.0,0,Uriah Rennie,0,0,0,0,4415,Arsenal,Southampton,Arsenal,Southampton,Arsenal_Southampton,Arsenal_Southampton_2002
+2003,19,Southampton,0.0,0.0,Arsenal,0.0,1.0,0,Graham Barber,0,0,0,0,4613,Arsenal,Southampton,Southampton,Arsenal,Arsenal_Southampton,Arsenal_Southampton_2003
+2003,25,Arsenal,0.0,0.0,Southampton,2.0,0.0,0,Neale Barry,0,0,0,0,4665,Arsenal,Southampton,Arsenal,Southampton,Arsenal_Southampton,Arsenal_Southampton_2003
+2004,11,Arsenal,0.0,0.0,Southampton,2.0,2.0,0,Matt Messias,0,0,0,0,4907,draw,draw,Arsenal,Southampton,Arsenal_Southampton,Arsenal_Southampton_2004
+2004,28,Southampton,0.0,0.0,Arsenal,1.0,1.0,0,Alan Wiley,0,0,0,0,5075,draw,draw,Southampton,Arsenal,Arsenal_Southampton,Arsenal_Southampton_2004
+2012,4,Arsenal,0.0,0.0,Southampton,6.0,1.0,0,Kevin Friend,0,0,0,0,7880,Arsenal,Southampton,Arsenal,Southampton,Arsenal_Southampton,Arsenal_Southampton_2012
+2012,21,Southampton,0.0,0.0,Arsenal,1.0,1.0,0,Lee Probert,0,0,0,0,8048,draw,draw,Southampton,Arsenal,Arsenal_Southampton,Arsenal_Southampton_2012
+2013,12,Arsenal,0.0,0.0,Southampton,2.0,0.0,0,Mark Clattenburg,0,0,0,0,8341,Arsenal,Southampton,Arsenal,Southampton,Arsenal_Southampton,Arsenal_Southampton_2013
+2013,23,Southampton,0.0,0.0,Arsenal,2.0,2.0,0,Lee Mason,0,0,0,0,8448,draw,draw,Southampton,Arsenal,Arsenal_Southampton,Arsenal_Southampton_2013
+2014,14,Arsenal,0.0,0.0,Southampton,1.0,0.0,0,Andre Marriner,0,0,0,0,8745,Arsenal,Southampton,Arsenal,Southampton,Arsenal_Southampton,Arsenal_Southampton_2014
+2014,20,Southampton,0.0,0.0,Arsenal,2.0,0.0,0,Craig Pawson,0,0,0,0,8798,Southampton,Arsenal,Southampton,Arsenal,Arsenal_Southampton,Arsenal_Southampton_2014
+2015,18,Southampton,0.0,0.0,Arsenal,4.0,0.0,0,Jonathan Moss,0,0,0,0,9165,Southampton,Arsenal,Southampton,Arsenal,Arsenal_Southampton,Arsenal_Southampton_2015
+2015,24,Arsenal,0.0,0.0,Southampton,0.0,0.0,0,Lee Mason,0,0,0,0,9219,draw,draw,Arsenal,Southampton,Arsenal_Southampton,Arsenal_Southampton_2015

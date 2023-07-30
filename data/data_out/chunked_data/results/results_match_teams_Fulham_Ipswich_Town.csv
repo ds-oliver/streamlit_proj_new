@@ -1,0 +1,3 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2001,10,Fulham,0.0,0.0,Ipswich Town,1.0,1.0,0,Mike Riley,0,0,0,0,3753,draw,draw,Fulham,Ipswich Town,Fulham_Ipswich_Town,Fulham_Ipswich Town_2001
+2001,24,Ipswich Town,0.0,0.0,Fulham,1.0,0.0,0,Alan Wiley,0,0,0,0,3900,Ipswich Town,Fulham,Ipswich Town,Fulham,Fulham_Ipswich_Town,Fulham_Ipswich Town_2001

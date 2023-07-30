@@ -1,0 +1,61 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,8,Liverpool,1.5,0.2,Manchester Utd,0.0,0.0,2017-10-14,Martin Atkinson,Anfield,Sat,12:30,"52,912",77,draw,draw,Liverpool,Manchester Utd,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2017
+2017,30,Manchester Utd,0.7,0.7,Liverpool,2.0,1.0,2018-03-10,Craig Pawson,Old Trafford,Sat,12:30,"74,855",320,Manchester Utd,Liverpool,Manchester Utd,Liverpool,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2017
+2018,17,Liverpool,2.5,0.7,Manchester Utd,3.0,1.0,2018-12-16,Martin Atkinson,Anfield,Sun,16:00,"52,908",185,Liverpool,Manchester Utd,Liverpool,Manchester Utd,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2018
+2018,27,Manchester Utd,0.3,0.5,Liverpool,0.0,0.0,2019-02-24,Michael Oliver,Old Trafford,Sun,14:05,"74,519",295,draw,draw,Manchester Utd,Liverpool,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2018
+2019,9,Manchester Utd,0.7,1.2,Liverpool,1.0,1.0,2019-10-20,Martin Atkinson,Old Trafford,Sun,16:30,"73,737",96,draw,draw,Manchester Utd,Liverpool,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2019
+2019,23,Liverpool,1.9,1.3,Manchester Utd,2.0,0.0,2020-01-19,Craig Pawson,Anfield,Sun,16:30,"52,916",250,Liverpool,Manchester Utd,Liverpool,Manchester Utd,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2019
+2020,19,Liverpool,1.2,1.1,Manchester Utd,0.0,0.0,2021-01-17,Paul Tierney,Anfield,Sun,16:30,0,198,draw,draw,Liverpool,Manchester Utd,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2020
+2020,34,Manchester Utd,1.9,2.7,Liverpool,2.0,4.0,2021-05-13,Anthony Taylor,Old Trafford,Thu,20:15,0,408,Liverpool,Manchester Utd,Manchester Utd,Liverpool,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2020
+2021,9,Manchester Utd,1.6,3.4,Liverpool,0.0,5.0,2021-10-24,Anthony Taylor,Old Trafford,Sun,16:30,"73,088",97,Liverpool,Manchester Utd,Manchester Utd,Liverpool,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2021
+2021,30,Liverpool,2.0,0.1,Manchester Utd,4.0,0.0,2022-04-19,Martin Atkinson,Anfield,Tue,20:00,"52,686",366,Liverpool,Manchester Utd,Liverpool,Manchester Utd,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2021
+2022,3,Manchester Utd,1.8,1.3,Liverpool,2.0,1.0,2022-08-22,Michael Oliver,Old Trafford,Mon,20:00,"74,147",31,Manchester Utd,Liverpool,Manchester Utd,Liverpool,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2022
+2022,26,Liverpool,2.8,0.8,Manchester Utd,7.0,0.0,2023-03-05,Andy Madley,Anfield,Sun,16:30,"53,001",278,Liverpool,Manchester Utd,Liverpool,Manchester Utd,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2022
+1992,12,Manchester Utd,0.0,0.0,Liverpool,2.0,2.0,0,Keith Hackett,0,0,0,0,129,draw,draw,Manchester Utd,Liverpool,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_1992
+1992,32,Liverpool,0.0,0.0,Manchester Utd,1.0,2.0,0,Roger Milford,0,0,0,0,335,Manchester Utd,Liverpool,Liverpool,Manchester Utd,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_1992
+1993,25,Liverpool,0.0,0.0,Manchester Utd,3.0,3.0,0,Philip Don,0,0,0,0,724,draw,draw,Liverpool,Manchester Utd,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_1993
+1993,28,Manchester Utd,0.0,0.0,Liverpool,1.0,0.0,0,Keith Hackett,0,0,0,0,834,Manchester Utd,Liverpool,Manchester Utd,Liverpool,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_1993
+1994,6,Manchester Utd,0.0,0.0,Liverpool,2.0,0.0,0,Kelvin Morton,0,0,0,0,978,Manchester Utd,Liverpool,Manchester Utd,Liverpool,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_1994
+1994,35,Liverpool,0.0,0.0,Manchester Utd,2.0,0.0,0,Gerald Ashby,0,0,0,0,1285,Liverpool,Manchester Utd,Liverpool,Manchester Utd,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_1994
+1995,8,Manchester Utd,0.0,0.0,Liverpool,2.0,2.0,0,David Elleray,0,0,0,0,1464,draw,draw,Manchester Utd,Liverpool,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_1995
+1995,18,Liverpool,0.0,0.0,Manchester Utd,2.0,0.0,0,Graham Poll,0,0,0,0,1563,Liverpool,Manchester Utd,Liverpool,Manchester Utd,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_1995
+1996,9,Manchester Utd,0.0,0.0,Liverpool,1.0,0.0,0,David Elleray,0,0,0,0,1846,Manchester Utd,Liverpool,Manchester Utd,Liverpool,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_1996
+1996,35,Liverpool,0.0,0.0,Manchester Utd,1.0,3.0,0,Graham Poll,0,0,0,0,2109,Manchester Utd,Liverpool,Liverpool,Manchester Utd,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_1996
+1997,17,Liverpool,0.0,0.0,Manchester Utd,1.0,3.0,0,David Elleray,0,0,0,0,2310,Manchester Utd,Liverpool,Liverpool,Manchester Utd,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_1997
+1997,33,Manchester Utd,0.0,0.0,Liverpool,1.0,1.0,0,Graham Poll,0,0,0,0,2462,draw,draw,Manchester Utd,Liverpool,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_1997
+1998,7,Manchester Utd,0.0,0.0,Liverpool,2.0,0.0,0,Peter Jones,0,0,0,0,2585,Manchester Utd,Liverpool,Manchester Utd,Liverpool,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_1998
+1998,28,Liverpool,0.0,0.0,Manchester Utd,2.0,2.0,0,David Elleray,0,0,0,0,2882,draw,draw,Liverpool,Manchester Utd,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_1998
+1999,7,Liverpool,0.0,0.0,Manchester Utd,2.0,3.0,0,Graham Barber,0,0,0,0,2968,Manchester Utd,Liverpool,Liverpool,Manchester Utd,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_1999
+1999,27,Manchester Utd,0.0,0.0,Liverpool,1.0,1.0,0,Dermot Gallagher,0,0,0,0,3169,draw,draw,Manchester Utd,Liverpool,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_1999
+2000,18,Manchester Utd,0.0,0.0,Liverpool,0.0,1.0,0,Mike Riley,0,0,0,0,3463,Liverpool,Manchester Utd,Manchester Utd,Liverpool,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2000
+2000,31,Liverpool,0.0,0.0,Manchester Utd,2.0,0.0,0,Graham Poll,0,0,0,0,3586,Liverpool,Manchester Utd,Liverpool,Manchester Utd,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2000
+2001,12,Liverpool,0.0,0.0,Manchester Utd,3.0,1.0,0,Graham Poll,0,0,0,0,3777,Liverpool,Manchester Utd,Liverpool,Manchester Utd,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2001
+2001,33,Manchester Utd,0.0,0.0,Liverpool,0.0,1.0,0,Graham Barber,0,0,0,0,3894,Liverpool,Manchester Utd,Manchester Utd,Liverpool,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2001
+2002,16,Liverpool,0.0,0.0,Manchester Utd,1.0,2.0,0,Alan Wiley,0,0,0,0,4201,Manchester Utd,Liverpool,Liverpool,Manchester Utd,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2002
+2002,32,Manchester Utd,0.0,0.0,Liverpool,4.0,0.0,0,Mike Riley,0,0,0,0,4361,Manchester Utd,Liverpool,Manchester Utd,Liverpool,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2002
+2003,12,Liverpool,0.0,0.0,Manchester Utd,1.0,2.0,0,Graham Poll,0,0,0,0,4544,Manchester Utd,Liverpool,Liverpool,Manchester Utd,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2003
+2003,35,Manchester Utd,0.0,0.0,Liverpool,0.0,1.0,0,Mike Riley,0,0,0,0,4769,Liverpool,Manchester Utd,Manchester Utd,Liverpool,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2003
+2004,6,Manchester Utd,0.0,0.0,Liverpool,2.0,1.0,0,Graham Poll,0,0,0,0,4864,Manchester Utd,Liverpool,Manchester Utd,Liverpool,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2004
+2004,23,Liverpool,0.0,0.0,Manchester Utd,0.0,1.0,0,Stephen Bennett,0,0,0,0,5029,Manchester Utd,Liverpool,Liverpool,Manchester Utd,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2004
+2005,6,Liverpool,0.0,0.0,Manchester Utd,0.0,0.0,0,Rob Styles,0,0,0,0,5239,draw,draw,Liverpool,Manchester Utd,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2005
+2005,23,Manchester Utd,0.0,0.0,Liverpool,1.0,0.0,0,Mike Riley,0,0,0,0,5407,Manchester Utd,Liverpool,Manchester Utd,Liverpool,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2005
+2006,9,Manchester Utd,0.0,0.0,Liverpool,2.0,0.0,0,Graham Poll,0,0,0,0,5650,Manchester Utd,Liverpool,Manchester Utd,Liverpool,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2006
+2006,29,Liverpool,0.0,0.0,Manchester Utd,0.0,1.0,0,Martin Atkinson,0,0,0,0,5848,Manchester Utd,Liverpool,Liverpool,Manchester Utd,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2006
+2007,17,Liverpool,0.0,0.0,Manchester Utd,0.0,1.0,0,Mark Halsey,0,0,0,0,6114,Manchester Utd,Liverpool,Liverpool,Manchester Utd,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2007
+2007,31,Manchester Utd,0.0,0.0,Liverpool,3.0,0.0,0,Stephen Bennett,0,0,0,0,6255,Manchester Utd,Liverpool,Manchester Utd,Liverpool,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2007
+2008,4,Liverpool,0.0,0.0,Manchester Utd,2.0,1.0,0,Howard Webb,0,0,0,0,6362,Liverpool,Manchester Utd,Liverpool,Manchester Utd,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2008
+2008,29,Manchester Utd,0.0,0.0,Liverpool,1.0,4.0,0,Alan Wiley,0,0,0,0,6611,Liverpool,Manchester Utd,Manchester Utd,Liverpool,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2008
+2009,10,Liverpool,0.0,0.0,Manchester Utd,2.0,0.0,0,Andre Marriner,0,0,0,0,6798,Liverpool,Manchester Utd,Liverpool,Manchester Utd,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2009
+2009,31,Manchester Utd,0.0,0.0,Liverpool,2.0,1.0,0,Howard Webb,0,0,0,0,7007,Manchester Utd,Liverpool,Manchester Utd,Liverpool,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2009
+2010,5,Manchester Utd,0.0,0.0,Liverpool,3.0,2.0,0,Howard Webb,0,0,0,0,7135,Manchester Utd,Liverpool,Manchester Utd,Liverpool,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2010
+2010,29,Liverpool,0.0,0.0,Manchester Utd,3.0,1.0,0,Phil Dowd,0,0,0,0,7370,Liverpool,Manchester Utd,Liverpool,Manchester Utd,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2010
+2011,8,Liverpool,0.0,0.0,Manchester Utd,1.0,1.0,0,Andre Marriner,0,0,0,0,7540,draw,draw,Liverpool,Manchester Utd,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2011
+2011,25,Manchester Utd,0.0,0.0,Liverpool,2.0,1.0,0,Phil Dowd,0,0,0,0,7710,Manchester Utd,Liverpool,Manchester Utd,Liverpool,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2011
+2012,5,Liverpool,0.0,0.0,Manchester Utd,1.0,2.0,0,Mark Halsey,0,0,0,0,7892,Manchester Utd,Liverpool,Liverpool,Manchester Utd,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2012
+2012,22,Manchester Utd,0.0,0.0,Liverpool,2.0,1.0,0,Howard Webb,0,0,0,0,8063,Manchester Utd,Liverpool,Manchester Utd,Liverpool,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2012
+2013,3,Liverpool,0.0,0.0,Manchester Utd,1.0,0.0,0,Andre Marriner,0,0,0,0,8254,Liverpool,Manchester Utd,Liverpool,Manchester Utd,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2013
+2013,30,Manchester Utd,0.0,0.0,Liverpool,0.0,3.0,0,Mark Clattenburg,0,0,0,0,8516,Liverpool,Manchester Utd,Manchester Utd,Liverpool,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2013
+2014,16,Manchester Utd,0.0,0.0,Liverpool,3.0,0.0,0,Martin Atkinson,0,0,0,0,8763,Manchester Utd,Liverpool,Manchester Utd,Liverpool,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2014
+2014,30,Liverpool,0.0,0.0,Manchester Utd,1.0,2.0,0,Martin Atkinson,0,0,0,0,8902,Manchester Utd,Liverpool,Liverpool,Manchester Utd,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2014
+2015,5,Manchester Utd,0.0,0.0,Liverpool,3.0,1.0,0,Michael Oliver,0,0,0,0,9032,Manchester Utd,Liverpool,Manchester Utd,Liverpool,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2015
+2015,22,Liverpool,0.0,0.0,Manchester Utd,0.0,1.0,0,Mark Clattenburg,0,0,0,0,9203,Manchester Utd,Liverpool,Liverpool,Manchester Utd,Liverpool_Manchester_Utd,Liverpool_Manchester Utd_2015

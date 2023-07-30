@@ -1,0 +1,51 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,11,Manchester City,1.8,0.3,Arsenal,3.0,1.0,2017-11-05,Michael Oliver,Etihad Stadium,Sun,14:15,"54,286",117,Manchester City,Arsenal,Manchester City,Arsenal,Arsenal_Manchester_City,Arsenal_Manchester City_2017
+2017,28,Arsenal,1.3,1.5,Manchester City,0.0,3.0,2018-03-01,Andre Marriner,Emirates Stadium,Thu,19:45,"58,420",307,Manchester City,Arsenal,Arsenal,Manchester City,Arsenal_Manchester_City,Arsenal_Manchester City_2017
+2018,1,Arsenal,0.5,1.7,Manchester City,0.0,2.0,2018-08-12,Michael Oliver,Emirates Stadium,Sun,16:00,"59,934",9,Manchester City,Arsenal,Arsenal,Manchester City,Arsenal_Manchester_City,Arsenal_Manchester City_2018
+2018,25,Manchester City,2.7,0.7,Arsenal,3.0,1.0,2019-02-03,Martin Atkinson,Etihad Stadium,Sun,16:30,"54,483",272,Manchester City,Arsenal,Manchester City,Arsenal,Arsenal_Manchester_City,Arsenal_Manchester City_2018
+2019,17,Arsenal,0.5,1.3,Manchester City,0.0,3.0,2019-12-15,Paul Tierney,Emirates Stadium,Sun,16:30,"60,031",184,Manchester City,Arsenal,Arsenal,Manchester City,Arsenal_Manchester_City,Arsenal_Manchester City_2019
+2019,28,Manchester City,2.6,0.3,Arsenal,3.0,0.0,2020-06-17,Anthony Taylor,Etihad Stadium,Wed,20:15,0,319,Manchester City,Arsenal,Manchester City,Arsenal,Arsenal_Manchester_City,Arsenal_Manchester City_2019
+2020,5,Manchester City,1.3,0.9,Arsenal,1.0,0.0,2020-10-17,Chris Kavanagh,Etihad Stadium,Sat,17:30,0,44,Manchester City,Arsenal,Manchester City,Arsenal,Arsenal_Manchester_City,Arsenal_Manchester City_2020
+2020,25,Arsenal,0.3,1.8,Manchester City,0.0,1.0,2021-02-21,Jonathan Moss,Emirates Stadium,Sun,16:30,0,278,Manchester City,Arsenal,Arsenal,Manchester City,Arsenal_Manchester_City,Arsenal_Manchester City_2020
+2021,3,Manchester City,4.4,0.2,Arsenal,5.0,0.0,2021-08-28,Martin Atkinson,Etihad Stadium,Sat,12:30,"52,276",22,Manchester City,Arsenal,Manchester City,Arsenal,Arsenal_Manchester_City,Arsenal_Manchester City_2021
+2021,21,Arsenal,0.8,2.0,Manchester City,1.0,2.0,2022-01-01,Stuart Attwell,Emirates Stadium,Sat,12:30,"59,757",203,Manchester City,Arsenal,Arsenal,Manchester City,Arsenal_Manchester_City,Arsenal_Manchester City_2021
+2022,12,Arsenal,1.6,1.8,Manchester City,1.0,3.0,2023-02-15,Anthony Taylor,Emirates Stadium,Wed,19:30,"60,276",245,Manchester City,Arsenal,Arsenal,Manchester City,Arsenal_Manchester_City,Arsenal_Manchester City_2022
+2022,33,Manchester City,2.5,0.5,Arsenal,4.0,1.0,2023-04-26,Michael Oliver,Etihad Stadium,Wed,20:00,"53,482",362,Manchester City,Arsenal,Manchester City,Arsenal,Arsenal_Manchester_City,Arsenal_Manchester City_2022
+1992,10,Arsenal,0.0,0.0,Manchester City,1.0,0.0,0,John Martin,0,0,0,0,108,Arsenal,Manchester City,Arsenal,Manchester City,Arsenal_Manchester_City,Arsenal_Manchester City_1992
+1992,24,Manchester City,0.0,0.0,Arsenal,0.0,1.0,0,Keith Burge,0,0,0,0,255,Arsenal,Manchester City,Manchester City,Arsenal,Arsenal_Manchester_City,Arsenal_Manchester City_1992
+1993,11,Arsenal,0.0,0.0,Manchester City,0.0,0.0,0,Roger Milford,0,0,0,0,576,draw,draw,Arsenal,Manchester City,Arsenal_Manchester_City,Arsenal_Manchester City_1993
+1993,26,Manchester City,0.0,0.0,Arsenal,0.0,0.0,0,David Allison,0,0,0,0,729,draw,draw,Manchester City,Arsenal,Arsenal_Manchester_City,Arsenal_Manchester City_1993
+1994,1,Arsenal,0.0,0.0,Manchester City,3.0,0.0,0,Paul Durkin,0,0,0,0,927,Arsenal,Manchester City,Arsenal,Manchester City,Arsenal_Manchester_City,Arsenal_Manchester City_1994
+1994,18,Manchester City,0.0,0.0,Arsenal,1.0,2.0,0,Gerald Ashby,0,0,0,0,1121,Arsenal,Manchester City,Manchester City,Arsenal,Arsenal_Manchester_City,Arsenal_Manchester City_1994
+1995,5,Manchester City,0.0,0.0,Arsenal,0.0,1.0,0,Dermot Gallagher,0,0,0,0,1433,Arsenal,Manchester City,Manchester City,Arsenal,Arsenal_Manchester_City,Arsenal_Manchester City_1995
+1995,27,Arsenal,0.0,0.0,Manchester City,3.0,1.0,0,Peter Jones,0,0,0,0,1668,Arsenal,Manchester City,Arsenal,Manchester City,Arsenal_Manchester_City,Arsenal_Manchester City_1995
+2000,11,Arsenal,0.0,0.0,Manchester City,5.0,0.0,0,Rob Styles,0,0,0,0,3391,Arsenal,Manchester City,Arsenal,Manchester City,Arsenal_Manchester_City,Arsenal_Manchester City_2000
+2000,34,Manchester City,0.0,0.0,Arsenal,0.0,4.0,0,Neale Barry,0,0,0,0,3602,Arsenal,Manchester City,Manchester City,Arsenal,Arsenal_Manchester_City,Arsenal_Manchester City_2000
+2002,5,Arsenal,0.0,0.0,Manchester City,2.0,1.0,0,Clive Wilkes,0,0,0,0,4084,Arsenal,Manchester City,Arsenal,Manchester City,Arsenal_Manchester_City,Arsenal_Manchester City_2002
+2002,28,Manchester City,0.0,0.0,Arsenal,1.0,5.0,0,Paul Durkin,0,0,0,0,4318,Arsenal,Manchester City,Manchester City,Arsenal,Arsenal_Manchester_City,Arsenal_Manchester City_2002
+2003,4,Manchester City,0.0,0.0,Arsenal,1.0,2.0,0,Graham Poll,0,0,0,0,4462,Arsenal,Manchester City,Manchester City,Arsenal,Arsenal_Manchester_City,Arsenal_Manchester City_2003
+2003,23,Arsenal,0.0,0.0,Manchester City,2.0,1.0,0,Alan Wiley,0,0,0,0,4654,Arsenal,Manchester City,Arsenal,Manchester City,Arsenal_Manchester_City,Arsenal_Manchester City_2003
+2004,7,Manchester City,0.0,0.0,Arsenal,0.0,1.0,0,Neale Barry,0,0,0,0,4871,Arsenal,Manchester City,Manchester City,Arsenal,Arsenal_Manchester_City,Arsenal_Manchester City_2004
+2004,22,Arsenal,0.0,0.0,Manchester City,1.0,1.0,0,Rob Styles,0,0,0,0,5022,draw,draw,Arsenal,Manchester City,Arsenal_Manchester_City,Arsenal_Manchester City_2004
+2005,10,Arsenal,0.0,0.0,Manchester City,1.0,0.0,0,Mike Riley,0,0,0,0,5276,Arsenal,Manchester City,Arsenal,Manchester City,Arsenal_Manchester_City,Arsenal_Manchester City_2005
+2005,35,Manchester City,0.0,0.0,Arsenal,1.0,3.0,0,Graham Poll,0,0,0,0,5555,Arsenal,Manchester City,Manchester City,Arsenal,Arsenal_Manchester_City,Arsenal_Manchester City_2005
+2006,3,Manchester City,0.0,0.0,Arsenal,1.0,0.0,0,Uriah Rennie,0,0,0,0,5586,Manchester City,Arsenal,Manchester City,Arsenal,Arsenal_Manchester_City,Arsenal_Manchester City_2006
+2006,25,Arsenal,0.0,0.0,Manchester City,3.0,1.0,0,Mark Halsey,0,0,0,0,5899,Arsenal,Manchester City,Arsenal,Manchester City,Arsenal_Manchester_City,Arsenal_Manchester City_2006
+2007,4,Arsenal,0.0,0.0,Manchester City,1.0,0.0,0,Chris Foy,0,0,0,0,5973,Arsenal,Manchester City,Arsenal,Manchester City,Arsenal_Manchester_City,Arsenal_Manchester City_2007
+2007,25,Manchester City,0.0,0.0,Arsenal,1.0,3.0,0,Andre Marriner,0,0,0,0,6191,Arsenal,Manchester City,Manchester City,Arsenal,Arsenal_Manchester_City,Arsenal_Manchester City_2007
+2008,14,Manchester City,0.0,0.0,Arsenal,3.0,0.0,0,Alan Wiley,0,0,0,0,6455,Manchester City,Arsenal,Manchester City,Arsenal,Arsenal_Manchester_City,Arsenal_Manchester City_2008
+2008,31,Arsenal,0.0,0.0,Manchester City,2.0,0.0,0,Andre Marriner,0,0,0,0,6631,Arsenal,Manchester City,Arsenal,Manchester City,Arsenal_Manchester_City,Arsenal_Manchester City_2008
+2009,5,Manchester City,0.0,0.0,Arsenal,4.0,2.0,0,Mark Clattenburg,0,0,0,0,6743,Manchester City,Arsenal,Manchester City,Arsenal,Arsenal_Manchester_City,Arsenal_Manchester City_2009
+2009,36,Arsenal,0.0,0.0,Manchester City,0.0,0.0,0,Mike Dean,0,0,0,0,7059,draw,draw,Arsenal,Manchester City,Arsenal_Manchester_City,Arsenal_Manchester City_2009
+2010,9,Manchester City,0.0,0.0,Arsenal,0.0,3.0,0,Mark Clattenburg,0,0,0,0,7173,Arsenal,Manchester City,Manchester City,Arsenal,Arsenal_Manchester_City,Arsenal_Manchester City_2010
+2010,22,Arsenal,0.0,0.0,Manchester City,0.0,0.0,0,Mike Jones,0,0,0,0,7291,draw,draw,Arsenal,Manchester City,Arsenal_Manchester_City,Arsenal_Manchester City_2010
+2011,16,Manchester City,0.0,0.0,Arsenal,1.0,0.0,0,Phil Dowd,0,0,0,0,7623,Manchester City,Arsenal,Manchester City,Arsenal,Arsenal_Manchester_City,Arsenal_Manchester City_2011
+2011,32,Arsenal,0.0,0.0,Manchester City,1.0,0.0,0,Martin Atkinson,0,0,0,0,7783,Arsenal,Manchester City,Arsenal,Manchester City,Arsenal_Manchester_City,Arsenal_Manchester City_2011
+2012,5,Manchester City,0.0,0.0,Arsenal,1.0,1.0,0,Mike Dean,0,0,0,0,7891,draw,draw,Manchester City,Arsenal,Arsenal_Manchester_City,Arsenal_Manchester City_2012
+2012,22,Arsenal,0.0,0.0,Manchester City,0.0,2.0,0,Mike Dean,0,0,0,0,8062,Manchester City,Arsenal,Arsenal,Manchester City,Arsenal_Manchester_City,Arsenal_Manchester City_2012
+2013,16,Manchester City,0.0,0.0,Arsenal,6.0,3.0,0,Martin Atkinson,0,0,0,0,8381,Manchester City,Arsenal,Manchester City,Arsenal,Arsenal_Manchester_City,Arsenal_Manchester City_2013
+2013,32,Arsenal,0.0,0.0,Manchester City,1.0,1.0,0,Mike Dean,0,0,0,0,8534,draw,draw,Arsenal,Manchester City,Arsenal_Manchester_City,Arsenal_Manchester City_2013
+2014,4,Arsenal,0.0,0.0,Manchester City,2.0,2.0,0,Mark Clattenburg,0,0,0,0,8636,draw,draw,Arsenal,Manchester City,Arsenal_Manchester_City,Arsenal_Manchester City_2014
+2014,22,Manchester City,0.0,0.0,Arsenal,0.0,2.0,0,Mike Dean,0,0,0,0,8824,Arsenal,Manchester City,Manchester City,Arsenal,Arsenal_Manchester_City,Arsenal_Manchester City_2014
+2015,17,Arsenal,0.0,0.0,Manchester City,2.0,1.0,0,Andre Marriner,0,0,0,0,9155,Arsenal,Manchester City,Arsenal,Manchester City,Arsenal_Manchester_City,Arsenal_Manchester City_2015
+2015,37,Manchester City,0.0,0.0,Arsenal,2.0,2.0,0,Anthony Taylor,0,0,0,0,9351,draw,draw,Manchester City,Arsenal,Arsenal_Manchester_City,Arsenal_Manchester City_2015

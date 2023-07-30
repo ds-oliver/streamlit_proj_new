@@ -1,0 +1,3 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2020,5,Leeds United,1.0,0.4,Wolves,0.0,1.0,2020-10-19,David Coote,Elland Road,Mon,20:00,0,51,Wolves,Leeds United,Leeds United,Wolves,Leeds_United_Wolves,Leeds United_Wolves_2020
+2020,25,Wolves,0.6,1.7,Leeds United,1.0,0.0,2021-02-19,David Coote,Molineux Stadium,Fri,20:00,0,271,Wolves,Leeds United,Wolves,Leeds United,Leeds_United_Wolves,Leeds United_Wolves_2020

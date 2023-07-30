@@ -1,0 +1,3 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2011,18,Swansea City,0.0,0.0,QPR,1.0,1.0,0,Lee Probert,0,0,0,0,7643,draw,draw,Swansea City,QPR,QPR_Swansea_City,QPR_Swansea City_2011
+2011,33,QPR,0.0,0.0,Swansea City,3.0,0.0,0,Lee Probert,0,0,0,0,7792,QPR,Swansea City,QPR,Swansea City,QPR_Swansea_City,QPR_Swansea City_2011

@@ -1,0 +1,57 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,18,Arsenal,1.8,0.3,Newcastle Utd,1.0,0.0,2017-12-16,Stuart Attwell,Emirates Stadium,Sat,15:00,"59,379",189,Arsenal,Newcastle Utd,Arsenal,Newcastle Utd,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2017
+2017,34,Newcastle Utd,0.8,1.2,Arsenal,2.0,1.0,2018-04-15,Anthony Taylor,St. James' Park,Sun,13:30,"52,210",365,Newcastle Utd,Arsenal,Newcastle Utd,Arsenal,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2017
+2018,5,Newcastle Utd,0.4,1.0,Arsenal,1.0,2.0,2018-09-15,Lee Probert,St. James' Park,Sat,15:00,"52,165",47,Arsenal,Newcastle Utd,Newcastle Utd,Arsenal,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2018
+2018,32,Arsenal,0.8,0.1,Newcastle Utd,2.0,0.0,2019-04-01,Anthony Taylor,Emirates Stadium,Mon,20:00,"59,869",345,Arsenal,Newcastle Utd,Arsenal,Newcastle Utd,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2018
+2019,1,Newcastle Utd,0.4,1.1,Arsenal,0.0,1.0,2019-08-11,Martin Atkinson,St. James' Park,Sun,14:00,"47,635",7,Arsenal,Newcastle Utd,Newcastle Utd,Arsenal,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2019
+2019,26,Arsenal,2.6,0.9,Newcastle Utd,4.0,0.0,2020-02-16,Lee Mason,Emirates Stadium,Sun,16:30,"60,188",283,Arsenal,Newcastle Utd,Arsenal,Newcastle Utd,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2019
+2020,19,Arsenal,2.4,0.2,Newcastle Utd,3.0,0.0,2021-01-18,David Coote,Emirates Stadium,Mon,20:00,0,200,Arsenal,Newcastle Utd,Arsenal,Newcastle Utd,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2020
+2020,34,Newcastle Utd,0.3,2.0,Arsenal,0.0,2.0,2021-05-02,Mike Dean,St. James' Park,Sun,14:00,0,384,Arsenal,Newcastle Utd,Newcastle Utd,Arsenal,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2020
+2021,13,Arsenal,2.5,0.3,Newcastle Utd,2.0,0.0,2021-11-27,Stuart Attwell,Emirates Stadium,Sat,12:30,"59,886",132,Arsenal,Newcastle Utd,Arsenal,Newcastle Utd,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2021
+2021,37,Newcastle Utd,1.6,0.6,Arsenal,2.0,0.0,2022-05-16,Darren England,St. James' Park,Mon,20:00,"52,274",429,Newcastle Utd,Arsenal,Newcastle Utd,Arsenal,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2021
+2022,19,Arsenal,1.1,1.0,Newcastle Utd,0.0,0.0,2023-01-03,Andy Madley,Emirates Stadium,Tue,19:45,"60,319",186,draw,draw,Arsenal,Newcastle Utd,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2022
+2022,35,Newcastle Utd,1.3,1.3,Arsenal,0.0,2.0,2023-05-07,Chris Kavanagh,St James' Park,Sun,16:30,"50,267",387,Arsenal,Newcastle Utd,Newcastle Utd,Arsenal,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2022
+1993,17,Arsenal,0.0,0.0,Newcastle Utd,2.0,1.0,0,Alan Gunn,0,0,0,0,639,Arsenal,Newcastle Utd,Arsenal,Newcastle Utd,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_1993
+1993,42,Newcastle Utd,0.0,0.0,Arsenal,2.0,0.0,0,Roger Dilkes,0,0,0,0,922,Newcastle Utd,Arsenal,Newcastle Utd,Arsenal,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_1993
+1994,6,Arsenal,0.0,0.0,Newcastle Utd,2.0,3.0,0,Terence Holbrook,0,0,0,0,988,Newcastle Utd,Arsenal,Arsenal,Newcastle Utd,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_1994
+1994,35,Newcastle Utd,0.0,0.0,Arsenal,1.0,0.0,0,Gary Willard,0,0,0,0,1286,Newcastle Utd,Arsenal,Newcastle Utd,Arsenal,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_1994
+1995,22,Newcastle Utd,0.0,0.0,Arsenal,2.0,0.0,0,Dermot Gallagher,0,0,0,0,1598,Newcastle Utd,Arsenal,Newcastle Utd,Arsenal,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_1995
+1995,32,Arsenal,0.0,0.0,Newcastle Utd,2.0,0.0,0,Paul Durkin,0,0,0,0,1691,Arsenal,Newcastle Utd,Arsenal,Newcastle Utd,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_1995
+1996,15,Newcastle Utd,0.0,0.0,Arsenal,1.0,2.0,0,Graham Barber,0,0,0,0,1911,Arsenal,Newcastle Utd,Newcastle Utd,Arsenal,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_1996
+1996,37,Arsenal,0.0,0.0,Newcastle Utd,0.0,1.0,0,Martin Bodenham,0,0,0,0,2128,Newcastle Utd,Arsenal,Arsenal,Newcastle Utd,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_1996
+1997,17,Newcastle Utd,0.0,0.0,Arsenal,0.0,1.0,0,Steve Dunn,0,0,0,0,2309,Arsenal,Newcastle Utd,Newcastle Utd,Arsenal,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_1997
+1997,33,Arsenal,0.0,0.0,Newcastle Utd,3.0,1.0,0,Gary Willard,0,0,0,0,2469,Arsenal,Newcastle Utd,Arsenal,Newcastle Utd,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_1997
+1998,8,Arsenal,0.0,0.0,Newcastle Utd,3.0,0.0,0,Mike Reed,0,0,0,0,2603,Arsenal,Newcastle Utd,Arsenal,Newcastle Utd,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_1998
+1998,27,Newcastle Utd,0.0,0.0,Arsenal,1.0,1.0,0,Mike Reed,0,0,0,0,2792,draw,draw,Newcastle Utd,Arsenal,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_1998
+1999,13,Arsenal,0.0,0.0,Newcastle Utd,0.0,0.0,0,Peter Jones,0,0,0,0,3025,draw,draw,Arsenal,Newcastle Utd,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_1999
+1999,38,Newcastle Utd,0.0,0.0,Arsenal,4.0,2.0,0,Graham Poll,0,0,0,0,3280,Newcastle Utd,Arsenal,Newcastle Utd,Arsenal,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_1999
+2000,17,Arsenal,0.0,0.0,Newcastle Utd,5.0,0.0,0,Mike Dean,0,0,0,0,3450,Arsenal,Newcastle Utd,Arsenal,Newcastle Utd,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2000
+2000,32,Newcastle Utd,0.0,0.0,Arsenal,0.0,0.0,0,Alan Wiley,0,0,0,0,3655,draw,draw,Newcastle Utd,Arsenal,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2000
+2001,6,Arsenal,0.0,0.0,Newcastle Utd,1.0,3.0,0,Graham Poll,0,0,0,0,3833,Newcastle Utd,Arsenal,Arsenal,Newcastle Utd,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2001
+2001,28,Newcastle Utd,0.0,0.0,Arsenal,0.0,2.0,0,Neale Barry,0,0,0,0,3937,Arsenal,Newcastle Utd,Newcastle Utd,Arsenal,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2001
+2002,13,Arsenal,0.0,0.0,Newcastle Utd,1.0,0.0,0,Mike Dean,0,0,0,0,4166,Arsenal,Newcastle Utd,Arsenal,Newcastle Utd,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2002
+2002,27,Newcastle Utd,0.0,0.0,Arsenal,1.0,1.0,0,Neale Barry,0,0,0,0,4313,draw,draw,Newcastle Utd,Arsenal,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2002
+2003,7,Arsenal,0.0,0.0,Newcastle Utd,3.0,2.0,0,Mike Riley,0,0,0,0,4484,Arsenal,Newcastle Utd,Arsenal,Newcastle Utd,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2003
+2003,33,Newcastle Utd,0.0,0.0,Arsenal,0.0,0.0,0,Paul Durkin,0,0,0,0,4743,draw,draw,Newcastle Utd,Arsenal,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2003
+2004,20,Newcastle Utd,0.0,0.0,Arsenal,0.0,1.0,0,Stephen Bennett,0,0,0,0,5005,Arsenal,Newcastle Utd,Newcastle Utd,Arsenal,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2004
+2004,24,Arsenal,0.0,0.0,Newcastle Utd,1.0,0.0,0,Steve Dunn,0,0,0,0,5044,Arsenal,Newcastle Utd,Arsenal,Newcastle Utd,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2004
+2005,1,Arsenal,0.0,0.0,Newcastle Utd,2.0,0.0,0,Stephen Bennett,0,0,0,0,5195,Arsenal,Newcastle Utd,Arsenal,Newcastle Utd,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2005
+2005,16,Newcastle Utd,0.0,0.0,Arsenal,1.0,0.0,0,Dermot Gallagher,0,0,0,0,5336,Newcastle Utd,Arsenal,Newcastle Utd,Arsenal,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2005
+2006,13,Arsenal,0.0,0.0,Newcastle Utd,1.0,1.0,0,Martin Atkinson,0,0,0,0,5687,draw,draw,Arsenal,Newcastle Utd,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2006
+2006,33,Newcastle Utd,0.0,0.0,Arsenal,0.0,0.0,0,Howard Webb,0,0,0,0,5885,draw,draw,Newcastle Utd,Arsenal,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2006
+2007,2,Newcastle Utd,0.0,0.0,Arsenal,1.0,1.0,0,Mike Dean,0,0,0,0,6094,draw,draw,Newcastle Utd,Arsenal,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2007
+2007,24,Arsenal,0.0,0.0,Newcastle Utd,3.0,0.0,0,Mike Riley,0,0,0,0,6176,Arsenal,Newcastle Utd,Arsenal,Newcastle Utd,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2007
+2008,3,Arsenal,0.0,0.0,Newcastle Utd,3.0,0.0,0,Rob Styles,0,0,0,0,6347,Arsenal,Newcastle Utd,Arsenal,Newcastle Utd,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2008
+2008,30,Newcastle Utd,0.0,0.0,Arsenal,1.0,3.0,0,Mark Halsey,0,0,0,0,6619,Arsenal,Newcastle Utd,Newcastle Utd,Arsenal,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2008
+2010,11,Arsenal,0.0,0.0,Newcastle Utd,0.0,1.0,0,Mike Dean,0,0,0,0,7193,Newcastle Utd,Arsenal,Arsenal,Newcastle Utd,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2010
+2010,26,Newcastle Utd,0.0,0.0,Arsenal,4.0,4.0,0,Phil Dowd,0,0,0,0,7330,draw,draw,Newcastle Utd,Arsenal,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2010
+2011,1,Newcastle Utd,0.0,0.0,Arsenal,0.0,0.0,0,Peter Walton,0,0,0,0,7470,draw,draw,Newcastle Utd,Arsenal,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2011
+2011,28,Arsenal,0.0,0.0,Newcastle Utd,2.0,1.0,0,Howard Webb,0,0,0,0,7744,Arsenal,Newcastle Utd,Arsenal,Newcastle Utd,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2011
+2012,20,Arsenal,0.0,0.0,Newcastle Utd,7.0,3.0,0,Chris Foy,0,0,0,0,8037,Arsenal,Newcastle Utd,Arsenal,Newcastle Utd,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2012
+2012,38,Newcastle Utd,0.0,0.0,Arsenal,0.0,1.0,0,Howard Webb,0,0,0,0,8221,Arsenal,Newcastle Utd,Newcastle Utd,Arsenal,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2012
+2013,19,Newcastle Utd,0.0,0.0,Arsenal,0.0,1.0,0,Lee Probert,0,0,0,0,8413,Arsenal,Newcastle Utd,Newcastle Utd,Arsenal,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2013
+2013,36,Arsenal,0.0,0.0,Newcastle Utd,3.0,0.0,0,Neil Swarbrick,0,0,0,0,8582,Arsenal,Newcastle Utd,Arsenal,Newcastle Utd,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2013
+2014,16,Arsenal,0.0,0.0,Newcastle Utd,4.0,1.0,0,Lee Mason,0,0,0,0,8762,Arsenal,Newcastle Utd,Arsenal,Newcastle Utd,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2014
+2014,30,Newcastle Utd,0.0,0.0,Arsenal,1.0,2.0,0,Mike Jones,0,0,0,0,8898,Arsenal,Newcastle Utd,Newcastle Utd,Arsenal,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2014
+2015,4,Newcastle Utd,0.0,0.0,Arsenal,0.0,1.0,0,Andre Marriner,0,0,0,0,9016,Arsenal,Newcastle Utd,Newcastle Utd,Arsenal,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2015
+2015,20,Arsenal,0.0,0.0,Newcastle Utd,1.0,0.0,0,Anthony Taylor,0,0,0,0,9179,Arsenal,Newcastle Utd,Arsenal,Newcastle Utd,Arsenal_Newcastle_Utd,Arsenal_Newcastle Utd_2015

@@ -1,0 +1,9 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+1992,15,Wimbledon,0.0,0.0,QPR,0.0,2.0,0,Philip Don,0,0,0,0,162,QPR,Wimbledon,Wimbledon,QPR,QPR_Wimbledon,QPR_Wimbledon_1992
+1992,34,QPR,0.0,0.0,Wimbledon,1.0,2.0,0,Philip Don,0,0,0,0,348,Wimbledon,QPR,QPR,Wimbledon,QPR_Wimbledon,QPR_Wimbledon_1992
+1993,9,Wimbledon,0.0,0.0,QPR,1.0,1.0,0,Philip Don,0,0,0,0,560,draw,draw,Wimbledon,QPR,QPR_Wimbledon,QPR_Wimbledon_1993
+1993,34,QPR,0.0,0.0,Wimbledon,1.0,0.0,0,Mike Reed,0,0,0,0,813,QPR,Wimbledon,QPR,Wimbledon,QPR_Wimbledon,QPR_Wimbledon_1993
+1994,7,QPR,0.0,0.0,Wimbledon,0.0,1.0,0,Keith Burge,0,0,0,0,991,Wimbledon,QPR,QPR,Wimbledon,QPR_Wimbledon,QPR_Wimbledon_1994
+1994,32,Wimbledon,0.0,0.0,QPR,1.0,3.0,0,Gary Willard,0,0,0,0,1251,QPR,Wimbledon,Wimbledon,QPR,QPR_Wimbledon,QPR_Wimbledon_1994
+1995,2,QPR,0.0,0.0,Wimbledon,0.0,3.0,0,Graham Poll,0,0,0,0,1400,Wimbledon,QPR,QPR,Wimbledon,QPR_Wimbledon,QPR_Wimbledon_1995
+1995,24,Wimbledon,0.0,0.0,QPR,2.0,1.0,0,Steve Dunn,0,0,0,0,1614,Wimbledon,QPR,Wimbledon,QPR,QPR_Wimbledon,QPR_Wimbledon_1995

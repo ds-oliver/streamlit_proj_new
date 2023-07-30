@@ -1,0 +1,3 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2015,6,Bournemouth,0.0,0.0,Sunderland,2.0,0.0,0,Kevin Friend,0,0,0,0,9040,Bournemouth,Sunderland,Bournemouth,Sunderland,Bournemouth_Sunderland,Bournemouth_Sunderland_2015
+2015,23,Sunderland,0.0,0.0,Bournemouth,1.0,1.0,0,Roger East,0,0,0,0,9210,draw,draw,Sunderland,Bournemouth,Bournemouth_Sunderland,Bournemouth_Sunderland_2015

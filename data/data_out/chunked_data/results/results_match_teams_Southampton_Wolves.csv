@@ -1,0 +1,13 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2018,7,Wolves,1.6,0.8,Southampton,2.0,0.0,2018-09-29,Stuart Attwell,Molineux Stadium,Sat,15:00,"31,147",69,Wolves,Southampton,Wolves,Southampton,Southampton_Wolves,Southampton_Wolves_2018
+2018,34,Southampton,2.9,0.8,Wolves,3.0,1.0,2019-04-13,Jonathan Moss,St. Mary's Stadium,Sat,15:00,"31,708",366,Southampton,Wolves,Southampton,Wolves,Southampton_Wolves,Southampton_Wolves_2018
+2019,9,Wolves,0.9,1.4,Southampton,1.0,1.0,2019-10-19,Peter Bankes,Molineux Stadium,Sat,15:00,"30,915",92,draw,draw,Wolves,Southampton,Southampton_Wolves,Southampton_Wolves_2019
+2019,23,Southampton,0.7,2.4,Wolves,2.0,3.0,2020-01-18,Darren England,St. Mary's Stadium,Sat,15:00,"31,152",245,Wolves,Southampton,Southampton,Wolves,Southampton_Wolves,Southampton_Wolves_2019
+2020,9,Wolves,1.5,1.0,Southampton,1.0,1.0,2020-11-23,Andre Marriner,Molineux Stadium,Mon,20:00,0,95,draw,draw,Wolves,Southampton,Southampton_Wolves,Southampton_Wolves_2020
+2020,24,Southampton,0.8,1.1,Wolves,1.0,2.0,2021-02-14,Graham Scott,St. Mary's Stadium,Sun,12:00,0,260,Wolves,Southampton,Southampton,Wolves,Southampton_Wolves,Southampton_Wolves_2020
+2021,6,Southampton,1.0,1.0,Wolves,0.0,1.0,2021-09-26,Andy Madley,St. Mary's Stadium,Sun,14:00,"28,002",62,Wolves,Southampton,Southampton,Wolves,Southampton_Wolves,Southampton_Wolves_2021
+2021,22,Wolves,2.5,0.8,Southampton,3.0,1.0,2022-01-15,Michael Salisbury,Molineux Stadium,Sat,15:00,"30,057",219,Wolves,Southampton,Wolves,Southampton,Southampton_Wolves,Southampton_Wolves_2021
+2022,6,Wolves,0.8,1.2,Southampton,1.0,0.0,2022-09-03,John Brooks,Molineux Stadium,Sat,15:00,"30,546",57,Wolves,Southampton,Wolves,Southampton,Southampton_Wolves,Southampton_Wolves_2022
+2022,23,Southampton,1.1,0.8,Wolves,1.0,2.0,2023-02-11,Jarred Gillett,St. Mary's Stadium,Sat,15:00,"29,751",238,Wolves,Southampton,Southampton,Wolves,Southampton_Wolves,Southampton_Wolves_2022
+2003,5,Southampton,0.0,0.0,Wolves,2.0,0.0,0,Uriah Rennie,0,0,0,0,4467,Southampton,Wolves,Southampton,Wolves,Southampton_Wolves,Southampton_Wolves_2003
+2003,31,Wolves,0.0,0.0,Southampton,1.0,4.0,0,Mark Halsey,0,0,0,0,4730,Southampton,Wolves,Wolves,Southampton,Southampton_Wolves,Southampton_Wolves_2003

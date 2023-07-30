@@ -1,0 +1,13 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2003,15,Middlesbrough,0.0,0.0,Portsmouth,0.0,0.0,0,Stephen Bennett,0,0,0,0,4567,draw,draw,Middlesbrough,Portsmouth,Middlesbrough_Portsmouth,Middlesbrough_Portsmouth_2003
+2003,38,Portsmouth,0.0,0.0,Middlesbrough,5.0,1.0,0,Mark Halsey,0,0,0,0,4803,Portsmouth,Middlesbrough,Portsmouth,Middlesbrough,Middlesbrough_Portsmouth,Middlesbrough_Portsmouth_2003
+2004,10,Middlesbrough,0.0,0.0,Portsmouth,1.0,1.0,0,Martin Atkinson,0,0,0,0,4902,draw,draw,Middlesbrough,Portsmouth,Middlesbrough_Portsmouth,Middlesbrough_Portsmouth_2004
+2004,25,Portsmouth,0.0,0.0,Middlesbrough,2.0,1.0,0,Phil Crossley,0,0,0,0,5048,Portsmouth,Middlesbrough,Portsmouth,Middlesbrough,Middlesbrough_Portsmouth,Middlesbrough_Portsmouth_2004
+2005,9,Middlesbrough,0.0,0.0,Portsmouth,1.0,1.0,0,Chris Foy,0,0,0,0,5267,draw,draw,Middlesbrough,Portsmouth,Middlesbrough_Portsmouth,Middlesbrough_Portsmouth_2005
+2005,34,Portsmouth,0.0,0.0,Middlesbrough,1.0,0.0,0,Andre Marriner,0,0,0,0,5522,Portsmouth,Middlesbrough,Portsmouth,Middlesbrough,Middlesbrough_Portsmouth,Middlesbrough_Portsmouth_2005
+2006,3,Middlesbrough,0.0,0.0,Portsmouth,0.0,4.0,0,Chris Foy,0,0,0,0,5593,Portsmouth,Middlesbrough,Middlesbrough,Portsmouth,Middlesbrough_Portsmouth,Middlesbrough_Portsmouth_2006
+2006,25,Portsmouth,0.0,0.0,Middlesbrough,0.0,0.0,0,Dermot Gallagher,0,0,0,0,5807,draw,draw,Portsmouth,Middlesbrough,Middlesbrough_Portsmouth,Middlesbrough_Portsmouth_2006
+2007,20,Portsmouth,0.0,0.0,Middlesbrough,0.0,1.0,0,Alan Wiley,0,0,0,0,6139,Middlesbrough,Portsmouth,Portsmouth,Middlesbrough,Middlesbrough_Portsmouth,Middlesbrough_Portsmouth_2007
+2007,37,Middlesbrough,0.0,0.0,Portsmouth,2.0,0.0,0,Peter Walton,0,0,0,0,6312,Middlesbrough,Portsmouth,Middlesbrough,Portsmouth,Middlesbrough_Portsmouth,Middlesbrough_Portsmouth_2007
+2008,4,Portsmouth,0.0,0.0,Middlesbrough,2.0,1.0,0,Stuart Attwell,0,0,0,0,6358,Portsmouth,Middlesbrough,Portsmouth,Middlesbrough,Middlesbrough_Portsmouth,Middlesbrough_Portsmouth_2008
+2008,29,Middlesbrough,0.0,0.0,Portsmouth,1.0,1.0,0,Martin Atkinson,0,0,0,0,6608,draw,draw,Middlesbrough,Portsmouth,Middlesbrough_Portsmouth,Middlesbrough_Portsmouth_2008

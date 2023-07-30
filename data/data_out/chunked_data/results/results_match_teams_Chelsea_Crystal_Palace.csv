@@ -1,0 +1,27 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,8,Crystal Palace,1.7,0.8,Chelsea,2.0,1.0,2017-10-14,Andre Marriner,Selhurst Park,Sat,15:00,"25,480",80,Crystal Palace,Chelsea,Crystal Palace,Chelsea,Chelsea_Crystal_Palace,Chelsea_Crystal Palace_2017
+2017,30,Chelsea,3.1,1.1,Crystal Palace,2.0,1.0,2018-03-10,Anthony Taylor,Stamford Bridge,Sat,17:30,"40,800",326,Chelsea,Crystal Palace,Chelsea,Crystal Palace,Chelsea_Crystal_Palace,Chelsea_Crystal Palace_2017
+2018,11,Chelsea,1.7,0.4,Crystal Palace,3.0,1.0,2018-11-04,Michael Oliver,Stamford Bridge,Sun,16:00,"40,407",118,Chelsea,Crystal Palace,Chelsea,Crystal Palace,Chelsea_Crystal_Palace,Chelsea_Crystal Palace_2018
+2018,20,Crystal Palace,0.2,0.9,Chelsea,0.0,1.0,2018-12-30,Craig Pawson,Selhurst Park,Sun,12:00,"25,781",215,Chelsea,Crystal Palace,Crystal Palace,Chelsea,Chelsea_Crystal_Palace,Chelsea_Crystal Palace_2018
+2019,12,Chelsea,3.6,0.2,Crystal Palace,2.0,0.0,2019-11-09,Mike Dean,Stamford Bridge,Sat,12:30,"40,525",122,Chelsea,Crystal Palace,Chelsea,Crystal Palace,Chelsea_Crystal_Palace,Chelsea_Crystal Palace_2019
+2019,34,Crystal Palace,1.5,1.9,Chelsea,2.0,3.0,2020-07-07,David Coote,Selhurst Park,Tue,18:00,0,365,Chelsea,Crystal Palace,Crystal Palace,Chelsea,Chelsea_Crystal_Palace,Chelsea_Crystal Palace_2019
+2020,4,Chelsea,2.7,0.2,Crystal Palace,4.0,0.0,2020-10-03,Michael Oliver,Stamford Bridge,Sat,12:30,0,31,Chelsea,Crystal Palace,Chelsea,Crystal Palace,Chelsea_Crystal_Palace,Chelsea_Crystal Palace_2020
+2020,31,Crystal Palace,0.4,3.1,Chelsea,1.0,4.0,2021-04-10,Michael Oliver,Selhurst Park,Sat,17:30,0,349,Chelsea,Crystal Palace,Crystal Palace,Chelsea,Chelsea_Crystal_Palace,Chelsea_Crystal Palace_2020
+2021,1,Chelsea,0.7,0.2,Crystal Palace,3.0,0.0,2021-08-14,Jonathan Moss,Stamford Bridge,Sat,15:00,"38,965",4,Chelsea,Crystal Palace,Chelsea,Crystal Palace,Chelsea_Crystal_Palace,Chelsea_Crystal Palace_2021
+2021,26,Crystal Palace,0.5,0.9,Chelsea,0.0,1.0,2022-02-19,David Coote,Selhurst Park,Sat,15:00,"25,109",270,Chelsea,Crystal Palace,Crystal Palace,Chelsea,Chelsea_Crystal_Palace,Chelsea_Crystal Palace_2021
+2022,9,Crystal Palace,0.4,1.1,Chelsea,1.0,2.0,2022-10-01,Chris Kavanagh,Selhurst Park,Sat,15:00,"25,198",76,Chelsea,Crystal Palace,Crystal Palace,Chelsea,Chelsea_Crystal_Palace,Chelsea_Crystal Palace_2022
+2022,20,Chelsea,1.5,0.7,Crystal Palace,1.0,0.0,2023-01-15,Peter Bankes,Stamford Bridge,Sun,14:00,"40,075",203,Chelsea,Crystal Palace,Chelsea,Crystal Palace,Chelsea_Crystal_Palace,Chelsea_Crystal Palace_2022
+1992,15,Chelsea,0.0,0.0,Crystal Palace,3.0,1.0,0,Ron Groves,0,0,0,0,156,Chelsea,Crystal Palace,Chelsea,Crystal Palace,Chelsea_Crystal_Palace,Chelsea_Crystal Palace_1992
+1992,34,Crystal Palace,0.0,0.0,Chelsea,1.0,1.0,0,Keith Cooper,0,0,0,0,356,draw,draw,Crystal Palace,Chelsea,Chelsea_Crystal_Palace,Chelsea_Crystal Palace_1992
+1994,7,Crystal Palace,0.0,0.0,Chelsea,0.0,1.0,0,Roger Dilkes,0,0,0,0,990,Chelsea,Crystal Palace,Crystal Palace,Chelsea,Chelsea_Crystal_Palace,Chelsea_Crystal Palace_1994
+1994,32,Chelsea,0.0,0.0,Crystal Palace,0.0,0.0,0,Mike Reed,0,0,0,0,1254,draw,draw,Chelsea,Crystal Palace,Chelsea_Crystal_Palace,Chelsea_Crystal Palace_1994
+1997,6,Crystal Palace,0.0,0.0,Chelsea,0.0,3.0,0,Gerald Ashby,0,0,0,0,2192,Chelsea,Crystal Palace,Crystal Palace,Chelsea,Chelsea_Crystal_Palace,Chelsea_Crystal Palace_1997
+1997,26,Chelsea,0.0,0.0,Crystal Palace,6.0,2.0,0,Mike Riley,0,0,0,0,2426,Chelsea,Crystal Palace,Chelsea,Crystal Palace,Chelsea_Crystal_Palace,Chelsea_Crystal Palace_1997
+2004,3,Crystal Palace,0.0,0.0,Chelsea,0.0,2.0,0,Chris Foy,0,0,0,0,4826,Chelsea,Crystal Palace,Crystal Palace,Chelsea,Chelsea_Crystal_Palace,Chelsea_Crystal Palace_2004
+2004,30,Chelsea,0.0,0.0,Crystal Palace,4.0,1.0,0,Phil Dowd,0,0,0,0,5096,Chelsea,Crystal Palace,Chelsea,Crystal Palace,Chelsea_Crystal_Palace,Chelsea_Crystal Palace_2004
+2013,16,Chelsea,0.0,0.0,Crystal Palace,2.0,1.0,0,Mark Clattenburg,0,0,0,0,8380,Chelsea,Crystal Palace,Chelsea,Crystal Palace,Chelsea_Crystal_Palace,Chelsea_Crystal Palace_2013
+2013,32,Crystal Palace,0.0,0.0,Chelsea,1.0,0.0,0,Lee Mason,0,0,0,0,8532,Crystal Palace,Chelsea,Crystal Palace,Chelsea,Chelsea_Crystal_Palace,Chelsea_Crystal Palace_2013
+2014,8,Crystal Palace,0.0,0.0,Chelsea,1.0,2.0,0,Craig Pawson,0,0,0,0,8677,Chelsea,Crystal Palace,Crystal Palace,Chelsea,Chelsea_Crystal_Palace,Chelsea_Crystal Palace_2014
+2014,35,Chelsea,0.0,0.0,Crystal Palace,1.0,0.0,0,Kevin Friend,0,0,0,0,8952,Chelsea,Crystal Palace,Chelsea,Crystal Palace,Chelsea_Crystal_Palace,Chelsea_Crystal Palace_2014
+2015,4,Chelsea,0.0,0.0,Crystal Palace,1.0,2.0,0,Craig Pawson,0,0,0,0,9017,Crystal Palace,Chelsea,Chelsea,Crystal Palace,Chelsea_Crystal_Palace,Chelsea_Crystal Palace_2015
+2015,20,Crystal Palace,0.0,0.0,Chelsea,0.0,3.0,0,Kevin Friend,0,0,0,0,9184,Chelsea,Crystal Palace,Crystal Palace,Chelsea,Chelsea_Crystal_Palace,Chelsea_Crystal Palace_2015

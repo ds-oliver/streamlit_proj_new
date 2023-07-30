@@ -1,0 +1,15 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+1992,14,Aston Villa,0.0,0.0,QPR,2.0,0.0,0,Mike Peck,0,0,0,0,152,Aston Villa,QPR,Aston Villa,QPR,Aston_Villa_QPR,Aston Villa_QPR_1992
+1992,42,QPR,0.0,0.0,Aston Villa,2.0,1.0,0,Paul Durkin,0,0,0,0,459,QPR,Aston Villa,QPR,Aston Villa,Aston_Villa_QPR,Aston Villa_QPR_1992
+1993,1,Aston Villa,0.0,0.0,QPR,4.0,1.0,0,Kelvin Morton,0,0,0,0,462,Aston Villa,QPR,Aston Villa,QPR,Aston_Villa_QPR,Aston Villa_QPR_1993
+1993,18,QPR,0.0,0.0,Aston Villa,2.0,2.0,0,Keith Hackett,0,0,0,0,653,draw,draw,QPR,Aston Villa,Aston_Villa_QPR,Aston Villa_QPR_1993
+1994,12,QPR,0.0,0.0,Aston Villa,2.0,0.0,0,Robbie Hart,0,0,0,0,1046,QPR,Aston Villa,QPR,Aston Villa,Aston_Villa_QPR,Aston Villa_QPR_1994
+1994,24,Aston Villa,0.0,0.0,QPR,2.0,1.0,0,Alan Wilkie,0,0,0,0,1175,Aston Villa,QPR,Aston Villa,QPR,Aston_Villa_QPR,Aston Villa_QPR_1994
+1995,19,QPR,0.0,0.0,Aston Villa,1.0,0.0,0,Alan Wilkie,0,0,0,0,1570,QPR,Aston Villa,QPR,Aston Villa,Aston_Villa_QPR,Aston Villa_QPR_1995
+1995,30,Aston Villa,0.0,0.0,QPR,4.0,2.0,0,Alan Wilkie,0,0,0,0,1671,Aston Villa,QPR,Aston Villa,QPR,Aston_Villa_QPR,Aston Villa_QPR_1995
+2011,6,QPR,0.0,0.0,Aston Villa,1.0,1.0,0,Michael Oliver,0,0,0,0,7523,draw,draw,QPR,Aston Villa,Aston_Villa_QPR,Aston Villa_QPR_2011
+2011,23,Aston Villa,0.0,0.0,QPR,2.0,2.0,0,Neil Swarbrick,0,0,0,0,7693,draw,draw,Aston Villa,QPR,Aston_Villa_QPR,Aston Villa_QPR_2011
+2012,15,QPR,0.0,0.0,Aston Villa,1.0,1.0,0,Howard Webb,0,0,0,0,7989,draw,draw,QPR,Aston Villa,Aston_Villa_QPR,Aston Villa_QPR_2012
+2012,30,Aston Villa,0.0,0.0,QPR,3.0,2.0,0,Kevin Friend,0,0,0,0,8133,Aston Villa,QPR,Aston Villa,QPR,Aston_Villa_QPR,Aston Villa_QPR_2012
+2014,9,QPR,0.0,0.0,Aston Villa,2.0,0.0,0,Lee Mason,0,0,0,0,8695,QPR,Aston Villa,QPR,Aston Villa,Aston_Villa_QPR,Aston Villa_QPR_2014
+2014,33,Aston Villa,0.0,0.0,QPR,3.0,3.0,0,Craig Pawson,0,0,0,0,8915,draw,draw,Aston Villa,QPR,Aston_Villa_QPR,Aston Villa_QPR_2014

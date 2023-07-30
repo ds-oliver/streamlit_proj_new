@@ -1,0 +1,29 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+1992,11,Middlesbrough,0.0,0.0,Manchester Utd,1.0,1.0,0,Mike Reed,0,0,0,0,114,draw,draw,Middlesbrough,Manchester Utd,Manchester_Utd_Middlesbrough,Manchester Utd_Middlesbrough_1992
+1992,31,Manchester Utd,0.0,0.0,Middlesbrough,3.0,0.0,0,Keith Hackett,0,0,0,0,325,Manchester Utd,Middlesbrough,Manchester Utd,Middlesbrough,Manchester_Utd_Middlesbrough,Manchester Utd_Middlesbrough_1992
+1995,11,Manchester Utd,0.0,0.0,Middlesbrough,2.0,0.0,0,Stephen Lodge,0,0,0,0,1488,Manchester Utd,Middlesbrough,Manchester Utd,Middlesbrough,Manchester_Utd_Middlesbrough,Manchester Utd_Middlesbrough_1995
+1995,38,Middlesbrough,0.0,0.0,Manchester Utd,0.0,3.0,0,Paul Durkin,0,0,0,0,1758,Manchester Utd,Middlesbrough,Middlesbrough,Manchester Utd,Manchester_Utd_Middlesbrough,Manchester Utd_Middlesbrough_1995
+1996,14,Middlesbrough,0.0,0.0,Manchester Utd,2.0,2.0,0,Alan Wilkie,0,0,0,0,1901,draw,draw,Middlesbrough,Manchester Utd,Manchester_Utd_Middlesbrough,Manchester Utd_Middlesbrough_1996
+1996,26,Manchester Utd,0.0,0.0,Middlesbrough,3.0,3.0,0,Dermot Gallagher,0,0,0,0,2130,draw,draw,Manchester Utd,Middlesbrough,Manchester_Utd_Middlesbrough,Manchester Utd_Middlesbrough_1996
+1998,18,Manchester Utd,0.0,0.0,Middlesbrough,2.0,3.0,0,Gary Willard,0,0,0,0,2701,Middlesbrough,Manchester Utd,Manchester Utd,Middlesbrough,Manchester_Utd_Middlesbrough,Manchester Utd_Middlesbrough_1998
+1998,37,Middlesbrough,0.0,0.0,Manchester Utd,0.0,1.0,0,Graham Barber,0,0,0,0,2892,Manchester Utd,Middlesbrough,Middlesbrough,Manchester Utd,Manchester_Utd_Middlesbrough,Manchester Utd_Middlesbrough_1998
+1999,21,Manchester Utd,0.0,0.0,Middlesbrough,1.0,0.0,0,Andy D'Urso,0,0,0,0,3131,Manchester Utd,Middlesbrough,Manchester Utd,Middlesbrough,Manchester_Utd_Middlesbrough,Manchester Utd_Middlesbrough_1999
+1999,32,Middlesbrough,0.0,0.0,Manchester Utd,3.0,4.0,0,Paul Durkin,0,0,0,0,3223,Manchester Utd,Middlesbrough,Middlesbrough,Manchester Utd,Manchester_Utd_Middlesbrough,Manchester Utd_Middlesbrough_1999
+2000,13,Manchester Utd,0.0,0.0,Middlesbrough,2.0,1.0,0,Paul Durkin,0,0,0,0,3408,Manchester Utd,Middlesbrough,Manchester Utd,Middlesbrough,Manchester_Utd_Middlesbrough,Manchester Utd_Middlesbrough_2000
+2000,36,Middlesbrough,0.0,0.0,Manchester Utd,0.0,2.0,0,Stephen Lodge,0,0,0,0,3632,Manchester Utd,Middlesbrough,Middlesbrough,Manchester Utd,Manchester_Utd_Middlesbrough,Manchester Utd_Middlesbrough_2000
+2001,17,Middlesbrough,0.0,0.0,Manchester Utd,0.0,1.0,0,David Elleray,0,0,0,0,3828,Manchester Utd,Middlesbrough,Middlesbrough,Manchester Utd,Manchester_Utd_Middlesbrough,Manchester Utd_Middlesbrough_2001
+2001,31,Manchester Utd,0.0,0.0,Middlesbrough,0.0,1.0,0,Stephen Bennett,0,0,0,0,3972,Middlesbrough,Manchester Utd,Manchester Utd,Middlesbrough,Manchester_Utd_Middlesbrough,Manchester Utd_Middlesbrough_2001
+2002,3,Manchester Utd,0.0,0.0,Middlesbrough,1.0,0.0,0,Mike Riley,0,0,0,0,4083,Manchester Utd,Middlesbrough,Manchester Utd,Middlesbrough,Manchester_Utd_Middlesbrough,Manchester Utd_Middlesbrough_2002
+2002,20,Middlesbrough,0.0,0.0,Manchester Utd,3.0,1.0,0,Graham Barber,0,0,0,0,4244,Middlesbrough,Manchester Utd,Middlesbrough,Manchester Utd,Manchester_Utd_Middlesbrough,Manchester Utd_Middlesbrough_2002
+2003,19,Middlesbrough,0.0,0.0,Manchester Utd,0.0,1.0,0,Matt Messias,0,0,0,0,4605,Manchester Utd,Middlesbrough,Middlesbrough,Manchester Utd,Manchester_Utd_Middlesbrough,Manchester Utd_Middlesbrough_2003
+2003,25,Manchester Utd,0.0,0.0,Middlesbrough,2.0,3.0,0,Paul Durkin,0,0,0,0,4668,Middlesbrough,Manchester Utd,Manchester Utd,Middlesbrough,Manchester_Utd_Middlesbrough,Manchester Utd_Middlesbrough_2003
+2004,8,Manchester Utd,0.0,0.0,Middlesbrough,1.0,1.0,0,Rob Styles,0,0,0,0,4881,draw,draw,Manchester Utd,Middlesbrough,Manchester_Utd_Middlesbrough,Manchester Utd_Middlesbrough_2004
+2004,21,Middlesbrough,0.0,0.0,Manchester Utd,0.0,2.0,0,Alan Wiley,0,0,0,0,5008,Manchester Utd,Middlesbrough,Middlesbrough,Manchester Utd,Manchester_Utd_Middlesbrough,Manchester Utd_Middlesbrough_2004
+2005,11,Middlesbrough,0.0,0.0,Manchester Utd,4.0,1.0,0,Alan Wiley,0,0,0,0,5286,Middlesbrough,Manchester Utd,Middlesbrough,Manchester Utd,Manchester_Utd_Middlesbrough,Manchester Utd_Middlesbrough_2005
+2005,36,Manchester Utd,0.0,0.0,Middlesbrough,0.0,0.0,0,Chris Foy,0,0,0,0,5549,draw,draw,Manchester Utd,Middlesbrough,Manchester_Utd_Middlesbrough,Manchester Utd_Middlesbrough_2005
+2006,16,Middlesbrough,0.0,0.0,Manchester Utd,1.0,2.0,0,Chris Foy,0,0,0,0,5715,Manchester Utd,Middlesbrough,Middlesbrough,Manchester Utd,Manchester_Utd_Middlesbrough,Manchester Utd_Middlesbrough_2006
+2006,35,Manchester Utd,0.0,0.0,Middlesbrough,1.0,1.0,0,Peter Walton,0,0,0,0,5905,draw,draw,Manchester Utd,Middlesbrough,Manchester_Utd_Middlesbrough,Manchester Utd_Middlesbrough_2006
+2007,11,Manchester Utd,0.0,0.0,Middlesbrough,4.0,1.0,0,Alan Wiley,0,0,0,0,6044,Manchester Utd,Middlesbrough,Manchester Utd,Middlesbrough,Manchester_Utd_Middlesbrough,Manchester Utd_Middlesbrough_2007
+2007,33,Middlesbrough,0.0,0.0,Manchester Utd,2.0,2.0,0,Mike Riley,0,0,0,0,6273,draw,draw,Middlesbrough,Manchester Utd,Manchester_Utd_Middlesbrough,Manchester Utd_Middlesbrough_2007
+2008,20,Manchester Utd,0.0,0.0,Middlesbrough,1.0,0.0,0,Martin Atkinson,0,0,0,0,6522,Manchester Utd,Middlesbrough,Manchester Utd,Middlesbrough,Manchester_Utd_Middlesbrough,Manchester Utd_Middlesbrough_2008
+2008,35,Middlesbrough,0.0,0.0,Manchester Utd,0.0,2.0,0,Mark Halsey,0,0,0,0,6666,Manchester Utd,Middlesbrough,Middlesbrough,Manchester Utd,Manchester_Utd_Middlesbrough,Manchester Utd_Middlesbrough_2008

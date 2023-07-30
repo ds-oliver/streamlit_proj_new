@@ -1,0 +1,3 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2021,1,Norwich City,1.4,1.6,Liverpool,0.0,3.0,2021-08-14,Andre Marriner,Carrow Road,Sat,17:30,"27,023",7,Liverpool,Norwich City,Norwich City,Liverpool,Liverpool_Norwich_City,Liverpool_Norwich City_2021
+2021,26,Liverpool,3.6,0.6,Norwich City,3.0,1.0,2022-02-19,Mike Dean,Anfield,Sat,15:00,"53,135",268,Liverpool,Norwich City,Liverpool,Norwich City,Liverpool_Norwich_City,Liverpool_Norwich City_2021

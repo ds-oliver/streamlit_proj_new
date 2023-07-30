@@ -1,0 +1,11 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2017,7,Stoke City,2.4,1.4,Southampton,2.0,1.0,2017-09-30,Mike Jones,Bill Stokeld Stadium,Sat,15:00,"29,285",67,Stoke City,Southampton,Stoke City,Southampton,Southampton_Stoke_City,Southampton_Stoke City_2017
+2017,29,Southampton,0.9,0.8,Stoke City,0.0,0.0,2018-03-03,Anthony Taylor,St. Mary's Stadium,Sat,15:00,"30,335",313,draw,draw,Southampton,Stoke City,Southampton_Stoke_City,Southampton_Stoke City_2017
+2012,20,Stoke City,0.0,0.0,Southampton,3.0,3.0,0,Mark Clattenburg,0,0,0,0,8034,draw,draw,Stoke City,Southampton,Southampton_Stoke_City,Southampton_Stoke City_2012
+2012,38,Southampton,0.0,0.0,Stoke City,1.0,1.0,0,Lee Probert,0,0,0,0,8225,draw,draw,Southampton,Stoke City,Southampton_Stoke_City,Southampton_Stoke City_2012
+2013,10,Stoke City,0.0,0.0,Southampton,1.0,1.0,0,Chris Foy,0,0,0,0,8320,draw,draw,Stoke City,Southampton,Southampton_Stoke_City,Southampton_Stoke City_2013
+2013,25,Southampton,0.0,0.0,Stoke City,2.0,2.0,0,Craig Pawson,0,0,0,0,8466,draw,draw,Southampton,Stoke City,Southampton_Stoke_City,Southampton_Stoke City_2013
+2014,9,Southampton,0.0,0.0,Stoke City,1.0,0.0,0,Jonathan Moss,0,0,0,0,8687,Southampton,Stoke City,Southampton,Stoke City,Southampton_Stoke_City,Southampton_Stoke City_2014
+2014,33,Stoke City,0.0,0.0,Southampton,2.0,1.0,0,Mark Clattenburg,0,0,0,0,8929,Stoke City,Southampton,Stoke City,Southampton,Southampton_Stoke_City,Southampton_Stoke City_2014
+2015,13,Southampton,0.0,0.0,Stoke City,0.0,1.0,0,Lee Mason,0,0,0,0,9109,Stoke City,Southampton,Southampton,Stoke City,Southampton_Stoke_City,Southampton_Stoke City_2015
+2015,30,Stoke City,0.0,0.0,Southampton,1.0,2.0,0,Lee Mason,0,0,0,0,9276,Southampton,Stoke City,Stoke City,Southampton,Southampton_Stoke_City,Southampton_Stoke City_2015

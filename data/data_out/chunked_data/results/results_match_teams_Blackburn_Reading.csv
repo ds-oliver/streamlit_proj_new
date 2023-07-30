@@ -1,0 +1,5 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2006,18,Reading,0.0,0.0,Blackburn,1.0,2.0,0,Graham Poll,0,0,0,0,5737,Blackburn,Reading,Reading,Blackburn,Blackburn_Reading,Blackburn_Reading_2006
+2006,38,Blackburn,0.0,0.0,Reading,3.0,3.0,0,Alan Wiley,0,0,0,0,5940,draw,draw,Blackburn,Reading,Blackburn_Reading,Blackburn_Reading_2006
+2007,10,Blackburn,0.0,0.0,Reading,4.0,2.0,0,Andre Marriner,0,0,0,0,6038,Blackburn,Reading,Blackburn,Reading,Blackburn_Reading,Blackburn_Reading_2007
+2007,32,Reading,0.0,0.0,Blackburn,0.0,0.0,0,Mark Clattenburg,0,0,0,0,6261,draw,draw,Reading,Blackburn,Blackburn_Reading,Blackburn_Reading_2007

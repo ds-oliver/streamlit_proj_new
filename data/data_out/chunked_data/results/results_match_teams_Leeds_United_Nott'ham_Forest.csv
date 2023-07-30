@@ -1,0 +1,13 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+2022,22,Nott'ham Forest,0.4,0.9,Leeds United,1.0,0.0,2023-02-05,Robert Jones,The City Ground,Sun,14:00,"29,363",229,Nott'ham Forest,Leeds United,Nott'ham Forest,Leeds United,Leeds_United_Nott'ham_Forest,Leeds United_Nott'ham Forest_2022
+2022,7,Leeds United,1.8,0.8,Nott'ham Forest,2.0,1.0,2023-04-04,Robert Jones,Elland Road,Tue,19:45,"36,740",315,Leeds United,Nott'ham Forest,Leeds United,Nott'ham Forest,Leeds_United_Nott'ham_Forest,Leeds United_Nott'ham Forest_2022
+1992,18,Leeds United,0.0,0.0,Nott'ham Forest,1.0,4.0,0,Alf Buksh,0,0,0,0,189,Nott'ham Forest,Leeds United,Leeds United,Nott'ham Forest,Leeds_United_Nott'ham_Forest,Leeds United_Nott'ham Forest_1992
+1992,35,Nott'ham Forest,0.0,0.0,Leeds United,1.0,1.0,0,Raymond Lewis,0,0,0,0,368,draw,draw,Nott'ham Forest,Leeds United,Leeds_United_Nott'ham_Forest,Leeds United_Nott'ham Forest_1992
+1994,16,Leeds United,0.0,0.0,Nott'ham Forest,1.0,0.0,0,Peter Jones,0,0,0,0,1095,Leeds United,Nott'ham Forest,Leeds United,Nott'ham Forest,Leeds_United_Nott'ham_Forest,Leeds United_Nott'ham Forest_1994
+1994,29,Nott'ham Forest,0.0,0.0,Leeds United,3.0,0.0,0,Mike Reed,0,0,0,0,1290,Nott'ham Forest,Leeds United,Nott'ham Forest,Leeds United,Leeds_United_Nott'ham_Forest,Leeds United_Nott'ham Forest_1994
+1995,14,Nott'ham Forest,0.0,0.0,Leeds United,2.0,1.0,0,Alan Wilkie,0,0,0,0,1620,Nott'ham Forest,Leeds United,Nott'ham Forest,Leeds United,Leeds_United_Nott'ham_Forest,Leeds United_Nott'ham Forest_1995
+1995,35,Leeds United,0.0,0.0,Nott'ham Forest,1.0,3.0,0,Robbie Hart,0,0,0,0,1725,Nott'ham Forest,Leeds United,Leeds United,Nott'ham Forest,Leeds_United_Nott'ham_Forest,Leeds United_Nott'ham Forest_1995
+1996,9,Leeds United,0.0,0.0,Nott'ham Forest,2.0,0.0,0,Stephen Lodge,0,0,0,0,1852,Leeds United,Nott'ham Forest,Leeds United,Nott'ham Forest,Leeds_United_Nott'ham_Forest,Leeds United_Nott'ham Forest_1996
+1996,35,Nott'ham Forest,0.0,0.0,Leeds United,1.0,1.0,0,David Elleray,0,0,0,0,2110,draw,draw,Nott'ham Forest,Leeds United,Leeds_United_Nott'ham_Forest,Leeds United_Nott'ham Forest_1996
+1998,9,Nott'ham Forest,0.0,0.0,Leeds United,1.0,1.0,0,Alan Wilkie,0,0,0,0,2606,draw,draw,Nott'ham Forest,Leeds United,Leeds_United_Nott'ham_Forest,Leeds United_Nott'ham Forest_1998
+1998,31,Leeds United,0.0,0.0,Nott'ham Forest,3.0,1.0,0,Paul Alcock,0,0,0,0,2830,Leeds United,Nott'ham Forest,Leeds United,Nott'ham Forest,Leeds_United_Nott'ham_Forest,Leeds United_Nott'ham Forest_1998

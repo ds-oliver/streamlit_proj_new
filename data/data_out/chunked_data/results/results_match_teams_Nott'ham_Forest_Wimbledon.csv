@@ -1,0 +1,11 @@
+season,gameweek,home_team,home_xg,away_xg,away_team,home_score,away_score,date,referee,venue,dayofweek,start_time,attendance,Unnamed: 0,winning_team,losing_team,team,opponent,match_teams,season_match_teams
+1992,20,Nott'ham Forest,0.0,0.0,Wimbledon,1.0,1.0,0,Robbie Hart,0,0,0,0,218,draw,draw,Nott'ham Forest,Wimbledon,Nott'ham_Forest_Wimbledon,Nott'ham Forest_Wimbledon_1992
+1992,40,Wimbledon,0.0,0.0,Nott'ham Forest,1.0,0.0,0,Keren Barratt,0,0,0,0,417,Wimbledon,Nott'ham Forest,Wimbledon,Nott'ham Forest,Nott'ham_Forest_Wimbledon,Nott'ham Forest_Wimbledon_1992
+1994,10,Nott'ham Forest,0.0,0.0,Wimbledon,3.0,1.0,0,Robbie Hart,0,0,0,0,1032,Nott'ham Forest,Wimbledon,Nott'ham Forest,Wimbledon,Nott'ham_Forest_Wimbledon,Nott'ham Forest_Wimbledon_1994
+1994,42,Wimbledon,0.0,0.0,Nott'ham Forest,2.0,2.0,0,Stephen Lodge,0,0,0,0,1375,draw,draw,Wimbledon,Nott'ham Forest,Nott'ham_Forest_Wimbledon,Nott'ham Forest_Wimbledon_1994
+1995,12,Nott'ham Forest,0.0,0.0,Wimbledon,4.0,1.0,0,Paul Alcock,0,0,0,0,1505,Nott'ham Forest,Wimbledon,Nott'ham Forest,Wimbledon,Nott'ham_Forest_Wimbledon,Nott'ham Forest_Wimbledon_1995
+1995,33,Wimbledon,0.0,0.0,Nott'ham Forest,1.0,0.0,0,Keith Burge,0,0,0,0,1699,Wimbledon,Nott'ham Forest,Wimbledon,Nott'ham Forest,Nott'ham_Forest_Wimbledon,Nott'ham Forest_Wimbledon_1995
+1996,15,Wimbledon,0.0,0.0,Nott'ham Forest,1.0,0.0,0,Mike Reed,0,0,0,0,1913,Wimbledon,Nott'ham Forest,Wimbledon,Nott'ham Forest,Nott'ham_Forest_Wimbledon,Nott'ham Forest_Wimbledon_1996
+1996,37,Nott'ham Forest,0.0,0.0,Wimbledon,1.0,1.0,0,Graham Barber,0,0,0,0,2121,draw,draw,Nott'ham Forest,Wimbledon,Nott'ham_Forest_Wimbledon,Nott'ham Forest_Wimbledon_1996
+1998,12,Nott'ham Forest,0.0,0.0,Wimbledon,0.0,1.0,0,Graham Poll,0,0,0,0,2636,Wimbledon,Nott'ham Forest,Nott'ham Forest,Wimbledon,Nott'ham_Forest_Wimbledon,Nott'ham Forest_Wimbledon_1998
+1998,29,Wimbledon,0.0,0.0,Nott'ham Forest,1.0,3.0,0,Keith Burge,0,0,0,0,2812,Nott'ham Forest,Wimbledon,Wimbledon,Nott'ham Forest,Nott'ham_Forest_Wimbledon,Nott'ham Forest_Wimbledon_1998
