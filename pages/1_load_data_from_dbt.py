@@ -6,7 +6,8 @@ import sys
 import os
 
 # Add the scripts directory to the Python path
-sys.path.append('/Users/hogan/Library/CloudStorage/Dropbox/Mac/Documents/GitHub/streamlit/scripts/')
+sys.path.append(
+    '/Users/hogan/dev/streamlit_proj_new/scripts/')
 
 from chunk_and_save_data import load_data_from_db
 
