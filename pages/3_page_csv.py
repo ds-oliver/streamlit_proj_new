@@ -9,6 +9,8 @@ import pickle
 from datetime import datetime
 import matplotlib.pyplot as plt
 import seaborn as sns
+from matplotlib.colors import LinearSegmentedColormap
+from matplotlib import cm
 
 # function to load this csv /Users/hogan/dev/streamlit_proj_new/data/data_out/final_data/db_files/players.db and /Users/hogan/dev/streamlit_proj_new/data/data_out/final_data/csv_files/players.csv
 
@@ -175,6 +177,110 @@ def select_season_from_db(db, season):
 
     return results
 
+def style_dataframe(df):
+    # Create two diverging palettes
+    cm = sns.diverging_palette(255, 149, s=80, l=55, as_cmap=True)  # gold palette
+    cm2 = sns.diverging_palette(175, 35, s=60, l=85, as_cmap=True)  # light blue palette
+
+    # Apply the color gradient using the two diverging palettes
+    styled_df = df.style.background_gradient(cmap=cm, low=df.min().min(), high=0)\
+                        .background_gradient(cmap=cm2, low=0, high=df.max().max())
+    return styled_df
+
+def display_styled_dataframe(df, subset1, subset2):
+    cm = sns.diverging_palette(255, 149, s=80, l=55, as_cmap=True)  # gold palette
+    cm2 = sns.diverging_palette(175, 35, s=60, l=85, as_cmap=True)  # light blue palette
+
+    styled_df = df.style.background_gradient(cmap=cm, subset=[subset1], vmin=df[subset1].min(), vmax=df[subset1].max())\
+                        .background_gradient(cmap=cm2, subset=[subset2], vmin=df[subset2].min(), vmax=df[subset2].max())
+    st.dataframe(styled_df, use_container_width=True)
+
+def display_styled_dataframe_simple(df):
+    # Set color maps
+    cm = sns.diverging_palette(255, 149, s=80, l=55, as_cmap=True)  # gold palette
+    cm2 = sns.diverging_palette(175, 35, s=60, l=85, as_cmap=True)  # teal palette
+
+    # Apply color gradients
+    styled_df = df.style.background_gradient(cmap=cm).background_gradient(cmap=cm2)
+    
+    # Display the styled dataframe
+    st.dataframe(styled_df, use_container_width=True)
+
+def display_styled_dataframe_v2(df):
+    # Create a color palette that goes from blood red to gold
+    cm = sns.cubehelix_palette(start=0.5, rot=-0.5, dark=0.3, light=0.8, reverse=True, as_cmap=True)
+
+    # Apply color gradients
+    styled_df = df.style.background_gradient(cmap=cm)
+    
+    # Display the styled dataframe
+    st.dataframe(styled_df, use_container_width=True)
+
+def display_dataframe_html(df):
+    # Convert the dataframe to HTML
+    df_html = df.to_html(index=False)
+
+    # Create a CSS style string
+    style = """
+    <style>
+    table {
+        line-height: 1.6;
+        letter-spacing: 0.01em;
+    }
+    table.dataframe {
+        font-family: 'Fira Code';
+    }
+    table.dataframe tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    table.dataframe th {
+        background-color: #4CAF50;
+        color: white;
+    }
+    </style>
+    """
+
+    # Create the final HTML string
+    html = style + df_html
+
+    # Display the HTML in Streamlit
+    st.markdown(html, unsafe_allow_html=True)
+
+def create_gradient_colormap_html():
+    # Colors can also be defined in RGB format and interpolated this way
+    cdict = {'red':   [(0.0,  0.85, 0.85),   # light blue
+                       (1.0,  1.0, 1.0)],   # gold
+
+             'green': [(0.0,  0.85, 0.85),   # light blue
+                       (1.0, 0.843, 0.843)],   # gold
+
+             'blue':  [(0.0,  0.85, 0.85),   # light blue
+                       (1.0,  0.0, 0.0)]}    # gold
+    return LinearSegmentedColormap('BlueGold', cdict)
+
+def display_styled_dataframe_html_v2(df):
+    # Create colormap
+    cmap = create_gradient_colormap()
+
+    # Apply colormap
+    styled_df = df.style.background_gradient(cmap=cmap)
+
+    # Convert the styled DataFrame to HTML
+    html = styled_df.render()
+
+    # Display the HTML in Streamlit
+    st.write(html, unsafe_allow_html=True)
+
+def display_styled_dataframe_html(df):
+    # Apply a global gradient
+    styled_df = df.style.background_gradient(cmap='viridis')
+
+    # Convert the styled DataFrame to HTML
+    html = styled_df.render()
+
+    # Display the HTML in Streamlit
+    st.write(html, unsafe_allow_html=True)
+
 def create_multiselect_seasons(players_df):
     """
     Summary:
@@ -331,13 +437,6 @@ def filter_df_by_team_and_opponent(df, selected_team, selected_opponent):
 
     return team_level_df, player_level_df
 
-def clean_player_level_df(df):
-    """_summary_
-
-    Args:
-        df (_type_): _description_
-    """
-
 def print_df_columns(df):
     """_summary_
 
@@ -345,128 +444,6 @@ def print_df_columns(df):
         df (_type_): _description_
     """
     print(f"<> Printing df columns:\n   ---------------------------------------------------------------\n   == {df.columns.tolist()}")
-
-def clean_team_level_df(df):
-    
-    df = df.copy()
-    df['season'] = df['season'].astype(str)
-    df = df[['team', 'home', 'opponent', 'team_score', 'opponent_score', 'home_team', 'away_team', 'home_xg', 'away_xg', 'winning_team', 'losing_team', 'team_xG', 'opponent_xG', 'date', 'referee', 'venue', 'dayofweek', 'start_time', 'attendance']]
-
-    # strip "," and convert attendance to int
-    df['attendance'] = df['attendance'].str.replace(',', '').fillna(0).astype(int)
-    
-    df = df.groupby(['team', 'home']).agg({
-        'home_xg': ['mean', 'sum'], 
-        'away_xg': ['mean', 'sum'], 
-        'winning_team': lambda x: (x == x.name[0]).sum(),
-        'losing_team': lambda x: (x == x.name[0]).sum(),
-        'team_xG': ['mean', 'sum'],
-        'opponent_xG': 'sum',
-        'team_score': ['mean', 'sum'],
-        'opponent_score': ['mean', 'sum'],
-        'date': 'count', 
-        'attendance': 'mean'
-    }).reset_index()
-    
-    df.columns = ['_'.join(col).strip() for col in df.columns.values]
-    
-    df.rename(columns={
-        'team_': 'Team', 
-        'home_': 'Home',
-        'home_xg_sum': 'Total xG Home',
-        'away_xg_sum': 'Total xG Away',
-        'home_xg_mean': 'Average Home xG',
-        'away_xg_mean': 'Average Away xG',
-        'winning_team_<lambda>': 'Total Wins',
-        'losing_team_<lambda>': 'Total Losses',
-        'team_xG_sum': 'Total xG For',
-        'team_xG_mean': 'Average xG For',
-        'opponent_xG_sum': 'Total xG Against',
-        'team_score_sum': 'Total Goals Scored',
-        'team_score_mean': 'Average Goals Scored',
-        'opponent_score_sum': 'Total Goals Conceded',
-        'opponent_score_mean': 'Average Goals Conceded',
-        'date_count': 'Total Games',
-        'attendance_mean': 'Average Attendance'
-    }, inplace=True)
-
-    df['Total Draws'] = df['Total Games'] - df['Total Wins'] - df['Total Losses']
-    
-    for loc in ['Home', 'Away']:
-        df[f'Percent {loc} Games Won'] = df[f'Total Wins'] / df['Total Games'] * 100
-        df[f'Percent {loc} Games Lost'] = df[f'Total Losses'] / df['Total Games'] * 100
-        df[f'Percent {loc} Games Drawn'] = df['Total Draws'] / df['Total Games'] * 100
-
-    # show df in app
-    st.write(df)
-
-    return df
-
-
-    """
-    Summary:
-        This function returns the teams stats for the selected team and opponent using vectorized computations.
-        These stats are:
-        - Total Games
-        - Total Wins
-        - Total Losses
-        - Total Draws
-        - Total Goals Scored
-        - Total Goals Conceded
-        - xG For
-        - xG Against
-        - Clean Sheets
-
-    Args:
-        df (pandas DataFrame): The df to be filtered.
-        team (str): The selected team.
-        opponent (str): The selected opponent.
-
-    Returns:
-        teams_stats (dict): The teams stats.
-    """
-
-    st.info("Matchup stats below...")
-
-    st.dataframe(team_level_df, use_container_width=True)
-
-    # get selected team stats
-    selected_team_df = team_level_df[(team_level_df['team'] == selected_team) & (team_level_df['opponent'] == selected_opponent)]
-    teams_stats = {
-        'Total Games': len(selected_team_df),
-        'Total Wins': len(selected_team_df[selected_team_df['winning_team'] == selected_team]),
-        'Total Losses': len(selected_team_df[selected_team_df['losing_team'] == selected_team]),
-        'Total Draws': len(selected_team_df[selected_team_df['winning_team'] == 'draw']),
-        'Total Goals Scored': selected_team_df['team_score'].sum(),
-        'Total Goals Conceded': selected_team_df['opponent_score'].sum(),
-        'xG For': selected_team_df['team_xG'].sum(),
-        'xG Against': selected_team_df['opponent_xG'].sum(),
-        'Clean Sheets': len(selected_team_df[selected_team_df['opponent_score'] == 0])
-    }
-
-    # get selected opponent stats
-    selected_opponent_df = team_level_df[(team_level_df['team'] == selected_opponent) & (team_level_df['opponent'] == selected_team)]
-    opponent_stats = {
-        'Total Games': len(selected_opponent_df),
-        'Total Wins': len(selected_opponent_df[selected_opponent_df['winning_team'] == selected_opponent]),
-        'Total Losses': len(selected_opponent_df[selected_opponent_df['losing_team'] == selected_opponent]),
-        'Total Draws': len(selected_opponent_df[selected_opponent_df['winning_team'] == 'draw']),
-        'Total Goals Scored': selected_opponent_df['team_score'].sum(),
-        'Total Goals Conceded': selected_opponent_df['opponent_score'].sum(),
-        'xG For': selected_opponent_df['team_xG'].sum(),
-        'xG Against': selected_opponent_df['opponent_xG'].sum(),
-        'Clean Sheets': len(selected_opponent_df[selected_opponent_df['opponent_score'] == 0])
-    }
-
-    # merge the two stats dicts
-    matchup_stats_df = pd.DataFrame([teams_stats, opponent_stats], index=[selected_team, selected_opponent])
-
-    # transpose the dataframe
-    matchup_stats_df = matchup_stats_df.T
-
-    st.dataframe(matchup_stats_df, use_container_width=True)
-
-    return teams_stats, opponent_stats
 
 def match_quick_facts(team_level_df, player_level_df, selected_team, selected_opponent):
     """Summary:
@@ -581,7 +558,10 @@ def get_teams_stats(team_level_df, selected_team, selected_opponent):
             # transpose the dataframe
     team_stats_df = team_stats_df.T
 
-    st.dataframe(team_stats_df, use_container_width=True)
+    # round the values
+    team_stats_df = team_stats_df.round(2)
+
+    display_styled_dataframe_v2(team_stats_df)
     
     return team_stats_df
 
@@ -589,11 +569,6 @@ def get_players_stats(player_level_df, selected_team, selected_opponent):
     stats_categories = ['nationality', 'age', 'minutes', 'goals', 'assists', 'pens_made', 'pens_att', 'shots', 'shots_on_target', 'cards_yellow', 'cards_red', 'touches', 'tackles', 'interceptions', 'blocks', 'xg', 'npxg', 'xg_assist', 'sca', 'gca', 'passes_completed', 'passes', 'passes_pct', 'progressive_passes', 'carries', 'progressive_carries', 'take_ons', 'take_ons_won', 'passes_total_distance', 'passes_progressive_distance', 'passes_completed_short', 'passes_short', 'passes_pct_short', 'passes_completed_medium', 'passes_medium', 'passes_pct_medium', 'passes_completed_long', 'passes_long', 'passes_pct_long', 'pass_xa', 'assisted_shots', 'passes_into_final_third', 'passes_into_penalty_area', 'crosses_into_penalty_area', 'passes_live', 'passes_dead', 'passes_free_kicks', 'through_balls', 'passes_switches', 'crosses', 'throw_ins', 'corner_kicks', 'corner_kicks_in', 'corner_kicks_out', 'corner_kicks_straight', 'passes_offsides', 'passes_blocked', 'tackles_won', 'tackles_def_3rd', 'tackles_mid_3rd', 'tackles_att_3rd', 'challenge_tackles', 'challenges', 'challenge_tackles_pct', 'challenges_lost', 'blocked_shots', 'blocked_passes', 'tackles_interceptions', 'clearances', 'errors', 'touches_def_pen_area', 'touches_def_3rd', 'touches_mid_3rd', 'touches_att_3rd', 'touches_att_pen_area', 'touches_live_ball', 'take_ons_won_pct', 'take_ons_tackled', 'take_ons_tackled_pct', 'carries_distance', 'carries_progressive_distance', 'carries_into_final_third', 'carries_into_penalty_area', 'miscontrols', 'dispossessed', 'passes_received', 'progressive_passes_received', 'cards_yellow_red', 'fouls', 'fouled', 'offsides', 'pens_won', 'pens_conceded', 'own_goals', 'ball_recoveries', 'aerials_won', 'aerials_lost', 'aerials_won_pct']
 
     selected_stats_categories = st.multiselect("Select stats categories", stats_categories, default=['gca', 'npxg', 'xg_assist', 'pass_xa'])
-
-    # print_df_columns(player_level_df)
-
-    cm = sns.diverging_palette(255, 149, s=0, l=1, as_cmap=True)
-    cm2 = sns.diverging_palette(175, 35, s=60, l=85, as_cmap=True)
 
     for team in [selected_team, selected_opponent]:
         st.title(team)  # Set the title to the current team
@@ -609,199 +584,36 @@ def get_players_stats(player_level_df, selected_team, selected_opponent):
             # Display the stats of the top 5 unique players
             team_player_stats = team_player_stats.sort_values(by=['sum', 'mean'], ascending=False).head(5)
 
-            # Apply color gradients
-            st.dataframe(team_player_stats.style.
-                         background_gradient(cmap=cm, subset=['sum'], vmin=team_player_stats['sum'].min(), vmax=team_player_stats['sum'].max()).
-                         background_gradient(cmap=cm2, subset=['mean'], vmin=team_player_stats['mean'].min(), vmax=team_player_stats['mean'].max()))
+            # drop the team column
+            team_player_stats = team_player_stats.drop(columns=['team'])
 
-def display_players_stats(players_stats):
-    """Summary:
-        This function displays each DataFrame in the players_stats dictionary 
-        as a table in the Streamlit app.
+             # round relevant columns
+            team_player_stats = team_player_stats.round({'sum': 2, 'mean': 2})
+
+            # Apply color gradients
+            # Display styled dataframe
+            display_styled_dataframe_v2(team_player_stats)
+
+            # display_styled_dataframe(team_player_stats, 'sum', 'mean')
+
+def show_dataframe(df):
+    """_summary_
 
     Args:
-        players_stats (dict): The players stats dictionary returned by get_players_stats().
-
+        teams_stats (_type_): _description_
     """
-    # Iterate over the dictionary
-    for stat_category, df in players_stats.items():
-        # Display the stat category as a header
-        st.header(stat_category)
+    st.dataframe(df, use_container_width=True)
 
-        # Display the DataFrame as a table
-        st.dataframe(df)
+def show_team_stats_html(team_df):
+    
+    # call the display_styled_dataframe function
+    display_styled_dataframe_html(team_df)
 
-def show_stats_for_teams(stats_for_team, stats_for_opponent, team, opponent):
-    """Summary:
-        This function shows the stats for the selected teams. These stats should be displayed in a table that has team and opponent as columns and the stats as rows
+def show_player_stats_html(player_df):
         
-        Args:
-            grouped_df (pandas DataFrame): The grouped dataframe.
-            selected_teams (list): The selected teams.
-            
-        Returns:
-            None
-        """
-    print("Received stats_for_team: ", stats_for_team)
-    print("Received stats_for_opponent: ", stats_for_opponent)
-
-    # Create a new dataframe
-    df = pd.DataFrame(
-        [stats_for_team, stats_for_opponent], index=[team, opponent])
+    # call the display_styled_dataframe function
+    display_styled_dataframe_html(player_df)
     
-    print(df)
-
-    # Transpose the dataframe
-    df = df.T
-
-    # Create a new column "Win Percentage"
-    df.loc["Win Percentage"] = df.loc["Total Wins"] / df.loc["Total Games"]
-
-    # Create a new column "Loss Percentage"
-    df.loc["Loss Percentage"] = df.loc["Total Losses"] / df.loc["Total Games"]
-
-    # Create a new column "Goals Scored Per Game"
-    df.loc["Goals Scored Per Game"] = df.loc["Total Goals Scored"] / \
-        df.loc["Total Games"]
-    
-    # Create a new column "Goals Conceded Per Game"
-    df.loc["Goals Conceded Per Game"] = df.loc["Total Goals Conceded"] / \
-        df.loc["Total Games"]
-    
-    # Create a new column "xG For Per Game"
-    df.loc["xG For Per Game"] = df.loc["xG For"] / \
-        df.loc["Total Games"]
-
-    # Create a new column "xG Against Per Game"
-    df.loc["xG Against Per Game"] = df.loc["xG Against"] / \
-        df.loc["Total Games"]
-    
-    # Create a new column "Clean Sheets Percentage"
-    df.loc["Clean Sheets Percentage"] = df.loc["Clean Sheets"] / \
-        df.loc["Total Games"]
-    
-    # Create a new column "xG Difference"
-    df.loc["xG Difference"] = df.loc["xG For"] - \
-        df.loc["xG Against"]
-    
-    # Create a new column "xG Difference Per Game"
-    df.loc["xG Difference Per Game"] = df.loc["xG Difference"] / \
-        df.loc["Total Games"]
-    
-    # Create a new column "Clean Sheets Total" as integer
-    df.loc["Clean Sheets Total"] = df.loc["Clean Sheets"].astype(int)
-
-    # Create a new column "Clean Sheets Percentage"
-    df.loc["Clean Sheets Percentage"] = df.loc["Clean Sheets"] / \
-        df.loc["Total Games"]
-    
-    # format the column names so that they replace _ with a space
-    df.columns = df.columns.str.replace("_", " ")
-
-    # format the dataframe to 2 decimal places, the percentages as percentages and the rest as integers
-    df = df.round(2)
-    df.loc["Win Percentage"] = df.loc["Win Percentage"].apply(
-        lambda x: "{:.2%}".format(x))
-    df.loc["Loss Percentage"] = df.loc["Loss Percentage"].apply(
-        lambda x: "{:.2%}".format(x))
-    df.loc["Clean Sheets Percentage"] = df.loc["Clean Sheets Percentage"].apply(
-        lambda x: "{:.2%}".format(x))
-    
-    # show the dataframe
-    st.dataframe(df)
-
-    
-    players_df_filtered = players_df[(players_df['season'].isin(selected_seasons)) & ((players_df['team'] == selected_team) | (players_df['team'] == selected_opponent))]
-
-    players_df_filtered = players_df_filtered.groupby(['player_name', 'team']).sum().reset_index()
-
-    # make sure numerical columns are rounded to 2 decimals
-
-    """
-
-    for index, row in df_filtered.iterrows():
-        if row['home_team'] == team1:
-            stats_team1['Total Games'] += 1
-            stats_team1['Total Goals Scored'] += row['home_score']
-            stats_team1['Total Goals Conceded'] += row['away_score']
-            stats_team1['xG For'] += row['home_xg']
-            stats_team1['xG Against'] += row['away_xg']
-            stats_team1['Clean Sheets'] += 1 if row['away_score'] == 0 else 0
-            if row['winning_team'] == team1:
-                stats_team1['Total Wins'] += 1
-            elif row['losing_team'] == team1:
-                stats_team1['Total Losses'] += 1
-
-        if row['away_team'] == team1:
-            stats_team1['Total Games'] += 1
-            stats_team1['Total Goals Scored'] += row['away_score']
-            stats_team1['Total Goals Conceded'] += row['home_score']
-            stats_team1['xG For'] += row['away_xg']
-            stats_team1['xG Against'] += row['home_xg']
-            stats_team1['Clean Sheets'] += 1 if row['home_score'] == 0 else 0
-            if row['winning_team'] == team1:
-                stats_team1['Total Wins'] += 1
-            elif row['losing_team'] == team1:
-                stats_team1['Total Losses'] += 1
-
-        if row['home_team'] == team2:
-            stats_team2['Total Games'] += 1
-            stats_team2['Total Goals Scored'] += row['home_score']
-            stats_team2['Total Goals Conceded'] += row['away_score']
-            stats_team2['xG For'] += row['home_xg']
-            stats_team2['xG Against'] += row['away_xg']
-            stats_team2['Clean Sheets'] += 1 if row['away_score'] == 0 else 0
-            if row['winning_team'] == team2:
-                stats_team2['Total Wins'] += 1
-            elif row['losing_team'] == team2:
-                stats_team2['Total Losses'] += 1
-
-        if row['away_team'] == team2:
-            stats_team2['Total Games'] += 1
-            stats_team2['Total Goals Scored'] += row['away_score']
-            stats_team2['Total Goals Conceded'] += row['home_score']
-            stats_team2['xG For'] += row['away_xg']
-            stats_team2['xG Against'] += row['home_xg']
-            stats_team2['Clean Sheets'] += 1 if row['home_score'] == 0 else 0
-            if row['winning_team'] == team2:
-                stats_team2['Total Wins'] += 1
-            elif row['losing_team'] == team2:
-                stats_team2['Total Losses'] += 1
-
-    return stats_team1, stats_team2
-
-    """
-
-def display_dataframe(df):
-    # Convert the dataframe to HTML
-    df_html = df.to_html(index=False)
-
-    # Create a CSS style string
-    style = """
-    <style>
-    table {
-        line-height: 1.6;
-        letter-spacing: 0.01em;
-    }
-    table.dataframe {
-        font-family: 'Fira Code';
-    }
-    table.dataframe tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
-    table.dataframe th {
-        background-color: #4CAF50;
-        color: white;
-    }
-    </style>
-    """
-
-    # Create the final HTML string
-    html = style + df_html
-
-    # Display the HTML in Streamlit
-    st.markdown(html, unsafe_allow_html=True)
-
 # Load the data from the db
 def main():
     
@@ -826,19 +638,19 @@ def main():
     # call filter_df_by_team_and_opponent
     team_level_df, player_level_df = filter_df_by_team_and_opponent(filtered_df, selected_team, selected_opponent)
 
-    # call clean_team_level_df
-    # df = clean_team_level_df(team_level_df)
+    team_stats_df = get_teams_stats(team_level_df, selected_team, selected_opponent)
 
-    # call match_quick_facts
-    # match_quick_facts(team_level_df, player_level_df, selected_team, selected_opponent)
+    player_stats_df = get_players_stats(player_level_df, selected_team, selected_opponent)
 
-    team_stats = get_teams_stats(team_level_df, selected_team, selected_opponent)
+    # show_teams_stats_dataframe(team_stats_df)
 
-    player_stats = get_players_stats(player_level_df, selected_team, selected_opponent)
+    # show_players_stats_dataframe(player_stats_df)
 
-    display_dataframe(team_stats)
+    # show_team_stats_html(team_stats_df)
 
-    display_dataframe(player_stats)
+    # show_player_stats_html(player_stats_df)
+
+    # display_dataframe(player_stats_df)
 
     # display_players_stats(player_stats)
 
