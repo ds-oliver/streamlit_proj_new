@@ -7,6 +7,8 @@ import logging
 import sqlite3
 import pickle
 from datetime import datetime
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 # function to load this csv /Users/hogan/dev/streamlit_proj_new/data/data_out/final_data/db_files/players.db and /Users/hogan/dev/streamlit_proj_new/data/data_out/final_data/csv_files/players.csv
 
@@ -16,7 +18,7 @@ if os.path.exists(file_path):
 else:
     print(f"File {file_path} not found.")
 
-@st.cache
+@st.cache_resource
 def load_data_from_db():
     """
     This function loads data from two tables in a SQLite database.
@@ -37,7 +39,7 @@ def load_data_from_db():
 
     return players_table, results_table
 
-# @st.cache
+@st.cache_resource
 def load_data_from_csv():
     """
     This function loads the data from the csvs.
@@ -51,6 +53,7 @@ def load_data_from_csv():
     
     return players_df, results_df
 
+@st.cache_resource
 def load_data_from_pkl():
     """
     This function loads the data from the pkl.
@@ -66,6 +69,7 @@ def load_data_from_pkl():
     
     return players_dict, results_dict, master_dict
 
+@st.cache_resource
 def clean_data(players_df, results_df):
     """
     This function cleans the data.
@@ -99,8 +103,9 @@ def clean_data(players_df, results_df):
     else:
         print("No cols with _y found.")
 
-    # drop unnamed columns
-    players_df.drop(columns=['Unnamed: 0'], inplace=True)
+    if 'Unnamed: 0' in players_df.columns:
+        print("Unnamed: 0 found")
+        players_df.drop(columns=['Unnamed: 0'], inplace=True)
 
     # change _x columns to columns without _x unless a column without _x already exists and drop _y columns
     for col in cols_x:
@@ -158,6 +163,17 @@ def clean_data(players_df, results_df):
     
     return players_df, results_df
 
+def select_season_from_db(db, season):
+    """
+    This function selects the season from the db.
+    """
+    # Select the season from the db using sqlite3
+    cur = db.cursor()
+    cur.execute(
+        "SELECT * FROM results WHERE season = ?", (season,))
+    results = cur.fetchall()
+
+    return results
 
 def create_multiselect_seasons(players_df):
     """
@@ -189,33 +205,6 @@ def create_multiselect_seasons(players_df):
     print(f"<> Printing unique seasons' values based on user-selected seasons:\n   ---------------------------------------------------------------\n   == {filtered_df['season'].unique()}")
 
     return selected_seasons, filtered_df
-
-
-def collapse_to_match_level(df):
-    # Create a unique identifier for each match
-    # df['match_id'] = df['season'].astype(str) + '_' + df['gameweek'].astype(str) + '_' + df['home_team'] + '_' + df['away_team']
-
-    # df['match_id'] = df['season'].astype(str) + '_' + df['home_team'] + '_' + df['away_team']
-
-    df['match_id'] = df['season_match_teams']
-    
-    # Duplicate the df to create a copy for the opponent's stats
-    df_opponent = df.copy()
-    df_opponent.columns = [f"opponent_{col}" if col != "match_id" else col for col in df.columns]
-
-    # Merge the original df and the opponent df
-    df = pd.merge(df, df_opponent, on="match_id")
-
-    # Remove rows where a team is paired with itself
-    df = df[df["team"] != df["opponent_team"]]
-
-    # Create the 'win', 'Draw', and 'Clean Sheet' columns
-    df["Win"] = (df["team_score"] > df["opponent_opponent_score"]).astype(int)
-    df["Draw"] = (df["team_score"] == df["opponent_opponent_score"]).astype(int)
-    df["Clean Sheet"] = (df["opponent_opponent_score"] == 0).astype(int)
-
-    return df
-
 
 def create_dropdown_teams(filtered_df):
     """
@@ -348,7 +337,14 @@ def clean_player_level_df(df):
     Args:
         df (_type_): _description_
     """
-    
+
+def print_df_columns(df):
+    """_summary_
+
+    Args:
+        df (_type_): _description_
+    """
+    print(f"<> Printing df columns:\n   ---------------------------------------------------------------\n   == {df.columns.tolist()}")
 
 def clean_team_level_df(df):
     
@@ -406,123 +402,7 @@ def clean_team_level_df(df):
 
     return df
 
-def get_teams_stats_v2(team_level_df, selected_team, selected_opponent):
-    """
-    Summary:
-        This function returns the teams stats for the selected team and opponent using vectorized computations.
-        These stats are:
-        - Total Games
-        - Total Wins
-        - Total Losses
-        - Total Draws
-        - Total Goals Scored
-        - Total Goals Conceded
-        - xG For
-        - xG Against
-        - Clean Sheets
 
-    Args:
-        df (pandas DataFrame): The df to be filtered.
-        team (str): The selected team.
-        opponent (str): The selected opponent.
-
-    Returns:
-        teams_stats (dict): The teams stats.
-    """
-
-    st.info("Matchup stats below...")
-
-    st.dataframe(team_level_df, use_container_width=True)
-
-    teams_stats = {
-        'Total Games': 0,
-        'Total Wins': 0,
-        'Total Losses': 0,
-        'Total Draws': 0,
-        'Total Goals Scored': 0,
-        'Total Goals Conceded': 0,
-        'xG For': 0,
-        'xG Against': 0,
-        'Clean Sheets For': 0,
-        'Clean Sheets Against': 0
-    }
-
-    opponent_stats = {
-        'Total Games': 0,
-        'Total Wins': 0,
-        'Total Losses': 0,
-        'Total Draws': 0,
-        'Total Goals Scored': 0,
-        'Total Goals Conceded': 0,
-        'xG For': 0,
-        'xG Against': 0,
-        'Clean Sheets': 0,
-        'Clean Sheets Against': 0
-    }
-
-    # initialize a dataframe with these columns and then we will fill the values in
-    stats_df = pd.DataFrame(columns=['Total Games', 'Total Wins', 'Total Losses', 'Total Draws', 'Total Goals Scored', 'Total Goals Conceded', 'xG For', 'xG Against', 'Clean Sheets For', 'Clean Sheets Against'])
-
-    # initialize team and opponent
-    teams = [selected_team, selected_opponent]
-
-    # filter df for team and opponent
-    df_filtered = team_level_df
-
-    print(f"<> Printing team: {selected_team} and opponent: {selected_opponent} filtered df:\n   ---------------------------------------------------------------\n   == {df_filtered}")
-
-    # get team and opponent stats, remember to use vectorized computations, and that the team can be in the team column or the opponent column
-    for i in enumerate(teams):
-        if i[0]:
-            # if we are computing the selected_team 'For' stats we will look in both team and opponent columns, if selected_team is in team column we get the team_xG, team_score, etc values to summarize, if selected_team is in opponent column we get the opponent_xG, opponent_score, etc values to summarize. Instead of iterating we will use vectorized computations and insert them into the stats_df
-            # get selected_team or selected_opponent stats
-            teams_stats['Total Games'] = df_filtered[(df_filtered['team'] == selected_team) | (df_filtered['opponent'] == selected_team)]['date'].count()
-            print(f"<> Printing team: {selected_team} and opponent: {selected_opponent} filtered df:\n   ---------------------------------------------------------------\n   == {df_filtered[(df_filtered['team'] == selected_team) | (df_filtered['opponent'] == selected_team)]}")
-            teams_stats['Total Wins'] = df_filtered[(df_filtered['winning_team'] == selected_team)]['date'].count()
-            print(f"<> Printing team: {selected_team} and opponent: {selected_opponent} filtered df:\n   ---------------------------------------------------------------\n   == {df_filtered[(df_filtered['winning_team'] == selected_team)]}")
-            teams_stats['Total Losses'] = df_filtered[(df_filtered['losing_team'] == selected_team)]['date'].count()
-            print(f"<> Printing team: {selected_team} and opponent: {selected_opponent} filtered df:\n   ---------------------------------------------------------------\n   == {df_filtered[(df_filtered['losing_team'] == selected_team)]}")
-            teams_stats['Total Draws'] = df_filtered[(df_filtered['winning_team'] != selected_team) & (df_filtered['losing_team'] != selected_team)]['date'].count()
-            print(f"<> Printing team: {selected_team} and opponent: {selected_opponent} filtered df:\n   ---------------------------------------------------------------\n   == {df_filtered[(df_filtered['winning_team'] != selected_team) & (df_filtered['losing_team'] != selected_team)]}")
-            teams_stats['Total Goals Scored'] = df_filtered[(df_filtered['team'] == selected_team)]['team_score'].sum() + df_filtered[(df_filtered['opponent'] == selected_team)]['opponent_score'].sum()
-            print(f"<> Printing team: {selected_team} and opponent: {selected_opponent} filtered df:\n   ---------------------------------------------------------------\n   == {df_filtered[(df_filtered['team'] == selected_team)]}")
-            teams_stats['Total Goals Conceded'] = df_filtered[(df_filtered['team'] == selected_team)]['opponent_score'].sum() + df_filtered[(df_filtered['opponent'] == selected_team)]['team_score'].sum()
-            print(f"<> Printing team: {selected_team} and opponent: {selected_opponent} filtered df:\n   ---------------------------------------------------------------\n   == {df_filtered[(df_filtered['team'] == selected_team)]}")
-            teams_stats['xG For'] = df_filtered[(df_filtered['team'] == selected_team)]['team_xG'].sum() + df_filtered[(df_filtered['opponent'] == selected_team)]['opponent_xG'].sum()
-            print(f"<> Printing team: {selected_team} and opponent: {selected_opponent} filtered df:\n   ---------------------------------------------------------------\n   == {df_filtered[(df_filtered['team'] == selected_team)]}")
-            teams_stats['xG Against'] = df_filtered[(df_filtered['team'] == selected_team)]['opponent_xG'].sum() + df_filtered[(df_filtered['opponent'] == selected_team)]['team_xG'].sum()
-            print(f"<> Printing team: {selected_team} and opponent: {selected_opponent} filtered df:\n   ---------------------------------------------------------------\n   == {df_filtered[(df_filtered['team'] == selected_team)]}")
-            teams_stats['Clean Sheets'] = df_filtered[(df_filtered['team'] == selected_team) & (df_filtered['opponent_score'] == 0)]['date'].count() + df_filtered[(df_filtered['opponent'] == selected_team) & (df_filtered['team_score'] == 0)]['date'].count()
-            print(f"<> Printing team: {selected_team} and opponent: {selected_opponent} filtered df:\n   ---------------------------------------------------------------\n   == {df_filtered[(df_filtered['team'] == selected_team) & (df_filtered['opponent_score'] == 0)]}")
-        else:
-            # if we are computing the selected_opponent 'Against' stats we will look in both team and opponent columns, if selected_opponent is in team column we get the team_xG, team_score, etc values to summarize, if selected_opponent is in opponent column we get the opponent_xG, opponent_score, etc values to summarize. Instead of iterating we will use vectorized computations and insert them into the stats_df
-            # get selected_opponent stats
-            teams_stats['Total Games'] = df_filtered[(df_filtered['team'] == selected_opponent) | (df_filtered['opponent'] == selected_opponent)]['date'].count()
-            print(f"<> Printing team: {selected_team} and opponent: {selected_opponent} filtered df:\n   ---------------------------------------------------------------\n   == {df_filtered[(df_filtered['team'] == selected_opponent) | (df_filtered['opponent'] == selected_opponent)]}")
-            teams_stats['Total Wins'] = df_filtered[(df_filtered['winning_team'] == selected_opponent)]['date'].count()
-            print(f"<> Printing team: {selected_team} and opponent: {selected_opponent} filtered df:\n   ---------------------------------------------------------------\n   == {df_filtered[(df_filtered['winning_team'] == selected_opponent)]}")
-            teams_stats['Total Losses'] = df_filtered[(df_filtered['losing_team'] == selected_opponent)]['date'].count()
-            print(f"<> Printing team: {selected_team} and opponent: {selected_opponent} filtered df:\n   ---------------------------------------------------------------\n   == {df_filtered[(df_filtered['losing_team'] == selected_opponent)]}")
-            teams_stats['Total Draws'] = df_filtered[(df_filtered['winning_team'] != selected_opponent) & (df_filtered['losing_team'] != selected_opponent)]['date'].count()
-            print(f"<> Printing team: {selected_team} and opponent: {selected_opponent} filtered df:\n   ---------------------------------------------------------------\n   == {df_filtered[(df_filtered['winning_team'] != selected_opponent) & (df_filtered['losing_team'] != selected_opponent)]}")
-            teams_stats['Total Goals Scored'] = df_filtered[(df_filtered['team'] == selected_opponent)]['team_score'].sum() + df_filtered[(df_filtered['opponent'] == selected_opponent)]['opponent_score'].sum()
-            print(f"<> Printing team: {selected_team} and opponent: {selected_opponent} filtered df:\n   ---------------------------------------------------------------\n   == {df_filtered[(df_filtered['team'] == selected_opponent)]}")
-            teams_stats['Total Goals Conceded'] = df_filtered[(df_filtered['team'] == selected_opponent)]['opponent_score'].sum() + df_filtered[(df_filtered['opponent'] == selected_opponent)]['team_score'].sum()
-            print(f"<> Printing team: {selected_team} and opponent: {selected_opponent} filtered df:\n   ---------------------------------------------------------------\n   == {df_filtered[(df_filtered['team'] == selected_opponent)]}")
-            teams_stats['xG For'] = df_filtered[(df_filtered['team'] == selected_opponent)]['team_xG'].sum() + df_filtered[(df_filtered['opponent'] == selected_opponent)]['opponent_xG'].sum()
-            print(f"<> Printing team: {selected_team} and opponent: {selected_opponent} filtered df:\n   ---------------------------------------------------------------\n   == {df_filtered[(df_filtered['team'] == selected_opponent)]}")
-            teams_stats['xG Against'] = df_filtered[(df_filtered['team'] == selected_opponent)]['opponent_xG'].sum() + df_filtered[(df_filtered['opponent'] == selected_opponent)]['team_xG'].sum()
-            print(f"<> Printing team: {selected_team} and opponent: {selected_opponent} filtered df:\n   ---------------------------------------------------------------\n   == {df_filtered[(df_filtered['team'] == selected_opponent)]}")
-            teams_stats['Clean Sheets'] = df_filtered[(df_filtered['team'] == selected_opponent) & (df_filtered['opponent_score'] == 0)]['date'].count() + df_filtered[(df_filtered['opponent'] == selected_opponent) & (df_filtered['team_score'] == 0)]['date'].count()
-            print(f"<> Printing team: {selected_team} and opponent: {selected_opponent} filtered df:\n   ---------------------------------------------------------------\n   == {df_filtered[(df_filtered['team'] == selected_opponent) & (df_filtered['opponent_score'] == 0)]}")
-                  
-        # insert the stats into the stats_df
-        stats_df.loc[selected_team] = teams_stats
-        print(f"<> Printing stats_df:\n   ---------------------------------------------------------------\n   == {stats_df}")
-
-    st.dataframe(stats_df, use_container_width=True)
-                        
-def get_teams_stats_v1(team_level_df, selected_team, selected_opponent):
     """
     Summary:
         This function returns the teams stats for the selected team and opponent using vectorized computations.
@@ -705,8 +585,51 @@ def get_teams_stats(team_level_df, selected_team, selected_opponent):
     
     return team_stats_df
 
+def get_players_stats(player_level_df, selected_team, selected_opponent):
+    stats_categories = ['nationality', 'age', 'minutes', 'goals', 'assists', 'pens_made', 'pens_att', 'shots', 'shots_on_target', 'cards_yellow', 'cards_red', 'touches', 'tackles', 'interceptions', 'blocks', 'xg', 'npxg', 'xg_assist', 'sca', 'gca', 'passes_completed', 'passes', 'passes_pct', 'progressive_passes', 'carries', 'progressive_carries', 'take_ons', 'take_ons_won', 'passes_total_distance', 'passes_progressive_distance', 'passes_completed_short', 'passes_short', 'passes_pct_short', 'passes_completed_medium', 'passes_medium', 'passes_pct_medium', 'passes_completed_long', 'passes_long', 'passes_pct_long', 'pass_xa', 'assisted_shots', 'passes_into_final_third', 'passes_into_penalty_area', 'crosses_into_penalty_area', 'passes_live', 'passes_dead', 'passes_free_kicks', 'through_balls', 'passes_switches', 'crosses', 'throw_ins', 'corner_kicks', 'corner_kicks_in', 'corner_kicks_out', 'corner_kicks_straight', 'passes_offsides', 'passes_blocked', 'tackles_won', 'tackles_def_3rd', 'tackles_mid_3rd', 'tackles_att_3rd', 'challenge_tackles', 'challenges', 'challenge_tackles_pct', 'challenges_lost', 'blocked_shots', 'blocked_passes', 'tackles_interceptions', 'clearances', 'errors', 'touches_def_pen_area', 'touches_def_3rd', 'touches_mid_3rd', 'touches_att_3rd', 'touches_att_pen_area', 'touches_live_ball', 'take_ons_won_pct', 'take_ons_tackled', 'take_ons_tackled_pct', 'carries_distance', 'carries_progressive_distance', 'carries_into_final_third', 'carries_into_penalty_area', 'miscontrols', 'dispossessed', 'passes_received', 'progressive_passes_received', 'cards_yellow_red', 'fouls', 'fouled', 'offsides', 'pens_won', 'pens_conceded', 'own_goals', 'ball_recoveries', 'aerials_won', 'aerials_lost', 'aerials_won_pct']
 
+    selected_stats_categories = st.multiselect("Select stats categories", stats_categories, default=['gca', 'npxg', 'xg_assist', 'pass_xa'])
 
+    # print_df_columns(player_level_df)
+
+    cm = sns.diverging_palette(255, 149, s=0, l=1, as_cmap=True)
+    cm2 = sns.diverging_palette(175, 35, s=60, l=85, as_cmap=True)
+
+    for team in [selected_team, selected_opponent]:
+        st.title(team)  # Set the title to the current team
+
+        team_condition = (player_level_df['team'] == team)
+
+        for stat_category in selected_stats_categories:
+            # Get the stats for the current team
+            team_player_stats = player_level_df[team_condition].groupby(['player', 'team'])[stat_category].agg(['sum', 'mean']).reset_index()
+
+            st.subheader(stat_category)  # Set the subtitle to the current stat category
+
+            # Display the stats of the top 5 unique players
+            team_player_stats = team_player_stats.sort_values(by=['sum', 'mean'], ascending=False).head(5)
+
+            # Apply color gradients
+            st.dataframe(team_player_stats.style.
+                         background_gradient(cmap=cm, subset=['sum'], vmin=team_player_stats['sum'].min(), vmax=team_player_stats['sum'].max()).
+                         background_gradient(cmap=cm2, subset=['mean'], vmin=team_player_stats['mean'].min(), vmax=team_player_stats['mean'].max()))
+
+def display_players_stats(players_stats):
+    """Summary:
+        This function displays each DataFrame in the players_stats dictionary 
+        as a table in the Streamlit app.
+
+    Args:
+        players_stats (dict): The players stats dictionary returned by get_players_stats().
+
+    """
+    # Iterate over the dictionary
+    for stat_category, df in players_stats.items():
+        # Display the stat category as a header
+        st.header(stat_category)
+
+        # Display the DataFrame as a table
+        st.dataframe(df)
 
 def show_stats_for_teams(stats_for_team, stats_for_opponent, team, opponent):
     """Summary:
@@ -787,58 +710,6 @@ def show_stats_for_teams(stats_for_team, stats_for_opponent, team, opponent):
     # show the dataframe
     st.dataframe(df)
 
-def get_teams_stats_v1(df, team, opponent):
-    stats_for_team = {
-        'Total Games': 0,
-        'Total Wins': 0,
-        'Total Losses': 0,
-        'Total Goals Scored': 0,
-        'Total Goals Conceded': 0,
-        'xG For': 0,
-        'xG Against': 0,
-        'Clean Sheets': 0
-    }
-    stats_for_opponent = {
-        'Total Games': 0,
-        'Total Wins': 0,
-        'Total Losses': 0,
-        'Total Goals Scored': 0,
-        'Total Goals Conceded': 0,
-        'xG For': 0,
-        'xG Against': 0,
-        'Clean Sheets': 0
-    }
-
-    df_filtered = df[(df['team'] == team) | (df['team'] == opponent)]
-
-    for index, row in df_filtered.iterrows():
-        if row['team'] == team:
-            stats_for_team['Total Games'] += 1
-            stats_for_team['Total Goals Scored'] += row['score']
-            stats_for_team['Total Goals Conceded'] += row['opponent_score']
-            stats_for_team['xG For'] += row['xG']
-            stats_for_team['xG Against'] += row['xGA']
-            stats_for_team['Clean Sheets'] += 1 if row['opponent_score'] == 0 else 0
-            if row['winning_team'] == team:
-                stats_for_team['Total Wins'] += 1
-            elif row['losing_team'] == team:
-                stats_for_team['Total Losses'] += 1
-
-        if row['team'] == opponent:
-            stats_for_opponent['Total Games'] += 1
-            stats_for_opponent['Total Goals Scored'] += row['opponent_score']
-            stats_for_opponent['Total Goals Conceded'] += row['score']
-            stats_for_opponent['xG For'] += row['xGA']
-            stats_for_opponent['xG Against'] += row['xG']
-            stats_for_opponent['Clean Sheets'] += 1 if row['score'] == 0 else 0
-            if row['winning_team'] == opponent:
-                stats_for_opponent['Total Wins'] += 1
-            elif row['losing_team'] == opponent:
-                stats_for_opponent['Total Losses'] += 1
-
-    return stats_for_team, stats_for_opponent
-
-def get_players_stats(players_df, selected_seasons ,selected_team, selected_opponent):
     
     players_df_filtered = players_df[(players_df['season'].isin(selected_seasons)) & ((players_df['team'] == selected_team) | (players_df['team'] == selected_opponent))]
 
@@ -901,51 +772,40 @@ def get_players_stats(players_df, selected_seasons ,selected_team, selected_oppo
 
     """
 
-def prepare_df_for_streamlit(filtered_df):
-    """
-    Summary:
-        This function prepares the df for streamlit, the goals is to show the statistics for the two teams selected.
-    
-    Args:
-        filtered_df (_type_): _description_
-        selected_teams (_type_): _description_
+def display_dataframe(df):
+    # Convert the dataframe to HTML
+    df_html = df.to_html(index=False)
 
-    Returns:
-        _type_: _description_
+    # Create a CSS style string
+    style = """
+    <style>
+    table {
+        line-height: 1.6;
+        letter-spacing: 0.01em;
+    }
+    table.dataframe {
+        font-family: 'Fira Code';
+    }
+    table.dataframe tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    table.dataframe th {
+        background-color: #4CAF50;
+        color: white;
+    }
+    </style>
     """
-    # group by team and aggregate all of the stats by sum
-    grouped_df = filtered_df.groupby("team").sum()
 
-    return grouped_df   
+    # Create the final HTML string
+    html = style + df_html
 
-def select_season(db, season):
-    """
-    This function selects the season from the db.
-    """
-    # Select the season from the db using sqlite3
-    cur = db.cursor()
-    cur.execute(
-        "SELECT * FROM results WHERE season = ?", (season,))
-    results = cur.fetchall()
-
-    return results
-
-def st_write_df(df):
-    """
-    This function writes the df to the streamlit app.
-    """
-    st.write(df)
-
-def st_write_db(db):
-    """
-    This function writes the db to the streamlit app.
-    """
-    st.write(db)
+    # Display the HTML in Streamlit
+    st.markdown(html, unsafe_allow_html=True)
 
 # Load the data from the db
 def main():
     
-    # show the time the page was last updated with timestamp
+    # show the time the page was last  updated with timestamp
 
     st.write("Last updated: ", datetime.now())
     
@@ -973,6 +833,14 @@ def main():
     # match_quick_facts(team_level_df, player_level_df, selected_team, selected_opponent)
 
     team_stats = get_teams_stats(team_level_df, selected_team, selected_opponent)
+
+    player_stats = get_players_stats(player_level_df, selected_team, selected_opponent)
+
+    display_dataframe(team_stats)
+
+    display_dataframe(player_stats)
+
+    # display_players_stats(player_stats)
 
     # call get_teams_stats()
     # stats_for_team = get_teams_stats(filtered_df, selected_team, selected_opponent)

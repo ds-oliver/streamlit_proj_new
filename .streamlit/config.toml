@@ -1,8 +1,8 @@
 [theme]
 base="dark"
 primaryColor="#F63366"
-backgroundColor="#000000"  # or any other dark color you prefer
-secondaryBackgroundColor="#202020"  # or any other dark color you prefer
-textColor="#FFFFFF"  # or any other light color you prefer
-font="Segoe UI Semibold"  # or any other font that you prefer
+backgroundColor="#041534"  # or any other dark color you prefer
+secondaryBackgroundColor="#fb6f92"  # or any other dark color you prefer
+textColor="#fac003"  # or any other light color you prefer
+font="Segoe UI"  # or any other font that you prefer
 
