@@ -12,6 +12,8 @@ import seaborn as sns
 from matplotlib.colors import LinearSegmentedColormap
 from matplotlib import cm
 
+from constants import color1, color2, color3, color4, color5, cm
+
 # function to load this csv /Users/hogan/dev/streamlit_proj_new/data/data_out/final_data/db_files/players.db and /Users/hogan/dev/streamlit_proj_new/data/data_out/final_data/csv_files/players.csv
 
 file_path = 'data/data_out/final_data/csv_files/players.csv'
@@ -177,7 +179,7 @@ def select_season_from_db(db, season):
 
     return results
 
-def style_dataframe(df):
+def style_dataframe(df, cm):
     # Create two diverging palettes
     cm = sns.diverging_palette(255, 149, s=80, l=55, as_cmap=True)  # gold palette
     cm2 = sns.diverging_palette(175, 35, s=60, l=85, as_cmap=True)  # light blue palette
@@ -195,13 +197,10 @@ def display_styled_dataframe(df, subset1, subset2):
                         .background_gradient(cmap=cm2, subset=[subset2], vmin=df[subset2].min(), vmax=df[subset2].max())
     st.dataframe(styled_df, use_container_width=True)
 
-def display_styled_dataframe_simple(df):
-    # Set color maps
-    cm = sns.diverging_palette(255, 149, s=80, l=55, as_cmap=True)  # gold palette
-    cm2 = sns.diverging_palette(175, 35, s=60, l=85, as_cmap=True)  # teal palette
+def display_styled_dataframe_simple(df, cm):
 
     # Apply color gradients
-    styled_df = df.style.background_gradient(cmap=cm).background_gradient(cmap=cm2)
+    styled_df = df.style.background_gradient(cmap=cm)
     
     # Display the styled dataframe
     st.dataframe(styled_df, use_container_width=True)
@@ -561,7 +560,7 @@ def get_teams_stats(team_level_df, selected_team, selected_opponent):
     # round the values
     team_stats_df = team_stats_df.round(2)
 
-    display_styled_dataframe_v2(team_stats_df)
+    display_styled_dataframe_simple(team_stats_df, cm)
     
     return team_stats_df
 

@@ -1,8 +1,7 @@
 [theme]
 base="dark"
-primaryColor="#F63366"
-backgroundColor="#041534"  # or any other dark color you prefer
-secondaryBackgroundColor="#fb6f92"  # or any other dark color you prefer
-textColor="#fac003"  # or any other light color you prefer
-font="Segoe UI"  # or any other font that you prefer
-
+primaryColor="#2b2d42"
+backgroundColor="#F0F8FF"
+secondaryBackgroundColor="#6A040F"
+textColor="#FBF8CC"
+font="Fira Code"
