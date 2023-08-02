@@ -1,7 +1,7 @@
 [theme]
 base="dark"
-primaryColor="#2b2d42"
-backgroundColor="#F0F8FF"
-secondaryBackgroundColor="#6A040F"
-textColor="#FBF8CC"
+primaryColor="#FDAFBC"
+backgroundColor="#120602"
+secondaryBackgroundColor="#CDB4DB"
+textColor="#EAEAE8"
 font="Fira Code"

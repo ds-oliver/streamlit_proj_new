@@ -10,7 +10,10 @@ from datetime import datetime
 import matplotlib.pyplot as plt
 import seaborn as sns
 from matplotlib.colors import LinearSegmentedColormap
-from matplotlib import cm
+import plost
+import plotly.express as px
+
+sys.path.append(os.path.abspath(os.path.join('./scripts')))
 
 from constants import color1, color2, color3, color4, color5, cm
 
@@ -73,7 +76,6 @@ def load_data_from_pkl():
     
     return players_dict, results_dict, master_dict
 
-@st.cache_resource
 def clean_data(players_df, results_df):
     """
     This function cleans the data.
@@ -150,14 +152,29 @@ def clean_data(players_df, results_df):
     results_df["season"] = results_df["season"].astype(int)
     players_df["season"] = players_df["season"].astype(int)
 
-    # Create a new column in the results_df called "team_won" that looks at team_score and opponent_score uaing np.where
-    players_df["team_won"] = np.where(players_df["team_score"] > players_df["opponent_score"], 1, 0)
-
     # Create a new column in the results_df called "winning_xG"
     players_df["team_xG"] = np.where(team_is_home, players_df["home_xg"], players_df["away_xg"])
 
     # Create a new column in the results_df called "losing_xG"
     players_df["opponent_xG"] = np.where(team_is_home, players_df["away_xg"], players_df["home_xg"])
+
+    # create team_won column
+    players_df["team_won"] = np.where(players_df["team_score"] > players_df["opponent_score"], 1, 0)
+
+    # create team draw column
+    players_df["team_draw"] = np.where(players_df["team_score"] == players_df["opponent_score"], 1, 0)
+
+    #create team result column W for win, D for draw, L for loss
+    players_df["team_result"] = np.where(players_df["team_score"] > players_df["opponent_score"], "W", np.where(players_df["team_score"] == players_df["opponent_score"], "D", "L"))
+
+    # replace value in winning_team and losing_team if = draw with None
+    players_df["winning_team"] = np.where(players_df["team_score"] > players_df["opponent_score"], players_df["team"], "None")
+
+    # replace value in winning_team and losing_team if = draw with None
+    players_df["losing_team"] = np.where(players_df["winning_team"] == "None", "None", players_df["opponent"])
+
+    # print this column
+    print(players_df[['player', 'team', "team_won", "team_draw", 'team_result', 'winning_team']])
 
     # results_df
     print(f"Cleaned players_df columns:\n{players_df.columns.tolist()} ")
@@ -415,7 +432,7 @@ def filter_df_by_team_and_opponent(df, selected_team, selected_opponent):
     # then we want to create a new df of just the team level data and aggregate the following columns ['gameweek', 'season_long', 'season', 'match_teams', 'season_match_teams', 'home_team', 'away_team', 'home_xg', 'away_xg', 'home_score', 'away_score', 'date', 'referee', 'venue', 'dayofweek', 'start_time', 'attendance', 'winning_team', 'losing_team', 'season_gameweek_home_team_away_team', 'team_score', 'opponent_score', 'team_won', 'team_xG', 'opponent_xG'] 
 
     # create a new df of just the team level data
-    team_level_df = df.groupby(['season_matchup_id', 'season_long', 'season', 'matchup_id', 'home_team', 'away_team', 'home_xg', 'away_xg', 'home_score', 'away_score', 'date', 'referee', 'venue', 'dayofweek', 'start_time', 'attendance', 'winning_team', 'losing_team', 'team_score', 'opponent_score', 'team_won', 'team_xG', 'opponent_xG', 'home']).agg({'team': 'first', 'opponent': 'first'}).reset_index()
+    team_level_df = df.groupby(['season_matchup_id', 'season_long', 'season', 'matchup_id', 'home_team', 'away_team', 'home_xg', 'away_xg', 'home_score', 'away_score', 'date', 'referee', 'venue', 'dayofweek', 'start_time', 'attendance', 'winning_team', 'losing_team', 'team_score', 'opponent_score', 'team_won', 'team_draw', 'team_result', 'team_xG', 'opponent_xG', 'home']).agg({'team': 'first', 'opponent': 'first'}).reset_index()
 
     # print unique season_matchup_id
     print(f"<> Before dropping dupes... Printing nunique season_matchup_id:\n   ---------------------------------------------------------------\n   == {team_level_df['season_matchup_id'].nunique()}")
@@ -427,14 +444,21 @@ def filter_df_by_team_and_opponent(df, selected_team, selected_opponent):
     print(f"<> After dropping dupes... Printing nunique season_matchup_id:\n   ---------------------------------------------------------------\n   == {team_level_df['season_matchup_id'].nunique()}")
 
     # print this new df
-    print(f"<> Printing team_level_df:\n   ---------------------------------------------------------------\n   == {team_level_df}")
+    print(f"<> Printing team_level_df:\n   ---------------------------------------------------------------\n   == {team_level_df[['home_team', 'away_team','winning_team', 'losing_team', 'team_won', 'team_draw', 'team_result', 'date']]}")
 
     # season as string
     team_level_df['season'] = team_level_df['season'].astype(str)
 
-    team_level_df['team_won'] = np.where(team_level_df['team'] == team_level_df['winning_team'], 1, 0)
+    # create new chronologically ordered match df sorting list by date
+    chrono_team_df = team_level_df.sort_values(by=['date'], ascending=True)
 
-    return team_level_df, player_level_df
+    # create column with W/L/D for each match, or row
+    chrono_team_df['team_result'] = np.where(chrono_team_df['team_won'] == 1, 'W', np.where(chrono_team_df['team_won'] == 0, 'L', 'D'))
+
+    # print just the team_won column
+    print(f"<> Printing just the team_won column:\n   ---------------------------------------------------------------\n   == {chrono_team_df['team_result']}")
+
+    return chrono_team_df, player_level_df
 
 def print_df_columns(df):
     """_summary_
@@ -443,6 +467,17 @@ def print_df_columns(df):
         df (_type_): _description_
     """
     print(f"<> Printing df columns:\n   ---------------------------------------------------------------\n   == {df.columns.tolist()}")
+
+def color_format(results):
+    formatted_results = []
+    color_map = {"W": color1, "L": color2, "D": color3}
+
+    for result in results:
+        color = color_map[result]
+        formatted_result = f'<span style="color:{color};">{result}</span>'
+        formatted_results.append(formatted_result)
+
+    return ", ".join(formatted_results)
 
 def match_quick_facts(team_level_df, player_level_df, selected_team, selected_opponent):
     """Summary:
@@ -496,7 +531,7 @@ def match_quick_facts(team_level_df, player_level_df, selected_team, selected_op
         # Print the quick facts
         st.write(f"**{team}** played **{total_games}** games, scored **{total_goals}** goals, used **{total_players}** players, had **{average_attendance:.0f}** average attendance, and had **{top_player}** as their top player by appearances.")
         """
-
+#
 def get_teams_stats(team_level_df, selected_team, selected_opponent):
     """
     Summary:
@@ -522,6 +557,10 @@ def get_teams_stats(team_level_df, selected_team, selected_opponent):
     """
 
     st.info("Matchup stats below...")
+
+    print_df_columns(team_level_df)
+
+    # create a list of the two teams
 
     teams = [selected_team, selected_opponent]
     
@@ -559,10 +598,157 @@ def get_teams_stats(team_level_df, selected_team, selected_opponent):
 
     # round the values
     team_stats_df = team_stats_df.round(2)
-
-    display_styled_dataframe_simple(team_stats_df, cm)
     
     return team_stats_df
+
+# def get_qual_stats(team_level_df, selected_team, selected_opponent):
+
+#     teams = [selected_team, selected_opponent]
+    
+#     qual_stats_df = pd.DataFrame()
+
+#     # Get team and opponent stats
+#     for team in teams:
+#         # Determine the 'home' and 'away' conditions based on the current team
+#         home_condition = (team_level_df['home_team'] == team)
+#         away_condition = (team_level_df['away_team'] == team)
+        
+#         # Calculate the statistics for each team
+#         total_games = team_level_df[home_condition | away_condition].shape[0]
+        
+#         wins_condition = ((home_condition) & (team_level_df['home_score'] > team_level_df['away_score'])) | ((away_condition) & (team_level_df['home_score'] < team_level_df['away_score']))
+#         total_wins = team_level_df[wins_condition].shape[0]
+        
+#         draws_condition = ((home_condition | away_condition) & (team_level_df['home_score'] == team_level_df['away_score']))
+#         total_draws = team_level_df[draws_condition].shape[0]
+        
+#         losses_condition = ~wins_condition & ~draws_condition
+#         total_losses = team_level_df[losses_condition].shape[0]
+        
+#         # Add the statistics to the dataframe
+#         qual_stats = pd.Series({'Total Games': total_games, 'Total Wins': total_wins, 'Total Losses': total_losses, 'Total Draws': total_draws}, name=team)
+#         qual_stats_df = qual_stats_df.append(qual_stats)
+
+#     # transpose the dataframe
+#     qual_stats_df = qual_stats_df.T
+
+#     # round the values
+#     qual_stats_df = qual_stats_df.round(2)
+    
+#     return qual_stats_df
+
+def display_quant_stats(team_level_df, selected_team, selected_opponent):
+
+    def get_quant_stats_over_time(team):
+        # Determine the 'home' and 'away' conditions based on the team
+        home_condition = (team_level_df['home_team'] == team)
+        away_condition = (team_level_df['away_team'] == team)
+
+        # Calculate the statistics for each match
+        team_level_df.loc[home_condition, 'goals_scored'] = team_level_df.loc[home_condition, 'home_score']
+        team_level_df.loc[away_condition, 'goals_scored'] = team_level_df.loc[away_condition, 'away_score']
+        
+        team_level_df.loc[home_condition, 'goals_conceded'] = team_level_df.loc[home_condition, 'away_score']
+        team_level_df.loc[away_condition, 'goals_conceded'] = team_level_df.loc[away_condition, 'home_score']
+        
+        team_level_df.loc[home_condition, 'xG_for'] = team_level_df.loc[home_condition, 'home_xg']
+        team_level_df.loc[away_condition, 'xG_for'] = team_level_df.loc[away_condition, 'away_xg']
+        
+        team_level_df.loc[home_condition, 'xG_against'] = team_level_df.loc[home_condition, 'away_xg']
+        team_level_df.loc[away_condition, 'xG_against'] = team_level_df.loc[away_condition, 'home_xg']
+        
+        team_level_df.loc[home_condition, 'clean_sheets'] = (team_level_df.loc[home_condition, 'away_score'] == 0).astype(int)
+        team_level_df.loc[away_condition, 'clean_sheets'] = (team_level_df.loc[away_condition, 'home_score'] == 0).astype(int)
+
+        # Keep only the rows for the selected team and the new columns
+        team_df = team_level_df.loc[home_condition | away_condition, ['date', 'goals_scored', 'goals_conceded', 'xG_for', 'xG_against', 'clean_sheets']]
+
+        return team_df
+
+    def format_dataframe(team_df, team):
+        st.dataframe(
+            team_df,
+            column_config={
+                "goals_scored": st.column_config.LineChartColumn(
+                    f"Goals For ({team})",
+                    width="medium",
+                    help=f"Goals scored by {team} over time",
+                ),
+                "goals_conceded": st.column_config.LineChartColumn(
+                    f"Goals Against ({team})",
+                    width="medium",
+                    help=f"Goals conceded by {team} over time",
+                ),
+                "xG_for": st.column_config.LineChartColumn(
+                    f"xG For ({team})",
+                    width="medium",
+                    help=f"Expected goals for {team} over time",
+                ),
+                "xG_against": st.column_config.LineChartColumn(
+                    f"xG Against ({team})",
+                    width="medium",
+                    help=f"Expected goals against {team} over time",
+                ),
+            },
+        )
+
+    team_df = get_quant_stats_over_time(selected_team)
+    opponent_df = get_quant_stats_over_time(selected_opponent)
+
+    format_dataframe(team_df, selected_team)
+    format_dataframe(opponent_df, selected_opponent)
+
+
+def display_qual_stats(team_level_df, selected_team, selected_opponent):
+
+    def get_qual_stats_over_time(team):
+        # Determine the 'home' and 'away' conditions based on the selected team
+        home_condition = (team_level_df['home_team'] == team)
+        away_condition = (team_level_df['away_team'] == team)
+        
+        # Define the conditions for a win, draw, or loss
+        win_condition = ((home_condition) & (team_level_df['home_score'] > team_level_df['away_score'])) | ((away_condition) & (team_level_df['home_score'] < team_level_df['away_score']))
+        draw_condition = ((home_condition | away_condition) & (team_level_df['home_score'] == team_level_df['away_score']))
+        loss_condition = ~win_condition & ~draw_condition
+
+        # For each match, assign the result (Win, Draw, Loss)
+        team_level_df.loc[win_condition, 'result'] = 'Win'
+        team_level_df.loc[draw_condition, 'result'] = 'Draw'
+        team_level_df.loc[loss_condition, 'result'] = 'Loss'
+
+        # Keep only the rows for the selected team and the new 'result' column
+        team_df = team_level_df.loc[home_condition | away_condition, ['date', 'result']]
+
+        # Convert the 'result' series to a list and store it in a DataFrame
+        results_list = team_df['result'].tolist()
+        results_df = pd.DataFrame({'Results Over Time': [results_list]}, index=[team])
+
+        return results_df
+
+    def format_special_qual_columns(team_df):
+        st.dataframe(
+            team_df,
+            column_config={
+                "Results Over Time": st.column_config.ListColumn(
+                    "Results Over Time",
+                    width="medium",
+                    help="Win/Draw/Loss results over time",
+                ),
+            },
+            use_container_width=True,
+        )
+
+    team_df = get_qual_stats_over_time(selected_team)
+    opponent_df = get_qual_stats_over_time(selected_opponent)
+
+    format_special_qual_columns(team_df)
+    format_special_qual_columns(opponent_df)
+
+
+
+def show_teams_stats(team_stats_df, cm):
+    
+    display_styled_dataframe_simple(team_stats_df, cm)
 
 def get_players_stats(player_level_df, selected_team, selected_opponent):
     stats_categories = ['nationality', 'age', 'minutes', 'goals', 'assists', 'pens_made', 'pens_att', 'shots', 'shots_on_target', 'cards_yellow', 'cards_red', 'touches', 'tackles', 'interceptions', 'blocks', 'xg', 'npxg', 'xg_assist', 'sca', 'gca', 'passes_completed', 'passes', 'passes_pct', 'progressive_passes', 'carries', 'progressive_carries', 'take_ons', 'take_ons_won', 'passes_total_distance', 'passes_progressive_distance', 'passes_completed_short', 'passes_short', 'passes_pct_short', 'passes_completed_medium', 'passes_medium', 'passes_pct_medium', 'passes_completed_long', 'passes_long', 'passes_pct_long', 'pass_xa', 'assisted_shots', 'passes_into_final_third', 'passes_into_penalty_area', 'crosses_into_penalty_area', 'passes_live', 'passes_dead', 'passes_free_kicks', 'through_balls', 'passes_switches', 'crosses', 'throw_ins', 'corner_kicks', 'corner_kicks_in', 'corner_kicks_out', 'corner_kicks_straight', 'passes_offsides', 'passes_blocked', 'tackles_won', 'tackles_def_3rd', 'tackles_mid_3rd', 'tackles_att_3rd', 'challenge_tackles', 'challenges', 'challenge_tackles_pct', 'challenges_lost', 'blocked_shots', 'blocked_passes', 'tackles_interceptions', 'clearances', 'errors', 'touches_def_pen_area', 'touches_def_3rd', 'touches_mid_3rd', 'touches_att_3rd', 'touches_att_pen_area', 'touches_live_ball', 'take_ons_won_pct', 'take_ons_tackled', 'take_ons_tackled_pct', 'carries_distance', 'carries_progressive_distance', 'carries_into_final_third', 'carries_into_penalty_area', 'miscontrols', 'dispossessed', 'passes_received', 'progressive_passes_received', 'cards_yellow_red', 'fouls', 'fouled', 'offsides', 'pens_won', 'pens_conceded', 'own_goals', 'ball_recoveries', 'aerials_won', 'aerials_lost', 'aerials_won_pct']
@@ -613,6 +799,53 @@ def show_player_stats_html(player_df):
     # call the display_styled_dataframe function
     display_styled_dataframe_html(player_df)
     
+def show_teams_stats_v2(team_stats_df):
+
+    # Qualitative statistics dataframe
+    qual_stats_df = team_stats_df.loc[['Total Games', 'Total Wins', 'Total Losses'], :]
+
+    st.data_editor(
+        qual_stats_df,
+        column_config={
+            qual_stats_df.columns[0]: st.column_config.ListColumn(qual_stats_df.columns[0]),
+            qual_stats_df.columns[1]: st.column_config.ListColumn(qual_stats_df.columns[1]),
+        },
+        hide_index=True,
+    )
+
+    # Quantitative statistics dataframe
+    quant_stats_df = team_stats_df.loc[['Total Goals Scored', 'Total Goals Conceded', 'xG For', 'xG Against', 'Clean Sheets'], :]
+
+    st.data_editor(
+        quant_stats_df,
+        column_config={
+            quant_stats_df.columns[0]: st.column_config.BarChartColumn(quant_stats_df.columns[0], y_min=0),
+            quant_stats_df.columns[1]: st.column_config.BarChartColumn(quant_stats_df.columns[1], y_min=0),
+        },
+        hide_index=True,
+    )
+
+def get_results_list(team_level_df, team):
+    home_condition = (team_level_df['home_team'] == team)
+    away_condition = (team_level_df['away_team'] == team)
+    
+    conditions = [
+        (home_condition & (team_level_df['home_score'] > team_level_df['away_score'])) | (away_condition & (team_level_df['home_score'] < team_level_df['away_score'])),
+        (home_condition & (team_level_df['home_score'] < team_level_df['away_score'])) | (away_condition & (team_level_df['home_score'] > team_level_df['away_score'])),
+        (team_level_df['home_score'] == team_level_df['away_score'])
+    ]
+    choices = ['W', 'L', 'D']
+    
+    team_results = np.select(conditions, choices, default=np.nan)
+    
+    return team_results.tolist()
+
+def get_results_df(team_level_df, selected_team, selected_opponent):
+    # Filter for matches involving the selected teams
+    condition = (team_level_df['home_team'].isin([selected_team, selected_opponent])) & (team_level_df['away_team'].isin([selected_team, selected_opponent]))
+    results_df = team_level_df[condition].copy()
+    
+    return results_df
 # Load the data from the db
 def main():
     
@@ -637,7 +870,48 @@ def main():
     # call filter_df_by_team_and_opponent
     team_level_df, player_level_df = filter_df_by_team_and_opponent(filtered_df, selected_team, selected_opponent)
 
+    display_qual_stats(team_level_df, selected_team, selected_opponent)
+
+    display_quant_stats(team_level_df, selected_team, selected_opponent)
+
+    # Get the results dataframe
+    results_df = get_results_df(team_level_df, selected_team, selected_opponent)
+
+    selected_team_results = get_results_list(team_level_df, selected_team)
+    selected_opponent_results = get_results_list(team_level_df, selected_opponent)
+
+    # Apply color formatting to the results
+    selected_team_results_formatted = color_format(selected_team_results)
+    selected_opponent_results_formatted = color_format(selected_opponent_results)
+
+    # Generate a time histogram
+    plost.time_hist(
+        data=results_df,
+        date='date',
+        x_unit='month',
+        y_unit='year',
+        color='team_result',
+        aggregate='count',
+        title=f'{selected_team} vs {selected_opponent} Results Over Time',
+        legend='bottom'
+    )
+
+    # Display the results in Streamlit
+    st.markdown(f"**{selected_team} vs {selected_opponent} Results Over Time:**")
+    st.markdown(selected_team_results_formatted, unsafe_allow_html=True)
+    st.markdown(selected_opponent_results_formatted, unsafe_allow_html=True)
+
     team_stats_df = get_teams_stats(team_level_df, selected_team, selected_opponent)
+
+    show_teams_stats_v2(team_stats_df)
+
+    # qual_stats_df = get_qual_stats(team_level_df, selected_team, selected_opponent)
+
+    # show_teams_stats(qual_stats_df, cm)
+
+    # quant_stats_df = get_quant_stats(team_level_df, selected_team, selected_opponent)
+
+    # show_teams_stats(quant_stats_df, cm)
 
     player_stats_df = get_players_stats(player_level_df, selected_team, selected_opponent)
 
