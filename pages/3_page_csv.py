@@ -167,6 +167,27 @@ def clean_data(players_df, results_df):
     #create team result column W for win, D for draw, L for loss
     players_df["team_result"] = np.where(players_df["team_score"] > players_df["opponent_score"], "W", np.where(players_df["team_score"] == players_df["opponent_score"], "D", "L"))
 
+    # create opponent_won column
+    players_df["opponent_won"] = np.where(players_df["team_score"] < players_df["opponent_score"], 1, 0)
+
+    # create opponent draw column
+    players_df["opponent_draw"] = np.where(players_df["team_score"] == players_df["opponent_score"], 1, 0)
+
+    #create opponent result column W for win, D for draw, L for loss
+    players_df["opponent_result"] = np.where(players_df["team_score"] < players_df["opponent_score"], "W", np.where(players_df["team_score"] == players_df["opponent_score"], "D", "L"))
+
+    # create team result binary column 1 for win, 0 for draw, -1 for loss
+    players_df["team_result_binary"] = np.where(players_df["team_score"] > players_df["opponent_score"], 1, np.where(players_df["team_score"] == players_df["opponent_score"], 0, -1))
+
+    # create opponent result binary column 1 for win, 0 for draw, -1 for loss
+    players_df["opponent_result_binary"] = np.where(players_df["team_score"] < players_df["opponent_score"], 1, np.where(players_df["team_score"] == players_df["opponent_score"], 0, -1))
+
+    # create team result str column W, D or L based on team_result_binary 1 is W, 0 is D, -1 is L
+    players_df["team_result_str"] = np.where(players_df["team_result_binary"] == 1, "W", np.where(players_df["team_result_binary"] == 0, "D", "L"))
+
+    # create opponent result str column W, D or L based on opponent_result_binary 1 is W, 0 is D, -1 is L
+    players_df["opponent_result_str"] = np.where(players_df["opponent_result_binary"] == 1, "W", np.where(players_df["opponent_result_binary"] == 0, "D", "L"))
+
     # replace value in winning_team and losing_team if = draw with None
     players_df["winning_team"] = np.where(players_df["team_score"] > players_df["opponent_score"], players_df["team"], "None")
 
@@ -174,7 +195,13 @@ def clean_data(players_df, results_df):
     players_df["losing_team"] = np.where(players_df["winning_team"] == "None", "None", players_df["opponent"])
 
     # print this column
-    print(players_df[['player', 'team', "team_won", "team_draw", 'team_result', 'winning_team']])
+    print(f"Printing cleaned players_df:\n{players_df[['player', 'team', 'opponent', 'team_score', 'opponent_score', 'winning_team', 'losing_team', 'home_score', 'away_score', 'team_result', 'team_result_binary', 'team_result_str', 'opponent_result', 'opponent_result_binary', 'opponent_result_str']].head(10)}")
+
+    players_df_copy = players_df[['player', 'team', 'home_team', 'away_team', 'home', 'opponent', 'team_score', 'opponent_score', 'winning_team', 'losing_team', 'home_score', 'away_score', 'team_result', 'team_result_binary', 'team_result_str', 'opponent_result', 'opponent_result_binary', 'opponent_result_str']].head(100)
+
+    st.info("Displaying top 100 rows of cleaned players_df:")
+
+    players_df_copy
 
     # results_df
     print(f"Cleaned players_df columns:\n{players_df.columns.tolist()} ")
@@ -432,7 +459,9 @@ def filter_df_by_team_and_opponent(df, selected_team, selected_opponent):
     # then we want to create a new df of just the team level data and aggregate the following columns ['gameweek', 'season_long', 'season', 'match_teams', 'season_match_teams', 'home_team', 'away_team', 'home_xg', 'away_xg', 'home_score', 'away_score', 'date', 'referee', 'venue', 'dayofweek', 'start_time', 'attendance', 'winning_team', 'losing_team', 'season_gameweek_home_team_away_team', 'team_score', 'opponent_score', 'team_won', 'team_xG', 'opponent_xG'] 
 
     # create a new df of just the team level data
-    team_level_df = df.groupby(['season_matchup_id', 'season_long', 'season', 'matchup_id', 'home_team', 'away_team', 'home_xg', 'away_xg', 'home_score', 'away_score', 'date', 'referee', 'venue', 'dayofweek', 'start_time', 'attendance', 'winning_team', 'losing_team', 'team_score', 'opponent_score', 'team_won', 'team_draw', 'team_result', 'team_xG', 'opponent_xG', 'home']).agg({'team': 'first', 'opponent': 'first'}).reset_index()
+    # team_level_df = df.groupby(['season_matchup_id', 'season_long', 'season', 'matchup_id', 'home_team', 'away_team', 'home_xg', 'away_xg', 'home_score', 'away_score', 'date', 'referee', 'venue', 'dayofweek', 'start_time', 'attendance', 'winning_team', 'losing_team', 'team_score', 'opponent_score', 'team_won', 'team_draw', 'team_result', 'team_result_binary', 'team_xG', 'opponent_xG', 'home']).agg({'team': 'first', 'opponent': 'first'}).reset_index()
+
+    team_level_df = df.groupby(['gameweek', 'season_long', 'season', 'match_teams', 'season_match_teams', 'home_team', 'away_team', 'home_xg', 'away_xg', 'home_score', 'away_score', 'date', 'referee', 'venue', 'dayofweek', 'start_time', 'attendance', 'winning_team', 'losing_team', 'matchup_id', 'season_matchup_id', 'team_score', 'opponent_score', 'team_xG', 'opponent_xG', 'team_won', 'team_draw', 'team_result', 'opponent_won', 'opponent_draw', 'opponent_result', 'team_result_binary', 'opponent_result_binary', 'team_result_str', 'opponent_result_str', 'home']).agg({'team': 'first', 'opponent': 'first'}).reset_index()
 
     # print unique season_matchup_id
     print(f"<> Before dropping dupes... Printing nunique season_matchup_id:\n   ---------------------------------------------------------------\n   == {team_level_df['season_matchup_id'].nunique()}")
@@ -444,21 +473,112 @@ def filter_df_by_team_and_opponent(df, selected_team, selected_opponent):
     print(f"<> After dropping dupes... Printing nunique season_matchup_id:\n   ---------------------------------------------------------------\n   == {team_level_df['season_matchup_id'].nunique()}")
 
     # print this new df
-    print(f"<> Printing team_level_df:\n   ---------------------------------------------------------------\n   == {team_level_df[['home_team', 'away_team','winning_team', 'losing_team', 'team_won', 'team_draw', 'team_result', 'date']]}")
+    print(f"<> Printing team_level_df:\n   ---------------------------------------------------------------\n   == {team_level_df[['team','home_team', 'away_team','winning_team', 'losing_team', 'team_won', 'team_draw', 'team_result', 'team_result_binary', 'date']]}")
 
     # season as string
     team_level_df['season'] = team_level_df['season'].astype(str)
+    
+    # print just the team_won column
+    print(f"<> Printing just the team_result column:\n   ---------------------------------------------------------------\n   == {team_level_df['team_result_binary']}")
+
+    team_level_df
 
     # create new chronologically ordered match df sorting list by date
     chrono_team_df = team_level_df.sort_values(by=['date'], ascending=True)
 
-    # create column with W/L/D for each match, or row
-    chrono_team_df['team_result'] = np.where(chrono_team_df['team_won'] == 1, 'W', np.where(chrono_team_df['team_won'] == 0, 'L', 'D'))
+    # create column with W/L/D for each match, or row W = 1, L = 1, D = 0
+    chrono_team_df['team_result_x'] = np.where(chrono_team_df['team_won'] == 1, 'W', np.where(chrono_team_df['team_won'] == 0, 'D', 'L'))
+
+    # create a new dataframe with columns that instead of being labeled as team_won, are named based on selected_team_won or selected_oppoent_won, and do the same for all the other team / opponent specific columns in the df
+    # this will allow us to create a new df with just the selected team's data and then another df with just the opponent's data
+
+    list_columns  = ['gameweek', 'season_long', 'season', 'match_teams', 'season_match_teams', 'home_team', 'away_team', 'home_xg', 'away_xg', 'home_score', 'away_score', 'date', 'referee', 'venue', 'dayofweek', 'start_time', 'attendance', 'winning_team', 'losing_team', 'matchup_id', 'season_matchup_id', 'team_score', 'opponent_score', 'team_xG', 'opponent_xG', 'team_won', 'team_draw', 'team_result', 'opponent_won', 'opponent_draw', 'opponent_result', 'team_result_binary', 'opponent_result_binary', 'team_result_str', 'opponent_result_str', 'home', 'team', 'opponent', 'team_result_x']
+
+    # create a new column in chrono_team_df that is the selected_team and selected_opponent and is the same for every row
+    chrono_team_df['selected_team'] = selected_team
+    chrono_team_df['selected_opponent'] = selected_opponent
+    
+    chrono_team_df['selected_team_score'] = np.where(chrono_team_df['selected_team'] == chrono_team_df['home_team'], chrono_team_df['home_score'], chrono_team_df['away_score'])
+
+    chrono_team_df['selected_opponent_score'] = np.where(chrono_team_df['selected_opponent'] == chrono_team_df['home_team'], chrono_team_df['home_score'], chrono_team_df['away_score'])
+
+    chrono_team_df['selected_team_draw'] = np.where(chrono_team_df['selected_team_score'] == chrono_team_df['selected_opponent_score'], 1, 0)
+
+    chrono_team_df['selected_team_won'] = np.where(chrono_team_df['selected_team_score'] > chrono_team_df['selected_opponent_score'], 1, 0)
+
+    chrono_team_df['selected_team_lost'] = np.where(chrono_team_df['selected_team_score'] < chrono_team_df['selected_opponent_score'], 1, 0)
+
+    chrono_team_df['selected_opponent_draw'] = np.where(chrono_team_df['selected_opponent_score'] == chrono_team_df['selected_team_score'], 1, 0)
+
+    chrono_team_df['selected_opponent_won'] = np.where(chrono_team_df['selected_opponent_score'] > chrono_team_df['selected_team_score'], 1, 0)
+
+    chrono_team_df['selected_opponent_lost'] = np.where(chrono_team_df['selected_opponent_score'] < chrono_team_df['selected_team_score'], 1, 0)
+
+    # create selected_team_xg and selected_opponent_xg
+    chrono_team_df['selected_team_xg'] = np.where(chrono_team_df['selected_team'] == chrono_team_df['home_team'], chrono_team_df['home_xg'], chrono_team_df['away_xg'])
+
+    chrono_team_df['selected_opponent_xg'] = np.where(chrono_team_df['selected_opponent'] == chrono_team_df['home_team'], chrono_team_df['home_xg'], chrono_team_df['away_xg'])
+
+    # create selected_team_result and selected_opponent_result
+    team_conditions = [
+        (chrono_team_df['selected_team_won'] == 1),
+        (chrono_team_df['selected_team_lost'] == 1),
+        (chrono_team_df['selected_team_draw'] == 1)
+    ]
+
+    opponent_conditions = [
+        (chrono_team_df['selected_opponent_won'] == 1),
+        (chrono_team_df['selected_opponent_lost'] == 1),
+        (chrono_team_df['selected_opponent_draw'] == 1)
+    ]
+
+    cat_choices = ['W', 'L', 'D']
+
+    chrono_team_df['selected_team_result_category'] = np.select(team_conditions, cat_choices, default=np.nan)
+
+    chrono_team_df['selected_opponent_result_category'] = np.select(opponent_conditions, cat_choices, default=np.nan)
+
+    binary_choices = [1, -1, 0]
+
+    chrono_team_df['selected_team_normalized_result'] = np.select(team_conditions, binary_choices, default=np.nan)
+
+    chrono_team_df['selected_opponent_normalized_result'] = np.select(opponent_conditions, binary_choices, default=np.nan)
+
+    # create selected_team_home and selected_opponent_home
+    chrono_team_df['selected_team_home'] = np.where(chrono_team_df['selected_team'] == chrono_team_df['home_team'], 1, 0)
+
+    chrono_team_df['selected_opponent_home'] = np.where(chrono_team_df['selected_opponent'] == chrono_team_df['home_team'], 1, 0)
+
+    # create a list of these new columns
+    new_columns = ['selected_team', 'selected_opponent', 'selected_team_score', 'selected_opponent_score', 'selected_team_draw', 'selected_team_won', 'selected_team_lost', 'selected_opponent_won', 'selected_opponent_lost', 'selected_team_xg', 'selected_opponent_xg', 'selected_team_result_category', 'selected_opponent_result_category', 'selected_team_normalized_result', 'selected_opponent_normalized_result', 'selected_team_home', 'selected_opponent_home']
+
+    id_columns = ['matchup_id', 'season_matchup_id']
+
+    rest_of_cols = [col for col in chrono_team_df.columns if col not in new_columns + id_columns]
+
+    # reorder the df with these new columns first + rest of columns with the id columns at the end
+    selected_teams_df = chrono_team_df[new_columns + rest_of_cols + id_columns]
+
+    selected_teams_df
+
+    # create a list of all the columns we want to rename
+    # columns_to_rename = ['team', 'opponent', 'team_score', 'opponent_score', 'team_won', 'team_draw', 'team_result', 'team_result_binary', 'team_result_str', 'opponent_won', 'opponent_draw', 'opponent_result', 'opponent_result_binary', 'opponent_result_str', 'team_xG', 'opponent_xG']
+
+    # append the {selected_team} string to each column name that contains 'team' and the {selected_opponent} string to each column name that contains 'opponent'
+    # new_column_names = [f"{selected_team}_{column}".replace('team_', '') if 'team_' in column else f"{selected_opponent}_{column}".replace('opponent_', '') for column in columns_to_rename]
+
+    # create a dictionary of the columns we want to rename and the new column names
+    # columns_to_rename_dict = dict(zip(columns_to_rename, new_column_names))
+
+    # # rename the columns
+    # new_columnd_df.rename(columns=columns_to_rename_dict, inplace=True)
+
+    # new_columnd_df
 
     # print just the team_won column
-    print(f"<> Printing just the team_won column:\n   ---------------------------------------------------------------\n   == {chrono_team_df['team_result']}")
+    print(f"<> Printing just the team_result column:\n   ---------------------------------------------------------------\n   == {chrono_team_df['team_result']}")
 
-    return chrono_team_df, player_level_df
+    return chrono_team_df, player_level_df, selected_teams_df
 
 def print_df_columns(df):
     """_summary_
@@ -637,6 +757,8 @@ def get_teams_stats(team_level_df, selected_team, selected_opponent):
     
 #     return qual_stats_df
 
+# display_quant_stats
+
 def display_quant_stats(team_level_df, selected_team, selected_opponent):
 
     def get_quant_stats_over_time(team):
@@ -647,16 +769,16 @@ def display_quant_stats(team_level_df, selected_team, selected_opponent):
         # Calculate the statistics for each match
         team_level_df.loc[home_condition, 'goals_scored'] = team_level_df.loc[home_condition, 'home_score']
         team_level_df.loc[away_condition, 'goals_scored'] = team_level_df.loc[away_condition, 'away_score']
-        
+
         team_level_df.loc[home_condition, 'goals_conceded'] = team_level_df.loc[home_condition, 'away_score']
         team_level_df.loc[away_condition, 'goals_conceded'] = team_level_df.loc[away_condition, 'home_score']
-        
+
         team_level_df.loc[home_condition, 'xG_for'] = team_level_df.loc[home_condition, 'home_xg']
         team_level_df.loc[away_condition, 'xG_for'] = team_level_df.loc[away_condition, 'away_xg']
-        
+
         team_level_df.loc[home_condition, 'xG_against'] = team_level_df.loc[home_condition, 'away_xg']
         team_level_df.loc[away_condition, 'xG_against'] = team_level_df.loc[away_condition, 'home_xg']
-        
+
         team_level_df.loc[home_condition, 'clean_sheets'] = (team_level_df.loc[home_condition, 'away_score'] == 0).astype(int)
         team_level_df.loc[away_condition, 'clean_sheets'] = (team_level_df.loc[away_condition, 'home_score'] == 0).astype(int)
 
@@ -666,38 +788,47 @@ def display_quant_stats(team_level_df, selected_team, selected_opponent):
         return team_df
 
     def format_dataframe(team_df, team):
-        st.dataframe(
-            team_df,
-            column_config={
-                "goals_scored": st.column_config.LineChartColumn(
-                    f"Goals For ({team})",
-                    width="medium",
-                    help=f"Goals scored by {team} over time",
-                ),
-                "goals_conceded": st.column_config.LineChartColumn(
-                    f"Goals Against ({team})",
-                    width="medium",
-                    help=f"Goals conceded by {team} over time",
-                ),
-                "xG_for": st.column_config.LineChartColumn(
-                    f"xG For ({team})",
-                    width="medium",
-                    help=f"Expected goals for {team} over time",
-                ),
-                "xG_against": st.column_config.LineChartColumn(
-                    f"xG Against ({team})",
-                    width="medium",
-                    help=f"Expected goals against {team} over time",
-                ),
-            },
-        )
+        # Creating a dictionary that will store our lists for each statistic
+        stats_dict = {}
+
+        # For each statistic, we convert the data to a list and store it in our dictionary
+        for stat in ['goals_scored', 'goals_conceded', 'xG_for', 'xG_against', 'clean_sheets']:
+            stats_dict[stat] = [team_df[stat].tolist()]
+
+        # We then create a new DataFrame from this dictionary
+        stats_df = pd.DataFrame.from_dict(stats_dict, orient='index')
+
+        # rename the column name with the team name
+        stats_df.columns = [team]
+
+        return stats_df
 
     team_df = get_quant_stats_over_time(selected_team)
     opponent_df = get_quant_stats_over_time(selected_opponent)
 
-    format_dataframe(team_df, selected_team)
-    format_dataframe(opponent_df, selected_opponent)
+    team_stats_df = format_dataframe(team_df, selected_team)
+    opponent_stats_df = format_dataframe(opponent_df, selected_opponent)
 
+    # concatenate the two dataframes
+    combined_df = pd.concat([team_stats_df, opponent_stats_df], axis=1)
+
+    # st.dataframe call with LineChartColumn configuration
+    st.dataframe(
+        combined_df,
+        column_config={
+            selected_team: st.column_config.LineChartColumn(
+                f"{selected_team} Stats Over Time",
+                width="medium",
+                help=f"Line chart of {selected_team}'s stats over time",
+            ),
+            selected_opponent: st.column_config.LineChartColumn(
+                f"{selected_opponent} Stats Over Time",
+                width="medium",
+                help=f"Line chart of {selected_opponent}'s stats over time",
+            ),
+        },
+        use_container_width=True,
+    )
 
 def display_qual_stats(team_level_df, selected_team, selected_opponent):
 
@@ -721,7 +852,7 @@ def display_qual_stats(team_level_df, selected_team, selected_opponent):
 
         # Convert the 'result' series to a list and store it in a DataFrame
         results_list = team_df['result'].tolist()
-        results_df = pd.DataFrame({'Results Over Time': [results_list]}, index=[team])
+        results_df = pd.DataFrame({'Results Distribution Over Time': [results_list]}, index=[team])
 
         return results_df
 
@@ -868,7 +999,7 @@ def main():
         filtered_df)
     
     # call filter_df_by_team_and_opponent
-    team_level_df, player_level_df = filter_df_by_team_and_opponent(filtered_df, selected_team, selected_opponent)
+    team_level_df, player_level_df, selected_teams_df = filter_df_by_team_and_opponent(filtered_df, selected_team, selected_opponent)
 
     display_qual_stats(team_level_df, selected_team, selected_opponent)
 
@@ -897,7 +1028,7 @@ def main():
     )
 
     # Display the results in Streamlit
-    st.markdown(f"**{selected_team} vs {selected_opponent} Results Over Time:**")
+    st.markdown(f"**{selected_team} vs {selected_opponent} Results Distribution:**")
     st.markdown(selected_team_results_formatted, unsafe_allow_html=True)
     st.markdown(selected_opponent_results_formatted, unsafe_allow_html=True)
 
