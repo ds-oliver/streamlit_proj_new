@@ -866,10 +866,13 @@ def display_qual_stats(selected_teams_df, selected_team, selected_opponent):
                     selected_team: st.column_config.BarChartColumn(
                         f"{selected_team} Results and Clean Sheets Over Time",
                         help="Normalized results and number of clean sheets over time for " + selected_team,
-                    ),
+                        y_max=1.0,
+                        y_min=-1.0                    ),
                     selected_opponent: st.column_config.BarChartColumn(
                         f"{selected_opponent} Results and Clean Sheets Over Time",
                         help="Normalized results and number of clean sheets over time for " + selected_opponent,
+                        y_max=1.0,
+                        y_min=-1.0
                     )
                 },
                 use_container_width=True,
