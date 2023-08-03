@@ -792,79 +792,12 @@ def display_quant_stats(selected_teams_df, selected_team, selected_opponent):
         stats_df.columns = [team, team_sum, team_mean]
 
         return stats_df
+
+    # Sort by date before creating the stats
     selected_teams_df = selected_teams_df.sort_values(by='date')
 
-
-    team_df = selected_teams_df[selected_teams_df['selected_team'] == selected_team].copy().sort_values(by='date')
-    opponent_df = selected_teams_df[selected_teams_df['selected_opponent'] == selected_opponent].copy().sort_values(by='date')
-
-    team_stats_df = format_dataframe(team_df, selected_team, 'selected_team_')
-    opponent_stats_df = format_dataframe(opponent_df, selected_opponent, 'selected_opponent_')
-
-    combined_df = pd.concat([team_stats_df, opponent_stats_df], axis=1)
-
-    print(combined_df)
-
-    linechart_df = combined_df.drop(columns=[f'Sum ({selected_team})', f'Mean ({selected_team})', f'Sum ({selected_opponent})', f'Mean ({selected_opponent})'])
-    print(linechart_df)
-
-    st.dataframe(
-        linechart_df,
-        column_config={
-            selected_team: st.column_config.LineChartColumn(
-                f"Stats Over Time ({selected_team})",
-                width="medium",
-                help=f"Line chart of {selected_team}'s stats over time",
-            ),
-            selected_opponent: st.column_config.LineChartColumn(
-                f"Stats Over Time ({selected_opponent})",
-                width="medium",
-                help=f"Line chart of {selected_opponent}'s stats over time",
-            ),
-        },
-        use_container_width=True,
-    )
-
-    sum_mean_df = combined_df.drop(columns=[selected_team, selected_opponent])
-    sum_mean_df = sum_mean_df.reindex(columns=[f'Mean ({selected_team})', f'Mean ({selected_opponent})', f'Sum ({selected_team})', f'Sum ({selected_opponent})'])
-
-    print(sum_mean_df)
-    st.dataframe(sum_mean_df, use_container_width=True)
-    def get_quant_stats_over_time(selected_teams_df, team, is_selected_team):
-        if is_selected_team:
-            condition = (selected_teams_df['selected_team'] == team)
-            team_df = selected_teams_df[condition].copy()
-            team_df['clean_sheets'] = (team_df['selected_opponent_score'] == 0).astype(int)
-        else:
-            condition = (selected_teams_df['selected_opponent'] == team)
-            team_df = selected_teams_df[condition].copy()
-            team_df['clean_sheets'] = (team_df['selected_team_score'] == 0).astype(int)
-
-        if team_df.empty:
-            team_df = pd.DataFrame(columns=['date', 'selected_team_score', 'selected_opponent_score', 'selected_team_xg', 'selected_opponent_xg'])
-            team_df.loc[0] = [np.nan] * len(team_df.columns)
-
-        team_df.sort_values(by='date', inplace=True)
-
-        return team_df
-
-    def format_dataframe(team_df, team):
-        stats_dict = {}
-        for stat in ['selected_team_score', 'selected_opponent_score', 'selected_team_xg', 'selected_opponent_xg', 'clean_sheets']:
-            stats_dict[stat] = [team_df[stat].tolist(), team_df[stat].sum(), team_df[stat].mean()]
-        stats_df = pd.DataFrame.from_dict(stats_dict, orient='index').round(2)
-
-        team_sum = f'Sum ({team})'
-        team_mean = f'Mean ({team})'
-        stats_df.columns = [team, team_sum, team_mean]
-
-        return stats_df
-
-    team_df = get_quant_stats_over_time(selected_teams_df, selected_team, True)
-    opponent_df = get_quant_stats_over_time(selected_teams_df, selected_opponent, False)
-
-    team_stats_df = format_dataframe(team_df, selected_team)
-    opponent_stats_df = format_dataframe(opponent_df, selected_opponent)
+    team_stats_df = format_dataframe(selected_teams_df, selected_team, 'selected_team_')
+    opponent_stats_df = format_dataframe(selected_teams_df, selected_opponent, 'selected_opponent_')
 
     combined_df = pd.concat([team_stats_df, opponent_stats_df], axis=1)
 
@@ -905,41 +838,49 @@ def display_qual_stats(selected_teams_df, selected_team, selected_opponent):
         condition = (df['selected_team'] == team) & (df['selected_opponent'] == opponent)
         team_df = df[condition].copy()
 
-        # Extract normalized results into a list
-        team_results = team_df['selected_team_normalized_result'].tolist()
-        opponent_results = team_df['selected_opponent_normalized_result'].tolist()
+        # Check if data exists
+        if not team_df.empty:
+            # Extract normalized results and clean sheets into a list
+            team_results = team_df['selected_team_normalized_result'].tolist()
+            opponent_results = team_df['selected_opponent_normalized_result'].tolist()
 
-        # Put these lists into a DataFrame with the team as index
-        results_df = pd.DataFrame({
-            'Team Results Over Time': [team_results],
-            'Opponent Results Over Time': [opponent_results]
-        }, index=[team])
+            # Compute clean sheets over time (1 if clean sheet, 0 otherwise)
+            team_clean_sheets = (team_df['selected_opponent_score'] == 0).astype(int).tolist()
+            opponent_clean_sheets = (team_df['selected_team_score'] == 0).astype(int).tolist()
+
+            # Put these lists into a DataFrame
+            results_df = pd.DataFrame({
+                selected_team: [team_results, team_clean_sheets],
+                selected_opponent: [opponent_results, opponent_clean_sheets]
+            }, index=['Results Over Time', 'Clean Sheets'])
+        else:
+            results_df = pd.DataFrame()
 
         return results_df, team_df
     
-    def format_special_qual_columns(df, team):
-        st.dataframe(
-            df,
-            column_config={
-                "Team Results Over Time": st.column_config.BarChartColumn(
-                    f"{selected_team} Results Over Time",
-                    help="Normalized results over time for " + team + " and their opponent. Draws are indicated by the null result (0).",
-                    y_min=-1,
-                    y_max=1,
-                ),
-                "Opponent Results Over Time": st.column_config.BarChartColumn(
-                    f"{selected_opponent} Results Over Time",
-                    help="Normalized results over time for " + team + " and their opponent. Draws are indicated by the null result (0).",
-                    y_min=-1,
-                    y_max=1,
-                )
-            },
-            use_container_width=True,
-        )
+    def format_special_qual_columns(df):
+        if not df.empty:
+            st.dataframe(
+                df,
+                column_config={
+                    selected_team: st.column_config.BarChartColumn(
+                        f"{selected_team} Results and Clean Sheets Over Time",
+                        help="Normalized results and number of clean sheets over time for " + selected_team,
+                    ),
+                    selected_opponent: st.column_config.BarChartColumn(
+                        f"{selected_opponent} Results and Clean Sheets Over Time",
+                        help="Normalized results and number of clean sheets over time for " + selected_opponent,
+                    )
+                },
+                use_container_width=True,
+            )
+        else:
+            st.warning(f"No data available for {selected_team} vs {selected_opponent}.")
 
     results_df, team_df = get_qual_stats_over_time(selected_teams_df, selected_team, selected_opponent)
 
-    format_special_qual_columns(results_df, selected_team)
+    format_special_qual_columns(results_df)
+
 
 def get_players_stats(player_level_df, selected_team, selected_opponent):
     stats_categories = ['nationality', 'age', 'minutes', 'goals', 'assists', 'pens_made', 'pens_att', 'shots', 'shots_on_target', 'cards_yellow', 'cards_red', 'touches', 'tackles', 'interceptions', 'blocks', 'xg', 'npxg', 'xg_assist', 'sca', 'gca', 'passes_completed', 'passes', 'passes_pct', 'progressive_passes', 'carries', 'progressive_carries', 'take_ons', 'take_ons_won', 'passes_total_distance', 'passes_progressive_distance', 'passes_completed_short', 'passes_short', 'passes_pct_short', 'passes_completed_medium', 'passes_medium', 'passes_pct_medium', 'passes_completed_long', 'passes_long', 'passes_pct_long', 'pass_xa', 'assisted_shots', 'passes_into_final_third', 'passes_into_penalty_area', 'crosses_into_penalty_area', 'passes_live', 'passes_dead', 'passes_free_kicks', 'through_balls', 'passes_switches', 'crosses', 'throw_ins', 'corner_kicks', 'corner_kicks_in', 'corner_kicks_out', 'corner_kicks_straight', 'passes_offsides', 'passes_blocked', 'tackles_won', 'tackles_def_3rd', 'tackles_mid_3rd', 'tackles_att_3rd', 'challenge_tackles', 'challenges', 'challenge_tackles_pct', 'challenges_lost', 'blocked_shots', 'blocked_passes', 'tackles_interceptions', 'clearances', 'errors', 'touches_def_pen_area', 'touches_def_3rd', 'touches_mid_3rd', 'touches_att_3rd', 'touches_att_pen_area', 'touches_live_ball', 'take_ons_won_pct', 'take_ons_tackled', 'take_ons_tackled_pct', 'carries_distance', 'carries_progressive_distance', 'carries_into_final_third', 'carries_into_penalty_area', 'miscontrols', 'dispossessed', 'passes_received', 'progressive_passes_received', 'cards_yellow_red', 'fouls', 'fouled', 'offsides', 'pens_won', 'pens_conceded', 'own_goals', 'ball_recoveries', 'aerials_won', 'aerials_lost', 'aerials_won_pct']
