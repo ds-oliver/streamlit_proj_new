@@ -115,16 +115,6 @@ def show_dataframe(df):
     """
     st.dataframe(df, use_container_width=True)
 
-def show_team_stats_html(team_df):
-    
-    # call the display_styled_dataframe function
-    display_styled_dataframe_html(team_df)
-
-def show_player_stats_html(player_df):
-        
-    # call the display_styled_dataframe function
-    display_styled_dataframe_html(player_df)
-    
 def show_teams_stats_v2(team_stats_df):
 
     # Qualitative statistics dataframe
@@ -189,7 +179,7 @@ def match_quick_facts(selected_teams_df, player_level_df, selected_team, selecte
         selected_opponent (str): The selected opponent.
     """
     
-    st.dataframe(player_level_df, use_container_width=True)
+    # st.dataframe(player_level_df, use_container_width=True)
     st.info("Matchup quick facts below...")
 
     # Get team and opponent stats
@@ -250,71 +240,6 @@ def display_styled_dataframe_v2(df):
     
     # Display the styled dataframe
     st.dataframe(styled_df, use_container_width=True)
-
-def display_dataframe_html(df):
-    # Convert the dataframe to HTML
-    df_html = df.to_html(index=False)
-
-    # Create a CSS style string
-    style = """
-    <style>
-    table {
-        line-height: 1.6;
-        letter-spacing: 0.01em;
-    }
-    table.dataframe {
-        font-family: 'Fira Code';
-    }
-    table.dataframe tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
-    table.dataframe th {
-        background-color: #4CAF50;
-        color: white;
-    }
-    </style>
-    """
-
-    # Create the final HTML string
-    html = style + df_html
-
-    # Display the HTML in Streamlit
-    st.markdown(html, unsafe_allow_html=True)
-
-def create_gradient_colormap_html():
-    # Colors can also be defined in RGB format and interpolated this way
-    cdict = {'red':   [(0.0,  0.85, 0.85),   # light blue
-                       (1.0,  1.0, 1.0)],   # gold
-
-             'green': [(0.0,  0.85, 0.85),   # light blue
-                       (1.0, 0.843, 0.843)],   # gold
-
-             'blue':  [(0.0,  0.85, 0.85),   # light blue
-                       (1.0,  0.0, 0.0)]}    # gold
-    return LinearSegmentedColormap('BlueGold', cdict)
-
-def display_styled_dataframe_html_v2(df):
-    # Create colormap
-    cmap = create_gradient_colormap()
-
-    # Apply colormap
-    styled_df = df.style.background_gradient(cmap=cmap)
-
-    # Convert the styled DataFrame to HTML
-    html = styled_df.render()
-
-    # Display the HTML in Streamlit
-    st.write(html, unsafe_allow_html=True)
-
-def display_styled_dataframe_html(df):
-    # Apply a global gradient
-    styled_df = df.style.background_gradient(cmap='viridis')
-
-    # Convert the styled DataFrame to HTML
-    html = styled_df.render()
-
-    # Display the HTML in Streamlit
-    st.write(html, unsafe_allow_html=True)
 
 @st.cache_resource
 def clean_data(players_df, results_df):
@@ -379,6 +304,8 @@ def clean_data(players_df, results_df):
     # create opponent column that looks at home_team and away_team and assigns the other team to the opponent column
 
     # create season_matchup_gameweek column that concatenates season, gameweek, home_team, and away_team but it should always be the same order so needs sorted so just add gameweek to season_match_teams column
+
+    """Create columns for teams and results"""
 
     players_df['matchup_id'] = players_df['match_teams'].apply(lambda x: '_'.join(sorted(x.split('_'))))
 
@@ -454,6 +381,24 @@ def clean_data(players_df, results_df):
     players_df = players_df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
     
     return players_df, results_df
+
+def process_player_data(players_df):
+    """Separate the columns for player level analysis, we will then create new dataframes and dictionaries for different aggregations of the player data (percent of team total, percent of game total, percent of season, etc.), primarily using per90s"""
+
+    players_only_df = players_df.copy()
+
+    players_only_df.sort_values(by=['player', 'season', 'date'], ascending=True)
+
+    players_columns = ['player', 'nationality', 'age', 'minutes', 'goals', 'assists', 'pens_made', 'pens_att', 'shots', 'shots_on_target', 'cards_yellow', 'cards_red', 'touches', 'tackles', 'interceptions', 'blocks', 'xg', 'npxg', 'xg_assist', 'sca', 'gca', 'passes_completed', 'passes', 'passes_pct', 'progressive_passes', 'carries', 'progressive_carries', 'take_ons', 'take_ons_won', 'passes_total_distance', 'passes_progressive_distance', 'passes_completed_short', 'passes_short', 'passes_pct_short', 'passes_completed_medium', 'passes_medium', 'passes_pct_medium', 'passes_completed_long', 'passes_long', 'passes_pct_long', 'pass_xa', 'assisted_shots', 'passes_into_final_third', 'passes_into_penalty_area', 'crosses_into_penalty_area', 'passes_live', 'passes_dead', 'passes_free_kicks', 'through_balls', 'passes_switches', 'crosses', 'throw_ins', 'corner_kicks', 'corner_kicks_in', 'corner_kicks_out', 'corner_kicks_straight', 'passes_offsides', 'passes_blocked', 'tackles_won', 'tackles_def_3rd', 'tackles_mid_3rd', 'tackles_att_3rd', 'challenge_tackles', 'challenges', 'challenge_tackles_pct', 'challenges_lost', 'blocked_shots', 'blocked_passes', 'tackles_interceptions', 'clearances', 'errors', 'touches_def_pen_area', 'touches_def_3rd', 'touches_mid_3rd', 'touches_att_3rd', 'touches_att_pen_area', 'touches_live_ball', 'take_ons_won_pct', 'take_ons_tackled', 'take_ons_tackled_pct', 'carries_distance', 'carries_progressive_distance', 'carries_into_final_third', 'carries_into_penalty_area', 'miscontrols', 'dispossessed', 'passes_received', 'progressive_passes_received', 'cards_yellow_red', 'fouls', 'fouled', 'offsides', 'pens_won', 'pens_conceded', 'own_goals', 'ball_recoveries', 'aerials_won', 'aerials_lost', 'aerials_won_pct', 'home', 'team', 'opponent', 'gameweek', 'season_long', 'position', 'position_2', 'position_3', 'position_4', 'season']
+
+    players_only_df = players_only_df[players_columns]
+
+    # create a list of the columns that we want to convert to numeric
+    players_only_df = players_only_df.apply(pd.to_numeric, errors='ignore')
+
+    # create per90 minutes columns for all numeric columns
+
+    
 
 def process_and_reorder_df(chrono_team_df, selected_team, selected_opponent):
 
@@ -619,10 +564,6 @@ def filter_df_by_team_and_opponent(df, selected_team, selected_opponent):
     
     filtered_df = filtered_df.sort_values(by=['date'], ascending=True)
 
-    st.info("Printing filtered_df:")
-
-    filtered_df
-
     # print additional details this dataframe
     print(f"<> This dataframe is made up of the player and match statistics for {selected_team} vs {selected_opponent} from season {filtered_df['season_long'].unique()[0]} to {filtered_df['season_long'].unique()[-1]}.\n  ---------------------------------------------------------------\n<> Over that time {df['player'].nunique()} players have played in this fixture, with {filtered_df[filtered_df['team'] == selected_team]['player'].nunique()} players playing for {selected_team} and {filtered_df[filtered_df['team'] == selected_opponent]['player'].nunique()} players playing for {selected_opponent}.\n  ---------------------------------------------------------------\n{filtered_df['player'].value_counts().head(10)}")
 
@@ -636,10 +577,10 @@ def filter_df_by_team_and_opponent(df, selected_team, selected_opponent):
     selected_teams_df = updated_df.groupby(['matchup_id', 'season_matchup_id', 'selected_team_score', 'selected_opponent_score', 'selected_team_draw', 'selected_team_won', 'selected_team_lost', 'selected_opponent_won', 'selected_opponent_lost', 'selected_team_xg', 'selected_opponent_xg', 'selected_team_result_category', 'selected_opponent_result_category', 'selected_team_normalized_result', 'selected_opponent_normalized_result', 'selected_team_home', 'selected_opponent_home', 'date', 'home_team', 'away_team']).agg({'selected_team': 'first', 'selected_opponent': 'first'}).reset_index()
 
     # print additional details this dataframe
-    st.info("Checking grouped_player_df...")
-    grouped_player_df.shape
+    # st.info("Checking grouped_player_df...")
+    # grouped_player_df.shape
 
-    st.info("Checking selected_teams_df...")
+    # st.info("Checking selected_teams_df...")
     selected_teams_df = selected_teams_df.copy()
 
     selected_teams_df = selected_teams_df.sort_values(by=['date'], ascending=True)
@@ -834,8 +775,6 @@ def display_quant_stats(selected_teams_df, selected_team, selected_opponent):
     st.info(f"**{selected_team}** stats over time:")
     st.dataframe(sum_mean_df, use_container_width=True)
 
-
-
 def display_qual_stats(selected_teams_df, selected_team, selected_opponent):
 
     def get_qual_stats_over_time(df, team, opponent):
@@ -888,7 +827,6 @@ def display_qual_stats(selected_teams_df, selected_team, selected_opponent):
     results_df, team_df = get_qual_stats_over_time(selected_teams_df, selected_team, selected_opponent)
 
     format_special_qual_columns(results_df)
-
 
 def get_players_stats(player_level_df, selected_team, selected_opponent):
     stats_categories = ['nationality', 'age', 'minutes', 'goals', 'assists', 'pens_made', 'pens_att', 'shots', 'shots_on_target', 'cards_yellow', 'cards_red', 'touches', 'tackles', 'interceptions', 'blocks', 'xg', 'npxg', 'xg_assist', 'sca', 'gca', 'passes_completed', 'passes', 'passes_pct', 'progressive_passes', 'carries', 'progressive_carries', 'take_ons', 'take_ons_won', 'passes_total_distance', 'passes_progressive_distance', 'passes_completed_short', 'passes_short', 'passes_pct_short', 'passes_completed_medium', 'passes_medium', 'passes_pct_medium', 'passes_completed_long', 'passes_long', 'passes_pct_long', 'pass_xa', 'assisted_shots', 'passes_into_final_third', 'passes_into_penalty_area', 'crosses_into_penalty_area', 'passes_live', 'passes_dead', 'passes_free_kicks', 'through_balls', 'passes_switches', 'crosses', 'throw_ins', 'corner_kicks', 'corner_kicks_in', 'corner_kicks_out', 'corner_kicks_straight', 'passes_offsides', 'passes_blocked', 'tackles_won', 'tackles_def_3rd', 'tackles_mid_3rd', 'tackles_att_3rd', 'challenge_tackles', 'challenges', 'challenge_tackles_pct', 'challenges_lost', 'blocked_shots', 'blocked_passes', 'tackles_interceptions', 'clearances', 'errors', 'touches_def_pen_area', 'touches_def_3rd', 'touches_mid_3rd', 'touches_att_3rd', 'touches_att_pen_area', 'touches_live_ball', 'take_ons_won_pct', 'take_ons_tackled', 'take_ons_tackled_pct', 'carries_distance', 'carries_progressive_distance', 'carries_into_final_third', 'carries_into_penalty_area', 'miscontrols', 'dispossessed', 'passes_received', 'progressive_passes_received', 'cards_yellow_red', 'fouls', 'fouled', 'offsides', 'pens_won', 'pens_conceded', 'own_goals', 'ball_recoveries', 'aerials_won', 'aerials_lost', 'aerials_won_pct']
@@ -1007,6 +945,16 @@ def show_teams_stats(team_stats_df, cm):
     
 #     return qual_stats_df
 
+"""
+Players Stats:
+
+This will be called in another page
+
+We will
+"""
+
+# def process_players_stats(selected_teams_df, selected_team, selected_opponent):
+
 # display_quant_stats
 # Load the data from the db
 def main():
@@ -1037,16 +985,14 @@ def main():
 
     print(selected_teams_df)
 
-    match_quick_facts(selected_teams_df, grouped_player_df, selected_team, selected_opponent)
-
-    selected_teams_df
-
     display_qual_stats(selected_teams_df, selected_team, selected_opponent)
 
     display_quant_stats(selected_teams_df, selected_team, selected_opponent)
 
     # Get the results dataframe
     results_df = get_results_df(selected_teams_df, selected_team, selected_opponent)
+
+    match_quick_facts(selected_teams_df, grouped_player_df, selected_team, selected_opponent)
 
     # selected_team_results = get_results_list(selected_teams_df, selected_team)
     # selected_opponent_results = get_results_list(selected_teams_df, selected_opponent)
