@@ -316,7 +316,6 @@ def display_styled_dataframe_html(df):
     # Display the HTML in Streamlit
     st.write(html, unsafe_allow_html=True)
 
-@st.cache_resource
 def clean_data(players_df, results_df):
     """
     This function cleans the data.
@@ -642,8 +641,6 @@ def filter_df_by_team_and_opponent(df, selected_team, selected_opponent):
     st.info("Checking selected_teams_df...")
     selected_teams_df = selected_teams_df.copy()
 
-    selected_teams_df = selected_teams_df.sort_values(by=['date'], ascending=True)
-
     return selected_teams_df, grouped_player_df
 
 def get_teams_stats(selected_teams_df, selected_team, selected_opponent):
@@ -701,83 +698,83 @@ def get_teams_stats(selected_teams_df, selected_team, selected_opponent):
 
     return team_stats_og, team_stats_df
 
-# def display_quant_stats(selected_teams_df, selected_team, selected_opponent):
+def display_quant_stats(selected_teams_df, selected_team, selected_opponent):
 
-#     def get_quant_stats_over_time(selected_teams_df, is_selected_team):
-#         result_df = pd.DataFrame()
+    def get_quant_stats_over_time(selected_teams_df, is_selected_team):
+        result_df = pd.DataFrame()
 
-#         if is_selected_team:
-#             result_df['Goals Scored'] = selected_teams_df['selected_team_score']
-#             result_df['Goals Conceded'] = selected_teams_df['selected_opponent_score']
-#             result_df['xG For'] = selected_teams_df['selected_team_xg']
-#             result_df['xG Against'] = selected_teams_df['selected_opponent_xg']
-#             result_df['Clean Sheets'] = (selected_teams_df['selected_opponent_score'] == 0).astype(int)
-#         else:
-#             result_df['Goals Scored'] = selected_teams_df['selected_opponent_score']
-#             result_df['Goals Conceded'] = selected_teams_df['selected_team_score']
-#             result_df['xG For'] = selected_teams_df['selected_opponent_xg']
-#             result_df['xG Against'] = selected_teams_df['selected_team_xg']
-#             result_df['Clean Sheets'] = (selected_teams_df['selected_team_score'] == 0).astype(int)
+        if is_selected_team:
+            result_df['Goals Scored'] = selected_teams_df['selected_team_score']
+            result_df['Goals Conceded'] = selected_teams_df['selected_opponent_score']
+            result_df['xG For'] = selected_teams_df['selected_team_xg']
+            result_df['xG Against'] = selected_teams_df['selected_opponent_xg']
+            result_df['Clean Sheets'] = (selected_teams_df['selected_opponent_score'] == 0).astype(int)
+        else:
+            result_df['Goals Scored'] = selected_teams_df['selected_opponent_score']
+            result_df['Goals Conceded'] = selected_teams_df['selected_team_score']
+            result_df['xG For'] = selected_teams_df['selected_opponent_xg']
+            result_df['xG Against'] = selected_teams_df['selected_team_xg']
+            result_df['Clean Sheets'] = (selected_teams_df['selected_team_score'] == 0).astype(int)
 
-#         result_df['Date'] = selected_teams_df['date']
-#         result_df.sort_values(by='Date', inplace=True)
+        result_df['Date'] = selected_teams_df['date']
+        result_df.sort_values(by='Date', inplace=True)
 
-#         return result_df
+        return result_df
 
-#     # Extract results into a list
-#     def format_dataframe(df, team):
-#         st.dataframe(
-#             df,
-#             column_config={
-#                 "Team Results Over Time": st.column_config.LineChartColumn(
-#                     f"{selected_team} Results Over Time",
-#                     help="Results over time for " + team + " and their opponent. Draws are indicated by the null result (0).",
-#                     y_min=-1,
-#                     y_max=1,
-#                 ),
-#                 "Opponent Results Over Time": st.column_config.LineChartColumn(
-#                     f"{selected_opponent} Results Over Time",
-#                     help="Results over time for " + team + " and their opponent. Draws are indicated by the null result (0).",
-#                     y_min=-1,
-#                     y_max=1,
-#                 ),
-#             },
-#         )
+    # Extract results into a list
+    def format_dataframe(df, team):
+        st.dataframe(
+            df,
+            column_config={
+                "Team Results Over Time": st.column_config.LineChartColumn(
+                    f"{selected_team} Results Over Time",
+                    help="Results over time for " + team + " and their opponent. Draws are indicated by the null result (0).",
+                    y_min=-1,
+                    y_max=1,
+                ),
+                "Opponent Results Over Time": st.column_config.LineChartColumn(
+                    f"{selected_opponent} Results Over Time",
+                    help="Results over time for " + team + " and their opponent. Draws are indicated by the null result (0).",
+                    y_min=-1,
+                    y_max=1,
+                ),
+            },
+        )
 
-#     selected_team_df = get_quant_stats_over_time(selected_teams_df, True)
-#     selected_opponent_df = get_quant_stats_over_time(selected_teams_df, False)
+    selected_team_df = get_quant_stats_over_time(selected_teams_df, True)
+    selected_opponent_df = get_quant_stats_over_time(selected_teams_df, False)
 
-#     # transpose the dataframes
-#     selected_team_df = selected_team_df.T
-#     selected_opponent_df = selected_opponent_df.T
+    # transpose the dataframes
+    selected_team_df = selected_team_df.T
+    selected_opponent_df = selected_opponent_df.T
 
-#     # create a list of the values for each each across all columns
-#     selected_team_list = selected_team_df.values.tolist()
-#     selected_opponent_list = selected_opponent_df.values.tolist()
+    # create a list of the values for each each across all columns
+    selected_team_list = selected_team_df.values.tolist()
+    selected_opponent_list = selected_opponent_df.values.tolist()
 
-#     # the list as a whole is a list of lists, create a dictionary with the column names as the keys
-#     selected_team_dict = dict(zip(selected_team_df.index, selected_team_list))
-#     selected_opponent_dict = dict(zip(selected_opponent_df.index, selected_opponent_list))
+    # the list as a whole is a list of lists, create a dictionary with the column names as the keys
+    selected_team_dict = dict(zip(selected_team_df.index, selected_team_list))
+    selected_opponent_dict = dict(zip(selected_opponent_df.index, selected_opponent_list))
 
-#     # now we can remove the date column from the dictionary
-#     del selected_team_dict['Date']
-#     del selected_opponent_dict['Date']
+    # now we can remove the date column from the dictionary
+    del selected_team_dict['Date']
+    del selected_opponent_dict['Date']
 
-#     # convert
+    # convert
 
-#     print(selected_team_list)
-#     print(selected_opponent_list)
+    print(selected_team_list)
+    print(selected_opponent_list)
 
-#     # now each list goes back into a dataframe with the stats as the index
-#     selected_team_df = pd.DataFrame(selected_team_list, index=selected_team_df.index, columns=[selected_team])
-#     selected_opponent_df = pd.DataFrame(selected_opponent_list, index=selected_opponent_df.index, columns=[selected_opponent])
+    # now each list goes back into a dataframe with the stats as the index
+    selected_team_df = pd.DataFrame(selected_team_list, index=selected_team_df.index, columns=[selected_team])
+    selected_opponent_df = pd.DataFrame(selected_opponent_list, index=selected_opponent_df.index, columns=[selected_opponent])
 
-#     print(selected_team_df)
-#     print(selected_opponent_df)
+    print(selected_team_df)
+    print(selected_opponent_df)
 
-#     # call the format_dataframe function for both the selected team and opponent dataframes
-#     format_dataframe(selected_team_df, selected_team)
-#     format_dataframe(selected_opponent_df, selected_opponent)
+    # call the format_dataframe function for both the selected team and opponent dataframes
+    format_dataframe(selected_team_df, selected_team)
+    format_dataframe(selected_opponent_df, selected_opponent)
 
 def display_quant_stats(selected_teams_df, selected_team, selected_opponent):
     def format_dataframe(team_df, team, prefix):
@@ -797,7 +794,7 @@ def display_quant_stats(selected_teams_df, selected_team, selected_opponent):
         return stats_df
 
     # Sort by date before creating the stats
-    selected_teams_df = selected_teams_df.sort_values(by='date', ascending=True)
+    selected_teams_df = selected_teams_df.sort_values(by='date')
 
     team_stats_df = format_dataframe(selected_teams_df, selected_team, 'selected_team_')
     opponent_stats_df = format_dataframe(selected_teams_df, selected_opponent, 'selected_opponent_')
@@ -807,7 +804,6 @@ def display_quant_stats(selected_teams_df, selected_team, selected_opponent):
     print(combined_df)
 
     linechart_df = combined_df.drop(columns=[f'Sum ({selected_team})', f'Mean ({selected_team})', f'Sum ({selected_opponent})', f'Mean ({selected_opponent})'])
-    
     print(linechart_df)
 
     st.dataframe(
@@ -829,12 +825,6 @@ def display_quant_stats(selected_teams_df, selected_team, selected_opponent):
 
     sum_mean_df = combined_df.drop(columns=[selected_team, selected_opponent])
     sum_mean_df = sum_mean_df.reindex(columns=[f'Mean ({selected_team})', f'Mean ({selected_opponent})', f'Sum ({selected_team})', f'Sum ({selected_opponent})'])
-
-    # rename the indexes to be more readable
-    sum_mean_df = sum_mean_df.rename(index={'Goals Scored': 'Goals', 'xg': 'xG', 'clean_sheets': 'Clean Sheets'})
-
-    st.info(f"**{selected_team}** stats over time:")
-    sum_mean_df
 
     print(sum_mean_df)
     st.dataframe(sum_mean_df, use_container_width=True)
@@ -874,13 +864,13 @@ def display_qual_stats(selected_teams_df, selected_team, selected_opponent):
                 df,
                 column_config={
                     selected_team: st.column_config.BarChartColumn(
-                        f"{selected_team} Matches Results Data Over Time",
-                        help="Normalized  Matches Results Data Over Time for " + selected_team,
+                        f"{selected_team} Results and Clean Sheets Over Time",
+                        help="Normalized results and number of clean sheets over time for " + selected_team,
                         y_max=1.0,
                         y_min=-1.0                    ),
                     selected_opponent: st.column_config.BarChartColumn(
-                        f"{selected_opponent} Matches Results Data Over Time",
-                        help="Normalized  Matches Results Data Over Time for " + selected_opponent,
+                        f"{selected_opponent} Results and Clean Sheets Over Time",
+                        help="Normalized results and number of clean sheets over time for " + selected_opponent,
                         y_max=1.0,
                         y_min=-1.0
                     )
