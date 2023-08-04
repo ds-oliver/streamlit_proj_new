@@ -780,14 +780,14 @@ def get_teams_stats(selected_teams_df, selected_team, selected_opponent):
 #     format_dataframe(selected_opponent_df, selected_opponent)
 
 def display_quant_stats(selected_teams_df, selected_team, selected_opponent):
-    def format_dataframe(team_df, team, prefix):
+    def format_dataframe(team_df, team, prefix, opponent_prefix):
         stats_dict = {}
         for stat in ['score', 'xg']:
             stats_dict[stat] = [team_df[prefix + stat].tolist(), team_df[prefix + stat].sum(), team_df[prefix + stat].mean()]
         
-        stats_dict['clean_sheets'] = [(team_df[prefix + 'score'] == 0).astype(int).tolist(), 
-                                       (team_df[prefix + 'score'] == 0).astype(int).sum(), 
-                                       (team_df[prefix + 'score'] == 0).astype(int).mean()]
+        stats_dict['clean_sheets'] = [(team_df[opponent_prefix + 'score'] == 0).astype(int).tolist(), 
+                                       (team_df[opponent_prefix + 'score'] == 0).astype(int).sum(), 
+                                       (team_df[opponent_prefix + 'score'] == 0).astype(int).mean()]
         
         stats_df = pd.DataFrame.from_dict(stats_dict, orient='index').round(2)
         team_sum = f'Sum ({team})'
@@ -799,17 +799,15 @@ def display_quant_stats(selected_teams_df, selected_team, selected_opponent):
     # Sort by date before creating the stats
     selected_teams_df = selected_teams_df.sort_values(by='date', ascending=True)
 
-    team_stats_df = format_dataframe(selected_teams_df, selected_team, 'selected_team_')
-    opponent_stats_df = format_dataframe(selected_teams_df, selected_opponent, 'selected_opponent_')
+    team_stats_df = format_dataframe(selected_teams_df, selected_team, 'selected_team_', 'selected_opponent_')
+    opponent_stats_df = format_dataframe(selected_teams_df, selected_opponent, 'selected_opponent_', 'selected_team_')
 
     combined_df = pd.concat([team_stats_df, opponent_stats_df], axis=1)
 
-    print(combined_df)
-
     linechart_df = combined_df.drop(columns=[f'Sum ({selected_team})', f'Mean ({selected_team})', f'Sum ({selected_opponent})', f'Mean ({selected_opponent})'])
-    
-    print(linechart_df)
 
+    linechart_df = linechart_df.rename(index={'score': 'Goals', 'xg': 'xG', 'clean_sheets': 'Clean Sheets'})
+    
     st.dataframe(
         linechart_df,
         column_config={
@@ -834,9 +832,6 @@ def display_quant_stats(selected_teams_df, selected_team, selected_opponent):
     sum_mean_df = sum_mean_df.rename(index={'Goals Scored': 'Goals', 'xg': 'xG', 'clean_sheets': 'Clean Sheets'})
 
     st.info(f"**{selected_team}** stats over time:")
-    sum_mean_df
-
-    print(sum_mean_df)
     st.dataframe(sum_mean_df, use_container_width=True)
 
 
