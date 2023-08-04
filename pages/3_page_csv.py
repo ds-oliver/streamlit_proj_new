@@ -447,8 +447,6 @@ def process_player_data(players_df):
     referees_dfs = {}
     venues_dfs = {}
 
-    stat = 'Pass xA Per90'
-
     # for i in categories:
     #     if i:
     #         for j in i:
@@ -478,15 +476,18 @@ def process_player_data(players_df):
                 positions_dfs[j] = players_only_df[players_only_df['Position'] == j]
                 referees_dfs[j] = players_only_df[players_only_df['Referee'] == j]
                 venues_dfs[j] = players_only_df[players_only_df['Venue'] == j]
+
+    stat = 'Pass xA Per90'
+    x_cat = 'Nationality'
         
     for season in seasons:
         season_data = players_only_df[players_only_df['Season'] == season]
 
             # Calculate value counts for 'Nationality' and select top 20
-        top_nationalities = season_data['Nationality'].value_counts().head(20).index
+        top_nationalities = season_data[x_cat].value_counts().head(20).index
 
         # Filter data for the top 20 nationalities
-        filtered_data = season_data[season_data['Nationality'].isin(top_nationalities)]
+        filtered_data = season_data[season_data[x_cat].isin(top_nationalities)]
 
         # get the top 20 of each x that will be selected so that figure stays consistent
         
@@ -494,17 +495,15 @@ def process_player_data(players_df):
 
         fig = px.scatter(
             filtered_data,
-            x='Nationality',
+            x=x_cat,
             y=stat,
             color=stat,
             color_continuous_scale='reds',
             hover_data=['Player'],
             
-
-
         )
 
-        st.info(f"Displaying {season} data for {stat} by position")
+        st.info(f"Displaying {season} data for {stat} by {x_cat}")
         st.plotly_chart(fig, theme="streamlit", use_container_width=True)
 
 
@@ -967,6 +966,10 @@ def get_players_stats(player_level_df, selected_team, selected_opponent):
 
             # display_styled_dataframe(team_player_stats, 'sum', 'mean')
 
+def show_teams_stats(team_stats_df, cm):
+    
+    display_styled_dataframe_simple(team_stats_df, cm)
+
 
 # def display_qual_stats(selected_teams_df, selected_team, selected_opponent):
 
@@ -1012,10 +1015,6 @@ def get_players_stats(player_level_df, selected_team, selected_opponent):
 
 #     format_special_qual_columns(team_df)
 #     format_special_qual_columns(opponent_df)
-
-def show_teams_stats(team_stats_df, cm):
-    
-    display_styled_dataframe_simple(team_stats_df, cm)
 
 # # def get_qual_stats(selected_teams_df, selected_team, selected_opponent):
 

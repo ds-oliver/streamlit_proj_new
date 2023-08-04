@@ -1,0 +1,21 @@
+﻿Team ,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38
+Arsenal,NFO,cry,FUL,MUN,eve,TOT,bou,MCI,che,SHU,new,BUR,bre,WOL,lut,avl,BHA,liv,WHU,ful,CRY,nfo,LIV,whu,bur,NEW,shu,BRE,CHE,mci,LUT,bha,AVL,wol,tot,BOU,mun,EVE
+Aston Villa,new,EVE,bur,liv,CRY,che,BHA,wol,WHU,LUT,nfo,FUL,tot,bou,MCI,ARS,bre,SHU,mun,BUR,eve,NEW,shu,MUN,ful,NFO,lut,TOT,whu,WOL,mci,BRE,ars,BOU,CHE,bha,LIV,cry
+Bournemouth,WHU,liv,TOT,bre,CHE,bha,ARS,eve,WOL,BUR,mci,NEW,shu,AVL,cry,mun,LUT,nfo,FUL,tot,LIV,whu,NFO,ful,new,MCI,bur,SHU,wol,EVE,CRY,lut,MUN,avl,BHA,ars,BRE,che
+Brentford,TOT,ful,CRY,BOU,new,EVE,nfo,mun,BUR,che,WHU,liv,ARS,LUT,bha,shu,AVL,mci,WOL,cry,NFO,tot,MCI,wol,LIV,whu,CHE,ars,bur,MUN,BHA,avl,SHU,lut,eve,FUL,bou,NEW
+Brighton,LUT,wol,WHU,NEW,mun,BOU,avl,LIV,mci,FUL,eve,SHU,nfo,che,BRE,BUR,ars,cry,TOT,whu,WOL,lut,CRY,tot,shu,EVE,ful,NFO,MCI,liv,bre,ARS,bur,CHE,bou,AVL,new,MUN
+Burnley,MCI,lut,AVL,TOT,nfo,MUN,new,CHE,bre,bou,CRY,ars,WHU,SHU,wol,bha,EVE,ful,LIV,avl,LUT,mci,FUL,liv,ARS,cry,BOU,whu,BRE,che,WOL,eve,BHA,shu,mun,NEW,tot,NFO
+Chelsea,LIV,whu,LUT,NFO,bou,AVL,ful,bur,ARS,BRE,tot,MCI,new,BHA,mun,eve,SHU,wol,CRY,lut,FUL,liv,WOL,cry,mci,TOT,bre,NEW,ars,BUR,MUN,shu,EVE,bha,avl,WHU,nfo,BOU
+Crystal Palace,shu,ARS,bre,WOL,avl,FUL,mun,NFO,new,TOT,bur,EVE,lut,whu,BOU,LIV,mci,BHA,che,BRE,ars,SHU,bha,CHE,eve,BUR,tot,LUT,NEW,nfo,bou,MCI,liv,WHU,ful,MUN,wol,AVL
+Everton,FUL,avl,WOL,shu,ARS,bre,LUT,BOU,liv,whu,BHA,cry,MUN,nfo,NEW,CHE,bur,tot,MCI,wol,AVL,ful,TOT,mci,CRY,bha,WHU,mun,LIV,bou,new,BUR,che,NFO,BRE,lut,SHU,ars
+Fulham,eve,BRE,ars,mci,LUT,cry,CHE,SHU,tot,bha,MUN,avl,WOL,liv,NFO,WHU,new,BUR,bou,ARS,che,EVE,bur,BOU,AVL,mun,BHA,wol,TOT,shu,nfo,NEW,whu,LIV,CRY,bre,MCI,lut
+Liverpool,che,BOU,new,AVL,wol,WHU,tot,bha,EVE,NFO,lut,BRE,mci,FUL,shu,cry,MUN,ARS,bur,NEW,bou,CHE,ars,BUR,bre,LUT,nfo,MCI,eve,BHA,SHU,mun,CRY,ful,whu,TOT,avl,WOL
+Luton,bha,BUR,che,WHU,ful,WOL,eve,TOT,nfo,avl,LIV,mun,CRY,bre,ARS,MCI,bou,NEW,shu,CHE,bur,BHA,new,SHU,MUN,liv,AVL,cry,NFO,tot,ars,BOU,mci,BRE,wol,EVE,whu,FUL
+Man City,bur,NEW,shu,FUL,whu,NFO,wol,ars,BHA,mun,BOU,che,LIV,TOT,avl,lut,CRY,BRE,eve,SHU,new,BUR,bre,EVE,CHE,bou,MUN,liv,bha,ARS,AVL,cry,LUT,tot,nfo,WOL,ful,WHU
+Man Utd,WOL,tot,NFO,ars,BHA,bur,CRY,BRE,shu,MCI,ful,LUT,eve,new,CHE,BOU,liv,whu,AVL,nfo,TOT,wol,WHU,avl,lut,FUL,mci,EVE,SHU,bre,che,LIV,bou,NEW,BUR,cry,ARS,bha
+Newcastle,AVL,mci,LIV,bha,BRE,shu,BUR,whu,CRY,wol,ARS,bou,CHE,MUN,eve,tot,FUL,lut,NFO,liv,MCI,avl,LUT,nfo,BOU,ars,WOL,che,cry,WHU,EVE,ful,TOT,mun,SHU,bur,BHA,bre
+Nottingham Forest,ars,SHU,mun,che,BUR,mci,BRE,cry,LUT,liv,AVL,whu,BHA,EVE,ful,wol,TOT,BOU,new,MUN,bre,ARS,bou,NEW,WHU,avl,LIV,bha,lut,CRY,FUL,tot,WOL,eve,MCI,shu,CHE,bur
+Sheffield,CRY,nfo,MCI,EVE,tot,NEW,whu,ful,MUN,ars,WOL,bha,BOU,bur,LIV,BRE,che,avl,LUT,mci,WHU,cry,AVL,lut,BHA,wol,ARS,bou,mun,FUL,liv,CHE,bre,BUR,new,NFO,eve,TOT
+Tottenham,bre,MUN,bou,bur,SHU,ars,LIV,lut,FUL,cry,CHE,wol,AVL,mci,WHU,NEW,nfo,EVE,bha,BOU,mun,BRE,eve,BHA,WOL,che,CRY,avl,ful,LUT,whu,NFO,new,MCI,ARS,liv,BUR,shu
+West Ham,bou,CHE,bha,lut,MCI,liv,SHU,NEW,avl,EVE,bre,NFO,bur,CRY,tot,ful,WOL,MUN,ars,BHA,shu,BOU,mun,ARS,nfo,BRE,eve,BUR,AVL,new,TOT,wol,FUL,cry,LIV,che,LUT,mci
+Wolves,mun,BHA,eve,cry,LIV,lut,MCI,AVL,bou,NEW,shu,TOT,ful,ars,BUR,NFO,whu,CHE,bre,EVE,bha,MUN,che,BRE,tot,SHU,new,FUL,BOU,avl,bur,WHU,nfo,ARS,LUT,mci,CRY,liv
