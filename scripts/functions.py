@@ -974,6 +974,9 @@ def process_player_data(players_only_df):
     selected_stat4 = 'Shot Creating Actions Per90'
     selected_stat5 = 'Interceptions Per90'
 
+    # print the objects to see what they are
+    print(selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5)
+
     print(players_only_df.columns.tolist())
 
     print(players_only_df['Season'].unique().tolist())
@@ -994,12 +997,12 @@ def process_player_data(players_only_df):
     # create a five point chart for the players top 5 per90 stats
     fig = px.line_polar(
         player_df,
-        r=[player_df[selected_stat1].mean(), player_df[selected_stat2].mean(), player_df[selected_stat3].mean(), player_df[selected_stat4].mean(), player_df[selected_stat5].mean()],
+        r=[player_df[selected_stat1], player_df[selected_stat2], player_df[selected_stat3], player_df[selected_stat4], player_df[selected_stat5]],
         theta=[selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5],
         line_close=True,
-        title=f"{selected_player}'s Top 5 Per90 Stats"
+        title=f"{selected_player}'s Per90 Stats"
     )
 
-    st.info(f"Displaying {selected_player}'s top 5 Per90 stats for {selected_season}")
+    st.info(f"Displaying {selected_player}'s Per90 stats for {selected_season}")
     st.plotly_chart(fig, theme="streamlit", use_container_width=True)
 
