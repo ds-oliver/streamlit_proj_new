@@ -109,3 +109,6 @@ ENV/
 
 # pack
 .pack
+.DS_Store
+data/.DS_Store
+data/**/*.DS_Store
