@@ -498,6 +498,8 @@ def process_player_data(players_df):
         st.info(f"Displaying {season} data for {stat} by {x_cat}")
         st.plotly_chart(fig, theme="streamlit", use_container_width=True)
 
+        return players_only_df, season_dfs, teams_dfs, vs_teams_dfs, ages_dfs, nations_dfs, positions_dfs, referees_dfs, venues_dfs
+
 
 def process_and_reorder_df(chrono_team_df, selected_team, selected_opponent):
 

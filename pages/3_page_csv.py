@@ -380,15 +380,33 @@ def clean_data(players_df, results_df):
     
     return players_df, results_df
 
+def rename_columns(df):
+    """
+    Rename the columns of a DataFrame: replace underscores with spaces, capitalize words, and keep the letter 'x' lowercase.
+    """
+    rename_dict = {
+        column: " ".join(
+            word.title() if not word.startswith('x') else 'x' + word[1:].capitalize() 
+            for word in column.split('_')
+        ) for column in df.columns
+    }
+    
+    return df.rename(columns=rename_dict)
+
 def process_player_data(players_df):
     """Separate the columns for player level analysis, we will then create new dataframes and dictionaries for different aggregations of the player data (percent of team total, percent of game total, percent of season, etc.), primarily using per90s"""
 
     players_only_df = players_df.copy()
 
-    players_only_df.sort_values(by=['player', 'season', 'date'], ascending=True)
+    players_only_df.sort_values(by=['season', 'date', 'player'], ascending=True)
 
-    # turn date to numerical value
+        # turn date to numerical value
     players_only_df['datetime'] = pd.to_datetime(players_only_df['date'])
+
+    # groupby player and season but we need to keep the player column so we can merge back later
+
+    # create per90 columns
+    per90_columns = ['minutes', 'goals', 'assists', 'pens_made', 'pens_att', 'shots', 'shots_on_target', 'cards_yellow', 'cards_red', 'touches', 'tackles', 'interceptions', 'blocks', 'xg', 'npxg', 'xg_assist', 'sca', 'gca', 'passes_completed', 'passes', 'passes_pct', 'progressive_passes', 'carries', 'progressive_carries', 'take_ons', 'take_ons_won', 'passes_total_distance', 'passes_progressive_distance', 'passes_completed_short', 'passes_short', 'passes_pct_short', 'passes_completed_medium', 'passes_medium', 'passes_pct_medium', 'passes_completed_long', 'passes_long', 'passes_pct_long', 'pass_xa', 'assisted_shots', 'passes_into_final_third', 'passes_into_penalty_area', 'crosses_into_penalty_area', 'passes_live', 'passes_dead', 'passes_free_kicks', 'through_balls', 'passes_switches', 'crosses', 'throw_ins', 'corner_kicks', 'corner_kicks_in', 'corner_kicks_out', 'corner_kicks_straight', 'passes_offsides', 'passes_blocked', 'tackles_won', 'tackles_def_3rd', 'tackles_mid_3rd', 'tackles_att_3rd', 'challenge_tackles', 'challenges', 'challenge_tackles_pct', 'challenges_lost', 'blocked_shots', 'blocked_passes', 'tackles_interceptions', 'clearances', 'errors', 'touches_def_pen_area', 'touches_def_3rd', 'touches_mid_3rd', 'touches_att_3rd', 'touches_att_pen_area', 'touches_live_ball', 'take_ons_won_pct', 'take_ons_tackled', 'take_ons_tackled_pct', 'carries_distance', 'carries_progressive_distance', 'carries_into_final_third', 'carries_into_penalty_area', 'miscontrols', 'dispossessed', 'passes_received', 'progressive_passes_received', 'cards_yellow_red', 'fouls', 'fouled', 'offsides', 'pens_won', 'pens_conceded', 'own_goals', 'ball_recoveries', 'aerials_won', 'aerials_lost', 'aerials_won_pct']
 
     per90_columns = ['minutes', 'goals', 'assists', 'pens_made', 'pens_att', 'shots', 'shots_on_target', 'cards_yellow', 'cards_red', 'touches', 'tackles', 'interceptions', 'blocks', 'xg', 'npxg', 'xg_assist', 'sca', 'gca', 'passes_completed', 'passes', 'passes_pct', 'progressive_passes', 'carries', 'progressive_carries', 'take_ons', 'take_ons_won', 'passes_total_distance', 'passes_progressive_distance', 'passes_completed_short', 'passes_short', 'passes_pct_short', 'passes_completed_medium', 'passes_medium', 'passes_pct_medium', 'passes_completed_long', 'passes_long', 'passes_pct_long', 'pass_xa', 'assisted_shots', 'passes_into_final_third', 'passes_into_penalty_area', 'crosses_into_penalty_area', 'passes_live', 'passes_dead', 'passes_free_kicks', 'through_balls', 'passes_switches', 'crosses', 'throw_ins', 'corner_kicks', 'corner_kicks_in', 'corner_kicks_out', 'corner_kicks_straight', 'passes_offsides', 'passes_blocked', 'tackles_won', 'tackles_def_3rd', 'tackles_mid_3rd', 'tackles_att_3rd', 'challenge_tackles', 'challenges', 'challenge_tackles_pct', 'challenges_lost', 'blocked_shots', 'blocked_passes', 'tackles_interceptions', 'clearances', 'errors', 'touches_def_pen_area', 'touches_def_3rd', 'touches_mid_3rd', 'touches_att_3rd', 'touches_att_pen_area', 'touches_live_ball', 'take_ons_won_pct', 'take_ons_tackled', 'take_ons_tackled_pct', 'carries_distance', 'carries_progressive_distance', 'carries_into_final_third', 'carries_into_penalty_area', 'miscontrols', 'dispossessed', 'passes_received', 'progressive_passes_received', 'cards_yellow_red', 'fouls', 'fouled', 'offsides', 'pens_won', 'pens_conceded', 'own_goals', 'ball_recoveries', 'aerials_won', 'aerials_lost', 'aerials_won_pct']
 
@@ -398,34 +416,54 @@ def process_player_data(players_df):
         # round to 2 decimal places
         players_only_df[f"{column}_per90"] = players_only_df[f"{column}_per90"].round(2)
 
-    # rename the columns so that they are more descriptive
-    rename_dict = {
-        f"{column}_per90": " ".join(
-            word.title() if not word.startswith('x') else 'x' + word[1:].capitalize() 
-            for word in column.replace('_', ' ').split()
-        ) + " Per90" for column in per90_columns
-    }
-    players_only_df.rename(columns=rename_dict, inplace=True)
+    # rename the columns so that they are more descriptive, underscores replaced with spaces and words capitalized, the letter x is always lowercase
 
-    # now we do the same formatting for other columns where we replace underscores with spaces and capitalize words, unless they start with an x, in which case we lowercase the x and uppercase 2nd letter
+    # first we do the per90 columns
+    players_only_df = rename_columns(players_only_df)
 
-    # Rename the remaining columns
-    remaining_columns = [col for col in players_only_df.columns if col not in per90_columns]
-    rename_dict_rest = {
-        column: " ".join(
-            word.title() if not word.startswith('x') else 'x' + word[1:].capitalize() 
-            for word in column.replace('_', ' ').split()
-        ) for column in remaining_columns
-    }
-    players_only_df.rename(columns=rename_dict_rest, inplace=True)
+    # 
 
-    print(f"Printing players_df columns:\n{players_df.columns.tolist()}")
+    # rename_dict = {
+    #     f"{column}_per90": " ".join(
+    #         word.title() if not word.startswith('x') else 'x' + word[1:].capitalize() 
+    #         for word in column.replace('_', ' ').split()
+    #     ) + " Per90" for column in per90_columns
+    # }
+    # players_only_df.rename(columns=rename_dict, inplace=True)
+
+    # # now we do the same formatting for other columns where we replace underscores with spaces and capitalize words, unless they start with an x, in which case we lowercase the x and uppercase 2nd letter
+
+    # # Rename the remaining columns
+    # remaining_columns = [col for col in players_only_df.columns if col not in per90_columns]
+    # rename_dict_rest = {
+    #     column: " ".join(
+    #         word.title() if not word.startswith('x') else 'x' + word[1:].capitalize() 
+    #         for word in column.replace('_', ' ').split()
+    #     ) for column in remaining_columns
+    # }
+    # players_only_df.rename(columns=rename_dict_rest, inplace=True)
+
+    print(f"Printing players_df columns:\n{players_only_df.columns.tolist()}")
 
     # create a list of the columns that we want to convert to numeric
     players_only_df = players_only_df.apply(pd.to_numeric, errors='ignore')
 
+    # groupby player and season keeping all the columns
+
+
+    # # groupby player and season keeping all the columns
+    # players_only_df = players_only_df.groupby(['Player', 'Season', 'Team', 'Nationality', 'Opponent']).sum().reset_index()
+
+    players_only_df
+
+    # groupby player and season
+
     # loop through the dataframe and make sub dataframes that are grouped by season
     seasons = players_only_df['Season'].unique().tolist()
+
+    # sort in reverse order
+    seasons.sort(reverse=True)
+    
     teams = players_only_df['Team'].unique().tolist()
     vs_teams = players_only_df['Opponent'].unique().tolist()
     ages = players_only_df['Age'].unique().tolist()
@@ -433,9 +471,10 @@ def process_player_data(players_df):
     positions = players_only_df['Position'].unique().tolist()
     referees = players_only_df['Referee'].unique().tolist()
     venues = players_only_df['Venue'].unique().tolist()
+    players = players_only_df['Player'].unique().tolist()
 
     # create list of objects above
-    categories = [seasons, teams, vs_teams, ages, nations, positions, referees, venues]
+    categories = [seasons, teams, vs_teams, ages, nations, positions, referees, venues, players]
 
     # create a dictionary of dataframes, one for each season
     season_dfs = {}
@@ -446,6 +485,7 @@ def process_player_data(players_df):
     positions_dfs = {}
     referees_dfs = {}
     venues_dfs = {}
+    players_dfs = {}
 
     # for i in categories:
     #     if i:
@@ -476,18 +516,21 @@ def process_player_data(players_df):
                 positions_dfs[j] = players_only_df[players_only_df['Position'] == j]
                 referees_dfs[j] = players_only_df[players_only_df['Referee'] == j]
                 venues_dfs[j] = players_only_df[players_only_df['Venue'] == j]
+                players_dfs[j] = players_only_df[players_only_df['Player'] == j]
 
-    stat = 'Pass xA Per90'
-    x_cat = 'Nationality'
+    stat = 'Aerials Won Per90'
+    x_cat = 'Player'
         
     for season in seasons:
         season_data = players_only_df[players_only_df['Season'] == season]
 
-            # Calculate value counts for 'Nationality' and select top 20
-        top_nationalities = season_data[x_cat].value_counts().head(20).index
+        # Calculate value counts for 'Nationality' and select top 200
+        top_of_stat = season_data[x_cat].value_counts().head(200).index
 
-        # Filter data for the top 20 nationalities
-        filtered_data = season_data[season_data[x_cat].isin(top_nationalities)]
+        # Filter data for the top 20 x_cat for the given stat
+        filtered_data = season_data[season_data[x_cat].isin(top_of_stat)]
+
+        # filtered_data = season_data[season_data[x_cat].isin(top_of_stat)]
 
         # get the top 20 of each x that will be selected so that figure stays consistent
         
@@ -506,6 +549,95 @@ def process_player_data(players_df):
         st.info(f"Displaying {season} data for {stat} by {x_cat}")
         st.plotly_chart(fig, theme="streamlit", use_container_width=True)
 
+def dropdown_for_player_stats(players_only_df, selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5):
+
+    # create a list of all the players
+    players = players_only_df['Player'].unique().tolist()
+
+    # create a dropdown menu for the players
+    selected_player = st.sidebar.selectbox('Select Player', players, index=players.index(selected_player))
+
+    # create a list of all seasons
+    seasons = players_only_df['Season'].unique().tolist()
+
+    # create a dropdown menu for the seasons
+    selected_season = st.sidebar.selectbox('Select Season', seasons, index=seasons.index(selected_season))
+
+    # create a list of all the stats from the numeric columns
+    stats = players_only_df.select_dtypes(include=['float64', 'int64']).columns.tolist()
+
+    # create a dropdown menu for the stats
+    selected_stat1 = st.sidebar.selectbox('Select Stat #1', stats, index=stats.index(selected_stat1))
+
+    selected_stat2 = st.sidebar.selectbox('Select Stat #2', stats, index=stats.index(selected_stat2))
+
+    selected_stat3 = st.sidebar.selectbox('Select Stat #3', stats, index=stats.index(selected_stat3))
+
+    selected_stat4 = st.sidebar.selectbox('Select Stat #4', stats, index=stats.index(selected_stat4))
+
+    selected_stat5 = st.sidebar.selectbox('Select Stat #5', stats, index=stats.index(selected_stat5))
+
+    return selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5
+
+
+def calculate_per90(df):
+    # Separate numerical and categorical columns
+    numeric_cols = df.select_dtypes(include=np.number).columns.tolist()
+    categorical_cols = df.select_dtypes(exclude=np.number).columns.tolist()
+
+    # Define aggregation dictionary for summing numeric columns and getting first observation for categorical
+    agg_dict = {col: 'sum' for col in numeric_cols}
+    agg_dict.update({col: 'first' for col in categorical_cols})
+
+    # Group by player and season, and aggregate
+    df_grouped = df.groupby(['player', 'season']).agg(agg_dict)
+
+    # Define the columns you want to calculate per90s for
+    per90_cols = numeric_cols  # adjust this list according to your needs
+
+    # Calculate per90s
+    for col in per90_cols:
+        if col in df_grouped.columns:
+            df_grouped[col+'_per90'] = df_grouped[col] / (df_grouped['minutes'] / 90)
+
+    return df_grouped
+
+def normalize_df(df):
+    """_summary_
+
+    Args:
+        df (_type_): _description_
+    """
+
+def process_player_datav2(players_only_df):
+
+    selected_player = 'Bruno Fernandes'
+    selected_season = '2022'
+    selected_stat1 = 'Sca Per90'
+    selected_stat2 = 'Pass xA Per90'
+    selected_stat3 = 'Assists Per90'
+    selected_stat4 = 'Gca Per90'
+    selected_stat5 = 'Aerials Won Per90'
+
+    print(players_only_df.columns.tolist())
+
+    # create selectbox for player and stat
+    selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5 = dropdown_for_player_stats(players_only_df, selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5)
+
+    # filter for selected player
+    player_df = players_only_df[(players_only_df['Player'] == selected_player) & (players_only_df['Season'] == selected_season)]
+
+    # create a five point chart for the players top 5 per90 stats
+    fig = px.line_polar(
+        player_df,
+        r=[player_df[selected_stat1].mean(), player_df[selected_stat2].mean(), player_df[selected_stat3].mean(), player_df[selected_stat4].mean(), player_df[selected_stat5].mean()],
+        theta=[selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5],
+        line_close=True,
+        title=f"{selected_player}'s Top 5 Per90 Stats"
+    )
+
+    st.info(f"Displaying {selected_player}'s top 5 Per90 stats for {selected_season}")
+    st.plotly_chart(fig, theme="streamlit", use_container_width=True)
 
 def process_and_reorder_df(chrono_team_df, selected_team, selected_opponent):
 
@@ -1067,7 +1199,22 @@ def main():
     # clean the data
     players_df, results_df = clean_data(players_df, results_df)
 
-    process_player_data(players_df)
+    df_per90 = calculate_per90(players_df)
+    df_per90 = df_per90.reset_index(drop=True)   
+
+    players_only_df = rename_columns(df_per90)
+
+    # reorder the columns with player then season then rest of cols
+    first_cols = ['Player', 'Season']
+    rest_of_cols = [col for col in players_only_df.columns if col not in first_cols]
+    players_only_df = players_only_df[first_cols + rest_of_cols]
+
+    # selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5 = dropdown_for_player_stats(players_only_df)
+
+    process_player_datav2(players_only_df)
+
+    # process_player_datav2(players_df)
+    # process_player_data(players_df)
 
     # Create a multiselect for the seasons
     selected_seasons, filtered_df = create_multiselect_seasons(players_df)
