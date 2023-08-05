@@ -1199,19 +1199,19 @@ def main():
     # clean the data
     players_df, results_df = clean_data(players_df, results_df)
 
-    df_per90 = calculate_per90(players_df)
-    df_per90 = df_per90.reset_index(drop=True)   
+    # df_per90 = calculate_per90(players_df)
+    # df_per90 = df_per90.reset_index(drop=True)   
 
-    players_only_df = rename_columns(df_per90)
+    # players_only_df = rename_columns(df_per90)
 
-    # reorder the columns with player then season then rest of cols
-    first_cols = ['Player', 'Season']
-    rest_of_cols = [col for col in players_only_df.columns if col not in first_cols]
-    players_only_df = players_only_df[first_cols + rest_of_cols]
+    # # reorder the columns with player then season then rest of cols
+    # first_cols = ['Player', 'Season']
+    # rest_of_cols = [col for col in players_only_df.columns if col not in first_cols]
+    # players_only_df = players_only_df[first_cols + rest_of_cols]
 
-    # selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5 = dropdown_for_player_stats(players_only_df)
+    # # selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5 = dropdown_for_player_stats(players_only_df)
 
-    process_player_datav2(players_only_df)
+    # process_player_datav2(players_only_df)
 
     # process_player_datav2(players_df)
     # process_player_data(players_df)
@@ -1278,7 +1278,7 @@ def main():
 
     # show_teams_stats(quant_stats_df, cm)
 
-    player_stats_df = get_players_stats(player_level_df, selected_team, selected_opponent)
+    # player_stats_df = get_players_stats(player_level_df, selected_team, selected_opponent)
 
     # show_teams_stats_dataframe(team_stats_df)
 

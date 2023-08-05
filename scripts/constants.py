@@ -10,3 +10,6 @@ color_dark1 = "FFD6FF"
 
 # gradients
 cm = sns.diverging_palette(333, 33, s=99, l=57, as_cmap=True)
+
+# doc paths
+big5_players_csv = []

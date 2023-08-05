@@ -500,7 +500,6 @@ def process_player_data(players_df):
 
         return players_only_df, season_dfs, teams_dfs, vs_teams_dfs, ages_dfs, nations_dfs, positions_dfs, referees_dfs, venues_dfs
 
-
 def process_and_reorder_df(chrono_team_df, selected_team, selected_opponent):
 
     def compute_win_draw_loss(df):
@@ -743,83 +742,6 @@ def get_teams_stats(selected_teams_df, selected_team, selected_opponent):
 
     return team_stats_og, team_stats_df
 
-# def display_quant_stats(selected_teams_df, selected_team, selected_opponent):
-
-#     def get_quant_stats_over_time(selected_teams_df, is_selected_team):
-#         result_df = pd.DataFrame()
-
-#         if is_selected_team:
-#             result_df['Goals Scored'] = selected_teams_df['selected_team_score']
-#             result_df['Goals Conceded'] = selected_teams_df['selected_opponent_score']
-#             result_df['xG For'] = selected_teams_df['selected_team_xg']
-#             result_df['xG Against'] = selected_teams_df['selected_opponent_xg']
-#             result_df['Clean Sheets'] = (selected_teams_df['selected_opponent_score'] == 0).astype(int)
-#         else:
-#             result_df['Goals Scored'] = selected_teams_df['selected_opponent_score']
-#             result_df['Goals Conceded'] = selected_teams_df['selected_team_score']
-#             result_df['xG For'] = selected_teams_df['selected_opponent_xg']
-#             result_df['xG Against'] = selected_teams_df['selected_team_xg']
-#             result_df['Clean Sheets'] = (selected_teams_df['selected_team_score'] == 0).astype(int)
-
-#         result_df['Date'] = selected_teams_df['date']
-#         result_df.sort_values(by='Date', inplace=True)
-
-#         return result_df
-
-#     # Extract results into a list
-#     def format_dataframe(df, team):
-#         st.dataframe(
-#             df,
-#             column_config={
-#                 "Team Results Over Time": st.column_config.LineChartColumn(
-#                     f"{selected_team} Results Over Time",
-#                     help="Results over time for " + team + " and their opponent. Draws are indicated by the null result (0).",
-#                     y_min=-1,
-#                     y_max=1,
-#                 ),
-#                 "Opponent Results Over Time": st.column_config.LineChartColumn(
-#                     f"{selected_opponent} Results Over Time",
-#                     help="Results over time for " + team + " and their opponent. Draws are indicated by the null result (0).",
-#                     y_min=-1,
-#                     y_max=1,
-#                 ),
-#             },
-#         )
-
-#     selected_team_df = get_quant_stats_over_time(selected_teams_df, True)
-#     selected_opponent_df = get_quant_stats_over_time(selected_teams_df, False)
-
-#     # transpose the dataframes
-#     selected_team_df = selected_team_df.T
-#     selected_opponent_df = selected_opponent_df.T
-
-#     # create a list of the values for each each across all columns
-#     selected_team_list = selected_team_df.values.tolist()
-#     selected_opponent_list = selected_opponent_df.values.tolist()
-
-#     # the list as a whole is a list of lists, create a dictionary with the column names as the keys
-#     selected_team_dict = dict(zip(selected_team_df.index, selected_team_list))
-#     selected_opponent_dict = dict(zip(selected_opponent_df.index, selected_opponent_list))
-
-#     # now we can remove the date column from the dictionary
-#     del selected_team_dict['Date']
-#     del selected_opponent_dict['Date']
-
-#     # convert
-
-#     print(selected_team_list)
-#     print(selected_opponent_list)
-
-#     # now each list goes back into a dataframe with the stats as the index
-#     selected_team_df = pd.DataFrame(selected_team_list, index=selected_team_df.index, columns=[selected_team])
-#     selected_opponent_df = pd.DataFrame(selected_opponent_list, index=selected_opponent_df.index, columns=[selected_opponent])
-
-#     print(selected_team_df)
-#     print(selected_opponent_df)
-
-#     # call the format_dataframe function for both the selected team and opponent dataframes
-#     format_dataframe(selected_team_df, selected_team)
-#     format_dataframe(selected_opponent_df, selected_opponent)
 
 def display_quant_stats(selected_teams_df, selected_team, selected_opponent):
     def format_dataframe(team_df, team, prefix, opponent_prefix):
@@ -963,3 +885,108 @@ def get_players_stats(player_level_df, selected_team, selected_opponent):
 def show_teams_stats(team_stats_df, cm):
     
     display_styled_dataframe_simple(team_stats_df, cm)
+
+def dropdown_for_player_stats(players_only_df, selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5):
+
+    # create a list of all the players
+    players = players_only_df['Player'].unique().tolist()
+
+    # create a dropdown menu for the players
+    selected_player = st.sidebar.selectbox('Select Player', players, index=players.index(selected_player))
+
+    # create a list of all seasons
+    seasons = players_only_df['Season'].unique().tolist()
+
+    # create a dropdown menu for the seasons
+    selected_season = st.sidebar.selectbox('Select Season', seasons, index=seasons.index(selected_season))
+
+    # create a list of all the stats from the numeric columns
+    stats = players_only_df.select_dtypes(include=['float64', 'int64']).columns.tolist()
+
+    # create a dropdown menu for the stats
+    selected_stat1 = st.sidebar.selectbox('Select Stat #1', stats, index=stats.index(selected_stat1))
+
+    selected_stat2 = st.sidebar.selectbox('Select Stat #2', stats, index=stats.index(selected_stat2))
+
+    selected_stat3 = st.sidebar.selectbox('Select Stat #3', stats, index=stats.index(selected_stat3))
+
+    selected_stat4 = st.sidebar.selectbox('Select Stat #4', stats, index=stats.index(selected_stat4))
+
+    selected_stat5 = st.sidebar.selectbox('Select Stat #5', stats, index=stats.index(selected_stat5))
+
+    return selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5
+
+def calculate_per90(df):
+    # Separate numerical and categorical columns
+    numeric_cols = df.select_dtypes(include=np.number).columns.tolist()
+    categorical_cols = df.select_dtypes(exclude=np.number).columns.tolist()
+
+    # Remove 'season' from the list of numeric columns if it's there
+    numeric_cols = [col for col in numeric_cols if col not in ['season']]
+
+    # Define aggregation dictionary for summing numeric columns and getting first observation for categorical
+    agg_dict = {col: 'sum' for col in numeric_cols}
+    agg_dict.update({col: 'first' for col in categorical_cols})
+
+    # Group by player and season, and aggregate
+    df_grouped = df.groupby(['player', 'season']).agg(agg_dict)
+
+    # Define the columns you want to calculate per90s for
+    per90_cols = numeric_cols  # adjust this list according to your needs
+
+    # Calculate per90s
+    for col in per90_cols:
+        if col in df_grouped.columns:
+            df_grouped[col+'_per90'] = df_grouped[col] / (df_grouped['minutes'] / 90)
+    
+    # Create a new dataframe with only per90 columns and 'player', 'season'
+    df_per90 = df_grouped.filter(regex='per90|Player|Season')
+
+    return df_per90
+
+
+def rename_columns(df):
+    """
+    Rename the columns of a DataFrame: replace underscores with spaces, capitalize words, and keep the letter 'x' lowercase.
+    """
+    rename_dict = {
+        column: " ".join(
+            word.title() if not word.startswith('x') else 'x' + word[1:].capitalize() 
+            for word in column.split('_')
+        ) for column in df.columns
+    }
+    
+    return df.rename(columns=rename_dict)
+
+def process_player_datav2(players_only_df):
+
+    selected_player = 'Bruno Fernandes'
+    
+    selected_season = '2022'
+
+    selected_stat1 = 'Sca Per90'
+    selected_stat2 = 'Pass xA Per90'
+    selected_stat3 = 'Assists Per90'
+    selected_stat4 = 'Gca Per90'
+    selected_stat5 = 'Aerials Won Per90'
+
+    print(players_only_df.columns.tolist())
+
+    # create selectbox for player and stat
+    selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5 = dropdown_for_player_stats(players_only_df, selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5)
+
+    # filter for selected player
+    player_df = players_only_df[(players_only_df['Player'] == selected_player) & (players_only_df['Season'] == selected_season)]
+
+    # create a five point chart for the players top 5 per90 stats
+    fig = px.line_polar(
+        player_df,
+        r=[player_df[selected_stat1].mean(), player_df[selected_stat2].mean(), player_df[selected_stat3].mean(), player_df[selected_stat4].mean(), player_df[selected_stat5].mean()],
+        theta=[selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5],
+        line_close=True,
+        title=f"{selected_player}'s Top 5 Per90 Stats"
+    )
+
+    st.info(f"Displaying {selected_player}'s top 5 Per90 stats for {selected_season}")
+    st.plotly_chart(fig, theme="streamlit", use_container_width=True)
+
