@@ -12,6 +12,8 @@ import seaborn as sns
 from matplotlib.colors import LinearSegmentedColormap
 import plost
 import plotly.express as px
+from sklearn.preprocessing import MinMaxScaler
+
 
 sys.path.append(os.path.abspath(os.path.join('./scripts')))
 
@@ -948,19 +950,62 @@ def dropdown_for_player_stats(players_only_df, selected_player, selected_season,
     # create a list of all the stats from the numeric columns
     stats = players_only_df.select_dtypes(include=['float64', 'int64']).columns.tolist()
 
-    # create a dropdown menu for the stats
-    selected_stat1 = st.sidebar.selectbox('Select Stat #1', stats, index=stats.index(selected_stat1))
+    print(f"Printing stats: {stats}")
 
-    selected_stat2 = st.sidebar.selectbox('Select Stat #2', stats, index=stats.index(selected_stat2))
+    # create a dropdown menu for the stats iterating through and checking if stat is in the list of stats
+    if selected_stat1 not in stats:
+        print(f"selected_stat1: {selected_stat1} not in stats: {stats}")
+        selected_stat1 = stats[0]
+        selected_stat1 = st.sidebar.selectbox('Select Stat 1', stats, index=stats.index(selected_stat1))
+    else:
+        selected_stat1 = st.sidebar.selectbox('Select Stat 1', stats, index=stats.index(selected_stat1))
 
-    selected_stat3 = st.sidebar.selectbox('Select Stat #3', stats, index=stats.index(selected_stat3))
+    if selected_stat2 not in stats:
+        print(f"selected_stat2: {selected_stat2} not in stats: {stats}")
+        selected_stat2 = stats[0]
+        selected_stat2 = st.sidebar.selectbox('Select Stat 2', stats, index=stats.index(selected_stat2))
+    else:
+        selected_stat2 = st.sidebar.selectbox('Select Stat 2', stats, index=stats.index(selected_stat2))
 
-    selected_stat4 = st.sidebar.selectbox('Select Stat #4', stats, index=stats.index(selected_stat4))
+    if selected_stat3 not in stats:
+        print(f"selected_stat3: {selected_stat3} not in stats: {stats}")
+        selected_stat3 = stats[0]
+        selected_stat3 = st.sidebar.selectbox('Select Stat 3', stats, index=stats.index(selected_stat3))
+    else:
+        selected_stat3 = st.sidebar.selectbox('Select Stat 3', stats, index=stats.index(selected_stat3))
 
-    selected_stat5 = st.sidebar.selectbox('Select Stat #5', stats, index=stats.index(selected_stat5))
+    if selected_stat4 not in stats:
+        print(f"selected_stat4: {selected_stat4} not in stats: {stats}")
+        selected_stat4 = stats[0]
+        selected_stat4 = st.sidebar.selectbox('Select Stat 4', stats, index=stats.index(selected_stat4))
+    else:
+        selected_stat4 = st.sidebar.selectbox('Select Stat 4', stats, index=stats.index(selected_stat4))
+
+    if selected_stat5 not in stats:
+        print(f"selected_stat5: {selected_stat5} not in stats: {stats}")
+        selected_stat5 = stats[0]
+        selected_stat5 = st.sidebar.selectbox('Select Stat 5', stats, index=stats.index(selected_stat5))
+    else:
+        selected_stat5 = st.sidebar.selectbox('Select Stat 5', stats, index=stats.index(selected_stat5))
+
 
     return selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5
 
+def min_max_scale(df):
+    # Select only numeric columns
+    numeric_cols = df.select_dtypes(include=[np.number]).columns
+
+    # Initialize a scaler
+    scaler = MinMaxScaler()
+
+    # Replace infinities with NaN, then NaN with 0
+    df[numeric_cols].replace([np.inf, -np.inf], np.nan, inplace=True)
+    df[numeric_cols].fillna(0, inplace=True)
+
+    # Fit and transform the data
+    df[numeric_cols] = scaler.fit_transform(df[numeric_cols])
+
+    return df
 
 def convert_to_int(item):
     if isinstance(item, list):
@@ -983,6 +1028,9 @@ def process_player_data(players_only_df):
     # make sure the season column is an integer
     players_only_df['Season'] = players_only_df['Season'].astype(int)
 
+    # convert selected_season to an integer
+    selected_season = convert_to_int(selected_season)
+
     # print the objects to see what they are
     print(selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5)
 
@@ -992,7 +1040,7 @@ def process_player_data(players_only_df):
 
     # convert the season column to an integer
 
-    print(f"Printing selected season: {selected_season}")
+    print(f"Printing selected season: {selected_season}\n selected_season datatype:{type(selected_season)}")
 
     # print(selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5)
 

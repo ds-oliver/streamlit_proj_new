@@ -13,6 +13,9 @@ from matplotlib.colors import LinearSegmentedColormap
 import plost
 import plotly.express as px
 import warnings
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import StandardScaler
+import unicodedata
 
 warnings.filterwarnings('ignore')
 
@@ -23,7 +26,7 @@ from constants import color1, color2, color3, color4, color5, cm
 
 from files import big5_players_csv
 
-from functions import dropdown_for_player_stats, rename_columns, process_player_data
+from functions import dropdown_for_player_stats, rename_columns, process_player_data, convert_to_int, min_max_scale
 
 # suppress settings
 
@@ -33,6 +36,8 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 # load player data from csv
 big5_players_data = pd.read_csv(big5_players_csv)
+
+big5_players_data.fillna(0, inplace=True)
 
 # print head of df, columns, and shape
 print(big5_players_data.head())
@@ -67,6 +72,7 @@ la_liga_df = big5_players_data[big5_players_data['League'] == 'La Liga']
 
 ligue_1_df = big5_players_data[big5_players_data['League'] == 'Ligue 1']
 
+
 # get per90 stats for each player by dividing each numerical column by the 90s column
 for df in [premier_league_df, bundesliga_df, serie_a_df, la_liga_df, ligue_1_df]:
     # set index to 'Player', 'Nation', 'Pos', 'Squad', 'Comp', 'Matches', 'Position Category', 'League'
@@ -76,12 +82,22 @@ for df in [premier_league_df, bundesliga_df, serie_a_df, la_liga_df, ligue_1_df]
     for col in df_cols:
         # avoid calculating per90s on 90s column and any with % or percent in the name
         if col != '90s' and '%' not in col and 'percent' not in col and 'per90' not in col and 'Per90' not in col and 'Per 90' not in col and 'per 90' not in col and 'Minutes' not in col:
-            df[f"{col}_per90"] = df[col] / df['90s']
+            df[f"{col} Per90"] = df[col] / df['90s']
+            # normalize the per90 columns by dividing by the max value and handling 0s
+            df[f"{col} Per90"] = df[f"{col} Per90"].apply(lambda x: x / df[f"{col} Per90"].max() if x != 0 else 0)
 
 # reset index for each df and rename columns, drop 90s column
 for df in [premier_league_df, bundesliga_df, serie_a_df, la_liga_df, ligue_1_df]:
     df.reset_index(inplace=True)
-    df = df.drop('90s', axis=1, inplace=True)
+    df = df.drop('90s', axis=1)
+# minmaxscale the per90 columns using the function, call function on all naming the new dfs with _scaled
+# premier_league_df_scaled = min_max_scale(premier_league_df)
+# bundesliga_df_scaled = min_max_scale(bundesliga_df)
+# serie_a_df_scaled = min_max_scale(serie_a_df)
+# la_liga_df_scaled = min_max_scale(la_liga_df)
+# ligue_1_df_scaled = min_max_scale(ligue_1_df)
+    
+# print(premier_league_df_scaled.head(10))
 
 # print season values for each df
 premier_league_df['Season'].unique()
@@ -93,48 +109,56 @@ serie_a_df = rename_columns(serie_a_df)
 la_liga_df = rename_columns(la_liga_df)
 ligue_1_df = rename_columns(ligue_1_df)
 
+# pl_scaled = min_max_scale(premier_league_df)
+
+
 # print columns for premier league df
 # print(premier_league_df.columns)
+
+print(premier_league_df[premier_league_df['Season'] == '2023'].head(10))
+
+pl_2023 = premier_league_df[premier_league_df['Season'] == '2023']
+
+print(pl_2023['Assists'].describe())
+
+# print(premier_league_df.columns)
+
+print(premier_league_df.columns)
 
 seasons = premier_league_df['Season'].unique()
 
 # turn the values into percentiles
-for season in seasons:
-    # get the df for the season
-    season_df = premier_league_df[premier_league_df['Season'] == season].copy() # create a copy to avoid SettingWithCopyWarning
-    # get the columns
-    cols = season_df.columns.tolist()
-    # remove the columns that are not numerical
-    cols.remove('Player')
-    cols.remove('Nation')
-    cols.remove('Pos')
-    cols.remove('Team')
-    cols.remove('Matches')
-    cols.remove('Position Category')
-    cols.remove('League')
-    cols.remove('Season')
-    # loop through the columns and turn them into percentiles
-    percentile_df = pd.DataFrame()  # create new dataframe to avoid PerformanceWarning
-    for col in cols:
-        # get the percentile values
-        percentile_df[f"{col}_percentile"] = season_df[col].rank(pct=True)
-    # join the original DataFrame with the percentile DataFrame
-    season_df = pd.concat([season_df, percentile_df], axis=1)
-    # reset the index
-    season_df.reset_index(drop=True, inplace=True)
+# season_dfs = []  # list to collect all season DataFrames
+# for season in seasons:
+#     # get the df for the season
+#     season_df = premier_league_df_scaled[premier_league_df_scaled['Season'] == season].copy()  # create a copy to avoid SettingWithCopyWarning
+#     # get the columns
+#     cols = season_df.columns.tolist()
+#     # remove the columns that are not numerical
+#     cols.remove('Player')
+#     cols.remove('Nation')
+#     cols.remove('Pos')
+#     cols.remove('Team')
+#     cols.remove('Matches')
+#     cols.remove('Position Category')
+#     cols.remove('League')
+#     cols.remove('Season')
+#     # loop through the columns and turn them into percentiles
+#     for col in cols:
+#         # get the percentile values
+#         season_df[f"{col} Percentile"] = season_df[col].rank(pct=True)
+#     # reset the index
+#     season_df.reset_index(drop=True, inplace=True)
+#     season_df.fillna(0, inplace=True)
+#     # collect the modified season DataFrame
+#     season_dfs.append(season_df)
+# # create the final DataFrame by concatenating all season DataFrames
+# premier_league_df_scaled = pd.concat(season_dfs, axis=0).reset_index(drop=True)
 
-    season_df.fillna(0, inplace=True)
-    # update the premier league df
-    premier_league_df.update(season_df)
-
-print(premier_league_df.head(10))
-
-# process_player_data function
+# # process_player_data function
 premier_league_df = process_player_data(premier_league_df)
             
 # create a new df 
-
-
 
 # # load player data
 # players_data, _ = load_data_from_csv()
