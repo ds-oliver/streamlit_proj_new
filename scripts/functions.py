@@ -885,40 +885,6 @@ def show_teams_stats(team_stats_df, cm):
     
     display_styled_dataframe_simple(team_stats_df, cm)
 
-def dropdown_for_player_stats(players_only_df, selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5):
-
-    # create a list of all the players
-    players = players_only_df['Player'].unique().tolist()
-
-    # create a dropdown menu for the players
-    selected_player = st.sidebar.selectbox('Select Player', players, index=players.index(selected_player))
-
-    # create a list of all seasons
-    seasons = players_only_df['Season'].unique().tolist()
-
-    seasons = convert_list_to_int(seasons)
-
-    print(seasons, selected_season, selected_season in seasons)
-
-    # create a dropdown menu for the seasons
-    selected_season = st.sidebar.selectbox('Select Season', seasons, index=seasons.index(selected_season))
-
-    # create a list of all the stats from the numeric columns
-    stats = players_only_df.select_dtypes(include=['float64', 'int64']).columns.tolist()
-
-    # create a dropdown menu for the stats
-    selected_stat1 = st.sidebar.selectbox('Select Stat #1', stats, index=stats.index(selected_stat1))
-
-    selected_stat2 = st.sidebar.selectbox('Select Stat #2', stats, index=stats.index(selected_stat2))
-
-    selected_stat3 = st.sidebar.selectbox('Select Stat #3', stats, index=stats.index(selected_stat3))
-
-    selected_stat4 = st.sidebar.selectbox('Select Stat #4', stats, index=stats.index(selected_stat4))
-
-    selected_stat5 = st.sidebar.selectbox('Select Stat #5', stats, index=stats.index(selected_stat5))
-
-    return selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5
-
 def calculate_per90(df):
     # Separate numerical and categorical columns
     numeric_cols = df.select_dtypes(include=np.number).columns.tolist()
@@ -947,9 +913,6 @@ def calculate_per90(df):
 
     return df_per90
 
-def convert_list_to_int(input_list):
-    return [int(i) if isinstance(i, float) else i for i in input_list]
-
 def rename_columns(df):
     """
     Rename the columns of a DataFrame: replace underscores with spaces, capitalize words, and keep the letter 'x' lowercase.
@@ -963,11 +926,53 @@ def rename_columns(df):
     
     return df.rename(columns=rename_dict)
 
+
+def dropdown_for_player_stats(players_only_df, selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5):
+
+    # create a list of all the players
+    players = players_only_df['Player'].unique().tolist()
+
+    # create a dropdown menu for the players
+    selected_player = st.sidebar.selectbox('Select Player', players, index=players.index(selected_player))
+
+    # create a list of all seasons
+    seasons = players_only_df['Season'].unique().tolist()
+
+    print(f"Printing seasons: {seasons}")
+
+    print(f"Printing selected season: {selected_season}")
+
+    # create a dropdown menu for the seasons
+    selected_season = st.sidebar.selectbox('Select Season', seasons, index=seasons.index(selected_season))
+
+    # create a list of all the stats from the numeric columns
+    stats = players_only_df.select_dtypes(include=['float64', 'int64']).columns.tolist()
+
+    # create a dropdown menu for the stats
+    selected_stat1 = st.sidebar.selectbox('Select Stat #1', stats, index=stats.index(selected_stat1))
+
+    selected_stat2 = st.sidebar.selectbox('Select Stat #2', stats, index=stats.index(selected_stat2))
+
+    selected_stat3 = st.sidebar.selectbox('Select Stat #3', stats, index=stats.index(selected_stat3))
+
+    selected_stat4 = st.sidebar.selectbox('Select Stat #4', stats, index=stats.index(selected_stat4))
+
+    selected_stat5 = st.sidebar.selectbox('Select Stat #5', stats, index=stats.index(selected_stat5))
+
+    return selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5
+
+
+def convert_to_int(item):
+    if isinstance(item, list):
+        return [int(i) for i in item]
+    else:
+        return int(item)
+
 def process_player_data(players_only_df):
 
     selected_player = 'Bruno Fernandes'
     
-    selected_season = ['2023']
+    selected_season = '2023'
 
     selected_stat1 = 'Goal Creating Actions Per 90 Minutes'
     selected_stat2 = 'Goals Less Penalties Scored Per90'
@@ -975,15 +980,23 @@ def process_player_data(players_only_df):
     selected_stat4 = 'Shot Creating Actions Per90'
     selected_stat5 = 'Interceptions Per90'
 
+    # make sure the season column is an integer
+    players_only_df['Season'] = players_only_df['Season'].astype(int)
+
     # print the objects to see what they are
     print(selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5)
 
-    print(players_only_df.columns.tolist())
+    # print(players_only_df.columns.tolist())
 
-    print(players_only_df['Season'].unique().tolist())
+    # print(players_only_df['Season'].unique().tolist())
 
     # convert the season column to an integer
-    selected_season = convert_list_to_int(selected_season)
+
+    print(f"Printing selected season: {selected_season}")
+
+    # print(selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5)
+
+    # print(selected_season)
 
     # create selectbox for player and stat
     selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5 = dropdown_for_player_stats(players_only_df, selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5)

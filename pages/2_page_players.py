@@ -12,6 +12,10 @@ import seaborn as sns
 from matplotlib.colors import LinearSegmentedColormap
 import plost
 import plotly.express as px
+import warnings
+
+warnings.filterwarnings('ignore')
+
 
 sys.path.append(os.path.abspath(os.path.join('./scripts')))
 
@@ -21,16 +25,22 @@ from files import big5_players_csv
 
 from functions import dropdown_for_player_stats, rename_columns, process_player_data
 
+# suppress settings
+
+st.set_option('deprecation.showPyplotGlobalUse', False)
+st.set_option('deprecation.showfileUploaderEncoding', False)
+st.set_option('deprecation.showPyplotGlobalUse', False)
+
 # load player data from csv
 big5_players_data = pd.read_csv(big5_players_csv)
 
 # print head of df, columns, and shape
 print(big5_players_data.head())
-print(big5_players_data.columns)
+# print(big5_players_data.columns)
 print(big5_players_data.shape)
 
 # print out categorical columns
-print(big5_players_data.select_dtypes(include=['object']).columns)
+# print(big5_players_data.select_dtypes(include=['object']).columns)
 
 # drop Comp column
 big5_players_data.drop('Comp', axis=1, inplace=True)
@@ -84,16 +94,14 @@ la_liga_df = rename_columns(la_liga_df)
 ligue_1_df = rename_columns(ligue_1_df)
 
 # print columns for premier league df
-print(premier_league_df.columns)
+# print(premier_league_df.columns)
 
 seasons = premier_league_df['Season'].unique()
 
-seasons = [int(season) for season in seasons]
-
-# turn the values into percentailes
+# turn the values into percentiles
 for season in seasons:
     # get the df for the season
-    season_df = premier_league_df[premier_league_df['Season'] == season]
+    season_df = premier_league_df[premier_league_df['Season'] == season].copy() # create a copy to avoid SettingWithCopyWarning
     # get the columns
     cols = season_df.columns.tolist()
     # remove the columns that are not numerical
@@ -106,20 +114,24 @@ for season in seasons:
     cols.remove('League')
     cols.remove('Season')
     # loop through the columns and turn them into percentiles
+    percentile_df = pd.DataFrame()  # create new dataframe to avoid PerformanceWarning
     for col in cols:
         # get the percentile values
-        season_df[f"{col}_percentile"] = season_df[col].rank(pct=True)
+        percentile_df[f"{col}_percentile"] = season_df[col].rank(pct=True)
+    # join the original DataFrame with the percentile DataFrame
+    season_df = pd.concat([season_df, percentile_df], axis=1)
     # reset the index
     season_df.reset_index(drop=True, inplace=True)
+
+    season_df.fillna(0, inplace=True)
     # update the premier league df
     premier_league_df.update(season_df)
 
-    print(season_df.head(10))
+print(premier_league_df.head(10))
 
 # process_player_data function
 premier_league_df = process_player_data(premier_league_df)
             
-
 # create a new df 
 
 
