@@ -947,8 +947,15 @@ def dropdown_for_player_stats(players_only_df, selected_player, selected_season,
     # create a dropdown menu for the seasons
     selected_season = st.sidebar.selectbox('Select Season', seasons, index=seasons.index(selected_season))
 
-    # create a list of all the stats from the numeric columns
-    stats = players_only_df.select_dtypes(include=['float64', 'int64']).columns.tolist()
+    exclude_stats_list = ['Matches Played', 'Rk', 'Born', 'Age', 'Games Played', 'Minutes Played', 'Player', 'Nation', 'Pos', 'Team', 'Matches', 'Position Category', 'League', 'Season']
+
+    # get stats that are not in that list and that are not of type object
+
+    stats = players_only_df.select_dtypes(exclude=['object']).columns.tolist()
+
+    stats = [stat for stat in stats if stat not in exclude_stats_list]
+    # # create a list of all the stats from the numeric columns
+    # stats = players_only_df.select_dtypes(include=['float64', 'int64']).columns.tolist()
 
     print(f"Printing stats: {stats}")
 

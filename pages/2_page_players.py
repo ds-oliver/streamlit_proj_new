@@ -34,98 +34,114 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 st.set_option('deprecation.showfileUploaderEncoding', False)
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-# load player data from csv
-big5_players_data = pd.read_csv(big5_players_csv)
+@st.cache_resource
+def app(raw_data):
+    # load player data from csv
+    big5_players_data = pd.read_csv(big5_players_csv)
 
-big5_players_data.fillna(0, inplace=True)
+    big5_players_data.fillna(0, inplace=True)
 
-# print head of df, columns, and shape
-print(big5_players_data.head())
-# print(big5_players_data.columns)
-print(big5_players_data.shape)
+    # print head of df, columns, and shape
+    print(big5_players_data.head())
+    # print(big5_players_data.columns)
+    print(big5_players_data.shape)
 
-# print out categorical columns
-# print(big5_players_data.select_dtypes(include=['object']).columns)
+    # print out categorical columns
+    # print(big5_players_data.select_dtypes(include=['object']).columns)
 
-# drop Comp column
-big5_players_data.drop('Comp', axis=1, inplace=True)
+    # drop Comp column
+    big5_players_data.drop('Comp', axis=1, inplace=True)
 
-# strip whitespace and unidecode the player names, league values and team values
-big5_players_data['Player'] = big5_players_data['Player'].str.strip()
-big5_players_data['Player'] = big5_players_data['Player'].str.normalize('NFKD').str.encode('ascii', errors='ignore').str.decode('utf-8')
-big5_players_data['League'] = big5_players_data['League'].str.strip()
-big5_players_data['League'] = big5_players_data['League'].str.normalize('NFKD').str.encode('ascii', errors='ignore').str.decode('utf-8')
-big5_players_data['Squad'] = big5_players_data['Squad'].str.strip()
-big5_players_data['Squad'] = big5_players_data['Squad'].str.normalize('NFKD').str.encode('ascii', errors='ignore').str.decode('utf-8')
+    # strip whitespace and unidecode the player names, league values and team values
+    big5_players_data['Player'] = big5_players_data['Player'].str.strip()
+    big5_players_data['Player'] = big5_players_data['Player'].str.normalize('NFKD').str.encode('ascii', errors='ignore').str.decode('utf-8')
+    big5_players_data['League'] = big5_players_data['League'].str.strip()
+    big5_players_data['League'] = big5_players_data['League'].str.normalize('NFKD').str.encode('ascii', errors='ignore').str.decode('utf-8')
+    big5_players_data['Squad'] = big5_players_data['Squad'].str.strip()
+    big5_players_data['Squad'] = big5_players_data['Squad'].str.normalize('NFKD').str.encode('ascii', errors='ignore').str.decode('utf-8')
 
-# rename squad to team
-big5_players_data = big5_players_data.rename(columns={'Squad': 'Team'})
+    # rename squad to team
+    big5_players_data = big5_players_data.rename(columns={'Squad': 'Team'})
 
-# create a df for each league
-premier_league_df = big5_players_data[big5_players_data['League'] == 'Premier League']
+    # create a df for each league
+    premier_league_df = big5_players_data[big5_players_data['League'] == 'Premier League']
 
-bundesliga_df = big5_players_data[big5_players_data['League'] == 'Bundesliga']
+    bundesliga_df = big5_players_data[big5_players_data['League'] == 'Bundesliga']
 
-serie_a_df = big5_players_data[big5_players_data['League'] == 'Serie A']
+    serie_a_df = big5_players_data[big5_players_data['League'] == 'Serie A']
 
-la_liga_df = big5_players_data[big5_players_data['League'] == 'La Liga']
+    la_liga_df = big5_players_data[big5_players_data['League'] == 'La Liga']
 
-ligue_1_df = big5_players_data[big5_players_data['League'] == 'Ligue 1']
+    ligue_1_df = big5_players_data[big5_players_data['League'] == 'Ligue 1']
 
 
-# get per90 stats for each player by dividing each numerical column by the 90s column
-for df in [premier_league_df, bundesliga_df, serie_a_df, la_liga_df, ligue_1_df]:
-    # set index to 'Player', 'Nation', 'Pos', 'Squad', 'Comp', 'Matches', 'Position Category', 'League'
-    df_copy = df.set_index(['Player', 'Nation', 'Pos', 'Team', 'Matches', 'Position Category', 'League', 'Season'], inplace=True)
-    # divide each column by the 90s column
-    df_cols = df.columns.tolist()
-    for col in df_cols:
-        # avoid calculating per90s on 90s column and any with % or percent in the name
-        if col != '90s' and '%' not in col and 'percent' not in col and 'per90' not in col and 'Per90' not in col and 'Per 90' not in col and 'per 90' not in col and 'Minutes' not in col:
-            df[f"{col} Per90"] = df[col] / df['90s']
-            # normalize the per90 columns by dividing by the max value and handling 0s
-            df[f"{col} Per90"] = df[f"{col} Per90"].apply(lambda x: x / df[f"{col} Per90"].max() if x != 0 else 0)
+    # get per90 stats for each player by dividing each numerical column by the 90s column
+    for df in [premier_league_df, bundesliga_df, serie_a_df, la_liga_df, ligue_1_df]:
+        # set index to 'Player', 'Nation', 'Pos', 'Squad', 'Comp', 'Matches', 'Position Category', 'League'
+        # drop 'Matches Played', 'Rk', 'Born', 'Age', 'Games Played', 'Minutes Played'
+        df_cols = ['Matches Played', 'Rk', 'Born', 'Age', 'Games Played', 'Minutes Played']
+        for col in df_cols:
+            if col in df.columns:
+                df.drop(col, axis=1, inplace=True)
+            else:
+                continue
 
-# reset index for each df and rename columns, drop 90s column
-for df in [premier_league_df, bundesliga_df, serie_a_df, la_liga_df, ligue_1_df]:
-    df.reset_index(inplace=True)
-    df = df.drop('90s', axis=1)
-# minmaxscale the per90 columns using the function, call function on all naming the new dfs with _scaled
-# premier_league_df_scaled = min_max_scale(premier_league_df)
-# bundesliga_df_scaled = min_max_scale(bundesliga_df)
-# serie_a_df_scaled = min_max_scale(serie_a_df)
-# la_liga_df_scaled = min_max_scale(la_liga_df)
-# ligue_1_df_scaled = min_max_scale(ligue_1_df)
+        df.set_index(['Player', 'Nation', 'Pos', 'Team', 'Matches', 'Position Category', 'League', 'Season'], inplace=True)
+        # divide each column by the 90s column
+        df_cols = df.columns.tolist()
+
+        for col in df_cols:
+            # avoid calculating per90s on 90s column and any with % or percent in the name
+            if col != '90s' and '%' not in col and 'percent' not in col and 'per90' not in col and 'Per90' not in col and 'Per 90' not in col and 'per 90' not in col and 'Minutes' not in col:
+                df[f"{col} Per90"] = df[col] / df['90s']
+                # normalize the per90 columns by dividing by the max value and handling 0s
+                df[f"{col} Per90"] = df[f"{col} Per90"].apply(lambda x: x / df[f"{col} Per90"].max() if x != 0 else 0)
+
+    # reset index for each df and rename columns, drop 90s column
+    for df in [premier_league_df, bundesliga_df, serie_a_df, la_liga_df, ligue_1_df]:
+        df.reset_index(inplace=True)
+        df = df.drop('90s', axis=1)
+    # minmaxscale the per90 columns using the function, call function on all naming the new dfs with _scaled
+    # premier_league_df_scaled = min_max_scale(premier_league_df)
+    # bundesliga_df_scaled = min_max_scale(bundesliga_df)
+    # serie_a_df_scaled = min_max_scale(serie_a_df)
+    # la_liga_df_scaled = min_max_scale(la_liga_df)
+    # ligue_1_df_scaled = min_max_scale(ligue_1_df)
+        
+    # print(premier_league_df_scaled.head(10))
+
+    # print season values for each df
+    premier_league_df['Season'].unique()
+
+    # rename columns using the rename_columns function
+    premier_league_df = rename_columns(premier_league_df)
+    bundesliga_df = rename_columns(bundesliga_df)
+    serie_a_df = rename_columns(serie_a_df)
+    la_liga_df = rename_columns(la_liga_df)
+    ligue_1_df = rename_columns(ligue_1_df)
+
+    # pl_scaled = min_max_scale(premier_league_df)
+
+
+    # print columns for premier league df
+    # print(premier_league_df.columns)
+
+    print(premier_league_df[premier_league_df['Season'] == '2023'].head(10))
+
+    pl_2023 = premier_league_df[premier_league_df['Season'] == '2023']
+
+    print(pl_2023['Assists'].describe())
+
+    # print(premier_league_df.columns)
+
+    print(premier_league_df.columns)
     
-# print(premier_league_df_scaled.head(10))
+    return premier_league_df, bundesliga_df, serie_a_df, la_liga_df, ligue_1_df
 
-# print season values for each df
-premier_league_df['Season'].unique()
+premier_league_df, bundesliga_df, serie_a_df, la_liga_df, ligue_1_df = app(big5_players_csv)
 
-# rename columns using the rename_columns function
-premier_league_df = rename_columns(premier_league_df)
-bundesliga_df = rename_columns(bundesliga_df)
-serie_a_df = rename_columns(serie_a_df)
-la_liga_df = rename_columns(la_liga_df)
-ligue_1_df = rename_columns(ligue_1_df)
+premier_league_df = process_player_data(premier_league_df)
 
-# pl_scaled = min_max_scale(premier_league_df)
-
-
-# print columns for premier league df
-# print(premier_league_df.columns)
-
-print(premier_league_df[premier_league_df['Season'] == '2023'].head(10))
-
-pl_2023 = premier_league_df[premier_league_df['Season'] == '2023']
-
-print(pl_2023['Assists'].describe())
-
-# print(premier_league_df.columns)
-
-print(premier_league_df.columns)
-
-seasons = premier_league_df['Season'].unique()
 
 # turn the values into percentiles
 # season_dfs = []  # list to collect all season DataFrames
@@ -156,7 +172,6 @@ seasons = premier_league_df['Season'].unique()
 # premier_league_df_scaled = pd.concat(season_dfs, axis=0).reset_index(drop=True)
 
 # # process_player_data function
-premier_league_df = process_player_data(premier_league_df)
             
 # create a new df 
 
