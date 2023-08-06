@@ -90,6 +90,32 @@ seasons = premier_league_df['Season'].unique()
 
 seasons = [int(season) for season in seasons]
 
+# turn the values into percentailes
+for season in seasons:
+    # get the df for the season
+    season_df = premier_league_df[premier_league_df['Season'] == season]
+    # get the columns
+    cols = season_df.columns.tolist()
+    # remove the columns that are not numerical
+    cols.remove('Player')
+    cols.remove('Nation')
+    cols.remove('Pos')
+    cols.remove('Team')
+    cols.remove('Matches')
+    cols.remove('Position Category')
+    cols.remove('League')
+    cols.remove('Season')
+    # loop through the columns and turn them into percentiles
+    for col in cols:
+        # get the percentile values
+        season_df[f"{col}_percentile"] = season_df[col].rank(pct=True)
+    # reset the index
+    season_df.reset_index(drop=True, inplace=True)
+    # update the premier league df
+    premier_league_df.update(season_df)
+
+    print(season_df.head(10))
+
 # process_player_data function
 premier_league_df = process_player_data(premier_league_df)
             

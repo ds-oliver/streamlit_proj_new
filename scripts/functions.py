@@ -742,7 +742,6 @@ def get_teams_stats(selected_teams_df, selected_team, selected_opponent):
 
     return team_stats_og, team_stats_df
 
-
 def display_quant_stats(selected_teams_df, selected_team, selected_opponent):
     def format_dataframe(team_df, team, prefix, opponent_prefix):
         stats_dict = {}
@@ -897,7 +896,7 @@ def dropdown_for_player_stats(players_only_df, selected_player, selected_season,
     # create a list of all seasons
     seasons = players_only_df['Season'].unique().tolist()
 
-    seasons = [int(season) for season in seasons if isinstance(season, (int, float, str)) and str(season).isdigit()]
+    seasons = convert_list_to_int(seasons)
 
     print(seasons, selected_season, selected_season in seasons)
 
@@ -948,6 +947,8 @@ def calculate_per90(df):
 
     return df_per90
 
+def convert_list_to_int(input_list):
+    return [int(i) if isinstance(i, float) else i for i in input_list]
 
 def rename_columns(df):
     """
@@ -966,7 +967,7 @@ def process_player_data(players_only_df):
 
     selected_player = 'Bruno Fernandes'
     
-    selected_season = 2023
+    selected_season = ['2023']
 
     selected_stat1 = 'Goal Creating Actions Per 90 Minutes'
     selected_stat2 = 'Goals Less Penalties Scored Per90'
@@ -980,6 +981,9 @@ def process_player_data(players_only_df):
     print(players_only_df.columns.tolist())
 
     print(players_only_df['Season'].unique().tolist())
+
+    # convert the season column to an integer
+    selected_season = convert_list_to_int(selected_season)
 
     # create selectbox for player and stat
     selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5 = dropdown_for_player_stats(players_only_df, selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5)
@@ -997,12 +1001,12 @@ def process_player_data(players_only_df):
     # create a five point chart for the players top 5 per90 stats
     fig = px.line_polar(
         player_df,
-        r=[player_df[selected_stat1], player_df[selected_stat2], player_df[selected_stat3], player_df[selected_stat4], player_df[selected_stat5]],
+        r=[player_df[selected_stat1].mean(), player_df[selected_stat2].mean(), player_df[selected_stat3].mean(), player_df[selected_stat4].mean(), player_df[selected_stat5].mean()],
         theta=[selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5],
         line_close=True,
-        title=f"{selected_player}'s Per90 Stats"
+        title=f"{selected_player}'s Top 5 Per90 Stats"
     )
 
-    st.info(f"Displaying {selected_player}'s Per90 stats for {selected_season}")
+    st.info(f"Displaying {selected_player}'s top 5 Per90 stats for {selected_season}")
     st.plotly_chart(fig, theme="streamlit", use_container_width=True)
 
