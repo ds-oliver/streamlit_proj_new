@@ -19,7 +19,6 @@ import unicodedata
 
 warnings.filterwarnings('ignore')
 
-
 sys.path.append(os.path.abspath(os.path.join('./scripts')))
 
 from constants import color1, color2, color3, color4, color5, cm
@@ -95,36 +94,22 @@ def app(raw_data):
             if col != '90s' and '%' not in col and 'percent' not in col and 'per90' not in col and 'Per90' not in col and 'Per 90' not in col and 'per 90' not in col and 'Minutes' not in col:
                 df[f"{col} Per90"] = df[col] / df['90s']
                 # normalize the per90 columns by dividing by the max value and handling 0s
-                df[f"{col} Per90"] = df[f"{col} Per90"].apply(lambda x: x / df[f"{col} Per90"].max() if x != 0 else 0)
+                df_norm = df.copy()
+
+                df_norm[f"{col} Per90"] = df[f"{col} Per90"].apply(lambda x: x / df[f"{col} Per90"].max() if x != 0 else 0)
 
     # reset index for each df and rename columns, drop 90s column
     for df in [premier_league_df, bundesliga_df, serie_a_df, la_liga_df, ligue_1_df]:
         df.reset_index(inplace=True)
         df = df.drop('90s', axis=1)
-    # minmaxscale the per90 columns using the function, call function on all naming the new dfs with _scaled
-    # premier_league_df_scaled = min_max_scale(premier_league_df)
-    # bundesliga_df_scaled = min_max_scale(bundesliga_df)
-    # serie_a_df_scaled = min_max_scale(serie_a_df)
-    # la_liga_df_scaled = min_max_scale(la_liga_df)
-    # ligue_1_df_scaled = min_max_scale(ligue_1_df)
-        
-    # print(premier_league_df_scaled.head(10))
 
-    # print season values for each df
-    premier_league_df['Season'].unique()
-
+    # check columns that have a range between
     # rename columns using the rename_columns function
     premier_league_df = rename_columns(premier_league_df)
     bundesliga_df = rename_columns(bundesliga_df)
     serie_a_df = rename_columns(serie_a_df)
     la_liga_df = rename_columns(la_liga_df)
     ligue_1_df = rename_columns(ligue_1_df)
-
-    # pl_scaled = min_max_scale(premier_league_df)
-
-
-    # print columns for premier league df
-    # print(premier_league_df.columns)
 
     print(premier_league_df[premier_league_df['Season'] == '2023'].head(10))
 
