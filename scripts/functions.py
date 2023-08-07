@@ -1041,12 +1041,6 @@ def process_player_data(players_only_df):
     # print the objects to see what they are
     print(selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5)
 
-    # print(players_only_df.columns.tolist())
-
-    # print(players_only_df['Season'].unique().tolist())
-
-    # convert the season column to an integer
-
     print(f"Printing selected season: {selected_season}\n selected_season datatype:{type(selected_season)}")
 
     # print(selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5)
@@ -1055,6 +1049,23 @@ def process_player_data(players_only_df):
 
     # create selectbox for player and stat
     selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5, seasons = dropdown_for_player_stats(players_only_df, selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5)
+
+    # if there are two of the same stat selected, change the second one to the next stat in the list
+    default_stats = [
+    'Shot Creating Actions', 
+    'Assists Plus Expected Assisted Goals', 
+    'Progressive Passes Received', 
+    'Passes Into Penalty Area', 
+    'Dead Balls Leading To Shots'
+    ]
+
+    selected_stats = [selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5]
+
+    for i, stat in enumerate(selected_stats):
+        if selected_stats.count(stat) > 1:
+            # Find the next stat in the default list
+            next_index = (default_stats.index(stat) + 1) % len(default_stats)
+            selected_stats[i] = default_stats[next_index]
 
     # if the player_only_df columns contain lowercase player or season rename them to Player and Season
     if 'player' in players_only_df.columns.tolist():
@@ -1085,6 +1096,9 @@ def process_player_data(players_only_df):
     print(f"Printing player_df: {player_df}")
     print(f"Printing stats_values: {stats_values}")
 
+    ranks = [sorted(stats_values, reverse=True).index(val) + 1 for val in stats_values]  # This gives ranks in descending order
+
+
     # create a five point chart for the players top 5 per90 stats
     fig = px.line_polar(
         player_df,
@@ -1092,13 +1106,58 @@ def process_player_data(players_only_df):
         theta=[selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5],
         line_close=True,
         title=f"{selected_player}'s Stats",
-        color_discrete_sequence=['#7FDBFF'],
+        color_discrete_sequence=px.colors.sequential.Plasma_r,
+        color=[selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5],
         template='plotly_dark',
         render_mode='svg'
 
     )
 
     st.info(f"Displaying {selected_player}'s stats for {selected_season}")
+
+    fig2 = px.bar_polar(
+    player_df,
+    r=stats_values,
+    theta=selected_stats,
+    color=selected_stats,
+    color_discrete_sequence=px.colors.sequential.Plasma_r,
+    title=f"{selected_player}'s Stats",
+    template='plotly_dark'
+)
+
+    fig.update_layout(
+        polar=dict(
+            radialaxis=dict(
+                visible=True,
+                range=[0, max(stats_values) + 0.5]
+            )
+        ),
+        bargap=0.2,
+        bargroupgap=0.1,
+        hovermode="x",
+        hoverdistance=100,  # Distance to show hover label of data point
+        spikedistance=1000,  # Distance to show spike
+        showlegend=False,  # Hide the legend
+        hoverlabel=dict(
+            font=dict(
+                color='black'  # Setting hover label font color to dark
+            ),
+            bgcolor='white'  # Setting hover label background color to white
+        )
+    )
+
+    # Data trace adjustments
+    fig2.data[0].update(
+        marker_line_color="black",
+        marker_line_width=2,
+        opacity=0.8,
+        width=1,
+        hovertemplate="<b>%{theta}</b><br><br>" + "%{r}<br>" + "<extra></extra>",
+        customdata=ranks  # Pass the ranks as custom data
+
+    )
+
+    st.plotly_chart(fig2, theme="streamlit", use_container_width=True)
     st.plotly_chart(fig, theme="streamlit", use_container_width=True)
 
     # create a dataframe for the selected player
