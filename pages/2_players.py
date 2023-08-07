@@ -77,6 +77,7 @@ def app_process(raw_data):
 
     # ligue_1_df = big5_players_data[big5_players_data['League'] == 'Ligue 1']
 
+@st.cache_resource
 def normalize_and_clean_data(df):
     
     print(f"Running normalize_and_clean_data function...")

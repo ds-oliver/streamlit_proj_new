@@ -1093,7 +1093,6 @@ def process_player_data(players_only_df):
         line_close=True,
         title=f"{selected_player}'s Stats",
         color_discrete_sequence=['#7FDBFF'],
-        direction='clockwise',
         template='plotly_dark',
         render_mode='svg'
 
