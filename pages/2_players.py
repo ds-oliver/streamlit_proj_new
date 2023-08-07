@@ -16,6 +16,8 @@ import warnings
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import StandardScaler
 import unicodedata
+import plotly.graph_objects as go
+
 
 warnings.filterwarnings('ignore')
 
@@ -34,7 +36,7 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 @st.cache_resource
-def app(raw_data):
+def app_process(raw_data):
     # load player data from csv
     big5_players_data = pd.read_csv(big5_players_csv)
 
@@ -65,67 +67,56 @@ def app(raw_data):
     # create a df for each league
     premier_league_df = big5_players_data[big5_players_data['League'] == 'Premier League']
 
-    bundesliga_df = big5_players_data[big5_players_data['League'] == 'Bundesliga']
+    return premier_league_df
 
-    serie_a_df = big5_players_data[big5_players_data['League'] == 'Serie A']
+    # bundesliga_df = big5_players_data[big5_players_data['League'] == 'Bundesliga']
 
-    la_liga_df = big5_players_data[big5_players_data['League'] == 'La Liga']
+    # serie_a_df = big5_players_data[big5_players_data['League'] == 'Serie A']
 
-    ligue_1_df = big5_players_data[big5_players_data['League'] == 'Ligue 1']
+    # la_liga_df = big5_players_data[big5_players_data['League'] == 'La Liga']
 
+    # ligue_1_df = big5_players_data[big5_players_data['League'] == 'Ligue 1']
 
-    # get per90 stats for each player by dividing each numerical column by the 90s column
-    for df in [premier_league_df, bundesliga_df, serie_a_df, la_liga_df, ligue_1_df]:
-        # set index to 'Player', 'Nation', 'Pos', 'Squad', 'Comp', 'Matches', 'Position Category', 'League'
-        # drop 'Matches Played', 'Rk', 'Born', 'Age', 'Games Played', 'Minutes Played'
-        df_cols = ['Matches Played', 'Rk', 'Born', 'Age', 'Games Played', 'Minutes Played']
-        for col in df_cols:
-            if col in df.columns:
-                df.drop(col, axis=1, inplace=True)
-            else:
-                continue
-
-        df.set_index(['Player', 'Nation', 'Pos', 'Team', 'Matches', 'Position Category', 'League', 'Season'], inplace=True)
-        # divide each column by the 90s column
-        df_cols = df.columns.tolist()
-
-        for col in df_cols:
-            # avoid calculating per90s on 90s column and any with % or percent in the name
-            if col != '90s' and '%' not in col and 'percent' not in col and 'per90' not in col and 'Per90' not in col and 'Per 90' not in col and 'per 90' not in col and 'Minutes' not in col:
-                df[f"{col} Per90"] = df[col] / df['90s']
-                # normalize the per90 columns by dividing by the max value and handling 0s
-                df_norm = df.copy()
-
-                df_norm[f"{col} Per90"] = df[f"{col} Per90"].apply(lambda x: x / df[f"{col} Per90"].max() if x != 0 else 0)
-
-    # reset index for each df and rename columns, drop 90s column
-    for df in [premier_league_df, bundesliga_df, serie_a_df, la_liga_df, ligue_1_df]:
-        df.reset_index(inplace=True)
-        df = df.drop('90s', axis=1)
-
-    # check columns that have a range between
-    # rename columns using the rename_columns function
-    premier_league_df = rename_columns(premier_league_df)
-    bundesliga_df = rename_columns(bundesliga_df)
-    serie_a_df = rename_columns(serie_a_df)
-    la_liga_df = rename_columns(la_liga_df)
-    ligue_1_df = rename_columns(ligue_1_df)
-
-    print(premier_league_df[premier_league_df['Season'] == '2023'].head(10))
-
-    pl_2023 = premier_league_df[premier_league_df['Season'] == '2023']
-
-    print(pl_2023['Assists'].describe())
-
-    # print(premier_league_df.columns)
-
-    print(premier_league_df.columns)
+@st.cache_resource
+def normalize_and_clean_data(df):
     
-    return premier_league_df, bundesliga_df, serie_a_df, la_liga_df, ligue_1_df
+    print(f"Running normalize_and_clean_data function...")
+    # Drop unnecessary columns
+    df = df.drop(['Matches Played', 'Rk', 'Born', 'Age', 'Games Played', 'Minutes Played', 'Matches'], axis=1, errors='ignore')
+    
+    # Set new index
+    idx_cols = ['Player', 'Nation', 'Pos', 'Team', 'Position Category', 'League', 'Season']
+    if all(col in df.columns for col in idx_cols):
+        df.set_index(idx_cols, inplace=True)
 
-premier_league_df, bundesliga_df, serie_a_df, la_liga_df, ligue_1_df = app(big5_players_csv)
+    print(f"Columns after dropping unnecessary columns and setting index: {df.columns.tolist()}")
 
-premier_league_df = process_player_data(premier_league_df)
+
+    for col in df.columns:
+        # Check column data type and other conditions before processing
+        if df[col].dtype in ['int64', 'float64'] and '90s' not in col and '%' not in col and 'percent' not in col and 'per90' not in col and 'Per90' not in col and 'Per 90' not in col and 'per 90' not in col and 'Minutes' not in col:
+            df[f"{col} Per90"] = df[col] / df['90s']
+            # Normalize the per90 columns by dividing by the max value and handling 0s
+            df[f"{col} Per90"] = df[f"{col} Per90"].apply(lambda x: x / df[f"{col} Per90"].max() if x != 0 else 0)
+    df = df.drop('90s', axis=1, errors='ignore')
+
+    # reset index
+    df = df.reset_index()
+
+    # Assuming rename_columns function exists and is valid
+    df = rename_columns(df)
+
+    print(df.columns.tolist())
+
+    return df
+
+premier_league_df = app_process(big5_players_csv)
+
+premier_league_df = normalize_and_clean_data(premier_league_df)
+
+player_df = process_player_data(premier_league_df)
+
+st.write(player_df.head())
 
 
 # turn the values into percentiles

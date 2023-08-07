@@ -13,7 +13,8 @@ from matplotlib.colors import LinearSegmentedColormap
 import plost
 import plotly.express as px
 from sklearn.preprocessing import MinMaxScaler
-
+import plotly.graph_objects as go
+import warnings
 
 sys.path.append(os.path.abspath(os.path.join('./scripts')))
 
@@ -937,17 +938,21 @@ def dropdown_for_player_stats(players_only_df, selected_player, selected_season,
     # create a dropdown menu for the players
     selected_player = st.sidebar.selectbox('Select Player', players, index=players.index(selected_player))
 
-    # create a list of all seasons
-    seasons = players_only_df['Season'].unique().tolist()
+    # we should only display seasons that the player has played in
+
+    seasons = players_only_df[players_only_df['Player'] == selected_player]['Season'].unique().tolist()
 
     print(f"Printing seasons: {seasons}")
 
     print(f"Printing selected season: {selected_season}")
 
+    if selected_season not in seasons:
+        selected_season = seasons[0]
+
     # create a dropdown menu for the seasons
     selected_season = st.sidebar.selectbox('Select Season', seasons, index=seasons.index(selected_season))
 
-    exclude_stats_list = ['Matches Played', 'Rk', 'Born', 'Age', 'Games Played', 'Minutes Played', 'Player', 'Nation', 'Pos', 'Team', 'Matches', 'Position Category', 'League', 'Season']
+    exclude_stats_list = ['Matches Played', 'Rk', 'Born', 'Age', 'Games Played', 'Minutes Played', 'Player', 'Nation', 'Pos', 'Team', 'Matches', 'Position Category', 'League', 'Season', '90S']
 
     # get stats that are not in that list and that are not of type object
 
@@ -996,29 +1001,7 @@ def dropdown_for_player_stats(players_only_df, selected_player, selected_season,
         selected_stat5 = st.sidebar.selectbox('Select Stat 5', stats, index=stats.index(selected_stat5))
 
 
-    return selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5
-
-def min_max_scale(df):
-    # Select only numeric columns
-    numeric_cols = df.select_dtypes(include=[np.number]).columns
-
-    # Initialize a scaler
-    scaler = MinMaxScaler()
-
-    # Replace infinities with NaN, then NaN with 0
-    df[numeric_cols].replace([np.inf, -np.inf], np.nan, inplace=True)
-    df[numeric_cols].fillna(0, inplace=True)
-
-    # Fit and transform the data
-    df[numeric_cols] = scaler.fit_transform(df[numeric_cols])
-
-    return df
-
-def convert_to_int(item):
-    if isinstance(item, list):
-        return [int(i) for i in item]
-    else:
-        return int(item)
+    return selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5, seasons
 
 def process_player_data(players_only_df):
 
@@ -1054,7 +1037,7 @@ def process_player_data(players_only_df):
     # print(selected_season)
 
     # create selectbox for player and stat
-    selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5 = dropdown_for_player_stats(players_only_df, selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5)
+    selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5, seasons = dropdown_for_player_stats(players_only_df, selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5)
 
     # if the player_only_df columns contain lowercase player or season rename them to Player and Season
     if 'player' in players_only_df.columns.tolist():
@@ -1063,19 +1046,67 @@ def process_player_data(players_only_df):
         players_only_df = players_only_df.rename(columns={'season': 'Season'})
         # print unique seasons 
         
+    # check to make sure that the selected season is in the players_only_df
+    if selected_season in seasons:
+        # filter the dataframe by the selected player and season
+        player_df = players_only_df[(players_only_df['Player'] == selected_player) & (players_only_df['Season'] == selected_season)]
+    else:
+        selected_season = seasons[0]
+        player_df = players_only_df[(players_only_df['Player'] == selected_player) & (players_only_df['Season'] == selected_season)]
+
     # filter the dataframe by the selected player and season
     player_df = players_only_df[(players_only_df['Player'] == selected_player) & (players_only_df['Season'] == selected_season)]
+
+    stats_values = [
+    player_df[selected_stat1].values[0],
+    player_df[selected_stat2].values[0],
+    player_df[selected_stat3].values[0],
+    player_df[selected_stat4].values[0],
+    player_df[selected_stat5].values[0]
+    ]
+
+    st.write(stats_values)
 
     # create a five point chart for the players top 5 per90 stats
     fig = px.line_polar(
         player_df,
-        r=[player_df[selected_stat1].mean(), player_df[selected_stat2].mean(), player_df[selected_stat3].mean(), player_df[selected_stat4].mean(), player_df[selected_stat5].mean()],
+        r=stats_values,
         theta=[selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5],
         line_close=True,
-        title=f"{selected_player}'s Top 5 Per90 Stats",
+        title=f"{selected_player}'s Stats",
         color_discrete_sequence=['#7FDBFF'],
+        template='plotly_dark',
+        render_mode='svg'
+
     )
 
-    st.info(f"Displaying {selected_player}'s top 5 Per90 stats for {selected_season}")
+    st.info(f"Displaying {selected_player}'s stats for {selected_season}")
     st.plotly_chart(fig, theme="streamlit", use_container_width=True)
 
+    # create a dataframe for the selected player
+    st.write(stats_values)
+
+    return player_df
+
+
+def min_max_scale(df):
+    # Select only numeric columns
+    numeric_cols = df.select_dtypes(include=[np.number]).columns
+
+    # Initialize a scaler
+    scaler = MinMaxScaler()
+
+    # Replace infinities with NaN, then NaN with 0
+    df[numeric_cols].replace([np.inf, -np.inf], np.nan, inplace=True)
+    df[numeric_cols].fillna(0, inplace=True)
+
+    # Fit and transform the data
+    df[numeric_cols] = scaler.fit_transform(df[numeric_cols])
+
+    return df
+
+def convert_to_int(item):
+    if isinstance(item, list):
+        return [int(i) for i in item]
+    else:
+        return int(item)
