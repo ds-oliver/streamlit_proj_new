@@ -70,48 +70,19 @@ def app_display(selected_teams_df, selected_team, selected_opponent):
 
     match_quick_facts(results_df, selected_team, selected_opponent)
 
-    # print out categorical columns
-    # print(big5_players_data.select_dtypes(include=['object']).columns)
+def app():
+    
+    # title
+    st.title('Matchups')
 
-    # drop Comp column
-    big5_players_data.drop('Comp', axis=1, inplace=True)
+    # sidebar
+    st.sidebar.header('Matchups')
 
-    # strip whitespace and unidecode the player names, league values and team values
-    big5_players_data['Player'] = big5_players_data['Player'].str.strip()
-    big5_players_data['Player'] = big5_players_data['Player'].str.normalize('NFKD').str.encode('ascii', errors='ignore').str.decode('utf-8')
-    big5_players_data['League'] = big5_players_data['League'].str.strip()
-    big5_players_data['League'] = big5_players_data['League'].str.normalize('NFKD').str.encode('ascii', errors='ignore').str.decode('utf-8')
-    big5_players_data['Squad'] = big5_players_data['Squad'].str.strip()
-    big5_players_data['Squad'] = big5_players_data['Squad'].str.normalize('NFKD').str.encode('ascii', errors='ignore').str.decode('utf-8')
+    # load data
+    players_matches_data, teams_matches_data = app_processing(players_matches_csv)
 
-    # create multiselect for seasons
-    seasons = create_multiselect_seasons(big5_players_data)
+    # selections
+    selected_teams_df, selected_team, selected_opponent = app_selections(players_matches_data, teams_matches_data)
 
-    # create multiselect for teams
-    teams = create_dropdown_teams(big5_players_data)
-
-    # create multiselect for opponents
-    opponents = create_dropdown_teams(big5_players_data)
-
-    # create multiselect for player names
-    player_names = create_dropdown_teams(big5_players_data)
-
-    # filter df by team and opponent
-    df = filter_df_by_team_and_opponent(big5_players_data, teams, opponents)
-
-    # display qual stats
-    display_qual_stats(df)
-
-    # display quant stats
-    display_quant_stats(df)
-
-    # get results df
-    results_df = get_results_df(df)
-
-    # match quick facts
-    match_quick_facts(results_df)
-
-    # get teams stats
-    teams_stats = get_teams_stats(results_df)
-
-    # show
+    # display
+    app_display(selected_teams_df, selected_team, selected_opponent)

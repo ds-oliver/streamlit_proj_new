@@ -1072,7 +1072,8 @@ def process_player_data(players_only_df):
         r=[player_df[selected_stat1].mean(), player_df[selected_stat2].mean(), player_df[selected_stat3].mean(), player_df[selected_stat4].mean(), player_df[selected_stat5].mean()],
         theta=[selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5],
         line_close=True,
-        title=f"{selected_player}'s Top 5 Per90 Stats"
+        title=f"{selected_player}'s Top 5 Per90 Stats",
+        color_discrete_sequence=['#7FDBFF'],
     )
 
     st.info(f"Displaying {selected_player}'s top 5 Per90 stats for {selected_season}")
