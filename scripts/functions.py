@@ -929,11 +929,42 @@ def rename_columns(df):
     
     return df.rename(columns=rename_dict)
 
+def create_stat_dropdown(stat_name, stat_list, current_stat, default_stat):
+    """
+    Creates a dropdown menu for the given stat and returns the selected stat.
+    """
+    if current_stat not in stat_list:
+        current_stat = default_stat
+    return st.sidebar.selectbox(f'Select {stat_name}', stat_list, index=stat_list.index(current_stat))
+
+def dropdown_for_stat_selection(label, stats, selected_stat):
+    """Helper function for stats dropdown creation."""
+    if selected_stat not in stats:
+        selected_stat = stats[0]
+    return st.sidebar.selectbox(label, stats, index=stats.index(selected_stat))
+
+def dropdown_for_player_stats(players_only_df, selected_player, selected_season, *selected_stats):
+    # Code related to players and seasons stays the same...
+
+    exclude_stats_list = [
+        'Matches Played', 'Rk', 'Born', 'Age', 'Games Played', 'Minutes Played', 'Player', 
+        'Nation', 'Pos', 'Team', 'Matches', 'Position Category', 'League', 'Season', '90S'
+    ]
+
+    stats = players_only_df.select_dtypes(exclude=['object']).columns.tolist()
+    stats = [stat for stat in stats if stat not in exclude_stats_list]
+
+    selected_stats = [
+        dropdown_for_stat_selection(f'Select Stat {i+1}', stats, selected_stat)
+        for i, selected_stat in enumerate(selected_stats)
+    ]
+
+    return selected_player, selected_season, *selected_stats, seasons, all_seasons_selected
 
 def dropdown_for_player_stats(players_only_df, selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5):
 
-    # create a list of all the players
-    players = players_only_df['Player'].unique().tolist()
+    # create a list of all the players, sorted by team, then season
+    players = players_only_df.sort_values(by=['Team', 'Season'])['Player'].unique().tolist()
 
     # create a dropdown menu for the players
     selected_player = st.sidebar.selectbox('Select Player', players, index=players.index(selected_player))
@@ -951,6 +982,14 @@ def dropdown_for_player_stats(players_only_df, selected_player, selected_season,
 
     # create a dropdown menu for the seasons
     selected_season = st.sidebar.selectbox('Select Season', seasons, index=seasons.index(selected_season))
+
+    # selected_season = st.slider('Select Season', min_value=min(seasons), max_value=max(seasons), value=selected_season, step=1)
+
+    all_seasons = st.sidebar.checkbox('All Seasons', value=False)
+    all_seasons_selected = all_seasons  # New variable to determine if all seasons are selected
+
+    if all_seasons:
+        selected_season = seasons[0]
 
     exclude_stats_list = ['Matches Played', 'Rk', 'Born', 'Age', 'Games Played', 'Minutes Played', 'Player', 'Nation', 'Pos', 'Team', 'Matches', 'Position Category', 'League', 'Season', '90S']
 
@@ -1002,117 +1041,65 @@ def dropdown_for_player_stats(players_only_df, selected_player, selected_season,
         selected_stat5 = st.sidebar.selectbox('Select Stat 5', stats, index=stats.index(selected_stat5))
 
 
-    return selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5, seasons
+    return selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5, seasons, all_seasons_selected
 
 def process_player_data(players_only_df):
-
-    selected_player = 'Bruno Fernandes'
-    
-    selected_season = '2023'
-
-    selected_stat1 = 'Shot Creating Actions'
-    selected_stat2 = 'Assists Plus Expected Assisted Goals'
-    selected_stat3 = 'xAg'
-    selected_stat4 = 'Shot Creating Actions'
-    selected_stat5 = 'Dead Balls Leading To Shots'
-
-    # selected_stats = [selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5]
-
-    # for stat in selected_stats:
-    #     if stat == selected_stat1 and selected_stat1 not in players_only_df.columns.tolist():
-    #         selected_stat1 = 'Shot Creating Actions'
-    #     elif stat == selected_stat2 and selected_stat2 not in players_only_df.columns.tolist():
-    #         selected_stat2 = 'Assists Plus Expected Assisted Goals'
-    #     elif stat == selected_stat3 and selected_stat3 not in players_only_df.columns.tolist():
-    #         selected_stat3 = 'Progressive Passes Received'
-    #     elif stat == selected_stat4 and selected_stat4 not in players_only_df.columns.tolist():
-    #         selected_stat4 = 'Passes Into Penalty Area'
-    #     elif stat == selected_stat5 and selected_stat5 not in players_only_df.columns.tolist():
-    #         selected_stat5 = 'Dead Balls Leading To Shots'
-    #     else:
-    #         continue
-
-    # make sure the season column is an integer
-    players_only_df['Season'] = players_only_df['Season'].astype(int)
-
-    # convert selected_season to an integer
-    selected_season = convert_to_int(selected_season)
-
-    # print the objects to see what they are
-    print(selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5)
-
-    print(f"Printing selected season: {selected_season}\n selected_season datatype:{type(selected_season)}")
-
-    # print(selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5)
-
-    # print(selected_season)
-
-    # create selectbox for player and stat
-    selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5, seasons = dropdown_for_player_stats(players_only_df, selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5)
-
-    # if there are two of the same stat selected, change the second one to the next stat in the list
+    # 1. Set default values
     default_stats = [
-    'Shot Creating Actions', 
-    'Assists Plus Expected Assisted Goals', 
-    'Progressive Passes Received', 
-    'Passes Into Penalty Area', 
-    'Dead Balls Leading To Shots'
+        'Shot Creating Actions', 
+        'Assists Plus Expected Assisted Goals', 
+        'Progressive Passes Received', 
+        'Passes Into Penalty Area', 
+        'Dead Balls Leading To Shots'
     ]
 
+    # 2. Get values from the dropdowns
+    selected_data = dropdown_for_player_stats(players_only_df, 'Bruno Fernandes', '2023', *default_stats)
+    selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5, seasons, all_seasons_selected = selected_data
+
+    # 3. Ensure uniqueness of selected stats
+    def ensure_unique_stats(stats_list, default_list):
+        for i, stat in enumerate(stats_list):
+            while stats_list.count(stat) > 1:
+                next_index = (default_list.index(stat) + 1) % len(default_list)
+                stat = default_list[next_index]
+            stats_list[i] = stat
+        return stats_list
+
     selected_stats = [selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5]
+    selected_stats = ensure_unique_stats(selected_stats, default_stats)
+    selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5 = selected_stats
 
-    for i, stat in enumerate(selected_stats):
-        if selected_stats.count(stat) > 1:
-            # Find the next stat in the default list
-            next_index = (default_stats.index(stat) + 1) % len(default_stats)
-            selected_stats[i] = default_stats[next_index]
+    # 4. Convert the season column and selected season to integers
+    players_only_df['Season'] = players_only_df['Season'].astype(int)
+    selected_season = int(selected_season)
 
-    # if the player_only_df columns contain lowercase player or season rename them to Player and Season
+    # 5. Handle column normalization
     if 'player' in players_only_df.columns.tolist():
         players_only_df = players_only_df.rename(columns={'player': 'Player'})
     if 'season' in players_only_df.columns.tolist():
         players_only_df = players_only_df.rename(columns={'season': 'Season'})
-        # print unique seasons 
-        
-    # check to make sure that the selected season is in the players_only_df
-    if selected_season in seasons:
-        # filter the dataframe by the selected player and season
+
+    # 6. Filter data based on selections
+    if all_seasons_selected:
+        player_df = players_only_df[players_only_df['Player'] == selected_player]
+    elif selected_season in seasons:
         player_df = players_only_df[(players_only_df['Player'] == selected_player) & (players_only_df['Season'] == selected_season)]
     else:
         selected_season = seasons[0]
         player_df = players_only_df[(players_only_df['Player'] == selected_player) & (players_only_df['Season'] == selected_season)]
 
-    # filter the dataframe by the selected player and season
-    player_df = players_only_df[(players_only_df['Player'] == selected_player) & (players_only_df['Season'] == selected_season)]
-
+    # 7. Prepare data for the chart
     stats_values = [
-    player_df[selected_stat1].values[0],
-    player_df[selected_stat2].values[0],
-    player_df[selected_stat3].values[0],
-    player_df[selected_stat4].values[0],
-    player_df[selected_stat5].values[0]
+        player_df[selected_stat1].values[0],
+        player_df[selected_stat2].values[0],
+        player_df[selected_stat3].values[0],
+        player_df[selected_stat4].values[0],
+        player_df[selected_stat5].values[0]
     ]
-
-    print(f"Printing player_df: {player_df}")
-    print(f"Printing stats_values: {stats_values}")
-
     ranks = [sorted(stats_values, reverse=True).index(val) + 1 for val in stats_values]  # This gives ranks in descending order
 
-
-    # create a five point chart for the players top 5 per90 stats
-    fig = px.line_polar(
-        player_df,
-        r=stats_values,
-        theta=[selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5],
-        line_close=True,
-        title=f"{selected_player}'s Stats",
-        color_discrete_sequence=px.colors.sequential.Plasma_r,
-        color=[selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5],
-        template='plotly_dark',
-        render_mode='svg'
-
-    )
-
+    # 8. Plot chart using Plotly
     st.info(f"Displaying {selected_player}'s stats for {selected_season}")
 
     fig2 = px.bar_polar(
@@ -1121,18 +1108,18 @@ def process_player_data(players_only_df):
     theta=selected_stats,
     color=selected_stats,
     color_discrete_sequence=px.colors.sequential.Plasma_r,
-    title=f"{selected_player}'s Stats",
-    template='plotly_dark'
-)
+    title=f"{selected_player}'s Stats"
+    # template='plotly_dark'
+    )
 
-    fig.update_layout(
+    fig2.update_layout(
         polar=dict(
             radialaxis=dict(
                 visible=True,
-                range=[0, max(stats_values) + 0.5]
+                range=[0, max(stats_values) + 0.05]
             )
         ),
-        bargap=0.2,
+        bargap=0.6,
         bargroupgap=0.1,
         hovermode="x",
         hoverdistance=100,  # Distance to show hover label of data point
@@ -1140,9 +1127,10 @@ def process_player_data(players_only_df):
         showlegend=False,  # Hide the legend
         hoverlabel=dict(
             font=dict(
-                color='black'  # Setting hover label font color to dark
+                color='black',  # Setting hover label font color to dark
+                size=15  # Increase font size for better visibility
             ),
-            bgcolor='white'  # Setting hover label background color to white
+            bgcolor='rgba(255,255,255,0.7)'  # Setting hover label background color to semi-transparent white
         )
     )
 
@@ -1158,7 +1146,21 @@ def process_player_data(players_only_df):
     )
 
     st.plotly_chart(fig2, theme="streamlit", use_container_width=True)
-    st.plotly_chart(fig, theme="streamlit", use_container_width=True)
+
+    # # create a five point chart for the players top 5 per90 stats
+    # fig = px.line_polar(
+    #     player_df,
+    #     r=stats_values,
+    #     theta=[selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5],
+    #     line_close=True,
+    #     title=f"{selected_player}'s Stats",
+    #     color_discrete_sequence=px.colors.sequential.Plasma_r,
+    #     color=[selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5],
+    #     template='plotly_dark',
+    #     render_mode='svg'
+
+    # )
+    # st.plotly_chart(fig, theme="streamlit", use_container_width=True)
 
     # create a dataframe for the selected player
     st.write(stats_values)

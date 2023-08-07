@@ -67,7 +67,26 @@ def app_process(raw_data):
     # create a df for each league
     premier_league_df = big5_players_data[big5_players_data['League'] == 'Premier League']
 
-    return premier_league_df
+    # create df for seasons 2017-2023
+    # seasons_list 
+    # get seasons dtype
+
+    seasons_list = [2017, 2018, 2019, 2020, 2021, 2022, 2023]
+    premier_league_df = premier_league_df[premier_league_df['Season'].isin(seasons_list)]
+
+    # create df for each season
+    pl_2017_df = premier_league_df[premier_league_df['Season'] == 2017]
+    pl_2018_df = premier_league_df[premier_league_df['Season'] == 2018]
+    pl_2019_df = premier_league_df[premier_league_df['Season'] == 2019]
+    pl_2020_df = premier_league_df[premier_league_df['Season'] == 2020]
+    pl_2021_df = premier_league_df[premier_league_df['Season'] == 2021]
+    pl_2022_df = premier_league_df[premier_league_df['Season'] == 2022]
+    pl_2023_df = premier_league_df[premier_league_df['Season'] == 2023]
+
+    # create a list of dfs for each season
+    pl_dfs = [pl_2017_df, pl_2018_df, pl_2019_df, pl_2020_df, pl_2021_df, pl_2022_df, pl_2023_df]
+
+    return premier_league_df, pl_dfs
 
     # bundesliga_df = big5_players_data[big5_players_data['League'] == 'Bundesliga']
 
@@ -77,85 +96,164 @@ def app_process(raw_data):
 
     # ligue_1_df = big5_players_data[big5_players_data['League'] == 'Ligue 1']
 
-@st.cache_resource
 def normalize_and_clean_data(df):
-    
+
     print(f"Running normalize_and_clean_data function...")
+
     # Drop unnecessary columns
     print(f"Columns before dropping unnecessary columns: {df.columns.tolist()}")
     df = df.drop(['Rk', 'matches_played', 'games_started', 'Born', 'Age', 'Games Played', 'minutes_played', 'Matches', 'League'], axis=1, errors='ignore')
-    
-    # Set new index
-    idx_cols = ['Player', 'Nation', 'Pos', 'Team', 'Position Category', 'Season']
-    if all(col in df.columns for col in idx_cols):
-        df.set_index(idx_cols, inplace=True)
 
-    print(f"Columns after dropping unnecessary columns and setting index: {df.columns.tolist()}")
+    # Define idx_cols
+    idx_cols = ['Player', 'Nation', 'Pos', 'Team', 'Position Category']
 
-    # print out columns grouped by data type and count
+    # Print out columns grouped by data type and count
     print(df.columns.to_series().groupby(df.dtypes).count())
     print(f"Total columns: {len(df.columns)}")
 
     print(f"Normalizing cols...")
-    list_of_cols_passed = []
-    cols_to_convert_to_per90s = [col for col in df.columns if df[col].dtype in ['int64', 'float64'] and '90s' not in col and '%' not in col and 'percent' not in col and 'per90' not in col and 'Per90' not in col and 'Per 90' not in col and 'per 90' not in col and 'Minutes' not in col]
+    list_of_cols_passed = set()
+
+    cols_to_convert_to_per90s = [col for col in df.columns if df[col].dtype in ['int64', 'float64'] and 'Season' not in col and '90s' not in col and '%' not in col and 'percent' not in col and 'per90' not in col and 'Per90' not in col and 'Per 90' not in col and 'per 90' not in col and 'Minutes' not in col]
 
     cols_to_skip = [col for col in df.columns if col not in cols_to_convert_to_per90s]
     print(f"Cols to skip: {cols_to_skip}")
     print(f"Cols to pass: {cols_to_convert_to_per90s}")
-    # Get the columns to convert
-    # Loop through the columns and convert them
-    for col in cols_to_convert_to_per90s:
-        df[f"{col} Per90"] = df.apply(lambda row: row[col] / row['90s'] if row['90s'] != 0 else 0, axis=1)
-        max_val = df[f"{col} Per90"].max()
-        df[f"{col} Per90"] = df[f"{col} Per90"].apply(lambda x: x / abs(max_val) if x != 0 else 0)
-        # drop the original col, then rename the new col to the original col name
-        df = df.drop(col, axis=1, errors='ignore')
-        df = df.rename(columns={f"{col} Per90": col})
 
-        
-        # append the new col name to list of cols passed
-        list_of_cols_passed.append(col)
+    # Automate season DataFrame creation
+    seasons = [2017, 2018, 2019, 2020, 2021, 2022, 2023]
+    pl_dfs = [df[df['Season'] == season].copy() for season in seasons]
+
+    # Create an empty DataFrame to hold the normalized data for all seasons
+    all_seasons_normalized_df = pd.DataFrame()
+
+    for season_df in pl_dfs:
+    # Perform normalization on the current season's dataframe
+        for col in cols_to_convert_to_per90s:
+            season_df[f"{col} Per90"] = np.where(season_df['90s'] != 0, season_df[col] / season_df['90s'], 0)
+            
+            # Use Min-Max normalization
+            min_val = season_df[f"{col} Per90"].min()
+            max_val = season_df[f"{col} Per90"].max()
+            season_df[f"{col} Per90"] = (season_df[f"{col} Per90"] - min_val) / (max_val - min_val)
+
+            # Drop the original col, then rename the new col to the original col name
+            season_df.drop(col, axis=1, errors='ignore', inplace=True)
+            season_df.rename(columns={f"{col} Per90": col}, inplace=True)
+
+            # Append the new col name to the set of cols passed
+            list_of_cols_passed.add(col)
+
+        # Append the normalized data of the current season to the all_seasons_normalized_df
+        all_seasons_normalized_df = pd.concat([all_seasons_normalized_df, season_df], ignore_index=True)
 
     print(f"Normalizing complete...")
 
-    df = df.drop('90s', axis=1, errors='ignore')
+    df = all_seasons_normalized_df.drop('90s', axis=1, errors='ignore')
 
     print(f"List of cols passed: {list_of_cols_passed}")
     print(f"Cols passed minus cols skipped: {len(list_of_cols_passed) - len(cols_to_skip)}")
-    #print total new cols
     print(f"Total new cols: {len(df.columns)}")
 
-    # reset index
-    df = df.reset_index()
-
-    # new df only keeping idx_cols and list_of_cols_passed 
-    df = df[idx_cols + list_of_cols_passed]
+    # Subset the dataframe
+    df = df[idx_cols + ['Season'] + list(list_of_cols_passed)]
 
     # Assuming rename_columns function exists and is valid
     df = rename_columns(df)
 
     print(f"Columns after normalizing and cleaning: {df.columns.tolist()}")
 
-    # check that columns are between 0 and 1
-    if df[col].min() >= 0 and df[col].max() <= 1:
-        print(f"{col} is between 0 and 1")
-    
-    # print cols that have negative values
-    # check that columns are between 0 and 1, take the absolute value if negative
-    for col in df.columns:
-        if df[col].dtype in ['int64', 'float64'] and df[col].min() < 0:
-            df[col] = df[col].apply(lambda x: abs(x))
-        elif df[col].dtype in ['int64', 'float64'] and df[col].min() >= 0 and df[col].max() <= 1:
-            print(f"{col} is between 0 and 1")
-
     return df
 
-premier_league_df = app_process(big5_players_csv)
+premier_league_df, _ = app_process(big5_players_csv)
 
 premier_league_df = normalize_and_clean_data(premier_league_df)
 
 player_df = process_player_data(premier_league_df)
+
+
+# def normalize_and_clean_data(df, list_of_dfs):
+    
+#     print(f"Running normalize_and_clean_data function...")
+#     # Drop unnecessary columns
+#     print(f"Columns before dropping unnecessary columns: {df.columns.tolist()}")
+#     df = df.drop(['Rk', 'matches_played', 'games_started', 'Born', 'Age', 'Games Played', 'minutes_played', 'Matches', 'League'], axis=1, errors='ignore')
+    
+#     # Set new index
+#     idx_cols = ['Player', 'Nation', 'Pos', 'Team', 'Position Category', 'Season']
+#     if all(col in df.columns for col in idx_cols):
+#         df.set_index(idx_cols, inplace=True)
+
+#     print(f"Columns after dropping unnecessary columns and setting index: {df.columns.tolist()}")
+
+#     # print out columns grouped by data type and count
+#     print(df.columns.to_series().groupby(df.dtypes).count())
+#     print(f"Total columns: {len(df.columns)}")
+
+#     print(f"Normalizing cols...")
+#     list_of_cols_passed = []
+#     cols_to_convert_to_per90s = [col for col in df.columns if df[col].dtype in ['int64', 'float64'] and '90s' not in col and '%' not in col and 'percent' not in col and 'per90' not in col and 'Per90' not in col and 'Per 90' not in col and 'per 90' not in col and 'Minutes' not in col]
+
+#     cols_to_skip = [col for col in df.columns if col not in cols_to_convert_to_per90s]
+#     print(f"Cols to skip: {cols_to_skip}")
+#     print(f"Cols to pass: {cols_to_convert_to_per90s}")
+
+#     seasons = [2017, 2018, 2019, 2020, 2021, 2022, 2023]
+#     pl_dfs = [df[df['Season'] == season] for season in seasons]
+
+#     # Get the columns to convert
+#     # Loop through the columns and convert them
+#     # ... [code before normalization]
+
+#     # Create an empty DataFrame to hold the normalized data for all seasons
+#     all_seasons_normalized_df = pd.DataFrame()
+
+#     for season_df in pl_dfs:  # Loop through each season's dataframe
+#         # Perform normalization on the current season's dataframe
+#         for col in cols_to_convert_to_per90s:
+#             season_df[f"{col} Per90"] = season_df.apply(lambda row: row[col] / row['90s'] if row['90s'] != 0 else 0, axis=1)
+#             max_val = season_df[f"{col} Per90"].max()
+#             season_df[f"{col} Per90"] = season_df[f"{col} Per90"].apply(lambda x: x / abs(max_val) if x != 0 else 0)
+#             # drop the original col, then rename the new col to the original col name
+#             season_df = season_df.drop(col, axis=1, errors='ignore')
+#             season_df = season_df.rename(columns={f"{col} Per90": col})
+#             # append the new col name to list of cols passed
+#             list_of_cols_passed.append(col)
+        
+#         # Append the normalized data of the current season to the all_seasons_normalized_df
+#         all_seasons_normalized_df = pd.concat([all_seasons_normalized_df, season_df])
+
+#     df = all_seasons_normalized_df  # Replace df with the combined normalized data for all seasons
+
+#     print(f"Normalizing complete...")
+
+#     df = df.drop('90s', axis=1, errors='ignore')
+
+#     print(f"List of cols passed: {list_of_cols_passed}")
+#     print(f"Cols passed minus cols skipped: {len(list_of_cols_passed) - len(cols_to_skip)}")
+#     #print total new cols
+#     print(f"Total new cols: {len(df.columns)}")
+
+#     # reset index
+#     df = df.reset_index()
+
+#     # new df only keeping idx_cols and list_of_cols_passed 
+#     df = df[idx_cols + list_of_cols_passed]
+
+#     # Assuming rename_columns function exists and is valid
+#     df = rename_columns(df)
+
+#     print(f"Columns after normalizing and cleaning: {df.columns.tolist()}")
+    
+#     # print cols that have negative values
+#     # check that columns are between 0 and 1, take the absolute value if negative
+#     for col in df.columns:
+#         if df[col].dtype in ['int64', 'float64'] and df[col].min() < 0:
+#             df[col] = df[col].apply(lambda x: abs(x))
+#         elif df[col].dtype in ['int64', 'float64'] and df[col].min() >= 0 and df[col].max() <= 1:
+#             print(f"{col} is between 0 and 1")
+
+#     return df
 
 # turn the values into percentiles
 # season_dfs = []  # list to collect all season DataFrames
