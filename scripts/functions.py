@@ -959,6 +959,7 @@ def dropdown_for_player_stats(players_only_df, selected_player, selected_season,
     stats = players_only_df.select_dtypes(exclude=['object']).columns.tolist()
 
     stats = [stat for stat in stats if stat not in exclude_stats_list]
+
     # # create a list of all the stats from the numeric columns
     # stats = players_only_df.select_dtypes(include=['float64', 'int64']).columns.tolist()
 
@@ -1015,6 +1016,20 @@ def process_player_data(players_only_df):
     selected_stat4 = 'Shot Creating Actions Per90'
     selected_stat5 = 'Interceptions Per90'
 
+    selected_stats = [selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5]
+
+    for stat in selected_stats:
+        if stat == selected_stat1 and selected_stat1 not in players_only_df.columns.tolist():
+            selected_stats.replace(selected_stat1, 'Assists Plus Expected Assisted Goals')
+        elif stat == selected_stat2 and selected_stat2 not in players_only_df.columns.tolist():
+            selected_stats.replace(selected_stat2, 'Shot Creating Actions')
+        elif stat == selected_stat3 and selected_stat3 not in players_only_df.columns.tolist():
+            selected_stats.replace(selected_stat3, 'Progressive Passes Received')
+        elif stat == selected_stat4 and selected_stat4 not in players_only_df.columns.tolist():
+            selected_stats.replace(selected_stat4, 'Dead Balls Leading To Shots')
+        elif stat == selected_stat5 and selected_stat5 not in players_only_df.columns.tolist():
+            selected_stats.replace(selected_stat5, 'Passes Into Penalty Area')
+
     # make sure the season column is an integer
     players_only_df['Season'] = players_only_df['Season'].astype(int)
 
@@ -1065,7 +1080,8 @@ def process_player_data(players_only_df):
     player_df[selected_stat5].values[0]
     ]
 
-    st.write(stats_values)
+    # print(f"Printing player_df: {player_df}")
+    # print(f"Printing stats_values: {stats_values}")
 
     # create a five point chart for the players top 5 per90 stats
     fig = px.line_polar(
@@ -1084,7 +1100,7 @@ def process_player_data(players_only_df):
     st.plotly_chart(fig, theme="streamlit", use_container_width=True)
 
     # create a dataframe for the selected player
-    st.write(stats_values)
+    # st.write(stats_values)
 
     return player_df
 

@@ -82,31 +82,74 @@ def normalize_and_clean_data(df):
     
     print(f"Running normalize_and_clean_data function...")
     # Drop unnecessary columns
-    df = df.drop(['Matches Played', 'Rk', 'Born', 'Age', 'Games Played', 'Minutes Played', 'Matches'], axis=1, errors='ignore')
+    print(f"Columns before dropping unnecessary columns: {df.columns.tolist()}")
+    df = df.drop(['Rk', 'matches_played', 'games_started', 'Born', 'Age', 'Games Played', 'minutes_played', 'Matches', 'League'], axis=1, errors='ignore')
     
     # Set new index
-    idx_cols = ['Player', 'Nation', 'Pos', 'Team', 'Position Category', 'League', 'Season']
+    idx_cols = ['Player', 'Nation', 'Pos', 'Team', 'Position Category', 'Season']
     if all(col in df.columns for col in idx_cols):
         df.set_index(idx_cols, inplace=True)
 
     print(f"Columns after dropping unnecessary columns and setting index: {df.columns.tolist()}")
 
+    # print out columns grouped by data type and count
+    print(df.columns.to_series().groupby(df.dtypes).count())
+    print(f"Total columns: {len(df.columns)}")
 
+    print(f"Normalizing cols...")
+    list_of_cols_passed = []
+    cols_to_pass = [col if df[col].dtype in ['int64', 'float64'] and '90s' not in col and '%' not in col and 'percent' not in col and 'per90' not in col and 'Per90' not in col and 'Per 90' not in col and 'per 90' not in col and 'Minutes' not in col else None for col in df.columns]
+    cols_to_skip = [col for col in df.columns if col not in cols_to_pass]
+    print(f"Cols to skip: {cols_to_skip}")
+    print(f"Cols to pass: {cols_to_pass}")
     for col in df.columns:
         # Check column data type and other conditions before processing
-        if df[col].dtype in ['int64', 'float64'] and '90s' not in col and '%' not in col and 'percent' not in col and 'per90' not in col and 'Per90' not in col and 'Per 90' not in col and 'per 90' not in col and 'Minutes' not in col:
+        if df[col].dtype in ['int64', 'float64'] and '90s' not in col and '%' not in col and 'percent' not in col and 'per90' not in col and 'per_90' not in col and 'Per 90' not in col and 'per 90' not in col and 'minutes' not in col:
             df[f"{col} Per90"] = df[col] / df['90s']
             # Normalize the per90 columns by dividing by the max value and handling 0s
             df[f"{col} Per90"] = df[f"{col} Per90"].apply(lambda x: x / df[f"{col} Per90"].max() if x != 0 else 0)
+            # drop the original col, then rename the new col to the original col name
+            df = df.drop(col, axis=1, errors='ignore')
+            df = df.rename(columns={f"{col} Per90": col})
+        # if percent in col name, divide by 100
+        elif '%' in col and 'percent' in col and df[col].dtype in ['int64', 'float64'] and '90s' not in col and 'per90' not in col and 'per_90' not in col and 'Per 90' not in col and 'per 90' not in col and 'minutes' not in col:
+            df[f"{col} Norm"] = df[col] / 100
+            # drop the original col, then rename the new col to the original col name
+            df = df.drop(col, axis=1, errors='ignore')
+            df = df.rename(columns={f"{col} Norm": col})
+            # append to list of percent cols
+        else:
+            continue
+        
+        # append the new col name to list of cols passed
+        list_of_cols_passed.append(col)
+
+    print(f"Normalizing complete...")
+
     df = df.drop('90s', axis=1, errors='ignore')
+
+    print(f"List of cols passed: {list_of_cols_passed}")
+    print(f"Cols passed minus cols skipped: {len(list_of_cols_passed) - len(cols_to_skip)}")
+    #print total new cols
+    print(f"Total new cols: {len(df.columns)}")
 
     # reset index
     df = df.reset_index()
 
+    # new df only keeping idx_cols and list_of_cols_passed 
+    df = df[idx_cols + list_of_cols_passed]
+
     # Assuming rename_columns function exists and is valid
     df = rename_columns(df)
 
-    print(df.columns.tolist())
+    print(f"Columns after normalizing and cleaning: {df.columns.tolist()}")
+
+    df_cols = df.columns.tolist()
+
+    # check that columns are between 0 and 1
+    for col in df_cols:
+        if range(0, 1) in df[col]:
+            print(f"{col} is between 0 and 1")
 
     return df
 
@@ -115,9 +158,6 @@ premier_league_df = app_process(big5_players_csv)
 premier_league_df = normalize_and_clean_data(premier_league_df)
 
 player_df = process_player_data(premier_league_df)
-
-st.write(player_df.head())
-
 
 # turn the values into percentiles
 # season_dfs = []  # list to collect all season DataFrames
