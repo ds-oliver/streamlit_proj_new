@@ -1089,7 +1089,7 @@ def process_player_data(players_only_df):
     fig = px.line_polar(
         player_df,
         r=stats_values,
-        theta=stats_values,
+        theta=[selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5],
         line_close=True,
         title=f"{selected_player}'s Stats",
         color_discrete_sequence=['#7FDBFF'],
