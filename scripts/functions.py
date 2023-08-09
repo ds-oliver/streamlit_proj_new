@@ -15,6 +15,7 @@ import plotly.express as px
 from sklearn.preprocessing import MinMaxScaler
 import plotly.graph_objects as go
 import warnings
+import requests
 
 sys.path.append(os.path.abspath(os.path.join('./scripts')))
 
@@ -1043,6 +1044,25 @@ def dropdown_for_player_stats(players_only_df, selected_player, selected_season,
 
     return selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5, seasons, all_seasons_selected
 
+def normalize_encoding(df, column_name):
+    """
+    Normalizes the encoding of a pandas DataFrame column using the unidecode library.
+
+    Parameters:
+        df (pandas DataFrame): The DataFrame containing the column to normalize.
+        column_name (str): The name of the column to normalize.
+
+    Returns:
+        pandas DataFrame: A copy of the original DataFrame with the specified column normalized.
+    """
+    # Create a copy of the original DataFrame
+    normalized_df = df.copy()
+
+    # Normalize the encoding of the specified column using unidecode
+    normalized_df[column_name] = normalized_df[column_name].apply(unidecode)
+
+    return normalized_df
+
 def process_player_data(players_only_df):
     # 1. Set default values
     default_stats = [
@@ -1167,7 +1187,6 @@ def process_player_data(players_only_df):
 
     return player_df
 
-
 def min_max_scale(df):
     # Select only numeric columns
     numeric_cols = df.select_dtypes(include=[np.number]).columns
@@ -1189,3 +1208,168 @@ def convert_to_int(item):
         return [int(i) for i in item]
     else:
         return int(item)
+    
+def parse_team_stats_table(table):
+    try:
+        column_headers = []
+        data = []
+
+        rows = table.find_all('tr')
+        if rows:
+            first_header_row_processed = False
+            for i, row in enumerate(rows):
+                # Ignore over_header rows and the last row which is the total
+                if 'over_header' in row.get('class', []) or i == len(rows) - 1:
+                    continue
+
+                headers = row.find_all('th')
+                if headers and not first_header_row_processed:
+                    # Check if the th tags are direct children of the table
+                    if headers[0].parent.name == 'tr' and headers[0].parent.parent.name == 'thead':
+                        # Extract column headers
+                        column_headers = [header.get(
+                            'data-stat') for header in headers]
+                        # Check if column_headers are unique
+                        if len(column_headers) != len(set(column_headers)):
+                            raise ValueError(
+                                "Duplicate column headers detected.")
+
+                        first_header_row_processed = True
+                    continue  # Skip the rest of the loop for this iteration
+
+                # Process data rows
+                # Changed to find both 'th' and 'td' cells
+                cells = row.find_all(['th', 'td'])
+                if cells:
+                    output_row = {}
+
+                    for i, header in enumerate(column_headers):
+                        if i < len(cells):
+                            output_row[header] = cells[i].text
+                        else:
+                            # Set to None if cell does not exist
+                            output_row[header] = None
+
+                    data.append(output_row)
+
+        # Apply unidecode to player names
+        for row in data:
+            if 'player' in row:
+                row['player'] = unidecode.unidecode(row['player'])
+
+        print(f'Column Headers: {column_headers}')
+
+        return column_headers, data
+    except Exception as e:
+        raise
+    
+# def scraping_current_fbref(categories_list):
+#     all_season_data = []  # List to store dataframes for each season
+
+#     season = 2023
+#     print(f"Scraping season: {season}")
+#     player_table = None
+#     scraped_columns_base = []
+    
+#     for cat in enumerate(categories_list):
+#         # Handle most recent season differently
+
+#         url = f'https://fbref.com/en/comps/Big5/{cat}/players/Big-5-European-Leagues-Stats'
+            
+#         print(f"A. Scraping {cat} player data for {season} - {url}")
+#         resp = requests.get(url).text
+#         htmlStr = resp.replace('<!--', '')
+#         htmlStr = htmlStr.replace('-->', '')
+        
+#         if cat == 'playingtime':
+#             temp_df = pd.read_html(htmlStr, header=1)[0]
+#         else:
+#             temp_df = pd.read_html(htmlStr, header=1)[1]
+            
+#         temp_df = temp_df[temp_df['Rk'] != 'Rk']  # Remove duplicate headers
+#         temp_df['Season'] = season  # Add season column
+#         temp_df['Season'] = temp_df['Season'].str[-4:]
+
+#         if player_table is None:
+#             player_table = temp_df
+#             scraped_columns_base = player_table.columns.tolist()
+#         else:
+#             new_columns = [col for col in temp_df.columns if col not in scraped_columns_base and col not in ['Player', 'Squad', 'Season']]
+#             temp_df = temp_df[['Player', 'Squad', 'Season'] + new_columns]
+#             player_table = pd.merge(player_table, temp_df, on=['Player', 'Squad', 'Season'], how='left')
+#             scraped_columns_base += new_columns
+        
+#         print(f"Finished scraping {cat} data for {season}, DataFrame shape: {temp_df.shape}")        
+#         print(f"After operations and/or merging, player_table shape: {player_table.shape}")
+
+
+#     all_season_data.append(player_table)
+
+#     # Concatenate all seasons data into one DataFrame
+#     final_player_table = pd.concat(all_season_data, ignore_index=True)
+
+#     return final_player_table
+
+def scraping_current_fbref(categories_list, db_name='soccer_stats.db'):
+    conn = sqlite3.connect(db_name)  # Open connection to SQLite db
+    all_season_data = []
+
+    season = 2023
+    print(f"Scraping season: {season}")
+    player_table = None
+    scraped_columns_base = []
+
+    for cat in categories_list:
+        url = f'https://fbref.com/en/comps/Big5/{cat}/players/Big-5-European-Leagues-Stats'
+        print(f"A. Scraping {cat} player data for {season} - {url}")
+        resp = requests.get(url).text
+        soup = BeautifulSoup(resp, 'html.parser')
+        table = soup.find('table')
+        
+        # Extract data from table
+        column_headers, data = parse_team_stats_table(table)
+        
+        # Create table in SQLite DB
+        create_table_from_columns(conn, f'{cat}_stats', column_headers)
+        insert_data_into_table(conn, f'{cat}_stats', data)
+
+        temp_df = pd.DataFrame(data)
+
+        temp_df['Season'] = season
+        if player_table is None:
+            player_table = temp_df
+            scraped_columns_base = player_table.columns.tolist()
+        else:
+            new_columns = [col for col in temp_df.columns if col not in scraped_columns_base and col not in ['Player', 'Squad', 'Season']]
+            temp_df = temp_df[['Player', 'Squad', 'Season'] + new_columns]
+            player_table = pd.merge(player_table, temp_df, on=['Player', 'Squad', 'Season'], how='left')
+            scraped_columns_base += new_columns
+        
+        print(f"Finished scraping {cat} data for {season}, DataFrame shape: {temp_df.shape}")        
+        print(f"After operations and/or merging, player_table shape: {player_table.shape}")
+
+    all_season_data.append(player_table)
+    final_player_table = pd.concat(all_season_data, ignore_index=True)
+
+    conn.close()  # Close the connection
+    return final_player_table
+
+def create_table_from_columns(conn, table_name, columns):
+    columns_str = ', '.join([f'"{col}" TEXT' for col in columns])
+    c = conn.cursor()
+    c.execute(f"CREATE TABLE IF NOT EXISTS {table_name} ({columns_str})")
+    conn.commit()
+
+def insert_data_into_table(conn, table_name, data):
+    c = conn.cursor()
+    for row in data:
+        placeholders = ', '.join(['?'] * len(row))
+        columns = ', '.join(row.keys())
+        values = tuple(row.values())
+        c.execute(f"INSERT INTO {table_name} ({columns}) VALUES ({placeholders})", values)
+    conn.commit()
+
+
+
+
+
