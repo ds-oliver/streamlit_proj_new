@@ -17,7 +17,7 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import StandardScaler
 import unicodedata
 import plotly.graph_objects as go
-import beautifulsoup4 as bs4
+from bs4 import BeautifulSoup
 
 warnings.filterwarnings('ignore')
 

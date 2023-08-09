@@ -16,6 +16,8 @@ from sklearn.preprocessing import MinMaxScaler
 import plotly.graph_objects as go
 import warnings
 import requests
+from bs4 import BeautifulSoup
+import unidecode
 
 sys.path.append(os.path.abspath(os.path.join('./scripts')))
 
@@ -1335,14 +1337,18 @@ def scraping_current_fbref(categories_list, db_name='soccer_stats.db'):
 
         temp_df = pd.DataFrame(data)
 
-        temp_df['Season'] = season
+        temp_df['season'] = season
         if player_table is None:
             player_table = temp_df
             scraped_columns_base = player_table.columns.tolist()
+            scraped_columns_base
+            print(f"Scraped columns base: {scraped_columns_base}")
         else:
-            new_columns = [col for col in temp_df.columns if col not in scraped_columns_base and col not in ['Player', 'Squad', 'Season']]
-            temp_df = temp_df[['Player', 'Squad', 'Season'] + new_columns]
-            player_table = pd.merge(player_table, temp_df, on=['Player', 'Squad', 'Season'], how='left')
+            new_columns = [col for col in temp_df.columns if col not in scraped_columns_base and col not in ['player', 'team', 'season']]
+            scraped_columns_base
+            print(f"Scraped columns base: {scraped_columns_base}")
+            temp_df = temp_df[['player', 'team', 'season'] + new_columns]
+            player_table = pd.merge(player_table, temp_df, on=['player', 'team', 'season'], how='left')
             scraped_columns_base += new_columns
         
         print(f"Finished scraping {cat} data for {season}, DataFrame shape: {temp_df.shape}")        
