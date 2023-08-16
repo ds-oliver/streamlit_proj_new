@@ -25,33 +25,31 @@ sys.path.append(os.path.abspath(os.path.join('./scripts')))
 
 from constants import color1, color2, color3, color4, color5, cm, fbref_leagues as leagues, fbref_cats as cats, seasons, color_dark1, fbref_base_url
 
-from files import big5_this_year # this is the file we want to read in
+from files import pl_data_gw1 # this is the file we want to read in
 
 from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect
 
 # Read the data
-df = pd.read_csv(big5_this_year)
+df = pd.read_csv(pl_data_gw1)
 
-# Filter data for rows where Comp is 'eng Premier League'
-df = df[df['comp_level'] == 'eng Premier League']
+# # Filter data for rows where Comp is 'eng Premier League'
+# df = df[df['comp_level'] == 'eng Premier League']
 
-# apply clean_age_column function to 'age' column
-df = clean_age_column(df)
+# # apply clean_age_column function to 'age' column
+# df = clean_age_column(df)
 
-# Drop 'comp_level', 'nationality', 'birth_year' columns
-drop_cols = ['ranker', 'nationality', 'birth_year', 'comp_level']
-df.drop(columns=drop_cols, inplace=True)
+# # Drop 'comp_level', 'nationality', 'birth_year' columns
+# drop_cols = ['ranker', 'nationality', 'birth_year', 'comp_level']
+# df.drop(columns=drop_cols, inplace=True)
 
-# Define default columns
-DEFAULT_COLUMNS = ['player', 'position', 'team', 'games_starts']
+# # Define default columns
+# DEFAULT_COLUMNS = ['player', 'position', 'team', 'games_starts']
 
 # Exclude the default columns
 stat_cols = [col for col in df.columns if col not in DEFAULT_COLUMNS]
 
 # create a multiselect for the teams, default to all teams
-selected_teams = st.sidebar.multiselect(
-    'Select Teams', options=sorted(df['team'].unique()), default=sorted(df['team'].unique())
-)
+selected_teams = create_sidebar_multiselect(df, 'team', 'Select Teams')
 
 # Filter the DataFrame for selected teams
 df = df[df['team'].isin(selected_teams)]
