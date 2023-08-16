@@ -23,14 +23,23 @@ warnings.filterwarnings('ignore')
 
 sys.path.append(os.path.abspath(os.path.join('./scripts')))
 
-from constants import color1, color2, color3, color4, color5, cm, fbref_leagues as leagues, fbref_cats as cats, seasons, color_dark1, fbref_base_url
+from constants import color1, color2, color3, color4, color5, cm, fbref_leagues as leagues, fbref_cats as cats, seasons, color_dark1, fbref_base_url, stats_cols, shooting_cols, passing_cols, defense_cols, possession_cols, misc_cols, passing_types_cols, gca_cols, playing_time_cols
 
-from files import pl_data_gw1 # this is the file we want to read in
+from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default # this is the file we want to read in
 
 from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect
 
 # Read the data
 df = pd.read_csv(pl_data_gw1)
+
+temp_df = pd.read_csv(temp_default)
+
+temp_cols = temp_df.columns.tolist()
+
+df['fantrax position'] = temp_df['Position']
+
+# drop df['position'] column
+df.drop(columns=['position'], inplace=True)
 
 # # Filter data for rows where Comp is 'eng Premier League'
 # df = df[df['comp_level'] == 'eng Premier League']
@@ -43,13 +52,13 @@ df = pd.read_csv(pl_data_gw1)
 # df.drop(columns=drop_cols, inplace=True)
 
 # # Define default columns
-DEFAULT_COLUMNS = ['player', 'position', 'team', 'games_starts']
+DEFAULT_COLUMNS = ['player', 'fantrax position', 'team', 'games_starts']
 
 # Exclude the default columns
 stat_cols = [col for col in df.columns if col not in DEFAULT_COLUMNS]
 
 # create a multiselect for the teams, default to all teams
-selected_teams = create_sidebar_multiselect(df, 'team', 'Select Teams', default=True)
+selected_teams = create_sidebar_multiselect(df, 'team', 'Select Teams', default_all=True)
 
 # Filter the DataFrame for selected teams
 df = df[df['team'].isin(selected_teams)]
@@ -58,27 +67,117 @@ df = df[df['team'].isin(selected_teams)]
 if len(selected_teams) == 0:
     st.write('Please select at least one team.')
 
-# create a multiselect for the positions, default to all positions
-selected_positions = st.sidebar.multiselect(
-    'Select Positions', options=sorted(df['position'].unique()), default=sorted(df['position'].unique())
+#create a multiselect for the positions, default to all positions
+selected_positions = create_sidebar_multiselect(df, 'fantrax position', 'Select Positions', default_all=True)
+
+col_groups = {
+    "Standard": stats_cols,
+    "Shooting": shooting_cols,
+    "Passing": passing_cols,
+    "Defense": defense_cols,
+    "Possession": possession_cols,
+    "Miscellaneous": misc_cols,
+    "Passing Types": passing_types_cols,
+    "GCA": gca_cols,
+    "Playing Time": playing_time_cols,
+}
+
+selected_group = st.sidebar.selectbox('Select a Category', options=list(col_groups.keys()))
+selected_columns = col_groups[selected_group]
+
+grouping_option = st.radio(
+    'Group Data by:', ('None', 'Position', 'Team')
 )
 
-# Sidebar multiselect for statistical categories
-selected_stats = st.sidebar.multiselect(
-    'Select Statistical Categories', options=stat_cols, default=stat_cols
+# Offer radio buttons for different aggregation options
+aggregation_option = st.radio(
+    'Select Aggregation Option:', ('Mean', 'Median', 'Sum')
 )
 
-# Add default columns to the selected statistical categories
-columns_to_show = DEFAULT_COLUMNS
+# Determine the aggregation function based on the selected option
+if aggregation_option == 'Sum':
+    aggregation_func = 'sum'
+elif aggregation_option == 'Mean':
+    aggregation_func = 'mean'
+elif aggregation_option == 'Median':
+    aggregation_func = 'median'
 
-# Display the DataFrame
-st.dataframe(df[columns_to_show], use_container_width=True)
+# Group the DataFrame based on the selected option
+if grouping_option == 'Position':
+    grouped_df = df.groupby('fantrax position').agg(aggregation_func).reset_index()
+    # round to 2 decimal places for all columns
+    grouped_df = grouped_df.round(2)
+    columns_to_show = ['fantrax position'] + selected_columns
+    st.dataframe(grouped_df[columns_to_show], use_container_width=True, height=len(df['fantrax position'].unique())*50)
+elif grouping_option == 'Team':
+    grouped_df = df.groupby('team').agg(aggregation_func).reset_index()
+    columns_to_show = ['team'] + selected_columns
+    grouped_df = grouped_df.round(2)
+    st.dataframe(grouped_df[columns_to_show], use_container_width=True, height=len(df['team'].unique())*37)
+else:
+    grouped_df = df
+    columns_to_show = DEFAULT_COLUMNS + selected_columns
+    st.dataframe(grouped_df[columns_to_show], use_container_width=True, height=1000)
 
-# Optionally, if you want to add some plotting with selected stats:
-if len(selected_stats) > 1:
-    selected_player = st.selectbox('Select Player for Plotting', sorted(df['player'].unique()))
-    selected_player_data = df[df['player'] == selected_player][selected_stats]
-    
-    # For example, plotting selected stats for a selected player using Plotly Express
-    fig = px.bar(selected_player_data, x=selected_stats, y=selected_player_data.values[0])
-    st.plotly_chart(fig)
+
+# Check if there are selected groups and columns
+if selected_group and selected_columns:
+    selected_stats_for_plot = st.multiselect('Select Statistics for Plotting', options=selected_columns)
+
+    if selected_stats_for_plot:
+        # Define colors for statistics
+        colors = px.colors.qualitative.Plotly[:len(selected_stats_for_plot)]
+        stat_colors = {stat: color for stat, color in zip(selected_stats_for_plot, colors)}
+
+        fig = go.Figure()
+
+        if grouping_option == 'Position':
+            grouping_values = selected_positions
+            grouping_column = 'fantrax position'
+        elif grouping_option == 'Team':
+            grouping_values = selected_teams
+            grouping_column = 'team'
+        else:
+            grouping_values = sorted(df['player'].unique())
+            grouping_column = 'player'
+
+        # Iterate through selected statistics and add trace for each grouping value
+        for stat in selected_stats_for_plot:
+            x_values = []
+            y_values = []
+            for value in grouping_values:
+                x_values.append(value)
+                y_values.append(grouped_df[grouped_df[grouping_column] == value][stat].values[0])
+            fig.add_trace(
+                go.Bar(
+                    x=x_values,
+                    y=y_values,
+                    name=stat,
+                    text=y_values,
+                    textposition='outside',
+                    marker_color=stat_colors[stat]  # Use statistic-specific color
+                )
+            )
+
+        title = f'Comparison of Selected {grouping_option} for Selected Statistics'
+        fig.update_layout(
+            title=title,
+            xaxis_title=grouping_option if grouping_option != 'None' else 'Players',
+            yaxis_title='Value',
+            legend=dict(
+                bgcolor='rgba(255,255,255,0.5)',
+                font=dict(
+                    color='black'
+                )
+            ),
+            barmode='group',  # This groups the bars for each grouping value together
+            height=500  # Set the height of the plot
+        )
+        fig.update_traces(hoverinfo="x+y+name")  # Show hover information
+        st.plotly_chart(fig, use_container_width=True)
+
+
+
+
+
+
