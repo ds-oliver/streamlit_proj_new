@@ -27,13 +27,16 @@ from constants import color1, color2, color3, color4, color5, cm, fbref_leagues 
 
 from files import big5_this_year # this is the file we want to read in
 
-from functions import scraping_current_fbref, normalize_encoding, clean_age_column
+from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect
 
 # Read the data
 df = pd.read_csv(big5_this_year)
 
 # Filter data for rows where Comp is 'eng Premier League'
 df = df[df['comp_level'] == 'eng Premier League']
+
+# apply clean_age_column function to 'age' column
+df = clean_age_column(df)
 
 # Drop 'comp_level', 'nationality', 'birth_year' columns
 drop_cols = ['ranker', 'nationality', 'birth_year', 'comp_level']
@@ -45,16 +48,33 @@ DEFAULT_COLUMNS = ['player', 'position', 'team', 'games_starts']
 # Exclude the default columns
 stat_cols = [col for col in df.columns if col not in DEFAULT_COLUMNS]
 
+# create a multiselect for the teams, default to all teams
+selected_teams = st.sidebar.multiselect(
+    'Select Teams', options=sorted(df['team'].unique()), default=sorted(df['team'].unique())
+)
+
+# Filter the DataFrame for selected teams
+df = df[df['team'].isin(selected_teams)]
+
+# if there is no team selected, display a message
+if len(selected_teams) == 0:
+    st.write('Please select at least one team.')
+
+# create a multiselect for the positions, default to all positions
+selected_positions = st.sidebar.multiselect(
+    'Select Positions', options=sorted(df['position'].unique()), default=sorted(df['position'].unique())
+)
+
 # Sidebar multiselect for statistical categories
 selected_stats = st.sidebar.multiselect(
     'Select Statistical Categories', options=stat_cols, default=stat_cols
 )
 
 # Add default columns to the selected statistical categories
-columns_to_show = DEFAULT_COLUMNS + selected_stats
+columns_to_show = DEFAULT_COLUMNS
 
 # Display the DataFrame
-st.dataframe(df[columns_to_show])
+st.dataframe(df[columns_to_show], use_container_width=True)
 
 # Optionally, if you want to add some plotting with selected stats:
 if len(selected_stats) > 1:
