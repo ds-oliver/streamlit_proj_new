@@ -1348,7 +1348,7 @@ def scraping_current_fbref(categories_list, db_name='soccer_stats.db'):
             scraped_columns_base
             print(f"Scraped columns base: {scraped_columns_base}")
             temp_df = temp_df[['player', 'team', 'season'] + new_columns]
-            player_table = pd.merge(player_table, temp_df, on=['player', 'team', 'season'], how='left')
+            player_table = pd.merge(player_table, temp_df, on=['player', 'season'], how='left')
             scraped_columns_base += new_columns
         
         print(f"Finished scraping {cat} data for {season}, DataFrame shape: {temp_df.shape}")        
