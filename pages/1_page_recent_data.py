@@ -21,9 +21,13 @@ from bs4 import BeautifulSoup
 
 warnings.filterwarnings('ignore')
 
-sys.path.append(os.path.abspath(os.path.join('./scripts')))
+# Adding path to the scripts directory
+scripts_path = os.path.abspath(os.path.join('./scripts'))
+sys.path.append(scripts_path)
 
-sys.path.append('/Users/hogan/dev/streamlit_proj_new/')
+# Adding path to the directory containing constants.py
+current_path = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(current_path)
 
 st.set_page_config(
     layout="wide"
@@ -31,10 +35,10 @@ st.set_page_config(
 
 from constants import fbref_cats, fbref_leagues, seasons, stats_cols, shooting_cols, passing_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, passing_types_cols, gca_cols, color1, color2, color3, color4, color5, cm, big5_players_csv, fbref_base_url, fbref_current_year_url
 
-
 from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default # this is the file we want to read in
 
 from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect
+
 
 # Read the data
 df = pd.read_csv(pl_data_gw1)
