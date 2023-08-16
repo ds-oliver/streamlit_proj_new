@@ -27,7 +27,7 @@ st.set_page_config(
     layout="wide"
 )
 
-from constants import fbref_cats, fbref_leagues, seasons, stats_cols, shooting_cols, passing_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, passing_types_cols, gca_cols, color1, color2, color3, color4, color5, cm, big5_players_csv, fbref_base_url, fbref_current_year_url
+from ..constants import fbref_cats, fbref_leagues, seasons, stats_cols, shooting_cols, passing_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, passing_types_cols, gca_cols, color1, color2, color3, color4, color5, cm, big5_players_csv, fbref_base_url, fbref_current_year_url
 
 
 from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default # this is the file we want to read in
