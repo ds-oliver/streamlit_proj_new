@@ -2,6 +2,7 @@ import streamlit as st
 
 def main():
     st.title('Fantasy Soccer Data Science Hub')
+    st.info("""This is just a placeholder :)""")
     st.write("""
     Welcome to the Fantasy Soccer Data Science Hub! Explore, analyze, and gain insights from the world of soccer with our suite of tools, data visualizations, and predictive models.
     """)
