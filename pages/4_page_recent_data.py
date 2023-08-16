@@ -43,13 +43,13 @@ df = pd.read_csv(pl_data_gw1)
 # df.drop(columns=drop_cols, inplace=True)
 
 # # Define default columns
-# DEFAULT_COLUMNS = ['player', 'position', 'team', 'games_starts']
+DEFAULT_COLUMNS = ['player', 'position', 'team', 'games_starts']
 
 # Exclude the default columns
 stat_cols = [col for col in df.columns if col not in DEFAULT_COLUMNS]
 
 # create a multiselect for the teams, default to all teams
-selected_teams = create_sidebar_multiselect(df, 'team', 'Select Teams')
+selected_teams = create_sidebar_multiselect(df, 'team', 'Select Teams', default=True)
 
 # Filter the DataFrame for selected teams
 df = df[df['team'].isin(selected_teams)]

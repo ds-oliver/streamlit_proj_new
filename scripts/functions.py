@@ -1380,11 +1380,14 @@ def clean_age_column(df):
     df['age'] = pd.to_numeric(df['age'].str[:-4])
     return df
 
-def create_sidebar_multiselect(df, column_name, title='Select Options'):
+def create_sidebar_multiselect(df, column_name, title='Select Options', default_all=True):
     # Get unique values from the specified column
     options = sorted(df[column_name].unique())
 
+    # Set the default selected options based on the 'default_all' flag
+    default_options = options if default_all else [options[0]]
+
     # Create a multiselect in the sidebar with the unique values
-    selected_options = st.sidebar.multiselect(title, options, options)
+    selected_options = st.sidebar.multiselect(title, options, default=default_options)
 
     return selected_options
