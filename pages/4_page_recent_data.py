@@ -27,7 +27,7 @@ from constants import color1, color2, color3, color4, color5, cm, fbref_leagues 
 
 from files import big5_this_year # this is the file we want to read in
 
-from functions import scraping_current_fbref, normalize_encoding, clean_age
+from functions import scraping_current_fbref, normalize_encoding, clean_age_column
 
 # Read the data
 df = pd.read_csv(big5_this_year)
