@@ -1375,7 +1375,10 @@ def insert_data_into_table(conn, table_name, data):
         c.execute(f"INSERT INTO {table_name} ({columns}) VALUES ({placeholders})", values)
     conn.commit()
 
-
+def clean_age(df):
+    # strip the last 4 characters from the age column and convert to numeric
+    df['age'] = pd.to_numeric(df['age'].str[:-4])
+    return df
 
 
 
