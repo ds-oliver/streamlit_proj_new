@@ -69,6 +69,8 @@ def style_dataframe(df, selected_columns):
     # Create an empty DataFrame with the same shape as df
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
     for col in df.columns:
+        if col == 'player':  # Skip the styling for the 'player' column
+            continue
         if df[col].dtype in [np.float64, np.int64] and col in selected_columns:
             min_val = df[col].min()
             max_val = df[col].max()
@@ -78,6 +80,7 @@ def style_dataframe(df, selected_columns):
             unique_values = df[col].unique().tolist()
             styled_df[col] = df[col].apply(lambda x: get_color(x, unique_values, object_cmap))
     return styled_df
+
 
 
 # from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols
