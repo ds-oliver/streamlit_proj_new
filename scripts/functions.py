@@ -1123,7 +1123,7 @@ def process_player_data(players_only_df):
     # Adding a checkbox for normalization
     normalize_data = st.sidebar.checkbox('Normalize data')
 
-    # Inside the function, after you've selected the required data (e.g. inside the #7 section):
+    # Inside the function, after you've selected the required data:
     if per_90 == 'Per 90 Stats':
         stats_values = [
             player_df[f"{selected_stat1} Per90"].values[0],
@@ -1133,23 +1133,15 @@ def process_player_data(players_only_df):
             player_df[f"{selected_stat5} Per90"].values[0]
         ]
 
-    # Print stats values before transformation
-    print("Stats values before transformation:", stats_values)
-
-    # Print individual values for inspection
-    print("Selected stat 1:", player_df[f"{selected_stat1} Per90"].values[0])
-    print("Selected stat 2:", player_df[f"{selected_stat2} Per90"].values[0])
-    # ... continue for all stats
+    # Ensure stats_values is a one-dimensional array
+    stats_values = np.array(stats_values).flatten()
 
     if normalize_data:
-        try:
-            scaler = MinMaxScaler()
-            stats_values = scaler.fit_transform(np.array(stats_values).reshape(-1, 1)).flatten().tolist()
-        except ValueError as e:
-            print("Error with stats_values:", stats_values)
-            print("Error message:", e)
+        scaler = MinMaxScaler()
+        stats_values = scaler.fit_transform(stats_values.reshape(-1, 1)).flatten().tolist()
 
     ranks = [sorted(stats_values, reverse=True).index(val) + 1 for val in stats_values]  # This gives ranks in descending order
+
 
     # 8. Plot chart using Plotly
     st.info(f"Displaying {selected_player}'s stats for {selected_season}")
