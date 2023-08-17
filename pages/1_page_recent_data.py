@@ -60,7 +60,7 @@ from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default # this i
 
 from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect
 
-from constants import DEFAULT_COLUMNS, stat_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols
+from constants import stat_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols
 
 # Read the data
 df = pd.read_csv(pl_data_gw1)
