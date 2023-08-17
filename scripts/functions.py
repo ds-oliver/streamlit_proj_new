@@ -1133,9 +1133,21 @@ def process_player_data(players_only_df):
             player_df[f"{selected_stat5} Per90"].values[0]
         ]
 
+    # Print stats values before transformation
+    print("Stats values before transformation:", stats_values)
+
+    # Print individual values for inspection
+    print("Selected stat 1:", player_df[f"{selected_stat1} Per90"].values[0])
+    print("Selected stat 2:", player_df[f"{selected_stat2} Per90"].values[0])
+    # ... continue for all stats
+
     if normalize_data:
-        scaler = MinMaxScaler()
-        stats_values = scaler.fit_transform(np.array(stats_values).reshape(-1, 1)).flatten().tolist()
+        try:
+            scaler = MinMaxScaler()
+            stats_values = scaler.fit_transform(np.array(stats_values).reshape(-1, 1)).flatten().tolist()
+        except ValueError as e:
+            print("Error with stats_values:", stats_values)
+            print("Error message:", e)
 
     ranks = [sorted(stats_values, reverse=True).index(val) + 1 for val in stats_values]  # This gives ranks in descending order
 
