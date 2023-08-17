@@ -76,7 +76,7 @@ def app_display(selected_teams_df, grouped_player_df, selected_team, selected_op
 def app():
     
     # title
-    st.title('Matchups')
+    st.title('Historical Matchups')
 
     # sidebar
     st.sidebar.header('Matchups')
