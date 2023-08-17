@@ -71,6 +71,7 @@ def app_display(selected_teams_df, selected_team, selected_opponent):
 
     results_df = get_results_df(selected_teams_df, selected_team, selected_opponent)
 
+    # match_quick_facts(results_df, selected_team, selected_opponent)
 
 def app():
     

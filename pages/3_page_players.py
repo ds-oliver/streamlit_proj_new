@@ -20,6 +20,9 @@ import unicodedata
 warnings.filterwarnings('ignore')
 
 sys.path.append(os.path.abspath(os.path.join('./scripts')))
+sys.path.append(os.path.abspath(os.path.join('./constants')))
+sys.path.append(os.path.abspath(os.path.join('./files')))
+sys.path.append(os.path.abspath(os.path.join('./functions')))
 
 from constants import color1, color2, color3, color4, color5, cm
 
