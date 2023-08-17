@@ -85,3 +85,6 @@ def app():
 
     # display
     app_display(selected_teams_df, selected_team, selected_opponent)
+
+if __name__ == '__main__':
+    app()
