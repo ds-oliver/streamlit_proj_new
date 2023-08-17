@@ -81,10 +81,10 @@ def app():
     players_matches_data, teams_matches_data = app_processing(players_matches_csv)
 
     # selections
-    selected_teams_df, selected_team, selected_opponent = app_selections(players_matches_data, teams_matches_data)
+    selected_teams_df, grouped_player_df, selected_team, selected_opponent = app_selections(players_matches_data, teams_matches_data)
 
     # display
-    app_display(selected_teams_df, selected_team, selected_opponent)
+    app_display(selected_teams_df, grouped_player_df, selected_team, selected_opponent)
 
 if __name__ == '__main__':
     app()
