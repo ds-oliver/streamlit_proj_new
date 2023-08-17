@@ -1120,9 +1120,6 @@ def process_player_data(players_only_df):
     # Adding a radio button for per 90 stats
     per_90 = st.sidebar.radio('Choose display type:', ('Per 90 Stats', 'Raw Data'))
 
-    # Adding a checkbox for normalization
-    normalize_data = st.sidebar.checkbox('Normalize data')
-
     # Inside the function, after you've selected the required data:
     if per_90 == 'Per 90 Stats':
         stats_values = [
@@ -1136,12 +1133,7 @@ def process_player_data(players_only_df):
     # Ensure stats_values is a one-dimensional array
     stats_values = np.array(stats_values).flatten()
 
-    if normalize_data:
-        scaler = MinMaxScaler()
-        stats_values = scaler.fit_transform(stats_values.reshape(-1, 1)).flatten().tolist()
-
     ranks = [sorted(stats_values, reverse=True).index(val) + 1 for val in stats_values]  # This gives ranks in descending order
-
 
     # 8. Plot chart using Plotly
     st.info(f"Displaying {selected_player}'s stats for {selected_season}")
