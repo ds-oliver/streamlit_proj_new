@@ -23,7 +23,6 @@ sys.path.append(os.path.abspath(os.path.join('./scripts')))
 
 from constants import color1, color2, color3, color4, color5, cm
 
-@st.cache_resource
 def load_data_from_db():
     """
     This function loads data from two tables in a SQLite database.
@@ -44,7 +43,6 @@ def load_data_from_db():
 
     return players_table, results_table
 
-@st.cache_resource
 def load_data_from_csv():
     """
     This function loads the data from the csvs.
@@ -58,7 +56,6 @@ def load_data_from_csv():
     
     return players_df, results_df
 
-@st.cache_resource
 def load_data_from_pkl():
     """
     This function loads the data from the pkl.
