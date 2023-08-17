@@ -19,7 +19,7 @@ import plotly.graph_objects as go
 from bs4 import BeautifulSoup
 from matplotlib import cm
 
-logger = st.logger
+# logger = st.logger
 
 warnings.filterwarnings('ignore')
 
@@ -74,13 +74,13 @@ def style_dataframe(df, selected_columns):
         if col == 'player':  # Skip the styling for the 'player' column
             continue
         if df[col].dtype in [np.float64, np.int64] and col in selected_columns:
-            logger.info(f"Styling numericcol: {col}")
+            print(f"Styling numericcol: {col}")
             min_val = df[col].min()
             max_val = df[col].max()
             range_val = max_val - min_val
             styled_df[col] = df[col].apply(lambda x: f'background-color: rgba({",".join(map(str, (np.array(cm_coolwarm((x - min_val) / range_val))[:3] * 255).astype(int)))}, 0.7)')
         elif df[col].dtype == 'object':
-            logger.info(f"Styling object col: {col}")
+            print(f"Styling object col: {col}")
             unique_values = df[col].unique().tolist()
             styled_df[col] = df[col].apply(lambda x: get_color(x, unique_values, object_cmap))
     return styled_df
