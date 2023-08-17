@@ -69,16 +69,6 @@ df['fantrax position'] = temp_df['Position']
 # drop df['position'] column
 df.drop(columns=['position'], inplace=True)
 
-# # Filter data for rows where Comp is 'eng Premier League'
-# df = df[df['comp_level'] == 'eng Premier League']
-
-# # apply clean_age_column function to 'age' column
-# df = clean_age_column(df)
-
-# # Drop 'comp_level', 'nationality', 'birth_year' columns
-# drop_cols = ['ranker', 'nationality', 'birth_year', 'comp_level']
-# df.drop(columns=drop_cols, inplace=True)
-
 # # Define default columns
 DEFAULT_COLUMNS = ['player', 'fantrax position', 'team', 'games_starts']
 

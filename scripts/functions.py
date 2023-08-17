@@ -1116,6 +1116,27 @@ def process_player_data(players_only_df):
         player_df[selected_stat4].values[0],
         player_df[selected_stat5].values[0]
     ]
+
+    # Adding a radio button for per 90 stats
+    per_90 = st.sidebar.radio('Choose display type:', ('Per 90 Stats', 'Raw Data'))
+
+    # Adding a checkbox for normalization
+    normalize_data = st.sidebar.checkbox('Normalize data')
+
+    # Inside the function, after you've selected the required data (e.g. inside the #7 section):
+    if per_90 == 'Per 90 Stats':
+        stats_values = [
+            player_df[f"{selected_stat1} Per90"].values[0],
+            player_df[f"{selected_stat2} Per90"].values[0],
+            player_df[f"{selected_stat3} Per90"].values[0],
+            player_df[f"{selected_stat4} Per90"].values[0],
+            player_df[f"{selected_stat5} Per90"].values[0]
+        ]
+
+    if normalize_data:
+        scaler = MinMaxScaler()
+        stats_values = scaler.fit_transform(np.array(stats_values).reshape(-1, 1)).flatten().tolist()
+
     ranks = [sorted(stats_values, reverse=True).index(val) + 1 for val in stats_values]  # This gives ranks in descending order
 
     # 8. Plot chart using Plotly
