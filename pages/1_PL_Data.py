@@ -121,31 +121,39 @@ elif aggregation_option == 'Mean':
 elif aggregation_option == 'Median':
     aggregation_func = 'median'
 
-def style_dataframe(df):
+def style_dataframe(df, selected_columns=None, format_column=None):
     cm_coolwarm = cm.get_cmap('coolwarm')
-    styled_df = df.copy()
-    for col in df.columns:
-        if df[col].dtype in [np.float64, np.int64]:
-            min_val = df[col].min()
-            max_val = df[col].max()
-            range_val = max_val - min_val
-            styled_df[col] = styled_df[col].apply(lambda x: f'background-color: rgba({",".join(map(str, (np.array(cm_coolwarm((x - min_val) / range_val))[:3] * 255).astype(int)))}, 0.7)')
+    styled_df = df.style.applymap(lambda _: '', subset=[col for col in df.columns if col not in selected_columns])
+
+    for col in selected_columns:
+        min_val = df[col].min()
+        max_val = df[col].max()
+        range_val = max_val - min_val
+        styled_df = styled_df.applymap(
+            lambda x: f'background-color: rgba({",".join(map(str, (np.array(cm_coolwarm((x - min_val) / range_val))[:3] * 255).astype(int)))}, 0.7)', 
+            subset=pd.IndexSlice[:, col]
+        )
+    
+    if format_column:
+        min_val = df[format_column].min()
+        max_val = df[format_column].max()
+        range_val = max_val - min_val
+        styled_df = styled_df.applymap(
+            lambda x: f'background-color: rgba({",".join(map(str, (np.array(cm_coolwarm((x - min_val) / range_val))[:3] * 255).astype(int)))}, 0.7)', 
+            subset=pd.IndexSlice[:, format_column]
+        )
+
     return styled_df
 
 if grouping_option == 'Position':
-    grouped_df = df.groupby('fantrax position').agg(aggregation_func).reset_index()
-    grouped_df = grouped_df.round(2)
     columns_to_show = ['fantrax position'] + selected_columns
-    st.dataframe(grouped_df[columns_to_show].style.apply(style_dataframe, axis=None), use_container_width=True, height=len(df['fantrax position'].unique())*50)
+    st.dataframe(style_dataframe(grouped_df[columns_to_show], selected_columns), use_container_width=True, height=len(df['fantrax position'].unique())*50)
 elif grouping_option == 'Team':
-    grouped_df = df.groupby('team').agg(aggregation_func).reset_index()
-    grouped_df = grouped_df.round(2)
     columns_to_show = ['team'] + selected_columns
-    st.dataframe(grouped_df[columns_to_show].style.apply(style_dataframe, axis=None), use_container_width=True, height=len(df['team'].unique())*37)
+    st.dataframe(style_dataframe(grouped_df[columns_to_show], selected_columns), use_container_width=True, height=len(df['team'].unique())*37)
 else:
-    grouped_df = df
     columns_to_show = DEFAULT_COLUMNS + selected_columns
-    st.dataframe(grouped_df[columns_to_show].style.apply(style_dataframe, axis=None), use_container_width=True, height=500)
+    st.dataframe(style_dataframe(grouped_df[columns_to_show], format_column='games_starts'), use_container_width=True, height=500)
 
 # Check if there are selected groups and columns
 if selected_group and selected_columns:
