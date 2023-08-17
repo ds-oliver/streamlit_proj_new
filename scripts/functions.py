@@ -797,7 +797,7 @@ def display_quant_stats(selected_teams_df, selected_team, selected_opponent):
     # rename the indexes to be more readable
     sum_mean_df = sum_mean_df.rename(index={'Goals Scored': 'Goals', 'xg': 'xG', 'clean_sheets': 'Clean Sheets'})
 
-    st.info(f"**{selected_team}** stats over time:")
+    # st.info(f"**{selected_team}** stats over time:")
     st.dataframe(sum_mean_df, use_container_width=True)
 
 def display_qual_stats(selected_teams_df, selected_team, selected_opponent):

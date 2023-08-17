@@ -20,10 +20,6 @@ import unicodedata
 warnings.filterwarnings('ignore')
 
 sys.path.append(os.path.abspath(os.path.join('./scripts')))
-sys.path.append(os.path.abspath(os.path.join('./constants')))
-sys.path.append(os.path.abspath(os.path.join('./files')))
-sys.path.append(os.path.abspath(os.path.join('./functions')))
-
 
 from constants import color1, color2, color3, color4, color5, cm
 
@@ -37,6 +33,7 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 st.set_option('deprecation.showfileUploaderEncoding', False)
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
+@st.cache_resource
 def app_processing(raw_data):
     # load player data from csv
     players_df, results_df = load_data_from_csv() # Renamed variables
@@ -51,7 +48,6 @@ def app_processing(raw_data):
 
     return players_matches_data, teams_matches_data
 
-
 def app_selections(players_matches_data, teams_matches_data):
 
     # call create_multiselect_seasons
@@ -59,11 +55,11 @@ def app_selections(players_matches_data, teams_matches_data):
 
     selected_team, selected_opponent, filtered_data = create_dropdown_teams(filtered_data)
 
-    selected_teams_df, _ = filter_df_by_team_and_opponent(filtered_data, selected_team, selected_opponent)
+    selected_teams_df, grouped_player_df = filter_df_by_team_and_opponent(filtered_data, selected_team, selected_opponent)
 
-    return selected_teams_df, selected_team, selected_opponent
+    return selected_teams_df, grouped_player_df, selected_team, selected_opponent
 
-def app_display(selected_teams_df, selected_team, selected_opponent):
+def app_display(selected_teams_df, grouped_player_df, selected_team, selected_opponent):
     
     display_qual_stats(selected_teams_df, selected_team, selected_opponent)
 
@@ -71,7 +67,7 @@ def app_display(selected_teams_df, selected_team, selected_opponent):
 
     results_df = get_results_df(selected_teams_df, selected_team, selected_opponent)
 
-    # match_quick_facts(results_df, selected_team, selected_opponent)
+    match_quick_facts(results_df, grouped_player_df, selected_team, selected_opponent)
 
 def app():
     

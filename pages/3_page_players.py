@@ -33,6 +33,7 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 st.set_option('deprecation.showfileUploaderEncoding', False)
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
+@st.cache_resource
 def app(raw_data):
     # load player data from csv
     big5_players_data = pd.read_csv(big5_players_csv)
