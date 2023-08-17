@@ -20,9 +20,6 @@ import unicodedata
 warnings.filterwarnings('ignore')
 
 sys.path.append(os.path.abspath(os.path.join('./scripts')))
-sys.path.append(os.path.abspath(os.path.join('./constants')))
-sys.path.append(os.path.abspath(os.path.join('./files')))
-sys.path.append(os.path.abspath(os.path.join('./functions')))
 
 from constants import color1, color2, color3, color4, color5, cm
 
@@ -36,7 +33,6 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 st.set_option('deprecation.showfileUploaderEncoding', False)
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-@st.cache_resource
 def app(raw_data):
     # load player data from csv
     big5_players_data = pd.read_csv(big5_players_csv)
