@@ -39,18 +39,18 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 def app_processing(raw_data):
     # load player data from csv
-    players_matches_data, teams_matches_data = load_data_from_csv()
+    players_df, results_df = load_data_from_csv() # Renamed variables
 
     # clean data
-    players_matches_data, teams_matches_data = clean_data(players_matches_csv, teams_matches_csv)
+    players_matches_data, teams_matches_data = clean_data(players_df, results_df) # Fixed call
 
     # print head of df, columns, and shape
-    print(players_matches_csv.head())
+    print(players_matches_data.head())
 
-    # print(big5_players_data.columns)
-    print(players_matches_csv.shape)
+    print(players_matches_data.shape)
 
     return players_matches_data, teams_matches_data
+
 
 def app_selections(players_matches_data, teams_matches_data):
 
