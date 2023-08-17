@@ -10,7 +10,6 @@ from datetime import datetime
 import matplotlib.pyplot as plt
 import seaborn as sns
 from matplotlib.colors import LinearSegmentedColormap
-import plost
 import plotly.express as px
 import warnings
 from sklearn.preprocessing import MinMaxScaler
@@ -56,15 +55,27 @@ from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default # this i
 
 from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect
 
-def style_dataframe(df):
+# Helper function to get color based on unique value
+def get_color(value, unique_values, cmap):
+    index = unique_values.index(value)
+    color_fraction = index / len(unique_values)
+    rgba_color = cmap(color_fraction)
+    return f'background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
+
+def style_dataframe(df, selected_columns):
     cm_coolwarm = cm.get_cmap('coolwarm')
+    object_cmap = cm.get_cmap('viridis')  # Choose a colormap for object columns
+
     styled_df = df.copy()
     for col in df.columns:
-        if df[col].dtype in [np.float64, np.int64]:
+        if df[col].dtype in [np.float64, np.int64] and col in selected_columns:
             min_val = df[col].min()
             max_val = df[col].max()
             range_val = max_val - min_val
             styled_df[col] = styled_df[col].apply(lambda x: f'background-color: rgba({",".join(map(str, (np.array(cm_coolwarm((x - min_val) / range_val))[:3] * 255).astype(int)))}, 0.7)')
+        elif df[col].dtype == 'object':
+            unique_values = df[col].unique().tolist()
+            styled_df[col] = styled_df[col].apply(lambda x: get_color(x, unique_values, object_cmap))
     return styled_df
 
 # from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols
@@ -136,16 +147,18 @@ if grouping_option == 'Position':
     grouped_df = df.groupby('fantrax position').agg(aggregation_func).reset_index()
     grouped_df = grouped_df.round(2)
     columns_to_show = ['fantrax position'] + selected_columns
-    st.dataframe(grouped_df[columns_to_show].style.apply(style_dataframe, axis=None), use_container_width=True, height=len(df['fantrax position'].unique())*50)
+    st.dataframe(grouped_df[columns_to_show].style.apply(lambda x: style_dataframe(x, selected_columns), axis=None), use_container_width=True, height=500)
+
 elif grouping_option == 'Team':
     grouped_df = df.groupby('team').agg(aggregation_func).reset_index()
     grouped_df = grouped_df.round(2)
     columns_to_show = ['team'] + selected_columns
-    st.dataframe(grouped_df[columns_to_show].style.apply(style_dataframe, axis=None), use_container_width=True, height=len(df['team'].unique())*37)
+    st.dataframe(grouped_df[columns_to_show].style.apply(lambda x: style_dataframe(x, selected_columns), axis=None), use_container_width=True, height=500)
+
 else:
     grouped_df = df
     columns_to_show = DEFAULT_COLUMNS + selected_columns
-    st.dataframe(grouped_df[columns_to_show].style.apply(style_dataframe, axis=None), use_container_width=True, height=500)
+    st.dataframe(grouped_df[columns_to_show].style.apply(lambda x: style_dataframe(x, selected_columns), axis=None), use_container_width=True, height=500)
 
 # Check if there are selected groups and columns
 if selected_group and selected_columns:
