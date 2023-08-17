@@ -17,6 +17,10 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import StandardScaler
 import unicodedata
 
+st.set_page_config(
+    layout="wide"
+)
+
 warnings.filterwarnings('ignore')
 
 sys.path.append(os.path.abspath(os.path.join('./scripts')))

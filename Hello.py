@@ -1,5 +1,9 @@
 import streamlit as st
 
+st.set_page_config(
+    layout="wide"
+)
+
 def main():
     st.title('Fantasy Soccer Data Science Hub')
     st.info("""This is just a placeholder :)""")
