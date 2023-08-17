@@ -135,7 +135,7 @@ elif grouping_option == 'Team':
 else:
     grouped_df = df
     columns_to_show = DEFAULT_COLUMNS + selected_columns
-    st.dataframe(grouped_df[columns_to_show], use_container_width=True, height=100)
+    st.dataframe(grouped_df[columns_to_show], use_container_width=True, height=500)
 
 
 # Check if there are selected groups and columns
