@@ -23,11 +23,6 @@ warnings.filterwarnings('ignore')
 
 # Adding path to the scripts directory
 scripts_path = os.path.abspath(os.path.join('./scripts'))
-sys.path.append(scripts_path)
-
-# Adding path to the directory containing constants.py
-current_path = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(current_path)
 
 st.set_page_config(
     layout="wide"
