@@ -18,6 +18,7 @@ from sklearn.preprocessing import StandardScaler
 import unicodedata
 import plotly.graph_objects as go
 from bs4 import BeautifulSoup
+from matplotlib import cm
 
 warnings.filterwarnings('ignore')
 
