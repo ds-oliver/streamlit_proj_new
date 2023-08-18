@@ -213,6 +213,7 @@ if selected_group and selected_columns:
         title = f'Comparison of Selected {grouping_option} for Selected Statistics'
         fig.update_layout(
             title=title,
+            subtitle='Note: If no grouping option is selected, the top 25 players by the first selected statistic is shown.',
             xaxis_title=grouping_option if grouping_option != 'None' else 'Players',
             yaxis_title='Value',
             legend=dict(
