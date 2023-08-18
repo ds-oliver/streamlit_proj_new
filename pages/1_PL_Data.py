@@ -187,7 +187,9 @@ if selected_group and selected_columns:
             grouping_values = selected_teams
             grouping_column = 'team'
         else:
-            grouping_values = sorted(df['player'].unique())
+            # get the top 25 players by all of the selected stats
+            top_players = grouped_df.nlargest(25, selected_stats_for_plot)
+            grouping_values = top_players['player'].tolist()
             grouping_column = 'player'
 
         # Iterate through selected statistics and add trace for each grouping value
