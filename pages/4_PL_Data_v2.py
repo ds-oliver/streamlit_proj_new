@@ -230,7 +230,13 @@ def main():
     styled_df = style_dataframe(grouped_data[columns_to_show], selected_columns=selected_columns)
 
     # Display the DataFrame
-    st.dataframe(grouped_data[columns_to_show].style.apply(lambda _: styled_df, axis=None), use_container_width=True, height=len(grouped_data) * 50)
+    # if grouping_option == 'None' then set st.dataframe() height= to the height of showing the first 50 rows, else set height to length of grouped_data
+    if grouping_option == 'None':
+        st.dataframe(grouped_data[columns_to_show].style.apply(lambda _: styled_df, axis=None), use_container_width=True, height=50 * 20)
+    else:
+        st.dataframe(grouped_data[columns_to_show].style.apply(lambda _: styled_df, axis=None), use_container_width=True, height=(len(grouped_data) * 38) + 50)
+
+
 
     # Create plot
     create_plot(selected_group, selected_columns, selected_positions, selected_teams, grouped_data, grouping_option)
