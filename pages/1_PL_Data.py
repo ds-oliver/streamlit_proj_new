@@ -66,42 +66,32 @@ def get_color(value, unique_values, cmap):
 
 def style_dataframe(df, selected_columns):
     cm_coolwarm = cm.get_cmap('coolwarm')
-    object_cmap = cm.get_cmap('viridis')  # Choose a colormap for object columns
+    object_cmap = cm.get_cmap('viridis')
 
-    # Create an empty DataFrame with the same shape as df
-    styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
-    for col in df.columns:
-        if col == 'player':  # Skip the styling for the 'player' column
-            continue
-        if df[col].dtype in [np.float64, np.int64] and col in selected_columns:
-            print(f"Styling numericcol: {col}")
+    styled_df = df.copy()
+    for col in selected_columns:
+        if df[col].dtype in [np.float64, np.int64]:
             min_val = df[col].min()
-            max_val = df[col].max()
-            range_val = max_val - min_val
-            styled_df[col] = df[col].apply(lambda x: f'background-color: rgba({",".join(map(str, (np.array(cm_coolwarm((x - min_val) / range_val))[:3] * 255).astype(int)))}, 0.7)')
+            range_val = df[col].max() - min_val
+            rgba_colors = cm_coolwarm((df[col] - min_val) / range_val)
+            styled_df[col] = [f'background-color: rgba({",".join(map(str, (color[:3] * 255).astype(int)))}, 0.7)' for color in rgba_colors]
         elif df[col].dtype == 'object':
-            print(f"Styling object col: {col}")
             unique_values = df[col].unique().tolist()
-            styled_df[col] = df[col].apply(lambda x: get_color(x, unique_values, object_cmap))
+            styled_df[col] = [get_color(val, unique_values, object_cmap) for val in df[col]]
+
     return styled_df
-
-
 
 # from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols
 
 # Read the data
 df = pd.read_csv(pl_data_gw1)
-
 temp_df = pd.read_csv(temp_default)
-
-temp_cols = temp_df.columns.tolist()
-
 df['fantrax position'] = temp_df['Position']
 
 # drop df['position'] column
 df.drop(columns=['position'], inplace=True)
 
-# # Define default columns
+# Define default columns
 DEFAULT_COLUMNS = ['player', 'fantrax position', 'team', 'games_starts']
 
 # Exclude the default columns
@@ -110,15 +100,15 @@ stat_cols = [col for col in df.columns if col not in DEFAULT_COLUMNS]
 # create a multiselect for the teams, default to all teams
 selected_teams = create_sidebar_multiselect(df, 'team', 'Select Teams', default_all=True)
 
-# Filter the DataFrame for selected teams
-df = df[df['team'].isin(selected_teams)]
-
-# if there is no team selected, display a message
-if len(selected_teams) == 0:
-    st.write('Please select at least one team.')
-
-#create a multiselect for the positions, default to all positions
+# create a multiselect for the positions, default to all positions
 selected_positions = create_sidebar_multiselect(df, 'fantrax position', 'Select Positions', default_all=True)
+
+# Filter the DataFrame for selected teams and positions
+df = df[df['team'].isin(selected_teams) & df['fantrax position'].isin(selected_positions)]
+
+# if there are no teams or positions selected, display a message
+if len(selected_teams) == 0 or len(selected_positions) == 0:
+    st.write('Please select at least one team and one position.')
 
 col_groups = {
     "Standard": stats_cols,
@@ -132,47 +122,24 @@ col_groups = {
     "Playing Time": playing_time_cols,
 }
 
-grouping_option = 'None'
-
 selected_group = st.sidebar.selectbox('Select a Category', options=list(col_groups.keys()))
 selected_columns = col_groups[selected_group]
 
 def get_grouped_data(df, group_by, aggregation_func):
-    try:
-        if group_by == 'None':
-            return df
-        else:
-            group_column = 'fantrax position' if group_by == 'Position' else 'team'
-            return df.groupby(group_column).agg(aggregation_func).reset_index().round(2)
-    except Exception as e:
-        st.error(f"An error occurred: {e}")
+    if group_by == 'None':
         return df
+    group_column = 'fantrax position' if group_by == 'Position' else 'team'
+    return df.groupby(group_column).agg(aggregation_func).reset_index().round(2)
 
-# Rest of your code
 columns_to_show = DEFAULT_COLUMNS + selected_columns
-
 col1, col2 = st.columns(2)
 
-col1.subheader('Aggregate the data...')
-col1.write('...by position, team, or not at all.')
 grouping_option = col1.radio('Group Data by:', ('None', 'Position', 'Team'))
-
-if grouping_option != 'None':
-    col2.subheader('Choose aggregation type...')
-    col2.write('...to apply to the data.')
-    aggregation_option = col2.radio('Select Aggregate:', ('Mean', 'Median', 'Sum'))
-    aggregation_func = aggregation_option.lower()
-else:
-    aggregation_func = None
+aggregation_func = col2.radio('Select Aggregate:', ('Mean', 'Median', 'Sum')).lower() if grouping_option != 'None' else None
 
 grouped_df = get_grouped_data(df, grouping_option, aggregation_func)
 
-# if grouping_option != 'None':
-#     columns_to_show = [grouping_option.lower()] + selected_columns
-
 st.dataframe(grouped_df[columns_to_show].style.apply(lambda x: style_dataframe(x, selected_columns), axis=None), use_container_width=True, height=len(grouped_df) * 50)
-
-
 
 # Check if there are selected groups and columns
 if selected_group and selected_columns:
