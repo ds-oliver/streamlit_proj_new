@@ -143,22 +143,19 @@ horizontal=True
 )
 
 # Offer radio buttons for different aggregation options
-
 if grouping_option != 'None':
 
     col1, col2 = st.columns(2)
 
-    with col1:
-        st.subheader('Aggregate the data...')
-        st.write('...by position, team, or not at all.')
-        grouping_option = st.radio(
+    col1.subheader('Aggregate the data...')
+    col1.write('...by position, team, or not at all.')
+    grouping_option = col1.radio(
         'Group Data by:', ('None', 'Position', 'Team')
     )
 
-    with col2:
-        st.subheader('Choose aggregation type...')
-        st.write('...to apply to the data.')
-        aggregation_option = st.radio(
+    col2.subheader('Choose aggregation type...')
+    col2.write('...to apply to the data.')
+    aggregation_option = col2.radio(
         'Select Aggregate:', ('Mean', 'Median', 'Sum')
     )
 
@@ -179,12 +176,11 @@ if grouping_option != 'None':
     st.dataframe(grouped_df[columns_to_show].style.apply(lambda x: style_dataframe(x, selected_columns), axis=None), use_container_width=True, height=len(grouped_df) * 50)
 
 else:
-    col1 = st.columns(1)
+    col1 = st.columns(1)[0]
 
-    with col1:
-        st.subheader('Aggregate the data...')
-        st.write('...by position, team, or not at all.')
-        grouping_option = st.radio(
+    col1.subheader('Aggregate the data...')
+    col1.write('...by position, team, or not at all.')
+    grouping_option = col1.radio(
         'Group Data by:', ('None', 'Position', 'Team'),
         horizontal=True
     )
@@ -192,6 +188,7 @@ else:
     grouped_df = df
     columns_to_show = DEFAULT_COLUMNS + selected_columns
     st.dataframe(grouped_df[columns_to_show].style.apply(lambda x: style_dataframe(x, selected_columns), axis=None), use_container_width=True, height=500)
+
 
 
 # Check if there are selected groups and columns
