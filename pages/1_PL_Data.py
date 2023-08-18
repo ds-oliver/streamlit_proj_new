@@ -58,27 +58,25 @@ from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default # this i
 from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect
 
 def style_dataframe(df, selected_columns):
-    def background_gradient(s, cmap='coolwarm', low=0, high=0):
-        norm = plt.Normalize(s.min() - low, s.max() + high)
-        normed = norm(s.values)
-        c = [plt.cm.get_cmap(cmap)(x) for x in normed]
-        return pd.Series([f'background-color: rgba({int(r * 255)}, {int(g * 255)}, {int(b * 255)}, 0.7)' for r, g, b, _ in c], index=s.index)
+    styled_df = df.copy()
 
-    def get_color(val, unique_values, object_cmap):
-        norm = plt.Normalize(0, len(unique_values) - 1)
-        rgba_color = object_cmap(norm(unique_values.index(val)))
-        return f'background-color: rgba({int(rgba_color[0] * 255)}, {int(rgba_color[1] * 255)}, {int(rgba_color[2] * 255)}, 0.7)'
-
-    styles = {}
     for col in selected_columns:
         if df[col].dtype in [np.float64, np.int64]:
-            styles[col] = background_gradient
+            min_val = df[col].min()
+            range_val = df[col].max() - min_val
+            rgba_colors = [f'background-color: rgba({",".join(map(str, ((color[:3] * 255).astype(int))))}, 0.7)' for color in cm.get_cmap('coolwarm')((df[col] - min_val) / range_val)]
+            styled_df[col] = rgba_colors
         elif df[col].dtype == 'object':
             unique_values = df[col].unique().tolist()
-            styles[col] = lambda s: pd.Series([get_color(val, unique_values, cm.get_cmap('viridis')) for val in s], index=s.index)
+            object_cmap = cm.get_cmap('viridis')
+            styled_df[col] = [get_color(val, unique_values, object_cmap) for val in df[col]]
 
-    return df.style.apply(styles, axis=None)
+    return styled_df
 
+def get_color(val, unique_values, object_cmap):
+    norm = plt.Normalize(0, len(unique_values) - 1)
+    rgba_color = object_cmap(norm(unique_values.index(val)))
+    return f'background-color: rgba({int(rgba_color[0] * 255)}, {int(rgba_color[1] * 255)}, {int(rgba_color[2] * 255)}, 0.7)'
 
 # from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols
 
@@ -139,7 +137,8 @@ aggregation_func = col2.radio('Select Aggregate:', ('Mean', 'Median', 'Sum')).lo
 grouped_df = get_grouped_data(df, grouping_option, aggregation_func)
 
 styled_df = style_dataframe(grouped_df[columns_to_show], selected_columns)
-st.dataframe(styled_df, use_container_width=True, height=len(grouped_df) * 50)
+st.table(styled_df, use_container_width=True)
+
 
 
 # Check if there are selected groups and columns
