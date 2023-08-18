@@ -133,7 +133,19 @@ col_groups = {
 }
 
 selected_group = st.sidebar.selectbox('Select a Category', options=list(col_groups.keys()))
+
+@st.cache_resource
+def get_grouped_data(df, group_by, aggregation_func):
+    if group_by == 'None':
+        return df
+    elif group_by == 'Position':
+        return df.groupby('fantrax position').agg(aggregation_func).reset_index().round(2)
+    elif group_by == 'Team':
+        return df.groupby('team').agg(aggregation_func).reset_index().round(2)
+
+# Rest of your code
 selected_columns = col_groups[selected_group]
+columns_to_show = DEFAULT_COLUMNS + selected_columns
 
 col1, col2 = st.columns(2)
 
@@ -141,6 +153,7 @@ col1.subheader('Aggregate the data...')
 col1.write('...by position, team, or not at all.')
 grouping_option = col1.radio('Group Data by:', ('None', 'Position', 'Team'))
 
+aggregation_func = None
 if grouping_option != 'None':
     col2.subheader('Choose aggregation type...')
     col2.write('...to apply to the data.')
@@ -153,16 +166,10 @@ if grouping_option != 'None':
     elif aggregation_option == 'Median':
         aggregation_func = 'median'
 
-    if grouping_option == 'Position':
-        grouped_df = df.groupby('fantrax position').agg(aggregation_func).reset_index()
-        columns_to_show = ['fantrax position'] + selected_columns
-    elif grouping_option == 'Team':
-        grouped_df = df.groupby('team').agg(aggregation_func).reset_index()
-        columns_to_show = ['team'] + selected_columns
-    grouped_df = grouped_df.round(2)
-else:
-    grouped_df = df
-    columns_to_show = DEFAULT_COLUMNS + selected_columns
+grouped_df = get_grouped_data(df, grouping_option, aggregation_func)
+
+if grouping_option != 'None':
+    columns_to_show = [grouping_option.lower()] + selected_columns
 
 st.dataframe(grouped_df[columns_to_show].style.apply(lambda x: style_dataframe(x, selected_columns), axis=None), use_container_width=True, height=len(grouped_df) * 50)
 
