@@ -18,6 +18,7 @@ import warnings
 import plotly.graph_objects as go
 # from bs4 import BeautifulSoup
 from matplotlib import cm
+from pandas.io.formats.style import Styler
 
 # logger = st.logger
 
@@ -58,25 +59,27 @@ from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default # this i
 from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect
 
 def style_dataframe(df, selected_columns):
-    styled_df = df.copy()
-
+    styles = []
     for col in selected_columns:
         if df[col].dtype in [np.float64, np.int64]:
             min_val = df[col].min()
             range_val = df[col].max() - min_val
             rgba_colors = [f'background-color: rgba({",".join(map(str, ((color[:3] * 255).astype(int))))}, 0.7)' for color in cm.get_cmap('coolwarm')((df[col] - min_val) / range_val)]
-            styled_df[col] = rgba_colors
+            styles += [dict(selector=f'td[data-row="{row}"][data-col="{col_idx}"]',
+                            props=[('background', f'rgba({",".join(map(str, ((color[:3] * 255).astype(int))))}, 0.7)')]) for row, color in enumerate(rgba_colors)]
         elif df[col].dtype == 'object':
             unique_values = df[col].unique().tolist()
             object_cmap = cm.get_cmap('viridis')
-            styled_df[col] = [get_color(val, unique_values, object_cmap) for val in df[col]]
-
-    return styled_df
+            col_idx = df.columns.get_loc(col)
+            styles += [dict(selector=f'td[data-row="{row}"][data-col="{col_idx}"]',
+                            props=[('background', get_color(val, unique_values, object_cmap))]) for row, val in enumerate(df[col])]
+    
+    return styles
 
 def get_color(val, unique_values, object_cmap):
     norm = plt.Normalize(0, len(unique_values) - 1)
     rgba_color = object_cmap(norm(unique_values.index(val)))
-    return f'background-color: rgba({int(rgba_color[0] * 255)}, {int(rgba_color[1] * 255)}, {int(rgba_color[2] * 255)}, 0.7)'
+    return f'rgba({int(rgba_color[0] * 255)}, {int(rgba_color[1] * 255)}, {int(rgba_color[2] * 255)}, 0.7)'
 
 # from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols
 
@@ -136,8 +139,10 @@ aggregation_func = col2.radio('Select Aggregate:', ('Mean', 'Median', 'Sum')).lo
 
 grouped_df = get_grouped_data(df, grouping_option, aggregation_func)
 
-styled_df = style_dataframe(grouped_df[columns_to_show], selected_columns)
-st.table(styled_df)
+styles = style_dataframe(grouped_df[columns_to_show], selected_columns)
+styled_df = Styler(grouped_df[columns_to_show], uuid='data-table').set_table_styles(styles)
+
+st.dataframe(styled_df)
 
 
 
