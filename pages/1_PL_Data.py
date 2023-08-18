@@ -135,27 +135,26 @@ col_groups = {
 selected_group = st.sidebar.selectbox('Select a Category', options=list(col_groups.keys()))
 selected_columns = col_groups[selected_group]
 
-col1, col2 = st.columns(2)
-
-with col1:
-    st.subheader('Aggregate the data...')
-    st.write('...by position, team, or not at all.')
-    grouping_option = st.radio(
-    'Group Data by:', ('None', 'Position', 'Team')
-)
-
 # Offer radio buttons for different aggregation options
 
-# if grouping option selected, present the radio buttons for aggregation options
 if grouping_option != 'None':
-    
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.subheader('Aggregate the data...')
+        st.write('...by position, team, or not at all.')
+        grouping_option = st.radio(
+        'Group Data by:', ('None', 'Position', 'Team')
+    )
+
     with col2:
         st.subheader('Choose aggregation type...')
         st.write('...to apply to the data.')
         aggregation_option = st.radio(
         'Select Aggregate:', ('Mean', 'Median', 'Sum')
     )
-    # Determine the aggregation function based on the selected option
+
     if aggregation_option == 'Sum':
         aggregation_func = 'sum'
     elif aggregation_option == 'Mean':
@@ -165,20 +164,28 @@ if grouping_option != 'None':
 
     if grouping_option == 'Position':
         grouped_df = df.groupby('fantrax position').agg(aggregation_func).reset_index()
-        grouped_df = grouped_df.round(2)
         columns_to_show = ['fantrax position'] + selected_columns
-        st.dataframe(grouped_df[columns_to_show].style.apply(lambda x: style_dataframe(x, selected_columns), axis=None), use_container_width=True, height=len(grouped_df) * 50)
-
     elif grouping_option == 'Team':
         grouped_df = df.groupby('team').agg(aggregation_func).reset_index()
-        grouped_df = grouped_df.round(2)
         columns_to_show = ['team'] + selected_columns
-        st.dataframe(grouped_df[columns_to_show].style.apply(lambda x: style_dataframe(x, selected_columns), axis=None), use_container_width=True, height=len(grouped_df) * 38)
+    grouped_df = grouped_df.round(2)
+    st.dataframe(grouped_df[columns_to_show].style.apply(lambda x: style_dataframe(x, selected_columns), axis=None), use_container_width=True, height=len(grouped_df) * 50)
 
 else:
-        grouped_df = df
-        columns_to_show = DEFAULT_COLUMNS + selected_columns
-        st.dataframe(grouped_df[columns_to_show].style.apply(lambda x: style_dataframe(x, selected_columns), axis=None), use_container_width=True, height=500)
+    col1 = st.columns(1)
+
+    with col1:
+        st.subheader('Aggregate the data...')
+        st.write('...by position, team, or not at all.')
+        grouping_option = st.radio(
+        'Group Data by:', ('None', 'Position', 'Team'),
+        horizontal=True
+    )
+
+    grouped_df = df
+    columns_to_show = DEFAULT_COLUMNS + selected_columns
+    st.dataframe(grouped_df[columns_to_show].style.apply(lambda x: style_dataframe(x, selected_columns), axis=None), use_container_width=True, height=500)
+
 
 # Check if there are selected groups and columns
 if selected_group and selected_columns:
