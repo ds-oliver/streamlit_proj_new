@@ -145,7 +145,7 @@ with col1:
 )
 
 with col2:
-    st.subheader('Select an aggregation method...')
+    st.subheader('Choose aggregation type...')
     st.write('...to apply to the data.')
     aggregation_option = st.radio(
     'Select Aggregate:', ('Mean', 'Median', 'Sum')
