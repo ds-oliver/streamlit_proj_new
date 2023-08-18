@@ -137,7 +137,7 @@ aggregation_func = col2.radio('Select Aggregate:', ('Mean', 'Median', 'Sum')).lo
 grouped_df = get_grouped_data(df, grouping_option, aggregation_func)
 
 styled_df = style_dataframe(grouped_df[columns_to_show], selected_columns)
-st.table(styled_df, use_container_width=True)
+st.table(styled_df)
 
 
 
