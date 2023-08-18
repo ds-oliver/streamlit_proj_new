@@ -29,7 +29,6 @@ warnings.filterwarnings('ignore')
 scripts_path = os.path.abspath(os.path.join('./scripts'))
 sys.path.append('/Users/hogan/dev/streamlit_proj_new/scripts')
 
-
 st.set_page_config(
     layout="wide"
 )
@@ -61,9 +60,8 @@ from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default # this i
 
 from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect
 
-from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols
+from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues
 
-# Helper function to get color based on unique value
 def get_color(value, unique_values, cmap):
     index = unique_values.index(value)
     color_fraction = index / len(unique_values)
@@ -89,9 +87,6 @@ def style_dataframe(df, selected_columns):
             styled_df[col] = df[col].apply(lambda x: get_color(x, unique_values, object_cmap))
     return styled_df
 
-# from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols
-
-# Read the data
 @st.cache_resource
 def process_data(pl_data_gw1, temp_default):
     
@@ -102,25 +97,95 @@ def process_data(pl_data_gw1, temp_default):
     # drop df['position'] column
     df.drop(columns=['position'], inplace=True)
 
+    # rename 'fantrax position' column to 'position'
+    df.rename(columns={'fantrax position': 'position'}, inplace=True)
+
     # Define default columns
-    DEFAULT_COLUMNS = ['player', 'fantrax position', 'team', 'games_starts']
+    DEFAULT_COLUMNS = ['player', 'position', 'team', 'games_starts']
 
     return df, DEFAULT_COLUMNS
 
-df, DEFAULT_COLUMNS = process_data(pl_data_gw1, temp_default)
+# Function to load the data
+@st.cache_resource
+def load_data():
+    return process_data(pl_data_gw1, temp_default)
 
-# create a multiselect for the teams, default to all teams
-selected_teams = create_sidebar_multiselect(df, 'team', 'Select Teams', default_all=True)
+# Function to filter data based on selected teams and positions
+@st.cache_resource
+def filter_data(df, selected_teams, selected_positions):
+    return df[df['team'].isin(selected_teams) & df['position'].isin(selected_positions)]
 
-# create a multiselect for the positions, default to all positions
-selected_positions = create_sidebar_multiselect(df, 'fantrax position', 'Select Positions', default_all=True)
+# Function to group data based on selected options
+def group_data(df, selected_columns, selected_group, selected_positions, selected_teams, grouping_option, aggregation_option):
+    if grouping_option == 'Position':
+        grouped_df = df.groupby('position').agg(aggregation_option).reset_index()
+    elif grouping_option == 'Team':
+        grouped_df = df.groupby('team').agg(aggregation_option).reset_index()
+    else:
+        grouped_df = df
 
-# Filter the DataFrame for selected teams and positions
-df = df[df['team'].isin(selected_teams) & df['fantrax position'].isin(selected_positions)]
+    columns_to_show = ['position' if grouping_option == 'Position' else 'team'] + selected_columns if grouping_option != 'None' else selected_columns
 
-# if there are no teams or positions selected, display a message
-if len(selected_teams) == 0 or len(selected_positions) == 0:
-    st.write('Please select at least one team and one position.')
+    grouped_df = grouped_df.round(2)
+    return grouped_df, columns_to_show
+
+def get_grouping_values_and_column(grouping_option, selected_positions, selected_teams, grouped_df, selected_stats_for_plot):
+    if grouping_option == 'Position':
+        return selected_positions, 'position'
+    elif grouping_option == 'Team':
+        return selected_teams, 'team'
+    else:
+        top_players = grouped_df.nlargest(25, selected_stats_for_plot)
+        return top_players['player'].tolist(), 'player'
+
+def add_bar_traces(fig, selected_stats_for_plot, grouping_values, grouped_df, grouping_column, stat_colors):
+    for stat in selected_stats_for_plot:
+        x_values = []
+        y_values = []
+        for value in grouping_values:
+            x_values.append(value)
+            y_values.append(grouped_df[grouped_df[grouping_column] == value][stat].values[0])
+        fig.add_trace(
+            go.Bar(
+                x=x_values,
+                y=y_values,
+                name=stat,
+                text=y_values,
+                textposition='outside',
+                marker_color=stat_colors[stat]
+            )
+        )
+
+def create_plot(selected_group, selected_columns, selected_positions, selected_teams, grouped_df, grouping_option):
+    if selected_group and selected_columns:
+        selected_stats_for_plot = st.multiselect('Select Statistics for Plotting', options=selected_columns)
+        st.info('Note: If no grouping option is selected, the top 25 players by the first selected statistic is shown.')
+        
+        if selected_stats_for_plot:
+            colors = px.colors.qualitative.Plotly[:len(selected_stats_for_plot)]
+            stat_colors = {stat: color for stat, color in zip(selected_stats_for_plot, colors)}
+            
+            fig = go.Figure()
+            grouping_values, grouping_column = get_grouping_values_and_column(grouping_option, selected_positions, selected_teams, grouped_df, selected_stats_for_plot)
+            
+            add_bar_traces(fig, selected_stats_for_plot, grouping_values, grouped_df, grouping_column, stat_colors)
+            
+            title = f'Comparison of Selected {grouping_option} for Selected Statistics'
+            fig.update_layout(
+                title=title,
+                xaxis_title=grouping_option if grouping_option != 'None' else 'Players',
+                yaxis_title='Value',
+                legend=dict(
+                    bgcolor='rgba(255,255,255,0.5)',
+                    font=dict(
+                        color='black'
+                    )
+                ),
+                barmode='group',
+                height=500
+            )
+            fig.update_traces(hoverinfo="x+y+name")
+            st.plotly_chart(fig, use_container_width=True)
 
 col_groups = {
     "Standard": stats_cols,
@@ -134,104 +199,44 @@ col_groups = {
     "Playing Time": playing_time_cols,
 }
 
-selected_group = st.sidebar.selectbox('Select a Category', options=list(col_groups.keys()))
-selected_columns = col_groups[selected_group]
+def main():
+    # Load the data
+    data, DEFAULT_COLUMNS = load_data()
 
-grouping_option = st.radio(
-    'Group Data by:', ('None', 'Position', 'Team')
-)
-
-# Offer radio buttons for different aggregation options
-aggregation_option = st.radio(
-    'Select Aggregation Option:', ('Mean', 'Median', 'Sum')
-)
-
-# Determine the aggregation function based on the selected option
-if aggregation_option == 'Sum':
-    aggregation_func = 'sum'
-elif aggregation_option == 'Mean':
-    aggregation_func = 'mean'
-elif aggregation_option == 'Median':
-    aggregation_func = 'median'
-
-if grouping_option == 'Position':
-    grouped_df = df.groupby('fantrax position').agg(aggregation_func).reset_index()
-    grouped_df = grouped_df.round(2)
-    columns_to_show = ['fantrax position'] + selected_columns
-    st.dataframe(grouped_df[columns_to_show].style.apply(lambda x: style_dataframe(x, selected_columns), axis=None), use_container_width=True, height=500)
-
-elif grouping_option == 'Team':
-    grouped_df = df.groupby('team').agg(aggregation_func).reset_index()
-    grouped_df = grouped_df.round(2)
-    columns_to_show = ['team'] + selected_columns
-    st.dataframe(grouped_df[columns_to_show].style.apply(lambda x: style_dataframe(x, selected_columns), axis=None), use_container_width=True, height=len(grouped_df) * 25 + 50)
-
-else:
-    grouped_df = df
-    columns_to_show = DEFAULT_COLUMNS + selected_columns
-    st.dataframe(grouped_df[columns_to_show].style.apply(lambda x: style_dataframe(x, selected_columns), axis=None), use_container_width=True, height=len(grouped_df) * 25 + 50)
-
-# Check if there are selected groups and columns
-if selected_group and selected_columns:
-    selected_stats_for_plot = st.multiselect('Select Statistics for Plotting', options=selected_columns)
-    st.info('Note: If no grouping option is selected, the top 25 players by the first selected statistic is shown.')
-
-    if selected_stats_for_plot:
-        # Define colors for statistics
-        colors = px.colors.qualitative.Plotly[:len(selected_stats_for_plot)]
-        stat_colors = {stat: color for stat, color in zip(selected_stats_for_plot, colors)}
-
-        fig = go.Figure()
-
-        if grouping_option == 'Position':
-            grouping_values = selected_positions
-            grouping_column = 'fantrax position'
-        elif grouping_option == 'Team':
-            grouping_values = selected_teams
-            grouping_column = 'team'
-        else:
-            # get the top 25 players by all of the selected stats
-            top_players = grouped_df.nlargest(25, selected_stats_for_plot)
-            grouping_values = top_players['player'].tolist()
-            grouping_column = 'player'
-
-        # Iterate through selected statistics and add trace for each grouping value
-        for stat in selected_stats_for_plot:
-            x_values = []
-            y_values = []
-            for value in grouping_values:
-                x_values.append(value)
-                y_values.append(grouped_df[grouped_df[grouping_column] == value][stat].values[0])
-            fig.add_trace(
-                go.Bar(
-                    x=x_values,
-                    y=y_values,
-                    name=stat,
-                    text=y_values,
-                    textposition='outside',
-                    marker_color=stat_colors[stat]  # Use statistic-specific color
-                )
-            )
-
-        title = f'Comparison of Selected {grouping_option} for Selected Statistics'
-        fig.update_layout(
-            title=title,
-            xaxis_title=grouping_option if grouping_option != 'None' else 'Players',
-            yaxis_title='Value',
-            legend=dict(
-                bgcolor='rgba(255,255,255,0.5)',
-                font=dict(
-                    color='black'
-                )
-            ),
-            barmode='group',  # This groups the bars for each grouping value together
-            height=500  # Set the height of the plot
-        )
-        fig.update_traces(hoverinfo="x+y+name")  # Show hover information
-        st.plotly_chart(fig, use_container_width=True)
+    # Sidebar filters
+    selected_teams = create_sidebar_multiselect(data, 'team', 'Select Teams', default_all=True, key="teams")
+    selected_positions = create_sidebar_multiselect(data, 'position', 'Select Positions', default_all=True, key="positions")
 
 
+    # Filter data based on selected options
+    filtered_data = filter_data(data, selected_teams, selected_positions)
 
+    # User selects the group and columns to show
+    selected_group = st.sidebar.selectbox("Select Stats Grouping", list(col_groups.keys()))
+    selected_columns = col_groups[selected_group]
+    
+    grouping_option = st.sidebar.selectbox("Select Grouping Option", ['None', 'Position', 'Team'])
 
+    if grouping_option == 'None':
+        columns_to_show = DEFAULT_COLUMNS + selected_columns
+    else:
+        columns_to_show = [grouping_option.lower()] + selected_columns
+
+    # Group data based on selected options
+    grouped_data, _ = group_data(filtered_data, selected_columns, selected_group, selected_positions, selected_teams, grouping_option, aggregation_option='mean')
+    
+    # Styling DataFrame
+    styled_df = style_dataframe(grouped_data[columns_to_show], selected_columns=selected_columns)
+
+    # Display the DataFrame
+    st.dataframe(grouped_data[columns_to_show].style.apply(lambda _: styled_df, axis=None), use_container_width=True, height=len(grouped_data) * 50)
+
+    # Create plot
+    create_plot(selected_group, selected_columns, selected_positions, selected_teams, grouped_data, grouping_option)
+
+if __name__ == "__main__":
+    cProfile.run('main()')
+
+    main()
 
 
