@@ -58,28 +58,28 @@ from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default # this i
 
 from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect
 
+# Helper function to get color based on unique value
+def get_color(value, unique_values, cmap):
+    index = unique_values.index(value)
+    color_fraction = index / len(unique_values)
+    rgba_color = cmap(color_fraction)
+    return f'background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
+
 def style_dataframe(df, selected_columns):
-    styles = []
-    for col in selected_columns:
-        if df[col].dtype in [np.float64, np.int64]:
+    cm_coolwarm = cm.get_cmap('coolwarm')
+    object_cmap = cm.get_cmap('viridis')  # Choose a colormap for object columns
+
+    styled_df = df.copy()
+    for col in df.columns:
+        if df[col].dtype in [np.float64, np.int64] and col in selected_columns:
             min_val = df[col].min()
-            range_val = df[col].max() - min_val
-            rgba_colors = [f'background-color: rgba({",".join(map(str, ((color[:3] * 255).astype(int))))}, 0.7)' for color in cm.get_cmap('coolwarm')((df[col] - min_val) / range_val)]
-            styles += [dict(selector=f'td[data-row="{row}"][data-col="{col_idx}"]',
-                            props=[('background', f'rgba({",".join(map(str, ((color[:3] * 255).astype(int))))}, 0.7)')]) for row, color in enumerate(rgba_colors)]
+            max_val = df[col].max()
+            range_val = max_val - min_val
+            styled_df[col] = styled_df[col].apply(lambda x: f'background-color: rgba({",".join(map(str, (np.array(cm_coolwarm((x - min_val) / range_val))[:3] * 255).astype(int)))}, 0.7)')
         elif df[col].dtype == 'object':
             unique_values = df[col].unique().tolist()
-            object_cmap = cm.get_cmap('viridis')
-            col_idx = df.columns.get_loc(col)
-            styles += [dict(selector=f'td[data-row="{row}"][data-col="{col_idx}"]',
-                            props=[('background', get_color(val, unique_values, object_cmap))]) for row, val in enumerate(df[col])]
-    
-    return styles
-
-def get_color(val, unique_values, object_cmap):
-    norm = plt.Normalize(0, len(unique_values) - 1)
-    rgba_color = object_cmap(norm(unique_values.index(val)))
-    return f'rgba({int(rgba_color[0] * 255)}, {int(rgba_color[1] * 255)}, {int(rgba_color[2] * 255)}, 0.7)'
+            styled_df[col] = styled_df[col].apply(lambda x: get_color(x, unique_values, object_cmap))
+    return styled_df
 
 # from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols
 
@@ -125,24 +125,39 @@ col_groups = {
 selected_group = st.sidebar.selectbox('Select a Category', options=list(col_groups.keys()))
 selected_columns = col_groups[selected_group]
 
-def get_grouped_data(df, group_by, aggregation_func):
-    if group_by == 'None':
-        return df
-    group_column = 'fantrax position' if group_by == 'Position' else 'team'
-    return df.groupby(group_column).agg(aggregation_func).reset_index().round(2)
+grouping_option = st.radio(
+    'Group Data by:', ('None', 'Position', 'Team')
+)
 
-columns_to_show = DEFAULT_COLUMNS + selected_columns
-col1, col2 = st.columns(2)
+# Offer radio buttons for different aggregation options
+aggregation_option = st.radio(
+    'Select Aggregation Option:', ('Mean', 'Median', 'Sum')
+)
 
-grouping_option = col1.radio('Group Data by:', ('None', 'Position', 'Team'))
-aggregation_func = col2.radio('Select Aggregate:', ('Mean', 'Median', 'Sum')).lower() if grouping_option != 'None' else None
+# Determine the aggregation function based on the selected option
+if aggregation_option == 'Sum':
+    aggregation_func = 'sum'
+elif aggregation_option == 'Mean':
+    aggregation_func = 'mean'
+elif aggregation_option == 'Median':
+    aggregation_func = 'median'
 
-grouped_df = get_grouped_data(df, grouping_option, aggregation_func)
+if grouping_option == 'Position':
+    grouped_df = df.groupby('fantrax position').agg(aggregation_func).reset_index()
+    grouped_df = grouped_df.round(2)
+    columns_to_show = ['fantrax position'] + selected_columns
+    st.dataframe(grouped_df[columns_to_show].style.apply(lambda x: style_dataframe(x, selected_columns), axis=None), use_container_width=True, height=500)
 
-styles = style_dataframe(grouped_df[columns_to_show], selected_columns)
-styled_df = Styler(grouped_df[columns_to_show], uuid='data-table').set_table_styles(styles)
+elif grouping_option == 'Team':
+    grouped_df = df.groupby('team').agg(aggregation_func).reset_index()
+    grouped_df = grouped_df.round(2)
+    columns_to_show = ['team'] + selected_columns
+    st.dataframe(grouped_df[columns_to_show].style.apply(lambda x: style_dataframe(x, selected_columns), axis=None), use_container_width=True, height=len(grouped_df) * 25 + 50)
 
-st.dataframe(styled_df)
+else:
+    grouped_df = df
+    columns_to_show = DEFAULT_COLUMNS + selected_columns
+    st.dataframe(grouped_df[columns_to_show].style.apply(lambda x: style_dataframe(x, selected_columns), axis=None), use_container_width=True, height=len(grouped_df) * 25 + 50)
 
 
 
