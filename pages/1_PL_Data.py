@@ -87,18 +87,22 @@ def style_dataframe(df, selected_columns):
 # from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols
 
 # Read the data
-df = pd.read_csv(pl_data_gw1)
-temp_df = pd.read_csv(temp_default)
-df['fantrax position'] = temp_df['Position']
+@st.cache_resource
+def process_data(pl_data_gw1, temp_default):
+    
+    df = pd.read_csv(pl_data_gw1)
+    temp_df = pd.read_csv(temp_default)
+    df['fantrax position'] = temp_df['Position']
 
-# drop df['position'] column
-df.drop(columns=['position'], inplace=True)
+    # drop df['position'] column
+    df.drop(columns=['position'], inplace=True)
 
-# Define default columns
-DEFAULT_COLUMNS = ['player', 'fantrax position', 'team', 'games_starts']
+    # Define default columns
+    DEFAULT_COLUMNS = ['player', 'fantrax position', 'team', 'games_starts']
 
-# Exclude the default columns
-stat_cols = [col for col in df.columns if col not in DEFAULT_COLUMNS]
+    return df, DEFAULT_COLUMNS
+
+df, DEFAULT_COLUMNS = process_data(pl_data_gw1, temp_default)
 
 # create a multiselect for the teams, default to all teams
 selected_teams = create_sidebar_multiselect(df, 'team', 'Select Teams', default_all=True)
@@ -161,8 +165,6 @@ else:
     grouped_df = df
     columns_to_show = DEFAULT_COLUMNS + selected_columns
     st.dataframe(grouped_df[columns_to_show].style.apply(lambda x: style_dataframe(x, selected_columns), axis=None), use_container_width=True, height=len(grouped_df) * 25 + 50)
-
-
 
 # Check if there are selected groups and columns
 if selected_group and selected_columns:
