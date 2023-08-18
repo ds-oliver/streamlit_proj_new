@@ -144,17 +144,17 @@ with col1:
     'Group Data by:', ('None', 'Position', 'Team')
 )
 
-with col2:
-    st.subheader('Choose aggregation type...')
-    st.write('...to apply to the data.')
-    aggregation_option = st.radio(
-    'Select Aggregate:', ('Mean', 'Median', 'Sum')
-)
-
 # Offer radio buttons for different aggregation options
 
 # if grouping option selected, present the radio buttons for aggregation options
 if grouping_option != 'None':
+    
+    with col2:
+        st.subheader('Choose aggregation type...')
+        st.write('...to apply to the data.')
+        aggregation_option = st.radio(
+        'Select Aggregate:', ('Mean', 'Median', 'Sum')
+    )
     # Determine the aggregation function based on the selected option
     if aggregation_option == 'Sum':
         aggregation_func = 'sum'
