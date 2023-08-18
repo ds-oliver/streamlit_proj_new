@@ -62,7 +62,7 @@ def style_dataframe(df, selected_columns):
         norm = plt.Normalize(s.min() - low, s.max() + high)
         normed = norm(s.values)
         c = [plt.cm.get_cmap(cmap)(x) for x in normed]
-        return [f'background-color: rgba({int(r * 255)}, {int(g * 255)}, {int(b * 255)}, 0.7)' for r, g, b, _ in c]
+        return pd.Series([f'background-color: rgba({int(r * 255)}, {int(g * 255)}, {int(b * 255)}, 0.7)' for r, g, b, _ in c], index=s.index)
 
     def get_color(val, unique_values, object_cmap):
         norm = plt.Normalize(0, len(unique_values) - 1)
@@ -72,10 +72,10 @@ def style_dataframe(df, selected_columns):
     styles = {}
     for col in selected_columns:
         if df[col].dtype in [np.float64, np.int64]:
-            styles[col] = lambda s: background_gradient(s)
+            styles[col] = background_gradient
         elif df[col].dtype == 'object':
             unique_values = df[col].unique().tolist()
-            styles[col] = lambda s: [get_color(val, unique_values, cm.get_cmap('viridis')) for val in s]
+            styles[col] = lambda s: pd.Series([get_color(val, unique_values, cm.get_cmap('viridis')) for val in s], index=s.index)
 
     return df.style.apply(styles, axis=None)
 
@@ -138,7 +138,9 @@ aggregation_func = col2.radio('Select Aggregate:', ('Mean', 'Median', 'Sum')).lo
 
 grouped_df = get_grouped_data(df, grouping_option, aggregation_func)
 
-st.dataframe(grouped_df[columns_to_show].style.apply(lambda x: style_dataframe(x, selected_columns), axis=None), use_container_width=True, height=len(grouped_df) * 50)
+styled_df = style_dataframe(grouped_df[columns_to_show], selected_columns)
+st.dataframe(styled_df, use_container_width=True, height=len(grouped_df) * 50)
+
 
 # Check if there are selected groups and columns
 if selected_group and selected_columns:
