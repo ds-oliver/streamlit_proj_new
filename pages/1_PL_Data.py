@@ -1,23 +1,24 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import sys
+# import sys
 import os
-import logging
-import sqlite3
-import pickle
+# import logging
+# import sqlite3
+# import pickle
 from datetime import datetime
 import matplotlib.pyplot as plt
 import seaborn as sns
-from matplotlib.colors import LinearSegmentedColormap
+# from matplotlib.colors import LinearSegmentedColormap
 import plotly.express as px
 import warnings
-from sklearn.preprocessing import MinMaxScaler
-from sklearn.preprocessing import StandardScaler
-import unicodedata
+# from sklearn.preprocessing import MinMaxScaler
+# from sklearn.preprocessing import StandardScaler
+# import unicodedata
 import plotly.graph_objects as go
-from bs4 import BeautifulSoup
+# from bs4 import BeautifulSoup
 from matplotlib import cm
+from pandas.core.groupby.base import SpecificationError
 
 # logger = st.logger
 
@@ -136,12 +137,15 @@ selected_group = st.sidebar.selectbox('Select a Category', options=list(col_grou
 
 @st.cache_resource
 def get_grouped_data(df, group_by, aggregation_func):
-    if group_by == 'None':
+    try:
+        if group_by == 'None':
+            return df
+        else:
+            group_column = 'fantrax position' if group_by == 'Position' else 'team'
+            return df.groupby(group_column).agg(aggregation_func).reset_index().round(2)
+    except SpecificationError as e:
+        st.error(f"An error occurred: {e}")
         return df
-    elif group_by == 'Position':
-        return df.groupby('fantrax position').agg(aggregation_func).reset_index().round(2)
-    elif group_by == 'Team':
-        return df.groupby('team').agg(aggregation_func).reset_index().round(2)
 
 # Rest of your code
 selected_columns = col_groups[selected_group]
@@ -153,18 +157,13 @@ col1.subheader('Aggregate the data...')
 col1.write('...by position, team, or not at all.')
 grouping_option = col1.radio('Group Data by:', ('None', 'Position', 'Team'))
 
-aggregation_func = None
 if grouping_option != 'None':
     col2.subheader('Choose aggregation type...')
     col2.write('...to apply to the data.')
     aggregation_option = col2.radio('Select Aggregate:', ('Mean', 'Median', 'Sum'))
-
-    if aggregation_option == 'Sum':
-        aggregation_func = 'sum'
-    elif aggregation_option == 'Mean':
-        aggregation_func = 'mean'
-    elif aggregation_option == 'Median':
-        aggregation_func = 'median'
+    aggregation_func = aggregation_option.lower()
+else:
+    aggregation_func = None
 
 grouped_df = get_grouped_data(df, grouping_option, aggregation_func)
 
@@ -172,6 +171,7 @@ if grouping_option != 'None':
     columns_to_show = [grouping_option.lower()] + selected_columns
 
 st.dataframe(grouped_df[columns_to_show].style.apply(lambda x: style_dataframe(x, selected_columns), axis=None), use_container_width=True, height=len(grouped_df) * 50)
+
 
 
 # Check if there are selected groups and columns
