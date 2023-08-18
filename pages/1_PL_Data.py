@@ -57,29 +57,28 @@ from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default # this i
 
 from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect
 
-# Helper function to get color based on unique value
-def get_color(value, unique_values, cmap):
-    index = unique_values.index(value)
-    color_fraction = index / len(unique_values)
-    rgba_color = cmap(color_fraction)
-    return f'background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
-
 def style_dataframe(df, selected_columns):
-    cm_coolwarm = cm.get_cmap('coolwarm')
-    object_cmap = cm.get_cmap('viridis')
+    def background_gradient(s, cmap='coolwarm', low=0, high=0):
+        norm = plt.Normalize(s.min() - low, s.max() + high)
+        normed = norm(s.values)
+        c = [plt.cm.get_cmap(cmap)(x) for x in normed]
+        return [f'background-color: rgba({int(r * 255)}, {int(g * 255)}, {int(b * 255)}, 0.7)' for r, g, b, _ in c]
 
-    styled_df = df.copy()
+    def get_color(val, unique_values, object_cmap):
+        norm = plt.Normalize(0, len(unique_values) - 1)
+        rgba_color = object_cmap(norm(unique_values.index(val)))
+        return f'background-color: rgba({int(rgba_color[0] * 255)}, {int(rgba_color[1] * 255)}, {int(rgba_color[2] * 255)}, 0.7)'
+
+    styles = {}
     for col in selected_columns:
         if df[col].dtype in [np.float64, np.int64]:
-            min_val = df[col].min()
-            range_val = df[col].max() - min_val
-            rgba_colors = cm_coolwarm((df[col] - min_val) / range_val)
-            styled_df[col] = [f'background-color: rgba({",".join(map(str, (color[:3] * 255).astype(int)))}, 0.7)' for color in rgba_colors]
+            styles[col] = lambda s: background_gradient(s)
         elif df[col].dtype == 'object':
             unique_values = df[col].unique().tolist()
-            styled_df[col] = [get_color(val, unique_values, object_cmap) for val in df[col]]
+            styles[col] = lambda s: [get_color(val, unique_values, cm.get_cmap('viridis')) for val in s]
 
-    return styled_df
+    return df.style.apply(styles, axis=None)
+
 
 # from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols
 
