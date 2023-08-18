@@ -135,8 +135,23 @@ col_groups = {
 selected_group = st.sidebar.selectbox('Select a Category', options=list(col_groups.keys()))
 selected_columns = col_groups[selected_group]
 
-if grouping_option != 'None':
+grouping_option = None
+grouped_df = df # Initialize grouped_df with df
 
+# Offer radio buttons for different aggregation options
+if grouping_option == 'None':
+
+    col1 = st.columns(1)[0]
+
+    col1.subheader('Aggregate the data...')
+    col1.write('...by position, team, or not at all.')
+    grouping_option = col1.radio(
+        'Group Data by:', ('None', 'Position', 'Team'),
+        horizontal=True
+    )
+
+    columns_to_show = DEFAULT_COLUMNS + selected_columns
+else:
     col1, col2 = st.columns(2)
 
     col1.subheader('Aggregate the data...')
@@ -165,21 +180,9 @@ if grouping_option != 'None':
         grouped_df = df.groupby('team').agg(aggregation_func).reset_index()
         columns_to_show = ['team'] + selected_columns
     grouped_df = grouped_df.round(2)
-    st.dataframe(grouped_df[columns_to_show].style.apply(lambda x: style_dataframe(x, selected_columns), axis=None), use_container_width=True, height=len(grouped_df) * 50)
 
-else:
-    col1 = st.columns(1)[0]
+st.dataframe(grouped_df[columns_to_show].style.apply(lambda x: style_dataframe(x, selected_columns), axis=None), use_container_width=True, height=len(grouped_df) * 50)
 
-    col1.subheader('Aggregate the data...')
-    col1.write('...by position, team, or not at all.')
-    grouping_option = col1.radio(
-        'Group Data by:', ('None', 'Position', 'Team'),
-        horizontal=True
-    )
-
-    grouped_df = df
-    columns_to_show = DEFAULT_COLUMNS + selected_columns
-    st.dataframe(grouped_df[columns_to_show].style.apply(lambda x: style_dataframe(x, selected_columns), axis=None), use_container_width=True, height=500)
 
 
 
