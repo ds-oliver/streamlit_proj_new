@@ -143,7 +143,7 @@ def get_grouped_data(df, group_by, aggregation_func):
         else:
             group_column = 'fantrax position' if group_by == 'Position' else 'team'
             return df.groupby(group_column).agg(aggregation_func).reset_index().round(2)
-    except SpecificationError as e:
+    except Exception as e:
         st.error(f"An error occurred: {e}")
         return df
 
