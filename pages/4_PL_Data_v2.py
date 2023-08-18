@@ -20,6 +20,8 @@ import plotly.graph_objects as go
 from matplotlib import cm
 from pandas.io.formats.style import Styler
 import cProfile
+import pstats
+import io
 
 # logger = st.logger
 
@@ -234,8 +236,18 @@ def main():
     create_plot(selected_group, selected_columns, selected_positions, selected_teams, grouped_data, grouping_option)
 
 if __name__ == "__main__":
-    cProfile.run('main()')
+    pr = cProfile.Profile()
+    pr.enable()
 
-    main()
+    main() # This calls your main function
+
+    pr.disable()
+    s = io.StringIO()
+    sortby = 'cumulative'
+    ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
+    ps.print_stats()
+
+    with open('profile_output.txt', 'w') as f:
+        f.write(s.getvalue())
 
 
