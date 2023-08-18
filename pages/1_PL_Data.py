@@ -172,6 +172,7 @@ else:
 # Check if there are selected groups and columns
 if selected_group and selected_columns:
     selected_stats_for_plot = st.multiselect('Select Statistics for Plotting', options=selected_columns)
+    st.info('Select at least one statistic to plot. \nNote: If no grouping option is selected, the top 25 players by the first selected statistic is shown.')
 
     if selected_stats_for_plot:
         # Define colors for statistics
@@ -213,7 +214,6 @@ if selected_group and selected_columns:
         title = f'Comparison of Selected {grouping_option} for Selected Statistics'
         fig.update_layout(
             title=title,
-            subtitle='Note: If no grouping option is selected, the top 25 players by the first selected statistic is shown.',
             xaxis_title=grouping_option if grouping_option != 'None' else 'Players',
             yaxis_title='Value',
             legend=dict(
