@@ -172,7 +172,7 @@ else:
 # Check if there are selected groups and columns
 if selected_group and selected_columns:
     selected_stats_for_plot = st.multiselect('Select Statistics for Plotting', options=selected_columns)
-    st.info('Select at least one statistic to plot. \nNote: If no grouping option is selected, the top 25 players by the first selected statistic is shown.')
+    st.info('Note: If no grouping option is selected, the top 25 players by the first selected statistic is shown.')
 
     if selected_stats_for_plot:
         # Define colors for statistics
