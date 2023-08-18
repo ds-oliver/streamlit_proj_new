@@ -138,6 +138,8 @@ selected_columns = col_groups[selected_group]
 grouping_option = None
 grouped_df = df # Initialize grouped_df with df
 
+columns_to_show = DEFAULT_COLUMNS + selected_columns
+
 # Offer radio buttons for different aggregation options
 if grouping_option == 'None':
 
@@ -150,7 +152,6 @@ if grouping_option == 'None':
         horizontal=True
     )
 
-    columns_to_show = DEFAULT_COLUMNS + selected_columns
 else:
     col1, col2 = st.columns(2)
 
@@ -182,8 +183,6 @@ else:
     grouped_df = grouped_df.round(2)
 
 st.dataframe(grouped_df[columns_to_show].style.apply(lambda x: style_dataframe(x, selected_columns), axis=None), use_container_width=True, height=len(grouped_df) * 50)
-
-
 
 
 # Check if there are selected groups and columns
