@@ -134,6 +134,8 @@ col_groups = {
 
 selected_group = st.sidebar.selectbox('Select a Category', options=list(col_groups.keys()))
 
+grouping_option = 'None'
+
 def get_grouped_data(df, group_by, aggregation_func):
     try:
         if group_by == 'None':
