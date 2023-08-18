@@ -132,9 +132,10 @@ col_groups = {
     "Playing Time": playing_time_cols,
 }
 
-selected_group = st.sidebar.selectbox('Select a Category', options=list(col_groups.keys()))
-
 grouping_option = 'None'
+
+selected_group = st.sidebar.selectbox('Select a Category', options=list(col_groups.keys()))
+selected_columns = col_groups[selected_group]
 
 def get_grouped_data(df, group_by, aggregation_func):
     try:
@@ -148,7 +149,6 @@ def get_grouped_data(df, group_by, aggregation_func):
         return df
 
 # Rest of your code
-selected_columns = col_groups[selected_group]
 columns_to_show = DEFAULT_COLUMNS + selected_columns
 
 col1, col2 = st.columns(2)
@@ -167,8 +167,8 @@ else:
 
 grouped_df = get_grouped_data(df, grouping_option, aggregation_func)
 
-if grouping_option != 'None':
-    columns_to_show = [grouping_option.lower()] + selected_columns
+# if grouping_option != 'None':
+#     columns_to_show = [grouping_option.lower()] + selected_columns
 
 st.dataframe(grouped_df[columns_to_show].style.apply(lambda x: style_dataframe(x, selected_columns), axis=None), use_container_width=True, height=len(grouped_df) * 50)
 
