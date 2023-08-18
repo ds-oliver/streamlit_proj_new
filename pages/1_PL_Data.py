@@ -173,7 +173,7 @@ if grouping_option != 'None':
         grouped_df = df.groupby('team').agg(aggregation_func).reset_index()
         grouped_df = grouped_df.round(2)
         columns_to_show = ['team'] + selected_columns
-        st.dataframe(grouped_df[columns_to_show].style.apply(lambda x: style_dataframe(x, selected_columns), axis=None), use_container_width=True, height=len(grouped_df) * 50)
+        st.dataframe(grouped_df[columns_to_show].style.apply(lambda x: style_dataframe(x, selected_columns), axis=None), use_container_width=True, height=len(grouped_df) * 38)
 
 else:
         grouped_df = df
