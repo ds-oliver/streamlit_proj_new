@@ -135,6 +135,13 @@ col_groups = {
 selected_group = st.sidebar.selectbox('Select a Category', options=list(col_groups.keys()))
 selected_columns = col_groups[selected_group]
 
+st.subheader('Aggregate the data...')
+st.write('...by position, team, or not at all.')
+grouping_option = st.radio(
+'Group Data by:', ('None', 'Position', 'Team'),
+horizontal=True
+)
+
 # Offer radio buttons for different aggregation options
 
 if grouping_option != 'None':
