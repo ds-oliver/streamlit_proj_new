@@ -29,7 +29,7 @@ warnings.filterwarnings('ignore')
 
 # Adding path to the scripts directory
 scripts_path = os.path.abspath(os.path.join('./scripts'))
-sys.path.append('/Users/hogan/dev/streamlit_proj_new/scripts')
+sys.path.append('/streamlit_proj_new/scripts')
 
 sys.path
 
