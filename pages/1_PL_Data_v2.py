@@ -69,9 +69,8 @@ from functions import scraping_current_fbref, normalize_encoding, clean_age_colu
 
 # misc_cols = ['cards_yellow', 'cards_red', 'cards_yellow_red', 'fouls', 'fouled', 'offsides', 'crosses', 'interceptions', 'tackles_won', 'pens_won', 'pens_conceded', 'own_goals', 'ball_recoveries', 'aerials_won', 'aerials_lost', 'aerials_won_pct']
 
-def get_color(value, unique_values, cmap):
-    index = unique_values.index(value)
-    color_fraction = index / len(unique_values)
+def get_color(value, cmap):
+    color_fraction = value
     rgba_color = cmap(color_fraction)
     brightness = 0.299 * rgba_color[0] + 0.587 * rgba_color[1] + 0.114 * rgba_color[2]
     text_color = 'white' if brightness < 0.5 else 'black'
@@ -90,10 +89,10 @@ def style_dataframe(df, selected_columns):
             min_val = df[col].min()
             max_val = df[col].max()
             range_val = max_val - min_val
-            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, [0, 1], cm_coolwarm))
+            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, cm_coolwarm))
         elif df[col].dtype == 'object':
             unique_values = df[col].unique().tolist()
-            styled_df[col] = df[col].apply(lambda x: get_color(x, unique_values, object_cmap))
+            styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
     return styled_df
 
 
