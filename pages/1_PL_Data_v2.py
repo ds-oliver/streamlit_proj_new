@@ -27,8 +27,11 @@ import io
 
 warnings.filterwarnings('ignore')
 
-scripts_path = os.path.abspath(os.path.join('..', 'scripts'))
+scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 sys.path.append(scripts_path)
+
+from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues
+
 print("Scripts path:", scripts_path)
 
 print(sys.path)
