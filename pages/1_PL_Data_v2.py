@@ -73,7 +73,7 @@ def get_color(value, cmap):
     color_fraction = value
     rgba_color = cmap(color_fraction)
     brightness = 0.299 * rgba_color[0] + 0.587 * rgba_color[1] + 0.114 * rgba_color[2]
-    text_color = 'white' if brightness < 0.5 else 'black'
+    text_color = 'white' if brightness < 0.7 else 'black'
     return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
 
 def style_dataframe(df, selected_columns):
