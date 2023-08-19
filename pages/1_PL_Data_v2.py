@@ -27,10 +27,8 @@ import io
 
 warnings.filterwarnings('ignore')
 
-# Adding path to the scripts directory
-scripts_path = os.path.abspath(os.path.join('./scripts'))
-sys.path.append('/streamlit_proj_new/scripts')
-
+scripts_path = os.path.abspath(os.path.join('.', 'scripts'))
+sys.path.append(scripts_path)
 sys.path
 
 st.set_page_config(
