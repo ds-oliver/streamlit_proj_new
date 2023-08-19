@@ -44,8 +44,6 @@ from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default # this i
 
 from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect
 
-from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues
-
 
 # fbref_cats = ['stats', 'shooting', 'passing', 'passing_types', 'gca', 'defense', 'possession', 'playingtime', 'misc']
 
@@ -239,11 +237,13 @@ def main():
     # Display the DataFrame
     # if grouping_option == 'None' then set st.dataframe() height= to the height of showing the first 50 rows, else set height to length of grouped_data
     if grouping_option == 'None':
+        # state at the top of the page as header the grouping option selected
+        st.header(f"Premier League Individual Players' Statistics:{selected_group}")
         st.dataframe(grouped_data[columns_to_show].style.apply(lambda _: styled_df, axis=None), use_container_width=True, height=50 * 20)
     else:
+        # state at the top of the page as header the grouping option selected
+        st.header(f"Premier League Players' Statistics grouped by:{selected_group}")
         st.dataframe(grouped_data[columns_to_show].style.apply(lambda _: styled_df, axis=None), use_container_width=True, height=(len(grouped_data) * 38) + 50)
-
-
 
     # Create plot
     create_plot(selected_group, selected_columns, selected_positions, selected_teams, grouped_data, grouping_option)
