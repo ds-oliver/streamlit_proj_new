@@ -95,7 +95,6 @@ def style_dataframe(df, selected_columns):
             styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
     return styled_df
 
-
 @st.cache_resource
 def process_data(pl_data_gw1, temp_default):
     
@@ -112,7 +111,15 @@ def process_data(pl_data_gw1, temp_default):
     # Define default columns
     DEFAULT_COLUMNS = ['player', 'position', 'team', 'games_starts']
 
-    return df, DEFAULT_COLUMNS
+    # create timestamp so we can use to display the date of the last data update
+    date_of_update = datetime.fromtimestamp(os.path.getmtime(pl_data_gw1)).strftime('%d %B %Y')
+
+    return df, DEFAULT_COLUMNS, date_of_update
+
+# we want to add a date of last data update to the page
+def display_date_of_update(date_of_update):
+    st.sidebar.write(f'Last updated: {date_of_update}')
+    
 
 # Function to load the data
 @st.cache_resource
@@ -210,7 +217,10 @@ col_groups = {
 
 def main():
     # Load the data
-    data, DEFAULT_COLUMNS = load_data()
+    data, DEFAULT_COLUMNS, date_of_update = load_data()
+
+    # Display the date of last data update
+    display_date_of_update(date_of_update)
 
     # Sidebar filters
     selected_teams = create_sidebar_multiselect(data, 'team', 'Select Teams', default_all=True, key_suffix="teams")
