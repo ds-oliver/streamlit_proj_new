@@ -73,7 +73,9 @@ def get_color(value, unique_values, cmap):
     index = unique_values.index(value)
     color_fraction = index / len(unique_values)
     rgba_color = cmap(color_fraction)
-    return f'background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
+    brightness = 0.299 * rgba_color[0] + 0.587 * rgba_color[1] + 0.114 * rgba_color[2]
+    text_color = 'white' if brightness < 0.5 else 'black'
+    return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
 
 def style_dataframe(df, selected_columns):
     cm_coolwarm = cm.get_cmap('coolwarm')
@@ -88,11 +90,12 @@ def style_dataframe(df, selected_columns):
             min_val = df[col].min()
             max_val = df[col].max()
             range_val = max_val - min_val
-            styled_df[col] = df[col].apply(lambda x: f'background-color: rgba({",".join(map(str, (np.array(cm_coolwarm((x - min_val) / range_val))[:3] * 255).astype(int)))}, 0.7)')
+            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, [0, 1], cm_coolwarm))
         elif df[col].dtype == 'object':
             unique_values = df[col].unique().tolist()
             styled_df[col] = df[col].apply(lambda x: get_color(x, unique_values, object_cmap))
     return styled_df
+
 
 @st.cache_resource
 def process_data(pl_data_gw1, temp_default):
