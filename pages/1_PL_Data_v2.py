@@ -27,9 +27,11 @@ import io
 
 warnings.filterwarnings('ignore')
 
-scripts_path = os.path.abspath(os.path.join('.', 'scripts'))
+scripts_path = os.path.abspath(os.path.join('..', 'scripts'))
 sys.path.append(scripts_path)
-sys.path
+print("Scripts path:", scripts_path)
+
+print(sys.path)
 
 st.set_page_config(
     layout="wide"
