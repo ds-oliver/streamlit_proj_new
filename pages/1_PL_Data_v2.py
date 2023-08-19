@@ -31,9 +31,19 @@ warnings.filterwarnings('ignore')
 scripts_path = os.path.abspath(os.path.join('./scripts'))
 sys.path.append('/Users/hogan/dev/streamlit_proj_new/scripts')
 
+sys.path
+
 st.set_page_config(
     layout="wide"
 )
+
+from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default # this is the file we want to read in
+
+from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect
+
+from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues
+
+
 # fbref_cats = ['stats', 'shooting', 'passing', 'passing_types', 'gca', 'defense', 'possession', 'playingtime', 'misc']
 
 # fbref_leagues = ['Big5', 'ENG', 'ESP', 'ITA', 'GER', 'FRA']
@@ -57,12 +67,6 @@ st.set_page_config(
 # playing_time_cols = ['minutes_per_game', 'minutes_pct', 'minutes_90s', 'games_starts', 'minutes_per_start', 'games_complete', 'games_subs', 'minutes_per_sub', 'unused_subs', 'points_per_game', 'on_goals_for', 'on_goals_against', 'plus_minus', 'plus_minus_per90', 'plus_minus_wowy', 'on_xg_for', 'on_xg_against', 'xg_plus_minus', 'xg_plus_minus_per90', 'xg_plus_minus_wowy']
 
 # misc_cols = ['cards_yellow', 'cards_red', 'cards_yellow_red', 'fouls', 'fouled', 'offsides', 'crosses', 'interceptions', 'tackles_won', 'pens_won', 'pens_conceded', 'own_goals', 'ball_recoveries', 'aerials_won', 'aerials_lost', 'aerials_won_pct']
-
-from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default # this is the file we want to read in
-
-from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect
-
-from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues
 
 def get_color(value, unique_values, cmap):
     index = unique_values.index(value)
