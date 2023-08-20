@@ -53,7 +53,7 @@ def get_color(value, cmap):
 
 def style_dataframe(df, selected_columns):
     cm_coolwarm = cm.get_cmap('coolwarm')
-    object_cmap = cm.get_cmap('spectral')  # Choose a colormap for object columns
+    object_cmap = cm.get_cmap('gnuplot2')  # Choose a colormap for object columns
 
     # Create an empty DataFrame with the same shape as df
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
