@@ -52,7 +52,7 @@ def get_color(value, cmap):
     return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
 
 def style_dataframe(df, selected_columns):
-    cm_coolwarm = cm.get_cmap('gnuplot2_r')
+    cm_coolwarm = cm.get_cmap('inferno')
     object_cmap = cm.get_cmap('gnuplot2')  # Choose a colormap for object columns
 
     # Create an empty DataFrame with the same shape as df
