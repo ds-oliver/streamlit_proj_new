@@ -1435,3 +1435,31 @@ def style_dataframe(df, selected_columns):
             styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
     return styled_df
 
+def process_data(pl_data_gw1, temp_default):
+    
+    df = pd.read_csv(pl_data_gw1)
+    temp_df = pd.read_csv(temp_default)
+    df['fantrax position'] = temp_df['Position']
+
+    # drop df['position'] column
+    df.drop(columns=['position'], inplace=True)
+
+    # rename 'fantrax position' column to 'position'
+    df.rename(columns={'fantrax position': 'position'}, inplace=True)
+
+    # Define default columns
+    DEFAULT_COLUMNS = ['player', 'position', 'team', 'games_starts']
+
+    # create timestamp so we can use to display the date of the last data update
+    date_of_update = datetime.fromtimestamp(os.path.getmtime(pl_data_gw1)).strftime('%d %B %Y')
+
+    return df, DEFAULT_COLUMNS, date_of_update
+
+# we want to add a date of last data update to the page
+def display_date_of_update(date_of_update):
+    st.sidebar.write(f'Last updated: {date_of_update}')
+    
+
+# Function to load the data
+def load_data():
+    return process_data(pl_data_gw1, temp_default)
