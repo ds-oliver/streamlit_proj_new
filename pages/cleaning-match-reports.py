@@ -77,26 +77,22 @@ def read_data(file_path):
 def process_matches_data(matches_data, temp_data):
     matches_df = read_data(matches_data)
     temp_df = read_data(temp_data)
+    print("Shape of matches_df before merging:", matches_df.shape)
 
-    # Assuming 'player_name' is the common column that uniquely identifies each player
-    # Merge the two DataFrames on this common key
     matches_df = pd.merge(matches_df, temp_df[['Player', 'Position']], left_on='player', right_on='Player', how='left')
+    print("Shape of matches_df after merging:", matches_df.shape)
 
-    # Rename the 'Position' column to 'position'
     matches_df.rename(columns={'Position': 'position'}, inplace=True)
-
-    # drop matches_drop_cols
     for col in matches_drop_cols:
         if col in matches_df.columns:
             matches_df.drop(columns=col, inplace=True)
 
-    # if ' Player Stats' in 'team' column, then remove ' Player Stats'
     matches_df['team'] = matches_df['team'].apply(lambda x: x.replace(' Player Stats', ''))
-    print(matches_df.columns.tolist())
 
-    MATCHES_DEFAULT_COLS = matches_default_cols
+    matches_df.drop_duplicates(subset=['player', 'gameweek'], inplace=True)
 
-    return matches_df, MATCHES_DEFAULT_COLS
+    print("Columns in matches_df after processing:", matches_df.columns.tolist())
+    return matches_df, matches_default_cols
 
 
 @st.cache_resource
@@ -147,6 +143,12 @@ def main():
     # create radio button for 'Starting XI' or 'All Featured Players'
     featured_players = st.sidebar.radio("Select Featured Players", ('Starting XI', '> 55 Minutes Played', 'All Featured Players'))
 
+    # Filter by specific player
+    player_data = matches_df[matches_df['player'] == 'Marcus Rashford']
+
+    # Check the 'started' column for that player across gameweeks
+    print(player_data[['gameweek', 'started']])
+
     # # print count of featured players
     # st.sidebar.write(f'Number of featured players: {matches_df.shape[0]}')
 
@@ -167,6 +169,12 @@ def main():
 
     matches_df = matches_df[(matches_df['gameweek'] >= gameweek_range[0]) & (matches_df['gameweek'] <= gameweek_range[1])]
 
+    print("Shape of matches_df after filtering by featured players:", matches_df.shape)
+
+    matches_df = matches_df[(matches_df['gameweek'] >= gameweek_range[0]) & (matches_df['gameweek'] <= gameweek_range[1])]
+    print("Shape of matches_df after filtering by gameweek range:", matches_df.shape)
+
+
     # if gameweek_range list has more than 1 element, group by MATCHES_DEFAULT_COLS
     if gameweek_range[0] != gameweek_range[1]:
         st.info(f'Grouping data from **:red[GW {gameweek_range[0]}]** to **:red[GW {gameweek_range[1]}]**', icon='ℹ')
@@ -181,6 +189,7 @@ def main():
 
         # Group by player, team, and position, and apply the aggregation functions
         matches_df = matches_df.groupby(['player', 'team', 'position'], as_index=False).agg(aggregation_functions)
+        print("Shape of matches_df after grouping by player, team, and position:", matches_df.shape)
 
         # Rename the 'gameweek' column to 'games played'
         matches_df.rename(columns={'gameweek': 'games_played'}, inplace=True)
