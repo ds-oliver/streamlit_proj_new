@@ -58,8 +58,7 @@ matches_col_groups = {
     "Defense": matches_defense_cols,
     "Possession": matches_possession_cols,
     "Miscellaneous": matches_misc_cols,
-    "Passing Types": matches_pass_types,
-    "Create Your Own Table": matches_default_cols
+    "Passing Types": matches_pass_types
 }
 
 # colors 

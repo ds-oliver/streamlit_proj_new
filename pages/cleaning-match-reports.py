@@ -110,7 +110,7 @@ def process_matches_data(matches_data, temp_data, matches_drop_cols):
     MATCHES_DEFAULT_COLS = matches_default_cols
 
     # capitalize format for the columns
-    MATCHES_DEFAULT_COLS = [col.capitalize() for col in MATCHES_DEFAULT_COLS]
+    MATCHES_DEFAULT_COLS = [col.capitalize() if col != 'GW' else col for col in MATCHES_DEFAULT_COLS]
 
     print("Default columns:", MATCHES_DEFAULT_COLS)
     
@@ -144,17 +144,19 @@ def create_top_performers_table(matches_df, selected_group, selected_columns):
 
 def process_data():
     matches_df, MATCHES_DEFAULT_COLS = process_matches_data(matches_data, temp_default, matches_drop_cols)
-    
+    # capitalize the contents of the lists in matches_col_groups dictionary
+    matches_col_groups = {key.capitalize(): [col.capitalize() for col in value] for key, value in matches_col_groups.items()}
+
     shots_df = load_shots_data(shots_data)
     date_of_update = datetime.fromtimestamp(os.path.getmtime(matches_data)).strftime('%d %B %Y')
-    return matches_df, shots_df, date_of_update, MATCHES_DEFAULT_COLS
+    return matches_df, shots_df, date_of_update, MATCHES_DEFAULT_COLS, matches_col_groups
 
 def display_date_of_update(date_of_update):
     st.sidebar.write(f'Last data refresh: {date_of_update}')
 
 def main():
     # Load the data
-    matches_df, shots_df, date_of_update, MATCHES_DEFAULT_COLS = process_data()
+    matches_df, shots_df, date_of_update, MATCHES_DEFAULT_COLS, matches_col_groups = process_data()
 
     print(matches_df.columns.tolist())
 
@@ -166,14 +168,6 @@ def main():
     # create radio button for 'Starting XI' or 'All Featured Players'
     featured_players = st.sidebar.radio("Select Featured Players", ('Starting XI', '> 55 Minutes Played', 'All Featured Players'))
 
-    # Filter by specific player
-    player_data = matches_df[matches_df['Player'] == 'Marcus Rashford']
-
-    # Check the 'started' column for that player across GWs
-    cols = player_data.columns.tolist()
-    cols
-    print(player_data[['Gameweek', 'Started']])
-
     # # print count of featured players
     # st.sidebar.write(f'Number of featured players: {matches_df.shape[0]}')
 
@@ -181,6 +175,10 @@ def main():
     # st.sidebar.write(f'Number of starting XI: {matches_df[matches_df["started"] > 0].shape[0]}')
 
     st.divider()  # 👈 Draws a horizontal rule
+
+    # if col 'Gw' exists, uppercase it
+    if 'Gw' in matches_df.columns:
+        matches_df.rename(columns={'Gw': 'GW'}, inplace=True)
 
     # filter the dataframe based on the radio button selected
     if featured_players == '> 55 Minutes Played':
@@ -224,7 +222,7 @@ def main():
 
         # Update MATCHES_DEFAULT_COLS
         MATCHES_DEFAULT_COLS = [col if col != 'GW' else 'GP' for col in MATCHES_DEFAULT_COLS]
-        MATCHES_DEFAULT_COLS = [col if col != 'started' else 'GS' for col in MATCHES_DEFAULT_COLS]
+        MATCHES_DEFAULT_COLS = [col if col != 'Started' else 'GS' for col in MATCHES_DEFAULT_COLS]
 
     else:
         # show st.info() message of the GW selected
