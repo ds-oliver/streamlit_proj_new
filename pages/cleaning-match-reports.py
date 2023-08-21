@@ -141,6 +141,13 @@ def main():
 
     display_date_of_update(date_of_update)
 
+    # create radio button for 'Starting XI' or 'All Featured Players'
+    featured_players = st.sidebar.radio("Select Featured Players", ('> 55 Minutes Played', 'All Featured Players'))
+
+    # filter the dataframe based on the radio button selected
+    if featured_players == '> 55 Minutes Played':
+        matches_df = matches_df[matches_df['minutes'] > 55]
+
     gameweek_range = st.sidebar.slider('Gameweek range', min_value=matches_df['gameweek'].min(), max_value=matches_df['gameweek'].max(), value=(matches_df['gameweek'].min(), matches_df['gameweek'].max()), step=1)
 
     gameweek_range = list(gameweek_range)
@@ -157,26 +164,19 @@ def main():
         aggregation_functions['team'] = 'first'
         aggregation_functions['position'] = 'first' # Aggregating by the first occurrence of position
         aggregation_functions['gameweek'] = 'nunique' # Counting the number of gameweeks
-        aggregation_functions['minutes'] = 'sum' # Summing the minutes played
 
         # Group by player, team, and position, and apply the aggregation functions
         matches_df = matches_df.groupby(['player', 'team', 'position'], as_index=False).agg(aggregation_functions)
 
         # Rename the 'gameweek' column to 'games played'
-        matches_df.rename(columns={'gameweek': 'games_played'}, inplace=True)
+        matches_df.rename(columns={'gameweek': 'games played'}, inplace=True)
 
         # Update MATCHES_DEFAULT_COLS
-        MATCHES_DEFAULT_COLS = [col if col != 'gameweek' else 'games_played' for col in MATCHES_DEFAULT_COLS]
+        MATCHES_DEFAULT_COLS = [col if col != 'gameweek' else 'games played' for col in MATCHES_DEFAULT_COLS]
 
     else:
         # show st.info() message of the gameweek selected
         st.info(f'Gameweek {gameweek_range[0]} selected')
-
-    # create radio button for 'Starting XI' or 'All Featured Players'
-    featured_players = st.sidebar.radio("Select Featured Players", ('Starting XI', 'All Featured Players'))
-
-    if featured_players == 'Starting XI':
-        matches_df = matches_df[matches_df['started'] == 1]
 
     # User selects the group and columns to show
     selected_group = st.sidebar.selectbox("Select Stats Grouping", list(matches_col_groups.keys()))
