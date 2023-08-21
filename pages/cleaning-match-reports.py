@@ -77,7 +77,14 @@ def read_data(file_path):
 def process_matches_data(matches_data, temp_data):
     matches_df = read_data(matches_data)
     temp_df = read_data(temp_data)
-    matches_df['fantrax position'] = temp_df['Position']
+
+    # Assuming 'player_name' is the common column that uniquely identifies each player
+    # Merge the two DataFrames on this common key
+    matches_df = pd.merge(matches_df, temp_df[['Player', 'Position']], left_on='player', right_on='Player', how='left')
+
+    # Rename the 'Position' column to 'position'
+    matches_df.rename(columns={'Position': 'position'}, inplace=True)
+
     # drop matches_drop_cols
     for col in matches_drop_cols:
         if col in matches_df.columns:
@@ -86,11 +93,11 @@ def process_matches_data(matches_data, temp_data):
     # if ' Player Stats' in 'team' column, then remove ' Player Stats'
     matches_df['team'] = matches_df['team'].apply(lambda x: x.replace(' Player Stats', ''))
     print(matches_df.columns.tolist())
-    matches_df.rename(columns={'fantrax position': 'position'}, inplace=True)
 
     MATCHES_DEFAULT_COLS = matches_default_cols
 
     return matches_df, MATCHES_DEFAULT_COLS
+
 
 @st.cache_resource
 def load_shots_data(shots_data):
@@ -142,13 +149,25 @@ def main():
 
     # if gameweek_range list has more than 1 element, group by MATCHES_DEFAULT_COLS
     if gameweek_range[0] != gameweek_range[1]:
-        # ... same code as above
+        st.info(f'Grouping data from gameweek {gameweek_range[0]} to gameweek {gameweek_range[1]}')
+
+        # Define aggregation functions for numeric and non-numeric columns
+        aggregation_functions = {col: 'mean' if matches_df[col].dtype in [np.float64, np.int64] else 'first' for col in matches_df.columns}
+        aggregation_functions['player'] = 'first'
+        aggregation_functions['team'] = 'first'
+        aggregation_functions['position'] = 'first' # Aggregating by the first occurrence of position
+        aggregation_functions['gameweek'] = 'nunique' # Counting the number of gameweeks
+        aggregation_functions['minutes'] = 'sum' # Summing the minutes played
+
+        # Group by player, team, and position, and apply the aggregation functions
+        matches_df = matches_df.groupby(['player', 'team', 'position', 'minutes'], as_index=False).agg(aggregation_functions)
 
         # Rename the 'gameweek' column to 'games played'
-        matches_df.rename(columns={'gameweek': 'games played'}, inplace=True)
-        
+        matches_df.rename(columns={'gameweek': 'games_played'}, inplace=True)
+
         # Update MATCHES_DEFAULT_COLS
-        MATCHES_DEFAULT_COLS = [col if col != 'gameweek' else 'games played' for col in MATCHES_DEFAULT_COLS]
+        MATCHES_DEFAULT_COLS = [col if col != 'gameweek' else 'games_played' for col in MATCHES_DEFAULT_COLS]
+
     else:
         # show st.info() message of the gameweek selected
         st.info(f'Gameweek {gameweek_range[0]} selected')
