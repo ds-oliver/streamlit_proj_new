@@ -30,7 +30,7 @@ warnings.filterwarnings('ignore')
 scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 sys.path.append(scripts_path)
 
-from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues
+from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues, col_groups
 
 print("Scripts path:", scripts_path)
 
@@ -40,7 +40,7 @@ st.set_page_config(
     layout="wide"
 )
 
-from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default, matches_all_data, matches_shots_data # this is the file we want to read in
+from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default, matches_all_data as matches_data, matches_shots_data as shots_data # this is the file we want to read in
 
 from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect
 
@@ -70,45 +70,40 @@ def style_dataframe(df, selected_columns):
             styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
     return styled_df
 
-@st.cache_resource
-def process_data(matches_all_data, temp_default, matches_shots_data):
-    
-    df = pd.read_csv(matches_all_data)
-    temp_df = pd.read_csv(temp_default)
-    df['fantrax position'] = temp_df['Position']
+def read_data(file_path):
+    return pd.read_csv(file_path)
 
-    # drop df['position'] column
-    df.drop(columns=['position'], inplace=True)
+def process_matches_data(matches_data, temp_data):
+    matches_df = read_data(matches_data)
+    temp_df = read_data(temp_data)
+    matches_df['fantrax position'] = temp_df['Position']
+    matches_df.drop(columns=['position'], inplace=True)
+    matches_df.rename(columns={'fantrax position': 'position'}, inplace=True)
+    return matches_df
 
-    # rename 'fantrax position' column to 'position'
-    df.rename(columns={'fantrax position': 'position'}, inplace=True)
+def load_shots_data(shots_data):
+    return read_data(shots_data)
 
-    # load shots data
-    shots_df = pd.read_csv(matches_shots_data)
-
-    # Define default columns
-    DEFAULT_COLUMNS = ['player', 'position', 'team', 'games_starts']
-
-    # create timestamp so we can use to display the date of the last data update
-    date_of_update = datetime.fromtimestamp(os.path.getmtime(pl_data_gw1)).strftime('%d %B %Y')
-
-    return df, shots_df, DEFAULT_COLUMNS, date_of_update
-
-# we want to add a date of last data update to the page
-def display_date_of_update(date_of_update):
-    st.sidebar.write(f'Last updated: {date_of_update}')
-    
-# Function to load the data
-@st.cache_resource
-def load_data():
-    return process_data(pl_data_gw1, temp_default)
+def process_data():
+    matches_df = process_matches_data(matches_data, temp_default)
+    shots_df = load_shots_data(shots_data)
+    date_of_update = datetime.fromtimestamp(os.path.getmtime(matches_data)).strftime('%d %B %Y')
+    return matches_df, shots_df, date_of_update
 
 def main():
     # Load the data
-    matches_data, shots_data, DEFAULT_COLUMNS, date_of_update = load_data()
+    matches_df, shots_df, DEFAULT_COLUMNS, date_of_update = load_data()
 
-    st.dataframe(matches_data, use_container_width=True, height=(len(matches_data) * 38) + 50)
-    st.dataframe(shots_data, use_container_width=True, height=(len(shots_data) * 38) + 50)
+    matches_df
+
+    shots_df
+
+    st.dataframe(matches_df, use_container_width=True, height=(len(matches_df) * 38) + 50)
+    st.dataframe(shots_df, use_container_width=True, height=(len(shots_df) * 38) + 50)
 
     # Display the date of last data update
     display_date_of_update(date_of_update)
+
+
+if __name__ == "__main__":
+    main()

@@ -25,6 +25,18 @@ playing_time_cols = ['minutes_per_game', 'minutes_pct', 'minutes_90s', 'games_st
 
 misc_cols = ['cards_yellow', 'cards_red', 'cards_yellow_red', 'fouls', 'fouled', 'offsides', 'crosses', 'interceptions', 'tackles_won', 'pens_won', 'pens_conceded', 'own_goals', 'ball_recoveries', 'aerials_won', 'aerials_lost', 'aerials_won_pct']
 
+col_groups = {
+    "Standard": stats_cols,
+    "Shooting": shooting_cols,
+    "Passing": passing_cols,
+    "Defense": defense_cols,
+    "Possession": possession_cols,
+    "Miscellaneous": misc_cols,
+    "Passing Types": passing_types_cols,
+    "GCA": gca_cols,
+    "Playing Time": playing_time_cols,
+}
+
 # colors 
 
 color1 = "#2b2d42"
