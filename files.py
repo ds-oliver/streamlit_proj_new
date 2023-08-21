@@ -9,6 +9,12 @@ fdr_csv = 'data/data_out/final_data/csv_files/fdr.csv'
 
 temp_gw1_fantrax_default = 'data/specific-csvs/Fantrax-Players-DraftPL Super-League.csv'
 
+# match reports 
+# data/data_out/scraped_big5_data/pl_data/all_shots_all_20230820.csv data/data_out/scraped_big5_data/pl_data/full_season_matchreports_20230820.csv
+
+matches_shots_data = 'data/data_out/scraped_big5_data/pl_data/all_shots_all_20230821.csv' 
+matches_all_data = 'data/data_out/scraped_big5_data/pl_data/full_season_matchreports_20230821.csv'
+
 # files paths
 data_out = 'data/data_out'
 
