@@ -100,7 +100,7 @@ def main():
         
     display_date_of_update(date_of_update)
 
-    DEFAULT_COLUMNS = ['player', 'team', 'position']
+    DEFAULT_COLUMNS = matches_default_cols + ['position']
 
     # create radio button for 'Starting XI' or 'All Featured Players'
     featured_players = st.sidebar.radio("Select Featured Players", ('Starting XI', 'All Featured Players'))
