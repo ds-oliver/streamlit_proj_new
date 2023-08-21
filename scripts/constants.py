@@ -27,7 +27,7 @@ misc_cols = ['cards_yellow', 'cards_red', 'cards_yellow_red', 'fouls', 'fouled',
 
 matches_drop_cols = ['shirtnumber', 'nationality', 'age', 'position_1', 'position_2', 'position_3']
 
-matches_default_cols = ['player', 'gw', 'started', 'team', 'Pos']
+matches_default_cols = ['player', 'GW', 'started', 'team', 'Pos']
 
 other_default_cols = ['goals', 'assists', 'xg', 'npxg', 'xg_assist', 'sca', 'gca', 'pass_xa', 'assisted_shots']
                         

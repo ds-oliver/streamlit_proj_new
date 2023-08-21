@@ -170,7 +170,9 @@ def main():
     player_data = matches_df[matches_df['Player'] == 'Marcus Rashford']
 
     # Check the 'started' column for that player across GWs
-    print(player_data[['GW', 'Started']])
+    cols = player_data.columns.tolist()
+    cols
+    print(player_data[['Gameweek', 'Started']])
 
     # # print count of featured players
     # st.sidebar.write(f'Number of featured players: {matches_df.shape[0]}')
