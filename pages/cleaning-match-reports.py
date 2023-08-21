@@ -147,11 +147,11 @@ def main():
     # create radio button for 'Starting XI' or 'All Featured Players'
     featured_players = st.sidebar.radio("Select Featured Players", ('Starting XI', '> 55 Minutes Played', 'All Featured Players'))
 
-    # print count of featured players
-    st.sidebar.write(f'Number of featured players: {matches_df.shape[0]}')
+    # # print count of featured players
+    # st.sidebar.write(f'Number of featured players: {matches_df.shape[0]}')
 
-    # print count of starting XI
-    st.sidebar.write(f'Number of starting XI: {matches_df[matches_df["started"] > 0].shape[0]}')
+    # # print count of starting XI
+    # st.sidebar.write(f'Number of starting XI: {matches_df[matches_df["started"] > 0].shape[0]}')
 
     st.divider()  # 👈 Draws a horizontal rule
 
@@ -169,7 +169,7 @@ def main():
 
     # if gameweek_range list has more than 1 element, group by MATCHES_DEFAULT_COLS
     if gameweek_range[0] != gameweek_range[1]:
-        st.info(f'Grouping data from gameweek {gameweek_range[0]} to gameweek {gameweek_range[1]}', icon='ℹ')
+        st.info(f'Grouping data from **:red[GW {gameweek_range[0]}]** to **:red[GW {gameweek_range[1]}]**', icon='ℹ')
 
         # Define aggregation functions for numeric and non-numeric columns
         aggregation_functions = {col: 'sum' if matches_df[col].dtype in [np.float64, np.int64] else 'first' for col in matches_df.columns}
@@ -177,21 +177,25 @@ def main():
         aggregation_functions['team'] = 'first'
         aggregation_functions['position'] = 'first' # Aggregating by the first occurrence of position
         aggregation_functions['gameweek'] = 'nunique' # Counting the number of gameweeks
+        aggregation_functions['started'] = 'sum' # Summing the number of starts
 
         # Group by player, team, and position, and apply the aggregation functions
         matches_df = matches_df.groupby(['player', 'team', 'position'], as_index=False).agg(aggregation_functions)
 
         # Rename the 'gameweek' column to 'games played'
-        matches_df.rename(columns={'gameweek': 'games played'}, inplace=True)
+        matches_df.rename(columns={'gameweek': 'games_played'}, inplace=True)
+        # rename the 'started' column to 'games_starts'
+        matches_df.rename(columns={'started': 'games_starts'}, inplace=True)
 
         # Update MATCHES_DEFAULT_COLS
-        MATCHES_DEFAULT_COLS = [col if col != 'gameweek' else 'games played' for col in MATCHES_DEFAULT_COLS]
+        MATCHES_DEFAULT_COLS = [col if col != 'gameweek' else 'games_played' for col in MATCHES_DEFAULT_COLS]
+        MATCHES_DEFAULT_COLS = [col if col != 'started' else 'games_starts' for col in MATCHES_DEFAULT_COLS]
 
     else:
         # show st.info() message of the gameweek selected
         st.info(f'Gameweek {gameweek_range[0]} selected')
 
-    st.info(f'{matches_df.shape[0]} players found', icon='ℹ')
+    st.info(f'**:green[{matches_df.shape[0]}]** players found within the parameters selected', icon='ℹ')
 
     st.divider()  # 👈 Draws a horizontal rule
 
