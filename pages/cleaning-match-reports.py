@@ -87,6 +87,9 @@ def process_matches_data(matches_data, temp_data, matches_drop_cols):
 
     matches_df.rename(columns={'Position': 'Pos'}, inplace=True)
     matches_df.rename(columns={'Team': 'team'}, inplace=True)
+
+    # rename GW column to 'gw'
+    matches_df.rename(columns={'gameweek': 'GW'}, inplace=True)
     
     for col in matches_drop_cols:
         if col in matches_df.columns:
@@ -95,10 +98,23 @@ def process_matches_data(matches_data, temp_data, matches_drop_cols):
     # Apply the replace method only if the value is a string
     matches_df['team'] = matches_df['team'].apply(lambda x: x.replace(' Player Stats', '') if isinstance(x, str) else x)
 
-    matches_df.drop_duplicates(subset=['player', 'gameweek'], inplace=True)
+    matches_df.drop_duplicates(subset=['player', 'GW'], inplace=True)
 
     print("Columns in matches_df after processing:", matches_df.columns.tolist())
-    return matches_df, matches_default_cols
+
+    # capitalize format for the columns
+    matches_df.columns = [col.capitalize() for col in matches_df.columns.tolist()]
+
+    print("Columns in matches_df after capitalizing:", matches_df.columns.tolist())
+
+    MATCHES_DEFAULT_COLS = matches_default_cols
+
+    # capitalize format for the columns
+    MATCHES_DEFAULT_COLS = [col.capitalize() for col in MATCHES_DEFAULT_COLS]
+
+    print("Default columns:", MATCHES_DEFAULT_COLS)
+    
+    return matches_df, MATCHES_DEFAULT_COLS
 
 
 @st.cache_resource
@@ -106,7 +122,7 @@ def load_shots_data(shots_data):
     return read_data(shots_data)
 
 def create_top_performers_table(matches_df, selected_group, selected_columns):
-    # write header that says 'Top Performers in {gameweek}"
+    # write header that says 'Top Performers in {GW}"
     st.write(f'Top Performers in {selected_group}')
     # create a copy of the dataframe
     top_performers_df = matches_df.copy()
@@ -128,6 +144,7 @@ def create_top_performers_table(matches_df, selected_group, selected_columns):
 
 def process_data():
     matches_df, MATCHES_DEFAULT_COLS = process_matches_data(matches_data, temp_default, matches_drop_cols)
+    
     shots_df = load_shots_data(shots_data)
     date_of_update = datetime.fromtimestamp(os.path.getmtime(matches_data)).strftime('%d %B %Y')
     return matches_df, shots_df, date_of_update, MATCHES_DEFAULT_COLS
@@ -150,10 +167,10 @@ def main():
     featured_players = st.sidebar.radio("Select Featured Players", ('Starting XI', '> 55 Minutes Played', 'All Featured Players'))
 
     # Filter by specific player
-    player_data = matches_df[matches_df['player'] == 'Marcus Rashford']
+    player_data = matches_df[matches_df['Player'] == 'Marcus Rashford']
 
-    # Check the 'started' column for that player across gameweeks
-    print(player_data[['gameweek', 'started']])
+    # Check the 'started' column for that player across GWs
+    print(player_data[['GW', 'Started']])
 
     # # print count of featured players
     # st.sidebar.write(f'Number of featured players: {matches_df.shape[0]}')
@@ -165,51 +182,51 @@ def main():
 
     # filter the dataframe based on the radio button selected
     if featured_players == '> 55 Minutes Played':
-        matches_df = matches_df[matches_df['minutes'] > 55]
+        matches_df = matches_df[matches_df['Minutes'] > 55]
     elif featured_players == 'Starting XI':
-        matches_df = matches_df[matches_df['started'] > 0]
+        matches_df = matches_df[matches_df['Started'] > 0]
 
-    gameweek_range = st.sidebar.slider('Gameweek range', min_value=matches_df['gameweek'].min(), max_value=matches_df['gameweek'].max(), value=(matches_df['gameweek'].min(), matches_df['gameweek'].max()), step=1)
+    GW_range = st.sidebar.slider('GW range', min_value=matches_df['GW'].min(), max_value=matches_df['GW'].max(), value=(matches_df['GW'].min(), matches_df['GW'].max()), step=1)
 
-    gameweek_range = list(gameweek_range)
+    GW_range = list(GW_range)
 
-    matches_df = matches_df[(matches_df['gameweek'] >= gameweek_range[0]) & (matches_df['gameweek'] <= gameweek_range[1])]
+    matches_df = matches_df[(matches_df['GW'] >= GW_range[0]) & (matches_df['GW'] <= GW_range[1])]
 
     print("Shape of matches_df after filtering by featured players:", matches_df.shape)
 
-    matches_df = matches_df[(matches_df['gameweek'] >= gameweek_range[0]) & (matches_df['gameweek'] <= gameweek_range[1])]
-    print("Shape of matches_df after filtering by gameweek range:", matches_df.shape)
+    matches_df = matches_df[(matches_df['GW'] >= GW_range[0]) & (matches_df['GW'] <= GW_range[1])]
+    print("Shape of matches_df after filtering by GW range:", matches_df.shape)
 
 
-    # if gameweek_range list has more than 1 element, group by MATCHES_DEFAULT_COLS
-    if gameweek_range[0] != gameweek_range[1]:
-        st.info(f'Grouping data from **:red[GW {gameweek_range[0]}]** to **:red[GW {gameweek_range[1]}]**', icon='ℹ')
+    # if GW_range list has more than 1 element, group by MATCHES_DEFAULT_COLS
+    if GW_range[0] != GW_range[1]:
+        st.info(f'Grouping data from **:red[GW {GW_range[0]}]** to **:red[GW {GW_range[1]}]**', icon='ℹ')
 
         # Define aggregation functions for numeric and non-numeric columns
         aggregation_functions = {col: 'sum' if matches_df[col].dtype in [np.float64, np.int64] else 'first' for col in matches_df.columns}
-        aggregation_functions['player'] = 'first'
-        aggregation_functions['team'] = 'first'
+        aggregation_functions['Player'] = 'first'
+        aggregation_functions['Team'] = 'first'
         aggregation_functions['Pos'] = 'first' # Aggregating by the first occurrence of position
-        aggregation_functions['gameweek'] = 'nunique' # Counting the number of gameweeks
-        aggregation_functions['started'] = 'sum' # Summing the number of starts
+        aggregation_functions['GW'] = 'nunique' # Counting the number of GWs
+        aggregation_functions['Started'] = 'sum' # Summing the number of starts
 
         # Group by player, team, and position, and apply the aggregation functions
-        matches_df = matches_df.groupby(['player', 'team', 'Pos'], as_index=False).agg(aggregation_functions)
+        matches_df = matches_df.groupby(['Player', 'Team', 'Pos'], as_index=False).agg(aggregation_functions)
         print("Shape of matches_df after grouping by player, team, and position:", matches_df.shape)
 
-        # Rename the 'gameweek' column to 'games played'
-        matches_df.rename(columns={'gameweek': 'GP'}, inplace=True)
+        # Rename the 'GW' column to 'games played'
+        matches_df.rename(columns={'GW': 'GP'}, inplace=True)
         # rename the 'started' column to 'games_starts'
-        matches_df.rename(columns={'started': 'GS'}, inplace=True)
+        matches_df.rename(columns={'Started': 'GS'}, inplace=True)
         
 
         # Update MATCHES_DEFAULT_COLS
-        MATCHES_DEFAULT_COLS = [col if col != 'gameweek' else 'GP' for col in MATCHES_DEFAULT_COLS]
+        MATCHES_DEFAULT_COLS = [col if col != 'GW' else 'GP' for col in MATCHES_DEFAULT_COLS]
         MATCHES_DEFAULT_COLS = [col if col != 'started' else 'GS' for col in MATCHES_DEFAULT_COLS]
 
     else:
-        # show st.info() message of the gameweek selected
-        st.info(f'Gameweek {gameweek_range[0]} selected')
+        # show st.info() message of the GW selected
+        st.info(f'GW {GW_range[0]} selected')
 
     st.info(f'**:green[{matches_df.shape[0]}]** players found within the parameters selected', icon='ℹ')
 
@@ -223,6 +240,7 @@ def main():
     # Styling DataFrame
     styled_df = style_dataframe(matches_df[columns_to_show], selected_columns=selected_columns)
 
+    # display the dataframe
     st.dataframe(matches_df[columns_to_show].style.apply(lambda _: styled_df, axis=None), use_container_width=True, height=50 * 20)
 
 
