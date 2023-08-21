@@ -160,7 +160,7 @@ def main():
         aggregation_functions['minutes'] = 'sum' # Summing the minutes played
 
         # Group by player, team, and position, and apply the aggregation functions
-        matches_df = matches_df.groupby(['player', 'team', 'position', 'minutes'], as_index=False).agg(aggregation_functions)
+        matches_df = matches_df.groupby(['player', 'team', 'position'], as_index=False).agg(aggregation_functions)
 
         # Rename the 'gameweek' column to 'games played'
         matches_df.rename(columns={'gameweek': 'games_played'}, inplace=True)
