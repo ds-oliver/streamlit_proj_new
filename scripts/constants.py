@@ -49,6 +49,15 @@ col_groups = {
     "Playing Time": playing_time_cols,
 }
 
+matches_col_groups = {
+    "Standard": matches_standard_cols,
+    "Passing": matches_passing_cols,
+    "Defense": matches_defense_cols,
+    "Possession": matches_possession_cols,
+    "Miscellaneous": matches_misc_cols,
+    "Passing Types": matches_pass_types,
+}
+
 # colors 
 
 color1 = "#2b2d42"

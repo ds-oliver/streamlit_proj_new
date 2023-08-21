@@ -30,7 +30,7 @@ warnings.filterwarnings('ignore')
 scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 sys.path.append(scripts_path)
 
-from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues, col_groups, matches_drop_cols, matches_default_cols, matches_standard_cols, matches_passing_cols, matches_pass_types, matches_defense_cols, matches_possession_cols, matches_misc_cols
+from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues, matches_col_groups, matches_drop_cols, matches_default_cols, matches_standard_cols, matches_passing_cols, matches_pass_types, matches_defense_cols, matches_possession_cols, matches_misc_cols
 
 print("Scripts path:", scripts_path)
 
@@ -73,6 +73,7 @@ def style_dataframe(df, selected_columns):
 def read_data(file_path):
     return pd.read_csv(file_path)
 
+@st.cache_resource
 def process_matches_data(matches_data, temp_data):
     matches_df = read_data(matches_data)
     temp_df = read_data(temp_data)
@@ -82,9 +83,11 @@ def process_matches_data(matches_data, temp_data):
     matches_df.rename(columns={'fantrax position': 'position'}, inplace=True)
     return matches_df
 
+@st.cache_resource
 def load_shots_data(shots_data):
     return read_data(shots_data)
 
+@st.cache_resource
 def process_data():
     matches_df = process_matches_data(matches_data, temp_default)
     shots_df = load_shots_data(shots_data)
@@ -102,18 +105,18 @@ def main():
 
     DEFAULT_COLUMNS = matches_default_cols + ['position']
 
+    # Create the sidebar slider to select gameweek a range of gameweek values
+    gameweek_range = st.sidebar.slider('Gameweek range', min_value=matches_df['gameweek'].min(), max_value=matches_df['gameweek'].max(), value=(matches_df['gameweek'].min(), matches_df['gameweek'].max()), step=1)
+
     # create radio button for 'Starting XI' or 'All Featured Players'
     featured_players = st.sidebar.radio("Select Featured Players", ('Starting XI', 'All Featured Players'))
 
     if featured_players == 'Starting XI':
         matches_df = matches_df[matches_df['started'] == 1]
 
-    # Create the sidebar slider to select gameweek a range of gameweek values
-    gameweek_range = st.sidebar.slider('Gameweek range', min_value=matches_df['gameweek'].min(), max_value=matches_df['gameweek'].max(), value=(matches_df['gameweek'].min(), matches_df['gameweek'].max()), step=1)
-
     # User selects the group and columns to show
-    selected_group = st.sidebar.selectbox("Select Stats Grouping", list(col_groups.keys()))
-    selected_columns = col_groups[selected_group]
+    selected_group = st.sidebar.selectbox("Select Stats Grouping", list(matches_col_groups.keys()))
+    selected_columns = matches_col_groups[selected_group]
     columns_to_show = DEFAULT_COLUMNS + selected_columns
 
     # Styling DataFrame
