@@ -30,7 +30,7 @@ warnings.filterwarnings('ignore')
 scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 sys.path.append(scripts_path)
 
-from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues, matches_col_groups, matches_drop_cols, matches_default_cols, matches_standard_cols, matches_passing_cols, matches_pass_types, matches_defense_cols, matches_possession_cols, matches_misc_cols, other_default_cols
+from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues, matches_col_groups, matches_drop_cols, matches_default_cols, matches_standard_cols, matches_passing_cols, matches_pass_types, matches_defense_cols, matches_possession_cols, matches_misc_cols
 
 print("Scripts path:", scripts_path)
 
@@ -87,15 +87,17 @@ def process_matches_data(matches_data, temp_data):
     matches_df['team'] = matches_df['team'].apply(lambda x: x.replace(' Player Stats', ''))
     print(matches_df.columns.tolist())
     matches_df.rename(columns={'fantrax position': 'position'}, inplace=True)
-    MATCHES_DEFAULT_COLUMNS = ['player', 'gameweek','team', 'position']
-    return matches_df, MATCHES_DEFAULT_COLUMNS
 
+    MATCHES_DEFAULT_COLS = matches_default_cols
+
+    return matches_df, MATCHES_DEFAULT_COLS
+
+@st.cache_resource
 def load_shots_data(shots_data):
     return read_data(shots_data)
 
 def create_top_performers_table(matches_df, selected_group, selected_columns):
     # write header that says 'Top Performers in {gameweek}"
-
     st.write(f'Top Performers in {selected_group}')
     # create a copy of the dataframe
     top_performers_df = matches_df.copy()
@@ -118,10 +120,10 @@ def create_top_performers_table(matches_df, selected_group, selected_columns):
 
 
 def process_data():
-    matches_df, MATCHES_DEFAULT_COLUMNS = process_matches_data(matches_data, temp_default)
+    matches_df, MATCHES_DEFAULT_COLS = process_matches_data(matches_data, temp_default)
     shots_df = load_shots_data(shots_data)
     date_of_update = datetime.fromtimestamp(os.path.getmtime(matches_data)).strftime('%d %B %Y')
-    return matches_df, shots_df, date_of_update, MATCHES_DEFAULT_COLUMNS
+    return matches_df, shots_df, date_of_update, MATCHES_DEFAULT_COLS
 
 def display_date_of_update(date_of_update):
     st.sidebar.write(f'Last updated: {date_of_update}')
@@ -129,7 +131,11 @@ def display_date_of_update(date_of_update):
 def main():
     
     # Load the data
-    matches_df, shots_df, date_of_update, MATCHES_DEFAULT_COLUMNS = process_data()
+    matches_df, shots_df, date_of_update, MATCHES_DEFAULT_COLS = process_data()
+    
+    matches_df.columns.tolist()
+
+    print(matches_df.columns.tolist())
 
     display_date_of_update(date_of_update)
 
@@ -144,28 +150,24 @@ def main():
 
     # User selects the group and columns to show
     selected_group = st.sidebar.selectbox("Select Stats Grouping", list(matches_col_groups.keys()))
+    selected_columns = matches_col_groups[selected_group]
+    columns_to_show = MATCHES_DEFAULT_COLS + [col for col in selected_columns if col in matches_df.columns]
 
-    if selected_group == 'Create Your Own Table':
-        selected_stats = st.sidebar.multiselect("Select Columns", list(matches_df.columns), default=other_default_cols)
-        columns_to_show = MATCHES_DEFAULT_COLUMNS + selected_stats
-        styled_df = style_dataframe(matches_df[columns_to_show], selected_columns=selected_stats)
-    else:
-        selected_columns = matches_col_groups[selected_group]
-        columns_to_show = MATCHES_DEFAULT_COLUMNS + selected_columns
-        styled_df = style_dataframe(matches_df[columns_to_show], selected_columns=selected_columns)
+    # Styling DataFrame
+    styled_df = style_dataframe(matches_df[columns_to_show], selected_columns=selected_columns)
 
     # state at the top of the page as header the grouping option selected
     st.header(f"Premier League Individual Players' Statistics:{selected_group}")
-    st.dataframe(matches_df[columns_to_show].style.apply(lambda _: styled_df, axis=None), use_container_width=True, height=(len(matches_df) * 38) + 50)
+    st.dataframe(matches_df[columns_to_show].style.apply(lambda _: styled_df, axis=None), use_container_width=True, height=50 * 20)
 
     # Create the sidebar multiselect to select the team
 
-    # matches_df
+    matches_df
 
-    # shots_df
+    shots_df
 
-    # st.dataframe(matches_df, use_container_width=True, height=(len(matches_df) * 38) + 50)
-    # st.dataframe(shots_df, use_container_width=True, height=(len(shots_df) * 38) + 50)
+    st.dataframe(matches_df, use_container_width=True, height=(len(matches_df) * 38) + 50)
+    st.dataframe(shots_df, use_container_width=True, height=(len(shots_df) * 38) + 50)
 
 
 if __name__ == "__main__":
