@@ -30,7 +30,7 @@ warnings.filterwarnings('ignore')
 scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 sys.path.append(scripts_path)
 
-from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues, col_groups
+from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues, col_groups, matches_drop_cols, matches_default_cols, matches_standard_cols, matches_passing_cols, matches_pass_types, matches_defense_cols, matches_possession_cols, matches_misc_cols
 
 print("Scripts path:", scripts_path)
 
@@ -77,7 +77,8 @@ def process_matches_data(matches_data, temp_data):
     matches_df = read_data(matches_data)
     temp_df = read_data(temp_data)
     matches_df['fantrax position'] = temp_df['Position']
-    matches_df.drop(columns=['position'], inplace=True)
+    matches_df.drop(columns=['position_1', 'position_2', 'position_3'], inplace=True)
+    print(matches_df.columns.tolist())
     matches_df.rename(columns={'fantrax position': 'position'}, inplace=True)
     return matches_df
 
@@ -90,9 +91,39 @@ def process_data():
     date_of_update = datetime.fromtimestamp(os.path.getmtime(matches_data)).strftime('%d %B %Y')
     return matches_df, shots_df, date_of_update
 
+def display_date_of_update(date_of_update):
+    st.sidebar.write(f'Last updated: {date_of_update}')
+
 def main():
     # Load the data
-    matches_df, shots_df, DEFAULT_COLUMNS, date_of_update = load_data()
+    matches_df, shots_df, date_of_update = process_data()
+        
+    display_date_of_update(date_of_update)
+
+    DEFAULT_COLUMNS = ['player', 'team', 'position']
+
+    # create radio button for 'Starting XI' or 'All Featured Players'
+    featured_players = st.sidebar.radio("Select Featured Players", ('Starting XI', 'All Featured Players'))
+
+    if featured_players == 'Starting XI':
+        matches_df = matches_df[matches_df['started'] == 1]
+
+    # Create the sidebar slider to select gameweek a range of gameweek values
+    gameweek_range = st.sidebar.slider('Gameweek range', min_value=matches_df['gameweek'].min(), max_value=matches_df['gameweek'].max(), value=(matches_df['gameweek'].min(), matches_df['gameweek'].max()), step=1)
+
+    # User selects the group and columns to show
+    selected_group = st.sidebar.selectbox("Select Stats Grouping", list(col_groups.keys()))
+    selected_columns = col_groups[selected_group]
+    columns_to_show = DEFAULT_COLUMNS + selected_columns
+
+    # Styling DataFrame
+    styled_df = style_dataframe(matches_df[columns_to_show], selected_columns=selected_columns)
+
+    # state at the top of the page as header the grouping option selected
+    st.header(f"Premier League Individual Players' Statistics:{selected_group}")
+    st.dataframe(matches_df.style.apply(lambda _: styled_df, axis=None), use_container_width=True, height=50 * 20)
+
+    # Create the sidebar multiselect to select the team
 
     matches_df
 
@@ -100,9 +131,6 @@ def main():
 
     st.dataframe(matches_df, use_container_width=True, height=(len(matches_df) * 38) + 50)
     st.dataframe(shots_df, use_container_width=True, height=(len(shots_df) * 38) + 50)
-
-    # Display the date of last data update
-    display_date_of_update(date_of_update)
 
 
 if __name__ == "__main__":
