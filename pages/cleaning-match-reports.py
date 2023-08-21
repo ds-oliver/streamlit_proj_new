@@ -117,8 +117,6 @@ def create_top_performers_table(matches_df, selected_group, selected_columns):
     # sort the dataframe by the selected group column
     top_performers_df.sort_values(by=selected_group, ascending=False, inplace=True)
 
-
-
 def process_data():
     matches_df, MATCHES_DEFAULT_COLS = process_matches_data(matches_data, temp_default)
     shots_df = load_shots_data(shots_data)
@@ -141,6 +139,11 @@ def main():
 
     # Create the sidebar slider to select gameweek a range of gameweek values
     gameweek_range = st.sidebar.slider('Gameweek range', min_value=matches_df['gameweek'].min(), max_value=matches_df['gameweek'].max(), value=(matches_df['gameweek'].min(), matches_df['gameweek'].max()), step=1)
+
+    gameweek_range = list(gameweek_range)
+
+    # if gameweek_range list has more than 1 element, group by 
+    if gameweek
 
     # create radio button for 'Starting XI' or 'All Featured Players'
     featured_players = st.sidebar.radio("Select Featured Players", ('Starting XI', 'All Featured Players'))
