@@ -193,7 +193,7 @@ def main():
     "Passing": matches_passing_cols,
     "Defense": matches_defense_cols,
     "Possession": matches_possession_cols,
-    "Miscellaneous": matches_misc_cols,
+    # "Miscellaneous": matches_misc_cols,
     "Passing Types": matches_pass_types
 }
     matches_col_groups = {key.capitalize(): [col.capitalize() for col in value] for key, value in matches_col_groups.items()}
