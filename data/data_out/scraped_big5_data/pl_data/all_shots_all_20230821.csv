@@ -475,51 +475,51 @@ minute,player,team,xg_shot,psxg_shot,outcome,distance,body_part,notes,sca_1_play
 89,Phil Foden,Manchester City,0.15,0.64,Saved,12,Right Foot,,Erling Haaland,Pass (Live),Rodri,Pass (Live),2
 1,Lucas Digne,Aston Villa,0.02,,Blocked,14,Left Foot,,Ollie Watkins,Pass (Live),Leon Bailey,Pass (Live),2
 9,Moussa Diaby,Aston Villa,0.07,,Off Target,21,Left Foot,,Ollie Watkins,Pass (Live),John McGinn,Pass (Live),2
-18,John McGinn,Aston Villa,0.86,0.92,Goal,4,Right Foot,,Leon Bailey,Pass (Live),Moussa Diaby,Pass (Live),2
+18,John McGinn,Aston Villa,0.57,0.92,Goal,4,Right Foot,Volley,Leon Bailey,Pass (Live),Moussa Diaby,Pass (Live),2
 20,Abdoulaye Doucoure,Everton,0.09,,Off Target,10,Left Foot,Volley,Alex Iwobi,Pass (Live),Michael Keane,Pass (Live),2
 20,James Garner,Everton,0.03,,Off Target,13,Head,,,,,,2
 22,Leon Bailey,Aston Villa,0.11,,Off Target,9,Head,,Matty Cash,Pass (Live),Douglas Luiz,Pass (Dead),2
 24,Douglas Luiz (pen),Aston Villa,0.79,0.99,Goal,13,Right Foot,,Ollie Watkins,Fouled,Leon Bailey,Shot,2
-27,Moussa Diaby,Aston Villa,0.10,0.03,Saved,18,Left Foot,,Douglas Luiz,Pass (Live),Leon Bailey,Pass (Live),2
+27,Moussa Diaby,Aston Villa,0.08,0.05,Saved,18,Left Foot,,Douglas Luiz,Pass (Live),Leon Bailey,Pass (Live),2
 34,Moussa Diaby,Aston Villa,0.17,0.31,Saved,14,Right Foot,Volley,Lucas Digne,Pass (Live),John McGinn,Pass (Live),2
 45+1,Arnaut Danjuma,Everton,0.10,0.08,Saved,9,Right Foot,,Nathan Patterson,Pass (Live),Arnaut Danjuma,Pass (Live),2
-50,Boubacar Kamara,Aston Villa,0.02,,Blocked,29,Left Foot,,Moussa Diaby,Pass (Live),John McGinn,Pass (Live),2
+50,Boubacar Kamara,Aston Villa,0.03,,Blocked,25,Left Foot,,Moussa Diaby,Pass (Live),John McGinn,Pass (Live),2
 51,Leon Bailey,Aston Villa,0.21,0.06,Goal,12,Right Foot,,,,,,2
 53,Arnaut Danjuma,Everton,0.02,,Blocked,21,Right Foot,,Ashley Young,Pass (Live),Arnaut Danjuma,Pass (Live),2
-53,Arnaut Danjuma,Everton,0.02,,Blocked,22,Right Foot,,Abdoulaye Doucoure,Pass (Live),Neal Maupay,Pass (Live),2
-53,James Tarkowski,Everton,0.21,,Off Target,5,Left Foot,,James Garner,Pass (Dead),Arnaut Danjuma,Shot,2
-56,Ollie Watkins,Aston Villa,0.12,,Off Target,12,Right Foot,,Moussa Diaby,Pass (Live),Douglas Luiz,Pass (Live),2
-59,Nathan Patterson,Everton,0.03,,Blocked,25,Right Foot,,Arnaut Danjuma,Pass (Live),Ashley Young,Pass (Live),2
-60,Neal Maupay,Everton,0.15,0.14,Saved,10,Right Foot,,Ashley Young,Pass (Dead),Nathan Patterson,Shot,2
-67,Philippe Coutinho,Aston Villa,0.03,0.02,Saved,28,Right Foot,,Ollie Watkins,Pass (Live),Lucas Digne,Pass (Live),2
-75,Jhon Duran,Aston Villa,0.55,0.85,Goal,16,Left Foot,,Jhon Duran,Take-On,,,2
+53,Arnaut Danjuma,Everton,0.03,,Blocked,22,Right Foot,,Abdoulaye Doucoure,Pass (Live),Neal Maupay,Pass (Live),2
+53,James Tarkowski,Everton,0.21,,Off Target,5,Left Foot,Volley,James Garner,Pass (Dead),Arnaut Danjuma,Shot,2
+56,Ollie Watkins,Aston Villa,0.34,,Off Target,12,Right Foot,,Moussa Diaby,Pass (Live),Douglas Luiz,Pass (Live),2
+59,Nathan Patterson,Everton,0.03,,Blocked,26,Right Foot,,Arnaut Danjuma,Pass (Live),Ashley Young,Pass (Live),2
+60,Neal Maupay,Everton,0.10,0.12,Saved,10,Right Foot,Volley,Ashley Young,Pass (Dead),Nathan Patterson,Shot,2
+67,Philippe Coutinho,Aston Villa,0.05,0.02,Saved,28,Right Foot,,Ollie Watkins,Pass (Live),Lucas Digne,Pass (Live),2
+75,Jhon Duran,Aston Villa,0.55,0.72,Goal,16,Left Foot,,Jhon Duran,Take-On,,,2
 80,Philippe Coutinho,Aston Villa,0.02,,Off Target,36,Right Foot,,Philippe Coutinho,Take-On,Jhon Duran,Pass (Live),2
-81,Arnaut Danjuma,Everton,0.03,,Blocked,15,Left Foot,,,,,,2
+81,Arnaut Danjuma,Everton,0.04,,Blocked,15,Left Foot,,,,,,2
 2,Enzo Fernandez,Chelsea,0.03,,Off Target,25,Right Foot,,Carney Chukwuemeka,Pass (Live),Thiago Silva,Pass (Live),2
-5,Jarrod Bowen,West Ham,0.37,0.73,Saved,3,Left Foot,Volley,Tomas Soucek,Pass (Live),,,2
+5,Jarrod Bowen,West Ham,0.37,0.73,Saved,3,Left Foot,Volley,Tomas Soucek,Pass (Live),Michail Antonio,Pass (Live),2
 7,Nayef Aguerd,West Ham,0.13,0.40,Goal,6,Head,,James Ward-Prowse,Pass (Dead),Jarrod Bowen,Tackle,2
 13,Michail Antonio,West Ham,0.14,,Blocked,16,Left Foot,,Tomas Soucek,Pass (Live),Jarrod Bowen,Pass (Live),2
 14,Nicolas Jackson,Chelsea,0.69,,Off Target,4,Head,,Ben Chilwell,Pass (Live),Enzo Fernandez,Pass (Live),2
 17,Said Benrahma,West Ham,0.02,,Blocked,26,Right Foot,,Tomas Soucek,Pass (Live),Jarrod Bowen,Pass (Live),2
 20,Thiago Silva,Chelsea,0.04,,Blocked,9,Head,,Ben Chilwell,Pass (Dead),Enzo Fernandez,Pass (Live),2
-21,Conor Gallagher,Chelsea,0.03,0.04,Saved,29,Right Foot,,Enzo Fernandez,Pass (Live),Malo Gusto,Pass (Live),2
+21,Conor Gallagher,Chelsea,0.03,0.05,Saved,29,Right Foot,,Enzo Fernandez,Pass (Live),Malo Gusto,Pass (Live),2
 22,Nicolas Jackson,Chelsea,0.09,,Off Target,17,Right Foot,Volley,Conor Gallagher,Shot,,,2
-24,Ben Chilwell,Chelsea,0.10,,Off Target,8,Head,,Enzo Fernandez,Pass (Live),Raheem Sterling,Pass (Live),2
-28,Carney Chukwuemeka,Chelsea,0.08,0.22,Goal,13,Right Foot,,Carney Chukwuemeka,Take-On,Carney Chukwuemeka,Pass (Live),2
+24,Ben Chilwell,Chelsea,0.11,,Off Target,8,Head,,Enzo Fernandez,Pass (Live),Raheem Sterling,Pass (Live),2
+28,Carney Chukwuemeka,Chelsea,0.11,0.23,Goal,12,Right Foot,,Carney Chukwuemeka,Take-On,Carney Chukwuemeka,Pass (Live),2
 32,Levi Colwill,Chelsea,0.08,,Off Target,9,Head,,Enzo Fernandez,Pass (Dead),Enzo Fernandez,Pass (Live),2
 35,Malo Gusto,Chelsea,0.05,,Off Target,21,Right Foot,Volley,,,,,2
-37,Lucas Paqueta,West Ham,0.06,,Woodwork,17,Left Foot,,Vladimir Coufal,Pass (Dead),Michail Antonio,Fouled,2
-43,Enzo Fernandez (pen),Chelsea,0.79,0.96,Saved,13,Right Foot,,Raheem Sterling,Fouled,Levi Colwill,Pass (Live),2
+37,Lucas Paqueta,West Ham,0.06,,Woodwork,17,Left Foot,,Lucas Paqueta,Take-On,Vladimir Coufal,Pass (Dead),2
+43,Enzo Fernandez (pen),Chelsea,0.79,0.98,Saved,13,Right Foot,,Raheem Sterling,Fouled,Levi Colwill,Pass (Live),2
 43,Said Benrahma,West Ham,0.01,,Off Target,26,Right Foot,,Emerson Palmieri,Pass (Live),,,2
-45+2,Ben Chilwell,Chelsea,0.11,,Blocked,14,Right Foot,,Raheem Sterling,Take-On,Raheem Sterling,Take-On,2
-51,James Ward-Prowse,West Ham,0.04,,Blocked,30,Right Foot,,Lucas Paqueta,Pass (Live),James Ward-Prowse,Pass (Live),2
+45+2,Ben Chilwell,Chelsea,0.12,,Blocked,14,Right Foot,,Raheem Sterling,Take-On,Raheem Sterling,Take-On,2
+51,James Ward-Prowse,West Ham,0.04,,Blocked,30,Right Foot,,Lucas Paqueta,Pass (Live),,,2
 53,Michail Antonio,West Ham,0.08,0.39,Goal,16,Right Foot,,James Ward-Prowse,Pass (Live),Lucas Paqueta,Pass (Live),2
 62,Raheem Sterling,Chelsea,0.06,,Blocked,9,Left Foot,,Mykhailo Mudryk,Pass (Live),Nicolas Jackson,Pass (Live),2
 62,Conor Gallagher,Chelsea,0.10,,Blocked,14,Left Foot,,Raheem Sterling,Shot,,,2
-62,Moises Caicedo,Chelsea,0.03,,Off Target,26,Right Foot,Volley,Moises Caicedo,Take-On,Conor Gallagher,Shot,2
-65,Said Benrahma,West Ham,0.04,,Off Target,23,Right Foot,Volley,Lucas Paqueta,Pass (Live),Tomas Soucek,Pass (Live),2
+62,Moises Caicedo,Chelsea,0.02,,Off Target,26,Right Foot,Volley,Moises Caicedo,Take-On,Conor Gallagher,Shot,2
+65,Said Benrahma,West Ham,0.03,,Off Target,23,Right Foot,Volley,Lucas Paqueta,Pass (Live),Tomas Soucek,Pass (Live),2
 79,Jarrod Bowen,West Ham,0.02,0.05,Saved,28,Left Foot,,Pablo Fornals,Pass (Live),Jarrod Bowen,Pass (Live),2
-80,Levi Colwill,Chelsea,0.05,,Off Target,26,Left Foot,,Noni Madueke,Pass (Live),Enzo Fernandez,Pass (Live),2
+80,Levi Colwill,Chelsea,0.06,,Off Target,26,Left Foot,,Noni Madueke,Pass (Live),Enzo Fernandez,Pass (Live),2
 85,Mykhailo Mudryk,Chelsea,0.08,,Off Target,12,Right Foot,Volley,Raheem Sterling,Pass (Live),Raheem Sterling,Take-On,2
 90+1,Pablo Fornals,West Ham,0.11,0.10,Saved,11,Right Foot,,Pablo Fornals,Interception,,,2
 90+2,Noni Madueke,Chelsea,0.05,0.29,Saved,24,Left Foot,Deflected,Mykhailo Mudryk,Pass (Live),Levi Colwill,Pass (Live),2

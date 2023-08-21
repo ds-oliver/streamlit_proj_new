@@ -131,7 +131,7 @@ def process_data():
     return matches_df, shots_df, date_of_update, MATCHES_DEFAULT_COLS
 
 def display_date_of_update(date_of_update):
-    st.sidebar.write(f'Last updated: {date_of_update}')
+    st.sidebar.write(f'Last data refresh: {date_of_update}')
 
 def main():
     # Load the data
@@ -141,12 +141,25 @@ def main():
 
     display_date_of_update(date_of_update)
 
+    # state at the top of the page as header the grouping option selected
+    st.header(f"Premier League Individual Players' Data:")
+
     # create radio button for 'Starting XI' or 'All Featured Players'
-    featured_players = st.sidebar.radio("Select Featured Players", ('> 55 Minutes Played', 'All Featured Players'))
+    featured_players = st.sidebar.radio("Select Featured Players", ('Starting XI', '> 55 Minutes Played', 'All Featured Players'))
+
+    # print count of featured players
+    st.sidebar.write(f'Number of featured players: {matches_df.shape[0]}')
+
+    # print count of starting XI
+    st.sidebar.write(f'Number of starting XI: {matches_df[matches_df["started"] > 0].shape[0]}')
+
+    st.divider()  # 👈 Draws a horizontal rule
 
     # filter the dataframe based on the radio button selected
     if featured_players == '> 55 Minutes Played':
         matches_df = matches_df[matches_df['minutes'] > 55]
+    elif featured_players == 'Starting XI':
+        matches_df = matches_df[matches_df['started'] > 0]
 
     gameweek_range = st.sidebar.slider('Gameweek range', min_value=matches_df['gameweek'].min(), max_value=matches_df['gameweek'].max(), value=(matches_df['gameweek'].min(), matches_df['gameweek'].max()), step=1)
 
@@ -156,10 +169,10 @@ def main():
 
     # if gameweek_range list has more than 1 element, group by MATCHES_DEFAULT_COLS
     if gameweek_range[0] != gameweek_range[1]:
-        st.info(f'Grouping data from gameweek {gameweek_range[0]} to gameweek {gameweek_range[1]}')
+        st.info(f'Grouping data from gameweek {gameweek_range[0]} to gameweek {gameweek_range[1]}', icon='ℹ')
 
         # Define aggregation functions for numeric and non-numeric columns
-        aggregation_functions = {col: 'mean' if matches_df[col].dtype in [np.float64, np.int64] else 'first' for col in matches_df.columns}
+        aggregation_functions = {col: 'sum' if matches_df[col].dtype in [np.float64, np.int64] else 'first' for col in matches_df.columns}
         aggregation_functions['player'] = 'first'
         aggregation_functions['team'] = 'first'
         aggregation_functions['position'] = 'first' # Aggregating by the first occurrence of position
@@ -178,6 +191,10 @@ def main():
         # show st.info() message of the gameweek selected
         st.info(f'Gameweek {gameweek_range[0]} selected')
 
+    st.info(f'{matches_df.shape[0]} players found', icon='ℹ')
+
+    st.divider()  # 👈 Draws a horizontal rule
+
     # User selects the group and columns to show
     selected_group = st.sidebar.selectbox("Select Stats Grouping", list(matches_col_groups.keys()))
     selected_columns = matches_col_groups[selected_group]
@@ -186,8 +203,6 @@ def main():
     # Styling DataFrame
     styled_df = style_dataframe(matches_df[columns_to_show], selected_columns=selected_columns)
 
-    # state at the top of the page as header the grouping option selected
-    st.header(f"Premier League Individual Players' Statistics:{selected_group}")
     st.dataframe(matches_df[columns_to_show].style.apply(lambda _: styled_df, axis=None), use_container_width=True, height=50 * 20)
 
 
