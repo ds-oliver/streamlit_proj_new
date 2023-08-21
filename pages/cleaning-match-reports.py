@@ -74,20 +74,26 @@ def style_dataframe(df, selected_columns):
 def read_data(file_path):
     return pd.read_csv(file_path)
 
-def process_matches_data(matches_data, temp_data):
+def process_matches_data(matches_data, temp_data, matches_drop_cols):
     matches_df = read_data(matches_data)
     temp_df = read_data(temp_data)
     print("Shape of matches_df before merging:", matches_df.shape)
 
-    matches_df = pd.merge(matches_df, temp_df[['Player', 'Position']], left_on='player', right_on='Player', how='left')
+    matches_df = pd.merge(matches_df, temp_df[['Player', 'Position', 'Team']], left_on='player', right_on='Player', how='left')
     print("Shape of matches_df after merging:", matches_df.shape)
 
-    matches_df.rename(columns={'Position': 'position'}, inplace=True)
+    # drop the 'Player' and 'team' columns
+    matches_df.drop(columns=['Player', 'team'], inplace=True)
+
+    matches_df.rename(columns={'Position': 'Pos'}, inplace=True)
+    matches_df.rename(columns={'Team': 'team'}, inplace=True)
+    
     for col in matches_drop_cols:
         if col in matches_df.columns:
             matches_df.drop(columns=col, inplace=True)
 
-    matches_df['team'] = matches_df['team'].apply(lambda x: x.replace(' Player Stats', ''))
+    # Apply the replace method only if the value is a string
+    matches_df['team'] = matches_df['team'].apply(lambda x: x.replace(' Player Stats', '') if isinstance(x, str) else x)
 
     matches_df.drop_duplicates(subset=['player', 'gameweek'], inplace=True)
 
@@ -121,7 +127,7 @@ def create_top_performers_table(matches_df, selected_group, selected_columns):
     top_performers_df.sort_values(by=selected_group, ascending=False, inplace=True)
 
 def process_data():
-    matches_df, MATCHES_DEFAULT_COLS = process_matches_data(matches_data, temp_default)
+    matches_df, MATCHES_DEFAULT_COLS = process_matches_data(matches_data, temp_default, matches_drop_cols)
     shots_df = load_shots_data(shots_data)
     date_of_update = datetime.fromtimestamp(os.path.getmtime(matches_data)).strftime('%d %B %Y')
     return matches_df, shots_df, date_of_update, MATCHES_DEFAULT_COLS
@@ -183,22 +189,23 @@ def main():
         aggregation_functions = {col: 'sum' if matches_df[col].dtype in [np.float64, np.int64] else 'first' for col in matches_df.columns}
         aggregation_functions['player'] = 'first'
         aggregation_functions['team'] = 'first'
-        aggregation_functions['position'] = 'first' # Aggregating by the first occurrence of position
+        aggregation_functions['Pos'] = 'first' # Aggregating by the first occurrence of position
         aggregation_functions['gameweek'] = 'nunique' # Counting the number of gameweeks
         aggregation_functions['started'] = 'sum' # Summing the number of starts
 
         # Group by player, team, and position, and apply the aggregation functions
-        matches_df = matches_df.groupby(['player', 'team', 'position'], as_index=False).agg(aggregation_functions)
+        matches_df = matches_df.groupby(['player', 'team', 'Pos'], as_index=False).agg(aggregation_functions)
         print("Shape of matches_df after grouping by player, team, and position:", matches_df.shape)
 
         # Rename the 'gameweek' column to 'games played'
-        matches_df.rename(columns={'gameweek': 'games_played'}, inplace=True)
+        matches_df.rename(columns={'gameweek': 'GP'}, inplace=True)
         # rename the 'started' column to 'games_starts'
-        matches_df.rename(columns={'started': 'games_starts'}, inplace=True)
+        matches_df.rename(columns={'started': 'GS'}, inplace=True)
+        
 
         # Update MATCHES_DEFAULT_COLS
-        MATCHES_DEFAULT_COLS = [col if col != 'gameweek' else 'games_played' for col in MATCHES_DEFAULT_COLS]
-        MATCHES_DEFAULT_COLS = [col if col != 'started' else 'games_starts' for col in MATCHES_DEFAULT_COLS]
+        MATCHES_DEFAULT_COLS = [col if col != 'gameweek' else 'GP' for col in MATCHES_DEFAULT_COLS]
+        MATCHES_DEFAULT_COLS = [col if col != 'started' else 'GS' for col in MATCHES_DEFAULT_COLS]
 
     else:
         # show st.info() message of the gameweek selected
