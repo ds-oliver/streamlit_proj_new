@@ -127,23 +127,31 @@ def display_date_of_update(date_of_update):
     st.sidebar.write(f'Last updated: {date_of_update}')
 
 def main():
-    
     # Load the data
     matches_df, shots_df, date_of_update, MATCHES_DEFAULT_COLS = process_data()
-    
-    matches_df.columns.tolist()
 
     print(matches_df.columns.tolist())
 
     display_date_of_update(date_of_update)
 
-    # Create the sidebar slider to select gameweek a range of gameweek values
     gameweek_range = st.sidebar.slider('Gameweek range', min_value=matches_df['gameweek'].min(), max_value=matches_df['gameweek'].max(), value=(matches_df['gameweek'].min(), matches_df['gameweek'].max()), step=1)
 
     gameweek_range = list(gameweek_range)
 
-    # if gameweek_range list has more than 1 element, group by 
-    if gameweek
+    matches_df = matches_df[(matches_df['gameweek'] >= gameweek_range[0]) & (matches_df['gameweek'] <= gameweek_range[1])]
+
+    # if gameweek_range list has more than 1 element, group by MATCHES_DEFAULT_COLS
+    if gameweek_range[0] != gameweek_range[1]:
+        # ... same code as above
+
+        # Rename the 'gameweek' column to 'games played'
+        matches_df.rename(columns={'gameweek': 'games played'}, inplace=True)
+        
+        # Update MATCHES_DEFAULT_COLS
+        MATCHES_DEFAULT_COLS = [col if col != 'gameweek' else 'games played' for col in MATCHES_DEFAULT_COLS]
+    else:
+        # show st.info() message of the gameweek selected
+        st.info(f'Gameweek {gameweek_range[0]} selected')
 
     # create radio button for 'Starting XI' or 'All Featured Players'
     featured_players = st.sidebar.radio("Select Featured Players", ('Starting XI', 'All Featured Players'))
@@ -162,15 +170,6 @@ def main():
     # state at the top of the page as header the grouping option selected
     st.header(f"Premier League Individual Players' Statistics:{selected_group}")
     st.dataframe(matches_df[columns_to_show].style.apply(lambda _: styled_df, axis=None), use_container_width=True, height=50 * 20)
-
-    # Create the sidebar multiselect to select the team
-
-    matches_df
-
-    shots_df
-
-    st.dataframe(matches_df, use_container_width=True, height=(len(matches_df) * 38) + 50)
-    st.dataframe(shots_df, use_container_width=True, height=(len(shots_df) * 38) + 50)
 
 
 if __name__ == "__main__":
