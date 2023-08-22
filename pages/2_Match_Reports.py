@@ -209,9 +209,9 @@ def main():
     # create radio button for 'Starting XI' or 'All Featured Players'
     featured_players = st.sidebar.radio("Select Featured Players", ('Starting XI', '> 55 Minutes Played', 'All Featured Players'))
 
-    selected_position = st.sidebar.selectbox('Select Position', ['All Positions', matches_df['Pos'].unique().tolist()])
+    selected_position = st.sidebar.selectbox('Select Position', ['All Positions'] + matches_df['Pos'].unique().tolist())
 
-    selected_team = st.sidebar.selectbox('Select Team', ['All Teams', matches_df['Team'].unique().tolist()])
+    selected_team = st.sidebar.selectbox('Select Team', ['All Teams'] + matches_df['Team'].unique().tolist())
 
     if selected_position != 'All Positions':
         matches_df = matches_df[matches_df['Pos'] == selected_position]
