@@ -284,7 +284,7 @@ def main():
         st.info(f'GW {GW_range[0]} selected')
 
     if featured_players == 'Starting XI':
-        matches_df = matches_df[(matches_df['Started'] > 0) & (matches_df['GS:GP'] >= 0.50)]
+        matches_df = matches_df[(matches_df['GS'] > 0) & (matches_df['GS:GP'] >= 0.50)]
 
     all_stats = matches_df.columns.tolist()
     selectable_stats = [stat for stat in all_stats if stat not in MATCHES_DEFAULT_COLS]
