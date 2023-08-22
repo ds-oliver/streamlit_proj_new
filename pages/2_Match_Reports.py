@@ -276,9 +276,10 @@ def main():
         MATCHES_DEFAULT_COLS = ['Player', 'Team', 'Pos', 'GS:GP'] + [col for col in MATCHES_DEFAULT_COLS if col not in ['Player', 'Team', 'Pos', 'GS:GP']]
 
         # Create an info message to explain the ratio as the percentage of games started out of total possible games
-        st.info(f'Grouping data from **:red[GW {GW_range[0]}]** to **:red[GW {GW_range[1]}]** for **:green[{selected_position}]**. Players in "Starting XI" have a GS:GP ratio of at least 0.50', icon='ℹ')
+        st.info(f'Grouping data from **:red[GW {GW_range[0]}]** to **:red[GW {GW_range[1]}]** for **:green[{selected_position}]**. Players in "Starting XI" have a GS to GP ratio of at least 0.50', icon='ℹ')
 
     else:
+        matches_df.rename(columns={'GW': 'GP', 'Started': 'GS'}, inplace=True)
         # Show a message for the selected GW
         st.info(f'GW {GW_range[0]} selected')
 
