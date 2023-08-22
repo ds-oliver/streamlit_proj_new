@@ -128,7 +128,7 @@ def process_matches_data(matches_data, temp_data, matches_drop_cols):
 def load_shots_data(shots_data):
     return read_data(shots_data)
 
-def create_top_performers_table(matches_df, selected_stat, selected_columns, percentile=90):
+def create_top_performers_table(matches_df, selected_stat, selected_columns, percentile=85):
     top_performers_df = matches_df.copy()
     cols_to_drop = [col for col in top_performers_df.columns if col not in selected_columns + ['player', 'team', 'position']]
     top_performers_df.drop(columns=cols_to_drop, inplace=True)
