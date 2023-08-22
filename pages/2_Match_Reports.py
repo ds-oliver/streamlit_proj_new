@@ -225,35 +225,34 @@ def main():
     # # print count of starting XI
     # st.sidebar.write(f'Number of starting XI: {matches_df[matches_df["started"] > 0].shape[0]}')
 
-    # if col 'Gw' exists, uppercase it
+    # If the column 'Gw' exists, rename it to 'GW'
     if 'Gw' in matches_df.columns:
         matches_df.rename(columns={'Gw': 'GW'}, inplace=True)
 
-    # If the range of GW is more than 1, calculate GS:GP ratio
-    if GW_range[0] != GW_range[1]:
-        matches_df['GS:GP'] = matches_df['GS'] / matches_df['GP']
-
-    # filter the dataframe based on the radio button selected
+    # Filter the DataFrame based on the radio button selected
     if featured_players == '> 55 Minutes Played':
         matches_df = matches_df[matches_df['Minutes'] > 55]
     elif featured_players == 'Starting XI':
         matches_df = matches_df[(matches_df['Started'] > 0) & (matches_df['GS:GP'] >= 0.50)]
 
+    # Create a sidebar slider to select the GW range
     GW_range = st.sidebar.slider('GW range', min_value=matches_df['GW'].min(), max_value=matches_df['GW'].max(), value=(matches_df['GW'].min(), matches_df['GW'].max()), step=1, help="Select the range of gameweeks to display data for. This slider adjusts data globally for all tables and plots")
-
     GW_range = list(GW_range)
 
+    # If the range of GW is more than 1, calculate GS:GP ratio
+    if GW_range[0] != GW_range[1]:
+        matches_df['GS:GP'] = matches_df['GS'] / matches_df['GP']
+
+    # Filter the DataFrame by the selected GW range
     matches_df = matches_df[(matches_df['GW'] >= GW_range[0]) & (matches_df['GW'] <= GW_range[1])]
-
     print("Shape of matches_df after filtering by featured players:", matches_df.shape)
-
     matches_df = matches_df[(matches_df['GW'] >= GW_range[0]) & (matches_df['GW'] <= GW_range[1])]
     print("Shape of matches_df after filtering by GW range:", matches_df.shape)
 
     # Allow the user to select the aggregation method
     selected_aggregation_method = st.sidebar.selectbox('Select Aggregation Method', ['mean', 'sum'])
 
-    # if GW_range list has more than 1 element, group by MATCHES_DEFAULT_COLS
+    # If the GW_range list has more than 1 element, group by MATCHES_DEFAULT_COLS
     if GW_range[0] != GW_range[1]:
         st.info(f'Grouping data from **:red[GW {GW_range[0]}]** to **:red[GW {GW_range[1]}]** for **:green[{selected_position}]**', icon='ℹ')
 
@@ -269,33 +268,28 @@ def main():
         matches_df = matches_df.groupby(['Player', 'Team', 'Pos'], as_index=False).agg(aggregation_functions)
         print("Shape of matches_df after grouping by player, team, and position:", matches_df.shape)
 
-        # Rename the 'GW' column to 'games played'
-        matches_df.rename(columns={'GW': 'GP'}, inplace=True)
-        # rename the 'started' column to 'games_starts'
-        matches_df.rename(columns={'Started': 'GS'}, inplace=True)
+        # Rename the 'GW' column to 'GP' (games played) and 'Started' column to 'GS' (games started)
+        matches_df.rename(columns={'GW': 'GP', 'Started': 'GS'}, inplace=True)
 
         # Update MATCHES_DEFAULT_COLS
         MATCHES_DEFAULT_COLS = [col if col != 'GW' else 'GP' for col in MATCHES_DEFAULT_COLS]
         MATCHES_DEFAULT_COLS = [col if col != 'Started' else 'GS' for col in MATCHES_DEFAULT_COLS]
-        
-        # create a ratio of potential GP to GS
-        matches_df['GS:GP'] =  round(matches_df['GS'] / matches_df['GP'].max(), 2).apply(lambda x: f"{x:.2f}")
 
-        # append the ratio to MATCHES_DEFAULT_COLS
+        # Create a ratio of potential GP to GS and append the ratio to MATCHES_DEFAULT_COLS
+        matches_df['GS:GP'] = round(matches_df['GS'] / matches_df['GP'].max(), 2).apply(lambda x: f"{x:.2f}")
         MATCHES_DEFAULT_COLS.append('GS:GP')
 
-        # remove GP from MATCHES_DEFAULT_COLS
+        # Remove GP from MATCHES_DEFAULT_COLS and reorder the columns
         MATCHES_DEFAULT_COLS.remove('GP')
-
-        # reorder MATCHES_DEFAULT_COLS player, team, position, GP, GS:GP
         MATCHES_DEFAULT_COLS = ['Player', 'Team', 'Pos', 'GS:GP'] + [col for col in MATCHES_DEFAULT_COLS if col not in ['Player', 'Team', 'Pos', 'GS:GP']]
 
-        # create a info to explain the ratio is the percent of games started out of total possible games
+        # Create an info message to explain the ratio as the percentage of games started out of total possible games
         st.info(f'Grouping data from **:red[GW {GW_range[0]}]** to **:red[GW {GW_range[1]}]** for **:green[{selected_position}]**. Players in "Starting XI" have a GS:GP ratio of at least 0.50', icon='ℹ')
 
     else:
-        # show st.info() message of the GW selected
+        # Show a message for the selected GW
         st.info(f'GW {GW_range[0]} selected')
+
 
 
     all_stats = matches_df.columns.tolist()
