@@ -67,7 +67,7 @@ def style_dataframe(df, selected_columns):
         col_dtype = df[col].dtype  # Get the dtype of the individual column
         unique_values = df[col].unique().tolist()
         if len(unique_values) <= 3:
-            constant_colors = [get_color(i/2, 'inferno') for i in range(len(unique_values))]
+            constant_colors = [get_color(i / (len(unique_values)-1), cm_coolwarm) for i in range(len(unique_values))] # Fixed here
             color_mapping = {val: color for val, color in zip(unique_values, constant_colors)}
             styled_df[col] = df[col].apply(lambda x: color_mapping[x])
         elif col_dtype in [np.float64, np.int64] and col in selected_columns:
