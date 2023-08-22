@@ -495,7 +495,7 @@ minute,player,team,xg_shot,psxg_shot,outcome,distance,body_part,notes,sca_1_play
 75,Jhon Duran,Aston Villa,0.55,0.72,Goal,16,Left Foot,,Jhon Duran,Take-On,,,2
 80,Philippe Coutinho,Aston Villa,0.02,,Off Target,36,Right Foot,,Philippe Coutinho,Take-On,Jhon Duran,Pass (Live),2
 81,Arnaut Danjuma,Everton,0.04,,Blocked,15,Left Foot,,,,,,2
-2,Enzo Fernandez,Chelsea,0.03,,Off Target,25,Right Foot,,Carney Chukwuemeka,Pass (Live),Thiago Silva,Pass (Live),2
+2,Enzo Fernandez,Chelsea,0.03,,Off Target,25,Right Foot,,Nicolas Jackson,Pass (Live),Thiago Silva,Pass (Live),2
 5,Jarrod Bowen,West Ham,0.37,0.73,Saved,3,Left Foot,Volley,Tomas Soucek,Pass (Live),Michail Antonio,Pass (Live),2
 7,Nayef Aguerd,West Ham,0.13,0.40,Goal,6,Head,,James Ward-Prowse,Pass (Dead),Jarrod Bowen,Tackle,2
 13,Michail Antonio,West Ham,0.14,,Blocked,16,Left Foot,,Tomas Soucek,Pass (Live),Jarrod Bowen,Pass (Live),2
@@ -524,3 +524,31 @@ minute,player,team,xg_shot,psxg_shot,outcome,distance,body_part,notes,sca_1_play
 90+1,Pablo Fornals,West Ham,0.11,0.10,Saved,11,Right Foot,,Pablo Fornals,Interception,,,2
 90+2,Noni Madueke,Chelsea,0.05,0.29,Saved,24,Left Foot,Deflected,Mykhailo Mudryk,Pass (Live),Levi Colwill,Pass (Live),2
 90+5,Lucas Paqueta (pen),West Ham,0.79,0.99,Goal,13,Left Foot,,Emerson Palmieri,Fouled,Lucas Paqueta,Pass (Live),2
+2,Martinelli,Arsenal,0.06,,Blocked,14,Right Foot,,Kai Havertz,Pass (Live),Bukayo Saka,Pass (Live),2
+2,Bukayo Saka,Arsenal,0.09,,Blocked,15,Right Foot,,Martinelli,Shot,,,2
+14,Bukayo Saka,Arsenal,0.02,,Blocked,14,Right Foot,,Eddie Nketiah,Pass (Live),Bukayo Saka,Pass (Live),2
+16,Odsonne Edouard,Crystal Palace,0.05,,Blocked,12,Right Foot,,Jeffrey Schlupp,Pass (Live),Cheick Doucoure,Pass (Live),2
+16,Eberechi Eze,Crystal Palace,0.02,0.19,Saved,31,Right Foot,,Jeffrey Schlupp,Pass (Live),,,2
+21,Eberechi Eze,Crystal Palace,0.02,,Blocked,32,Left Foot,,Odsonne Edouard,Pass (Live),Cheick Doucoure,Pass (Live),2
+21,Cheick Doucoure,Crystal Palace,0.01,,Off Target,28,Right Foot,,Eberechi Eze,Shot,,,2
+28,Thomas Partey,Arsenal,0.04,,Off Target,12,Head,,Martin Odegaard,Pass (Dead),Kai Havertz,Fouled,2
+29,Eddie Nketiah,Arsenal,0.22,,Woodwork,10,Left Foot,,Eddie Nketiah,Take-On,Bukayo Saka,Pass (Live),2
+36,Eddie Nketiah,Arsenal,0.49,,Off Target,5,Right Foot,,Declan Rice,Pass (Live),Martin Odegaard,Pass (Live),2
+40,Bukayo Saka,Arsenal,0.05,,Off Target,14,Left Foot,,Eddie Nketiah,Pass (Live),Ben White,Pass (Live),2
+42,Martin Odegaard,Arsenal,0.01,0.05,Saved,24,Left Foot,,Bukayo Saka,Pass (Live),Thomas Partey,Pass (Live),2
+43,Martinelli,Arsenal,0.05,,Off Target,16,Right Foot,Volley,Thomas Partey,Pass (Live),Bukayo Saka,Pass (Dead),2
+45+2,Eberechi Eze,Crystal Palace,0.08,,Blocked,13,Left Foot,,Jordan Ayew,Tackle,,,2
+54,Martin Odegaard (pen),Arsenal,0.79,1.00,Goal,13,Left Foot,,Eddie Nketiah,Fouled,Martinelli,Pass (Dead),2
+55,Jordan Ayew,Crystal Palace,0.02,,Off Target,15,Right Foot,,Jefferson Lerma,Pass (Live),Odsonne Edouard,Pass (Live),2
+58,Eberechi Eze,Crystal Palace,0.13,,Off Target,26,Right Foot,Free kick,Eberechi Eze,Fouled,Cheick Doucoure,Pass (Live),2
+62,Thomas Partey,Arsenal,0.03,0.03,Saved,22,Right Foot,,Bukayo Saka,Pass (Live),Martin Odegaard,Pass (Live),2
+63,Martin Odegaard,Arsenal,0.03,,Off Target,26,Left Foot,,Eddie Nketiah,Pass (Live),Bukayo Saka,Pass (Dead),2
+66,Eddie Nketiah,Arsenal,0.11,,Blocked,8,Left Foot,,Takehiro Tomiyasu,Pass (Live),Thomas Partey,Pass (Live),2
+66,Kai Havertz,Arsenal,0.02,,Off Target,17,Left Foot,Volley,Eddie Nketiah,Shot,,,2
+70,Jordan Ayew,Crystal Palace,0.13,,Blocked,10,Right Foot,Volley,Eberechi Eze,Pass (Dead),Jordan Ayew,Fouled,2
+86,Odsonne Edouard,Crystal Palace,0.28,,Off Target,10,Head,,Tyrick Mitchell,Pass (Live),Joachim Andersen,Pass (Live),2
+87,Jesuran Rak Sakyi,Crystal Palace,0.02,,Blocked,18,Left Foot,,Jesuran Rak Sakyi,Take-On,Jordan Ayew,Pass (Live),2
+88,Jordan Ayew,Crystal Palace,0.03,,Blocked,10,Left Foot,,Tyrick Mitchell,Pass (Live),Joachim Andersen,Pass (Live),2
+90+5,Cheick Doucoure,Crystal Palace,0.10,,Blocked,9,Head,,Marc Guehi,Pass (Live),Eberechi Eze,Pass (Live),2
+90+5,Odsonne Edouard,Crystal Palace,0.14,0.13,Saved,4,Right Foot,,Jefferson Lerma,Pass (Live),Cheick Doucoure,Shot,2
+90+5,Tyrick Mitchell,Crystal Palace,0.03,,Off Target,12,Left Foot,Volley,Odsonne Edouard,Shot,,,2
