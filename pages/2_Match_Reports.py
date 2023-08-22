@@ -67,7 +67,7 @@ def style_dataframe(df, selected_columns):
     if 'Pos' in df.columns:
         unique_positions = df['Pos'].unique().tolist()
         position_colors = [get_color_from_palette(i / (len(unique_positions)-1), 'inferno') for i in range(len(unique_positions))]
-        position_color_mapping = {pos: color for pos, color in zip(unique_positions, position_colors)}
+        position_color_mapping = {pos: f'background-color: {color};' for pos, color in zip(unique_positions, position_colors)}
         styled_df['Pos'] = df['Pos'].apply(lambda x: position_color_mapping[x])
         styled_df['Player'] = df['Pos'].apply(lambda x: position_color_mapping[x])
 
@@ -91,6 +91,7 @@ def style_dataframe(df, selected_columns):
             styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
 
     return styled_df
+
 
 def read_data(file_path):
     return pd.read_csv(file_path)
