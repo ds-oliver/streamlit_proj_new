@@ -246,7 +246,6 @@ def main():
 
     # If the GW_range list has more than 1 element, group by MATCHES_DEFAULT_COLS
     if GW_range[0] != GW_range[1]:
-        st.info(f'Grouping data from **:red[GW {GW_range[0]}]** to **:red[GW {GW_range[1]}]** for **:green[{selected_position}]**', icon='ℹ')
 
         # Define aggregation functions for numeric and non-numeric columns
         aggregation_functions = {col: selected_aggregation_method if matches_df[col].dtype in [np.float64, np.int64] else 'first' for col in matches_df.columns}
@@ -276,7 +275,7 @@ def main():
         MATCHES_DEFAULT_COLS = ['Player', 'Team', 'Pos', 'GS:GP'] + [col for col in MATCHES_DEFAULT_COLS if col not in ['Player', 'Team', 'Pos', 'GS:GP']]
 
         # Create an info message to explain the ratio as the percentage of games started out of total possible games
-        st.info(f'Grouping data from **:red[GW {GW_range[0]}]** to **:red[GW {GW_range[1]}]** for **:green[{selected_position}]**. Players in "Starting XI" have a GS to GP ratio of at least 0.50', icon='ℹ')
+        st.info(f'Grouping data from **:red[GW {GW_range[0]}]** to **:red[GW {GW_range[1]}]** for **:green[{selected_position}]**. You have selected multiple Gameweeks and filtered for "Starting XI" players, thus only players that have a GS to GP ratio of at least 0.50 (i.e. players who have started a minimum of half of all possible games) will be shown', icon='ℹ')
 
     else:
         matches_df.rename(columns={'GW': 'GP', 'Started': 'GS'}, inplace=True)
