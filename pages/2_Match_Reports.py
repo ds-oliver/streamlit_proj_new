@@ -311,7 +311,7 @@ def main():
 
     st.subheader(f":orange[Top Performers] by :red[{selected_stat} per GP]")
 
-    st.info(f'{selected_team} Players in 90th percentile by **:red[{selected_stat} per GP]**', icon='ℹ')
+    st.info(f'{selected_team} Players in :green[85th percentile] by **:red[{selected_stat} ({selected_aggregation_method})]**', icon='ℹ')
 
     # Styling DataFrame
     styled_top_performers_df = style_dataframe(top_performers_df[columns_to_show], selected_columns=columns_to_show)
