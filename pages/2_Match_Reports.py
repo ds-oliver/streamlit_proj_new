@@ -340,7 +340,7 @@ def main():
         top_performers_df = create_top_performers_table(matches_df, selected_stat, columns_to_show, percentile=percentile_value)
 
     st.divider()
-    st.subheader(f":orange[Top Performers] by :red[{selected_stat} ({selected_aggregation_method}]")
+    st.subheader(f":orange[Top Performers] by :red[{selected_stat} ({selected_aggregation_method})]")
     st.info(f'**{selected_team}** Players in :green[{percentile_value}th percentile] by **:red[{selected_stat} ({selected_aggregation_method})]**', icon='ℹ')
 
     # Styling DataFrame
