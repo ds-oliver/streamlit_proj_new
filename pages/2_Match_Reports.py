@@ -66,10 +66,17 @@ def style_dataframe(df, selected_columns):
 
     if 'Pos' in df.columns:
         unique_positions = df['Pos'].unique().tolist()
-        position_colors = [get_color_from_palette(i / (len(unique_positions)-1), 'inferno') for i in range(len(unique_positions))]
-        position_color_mapping = {pos: f'background-color: {color};' for pos, color in zip(unique_positions, position_colors)}
-        styled_df['Pos'] = df['Pos'].apply(lambda x: position_color_mapping[x])
-        styled_df['Player'] = df['Pos'].apply(lambda x: position_color_mapping[x])
+
+        # Define the colors for the positions
+        position_colors = {
+            "D": "background-color: #3d0b4d;",  # Specific purple color for "D"
+            "M": get_color(1 / 2, object_cmap),  # Assigned color for "M"
+            "F": get_color(2 / 2, object_cmap)   # Assigned color for "F"
+        }
+
+        # Apply the colors to the 'Pos' and 'Player' columns
+        styled_df['Pos'] = df['Pos'].apply(lambda x: position_colors[x])
+        styled_df['Player'] = df['Pos'].apply(lambda x: position_colors[x])
 
     for col in df.columns:
         if col in ['Player', 'Pos']:
