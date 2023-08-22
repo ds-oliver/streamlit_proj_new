@@ -70,8 +70,8 @@ def style_dataframe(df, selected_columns):
         # Define the colors for the positions
         position_colors = {
             "D": "background-color: #3d0b4d;",  # Specific purple color for "D"
-            "M": get_color(1 / 2, object_cmap),  # Assigned color for "M"
-            "F": get_color(2 / 2, object_cmap)   # Assigned color for "F"
+            "M": "background-color: #08040f",  # Assigned color for "M"
+            "F": "background-color: #b8684e"   # Assigned color for "F"
         }
 
         # Apply the colors to the 'Pos' and 'Player' columns
