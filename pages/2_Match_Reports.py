@@ -233,7 +233,7 @@ def main():
     if featured_players == '> 55 Minutes Played':
         matches_df = matches_df[matches_df['Minutes'] > 55]
     elif featured_players == 'Starting XI':
-        matches_df = matches_df[matches_df['Started'] > 0]
+        matches_df = matches_df[(matches_df['Started'] > 0) & (matches_df['GS:GP'] >= 0.50)]
 
     GW_range = st.sidebar.slider('GW range', min_value=matches_df['GW'].min(), max_value=matches_df['GW'].max(), value=(matches_df['GW'].min(), matches_df['GW'].max()), step=1, help="Select the range of gameweeks to display data for. This slider adjusts data globally for all tables and plots")
 
@@ -287,7 +287,7 @@ def main():
         MATCHES_DEFAULT_COLS = ['Player', 'Team', 'Pos', 'GS:GP'] + [col for col in MATCHES_DEFAULT_COLS if col not in ['Player', 'Team', 'Pos', 'GS:GP']]
 
         # create a info to explain the ratio is the percent of games started out of total possible games
-        st.info(f'**:red[GS;GP]** is the percent of games started out of total possible games', icon='ℹ')
+        st.info(f'Grouping data from **:red[GW {GW_range[0]}]** to **:red[GW {GW_range[1]}]** for **:green[{selected_position}]**. Players in "Starting XI" have a GS:GP ratio of at least 0.50', icon='ℹ')
 
     else:
         # show st.info() message of the GW selected
