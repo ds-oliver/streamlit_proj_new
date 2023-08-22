@@ -238,11 +238,7 @@ def main():
     # Create a sidebar slider to select the GW range
     GW_range = st.sidebar.slider('GW range', min_value=matches_df['GW'].min(), max_value=matches_df['GW'].max(), value=(matches_df['GW'].min(), matches_df['GW'].max()), step=1, help="Select the range of gameweeks to display data for. This slider adjusts data globally for all tables and plots")
     GW_range = list(GW_range)
-
-    # If the range of GW is more than 1, calculate GS:GP ratio
-    if GW_range[0] != GW_range[1]:
-        matches_df['GS:GP'] = matches_df['GS'] / matches_df['GP']
-
+    
     # Filter the DataFrame by the selected GW range
     matches_df = matches_df[(matches_df['GW'] >= GW_range[0]) & (matches_df['GW'] <= GW_range[1])]
     print("Shape of matches_df after filtering by featured players:", matches_df.shape)
