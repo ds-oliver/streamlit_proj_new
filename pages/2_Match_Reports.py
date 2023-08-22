@@ -71,7 +71,7 @@ def style_dataframe(df, selected_columns):
         position_colors = {
             "D": "background-color: #3d0b4d;",  # Specific purple color for "D"
             "M": "background-color: #08040f",  # Assigned color for "M"
-            "F": "background-color: #b8684e"   # Assigned color for "F"
+            "F": "background-color: #050255"   # Assigned color for "F"
         }
 
         # Apply the colors to the 'Pos' and 'Player' columns
