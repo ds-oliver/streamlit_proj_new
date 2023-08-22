@@ -229,6 +229,10 @@ def main():
     if 'Gw' in matches_df.columns:
         matches_df.rename(columns={'Gw': 'GW'}, inplace=True)
 
+    # If the range of GW is more than 1, calculate GS:GP ratio
+    if GW_range[0] != GW_range[1]:
+        matches_df['GS:GP'] = matches_df['GS'] / matches_df['GP']
+
     # filter the dataframe based on the radio button selected
     if featured_players == '> 55 Minutes Played':
         matches_df = matches_df[matches_df['Minutes'] > 55]
