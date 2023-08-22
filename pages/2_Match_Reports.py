@@ -274,8 +274,16 @@ def main():
         MATCHES_DEFAULT_COLS.remove('GP')
         MATCHES_DEFAULT_COLS = ['Player', 'Team', 'Pos', 'GS:GP'] + [col for col in MATCHES_DEFAULT_COLS if col not in ['Player', 'Team', 'Pos', 'GS:GP']]
 
-        # Create an info message to explain the ratio as the percentage of games started out of total possible games
-        st.info(f'You have chosen to retrieve data from **:red[GW {GW_range[0]}]** to **:red[GW {GW_range[1]}]** for **:green[{selected_position}]**. \nAs you have selected multiple GWs, and filtered for "Starting XI" players, **:orange[only]** players that have a GS to GP ratio of at least **:orange[0.50]** (i.e. **:red[players who have started a minimum of half of all possible games]**) will be shown', icon='ℹ')
+        # If the user selects 'Starting XI', filter the DataFrame accordingly
+        if featured_players == 'Starting XI':
+            matches_df['GS:GP'] = matches_df['GS:GP'].astype(float)  # Convert the 'GS:GP' column to float
+            matches_df = matches_df[(matches_df['GS'] > 0) & (matches_df['GS:GP'] >= 0.50)]
+
+            # Create an info message to explain the ratio as the percentage of games started out of total possible games
+            st.info(f'You have chosen to retrieve data from **:red[GW {GW_range[0]}]** to **:red[GW {GW_range[1]}]** for **:green[{selected_position}]**. \nAs you have selected multiple GWs, and filtered for "Starting XI" players, **:orange[only]** players that have a GS to GP ratio of at least **:orange[0.50]** (i.e. **:red[players who have started a minimum of half of all possible games]**) will be shown', icon='ℹ')
+        else:
+            st.info(f'You have chosen to retrieve data from **:red[GW {GW_range[0]}]** to **:red[GW {GW_range[1]}]** for **:green[{selected_position}]**. The data is aggregated by **:green[{selected_aggregation_method}]**.')
+        
 
     else:
         matches_df.rename(columns={'GW': 'GP', 'Started': 'GS'}, inplace=True)
