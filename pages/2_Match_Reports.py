@@ -56,16 +56,15 @@ def get_color_from_palette(value, palette_name='inferno'):
     return cmap(value)
 
 def style_dataframe(df, selected_columns):
-    cm_coolwarm = cm.get_cmap('inferno_r')
-    object_cmap = cm.get_cmap('inferno_r')
+    object_cmap = cm.get_cmap('gnuplot2')
 
     # Create an empty DataFrame with the same shape as df
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
 
-    # Assuming 'position' is the column containing player positions
+    # Assuming 'Pos' is the column containing player positions
     if 'Pos' in df.columns:
         unique_positions = df['Pos'].unique().tolist()
-        position_colors = [get_color(i / (len(unique_positions)-1), object_cmap) for i in range(len(unique_positions))]
+        position_colors = [get_color_from_palette(i / (len(unique_positions)-1), 'inferno') for i in range(len(unique_positions))]
         position_color_mapping = {pos: color for pos, color in zip(unique_positions, position_colors)}
         styled_df['Pos'] = df['Pos'].apply(lambda x: position_color_mapping[x])
         styled_df['Player'] = df['Pos'].apply(lambda x: position_color_mapping[x])  # Apply same colors to players
@@ -78,19 +77,18 @@ def style_dataframe(df, selected_columns):
         unique_values = df[col].unique().tolist()
 
         if len(unique_values) <= 3:
-            constant_colors = [get_color(i / (len(unique_values)-1), cm_coolwarm) for i in range(len(unique_values))]
+            constant_colors = [get_color_from_palette(i / 2, 'inferno') for i in range(len(unique_values))]
             color_mapping = {val: color for val, color in zip(unique_values, constant_colors)}
             styled_df[col] = df[col].apply(lambda x: color_mapping[x])
         elif col_dtype in [np.float64, np.int64] and col in selected_columns:
             min_val = df[col].min()
             max_val = df[col].max()
             range_val = max_val - min_val
-            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, cm_coolwarm))
+            styled_df[col] = df[col].apply(lambda x: get_color_from_palette((x - min_val) / range_val, 'inferno'))
         elif col_dtype == 'object':
-            styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
+            styled_df[col] = df[col].apply(lambda x: get_color_from_palette(unique_values.index(x) / len(unique_values), object_cmap))
 
     return styled_df
-
 
 def read_data(file_path):
     return pd.read_csv(file_path)
