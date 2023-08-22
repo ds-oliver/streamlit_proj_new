@@ -273,6 +273,21 @@ def main():
         # Update MATCHES_DEFAULT_COLS
         MATCHES_DEFAULT_COLS = [col if col != 'GW' else 'GP' for col in MATCHES_DEFAULT_COLS]
         MATCHES_DEFAULT_COLS = [col if col != 'Started' else 'GS' for col in MATCHES_DEFAULT_COLS]
+        
+        # create a ratio of potential GP to GS
+        matches_df['GS:GP'] =  round(matches_df['GS'] / matches_df['GP'].max(), 2).apply(lambda x: f"{x:.2f}")
+
+        # append the ratio to MATCHES_DEFAULT_COLS
+        MATCHES_DEFAULT_COLS.append('GS:GP')
+
+        # remove GP from MATCHES_DEFAULT_COLS
+        MATCHES_DEFAULT_COLS.remove('GP')
+
+        # reorder MATCHES_DEFAULT_COLS player, team, position, GP, GS:GP
+        MATCHES_DEFAULT_COLS = ['Player', 'Team', 'Pos', 'GS:GP'] + [col for col in MATCHES_DEFAULT_COLS if col not in ['Player', 'Team', 'Pos', 'GS:GP']]
+
+        # create a info to explain the ratio is the percent of games started out of total possible games
+        st.info(f'**:red[GS;GP]** is the percent of games started out of total possible games', icon='ℹ')
 
     else:
         # show st.info() message of the GW selected
