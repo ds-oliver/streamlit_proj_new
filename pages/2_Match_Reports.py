@@ -53,7 +53,9 @@ def get_color(value, cmap):
 
 def get_color_from_palette(value, palette_name='inferno'):
     cmap = cm.get_cmap(palette_name)
-    return cmap(value)
+    rgba_color = cmap(value)
+    color_as_hex = mcolors.to_hex(rgba_color)
+    return f'background-color: {color_as_hex}'
 
 def style_dataframe(df, selected_columns):
     object_cmap = cm.get_cmap('gnuplot2')
@@ -61,19 +63,18 @@ def style_dataframe(df, selected_columns):
     # Create an empty DataFrame with the same shape as df
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
 
-    # Assuming 'Pos' is the column containing player positions
     if 'Pos' in df.columns:
         unique_positions = df['Pos'].unique().tolist()
         position_colors = [get_color_from_palette(i / (len(unique_positions)-1), 'inferno') for i in range(len(unique_positions))]
         position_color_mapping = {pos: color for pos, color in zip(unique_positions, position_colors)}
         styled_df['Pos'] = df['Pos'].apply(lambda x: position_color_mapping[x])
-        styled_df['Player'] = df['Pos'].apply(lambda x: position_color_mapping[x])  # Apply same colors to players
+        styled_df['Player'] = df['Pos'].apply(lambda x: position_color_mapping[x])
 
     for col in df.columns:
-        if col in ['Player', 'Pos']:  # Skip the styling for these columns as they were handled earlier
+        if col in ['Player', 'Pos']:
             continue
 
-        col_dtype = df[col].dtype  # Get the dtype of the individual column
+        col_dtype = df[col].dtype
         unique_values = df[col].unique().tolist()
 
         if len(unique_values) <= 3:
@@ -89,6 +90,8 @@ def style_dataframe(df, selected_columns):
             styled_df[col] = df[col].apply(lambda x: get_color_from_palette(unique_values.index(x) / len(unique_values), object_cmap))
 
     return styled_df
+
+
 
 def read_data(file_path):
     return pd.read_csv(file_path)
