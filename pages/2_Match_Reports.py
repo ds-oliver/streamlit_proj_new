@@ -216,6 +216,9 @@ def main():
     if selected_position != 'All Positions':
         matches_df = matches_df[matches_df['Pos'] == selected_position]
 
+    if selected_team != 'All Teams':
+        matches_df = matches_df[matches_df['Team'] == selected_team]
+
     # # print count of featured players
     # st.sidebar.write(f'Number of featured players: {matches_df.shape[0]}')
 
