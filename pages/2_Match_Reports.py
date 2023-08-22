@@ -211,6 +211,8 @@ def main():
 
     selected_position = st.sidebar.selectbox('Select Position', ['All Positions', matches_df['Pos'].unique().tolist()])
 
+    selected_team = st.sidebar.selectbox('Select Team', ['All Teams', matches_df['Team'].unique().tolist()])
+
     if selected_position != 'All Positions':
         matches_df = matches_df[matches_df['Pos'] == selected_position]
 
