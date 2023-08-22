@@ -177,7 +177,7 @@ def process_data():
     return matches_df, shots_df, date_of_update, MATCHES_DEFAULT_COLS
 
 def display_date_of_update(date_of_update):
-    st.sidebar.write(f'Last data refresh: {date_of_update}')
+    st.write(f'Last data refresh: {date_of_update}')
 
 def round_and_format(value):
     if isinstance(value, float):
