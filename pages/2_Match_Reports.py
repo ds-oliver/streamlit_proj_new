@@ -246,13 +246,15 @@ def main():
     matches_df = matches_df[(matches_df['GW'] >= GW_range[0]) & (matches_df['GW'] <= GW_range[1])]
     print("Shape of matches_df after filtering by GW range:", matches_df.shape)
 
+    # Allow the user to select the aggregation method
+    selected_aggregation_method = st.sidebar.selectbox('Select Aggregation Method', ['mean', 'sum'])
 
     # if GW_range list has more than 1 element, group by MATCHES_DEFAULT_COLS
     if GW_range[0] != GW_range[1]:
         st.info(f'Grouping data from **:red[GW {GW_range[0]}]** to **:red[GW {GW_range[1]}]** for **:green[{selected_position}]**', icon='ℹ')
 
         # Define aggregation functions for numeric and non-numeric columns
-        aggregation_functions = {col: 'mean' if matches_df[col].dtype in [np.float64, np.int64] else 'first' for col in matches_df.columns}
+        aggregation_functions = {col: selected_aggregation_method if matches_df[col].dtype in [np.float64, np.int64] else 'first' for col in matches_df.columns}
         aggregation_functions['Player'] = 'first'
         aggregation_functions['Team'] = 'first'
         aggregation_functions['Pos'] = 'first' # Aggregating by the first occurrence of position
@@ -267,7 +269,7 @@ def main():
         matches_df.rename(columns={'GW': 'GP'}, inplace=True)
         # rename the 'started' column to 'games_starts'
         matches_df.rename(columns={'Started': 'GS'}, inplace=True)
-        
+
         # Update MATCHES_DEFAULT_COLS
         MATCHES_DEFAULT_COLS = [col if col != 'GW' else 'GP' for col in MATCHES_DEFAULT_COLS]
         MATCHES_DEFAULT_COLS = [col if col != 'Started' else 'GS' for col in MATCHES_DEFAULT_COLS]
@@ -275,6 +277,7 @@ def main():
     else:
         # show st.info() message of the GW selected
         st.info(f'GW {GW_range[0]} selected')
+
 
     # create a ratio of potential GP to GS
     matches_df['GS:GP'] =  round(matches_df['GS'] / matches_df['GP'].max(), 2).apply(lambda x: f"{x:.2f}")
