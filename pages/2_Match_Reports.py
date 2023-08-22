@@ -56,8 +56,8 @@ def get_color_from_palette(value, palette_name='inferno'):
     return cmap(value)
 
 def style_dataframe(df, selected_columns):
-    cm_coolwarm = cm.get_cmap('inferno')
-    object_cmap = cm.get_cmap('gnuplot2')
+    cm_coolwarm = cm.get_cmap('inferno_r')
+    object_cmap = cm.get_cmap('inferno_r')
 
     # Create an empty DataFrame with the same shape as df
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
