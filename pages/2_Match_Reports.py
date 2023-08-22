@@ -143,7 +143,7 @@ def create_top_performers_table(matches_df, selected_stat, selected_columns, per
     top_performers_df[selected_stat] = top_performers_df[selected_stat].round(2)
 
     # Sort the dataframe by the selected stat in descending order and take the top 25
-    top_performers_df = top_performers_df.sort_values(by=selected_stat, ascending=False).head(25)
+    top_performers_df = top_performers_df.sort_values(by=selected_stat, ascending=False)
 
     # reset the index
     top_performers_df.reset_index(drop=True, inplace=True)
@@ -209,9 +209,9 @@ def main():
     # create radio button for 'Starting XI' or 'All Featured Players'
     featured_players = st.sidebar.radio("Select Featured Players", ('Starting XI', '> 55 Minutes Played', 'All Featured Players'))
 
-    selected_position = st.sidebar.selectbox('Select Position', ['All Positions'] + matches_df['Pos'].unique().tolist())
+    selected_position = st.sidebar.selectbox('Select Position', ['All Positions'] + sorted(matches_df['Pos'].unique().tolist()))
 
-    selected_team = st.sidebar.selectbox('Select Team', ['All Teams'] + matches_df['Team'].unique().tolist())
+    selected_team = st.sidebar.selectbox('Select Team', ['All Teams'] + sorted(matches_df['Team'].unique().tolist()))
 
     if selected_position != 'All Positions':
         matches_df = matches_df[matches_df['Pos'] == selected_position]
@@ -311,7 +311,7 @@ def main():
 
     st.subheader(f":orange[Top Performers] by :red[{selected_stat} per GP]")
 
-    st.info(f'Top 25 players by **:red[{selected_stat} per GP]**', icon='ℹ')
+    st.info(f'{selected_team} Players in 90th percentile by **:red[{selected_stat} per GP]**', icon='ℹ')
 
     # Styling DataFrame
     styled_top_performers_df = style_dataframe(top_performers_df[columns_to_show], selected_columns=columns_to_show)
