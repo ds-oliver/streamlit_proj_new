@@ -276,7 +276,7 @@ def main():
 
         # If the user selects 'Starting XI', filter the DataFrame accordingly
         if featured_players == 'Starting XI':
-            matches_df['GS:GP'] = matches_df['GS:GP'].astype(float)  # Convert the 'GS:GP' column to float
+            matches_df['GS:GP'] = matches_df['GS:GP'].astype(float).round(2)  # Convert the 'GS:GP' column to float
             matches_df = matches_df[(matches_df['GS'] > 0) & (matches_df['GS:GP'] >= 0.50)]
 
             # Create an info message to explain the ratio as the percentage of games started out of total possible games
