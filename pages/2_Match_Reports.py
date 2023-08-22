@@ -333,24 +333,24 @@ def main():
 
     # Create a DataFrame for players within the 90th percentile
     top_performers_df = create_top_performers_table(matches_df, selected_stat, columns_to_show)
+    # if team != 'All Teams': or position != 'All Positions': or both then change the percentile to 50th
+    percentile_value = 85
+    if selected_team != 'All Teams' or selected_position != 'All Positions':
+        percentile_value = 50
+        top_performers_df = create_top_performers_table(matches_df, selected_stat, columns_to_show, percentile=percentile_value)
 
-    # visualize_top_performers(top_performers_df, selected_stat)
-
-    st.divider() 
-
+    st.divider()
     st.subheader(f":orange[Top Performers] by :red[{selected_stat} per GP]")
-
-    st.info(f'**{selected_team}** Players in :green[85th percentile] by **:red[{selected_stat} ({selected_aggregation_method})]**', icon='ℹ')
+    st.info(f'**{selected_team}** Players in :green[{percentile_value}th percentile] by **:red[{selected_stat} ({selected_aggregation_method})]**', icon='ℹ')
 
     # Styling DataFrame
     styled_top_performers_df = style_dataframe(top_performers_df[columns_to_show], selected_columns=columns_to_show)
-
     top_performers_df[selected_stat] = top_performers_df[selected_stat].apply(lambda x: f"{x:.2f}")
-
     top_performers_df = top_performers_df.applymap(round_and_format)
 
     # 👈 Display the dataframe 👈
     st.dataframe(top_performers_df[columns_to_show].style.apply(lambda _: styled_top_performers_df, axis=None), use_container_width=True, height=len(top_performers_df) * 40 + 50)
+
 
     st.divider()
 
