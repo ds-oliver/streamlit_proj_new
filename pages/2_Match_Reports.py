@@ -51,9 +51,13 @@ def get_color(value, cmap):
     text_color = 'white' if brightness < 0.7 else 'black'
     return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
 
+def get_color_from_palette(value, palette_name='inferno'):
+    cmap = cm.get_cmap(palette_name)
+    return cmap(value)
+
 def style_dataframe(df, selected_columns):
     cm_coolwarm = cm.get_cmap('inferno')
-    object_cmap = cm.get_cmap('inferno')
+    object_cmap = cm.get_cmap('gnuplot2')
 
     # Create an empty DataFrame with the same shape as df
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
@@ -61,13 +65,17 @@ def style_dataframe(df, selected_columns):
         if col == 'player':  # Skip the styling for the 'player' column
             continue
         col_dtype = df[col].dtype  # Get the dtype of the individual column
-        if col_dtype in [np.float64, np.int64] and col in selected_columns:
+        unique_values = df[col].unique().tolist()
+        if len(unique_values) <= 3:
+            constant_colors = [get_color(i/2, 'inferno') for i in range(len(unique_values))]
+            color_mapping = {val: color for val, color in zip(unique_values, constant_colors)}
+            styled_df[col] = df[col].apply(lambda x: color_mapping[x])
+        elif col_dtype in [np.float64, np.int64] and col in selected_columns:
             min_val = df[col].min()
             max_val = df[col].max()
             range_val = max_val - min_val
             styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, cm_coolwarm))
         elif col_dtype == 'object':
-            unique_values = df[col].unique().tolist()
             styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
     return styled_df
 
