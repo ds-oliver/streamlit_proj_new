@@ -320,7 +320,7 @@ def main():
     top_performers_df[selected_stat] = top_performers_df[selected_stat].apply(lambda x: f"{x:.2f}")
 
     # Display the dataframe
-    st.dataframe(top_performers_df[columns_to_show].style.apply(lambda _: styled_top_performers_df, axis=None), use_container_width=True, height=len(top_performers_df) * 40)
+    st.dataframe(top_performers_df[columns_to_show].style.apply(lambda _: styled_top_performers_df, axis=None), use_container_width=True, height=len(top_performers_df) * 40 + 100)
 
     st.divider()  # 👈 Draws a horizontal rule
 
