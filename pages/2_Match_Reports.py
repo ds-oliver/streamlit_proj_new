@@ -275,7 +275,7 @@ def main():
         MATCHES_DEFAULT_COLS = ['Player', 'Team', 'Pos', 'GS:GP'] + [col for col in MATCHES_DEFAULT_COLS if col not in ['Player', 'Team', 'Pos', 'GS:GP']]
 
         # Create an info message to explain the ratio as the percentage of games started out of total possible games
-        st.info(f'Grouping data from **:red[GW {GW_range[0]}]** to **:red[GW {GW_range[1]}]** for **:green[{selected_position}]**. You have selected multiple Gameweeks and filtered for "Starting XI" players, thus only players that have a GS to GP ratio of at least 0.50 (i.e. players who have started a minimum of half of all possible games) will be shown', icon='ℹ')
+        st.info(f'You have chosen to retrieve data from **:red[GW {GW_range[0]}]** to **:red[GW {GW_range[1]}]** for **:green[{selected_position}]**. \nAs you have selected multiple GWs, and filtered for "Starting XI" players, :orange[only] players that have a GS to GP ratio of at least :orange[0.50] (i.e. **players who have started a minimum of half of all possible games**) will be shown', icon='ℹ')
 
     else:
         matches_df.rename(columns={'GW': 'GP', 'Started': 'GS'}, inplace=True)
