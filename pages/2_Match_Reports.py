@@ -307,21 +307,23 @@ def main():
 
     # visualize_top_performers(top_performers_df, selected_stat)
 
-    st.divider()  # 👈 Draws a horizontal rule
+    st.divider() 
 
     st.subheader(f":orange[Top Performers] by :red[{selected_stat} per GP]")
 
-    st.info(f'{selected_team} Players in :green[85th percentile] by **:red[{selected_stat} ({selected_aggregation_method})]**', icon='ℹ')
+    st.info(f'**{selected_team}** Players in :green[85th percentile] by **:red[{selected_stat} ({selected_aggregation_method})]**', icon='ℹ')
 
     # Styling DataFrame
     styled_top_performers_df = style_dataframe(top_performers_df[columns_to_show], selected_columns=columns_to_show)
 
     top_performers_df[selected_stat] = top_performers_df[selected_stat].apply(lambda x: f"{x:.2f}")
 
-    # Display the dataframe
-    st.dataframe(top_performers_df[columns_to_show].style.apply(lambda _: styled_top_performers_df, axis=None), use_container_width=True, height=len(top_performers_df) * 40 + 100)
+    top_performers_df = top_performers_df.round(2)
 
-    st.divider()  # 👈 Draws a horizontal rule
+    # 👈 Display the dataframe 👈
+    st.dataframe(top_performers_df[columns_to_show].style.apply(lambda _: styled_top_performers_df, axis=None), use_container_width=True, height=len(top_performers_df) * 40 + 50)
+
+    st.divider()
 
     # User selects the group and columns to show
     selected_group = st.sidebar.selectbox("Select Stats Grouping", list(matches_col_groups.keys()), help="This selection will be used to populate the Match Reports table.")
@@ -340,7 +342,7 @@ def main():
 
 
     # display the dataframe
-    # round the values of the columns
+    # 👈 round the values of the columns 👈
     matches_df = matches_df.round(2)
     st.dataframe(matches_df[columns_to_show].style.apply(lambda _: styled_df, axis=None), use_container_width=True, height=len(matches_df) * 40)
 
