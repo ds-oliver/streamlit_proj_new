@@ -45,7 +45,6 @@ st.set_page_config(
 from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default, matches_all_data as matches_data, matches_shots_data as shots_data # this is the file we want to read in
 
 from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect
-
 def get_color(value, cmap):
     color_fraction = value
     rgba_color = cmap(color_fraction)
@@ -57,7 +56,7 @@ def get_color_from_palette(value, palette_name='inferno'):
     cmap = cm.get_cmap(palette_name)
     rgba_color = cmap(value)
     color_as_hex = mcolors.to_hex(rgba_color)
-    return f'background-color: {color_as_hex}'
+    return color_as_hex
 
 def style_dataframe(df, selected_columns):
     object_cmap = cm.get_cmap('gnuplot2')
@@ -80,20 +79,18 @@ def style_dataframe(df, selected_columns):
         unique_values = df[col].unique().tolist()
 
         if len(unique_values) <= 3:
-            constant_colors = [get_color_from_palette(i / 2, 'inferno') for i in range(len(unique_values))]
+            constant_colors = [get_color(i / 2, cm.get_cmap('inferno')) for i in range(len(unique_values))]
             color_mapping = {val: color for val, color in zip(unique_values, constant_colors)}
             styled_df[col] = df[col].apply(lambda x: color_mapping[x])
         elif col_dtype in [np.float64, np.int64] and col in selected_columns:
             min_val = df[col].min()
             max_val = df[col].max()
             range_val = max_val - min_val
-            styled_df[col] = df[col].apply(lambda x: get_color_from_palette((x - min_val) / range_val, 'inferno'))
+            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, cm.get_cmap('inferno')))
         elif col_dtype == 'object':
-            styled_df[col] = df[col].apply(lambda x: get_color_from_palette(unique_values.index(x) / len(unique_values), object_cmap))
+            styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
 
     return styled_df
-
-
 
 def read_data(file_path):
     return pd.read_csv(file_path)
