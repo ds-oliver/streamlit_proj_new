@@ -232,18 +232,14 @@ def main():
     # Filter the DataFrame based on the radio button selected
     if featured_players == '> 55 Minutes Played':
         matches_df = matches_df[matches_df['Minutes'] > 55]
-    elif featured_players == 'Starting XI':
-        matches_df = matches_df[(matches_df['Started'] > 0) & (matches_df['GS:GP'] >= 0.50)]
 
     # Create a sidebar slider to select the GW range
     GW_range = st.sidebar.slider('GW range', min_value=matches_df['GW'].min(), max_value=matches_df['GW'].max(), value=(matches_df['GW'].min(), matches_df['GW'].max()), step=1, help="Select the range of gameweeks to display data for. This slider adjusts data globally for all tables and plots")
     GW_range = list(GW_range)
-    
+
     # Filter the DataFrame by the selected GW range
     matches_df = matches_df[(matches_df['GW'] >= GW_range[0]) & (matches_df['GW'] <= GW_range[1])]
     print("Shape of matches_df after filtering by featured players:", matches_df.shape)
-    matches_df = matches_df[(matches_df['GW'] >= GW_range[0]) & (matches_df['GW'] <= GW_range[1])]
-    print("Shape of matches_df after filtering by GW range:", matches_df.shape)
 
     # Allow the user to select the aggregation method
     selected_aggregation_method = st.sidebar.selectbox('Select Aggregation Method', ['mean', 'sum'])
@@ -286,7 +282,8 @@ def main():
         # Show a message for the selected GW
         st.info(f'GW {GW_range[0]} selected')
 
-
+    if featured_players == 'Starting XI':
+        matches_df = matches_df[(matches_df['Started'] > 0) & (matches_df['GS:GP'] >= 0.50)]
 
     all_stats = matches_df.columns.tolist()
     selectable_stats = [stat for stat in all_stats if stat not in MATCHES_DEFAULT_COLS]
