@@ -71,30 +71,50 @@ from functions import scraping_current_fbref, normalize_encoding, clean_age_colu
 #     return styled_df
 
 # @st.cache_resource
-def process_data(pl_data_gw1, temp_default, col_groups):
+def process_data(all_gws_data, temp_default, col_groups):
     
-    df = pd.read_csv(pl_data_gw1)
+    df = pd.read_csv(all_gws_data)
     temp_df = pd.read_csv(temp_default)
-    df['Pos'] = temp_df['Position']
-    df['Team'] = temp_df['Team']
-
-    # drop df['position'] column
-    df.drop(columns=['position'], inplace=True)
-
-    # drop 'team' column
-    df.drop(columns=['team'], inplace=True)
-
-    # rename 'fantrax position' column to 'position'
-    # df.rename(columns={'fantrax position': 'position'}, inplace=True)
 
     # capitalize the column names
     df.columns = [col.capitalize() for col in df.columns]
 
-    # Define default columns
-    DEFAULT_COLUMNS = ['Player', 'Pos', 'Team', 'Games_starts']
+    df = df.merge(temp_df[['Player', 'Position', 'Team']], on='Player', suffixes=('_df', '_temp'))
+    df['Pos'] = df['Position_temp']
+    df['Team'] = df['Team_temp']
+
+    # drop where position is GK
+    df = df[df['Pos'] != 'GK']
+    df = df[df['Pos'].notna()]
+
+    df.drop(columns=['Position_df', 'Team_df'], inplace=True)
+
+    # rename 'fantrax position' column to 'position'
+    # df.rename(columns={'fantrax position': 'position'}, inplace=True)
+
+    print(df.columns.tolist())
 
     # create timestamp so we can use to display the date of the last data update
-    date_of_update = datetime.fromtimestamp(os.path.getmtime(pl_data_gw1)).strftime('%d %B %Y')
+    date_of_update = datetime.fromtimestamp(os.path.getmtime(all_gws_data)).strftime('%d %B %Y')
+
+    df['Games'] = df['Gameweek'].max()
+
+    # rename Games_starts to GS, Goals_assists to G+A, any column name that starts with xg to xG
+    if 'Games_starts' in df.columns:
+        df.rename(columns={'Games_starts': 'GS'}, inplace=True)
+    if 'Goals_assists' in df.columns:
+        df.rename(columns={'Goals_assists': 'G+A'}, inplace=True)
+    if 'Gameweek' in df.columns:
+        df.rename(columns={'Gameweek': 'GW'}, inplace=True)
+
+    # sort df by GS then G+A
+    df.sort_values(by=['GS', 'G+A'], ascending=False, inplace=True)
+
+    # Define default columns
+    DEFAULT_COLUMNS = ['Player', 'Pos', 'Team','GS']
+
+    # rename any column name that starts with xg to xG
+    df.rename(columns={col: col.replace('xg', 'xG') for col in df.columns if col.startswith('xg')}, inplace=True)
 
     return df, DEFAULT_COLUMNS, date_of_update, col_groups
 
@@ -185,6 +205,9 @@ def create_plot(selected_group, selected_columns, selected_positions, selected_t
             fig.update_traces(hoverinfo="x+y+name")
             st.plotly_chart(fig, use_container_width=True)
 
+def most_recent_team(teams):
+    return teams.iloc[-1]
+
 col_groups = {
     "Standard": stats_cols,
     "Shooting": shooting_cols,
@@ -208,6 +231,42 @@ def main():
 
     col_groups = {key.capitalize(): [col.capitalize() for col in value] for key, value in col_groups.items()}
 
+    # Create a sidebar slider to select the GW range
+    GW_range = st.slider('GW range', min_value=data['GW'].min(), max_value=data['GW'].max(), value=(data['GW'].min(), data['GW'].max()), step=1, help="Select the range of gameweeks to display data for. This slider adjusts data globally for all tables and plots")
+    GW_range = list(GW_range)
+
+    # Filter the DataFrame by the selected GW range
+    data = data[(data['GW'] >= GW_range[0]) & (data['GW'] <= GW_range[1])]
+
+    if GW_range[0] != GW_range[1]:
+        
+        selected_aggregation_method = st.sidebar.selectbox('Select Aggregation Method', ['mean', 'sum'])
+
+        # Define aggregation functions for numeric and non-numeric columns
+        aggregation_functions = {col: selected_aggregation_method if data[col].dtype in [np.float64, np.int64] else 'first' for col in data.columns}
+        aggregation_functions['Player'] = 'first'
+        aggregation_functions['Team'] = most_recent_team
+        aggregation_functions['Pos'] = 'first' # Aggregating by the first occurrence of position
+        aggregation_functions['GW'] = 'nunique' # Counting the number of GWs
+        aggregation_functions['GS'] = 'sum' # Summing the number of starts
+
+        # Group by player, team, and position, and apply the aggregation functions
+        data = data.groupby(['Player', 'Team', 'Pos'], as_index=False).agg(aggregation_functions)
+        print("Shape of matches_df after grouping by player, team, and position:", data.shape)
+
+        data.rename(columns={'GW': 'GP'}, inplace=True)
+        DEFAULT_COLUMNS.append('GP')
+
+        # Create a ratio of potential GP to GS and append the ratio to DEFAULT_COLUMNS
+        data['GS:GP'] = round(data['GS'] / data['GP'].max(), 2).apply(lambda x: f"{x:.2f}")
+        DEFAULT_COLUMNS.append('GS:GP')
+
+        DEFAULT_COLUMNS = [col if col != 'GW' else 'GP' for col in DEFAULT_COLUMNS]
+
+        # Remove GP from DEFAULT_COLUMNS and reorder the columns
+        DEFAULT_COLUMNS.remove('GP')
+        DEFAULT_COLUMNS = ['Player', 'Team', 'Pos', 'GS:GP'] + [col for col in DEFAULT_COLUMNS if col not in ['Player', 'Team', 'Pos', 'GS:GP']]
+
     # Sidebar filters
     selected_teams = create_sidebar_multiselect(data, 'Team', 'Select Teams', default_all=True, key_suffix="teams")
     selected_positions = create_sidebar_multiselect(data, 'Pos', 'Select Positions', default_all=True, key_suffix="positions")
@@ -222,7 +281,7 @@ def main():
     grouping_option = st.sidebar.selectbox("Select Grouping Option", ['None', 'Position', 'Team'])
 
     if grouping_option == 'None':
-        columns_to_show = DEFAULT_COLUMNS + selected_columns
+        columns_to_show = DEFAULT_COLUMNS + [col for col in selected_columns if col in data.columns]
     else:
         columns_to_show = [grouping_option.lower()] + selected_columns
 
