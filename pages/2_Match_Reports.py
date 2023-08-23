@@ -346,7 +346,8 @@ def main():
     st.info(f'**{selected_team}** Players in :green[{percentile_value}th percentile] by **:red[{selected_stat} ({selected_aggregation_method})]**', icon='ℹ')
 
     # Styling DataFrame
-    styled_top_performers_df = style_dataframe_custom(top_performers_df[columns_to_show], selected_columns=columns_to_show, False)
+    styled_top_performers_df = style_dataframe_custom(top_performers_df[columns_to_show], columns_to_show, False)
+
     top_performers_df[selected_stat] = top_performers_df[selected_stat].apply(lambda x: f"{x:.2f}")
     top_performers_df = top_performers_df.applymap(round_and_format)
 
@@ -369,7 +370,7 @@ def main():
     st.info(f'**:green[{matches_df.shape[0]}]** players found within the parameters selected', icon='ℹ')
 
     # Styling DataFrame
-    styled_df = style_dataframe_custom(matches_df[columns_to_show], selected_columns=selected_columns, custom_cmap=custom_cmap)
+    styled_df = style_dataframe_custom(matches_df[columns_to_show], , columns_to_show, False)
 
     # display the dataframe
     # 👈 round the values of the columns 👈
