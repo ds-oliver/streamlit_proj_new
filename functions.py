@@ -9,7 +9,6 @@ import pickle
 from datetime import datetime
 import matplotlib.pyplot as plt
 import seaborn as sns
-from matplotlib.colors import LinearSegmentedColormap
 import plost
 import plotly.express as px
 from sklearn.preprocessing import MinMaxScaler
@@ -18,9 +17,7 @@ import warnings
 import requests
 from bs4 import BeautifulSoup
 import unidecode
-from matplotlib import cm
 import matplotlib.cm as cm
-
 import matplotlib.colors as mcolors
 
 
