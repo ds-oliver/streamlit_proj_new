@@ -219,7 +219,7 @@ def main():
     grouped_data, _ = group_data(filtered_data, selected_columns, selected_group, selected_positions, selected_teams, grouping_option, aggregation_option='mean')
     
     # Styling DataFrame
-    styled_df = style_dataframe(grouped_data[columns_to_show], selected_columns=selected_columns)
+    styled_df = style_dataframe_v2(grouped_data[columns_to_show], selected_columns=selected_columns)
 
     # Display the DataFrame
     # if grouping_option == 'None' then set st.dataframe() height= to the height of showing the first 50 rows, else set height to length of grouped_data
