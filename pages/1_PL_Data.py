@@ -106,7 +106,7 @@ def display_date_of_update(date_of_update):
 # Function to load the data
 # @st.cache_resource
 def load_data():
-    return process_data(pl_data_gw1, temp_default, col_groups)
+    return process_data(all_gws_data, temp_default, col_groups)
 
 # Function to filter data based on selected teams and positions
 # @st.cache_resource
