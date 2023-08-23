@@ -201,6 +201,8 @@ def main():
     # Load the data
     data, DEFAULT_COLUMNS, date_of_update, col_groups = load_data()
 
+    data.head(25)
+
     # Display the date of last data update
     display_date_of_update(date_of_update)
 
