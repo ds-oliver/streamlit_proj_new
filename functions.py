@@ -18,6 +18,7 @@ import warnings
 import requests
 from bs4 import BeautifulSoup
 import unidecode
+from matplotlib import cm
 import matplotlib.colors as mcolors
 
 

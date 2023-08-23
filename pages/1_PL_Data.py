@@ -22,7 +22,7 @@ from pandas.io.formats.style import Styler
 import cProfile
 import pstats
 import io
-
+import matplotlib.colors as mcolors
 # logger = st.logger
 
 warnings.filterwarnings('ignore')
