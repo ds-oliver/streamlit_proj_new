@@ -369,7 +369,7 @@ def main():
     st.info(f'**:green[{matches_df.shape[0]}]** players found within the parameters selected', icon='ℹ')
 
     # Styling DataFrame
-    styled_df = style_dataframe_custom(matches_df[columns_to_show], selected_columns=selected_columns, custom_cmap=custom_cmap))
+    styled_df = style_dataframe_custom(matches_df[columns_to_show], selected_columns=selected_columns, custom_cmap=custom_cmap)
 
     # display the dataframe
     # 👈 round the values of the columns 👈
