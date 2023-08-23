@@ -19,6 +19,7 @@ from bs4 import BeautifulSoup
 import unidecode
 import matplotlib.cm as mpl_cm
 import matplotlib.colors as mcolors
+from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 
 
 sys.path.append(os.path.abspath(os.path.join('./scripts')))
@@ -1519,6 +1520,11 @@ def style_dataframe_v2(df, selected_columns):
             styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
 
     return styled_df
+
+def create_custom_cmap(color1, color2):
+    colors = [color1, color2]
+    custom_cmap = LinearSegmentedColormap.from_list('custom_cmap', colors)
+    return custom_cmap
 
 def round_and_format(value):
     if isinstance(value, float):

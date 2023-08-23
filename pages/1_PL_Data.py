@@ -42,7 +42,7 @@ st.set_page_config(
 
 from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default, all_gws_data # this is the file we want to read in
 
-from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, style_dataframe_v2, get_color as get_color_v2, get_color_from_palette, round_and_format
+from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, style_dataframe_v2, get_color as get_color_v2, get_color_from_palette, round_and_format, create_custom_cmap
 
 # def get_color(value, cmap):
 #     color_fraction = value
@@ -223,6 +223,8 @@ col_groups = {
 def main():
     # Load the data
     data, DEFAULT_COLUMNS, date_of_update, col_groups = load_data()
+
+    custom_cmap = create_custom_cmap('#faa307', '#03071e')
 
     data.head(25)
 
