@@ -1530,7 +1530,7 @@ def style_dataframe_custom(df, selected_columns, custom_cmap):
         object_cmap = custom_cmap
     else:
         object_cmap = get_cmap('magma')
-        
+
     team_cmap = get_cmap('magma')  # Built-in 'magma' colormap
 
     # Create an empty DataFrame with the same shape as df
@@ -1562,16 +1562,17 @@ def style_dataframe_custom(df, selected_columns, custom_cmap):
             continue
 
         if len(unique_values) <= 3:
-            constant_colors = [get_color(i / 2, custom_cmap) for i in range(len(unique_values))] # Removed mpl_cm.get_cmap
+            constant_colors = [get_color(i / 2, object_cmap) for i in range(len(unique_values))] # Using object_cmap
             color_mapping = {val: color for val, color in zip(unique_values, constant_colors)}
             styled_df[col] = df[col].apply(lambda x: color_mapping[x])
         elif col_dtype in [np.float64, np.int64] and col in selected_columns:
             min_val = df[col].min()
             max_val = df[col].max()
             range_val = max_val - min_val
-            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, custom_cmap)) # Removed mpl_cm.get_cmap
+            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, object_cmap)) # Using object_cmap
 
     return styled_df
+
 
 
 def round_and_format(value):
