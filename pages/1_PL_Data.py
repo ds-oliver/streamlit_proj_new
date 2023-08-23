@@ -30,7 +30,7 @@ warnings.filterwarnings('ignore')
 scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 sys.path.append(scripts_path)
 
-from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues
+from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues, col_groups
 
 print("Scripts path:", scripts_path)
 
@@ -71,7 +71,7 @@ from functions import scraping_current_fbref, normalize_encoding, clean_age_colu
 #     return styled_df
 
 # @st.cache_resource
-def process_data(pl_data_gw1, temp_default):
+def process_data(pl_data_gw1, temp_default, col_groups):
     
     df = pd.read_csv(pl_data_gw1)
     temp_df = pd.read_csv(temp_default)
@@ -92,7 +92,7 @@ def process_data(pl_data_gw1, temp_default):
     # create timestamp so we can use to display the date of the last data update
     date_of_update = datetime.fromtimestamp(os.path.getmtime(pl_data_gw1)).strftime('%d %B %Y')
 
-    return df, DEFAULT_COLUMNS, date_of_update
+    return df, DEFAULT_COLUMNS, date_of_update, col_groups
 
 # we want to add a date of last data update to the page
 def display_date_of_update(date_of_update):
@@ -102,7 +102,7 @@ def display_date_of_update(date_of_update):
 # Function to load the data
 # @st.cache_resource
 def load_data():
-    return process_data(pl_data_gw1, temp_default)
+    return process_data(pl_data_gw1, temp_default, col_groups)
 
 # Function to filter data based on selected teams and positions
 # @st.cache_resource
@@ -195,7 +195,7 @@ col_groups = {
 
 def main():
     # Load the data
-    data, DEFAULT_COLUMNS, date_of_update = load_data()
+    data, DEFAULT_COLUMNS, date_of_update, col_groups = load_data()
 
     # Display the date of last data update
     display_date_of_update(date_of_update)
