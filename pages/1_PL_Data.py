@@ -17,7 +17,7 @@ import warnings
 # import unicodedata
 import plotly.graph_objects as go
 # from bs4 import BeautifulSoup
-from matplotlib import cm
+import matplotlib.cm as cm
 from pandas.io.formats.style import Styler
 import cProfile
 import pstats
