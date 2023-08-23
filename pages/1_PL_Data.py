@@ -293,7 +293,7 @@ def main():
     grouped_data, _ = group_data(filtered_data, selected_columns, selected_group, selected_positions, selected_teams, grouping_option, aggregation_option='mean')
     
     # Styling DataFrame
-    styled_df = style_dataframe_custom(grouped_data[columns_to_show], selected_columns=selected_columns, custom_cmap=custom_cmap)
+    styled_df = style_dataframe_custom(grouped_data[columns_to_show], columns_to_show, False)
 
     grouped_data = grouped_data.applymap(round_and_format)
 
