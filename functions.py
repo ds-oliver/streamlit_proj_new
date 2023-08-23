@@ -1409,4 +1409,111 @@ def create_sidebar_multiselect(df, column_name, title='Select Options', default_
 
     return selected_options
 
+def get_color(value, cmap):
+    color_fraction = value
+    rgba_color = cmap(color_fraction)
+    brightness = 0.299 * rgba_color[0] + 0.587 * rgba_color[1] + 0.114 * rgba_color[2]
+    text_color = 'white' if brightness < 0.7 else 'black'
+    return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
 
+def style_dataframe(df, selected_columns):
+    cm_coolwarm = cm.get_cmap('gnuplot2_r')
+    object_cmap = cm.get_cmap('gnuplot2')  # Choose a colormap for object columns
+
+    # Create an empty DataFrame with the same shape as df
+    styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
+    for col in df.columns:
+        if col == 'player':  # Skip the styling for the 'player' column
+            continue
+        if df[col].dtype in [np.float64, np.int64] and col in selected_columns:
+            min_val = df[col].min()
+            max_val = df[col].max()
+            range_val = max_val - min_val
+            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, cm_coolwarm))
+        elif df[col].dtype == 'object':
+            unique_values = df[col].unique().tolist()
+            styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
+    return styled_df
+
+def process_data(pl_data_gw1, temp_default):
+    
+    df = pd.read_csv(pl_data_gw1)
+    temp_df = pd.read_csv(temp_default)
+    df['fantrax position'] = temp_df['Position']
+
+    # drop df['position'] column
+    df.drop(columns=['position'], inplace=True)
+
+    # rename 'fantrax position' column to 'position'
+    df.rename(columns={'fantrax position': 'position'}, inplace=True)
+
+    # Define default columns
+    DEFAULT_COLUMNS = ['player', 'position', 'team', 'games_starts']
+
+    # create timestamp so we can use to display the date of the last data update
+    date_of_update = datetime.fromtimestamp(os.path.getmtime(pl_data_gw1)).strftime('%d %B %Y')
+
+    return df, DEFAULT_COLUMNS, date_of_update
+
+# we want to add a date of last data update to the page
+def display_date_of_update(date_of_update):
+    st.sidebar.write(f'Last updated: {date_of_update}')
+    
+
+# Function to load the data
+def load_data():
+    return process_data(pl_data_gw1, temp_default)
+
+def get_color(value, cmap):
+    color_fraction = value
+    rgba_color = cmap(color_fraction)
+    brightness = 0.299 * rgba_color[0] + 0.587 * rgba_color[1] + 0.114 * rgba_color[2]
+    text_color = 'white' if brightness < 0.7 else 'black'
+    return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
+
+def get_color_from_palette(value, palette_name='inferno'):
+    cmap = cm.get_cmap(palette_name)
+    rgba_color = cmap(value)
+    color_as_hex = mcolors.to_hex(rgba_color)
+    return color_as_hex
+
+def style_dataframe(df, selected_columns):
+    object_cmap = cm.get_cmap('gnuplot2')
+
+    # Create an empty DataFrame with the same shape as df
+    styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
+
+    if 'Pos' in df.columns:
+        unique_positions = df['Pos'].unique().tolist()
+
+        # Define the colors for the positions
+        position_colors = {
+            "D": "background-color: #3d0b4d;",  # Specific purple color for "D"
+            "M": "background-color: #08040f",  # Assigned color for "M"
+            "F": "background-color: #050255"   # Assigned color for "F"
+        }
+
+        # Apply the colors to the 'Pos' and 'Player' columns
+        styled_df['Pos'] = df['Pos'].apply(lambda x: position_colors[x])
+        styled_df['Player'] = df['Pos'].apply(lambda x: position_colors[x])
+
+    for col in df.columns:
+        if col in ['Player', 'Pos']:
+            continue
+
+        col_dtype = df[col].dtype
+        unique_values = df[col].unique().tolist()
+
+        if len(unique_values) <= 3:
+            constant_colors = [get_color(i / 2, cm.get_cmap('inferno')) for i in range(len(unique_values))]
+            color_mapping = {val: color for val, color in zip(unique_values, constant_colors)}
+            styled_df[col] = df[col].apply(lambda x: color_mapping[x])
+        elif col_dtype in [np.float64, np.int64] and col in selected_columns:
+            min_val = df[col].min()
+            max_val = df[col].max()
+            range_val = max_val - min_val
+            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, cm.get_cmap('inferno')))
+        elif col_dtype == 'object':
+            styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
+
+    return styled_df
