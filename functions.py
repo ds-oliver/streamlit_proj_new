@@ -20,7 +20,7 @@ import unidecode
 import matplotlib.cm as mpl_cm
 import matplotlib.colors as mcolors
 from matplotlib.colors import ListedColormap, LinearSegmentedColormap
-
+from matplotlib.cm import get_cmap
 
 sys.path.append(os.path.abspath(os.path.join('./scripts')))
 
@@ -1527,6 +1527,7 @@ def create_custom_cmap(*colors):
 
 def style_dataframe_custom(df, selected_columns, custom_cmap):
     object_cmap = custom_cmap
+    team_cmap = get_cmap('magma')  # Built-in 'magma' colormap
 
     # Create an empty DataFrame with the same shape as df
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
@@ -1553,7 +1554,7 @@ def style_dataframe_custom(df, selected_columns, custom_cmap):
         unique_values = df[col].unique().tolist()
 
         if col == 'Team':
-            styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / (len(unique_values)-1), mpl_cm.get_cmap('magma'))
+            styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / (len(unique_values)-1), team_cmap))
             continue
 
         if len(unique_values) <= 3:
