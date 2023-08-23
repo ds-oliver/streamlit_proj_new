@@ -77,6 +77,9 @@ def process_data(pl_data_gw1, temp_default, col_groups):
     temp_df = pd.read_csv(temp_default)
     df['Pos'] = temp_df['Position']
 
+    df = pd.merge(df, temp_df[['Player', 'Position', 'Team']], left_on='player', right_on='Player', how='left')
+
+
     # drop df['position'] column
     df.drop(columns=['position'], inplace=True)
 
