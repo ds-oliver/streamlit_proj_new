@@ -199,6 +199,7 @@ def visualize_top_performers(top_performers_df, selected_stat):
     # display the plot
     st.plotly_chart(fig)
 
+
 def process_data():
     matches_df, MATCHES_DEFAULT_COLS = process_matches_data(matches_data, temp_default, matches_drop_cols)
     shots_df = load_shots_data(shots_data)
@@ -346,7 +347,7 @@ def main():
     st.info(f'**{selected_team}** Players in :green[{percentile_value}th percentile] by **:red[{selected_stat} ({selected_aggregation_method})]**', icon='ℹ')
 
     # Styling DataFrame
-    styled_top_performers_df = style_dataframe_custom(top_performers_df[columns_to_show], columns_to_show, False)
+    styled_top_performers_df = style_dataframe_custom(top_performers_df[selected_stat], columns_to_show, False)
 
     top_performers_df[selected_stat] = top_performers_df[selected_stat].apply(lambda x: f"{x:.2f}")
     top_performers_df = top_performers_df.applymap(round_and_format)

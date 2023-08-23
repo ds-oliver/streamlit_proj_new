@@ -1558,7 +1558,11 @@ def style_dataframe_custom(df, selected_columns, custom_cmap):
         unique_values = df[col].unique().tolist()
 
         if col == 'Team':
-            styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / (len(unique_values)-1), team_cmap))
+            if len(unique_values) == 1:  # Special case for only one unique value
+                constant_color = get_color(0, team_cmap)
+                styled_df[col] = constant_color
+            else:
+                styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / (len(unique_values)-1), team_cmap))
             continue
 
         if len(unique_values) <= 3:
