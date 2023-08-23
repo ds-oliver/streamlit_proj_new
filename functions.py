@@ -1536,9 +1536,9 @@ def style_dataframe_custom(df, selected_columns, custom_cmap):
 
         # Define the colors for the positions
         position_colors = {
-            "D": "background-color: #3d0b4d;",  # Specific purple color for "D"
-            "M": "background-color: #08040f",  # Assigned color for "M"
-            "F": "background-color: #050255"   # Assigned color for "F"
+            "D": "background-color: #071147;",  # Specific purple color for "D"
+            "M": "background-color: #5F0B28",  # Assigned color for "M"
+            "F": "background-color: #930513"   # Assigned color for "F"
         }
 
         # Apply the colors to the 'Pos' and 'Player' columns
@@ -1551,6 +1551,10 @@ def style_dataframe_custom(df, selected_columns, custom_cmap):
 
         col_dtype = df[col].dtype
         unique_values = df[col].unique().tolist()
+
+        if col == 'Team':
+            styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / (len(unique_values)-1), object_cmap))
+            continue
 
         if len(unique_values) <= 3:
             constant_colors = [get_color(i / 2, custom_cmap) for i in range(len(unique_values))] # Removed mpl_cm.get_cmap
