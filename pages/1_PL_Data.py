@@ -107,7 +107,7 @@ def load_data():
 # Function to filter data based on selected teams and positions
 # @st.cache_resource
 def filter_data(df, selected_teams, selected_positions):
-    return df[df['team'].isin(selected_teams) & df['position'].isin(selected_positions)]
+    return df[df['Team'].isin(selected_teams) & df['Pos'].isin(selected_positions)]
 
 # Function to group data based on selected options
 def group_data(df, selected_columns, selected_group, selected_positions, selected_teams, grouping_option, aggregation_option):
@@ -127,10 +127,10 @@ def get_grouping_values_and_column(grouping_option, selected_positions, selected
     if grouping_option == 'Position':
         return selected_positions, 'position'
     elif grouping_option == 'Team':
-        return selected_teams, 'team'
+        return selected_teams, 'Team'
     else:
         top_players = grouped_df.nlargest(25, selected_stats_for_plot)
-        return top_players['player'].tolist(), 'player'
+        return top_players['Player'].tolist(), 'Player'
 
 def add_bar_traces(fig, selected_stats_for_plot, grouping_values, grouped_df, grouping_column, stat_colors):
     for stat in selected_stats_for_plot:
