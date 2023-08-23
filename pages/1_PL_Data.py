@@ -42,7 +42,7 @@ st.set_page_config(
 
 from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default, all_gws_data # this is the file we want to read in
 
-from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, style_dataframe_v2, get_color as get_color_v2, get_color_from_palette
+from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, style_dataframe_v2, get_color as get_color_v2, get_color_from_palette, round_and_format
 
 # def get_color(value, cmap):
 #     color_fraction = value
@@ -290,6 +290,8 @@ def main():
     
     # Styling DataFrame
     styled_df = style_dataframe_v2(grouped_data[columns_to_show], selected_columns=selected_columns)
+
+    grouped_data = grouped_data.applymap(round_and_format)
 
     # Display the DataFrame
     # if grouping_option == 'None' then set st.dataframe() height= to the height of showing the first 50 rows, else set height to length of grouped_data

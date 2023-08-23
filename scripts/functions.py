@@ -1519,3 +1519,8 @@ def style_dataframe_v2(df, selected_columns):
             styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
 
     return styled_df
+
+def round_and_format(value):
+    if isinstance(value, float):
+        return "{:.2f}".format(value)
+    return value
