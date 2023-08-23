@@ -1553,15 +1553,15 @@ def style_dataframe_custom(df, selected_columns, custom_cmap):
         col_dtype = df[col].dtype
         unique_values = df[col].unique().tolist()
 
-    if len(unique_values) <= 3:
-        constant_colors = [get_color(i / 2, custom_cmap) for i in range(len(unique_values))] # Removed mpl_cm.get_cmap
-        color_mapping = {val: color for val, color in zip(unique_values, constant_colors)}
-        styled_df[col] = df[col].apply(lambda x: color_mapping[x])
-    elif col_dtype in [np.float64, np.int64] and col in selected_columns:
-        min_val = df[col].min()
-        max_val = df[col].max()
-        range_val = max_val - min_val
-        styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, custom_cmap)) # Removed mpl_cm.get_cmap
+        if len(unique_values) <= 3:
+            constant_colors = [get_color(i / 2, custom_cmap) for i in range(len(unique_values))] # Removed mpl_cm.get_cmap
+            color_mapping = {val: color for val, color in zip(unique_values, constant_colors)}
+            styled_df[col] = df[col].apply(lambda x: color_mapping[x])
+        elif col_dtype in [np.float64, np.int64] and col in selected_columns:
+            min_val = df[col].min()
+            max_val = df[col].max()
+            range_val = max_val - min_val
+            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, custom_cmap)) # Removed mpl_cm.get_cmap
 
     return styled_df
 

@@ -42,7 +42,7 @@ st.set_page_config(
 
 from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default, all_gws_data # this is the file we want to read in
 
-from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, style_dataframe_v2, get_color as get_color_v2, get_color_from_palette, round_and_format, create_custom_cmap, style_dataframe_custom
+from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, style_dataframe_v2, get_color, get_color_from_palette, round_and_format, create_custom_cmap, style_dataframe_custom
 
 # def get_color(value, cmap):
 #     color_fraction = value
@@ -291,7 +291,7 @@ def main():
     grouped_data, _ = group_data(filtered_data, selected_columns, selected_group, selected_positions, selected_teams, grouping_option, aggregation_option='mean')
     
     # Styling DataFrame
-    styled_df = style_dataframe_v2(grouped_data[columns_to_show], selected_columns=selected_columns)
+    styled_df = style_dataframe_custom(grouped_data[columns_to_show], selected_columns=selected_columns, custom_cmap=custom_cmap)
 
     grouped_data = grouped_data.applymap(round_and_format)
 
