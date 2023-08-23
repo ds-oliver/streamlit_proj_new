@@ -200,6 +200,8 @@ def main():
     # Display the date of last data update
     display_date_of_update(date_of_update)
 
+    col_groups = {key.capitalize(): [col.capitalize() for col in value] for key, value in col_groups.items()}
+
     # Sidebar filters
     selected_teams = create_sidebar_multiselect(data, 'Team', 'Select Teams', default_all=True, key_suffix="teams")
     selected_positions = create_sidebar_multiselect(data, 'Pos', 'Select Positions', default_all=True, key_suffix="positions")
