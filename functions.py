@@ -1537,7 +1537,7 @@ def style_dataframe_custom(df, selected_columns, custom_cmap):
 
         # Define the colors for the positions
         position_colors = {
-            "D": "background-color: #edf2f4;",  # Specific purple color for "D"
+            "D": "background-color: #7A7584",  # Specific purple color for "D"
             "M": "background-color: #370617",  # Assigned color for "M"
             "F": "background-color: #03071e"   # Assigned color for "F"
         }
