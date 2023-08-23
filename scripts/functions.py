@@ -1561,6 +1561,8 @@ def style_dataframe_custom(df, selected_columns, custom_cmap):
             max_val = df[col].max()
             range_val = max_val - min_val
             styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, custom_cmap)) # Removed mpl_cm.get_cmap
+        elif col == 'Team':
+            styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
 
     return styled_df
 

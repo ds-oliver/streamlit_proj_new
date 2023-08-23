@@ -226,8 +226,8 @@ def main():
 
     # custom_cmap = create_custom_cmap('#03071e', '#d00000', '#f48c06')
 
-    custom_cmap = create_custom_cmap('#2b2d42', '#8d99ae', '#e85d04')
-
+    custom_cmap = create_custom_cmap('#03071e', '#8d99ae', '#ff7d00')
+    
     data.head(25)
 
     # Display the date of last data update
