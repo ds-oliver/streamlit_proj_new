@@ -224,7 +224,7 @@ def main():
     # Load the data
     data, DEFAULT_COLUMNS, date_of_update, col_groups = load_data()
 
-    custom_cmap = create_custom_cmap('#faa307', '#03071e')
+    custom_cmap = create_custom_cmap('#faa307', '#d00000', '#03071e')
 
     data.head(25)
 

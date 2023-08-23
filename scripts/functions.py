@@ -1521,8 +1521,7 @@ def style_dataframe_v2(df, selected_columns):
 
     return styled_df
 
-def create_custom_cmap(color1, color2):
-    colors = [color1, color2]
+def create_custom_cmap(*colors):
     custom_cmap = LinearSegmentedColormap.from_list('custom_cmap', colors)
     return custom_cmap
 
