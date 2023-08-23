@@ -228,10 +228,8 @@ def main():
     matches_col_groups = {key.capitalize(): [col.capitalize() for col in value] for key, value in matches_col_groups.items()}
     # capitalize the contents of the lists in matches_col_groups dictionary
 
-    # custom_cmap = create_custom_cmap('#e63946', '#f1faee','#a8dadc', '#457b9d', '#e63946')
+    custom_cmap = create_custom_cmap('#e63946', '#f1faee','#a8dadc', '#457b9d', '#e63946')
 
-    custom_cmap = create_custom_cmap('magma')
-    
     print(matches_df.columns.tolist())
 
     display_date_of_update(date_of_update)
@@ -348,7 +346,7 @@ def main():
     st.info(f'**{selected_team}** Players in :green[{percentile_value}th percentile] by **:red[{selected_stat} ({selected_aggregation_method})]**', icon='ℹ')
 
     # Styling DataFrame
-    styled_top_performers_df = style_dataframe_custom(top_performers_df[columns_to_show], selected_columns=columns_to_show, custom_cmap=custom_cmap)
+    styled_top_performers_df = style_dataframe_custom(top_performers_df[columns_to_show], selected_columns=columns_to_show, False)
     top_performers_df[selected_stat] = top_performers_df[selected_stat].apply(lambda x: f"{x:.2f}")
     top_performers_df = top_performers_df.applymap(round_and_format)
 
