@@ -32,8 +32,6 @@ sys.path.append(scripts_path)
 
 from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues
 
-print(stats_cols)
-
 print("Scripts path:", scripts_path)
 
 print(sys.path)
@@ -203,8 +201,8 @@ def main():
     display_date_of_update(date_of_update)
 
     # Sidebar filters
-    selected_teams = create_sidebar_multiselect(data, 'team', 'Select Teams', default_all=True, key_suffix="teams")
-    selected_positions = create_sidebar_multiselect(data, 'position', 'Select Positions', default_all=True, key_suffix="positions")
+    selected_teams = create_sidebar_multiselect(data, 'Team', 'Select Teams', default_all=True, key_suffix="teams")
+    selected_positions = create_sidebar_multiselect(data, 'Pos', 'Select Positions', default_all=True, key_suffix="positions")
 
     # Filter data based on selected options
     filtered_data = filter_data(data, selected_teams, selected_positions)
