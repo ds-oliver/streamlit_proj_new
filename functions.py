@@ -1553,7 +1553,7 @@ def style_dataframe_custom(df, selected_columns, custom_cmap):
         unique_values = df[col].unique().tolist()
 
         if col == 'Team':
-            styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / (len(unique_values)-1), object_cmap))
+            styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / (len(unique_values)-1), mpl_cm.get_cmap('magma'))
             continue
 
         if len(unique_values) <= 3:
