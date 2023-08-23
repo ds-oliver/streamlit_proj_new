@@ -17,7 +17,7 @@ import warnings
 import requests
 from bs4 import BeautifulSoup
 import unidecode
-import matplotlib.cm as cm
+import matplotlib.cm as mpl_cm
 import matplotlib.colors as mcolors
 
 
@@ -1474,13 +1474,13 @@ def get_color(value, cmap):
     return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
 
 def get_color_from_palette(value, palette_name='inferno'):
-    cmap = cm.get_cmap(palette_name)
+    cmap = mpl_cm.get_cmap(palette_name)
     rgba_color = cmap(value)
     color_as_hex = mcolors.to_hex(rgba_color)
     return color_as_hex
 
 def style_dataframe_v2(df, selected_columns):
-    object_cmap = cm.get_cmap('gnuplot2')
+    object_cmap = mpl_cm.get_cmap('gnuplot2')
 
     # Create an empty DataFrame with the same shape as df
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
