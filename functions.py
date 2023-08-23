@@ -1398,7 +1398,7 @@ def clean_age_column(df):
 
 def create_sidebar_multiselect(df, column_name, title='Select Options', default_all=True, key_suffix=None):
     # Get unique values from the specified column
-    options = sorted(df[column_name].unique())
+    options = sorted(df[column_name].astype(str).unique())
 
     # Set the default selected options based on the 'default_all' flag
     default_options = options if default_all else [options[0]]
