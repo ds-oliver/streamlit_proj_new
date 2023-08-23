@@ -119,7 +119,7 @@ def process_matches_data(matches_data, temp_data, matches_drop_cols):
 
     matches_df.rename(columns={'Position': 'Pos'}, inplace=True)
 
-        # drop rows where Pos is nan
+    # drop rows where Pos is nan
     matches_df = matches_df[matches_df['Pos'].notna()]
 
     matches_df.rename(columns={'Team': 'team'}, inplace=True)

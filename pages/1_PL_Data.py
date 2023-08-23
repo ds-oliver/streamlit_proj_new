@@ -70,21 +70,24 @@ from functions import scraping_current_fbref, normalize_encoding, clean_age_colu
 #             styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
 #     return styled_df
 
-@st.cache_resource
+# @st.cache_resource
 def process_data(pl_data_gw1, temp_default):
     
     df = pd.read_csv(pl_data_gw1)
     temp_df = pd.read_csv(temp_default)
-    df['fantrax position'] = temp_df['Position']
+    df['Pos'] = temp_df['Position']
 
     # drop df['position'] column
     df.drop(columns=['position'], inplace=True)
 
     # rename 'fantrax position' column to 'position'
-    df.rename(columns={'fantrax position': 'position'}, inplace=True)
+    # df.rename(columns={'fantrax position': 'position'}, inplace=True)
+
+    # capitalize the column names
+    df.columns = [col.capitalize() for col in df.columns]
 
     # Define default columns
-    DEFAULT_COLUMNS = ['player', 'position', 'team', 'games_starts']
+    DEFAULT_COLUMNS = ['Player', 'Pos', 'Team', 'Games_starts']
 
     # create timestamp so we can use to display the date of the last data update
     date_of_update = datetime.fromtimestamp(os.path.getmtime(pl_data_gw1)).strftime('%d %B %Y')
@@ -97,12 +100,12 @@ def display_date_of_update(date_of_update):
     
 
 # Function to load the data
-@st.cache_resource
+# @st.cache_resource
 def load_data():
     return process_data(pl_data_gw1, temp_default)
 
 # Function to filter data based on selected teams and positions
-@st.cache_resource
+# @st.cache_resource
 def filter_data(df, selected_teams, selected_positions):
     return df[df['team'].isin(selected_teams) & df['position'].isin(selected_positions)]
 
