@@ -18,6 +18,8 @@ import warnings
 import requests
 from bs4 import BeautifulSoup
 import unidecode
+import matplotlib.colors as mcolors
+
 
 sys.path.append(os.path.abspath(os.path.join('./scripts')))
 
