@@ -44,31 +44,31 @@ from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default, all_gws
 
 from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, style_dataframe_v2, get_color as get_color_v2, get_color_from_palette
 
-def get_color(value, cmap):
-    color_fraction = value
-    rgba_color = cmap(color_fraction)
-    brightness = 0.299 * rgba_color[0] + 0.587 * rgba_color[1] + 0.114 * rgba_color[2]
-    text_color = 'white' if brightness < 0.7 else 'black'
-    return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
+# def get_color(value, cmap):
+#     color_fraction = value
+#     rgba_color = cmap(color_fraction)
+#     brightness = 0.299 * rgba_color[0] + 0.587 * rgba_color[1] + 0.114 * rgba_color[2]
+#     text_color = 'white' if brightness < 0.7 else 'black'
+#     return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
 
-def style_dataframe(df, selected_columns):
-    cm_coolwarm = cm.get_cmap('inferno')
-    object_cmap = cm.get_cmap('gnuplot2')  # Choose a colormap for object columns
+# def style_dataframe(df, selected_columns):
+#     cm_coolwarm = cm.get_cmap('inferno')
+#     object_cmap = cm.get_cmap('gnuplot2')  # Choose a colormap for object columns
 
-    # Create an empty DataFrame with the same shape as df
-    styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
-    for col in df.columns:
-        if col == 'player':  # Skip the styling for the 'player' column
-            continue
-        if df[col].dtype in [np.float64, np.int64] and col in selected_columns:
-            min_val = df[col].min()
-            max_val = df[col].max()
-            range_val = max_val - min_val
-            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, cm_coolwarm))
-        elif df[col].dtype == 'object':
-            unique_values = df[col].unique().tolist()
-            styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
-    return styled_df
+#     # Create an empty DataFrame with the same shape as df
+#     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
+#     for col in df.columns:
+#         if col == 'player':  # Skip the styling for the 'player' column
+#             continue
+#         if df[col].dtype in [np.float64, np.int64] and col in selected_columns:
+#             min_val = df[col].min()
+#             max_val = df[col].max()
+#             range_val = max_val - min_val
+#             styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, cm_coolwarm))
+#         elif df[col].dtype == 'object':
+#             unique_values = df[col].unique().tolist()
+#             styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
+#     return styled_df
 
 @st.cache_resource
 def process_data(pl_data_gw1, temp_default):
