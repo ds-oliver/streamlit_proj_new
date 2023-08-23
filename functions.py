@@ -1480,7 +1480,7 @@ def get_color_from_palette(value, palette_name='inferno'):
     color_as_hex = mcolors.to_hex(rgba_color)
     return color_as_hex
 
-def style_dataframe(df, selected_columns):
+def style_dataframe_v2(df, selected_columns):
     object_cmap = cm.get_cmap('gnuplot2')
 
     # Create an empty DataFrame with the same shape as df
