@@ -1554,7 +1554,7 @@ def style_dataframe_custom(df, selected_columns, custom_cmap=None):
 
         unique_values = df[col].unique()
         if len(unique_values) <= 3:  # Columns with 3 or less unique values
-            constant_colors = ["color: wheat", "color: aliceblue", "color: bronze"] # You can define colors here
+            constant_colors = ["color: lemonchiffon", "color: aliceblue", "color: bronze"] # You can define colors here
             color_mapping = {val: color for val, color in zip(unique_values, constant_colors[:len(unique_values)])}
             styled_df[col] = df[col].apply(lambda x: color_mapping[x])
         elif 'Team' in df.columns:
