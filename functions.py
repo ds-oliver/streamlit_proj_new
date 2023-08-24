@@ -1529,7 +1529,7 @@ def style_dataframe_custom(df, selected_columns, custom_cmap):
     if custom_cmap:
         object_cmap = custom_cmap
     else:
-        object_cmap = get_cmap('magma')
+        object_cmap = get_cmap('icefire')
 
     team_cmap = get_cmap('icefire')  # Built-in 'magma' colormap
 
