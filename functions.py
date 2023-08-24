@@ -1549,9 +1549,10 @@ def style_dataframe_custom(df, selected_columns, custom_cmap=None):
         styled_df['Player'] = df[position_column].apply(lambda x: position_colors[x])
 
     if 'Team' in df.columns:
-        unique_teams = df['Team'].unique().tolist()
-        team_colors = {team: f"background-color: {team_cmap(unique_teams.index(team) / len(unique_teams))}" for team in unique_teams}
-        styled_df['Team'] = df['Team'].apply(lambda x: team_colors[x])
+            min_val = df[col].min()
+            max_val = df[col].max()
+            range_val = max_val - min_val
+            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, mpl_cm.get_cmap('magma')))
 
     for col in df.columns:
         if col in ['Player', position_column, 'Team']:
@@ -1559,7 +1560,7 @@ def style_dataframe_custom(df, selected_columns, custom_cmap=None):
 
         unique_values = df[col].unique()
         if len(unique_values) <= 3:  # Columns with 3 or less unique values
-            constant_colors = ["color: gold", "color: silver", "color: bronze"] # You can define colors here
+            constant_colors = ["color: gold", "color: aliceblue", "color: bronze"] # You can define colors here
             color_mapping = {val: color for val, color in zip(unique_values, constant_colors[:len(unique_values)])}
             styled_df[col] = df[col].apply(lambda x: color_mapping[x])
         else:
