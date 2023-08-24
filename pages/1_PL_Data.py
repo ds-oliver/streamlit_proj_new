@@ -70,7 +70,7 @@ from functions import scraping_current_fbref, normalize_encoding, clean_age_colu
 #             styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
 #     return styled_df
 
-# @st.cache_resource
+@st.cache_resource
 def process_data(all_gws_data, temp_default, col_groups):
     
     df = pd.read_csv(all_gws_data)

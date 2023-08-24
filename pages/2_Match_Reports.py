@@ -141,6 +141,9 @@ def process_matches_data(matches_data, temp_data, matches_drop_cols):
     # capitalize format for the columns
     matches_df.columns = [col.capitalize() for col in matches_df.columns.tolist()]
 
+    # rename any column name that starts with xg to xG
+    matches_df.rename(columns={col: col.replace('Xg', 'xG') for col in matches_df.columns if col.startswith('xg')}, inplace=True)
+
     print("Columns in matches_df after capitalizing:", matches_df.columns.tolist())
 
     MATCHES_DEFAULT_COLS = matches_default_cols
@@ -347,7 +350,7 @@ def main():
     st.info(f'**{selected_team}** Players in :green[{percentile_value}th percentile] by **:red[{selected_stat} ({selected_aggregation_method})]**', icon='ℹ')
 
     # Styling DataFrame
-    styled_top_performers_df = style_dataframe_custom(top_performers_df[[selected_stat]], columns_to_show, False)
+    styled_top_performers_df = style_dataframe_custom(top_performers_df[selected_stat], columns_to_show, False)
 
     top_performers_df[selected_stat] = top_performers_df[selected_stat].apply(lambda x: f"{x:.2f}")
     top_performers_df = top_performers_df.applymap(round_and_format)
