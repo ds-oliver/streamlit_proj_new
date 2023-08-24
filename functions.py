@@ -1548,17 +1548,24 @@ def style_dataframe_custom(df, selected_columns, custom_cmap=None):
         styled_df[position_column] = df[position_column].apply(lambda x: position_colors[x])
         styled_df['Player'] = df[position_column].apply(lambda x: position_colors[x])
 
+    if 'Team' in df.columns:
+        unique_teams = df['Team'].unique().tolist()
+        team_colors = {team: f"background-color: {team_cmap(unique_teams.index(team) / len(unique_teams))}" for team in unique_teams}
+        styled_df['Team'] = df['Team'].apply(lambda x: team_colors[x])
+
     for col in df.columns:
         if col in ['Player', position_column, 'Team']:
             continue
 
-        min_val = float(df[col].min())  # Convert to float
-        max_val = float(df[col].max())  # Convert to float
-
-        if min_val != max_val and col not in ['Player', 'Position', 'Pos', 'Team']:
-            styled_df[col] = df[col].apply(lambda x: f'color: {matplotlib.colors.to_hex(object_cmap((float(x) - min_val) / (max_val - min_val)))}')
+        unique_values = df[col].unique()
+        if len(unique_values) <= 3:  # Columns with 3 or less unique values
+            constant_colors = ["color: gold", "color: silver", "color: bronze"] # You can define colors here
+            color_mapping = {val: color for val, color in zip(unique_values, constant_colors[:len(unique_values)])}
+            styled_df[col] = df[col].apply(lambda x: color_mapping[x])
         else:
-            styled_df[col] = df[col].apply(lambda x: "color: gold" if float(x) == max_val else ("color: blue" if float(x) == min_val else ''))
+            min_val = float(df[col].min())  # Convert to float
+            max_val = float(df[col].max())  # Convert to float
+            styled_df[col] = df[col].apply(lambda x: f'color: {matplotlib.colors.to_hex(object_cmap((float(x) - min_val) / (max_val - min_val)))}' if min_val != max_val else '')
 
     return styled_df
 
