@@ -1531,22 +1531,16 @@ def style_dataframe_custom(df, selected_columns, custom_cmap):
     else:
         object_cmap = get_cmap('icefire')
 
-    team_cmap = get_cmap('icefire')  # Built-in 'magma' colormap
+    team_cmap = get_cmap('icefire')
 
-    # Create an empty DataFrame with the same shape as df
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
 
     if 'Pos' in df.columns:
-        unique_positions = df['Pos'].unique().tolist()
-
-        # Define the colors for the positions
         position_colors = {
-            "D": "background-color: #6d597a",  # Specific purple color for "D"
-            "M": "background-color: #370617",  # Assigned color for "M"
-            "F": "background-color: #03071e"   # Assigned color for "F"
+            "D": "background-color: #6d597a",
+            "M": "background-color: #370617",
+            "F": "background-color: #03071e"
         }
-
-        # Apply the colors to the 'Pos' and 'Player' columns
         styled_df['Pos'] = df['Pos'].apply(lambda x: position_colors[x])
         styled_df['Player'] = df['Pos'].apply(lambda x: position_colors[x])
 
@@ -1554,15 +1548,16 @@ def style_dataframe_custom(df, selected_columns, custom_cmap):
         if col in ['Player', 'Pos']:
             continue
 
+        unique_values = df[col].unique().tolist()  # Moved this line here
+
         if col == 'GS:GP' or col == 'GS':
             min_val = df[col].min()
             max_val = df[col].max()
             range_val = max_val - min_val
-            # Apply the gradient in a manner that ensures higher values have the desired color
             styled_df[col] = df[col].apply(lambda x: get_color((max_val - x) / range_val, object_cmap))
         else:
             if col == 'Team':
-                if len(unique_values) == 1:  # Special case for only one unique value
+                if len(unique_values) == 1:
                     constant_color = get_color(0, team_cmap)
                     styled_df[col] = constant_color
                 else:
@@ -1570,20 +1565,18 @@ def style_dataframe_custom(df, selected_columns, custom_cmap):
                 continue
 
             col_dtype = df[col].dtype
-            unique_values = df[col].unique().tolist()
 
             if len(unique_values) <= 3:
-                constant_colors = [get_color(i / 2, object_cmap) for i in range(len(unique_values))] # Using object_cmap
+                constant_colors = [get_color(i / 2, object_cmap) for i in range(len(unique_values))]
                 color_mapping = {val: color for val, color in zip(unique_values, constant_colors)}
                 styled_df[col] = df[col].apply(lambda x: color_mapping[x])
             elif col_dtype in [np.float64, np.int64] and col in selected_columns:
                 min_val = df[col].min()
                 max_val = df[col].max()
                 range_val = max_val - min_val
-                styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, object_cmap)) # Using object_cmap
+                styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, object_cmap))
 
     return styled_df
-
 
 def round_and_format(value):
     if isinstance(value, float):
