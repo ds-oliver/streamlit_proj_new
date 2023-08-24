@@ -1531,7 +1531,7 @@ def style_dataframe_custom(df, selected_columns, custom_cmap):
     else:
         object_cmap = get_cmap('magma')
 
-    team_cmap = get_cmap('magma')  # Built-in 'magma' colormap
+    team_cmap = get_cmap('icefire')  # Built-in 'magma' colormap
 
     # Create an empty DataFrame with the same shape as df
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
