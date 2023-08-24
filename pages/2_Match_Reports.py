@@ -221,6 +221,9 @@ def main():
     # Load the data
     matches_df, shots_df, date_of_update, MATCHES_DEFAULT_COLS = process_data()
 
+    # print MATCHES_DEFAULT_COLS
+    print("MATCHES_DEFAULT_COLS:", MATCHES_DEFAULT_COLS)
+
     matches_col_groups = {
     "Standard": matches_standard_cols,
     "Passing": matches_passing_cols,
