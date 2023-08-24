@@ -1562,7 +1562,7 @@ def style_dataframe_custom(df, selected_columns, custom_cmap=None):
         min_val = float(df[col].min())  # Convert to float
         max_val = float(df[col].max())  # Convert to float
 
-        styled_df[col] = df[col].apply(lambda x: "color: gold" if float(x) == max_val else ("color: aliceblue" if float(x) == min_val else ''))
+        styled_df[col] = df[col].apply(lambda x: "color: gold" if float(x) == max_val else ("color: skyblue" if float(x) == min_val else ''))
 
     return styled_df
 
