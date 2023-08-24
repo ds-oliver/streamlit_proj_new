@@ -21,6 +21,8 @@ import matplotlib.cm as mpl_cm
 import matplotlib.colors as mcolors
 from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 from matplotlib.cm import get_cmap
+import matplotlib
+
 
 sys.path.append(os.path.abspath(os.path.join('./scripts')))
 
