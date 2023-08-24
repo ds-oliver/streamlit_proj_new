@@ -1531,9 +1531,9 @@ def style_dataframe_custom(df, selected_columns, custom_cmap=None):
     if custom_cmap:
         object_cmap = custom_cmap
     else:
-        object_cmap = get_cmap('icefire')
+        object_cmap = plt.cm.get_cmap('icefire')
 
-    team_cmap = get_cmap('icefire')
+    team_cmap = plt.cm.get_cmap('icefire')
 
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
 
@@ -1549,24 +1549,19 @@ def style_dataframe_custom(df, selected_columns, custom_cmap=None):
         styled_df['Player'] = df[position_column].apply(lambda x: position_colors[x])
 
     for col in df.columns:
-        if col in ['Player', position_column]:
-            continue
-
-        if col == 'Team':
-            unique_values = df[col].unique().tolist()
-            if len(unique_values) == 1:
-                constant_color = "background-color: {}".format(get_color(0, team_cmap))
-                styled_df[col] = constant_color
-            else:
-                styled_df[col] = df[col].apply(lambda x: "background-color: {}".format(get_color(unique_values.index(x) / (len(unique_values) - 1), team_cmap)))
+        if col in ['Player', position_column, 'Team']:
             continue
 
         min_val = float(df[col].min())  # Convert to float
         max_val = float(df[col].max())  # Convert to float
 
-        styled_df[col] = df[col].apply(lambda x: "color: gold" if float(x) == max_val else ("color: blue" if float(x) == min_val else ''))
+        if min_val != max_val and col not in ['Player', 'Position', 'Pos', 'Team']:
+            styled_df[col] = df[col].apply(lambda x: f'color: {matplotlib.colors.to_hex(object_cmap((float(x) - min_val) / (max_val - min_val)))}')
+        else:
+            styled_df[col] = df[col].apply(lambda x: "color: gold" if float(x) == max_val else ("color: blue" if float(x) == min_val else ''))
 
     return styled_df
+
 
 def round_and_format(value):
     if isinstance(value, float):
