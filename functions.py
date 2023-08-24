@@ -1551,6 +1551,7 @@ def style_dataframe_custom(df, selected_columns, custom_cmap):
         unique_values = df[col].unique().tolist()  # Moved this line here
 
         if col == 'GS:GP' or col == 'GS':
+            object_cmap = get_cmap('flare')
             min_val = float(df[col].min()) # Convert to float
             max_val = float(df[col].max()) # Convert to float
             range_val = max_val - min_val
