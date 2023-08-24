@@ -142,7 +142,7 @@ def process_matches_data(matches_data, temp_data, matches_drop_cols):
     matches_df.columns = [col.capitalize() for col in matches_df.columns.tolist()]
 
     # rename any column name that starts with xg to xG
-    matches_df.rename(columns={col: col.replace('Xg', 'xG') for col in matches_df.columns if col.startswith('xg')}, inplace=True)
+    matches_df.rename(columns={col: col.replace('X', 'x') for col in matches_df.columns if col.startswith('X')}, inplace=True)
 
     print("Columns in matches_df after capitalizing:", matches_df.columns.tolist())
 
