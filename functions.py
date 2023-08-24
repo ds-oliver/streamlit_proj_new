@@ -1531,7 +1531,7 @@ def style_dataframe_custom(df, selected_columns, custom_cmap=None):
     if custom_cmap:
         object_cmap = custom_cmap
     else:
-        object_cmap = plt.cm.get_cmap('icefire')
+        object_cmap = plt.cm.get_cmap('bwr')
 
     team_cmap = plt.cm.get_cmap('icefire')
 
