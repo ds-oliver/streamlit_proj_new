@@ -1560,7 +1560,7 @@ def style_dataframe_custom(df, selected_columns, custom_cmap=None):
         elif 'Team' in df.columns:
             min_val = df[col].min()
             max_val = df[col].max()
-            range_val = max_val - min_val
+            range_val = float(max_val) - float(min_val)
             styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, mpl_cm.get_cmap('magma')))
         else:
             min_val = float(df[col].min())  # Convert to float
