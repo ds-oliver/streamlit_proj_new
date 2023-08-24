@@ -241,7 +241,7 @@ def main():
     matches_col_groups = {key.capitalize(): [col.capitalize() for col in value] for key, value in matches_col_groups.items()}
     # capitalize the contents of the lists in matches_col_groups dictionary
 
-    custom_cmap = create_custom_cmap('#e63946', '#f1faee','#a8dadc', '#457b9d', '#e63946')
+    # custom_cmap = create_custom_cmap('#e63946', '#f1faee','#a8dadc', '#457b9d', '#e63946')
 
     print(matches_df.columns.tolist())
 
