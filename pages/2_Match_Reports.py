@@ -222,7 +222,7 @@ def main():
     matches_df, shots_df, date_of_update, MATCHES_DEFAULT_COLS = process_data()
 
     # reorder the columns in MATCHES_DEFAULT_COLS so that its ['Player', 'Pos', 'Team', 'GW', 'Started']
-    MATCHES_DEFAULT_COLS = ['Player', 'Pos', 'Team', 'GW', 'Started'] + [col for col in MATCHES_DEFAULT_COLS if col not in ['Player', 'Pos', 'Team', 'GW', 'Started']]
+    MATCHES_DEFAULT_COLS = ['Player', 'Position', 'Team', 'GW', 'Started'] + [col for col in MATCHES_DEFAULT_COLS if col not in ['Player', 'Pos', 'Team', 'GW', 'Started']]
 
     # print MATCHES_DEFAULT_COLS
     print("MATCHES_DEFAULT_COLS:", MATCHES_DEFAULT_COLS)
@@ -313,7 +313,7 @@ def main():
 
         # Remove GP from MATCHES_DEFAULT_COLS and reorder the columns
         MATCHES_DEFAULT_COLS.remove('GP')
-        MATCHES_DEFAULT_COLS = ['Player', 'Team', 'Pos', 'GS:GP'] + [col for col in MATCHES_DEFAULT_COLS if col not in ['Player', 'Team', 'Pos', 'GS:GP']]
+        MATCHES_DEFAULT_COLS = ['Player', 'Pos', 'Team', 'GS:GP'] + [col for col in MATCHES_DEFAULT_COLS if col not in ['Player', 'Team', 'Pos', 'GS:GP']]
 
         # If the user selects 'Starting XI', filter the DataFrame accordingly
         if featured_players == 'Starting XI':
