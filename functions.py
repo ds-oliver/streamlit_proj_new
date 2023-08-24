@@ -1549,10 +1549,10 @@ def style_dataframe_custom(df, selected_columns, custom_cmap=None):
         styled_df['Player'] = df[position_column].apply(lambda x: position_colors[x])
 
     if 'Team' in df.columns:
-            min_val = df[col].min()
-            max_val = df[col].max()
-            range_val = max_val - min_val
-            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, mpl_cm.get_cmap('magma')))
+        min_val = df[col].min()
+        max_val = df[col].max()
+        range_val = max_val - min_val
+        styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, mpl_cm.get_cmap('magma')))
 
     for col in df.columns:
         if col in ['Player', position_column, 'Team']:
