@@ -1561,7 +1561,8 @@ def style_dataframe_custom(df, selected_columns, custom_cmap=None):
             min_val = df[col].min()
             max_val = df[col].max()
             range_val = float(max_val) - float(min_val)
-            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, mpl_cm.get_cmap('magma')))
+            styled_df[col] = df[col].astype(float).apply(lambda x: get_color((x - float(min_val)) / float(range_val), mpl_cm.get_cmap('magma')))
+
         else:
             min_val = float(df[col].min())  # Convert to float
             max_val = float(df[col].max())  # Convert to float
