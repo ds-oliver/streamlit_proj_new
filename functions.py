@@ -1568,7 +1568,7 @@ def style_dataframe_custom(df, selected_columns, custom_cmap):
 
             col_dtype = df[col].dtype
 
-            if len(unique_values) <= 3:
+            if len(unique_values) <= 3 and (col != 'GS:GP' or col != 'GS'):
                 constant_colors = [get_color(i / 2, object_cmap) for i in range(len(unique_values))]
                 color_mapping = {val: color for val, color in zip(unique_values, constant_colors)}
                 styled_df[col] = df[col].apply(lambda x: color_mapping[x])
