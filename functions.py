@@ -1544,15 +1544,14 @@ def style_dataframe_custom(df, selected_columns, custom_cmap=False):
         elif col in ['Player', 'Team']:
             continue
         else:
-            min_val = float(df[col].min())
-            max_val = float(df[col].max())
+            min_val = df[col].min()
+            max_val = df[col].max()
             if max_val != min_val:
-                styled_df[col] = df[col].apply(lambda x: f'background-color: {matplotlib.colors.to_hex(object_cmap((float(x) - min_val) / (max_val - min_val)))}')
+                styled_df[col] = df[col].apply(lambda x: f'color: {matplotlib.colors.to_hex(object_cmap((float(x) - min_val) / (max_val - min_val)))}')
             else:
                 styled_df[col] = ''
 
     return styled_df
-
 
 def round_and_format(value):
     if isinstance(value, float):
