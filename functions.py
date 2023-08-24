@@ -1525,7 +1525,7 @@ def create_custom_cmap(*colors):
     custom_cmap = LinearSegmentedColormap.from_list('custom_cmap', colors)
     return custom_cmap
 
-def style_dataframe_custom(df, selected_columns, custom_cmap):
+def style_dataframe_custom(df, selected_columns, custom_cmap=None):
     if custom_cmap:
         object_cmap = custom_cmap
     else:
@@ -1535,50 +1535,37 @@ def style_dataframe_custom(df, selected_columns, custom_cmap):
 
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
 
-    if 'Pos' in df.columns:
+    position_column = 'Pos' if 'Pos' in df.columns else 'Position' if 'Position' in df.columns else None
+
+    if position_column:
         position_colors = {
             "D": "background-color: #6d597a",
             "M": "background-color: #370617",
             "F": "background-color: #03071e"
         }
-        styled_df['Pos'] = df['Pos'].apply(lambda x: position_colors[x])
-        styled_df['Player'] = df['Pos'].apply(lambda x: position_colors[x])
+        styled_df[position_column] = df[position_column].apply(lambda x: position_colors[x])
+        styled_df['Player'] = df[position_column].apply(lambda x: position_colors[x])
 
     for col in df.columns:
-        if col in ['Player', 'Pos']:
+        if col in ['Player', position_column]:
             continue
 
-        unique_values = df[col].unique().tolist()  # Moved this line here
+        if col == 'Team':
+            unique_values = df[col].unique().tolist()
+            if len(unique_values) == 1:
+                constant_color = "background-color: {}".format(get_color(0, team_cmap))
+                styled_df[col] = constant_color
+            else:
+                styled_df[col] = df[col].apply(lambda x: "background-color: {}".format(get_color(unique_values.index(x) / (len(unique_values) - 1), team_cmap)))
+            continue
 
-        if col == 'GS:GP' or col == 'GS':
-            object_cmap = get_cmap('bwr')
-            min_val = float(df[col].min()) # Convert to float
-            max_val = float(df[col].max()) # Convert to float
-            range_val = max_val - min_val
-            styled_df[col] = df[col].apply(lambda x: get_color((max_val - float(x)) / range_val, object_cmap)) # Convert x to float
-        else:
+        min_val = float(df[col].min())  # Convert to float
+        max_val = float(df[col].max())  # Convert to float
 
-            if col == 'Team':
-                if len(unique_values) == 1:
-                    constant_color = get_color(0, team_cmap)
-                    styled_df[col] = constant_color
-                else:
-                    styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / (len(unique_values)-1), team_cmap))
-                continue
-
-            col_dtype = df[col].dtype
-
-            if len(unique_values) <= 3 and (col != 'GS:GP' or col != 'GS'):
-                constant_colors = [get_color(i / 2, object_cmap) for i in range(len(unique_values))]
-                color_mapping = {val: color for val, color in zip(unique_values, constant_colors)}
-                styled_df[col] = df[col].apply(lambda x: color_mapping[x])
-            elif col_dtype in [np.float64, np.int64] and col in selected_columns:
-                min_val = df[col].min()
-                max_val = df[col].max()
-                range_val = max_val - min_val
-                styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, object_cmap))
+        styled_df[col] = df[col].apply(lambda x: "color: gold" if float(x) == max_val else ("color: blue" if float(x) == min_val else ''))
 
     return styled_df
+
 
 def round_and_format(value):
     if isinstance(value, float):
