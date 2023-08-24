@@ -221,11 +221,11 @@ def main():
     # Load the data
     matches_df, shots_df, date_of_update, MATCHES_DEFAULT_COLS = process_data()
 
-    # print MATCHES_DEFAULT_COLS
-    print("MATCHES_DEFAULT_COLS:", MATCHES_DEFAULT_COLS)
-
     # reorder the columns in MATCHES_DEFAULT_COLS so that its ['Player', 'Pos', 'Team', 'GW', 'Started']
     MATCHES_DEFAULT_COLS = ['Player', 'Pos', 'Team', 'GW', 'Started'] + [col for col in MATCHES_DEFAULT_COLS if col not in ['Player', 'Pos', 'Team', 'GW', 'Started']]
+
+    # print MATCHES_DEFAULT_COLS
+    print("MATCHES_DEFAULT_COLS:", MATCHES_DEFAULT_COLS)
 
     matches_col_groups = {
     "Standard": matches_standard_cols,
