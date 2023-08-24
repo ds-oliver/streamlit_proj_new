@@ -1525,47 +1525,34 @@ def create_custom_cmap(*colors):
     custom_cmap = LinearSegmentedColormap.from_list('custom_cmap', colors)
     return custom_cmap
 
-def style_dataframe_custom(df, selected_columns, custom_cmap=None):
+
+def style_dataframe_custom(df, selected_columns, custom_cmap=False):
     if custom_cmap:
         object_cmap = custom_cmap
     else:
-        object_cmap = get_cmap('icefire')
-
-    team_cmap = get_cmap('icefire')
+        object_cmap = plt.cm.get_cmap('Blues')  # Use a blue colormap
 
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
 
-    position_column = 'Pos' if 'Pos' in df.columns else 'Position' if 'Position' in df.columns else None
-
-    if position_column:
-        position_colors = {
-            "D": "background-color: #6d597a",
-            "M": "background-color: #370617",
-            "F": "background-color: #03071e"
-        }
-        styled_df[position_column] = df[position_column].apply(lambda x: position_colors[x])
-        styled_df['Player'] = df[position_column].apply(lambda x: position_colors[x])
-
     for col in df.columns:
-        if col in ['Player', position_column]:
+        if col == 'Pos' or col == 'Position':
+            position_colors = {
+                "D": "background-color: #6d597a",
+                "M": "background-color: #370617",
+                "F": "background-color: #03071e"
+            }
+            styled_df[col] = df[col].apply(lambda x: position_colors.get(x, ''))
+        elif col == 'Player' or col == 'Team':
             continue
-
-        if col == 'Team':
-            unique_values = df[col].unique().tolist()
-            if len(unique_values) == 1:
-                constant_color = "background-color: {}".format(get_color(0, team_cmap))
-                styled_df[col] = constant_color
+        else:
+            min_val = df[col].min()
+            max_val = df[col].max()
+            if max_val != min_val:
+                styled_df[col] = df[col].apply(lambda x: f'color: {plt.colors.to_hex(object_cmap((float(x) - min_val) / (max_val - min_val)))}')
             else:
-                styled_df[col] = df[col].apply(lambda x: "background-color: {}".format(get_color(unique_values.index(x) / (len(unique_values) - 1), team_cmap)))
-            continue
-
-        min_val = float(df[col].min())  # Convert to float
-        max_val = float(df[col].max())  # Convert to float
-
-        styled_df[col] = df[col].apply(lambda x: "color: gold" if float(x) == max_val else ("color: skyblue" if float(x) == min_val else ''))
+                styled_df[col] = ''
 
     return styled_df
-
 
 def round_and_format(value):
     if isinstance(value, float):
