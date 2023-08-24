@@ -324,7 +324,7 @@ def main():
             matches_df = matches_df[(matches_df['GS'] > 0) & (matches_df['GS:GP'] >= 0.50)]
 
             # Create an info message to explain the ratio as the percentage of games started out of total possible games
-            st.write(f'You have chosen to retrieve data from **:red[GW {GW_range[0]}]** to **:red[GW {GW_range[1]}]** for **:red[{selected_position}]**. \nAs you have selected multiple GWs, and filtered for "Starting XI" players, **:orange[only]** players that have a GS to GP ratio of at least **:orange[0.50]** (i.e. **players who have started a minimum of half of all possible games**) will be shown', icon='ℹ')
+            st.write(f'You have chosen to retrieve data from **:red[GW {GW_range[0]}]** to **:red[GW {GW_range[1]}]** for **:red[{selected_position}]**. \nAs you have selected multiple GWs, and filtered for "Starting XI" players, **:orange[only]** players that have a GS to GP ratio of at least **:orange[0.50]** (i.e. **players who have started a minimum of half of all possible games**) will be shown.')
         else:
             st.write(f'You have chosen to retrieve data from **:red[GW {GW_range[0]}]** to **:red[GW {GW_range[1]}]** for **:orange[{selected_position}]**. The data is aggregated by **:orange[{selected_aggregation_method}]**.')
         
