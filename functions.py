@@ -1551,11 +1551,12 @@ def style_dataframe_custom(df, selected_columns, custom_cmap):
         unique_values = df[col].unique().tolist()  # Moved this line here
 
         if col == 'GS:GP' or col == 'GS':
-            min_val = df[col].min()
-            max_val = df[col].max()
+            min_val = float(df[col].min()) # Convert to float
+            max_val = float(df[col].max()) # Convert to float
             range_val = max_val - min_val
-            styled_df[col] = df[col].apply(lambda x: get_color((max_val - x) / range_val, object_cmap))
+            styled_df[col] = df[col].apply(lambda x: get_color((max_val - float(x)) / range_val, object_cmap)) # Convert x to float
         else:
+
             if col == 'Team':
                 if len(unique_values) == 1:
                     constant_color = get_color(0, team_cmap)
