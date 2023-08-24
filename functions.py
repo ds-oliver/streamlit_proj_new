@@ -1554,28 +1554,36 @@ def style_dataframe_custom(df, selected_columns, custom_cmap):
         if col in ['Player', 'Pos']:
             continue
 
-        col_dtype = df[col].dtype
-        unique_values = df[col].unique().tolist()
-
-        if col == 'Team':
-            if len(unique_values) == 1:  # Special case for only one unique value
-                constant_color = get_color(0, team_cmap)
-                styled_df[col] = constant_color
-            else:
-                styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / (len(unique_values)-1), team_cmap))
-            continue
-
-        if len(unique_values) <= 3:
-            constant_colors = [get_color(i / 2, object_cmap) for i in range(len(unique_values))] # Using object_cmap
-            color_mapping = {val: color for val, color in zip(unique_values, constant_colors)}
-            styled_df[col] = df[col].apply(lambda x: color_mapping[x])
-        elif col_dtype in [np.float64, np.int64] and col in selected_columns:
+        if col == 'GS:GP' or col == 'GS':
             min_val = df[col].min()
             max_val = df[col].max()
             range_val = max_val - min_val
-            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, object_cmap)) # Using object_cmap
+            # Apply the gradient in a manner that ensures higher values have the desired color
+            styled_df[col] = df[col].apply(lambda x: get_color((max_val - x) / range_val, object_cmap))
+        else:
+            if col == 'Team':
+                if len(unique_values) == 1:  # Special case for only one unique value
+                    constant_color = get_color(0, team_cmap)
+                    styled_df[col] = constant_color
+                else:
+                    styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / (len(unique_values)-1), team_cmap))
+                continue
+
+            col_dtype = df[col].dtype
+            unique_values = df[col].unique().tolist()
+
+            if len(unique_values) <= 3:
+                constant_colors = [get_color(i / 2, object_cmap) for i in range(len(unique_values))] # Using object_cmap
+                color_mapping = {val: color for val, color in zip(unique_values, constant_colors)}
+                styled_df[col] = df[col].apply(lambda x: color_mapping[x])
+            elif col_dtype in [np.float64, np.int64] and col in selected_columns:
+                min_val = df[col].min()
+                max_val = df[col].max()
+                range_val = max_val - min_val
+                styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, object_cmap)) # Using object_cmap
 
     return styled_df
+
 
 def round_and_format(value):
     if isinstance(value, float):
