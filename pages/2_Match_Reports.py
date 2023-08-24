@@ -224,6 +224,9 @@ def main():
     # print MATCHES_DEFAULT_COLS
     print("MATCHES_DEFAULT_COLS:", MATCHES_DEFAULT_COLS)
 
+    # reorder the columns in MATCHES_DEFAULT_COLS so that its ['Player', 'Pos', 'Team', 'GW', 'Started']
+    MATCHES_DEFAULT_COLS = ['Player', 'Pos', 'Team', 'GW', 'Started'] + [col for col in MATCHES_DEFAULT_COLS if col not in ['Player', 'Pos', 'Team', 'GW', 'Started']]
+
     matches_col_groups = {
     "Standard": matches_standard_cols,
     "Passing": matches_passing_cols,
