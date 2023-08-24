@@ -1568,7 +1568,7 @@ def round_and_format(value):
         return "{:.2f}".format(value)
     return value
 
-def create_custom_cmap(base_cmap='viridis', brightness_limit=0.8):
+def create_custom_cmap(base_cmap='bwr', brightness_limit=0.8):
     base = plt.cm.get_cmap(base_cmap)
     color_list = [base(i) for i in range(256)]
     # Apply brightness limit
