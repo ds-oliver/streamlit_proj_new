@@ -1525,7 +1525,6 @@ def create_custom_cmap(*colors):
     custom_cmap = LinearSegmentedColormap.from_list('custom_cmap', colors)
     return custom_cmap
 
-
 def style_dataframe_custom(df, selected_columns, custom_cmap=False):
     if custom_cmap:
         object_cmap = custom_cmap
@@ -1535,24 +1534,25 @@ def style_dataframe_custom(df, selected_columns, custom_cmap=False):
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
 
     for col in df.columns:
-        if col == 'Pos' or col == 'Position':
+        if col in ['Pos', 'Position']:
             position_colors = {
                 "D": "background-color: #6d597a",
                 "M": "background-color: #370617",
                 "F": "background-color: #03071e"
             }
             styled_df[col] = df[col].apply(lambda x: position_colors.get(x, ''))
-        elif col == 'Player' or col == 'Team':
+        elif col in ['Player', 'Team']:
             continue
         else:
-            min_val = df[col].min()
-            max_val = df[col].max()
+            min_val = float(df[col].min())
+            max_val = float(df[col].max())
             if max_val != min_val:
-                styled_df[col] = df[col].apply(lambda x: f'color: {plt.colors.to_hex(object_cmap((float(x) - min_val) / (max_val - min_val)))}')
+                styled_df[col] = df[col].apply(lambda x: f'background-color: {matplotlib.colors.to_hex(object_cmap((float(x) - min_val) / (max_val - min_val)))}')
             else:
                 styled_df[col] = ''
 
     return styled_df
+
 
 def round_and_format(value):
     if isinstance(value, float):
