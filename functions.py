@@ -1566,7 +1566,6 @@ def style_dataframe_custom(df, selected_columns, custom_cmap):
             continue
 
         if len(unique_values) <= 3:
-            object_cmap = get_cmap('copper')
             constant_colors = [get_color(i / 2, object_cmap) for i in range(len(unique_values))] # Using object_cmap
             color_mapping = {val: color for val, color in zip(unique_values, constant_colors)}
             styled_df[col] = df[col].apply(lambda x: color_mapping[x])
