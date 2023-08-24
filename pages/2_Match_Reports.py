@@ -350,7 +350,7 @@ def main():
     st.info(f'**{selected_team}** Players in :green[{percentile_value}th percentile] by **:red[{selected_stat} ({selected_aggregation_method})]**', icon='ℹ')
 
     # Styling DataFrame
-    styled_top_performers_df = style_dataframe_custom(top_performers_df[selected_stat], columns_to_show, False)
+    styled_top_performers_df = style_dataframe_custom(top_performers_df[columns_to_show], columns_to_show, False)
 
     top_performers_df[selected_stat] = top_performers_df[selected_stat].apply(lambda x: f"{x:.2f}")
     top_performers_df = top_performers_df.applymap(round_and_format)
