@@ -1531,7 +1531,7 @@ def style_dataframe_custom(df, selected_columns, custom_cmap=None):
     if custom_cmap:
         object_cmap = custom_cmap
     else:
-        object_cmap = plt.cm.get_cmap('bwr')
+        object_cmap = create_custom_cmap() # Customized color map
 
     team_cmap = plt.cm.get_cmap('icefire')
 
@@ -1567,3 +1567,10 @@ def round_and_format(value):
     if isinstance(value, float):
         return "{:.2f}".format(value)
     return value
+
+def create_custom_cmap(base_cmap='viridis', brightness_limit=0.8):
+    base = plt.cm.get_cmap(base_cmap)
+    color_list = [base(i) for i in range(256)]
+    # Apply brightness limit
+    color_list = [(r * brightness_limit, g * brightness_limit, b * brightness_limit, a) for r, g, b, a in color_list]
+    return LinearSegmentedColormap.from_list(base_cmap, color_list)
