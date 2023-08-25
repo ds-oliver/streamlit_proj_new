@@ -23,6 +23,9 @@ import cProfile
 import pstats
 import io
 import matplotlib.colors as mcolors
+import matplotlib
+from collections import Counter
+
 # logger = st.logger
 
 warnings.filterwarnings('ignore')
@@ -128,30 +131,30 @@ def display_date_of_update(date_of_update):
 def load_data():
     return process_data(all_gws_data, temp_default, col_groups)
 
-# Function to filter data based on selected teams and positions
+# Function to filter data based on selected Teams and positions
 # @st.cache_resource
-def filter_data(df, selected_teams, selected_positions):
-    return df[df['Team'].isin(selected_teams) & df['Pos'].isin(selected_positions)]
+def filter_data(df, selected_Teams, selected_positions):
+    return df[df['Team'].isin(selected_Teams) & df['Pos'].isin(selected_positions)]
 
 # Function to group data based on selected options
-def group_data(df, selected_columns, selected_group, selected_positions, selected_teams, grouping_option, aggregation_option):
+def group_data(df, selected_columns, selected_group, selected_positions, selected_Teams, grouping_option, aggregation_option):
     if grouping_option == 'Position':
         grouped_df = df.groupby('position').agg(aggregation_option).reset_index()
     elif grouping_option == 'Team':
-        grouped_df = df.groupby('team').agg(aggregation_option).reset_index()
+        grouped_df = df.groupby('Team').agg(aggregation_option).reset_index()
     else:
         grouped_df = df
 
-    columns_to_show = ['position' if grouping_option == 'Position' else 'team'] + selected_columns if grouping_option != 'None' else selected_columns
+    columns_to_show = ['position' if grouping_option == 'Position' else 'Team'] + selected_columns if grouping_option != 'None' else selected_columns
 
     grouped_df = grouped_df.round(2)
     return grouped_df, columns_to_show
 
-def get_grouping_values_and_column(grouping_option, selected_positions, selected_teams, grouped_df, selected_stats_for_plot):
+def get_grouping_values_and_column(grouping_option, selected_positions, selected_Teams, grouped_df, selected_stats_for_plot):
     if grouping_option == 'Position':
         return selected_positions, 'position'
     elif grouping_option == 'Team':
-        return selected_teams, 'Team'
+        return selected_Teams, 'Team'
     else:
         top_players = grouped_df.nlargest(25, selected_stats_for_plot)
         return top_players['Player'].tolist(), 'Player'
@@ -174,7 +177,7 @@ def add_bar_traces(fig, selected_stats_for_plot, grouping_values, grouped_df, gr
             )
         )
 
-def create_plot(selected_group, selected_columns, selected_positions, selected_teams, grouped_df, grouping_option):
+def create_plot(selected_group, selected_columns, selected_positions, selected_Teams, grouped_df, grouping_option):
     if selected_group and selected_columns:
         selected_stats_for_plot = st.multiselect('Select Statistics for Plotting', options=selected_columns)
         st.info('Note: If no grouping option is selected, the top 25 players by the first selected statistic is shown.')
@@ -184,7 +187,7 @@ def create_plot(selected_group, selected_columns, selected_positions, selected_t
             stat_colors = {stat: color for stat, color in zip(selected_stats_for_plot, colors)}
             
             fig = go.Figure()
-            grouping_values, grouping_column = get_grouping_values_and_column(grouping_option, selected_positions, selected_teams, grouped_df, selected_stats_for_plot)
+            grouping_values, grouping_column = get_grouping_values_and_column(grouping_option, selected_positions, selected_Teams, grouped_df, selected_stats_for_plot)
             
             add_bar_traces(fig, selected_stats_for_plot, grouping_values, grouped_df, grouping_column, stat_colors)
             
@@ -205,8 +208,8 @@ def create_plot(selected_group, selected_columns, selected_positions, selected_t
             fig.update_traces(hoverinfo="x+y+name")
             st.plotly_chart(fig, use_container_width=True)
 
-def most_recent_team(teams):
-    return teams.iloc[-1]
+def most_recent_Team(Teams):
+    return Teams.iloc[-1]
 
 col_groups = {
     "Standard": stats_cols,
@@ -219,6 +222,101 @@ col_groups = {
     "GCA": gca_cols,
     "Playing Time": playing_time_cols,
 }
+
+# def style_dataframe_custom(df, selected_columns, custom_cmap=None):
+#     if custom_cmap:
+#         object_cmap = custom_cmap
+#     else:
+#         object_cmap = create_custom_cmap() # Customized color map
+
+#     Team_cmap = plt.cm.get_cmap('icefire')
+
+#     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
+
+#     position_column = 'Pos' if 'Pos' in df.columns else 'Position' if 'Position' in df.columns else None
+
+#     if position_column:
+#         position_colors = {
+#             "D": "background-color: #6d597a",
+#             "M": "background-color: #370617",
+#             "F": "background-color: #03071e"
+#         }
+#         styled_df[position_column] = df[position_column].apply(lambda x: position_colors[x])
+#         styled_df['Player'] = df[position_column].apply(lambda x: position_colors[x])
+
+#     for col in df.columns:
+#         if col in ['Player', position_column, 'Team']:
+#             continue
+
+#         unique_values = df[col].unique()
+#         if len(unique_values) <= 3:  # Columns with 3 or less unique values
+#             constant_colors = ["color: #eae2b7", "color: #FDFEFE", "color: #FDFAF9"] # first is slightly off-white, second is light yellow, second is pale blue
+#             # You can define colors here
+#             color_mapping = {val: color for val, color in zip(unique_values, constant_colors[:len(unique_values)])}
+#             styled_df[col] = df[col].apply(lambda x: color_mapping[x])
+#         elif 'Team' in df.columns:
+#             min_val = df[col].min()
+#             max_val = df[col].max()
+#             range_val = float(max_val) - float(min_val)
+#             styled_df[col] = df[col].astype(float).apply(lambda x: get_color((x - float(min_val)) / float(range_val), mpl_cm.get_cmap('magma')))
+
+#         else:
+#             min_val = float(df[col].min())  # Convert to float
+#             max_val = float(df[col].max())  # Convert to float
+#             styled_df[col] = df[col].apply(lambda x: f'color: {matplotlib.colors.to_hex(object_cmap((float(x) - min_val) / (max_val - min_val)))}' if min_val != max_val else '')
+
+#     return styled_df
+
+def style_dataframe_custom(df, selected_columns, custom_cmap=None):
+    if custom_cmap:
+        object_cmap = custom_cmap
+    else:
+        object_cmap = create_custom_cmap() # Customized color map
+
+    Team_cmap = plt.cm.get_cmap('icefire')
+
+    styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
+
+    position_column = 'Pos' if 'Pos' in df.columns else 'Position' if 'Position' in df.columns else None
+
+    if position_column:
+        position_colors = {
+            "D": "background-color: #6d597a",
+            "M": "background-color: #370617",
+            "F": "background-color: #03071e"
+        }
+        styled_df[position_column] = df[position_column].apply(lambda x: position_colors[x])
+        styled_df['Player'] = df[position_column].apply(lambda x: position_colors[x])
+
+    for col in df.columns:
+        if col in ['Player', position_column, 'Team']:
+            continue
+
+        unique_values = df[col].unique()
+        if len(unique_values) <= 3:  # Columns with 3 or less unique values
+            # Columns with 3 or less unique values
+            constant_colors = ["color: #eae2b7", "color: #FDFEFE", "color: #FDFAF9"]
+            # Finding the most common value
+            most_common_value, _ = Counter(df[col]).most_common(1)[0]
+            # Assigning the rest of the colors
+            other_colors = [color for val, color in zip(unique_values, constant_colors[1:]) if val != most_common_value]
+            # Creating the color mapping, ensuring that most_common_value gets the first color
+            color_mapping = {most_common_value: constant_colors[0], **{val: color for val, color in zip([uv for uv in unique_values if uv != most_common_value], other_colors)}}
+            # Applying the color mapping, with a default value if a key is not found
+            styled_df[col] = df[col].apply(lambda x: color_mapping.get(x, ''))
+
+        elif 'Team' in df.columns:
+            min_val = df[col].min()
+            max_val = df[col].max()
+            range_val = float(max_val) - float(min_val)
+            styled_df[col] = df[col].astype(float).apply(lambda x: get_color((x - float(min_val)) / float(range_val), mpl_cm.get_cmap('magma')))
+
+        else:
+            min_val = float(df[col].min())  # Convert to float
+            max_val = float(df[col].max())  # Convert to float
+            styled_df[col] = df[col].apply(lambda x: f'color: {matplotlib.colors.to_hex(object_cmap((float(x) - min_val) / (max_val - min_val)))}' if min_val != max_val else '')
+
+    return styled_df
 
 def main():
     # Load the data
@@ -243,44 +341,43 @@ def main():
     data = data[(data['GW'] >= GW_range[0]) & (data['GW'] <= GW_range[1])]
 
     if GW_range[0] != GW_range[1]:
-        
         selected_aggregation_method = st.sidebar.selectbox('Select Aggregation Method', ['mean', 'sum'])
 
         # Define aggregation functions for numeric and non-numeric columns
         aggregation_functions = {col: selected_aggregation_method if data[col].dtype in [np.float64, np.int64] else 'first' for col in data.columns}
         aggregation_functions['Player'] = 'first'
-        aggregation_functions['Team'] = most_recent_team
+        aggregation_functions['Team'] = most_recent_Team
         aggregation_functions['Pos'] = 'first' # Aggregating by the first occurrence of position
         aggregation_functions['GW'] = 'nunique' # Counting the number of GWs
         aggregation_functions['GS'] = 'sum' # Summing the number of starts
 
-        # Group by player, team, and position, and apply the aggregation functions
+        # Group by player, Team, and position, and apply the aggregation functions
         data = data.groupby(['Player', 'Team', 'Pos'], as_index=False).agg(aggregation_functions)
-        print("Shape of matches_df after grouping by player, team, and position:", data.shape)
+        print("Shape of matches_df after grouping by player, Team, and position:", data.shape)
 
         data.rename(columns={'GW': 'GP'}, inplace=True)
-        DEFAULT_COLUMNS.append('GP')
-
-        # Create a ratio of potential GP to GS and append the ratio to DEFAULT_COLUMNS
         data['GS:GP'] = round(data['GS'] / data['GP'].max(), 2).apply(lambda x: f"{x:.2f}")
-        DEFAULT_COLUMNS.append('GS:GP')
 
-        DEFAULT_COLUMNS = [col if col != 'GW' else 'GP' for col in DEFAULT_COLUMNS]
+        # Make sure 'GP' is only added once
+        if 'GP' not in DEFAULT_COLUMNS:
+            DEFAULT_COLUMNS.append('GP')
 
-        # Remove GP from DEFAULT_COLUMNS and reorder the columns
-        DEFAULT_COLUMNS.remove('GP')
-        DEFAULT_COLUMNS = ['Player', 'Team', 'Pos', 'GS:GP'] + [col for col in DEFAULT_COLUMNS if col not in ['Player', 'Team', 'Pos', 'GS:GP']]
+        # Include other necessary columns without 'GW'
+        DEFAULT_COLUMNS = ['Player', 'Team', 'Pos', 'GS:GP'] + [col for col in DEFAULT_COLUMNS if col not in ['Player', 'Team', 'Pos', 'GS:GP', 'GW']]
+
+        print("DEFAULT_COLUMNS:", DEFAULT_COLUMNS)
 
     # Sidebar filters
-    selected_teams = create_sidebar_multiselect(data, 'Team', 'Select Teams', default_all=True, key_suffix="teams")
+    selected_Teams = create_sidebar_multiselect(data, 'Team', 'Select Teams', default_all=True, key_suffix="Teams")
     selected_positions = create_sidebar_multiselect(data, 'Pos', 'Select Positions', default_all=True, key_suffix="positions")
 
     # Filter data based on selected options
-    filtered_data = filter_data(data, selected_teams, selected_positions)
+    filtered_data = filter_data(data, selected_Teams, selected_positions)
 
     # User selects the group and columns to show
     selected_group = st.sidebar.selectbox("Select Stats Grouping", list(col_groups.keys()))
     selected_columns = col_groups[selected_group]
+    selected_columns = [col for col in selected_columns if col in data.columns]
     
     grouping_option = st.sidebar.selectbox("Select Grouping Option", ['None', 'Position', 'Team'])
 
@@ -289,8 +386,13 @@ def main():
     else:
         columns_to_show = [grouping_option.lower()] + selected_columns
 
+    print(columns_to_show) # Should print the list of columns you want to show
+
     # Group data based on selected options
-    grouped_data, _ = group_data(filtered_data, selected_columns, selected_group, selected_positions, selected_teams, grouping_option, aggregation_option='mean')
+    grouped_data, _ = group_data(filtered_data, selected_columns, selected_group, selected_positions, selected_Teams, grouping_option, aggregation_option='mean')
+
+    # Filter columns_to_show to include only columns that exist in grouped_data
+    # columns_to_show = [col for col in columns_to_show if col in grouped_data.columns]
     
     # Styling DataFrame
     styled_df = style_dataframe_custom(grouped_data[columns_to_show], columns_to_show, False)
@@ -309,7 +411,7 @@ def main():
         st.dataframe(grouped_data[columns_to_show].style.apply(lambda _: styled_df, axis=None), use_container_width=True, height=(len(grouped_data) * 38) + 50)
 
     # Create plot
-    create_plot(selected_group, selected_columns, selected_positions, selected_teams, grouped_data, grouping_option)
+    create_plot(selected_group, selected_columns, selected_positions, selected_Teams, grouped_data, grouping_option)
 
 if __name__ == "__main__":
     pr = cProfile.Profile()

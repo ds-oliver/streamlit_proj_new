@@ -20,6 +20,10 @@ import unidecode
 import matplotlib.cm as mpl_cm
 import matplotlib.colors as mcolors
 from matplotlib.colors import ListedColormap, LinearSegmentedColormap
+from matplotlib.cm import get_cmap
+import matplotlib
+from collections import Counter
+
 
 
 sys.path.append(os.path.abspath(os.path.join('./scripts')))
@@ -1525,46 +1529,47 @@ def create_custom_cmap(*colors):
     custom_cmap = LinearSegmentedColormap.from_list('custom_cmap', colors)
     return custom_cmap
 
-def style_dataframe_custom(df, selected_columns, custom_cmap):
-    object_cmap = custom_cmap
+def style_dataframe_custom(df, selected_columns, custom_cmap=None):
+    if custom_cmap:
+        object_cmap = custom_cmap
+    else:
+        object_cmap = create_custom_cmap() # Customized color map
 
-    # Create an empty DataFrame with the same shape as df
+    team_cmap = plt.cm.get_cmap('icefire')
+
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
 
-    if 'Pos' in df.columns:
-        unique_positions = df['Pos'].unique().tolist()
+    position_column = 'Pos' if 'Pos' in df.columns else 'Position' if 'Position' in df.columns else None
 
-        # Define the colors for the positions
+    if position_column:
         position_colors = {
-            "D": "background-color: #071147;",  # Specific purple color for "D"
-            "M": "background-color: #5F0B28",  # Assigned color for "M"
-            "F": "background-color: #930513"   # Assigned color for "F"
+            "D": "background-color: #6d597a",
+            "M": "background-color: #370617",
+            "F": "background-color: #03071e"
         }
-
-        # Apply the colors to the 'Pos' and 'Player' columns
-        styled_df['Pos'] = df['Pos'].apply(lambda x: position_colors[x])
-        styled_df['Player'] = df['Pos'].apply(lambda x: position_colors[x])
+        styled_df[position_column] = df[position_column].apply(lambda x: position_colors[x])
+        styled_df['Player'] = df[position_column].apply(lambda x: position_colors[x])
 
     for col in df.columns:
-        if col in ['Player', 'Pos']:
+        if col in ['Player', position_column, 'Team']:
             continue
 
-        col_dtype = df[col].dtype
-        unique_values = df[col].unique().tolist()
-
-        if col == 'Team':
-            styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / (len(unique_values)-1), object_cmap))
-            continue
-
-        if len(unique_values) <= 3:
-            constant_colors = [get_color(i / 2, custom_cmap) for i in range(len(unique_values))] # Removed mpl_cm.get_cmap
-            color_mapping = {val: color for val, color in zip(unique_values, constant_colors)}
+        unique_values = df[col].unique()
+        if len(unique_values) <= 3:  # Columns with 3 or less unique values
+            constant_colors = ["color: #eae2b7", "color: #90e0ef", "color: #DBB002"]
+            # You can define colors here
+            color_mapping = {val: color for val, color in zip(unique_values, constant_colors[:len(unique_values)])}
             styled_df[col] = df[col].apply(lambda x: color_mapping[x])
-        elif col_dtype in [np.float64, np.int64] and col in selected_columns:
+        elif 'Team' in df.columns:
             min_val = df[col].min()
             max_val = df[col].max()
-            range_val = max_val - min_val
-            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, custom_cmap)) # Removed mpl_cm.get_cmap
+            range_val = float(max_val) - float(min_val)
+            styled_df[col] = df[col].astype(float).apply(lambda x: get_color((x - float(min_val)) / float(range_val), mpl_cm.get_cmap('magma')))
+
+        else:
+            min_val = float(df[col].min())  # Convert to float
+            max_val = float(df[col].max())  # Convert to float
+            styled_df[col] = df[col].apply(lambda x: f'color: {matplotlib.colors.to_hex(object_cmap((float(x) - min_val) / (max_val - min_val)))}' if min_val != max_val else '')
 
     return styled_df
 
@@ -1573,3 +1578,10 @@ def round_and_format(value):
     if isinstance(value, float):
         return "{:.2f}".format(value)
     return value
+
+def create_custom_cmap(base_cmap='coolwarm', brightness_limit=1):
+    base = plt.cm.get_cmap(base_cmap)
+    color_list = [base(i) for i in range(256)]
+    # Apply brightness limit
+    color_list = [(r * brightness_limit, g * brightness_limit, b * brightness_limit, a) for r, g, b, a in color_list]
+    return LinearSegmentedColormap.from_list(base_cmap, color_list)
