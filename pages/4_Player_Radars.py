@@ -131,6 +131,8 @@ premier_league_df, bundesliga_df, serie_a_df, la_liga_df, ligue_1_df = app(big5_
 
 premier_league_df = process_player_data(premier_league_df)
 
+serie_a_df = process_player_data(serie_a_df)
+
 
 # turn the values into percentiles
 # season_dfs = []  # list to collect all season DataFrames
