@@ -90,7 +90,7 @@ def process_data(all_gws_data, temp_default, col_groups):
     df = df[df['Position'] != 'GK']
     df = df[df['Position'].notna()]
 
-    df.drop(columns=['Position_df', 'Team_df'], inplace=True)
+    df.drop(columns=['Position_df', 'Team_df', 'Age  '], inplace=True)
 
     # rename 'fantrax position' column to 'position'
     # df.rename(columns={'fantrax position': 'position'}, inplace=True)
@@ -207,6 +207,43 @@ def create_plot(selected_group, selected_columns, selected_positions, selected_T
 
 def most_recent_Team(Teams):
     return Teams.iloc[-1]
+
+def create_pivot_table(data, DEFAULT_COLUMNS, col_groups):
+    # Debugging
+    st.write(f"Data Shape: {data.shape}")
+    st.write(f"Data Columns: {data.columns.tolist()}")
+    st.write(f"Data Head: {data.head()}")
+    st.write(f"Data Types: {data.dtypes}")
+    
+    # Ensure 'Player' column is of type string
+    data['Player'] = data['Player'].astype(str)
+    
+    unique_players = data['Player'].unique()
+    st.write(f"Unique values in Player: {unique_players}")
+
+    pivot_index = st.sidebar.selectbox('Select Index for Pivot Table', DEFAULT_COLUMNS)
+    selected_group = st.sidebar.selectbox('Select Column Group for Pivot Table', list(col_groups.keys()))
+    pivot_values = st.sidebar.selectbox('Select Values for Pivot Table', DEFAULT_COLUMNS)
+    pivot_agg_func = st.sidebar.selectbox('Select Aggregation Function for Pivot Table', ['mean', 'sum', 'count', 'min', 'max'])
+
+    selected_columns = col_groups[selected_group]
+    selected_columns = [col for col in selected_columns if col in data.columns]
+
+    try:
+        pivot_table = pd.pivot_table(data, values=pivot_values, index=pivot_index, columns=selected_columns, aggfunc=pivot_agg_func)
+        st.write(f"Pivot Table by {pivot_index}, {selected_columns}, and {pivot_values} with {pivot_agg_func} aggregation")
+        st.write(pivot_table)
+    except Exception as e:
+        st.warning(f"An error occurred while creating the pivot table: {e}")
+
+
+def create_multi_index(data, DEFAULT_COLUMNS):
+    index_level_1 = st.sidebar.selectbox('Select First Index for Multi-level', DEFAULT_COLUMNS)
+    index_level_2 = st.sidebar.selectbox('Select Second Index for Multi-level', DEFAULT_COLUMNS)
+    
+    multi_index_df = data.set_index([index_level_1, index_level_2])
+    st.write(f"DataFrame with Multi-level Indexing by {index_level_1} and {index_level_2}")
+    st.write(multi_index_df)
 
 col_groups = {
     "Standard": stats_cols,
@@ -330,6 +367,14 @@ def main():
     # Display the date of last data update
     display_date_of_update(date_of_update)
 
+    create_pivot = st.sidebar.checkbox('Create Pivot Table', False)
+    if create_pivot:
+        create_pivot_table(data, DEFAULT_COLUMNS, col_groups)
+
+    create_multi_index_flag = st.sidebar.checkbox('Create Multi-level Index', False)
+    if create_multi_index_flag:
+        create_multi_index(data, DEFAULT_COLUMNS)
+
     # Create a sidebar slider to select the GW range
     GW_range = st.slider('GW range', min_value=data['GW'].min(), max_value=data['GW'].max(), value=(data['GW'].min(), data['GW'].max()), step=1, help="Select the range of gameweeks to display data for. This slider adjusts data globally for all tables and plots")
     GW_range = list(GW_range)
@@ -432,8 +477,6 @@ def main():
 
     # Create plot
     create_plot(selected_group, selected_columns, selected_positions, selected_Teams, grouped_data, grouping_option)
-
-
 
 if __name__ == "__main__":
     pr = cProfile.Profile()
