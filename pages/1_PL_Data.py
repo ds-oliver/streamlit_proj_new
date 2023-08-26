@@ -90,7 +90,7 @@ def process_data(all_gws_data, temp_default, col_groups):
     df = df[df['Position'] != 'GK']
     df = df[df['Position'].notna()]
 
-    df.drop(columns=['Position_df', 'Team_df', 'Age  '], inplace=True)
+    df.drop(columns=['Position_df', 'Team_df', 'Age'], inplace=True)
 
     # rename 'fantrax position' column to 'position'
     # df.rename(columns={'fantrax position': 'position'}, inplace=True)
