@@ -44,7 +44,7 @@ st.set_page_config(
 
 from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default, matches_data, shots_data # this is the file we want to read in
 
-from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, create_custom_cmap, style_dataframe_custom
+from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, create_custom_cmap, style_dataframe_custom, style_tp_dataframe_custom
 
 # def get_color(value, cmap):
 #     color_fraction = value
@@ -252,6 +252,17 @@ def main():
     # state at the top of the page as header the grouping option selected
     st.header(f"Premier League Individual Players' Data")
 
+    all_stats = matches_df.columns.tolist()
+    selectable_stats = [stat for stat in all_stats if stat not in MATCHES_DEFAULT_COLS]
+
+    default_stat_index = 13
+
+    # User selects the stat
+    selected_stat = st.sidebar.selectbox("Select a Statistic for **Top Performers**", selectable_stats, index=default_stat_index, help="This selection will be used to populate the Top Performers table.", key='stat')
+
+    # User selects the group and columns to show
+    selected_group = st.sidebar.selectbox("Select Stats Grouping", list(matches_col_groups.keys()), help="This selection will be used to populate the Match Reports table.", key='group')
+
     # create radio button for 'Starting XI' or 'All Featured Players'
     featured_players = st.sidebar.radio("Select Featured Players", ('Starting XI', '> 55 Minutes Played', 'All Featured Players'))
 
@@ -339,13 +350,13 @@ def main():
     if featured_players == 'Starting XI':
         matches_df = matches_df[(matches_df['GS'] > 0)]
 
-    all_stats = matches_df.columns.tolist()
-    selectable_stats = [stat for stat in all_stats if stat not in MATCHES_DEFAULT_COLS]
+    # all_stats = matches_df.columns.tolist()
+    # selectable_stats = [stat for stat in all_stats if stat not in MATCHES_DEFAULT_COLS]
 
-    default_stat_index = 13
+    # default_stat_index = 13
 
-    # User selects the stat
-    selected_stat = st.sidebar.selectbox("Select a Statistic", selectable_stats, index=default_stat_index, help="This selection will be used to populate the Top Performers table.")
+    # # User selects the stat
+    # selected_stat = st.sidebar.selectbox("Select a Statistic", selectable_stats, index=default_stat_index, help="This selection will be used to populate the Top Performers table.")
     columns_to_show = MATCHES_DEFAULT_COLS + [selected_stat]
 
     # Create a DataFrame for players within the 90th percentile
@@ -373,7 +384,7 @@ def main():
     st.divider()
 
     # User selects the group and columns to show
-    selected_group = st.sidebar.selectbox("Select Stats Grouping", list(matches_col_groups.keys()), help="This selection will be used to populate the Match Reports table.")
+    # selected_group = st.sidebar.selectbox("Select Stats Grouping", list(matches_col_groups.keys()), help="This selection will be used to populate the Match Reports table.")
     selected_columns = matches_col_groups[selected_group]
     # matches_df[selected_group] = matches_df[selected_group].apply(lambda x: f"{x:.2f}")
     columns_to_show = MATCHES_DEFAULT_COLS + [col for col in selected_columns if col in matches_df.columns]
