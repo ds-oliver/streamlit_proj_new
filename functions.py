@@ -1535,11 +1535,11 @@ def style_dataframe_custom(df, selected_columns, custom_cmap=None):
     else:
         object_cmap = create_custom_cmap() # Customized color map
 
-    team_cmap = plt.cm.get_cmap('icefire')
+    Team_cmap = plt.cm.get_cmap('magma')
 
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
 
-    position_column = 'Pos' if 'Pos' in df.columns else 'Position' if 'Position' in df.columns else None
+    position_column = 'Position' if 'Position' in df.columns else 'Position' if 'Position' in df.columns else None
 
     if position_column:
         position_colors = {
@@ -1551,20 +1551,28 @@ def style_dataframe_custom(df, selected_columns, custom_cmap=None):
         styled_df['Player'] = df[position_column].apply(lambda x: position_colors[x])
 
     for col in df.columns:
-        if col in ['Player', position_column, 'Team']:
+        if col in ['Player', position_column]:
             continue
 
         unique_values = df[col].unique()
         if len(unique_values) <= 3:  # Columns with 3 or less unique values
-            constant_colors = ["color: #eae2b7", "color: #90e0ef", "color: #DBB002"]
-            # You can define colors here
-            color_mapping = {val: color for val, color in zip(unique_values, constant_colors[:len(unique_values)])}
-            styled_df[col] = df[col].apply(lambda x: color_mapping[x])
+            # Columns with 3 or less unique values
+            constant_colors = ["color: #eae2b7", "color: #FDFEFE", "color: #FDFAF9"]
+            # Finding the most common value
+            most_common_value, _ = Counter(df[col]).most_common(1)[0]
+            # Assigning the rest of the colors
+            other_colors = [color for val, color in zip(unique_values, constant_colors[1:]) if val != most_common_value]
+            # Creating the color mapping, ensuring that most_common_value gets the first color
+            color_mapping = {most_common_value: constant_colors[0], **{val: color for val, color in zip([uv for uv in unique_values if uv != most_common_value], other_colors)}}
+            # Applying the color mapping, with a default value if a key is not found
+            styled_df[col] = df[col].apply(lambda x: color_mapping.get(x, ''))
+
         elif 'Team' in df.columns:
-            min_val = df[col].min()
-            max_val = df[col].max()
-            range_val = float(max_val) - float(min_val)
-            styled_df[col] = df[col].astype(float).apply(lambda x: get_color((x - float(min_val)) / float(range_val), mpl_cm.get_cmap('magma')))
+            n = len(unique_values)
+            for i, val in enumerate(unique_values):
+                norm_i = i / (n - 1) if n > 1 else 0.5  # Avoid division by zero
+                styled_df.loc[df[col] == val, col] = get_color(norm_i, Team_cmap)
+
 
         else:
             min_val = float(df[col].min())  # Convert to float
