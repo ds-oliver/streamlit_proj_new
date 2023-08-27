@@ -1604,7 +1604,7 @@ def style_tp_dataframe_custom(df, selected_columns, custom_cmap=None):
         
         # If Team column exists, color it based on rank or percentile
         if col == 'Team':
-            team_rank = df['Team'].rank(method='min')
+            team_rank = df['Team'].rank(method='min', ascending=False)  # Change is here
             max_rank = team_rank.max()
             styled_df['Team'] = team_rank.apply(lambda x: get_color((x-1) / (max_rank-1), Team_cmap))
 
