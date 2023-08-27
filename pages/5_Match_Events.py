@@ -43,15 +43,17 @@ st.set_page_config(
 
 from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default, matches_data, shots_data # this is the file we want to read in
 
-from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, create_custom_cmap, style_dataframe_custom, style_tp_dataframe_custom
+from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, create_custom_cmap, style_dataframe_custom, style_tp_dataframe_custom, load_data
 
 def main():
     st.title('Match Events')
-    st.info("""This page is under construction""", icon='ℹ')
+    st.info(""":orange[This page is under construction]""", icon='🏗️')
     st.header('')
     col1, col2 = st.columns(2)
 
-    shots_data
+    df = load_csv(shots_data)
+
+    df
 
     # each column will have the same widgets, one for each team in the match
     with col1:

@@ -1690,3 +1690,5 @@ def round_and_format(value):
         return "{:.2f}".format(value)
     return value
 
+def load_csv(filepath):
+    return pd.read_csv(filepath)
