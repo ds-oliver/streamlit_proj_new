@@ -176,6 +176,9 @@ def create_top_performers_table(matches_df, selected_stat, selected_columns, per
     # Filter the dataframe by the 90th percentile
     top_performers_df = top_performers_df[top_performers_df[selected_stat] >= threshold_value]
 
+    # Only return players where stat is not 0
+    top_performers_df = top_performers_df[top_performers_df[selected_stat] > 0]
+    
     # round the selected stat to 2 decimal places
     top_performers_df[selected_stat] = top_performers_df[selected_stat].round(2)
 
