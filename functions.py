@@ -1636,3 +1636,59 @@ def round_and_format(value):
     if isinstance(value, float):
         return "{:.2f}".format(value)
     return value
+
+def create_top_performers_table(matches_df, selected_stat, selected_columns, percentile=85):
+    top_performers_df = matches_df.copy()
+    cols_to_drop = [col for col in top_performers_df.columns if col not in selected_columns + ['player', 'team', 'position']]
+    top_performers_df.drop(columns=cols_to_drop, inplace=True)
+
+    # Calculate the 90th percentile for the selected stat
+    threshold_value = top_performers_df[selected_stat].quantile(percentile / 100)
+
+    # Filter the dataframe by the 90th percentile
+    top_performers_df = top_performers_df[top_performers_df[selected_stat] >= threshold_value]
+
+    # Only return players where stat is not 0
+    top_performers_df = top_performers_df[top_performers_df[selected_stat] > 0]
+    
+    # round the selected stat to 2 decimal places
+    top_performers_df[selected_stat] = top_performers_df[selected_stat].round(2)
+
+    # Sort the dataframe by the selected stat in descending order and take the top 25
+    top_performers_df = top_performers_df.sort_values(by=selected_stat, ascending=False)
+
+    # reset the index
+    top_performers_df.reset_index(drop=True, inplace=True)
+
+    return top_performers_df
+
+def visualize_top_performers(top_performers_df, selected_stat):
+    # plot the top performers just the players and the selected stat
+    fig = px.bar(top_performers_df, x='player', y=selected_stat, color='team', color_discrete_sequence=px.colors.qualitative.Pastel)
+
+    # update the layout
+    fig.update_layout(
+        title=f'Top performers for {selected_stat}',
+        xaxis_title='Player',
+        yaxis_title=selected_stat,
+        legend_title='Team',
+        font=dict(
+            family="Courier New, monospace",
+            size=12,
+            color="#7f7f7f"
+        )
+    )
+
+    # display the plot
+    st.plotly_chart(fig)
+
+def display_date_of_update(date_of_update):
+    st.write(f'Last data refresh: {date_of_update}')
+
+def round_and_format(value):
+    if isinstance(value, float):
+        return "{:.2f}".format(value)
+    return value
+
+def load_csv(filepath):
+    return pd.read_csv(filepath)
