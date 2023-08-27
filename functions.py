@@ -1539,7 +1539,7 @@ def style_dataframe_custom(df, selected_columns, custom_cmap=None):
 
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
 
-    position_column = 'Position' if 'Position' in df.columns else 'Position' if 'Position' in df.columns else None
+    position_column = 'Pos' if 'Pos' in df.columns else 'Position' if 'Position' in df.columns else None
 
     if position_column:
         position_colors = {
