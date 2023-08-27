@@ -53,9 +53,19 @@ def main():
 
     df = load_csv(shots_data)
 
+    print(df.head())
+
+    # filter for only data where outcome does not equal 'Off Target'
+    df = df[df['outcome'] != 'Off Target']
+
+    # Check if DataFrame is empty
+    if df.empty:
+        st.warning("No data to display after filtering.")
+        return
+
     df
 
-    # each column will have the same widgets, one for each team in the match
+    
     with col1:
         st.subheader('Home Team')
         st.write('Team 1 widgets here')

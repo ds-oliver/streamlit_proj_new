@@ -1692,3 +1692,4 @@ def round_and_format(value):
 
 def load_csv(filepath):
     return pd.read_csv(filepath)
+
