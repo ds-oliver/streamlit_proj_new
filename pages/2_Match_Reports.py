@@ -369,7 +369,7 @@ def main():
 
     st.divider()
     st.subheader(f":orange[Top Performers] by :red[{selected_stat} ({selected_aggregation_method})]")
-    st.write(f'**{selected_team}** players in top {100 - percentile_value}th percentile by **:red[{selected_stat} ({selected_aggregation_method})]**')
+    st.write(f'**{selected_team}** players in the {percentile_value}th percentile by **:red[{selected_stat} ({selected_aggregation_method})]. Conditional formatting has been applied to Team column based on respective average {selected_stat} of the team.**')
 
     # Styling DataFrame
     styled_top_performers_df = style_tp_dataframe_custom(top_performers_df[columns_to_show], columns_to_show, False)
