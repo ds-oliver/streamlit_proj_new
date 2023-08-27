@@ -361,32 +361,23 @@ def style_dataframe_custom(df, selected_columns, custom_cmap=None):
     return styled_df
 
 def main():
+    
     # Load the data
     data, DEFAULT_COLUMNS, date_of_update, col_groups = load_data()
 
     # Display the date of last data update
     display_date_of_update(date_of_update)
 
-    create_pivot = st.sidebar.checkbox('Create Pivot Table', False)
-    if create_pivot:
-        create_pivot_table(data, DEFAULT_COLUMNS, col_groups)
-
-    create_multi_index_flag = st.sidebar.checkbox('Create Multi-level Index', False)
-    if create_multi_index_flag:
-        create_multi_index(data, DEFAULT_COLUMNS)
-
     # Create a sidebar slider to select the GW range
-    GW_range = st.slider('GW range', min_value=data['GW'].min(), max_value=data['GW'].max(), value=(data['GW'].min(), data['GW'].max()), step=1, help="Select the range of gameweeks to display data for. This slider adjusts data globally for all tables and plots")
+    GW_range = st.slider('GW range', min_value=data['GW'].min(), max_value=data['GW'].max(), value=(data['GW'].min(), data['GW'].max()), step=1, help="Select the range of gameweeks to display data for. This slider adjusts data globally for all tables and plots", key="GW_range")
     GW_range = list(GW_range)
 
     # Filter the DataFrame by the selected GW range
     data = data[(data['GW'] >= GW_range[0]) & (data['GW'] <= GW_range[1])]
 
     if GW_range[0] != GW_range[1]:
-        selected_aggregation_method = st.sidebar.selectbox('Select Aggregation Method', ['mean', 'sum'])
-        print(f"selected_aggregation_method: {selected_aggregation_method}")
+        selected_aggregation_method = st.sidebar.selectbox('Select Aggregation Method', ['mean', 'sum'], key="aggregation_method")
 
-        # Define aggregation functions for numeric and non-numeric columns
         aggregation_functions = {col: selected_aggregation_method if data[col].dtype in [np.float64, np.int64] else 'first' for col in data.columns}
         aggregation_functions['Player'] = 'first'
         aggregation_functions['Team'] = most_recent_Team
@@ -394,88 +385,50 @@ def main():
         aggregation_functions['GW'] = 'nunique'
         aggregation_functions['GS'] = 'sum'
 
-        # print data before grouping
-        print(f"Data shape before grouping: {data.shape}")
-        print(f"Data columns before grouping: {data.columns.tolist()}")
-        print(f"Data head before grouping: {data.head()}")
-
-        # Group by player, Team, and position, and apply the aggregation functions
         data = data.groupby(['Player', 'Team', 'Position'], as_index=False).agg(aggregation_functions)
-
-        # print data after grouping
-        print(f"Data shape after grouping: {data.shape}")
-        print(f"Data columns after grouping: {data.columns.tolist()}")
-        print(f"Data head after grouping: {data.head()}")
-
-        # Handle additional calculations if needed
         data.rename(columns={'GW': 'GP'}, inplace=True)
         data['GS:GP'] = round(data['GS'] / data['GP'].max(), 2).apply(lambda x: f"{x:.2f}")
 
-        # Adjust DEFAULT_COLUMNS if needed
         if 'GP' not in DEFAULT_COLUMNS:
             DEFAULT_COLUMNS.append('GP')
+
         DEFAULT_COLUMNS = ['Player', 'Team', 'Position', 'GS:GP'] + [col for col in DEFAULT_COLUMNS if col not in ['Player', 'Team', 'Position', 'GS:GP', 'GW']]
 
-    # Sidebar filters for Team and Position
     selected_Teams = create_sidebar_multiselect(data, 'Team', 'Select Teams', default_all=True, key_suffix="teams")
     selected_positions = create_sidebar_multiselect(data, 'Position', 'Select Positions', default_all=True, key_suffix="positions")
 
-    # Filter data based on selected options
     filtered_data = filter_data(data, selected_Teams, selected_positions)
 
-    print(f"Filtered data shape: {filtered_data.shape}")
-    print(f"Filtered data columns: {filtered_data.columns.tolist()}")
-    print(f"Filtered data head: {filtered_data.head()}")
-
     col_groups = {key.capitalize(): [col.capitalize() for col in value] for key, value in col_groups.items()}
-
-    # User selects the group and columns to show
     selected_group = st.sidebar.selectbox("Select Stats Grouping", list(col_groups.keys()))
-
     selected_columns = col_groups[selected_group]
-    print(f"selected_columns: {col_groups[selected_group]}")
-
-    print(f"data.columns: {data.columns.tolist()}")
-
     selected_columns = [col for col in selected_columns if col in data.columns]
-    print(f"selected_columns: {[col for col in selected_columns if col in data.columns]}")
 
-    # Apply the second level of grouping if Position or Team is selected
-    grouping_option = st.sidebar.selectbox("Select Grouping Option", ['None', 'Position', 'Team'])
+    grouping_option = st.sidebar.selectbox("Select Grouping Option", ['None', 'Position', 'Team'], key="grouping_option")
+
+    if grouping_option == 'None':
+        set_index_to_player = st.sidebar.checkbox('Set index to Player', False)
+
     if grouping_option != 'None':
-        print(f"grouping_option is not None, grouping_option selected: {grouping_option}")
         grouped_data = group_data(filtered_data, selected_columns, grouping_option, selected_aggregation_method)
-        print(grouped_data.head())
     else:
-        print(f"grouping_option is None, grouping_option selected: {grouping_option}")
         grouped_data = filtered_data
-        print(grouped_data.head())
+
+        if set_index_to_player:
+            grouped_data.set_index('Player', inplace=True)
 
     grouped_data = grouped_data.applymap(round_and_format)
-
     columns_to_show = list(DEFAULT_COLUMNS) + selected_columns
 
     if grouping_option != 'None':
         if grouping_option.capitalize() not in columns_to_show:
             columns_to_show.insert(0, grouping_option.capitalize())
-        else:
-            print(f"{grouping_option.capitalize()} is already in columns_to_show.")
 
-    print(f"columns_to_show: {columns_to_show}")
-
-    # Style DataFrame, Round, and Format
     styled_df = style_dataframe_custom(grouped_data[columns_to_show], columns_to_show, False)
 
-    print("Type of styled_df: ", type(styled_df))
-
-    # apply the format_col_names to grouped data
-    # grouped_data = grouped_data.applymap(round_and_format)
-
-    # Display the DataFrame
-    st.header(f"Premier League Players' Statistics grouped by: {selected_group}")
+    st.header(f"Premier League Players' Statistics ({selected_group})")
     st.dataframe(grouped_data[columns_to_show].style.apply(lambda _: styled_df, axis=None), use_container_width=True, height=(len(grouped_data) * 38) + 50 if grouping_option != 'None' else 50 * 20)
 
-    # Create plot
     create_plot(selected_group, selected_columns, selected_positions, selected_Teams, grouped_data, grouping_option)
 
 if __name__ == "__main__":
