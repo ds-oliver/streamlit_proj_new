@@ -49,7 +49,7 @@ from constants import stats_cols, shooting_cols, passing_cols, passing_types_col
 
 from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default, all_gws_data # this is the file we want to read in
 
-from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, style_dataframe_v2, get_color, get_color_from_palette, round_and_format, create_custom_cmap, style_dataframe_custom, add_construction
+from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, style_dataframe_v2, get_color, get_color_from_palette, round_and_format, create_custom_cmap, style_dataframe_custom, add_construction, display_date_of_update
 
 # def get_color(value, cmap):
 #     color_fraction = value
@@ -124,10 +124,6 @@ def process_data(all_gws_data, temp_default, col_groups):
     df.rename(columns={col: col.replace('Xg', 'xG') for col in df.columns if col.startswith('Xg')}, inplace=True)
 
     return df, DEFAULT_COLUMNS, date_of_update, col_groups
-
-# we want to add a date of last data update to the page
-def display_date_of_update(date_of_update):
-    st.sidebar.write(f'Last updated: {date_of_update}')
     
 # Function to load the data
 # @st.cache_resource
@@ -433,7 +429,7 @@ def main():
     styled_df = style_dataframe_custom(grouped_data[columns_to_show], columns_to_show, False)
 
     st.header(f"Premier League Players' Statistics ({selected_group})")
-    st.dataframe(grouped_data[columns_to_show].style.apply(lambda _: styled_df, axis=None), use_container_width=True, height=(len(grouped_data) * 38) + 50 if grouping_option != 'None' else 50 * 20)
+    st.dataframe(grouped_data[columns_to_show].style.apply(lambda _: styled_df, axis=None), use_container_width=True, height=(len(grouped_data) * 25) + 50 if grouping_option != 'None' else 35 * 20)
 
     create_plot(selected_group, selected_columns, selected_positions, selected_Teams, grouped_data, grouping_option)
 

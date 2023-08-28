@@ -31,6 +31,8 @@ from constants import color1, color2, color3, color4, color5, cm
 def add_construction():
     return st.info(""":orange[This app is under construction]""", icon='🏗️')
 
+def display_date_of_update(date_of_update):
+    st.write(f'Last data refresh: {date_of_update}')
 
 def load_data_from_db():
     """
