@@ -148,11 +148,15 @@ def group_data(df, selected_columns, grouping_option, aggregation_option='sum'):
     return grouped_df
 
 def get_grouping_values_and_column(grouping_option, selected_positions, selected_Teams, grouped_df, selected_stats_for_plot):
+    grouped_df[selected_stats_for_plot] = grouped_df[selected_stats_for_plot].apply(pd.to_numeric, errors='coerce')
+
     if grouping_option == 'Position':
-        return selected_positions, 'position'
+        return selected_positions, 'Position'
     elif grouping_option == 'Team':
         return selected_Teams, 'Team'
     else:
+        # convert the selected_stats_for_plot datatypes to numeric
+        # grouped_df[selected_stats_for_plot] = grouped_df[selected_stats_for_plot].apply(pd.to_numeric, errors='coerce')
         top_players = grouped_df.nlargest(25, selected_stats_for_plot)
         return top_players['Player'].tolist(), 'Player'
 
@@ -187,8 +191,12 @@ def create_plot(selected_group, selected_columns, selected_positions, selected_T
             grouping_values, grouping_column = get_grouping_values_and_column(grouping_option, selected_positions, selected_Teams, grouped_df, selected_stats_for_plot)
             
             add_bar_traces(fig, selected_stats_for_plot, grouping_values, grouped_df, grouping_column, stat_colors)
-            
-            title = f'Comparison of Selected {grouping_option} for Selected Statistics'
+            if grouping_option == 'None':
+                    title = f'Plotting of Players for Selected Statistics'
+            else:
+                title = f'Plotting of Selected {grouping_option} for Selected Statistics'
+
+                
             fig.update_layout(
                 title=title,
                 xaxis_title=grouping_option if grouping_option != 'None' else 'Players',
@@ -327,7 +335,8 @@ def style_dataframe_custom(df, selected_columns, custom_cmap=None):
             "F": "background-color: #03071e"
         }
         styled_df[position_column] = df[position_column].apply(lambda x: position_colors[x])
-        styled_df['Player'] = df[position_column].apply(lambda x: position_colors[x])
+        if 'Player' in df.columns:
+            styled_df['Player'] = df[position_column].apply(lambda x: position_colors[x])
 
     for col in df.columns:
         if col in ['Player', position_column]:
@@ -413,6 +422,7 @@ def main():
 
     if grouping_option != 'None':
         grouped_data = group_data(filtered_data, selected_columns, grouping_option, selected_aggregation_method)
+        print(f"Grouped Data columns: {grouped_data.columns.tolist()}")
     else:
         grouped_data = filtered_data
 
@@ -421,6 +431,7 @@ def main():
 
     grouped_data = grouped_data.applymap(round_and_format)
     columns_to_show = list(DEFAULT_COLUMNS) + selected_columns
+    columns_to_show = [col for col in columns_to_show if col in grouped_data.columns]
 
     if grouping_option != 'None':
         if grouping_option.capitalize() not in columns_to_show:
@@ -429,6 +440,12 @@ def main():
     styled_df = style_dataframe_custom(grouped_data[columns_to_show], columns_to_show, False)
 
     st.header(f"Premier League Players' Statistics ({selected_group})")
+
+    # print columns as list
+    print("Grouped Data Columns: ", print(grouped_data[columns_to_show].columns.tolist()))
+
+    print("Styled Data Columns: ", print(styled_df.columns.tolist()))
+
     st.dataframe(grouped_data[columns_to_show].style.apply(lambda _: styled_df, axis=None), use_container_width=True, height=(len(grouped_data) * 25) + 50 if grouping_option != 'None' else 35 * 20)
 
     create_plot(selected_group, selected_columns, selected_positions, selected_Teams, grouped_data, grouping_option)

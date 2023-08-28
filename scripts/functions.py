@@ -1552,7 +1552,8 @@ def style_dataframe_custom(df, selected_columns, custom_cmap=None):
             "F": "background-color: #03071e"
         }
         styled_df[position_column] = df[position_column].apply(lambda x: position_colors[x])
-        styled_df['Player'] = df[position_column].apply(lambda x: position_colors[x])
+        if 'Player' in df.columns:
+            styled_df['Player'] = df[position_column].apply(lambda x: position_colors[x])
 
     for col in df.columns:
         if col in ['Player', position_column]:
