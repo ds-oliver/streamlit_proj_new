@@ -968,7 +968,7 @@ def dropdown_for_player_stats(players_only_df, selected_player, selected_season,
         for i, selected_stat in enumerate(selected_stats)
     ]
 
-    return selected_player, selected_season, *selected_stats, seasons, all_seasons_selected
+    return selected_player, selected_season, *selected_stats
 
 def dropdown_for_player_stats(players_only_df, selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5):
 
@@ -1471,7 +1471,7 @@ def display_date_of_update(date_of_update):
 
 # Function to load the data
 def load_data():
-    return process_data(pl_data_gw1, temp_default)
+    return process_data(df, df2)
 
 def get_color(value, cmap):
     color_fraction = value
