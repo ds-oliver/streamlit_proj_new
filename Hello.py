@@ -1,12 +1,16 @@
 import streamlit as st
 
+from functions import add_construction
+
 st.set_page_config(
     layout="wide"
 )
 
 def main():
+    
+    add_construction()
+
     st.title('Fantasy Soccer Data Science Hub')
-    st.info("""This is just a placeholder""", icon='ℹ')
     st.write("""
     Welcome to the Fantasy Soccer Data Science Hub! Explore, analyze, and gain insights from the world of soccer with our suite of tools, data visualizations, and predictive models.
     """)
