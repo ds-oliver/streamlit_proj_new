@@ -26,14 +26,18 @@ import matplotlib.colors as mcolors
 import matplotlib
 from collections import Counter
 
+"""_summary_
+
+scraped data from : /Users/hogan/dev/fbref/scripts/rfx_scrape/fbref-scrape-current-year.py
+
+"""
+
 # logger = st.logger
 
 warnings.filterwarnings('ignore')
 
 scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 sys.path.append(scripts_path)
-
-from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues, col_groups
 
 print("Scripts path:", scripts_path)
 
@@ -43,9 +47,11 @@ st.set_page_config(
     layout="wide"
 )
 
+from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues, col_groups
+
 from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default, all_gws_data # this is the file we want to read in
 
-from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, style_dataframe_v2, get_color, get_color_from_palette, round_and_format, create_custom_cmap, style_dataframe_custom
+from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, style_dataframe_v2, get_color, get_color_from_palette, round_and_format, create_custom_cmap, style_dataframe_custom, add_construction
 
 # def get_color(value, cmap):
 #     color_fraction = value
@@ -362,6 +368,8 @@ def style_dataframe_custom(df, selected_columns, custom_cmap=None):
 
 def main():
     
+    add_construction()
+
     # Load the data
     data, DEFAULT_COLUMNS, date_of_update, col_groups = load_data()
 

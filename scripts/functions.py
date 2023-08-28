@@ -30,6 +30,10 @@ sys.path.append(os.path.abspath(os.path.join('./scripts')))
 
 from constants import color1, color2, color3, color4, color5, cm
 
+def add_construction():
+    return st.info(""":orange[This page is under construction]""", icon='🏗️')
+
+
 def load_data_from_db():
     """
     This function loads data from two tables in a SQLite database.

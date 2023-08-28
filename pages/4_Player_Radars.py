@@ -29,13 +29,15 @@ from constants import color1, color2, color3, color4, color5, cm
 
 from files import big5_players_csv
 
-from functions import dropdown_for_player_stats, rename_columns, process_player_data, convert_to_int, min_max_scale
+from functions import dropdown_for_player_stats, rename_columns, process_player_data, convert_to_int, min_max_scale, add_construction
 
 # suppress settings
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 st.set_option('deprecation.showfileUploaderEncoding', False)
 st.set_option('deprecation.showPyplotGlobalUse', False)
+
+add_construction()
 
 @st.cache_resource
 def app(raw_data):

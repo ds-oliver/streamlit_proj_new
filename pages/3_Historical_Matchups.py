@@ -29,7 +29,7 @@ from constants import color1, color2, color3, color4, color5, cm
 
 from files import big5_players_csv, players_matches_csv, teams_matches_csv
 
-from functions import load_data_from_csv, rename_columns, clean_data, create_multiselect_seasons, create_dropdown_teams, filter_df_by_team_and_opponent, display_qual_stats, display_quant_stats, get_results_df, match_quick_facts, get_teams_stats, show_teams_stats_v2
+from functions import load_data_from_csv, rename_columns, clean_data, create_multiselect_seasons, create_dropdown_teams, filter_df_by_team_and_opponent, display_qual_stats, display_quant_stats, get_results_df, match_quick_facts, get_teams_stats, show_teams_stats_v2, add_construction
 
 # suppress settings
 
@@ -74,6 +74,8 @@ def app_display(selected_teams_df, grouped_player_df, selected_team, selected_op
     match_quick_facts(results_df, grouped_player_df, selected_team, selected_opponent)
 
 def app():
+    
+    add_construction()
     
     # title
     st.title('Historical Matchups')
