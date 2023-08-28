@@ -24,11 +24,8 @@ import pstats
 import io
 import matplotlib.colors as mcolors
 
-"""_summary_
 
-scraped data from : /Users/hogan/dev/fbref/scripts/rfx_scrape/match_results_project/premierleague/main/test-weekly-match-reports.py
-"""
-
+# scraped data from : /Users/hogan/dev/fbref/scripts/rfx_scrape/match_results_project/premierleague/main/test-weekly-match-reports.py
 
 # logger = st.logger
 

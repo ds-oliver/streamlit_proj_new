@@ -26,11 +26,9 @@ import matplotlib.colors as mcolors
 import matplotlib
 from collections import Counter
 
-"""_summary_
 
-scraped data from : /Users/hogan/dev/fbref/scripts/rfx_scrape/fbref-scrape-current-year.py
 
-"""
+# scraped data from : /Users/hogan/dev/fbref/scripts/rfx_scrape/fbref-scrape-current-year.py
 
 # logger = st.logger
 
