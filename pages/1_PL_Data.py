@@ -244,7 +244,6 @@ def create_pivot_table(data, DEFAULT_COLUMNS, col_groups):
     except Exception as e:
         st.warning(f"An error occurred while creating the pivot table: {e}")
 
-
 def create_multi_index(data, DEFAULT_COLUMNS):
     index_level_1 = st.sidebar.selectbox('Select First Index for Multi-level', DEFAULT_COLUMNS)
     index_level_2 = st.sidebar.selectbox('Select Second Index for Multi-level', DEFAULT_COLUMNS)
@@ -271,50 +270,6 @@ def format_col_names(df, default_columns):
 
     df.rename(columns={col: col.replace('_', ' ').title() for col in df.columns if col not in default_columns}, inplace=True)
     return df
-
-# def style_dataframe_custom(df, selected_columns, custom_cmap=None):
-#     if custom_cmap:
-#         object_cmap = custom_cmap
-#     else:
-#         object_cmap = create_custom_cmap() # Customized color map
-
-#     Team_cmap = plt.cm.get_cmap('icefire')
-
-#     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
-
-#     position_column = 'Position' if 'Position' in df.columns else 'Position' if 'Position' in df.columns else None
-
-#     if position_column:
-#         position_colors = {
-#             "D": "background-color: #6d597a",
-#             "M": "background-color: #370617",
-#             "F": "background-color: #03071e"
-#         }
-#         styled_df[position_column] = df[position_column].apply(lambda x: position_colors[x])
-#         styled_df['Player'] = df[position_column].apply(lambda x: position_colors[x])
-
-#     for col in df.columns:
-#         if col in ['Player', position_column, 'Team']:
-#             continue
-
-#         unique_values = df[col].unique()
-#         if len(unique_values) <= 3:  # Columns with 3 or less unique values
-#             constant_colors = ["color: #eae2b7", "color: #FDFEFE", "color: #FDFAF9"] # first is slightly off-white, second is light yellow, second is pale blue
-#             # You can define colors here
-#             color_mapping = {val: color for val, color in zip(unique_values, constant_colors[:len(unique_values)])}
-#             styled_df[col] = df[col].apply(lambda x: color_mapping[x])
-#         elif 'Team' in df.columns:
-#             min_val = df[col].min()
-#             max_val = df[col].max()
-#             range_val = float(max_val) - float(min_val)
-#             styled_df[col] = df[col].astype(float).apply(lambda x: get_color((x - float(min_val)) / float(range_val), mpl_cm.get_cmap('magma')))
-
-#         else:
-#             min_val = float(df[col].min())  # Convert to float
-#             max_val = float(df[col].max())  # Convert to float
-#             styled_df[col] = df[col].apply(lambda x: f'color: {matplotlib.colors.to_hex(object_cmap((float(x) - min_val) / (max_val - min_val)))}' if min_val != max_val else '')
-
-#     return styled_df
 
 def style_dataframe_custom(df, selected_columns, custom_cmap=None):
     if custom_cmap:
