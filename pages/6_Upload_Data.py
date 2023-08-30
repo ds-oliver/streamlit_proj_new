@@ -5,7 +5,6 @@ import sys
 from warnings import filterwarnings
 import base64
 
-
 filterwarnings('ignore')
 
 st.set_page_config(
@@ -18,15 +17,14 @@ st.set_page_config(
 scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 sys.path.append(scripts_path)
 
-from files import gw4_projections, fx_gif  # Add other imports
-from functions import load_csv  # Add other imports
+from files import gw4_projections, fx_gif
+from functions import load_csv, add_construction
 
-# retrieve local gif file
 def local_gif(file_path):
     with open(file_path, "rb") as file_:
         contents = file_.read()
         data_url = base64.b64encode(contents).decode("utf-8")
-        
+
     return st.markdown(
         f'<img src="data:image/gif;base64,{data_url}" alt="download data">',
         unsafe_allow_html=True,
@@ -45,36 +43,35 @@ def filter_by_status_and_position(players, projections, status):
         selected_players = pos_players.nlargest(limit, 'ProjFPts')
         final_list.append(selected_players)
 
-    result = pd.concat(final_list).reset_index(drop=True)
-    result = result.nlargest(10, 'ProjFPts').reset_index(drop=True)
-    result.sort_values(by='Pos', key=lambda x: x.map({'D': 1, 'M': 2, 'F': 3}), inplace=True)
-
-    top_10 = result.head(10)
-    reserves = pd.concat([result, top_10]).drop_duplicates(keep=False).reset_index(drop=True)
+    top_10 = pd.concat(final_list).nlargest(10, 'ProjFPts')
+    top_10.sort_values(by='Pos', key=lambda x: x.map({'D': 1, 'M': 2, 'F': 3}), inplace=True)
     
+    reserves = projections.drop(top_10.index).reset_index(drop=True)
+
     return top_10, reserves
 
 def main():
-    uploaded_file = st.file_uploader("Upload a file", type="csv")
+    add_construction()
 
-    # call local gif file
     local_gif(fx_gif)
+    
+    uploaded_file = st.file_uploader("Upload a file", type="csv")
 
     if uploaded_file:
         players = pd.read_csv(uploaded_file)
-        projections = load_csv(gw4_projections)  # Assuming load_csv is a function that reads the csv file into a DataFrame
-
+        projections = load_csv(gw4_projections)
+        
         unique_statuses = [status for status in players['Status'].unique() if status != 'W (Thu)']
         status = st.selectbox('Status', unique_statuses)
 
         if st.button('Get data'):
             st.write("### Top 10 Outfielders and Reserves based on the Selected Status")
             
-        top_10, reserves = filter_by_status_and_position(players, projections, status)
-        st.write("### Top 10 Outfielders")
-        st.write(top_10)
-        st.write("### Reserves")
-        st.write(reserves)
+            top_10, reserves = filter_by_status_and_position(players, projections, status)
+            st.write("### Top 10 Outfielders")
+            st.write(top_10)
+            st.write("### Reserves")
+            st.write(reserves)
 
 if __name__ == "__main__":
     main()
