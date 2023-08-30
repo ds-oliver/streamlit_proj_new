@@ -23,14 +23,14 @@ from functions import load_csv  # Add other imports
 
 # retrieve local gif file
 def local_gif(file_path):
-    file_ = open(file_path, "rb")
-    contents = file_.read()
-    data_url = base64.b64encode(contents).decode("utf-8")
-    file_.close()
+    with open(file_path, "rb") as file_:
+        contents = file_.read()
+        data_url = base64.b64encode(contents).decode("utf-8")
+        
     return st.markdown(
-    f'<img src="data:image/gif;base64,{data_url}" alt="download data">',
-    unsafe_allow_html=True,
-)
+        f'<img src="data:image/gif;base64,{data_url}" alt="download data">',
+        unsafe_allow_html=True,
+    )
 
 def filter_by_status_and_position(players, projections, status):
     filtered_players = players[players['Status'] == status]
