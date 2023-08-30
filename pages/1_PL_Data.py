@@ -406,6 +406,8 @@ def main():
 
     print("Styled Data Columns: ", print(styled_df.columns.tolist()))
 
+    st.table(styled_df)
+
     st.dataframe(grouped_data[columns_to_show].style.apply(lambda _: styled_df, axis=None), use_container_width=True, height=(len(grouped_data) * 30) + 50 if grouping_option != 'None' else 35 * 20)
 
     create_plot(selected_group, selected_columns, selected_positions, selected_Teams, grouped_data, grouping_option)
