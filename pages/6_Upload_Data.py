@@ -3,6 +3,8 @@ import pandas as pd
 import os
 import sys
 from warnings import filterwarnings
+import base64
+
 
 filterwarnings('ignore')
 
@@ -16,8 +18,19 @@ st.set_page_config(
 scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 sys.path.append(scripts_path)
 
-from files import gw4_projections  # Add other imports
+from files import gw4_projections, fx_gif  # Add other imports
 from functions import load_csv  # Add other imports
+
+# retrieve local gif file
+def local_gif(file_path):
+    file_ = open(file_path, "rb")
+    contents = file_.read()
+    data_url = base64.b64encode(contents).decode("utf-8")
+    file_.close()
+    return st.markdown(
+    f'<img src="data:image/gif;base64,{data_url}" alt="download data">',
+    unsafe_allow_html=True,
+)
 
 def filter_by_status_and_position(players, projections, status):
     filtered_players = players[players['Status'] == status]
@@ -43,6 +56,9 @@ def filter_by_status_and_position(players, projections, status):
 
 def main():
     uploaded_file = st.file_uploader("Upload a file", type="csv")
+
+    # call local gif file
+    local_gif(fx_gif)
 
     if uploaded_file:
         players = pd.read_csv(uploaded_file)
