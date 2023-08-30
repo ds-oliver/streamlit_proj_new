@@ -16,7 +16,7 @@ st.set_page_config(
 scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 sys.path.append(scripts_path)
 
-from constants import gw4_projections  # Add other imports
+from files import gw4_projections  # Add other imports
 from functions import load_csv  # Add other imports
 
 def filter_by_status_and_position(players, projections):
