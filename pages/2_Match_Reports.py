@@ -102,11 +102,11 @@ from functions import scraping_current_fbref, normalize_encoding, clean_age_colu
 
 #     return styled_df
 
-@st.cache_resource
+@st.cache_data
 def read_data(file_path):
     return pd.read_csv(file_path)
 
-@st.cache_resource
+@st.cache_data
 def process_matches_data(matches_data, temp_data, matches_drop_cols):
     matches_df = read_data(matches_data)
     temp_df = read_data(temp_data)
@@ -163,7 +163,7 @@ def process_matches_data(matches_data, temp_data, matches_drop_cols):
     return matches_df, MATCHES_DEFAULT_COLS
 
 
-@st.cache_resource
+@st.cache_data
 def load_shots_data(shots_data):
     return read_data(shots_data)
 
@@ -212,7 +212,7 @@ def visualize_top_performers(top_performers_df, selected_stat):
     # display the plot
     st.plotly_chart(fig)
 
-@st.cache_resource
+@st.cache_data
 def process_data():
     matches_df, MATCHES_DEFAULT_COLS = process_matches_data(matches_data, temp_default, matches_drop_cols)
     shots_df = load_shots_data(shots_data)

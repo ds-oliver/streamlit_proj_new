@@ -77,7 +77,7 @@ from functions import scraping_current_fbref, normalize_encoding, clean_age_colu
 #             styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
 #     return styled_df
 
-@st.cache_resource
+@st.cache_data
 def process_data(all_gws_data, temp_default, col_groups):
     
     df = pd.read_csv(all_gws_data)
@@ -126,12 +126,12 @@ def process_data(all_gws_data, temp_default, col_groups):
     return df, DEFAULT_COLUMNS, date_of_update, col_groups
     
 # Function to load the data
-# @st.cache_resource
+# @st.cache_data
 def load_data():
     return process_data(all_gws_data, temp_default, col_groups)
 
 # Function to filter data based on selected Teams and positions
-# @st.cache_resource
+# @st.cache_data
 def filter_data(df, selected_Teams, selected_positions):
     return df[df['Team'].isin(selected_Teams) & df['Position'].isin(selected_positions)]
 
