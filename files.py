@@ -1,4 +1,6 @@
 # doc paths
+gw4_projections = 'data/projections/GW4 Projections.csv'
+
 big5_players_csv = 'data/data_out/scraped_big5_data/player_table_big5.csv'
 players_matches_csv = 'data/data_out/final_data/csv_files/results.csv'
 teams_matches_csv = 'data/data_out/final_data/csv_files/players.csv'
