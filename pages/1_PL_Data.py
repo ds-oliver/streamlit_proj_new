@@ -27,8 +27,8 @@ import matplotlib
 from collections import Counter
 from streamlit_extras.dataframe_explorer import dataframe_explorer
 from markdownlit import mdlit
-# from streamlit_extras.metric_cards import style_metric_cards
-# from streamlit_extras.stylable_container import stylable_container
+from streamlit_extras.metric_cards import style_metric_cards
+from streamlit_extras.stylable_container import stylable_container
 
 
 
