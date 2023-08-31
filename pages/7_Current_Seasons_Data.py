@@ -14,7 +14,7 @@ import plotly.express as px
 import warnings
 # from sklearn.preprocessing import MinMaxScaler
 # from sklearn.preprocessing import StandardScaler
-# import unicodedf
+# import unicodedata
 import plotly.graph_objects as go
 # from bs4 import BeautifulSoup
 import matplotlib.cm as mpl_cm
@@ -25,14 +25,14 @@ import io
 import matplotlib.colors as mcolors
 import matplotlib
 from collections import Counter
-from streamlit_extras.dfframe_explorer import dfframe_explorer
+from streamlit_extras.dataframe_explorer import dataframe_explorer
 from markdownlit import mdlit
 from streamlit_extras.metric_cards import style_metric_cards
 from streamlit_extras.stylable_container import stylable_container
 
 
 
-# scraped df from : /Users/hogan/dev/fbref/scripts/rfx_scrape/fbref-scrape-current-year.py
+# scraped data from : /Users/hogan/dev/fbref/scripts/rfx_scrape/fbref-scrape-current-year.py
 
 # logger = st.logger
 
@@ -51,9 +51,9 @@ st.set_page_config(
 
 from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues, matches_col_groups, matches_drop_cols, matches_default_cols, matches_drop_cols, matches_default_cols, matches_standard_cols, matches_passing_cols, matches_pass_types, matches_defense_cols, matches_possession_cols, matches_misc_cols
 
-from files import pl_df_gw1, temp_gw1_fantrax_default as temp_default, all_gws_df, pl_2018_2023, matches_df # this is the file we want to read in
+from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default, all_gws_data, pl_2018_2023, matches_data # this is the file we want to read in
 
-from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, style_dfframe_v2, get_color, get_color_from_palette, round_and_format, create_custom_cmap, style_dfframe_custom, add_construction, display_date_of_update
+from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, style_dataframe_v2, get_color, get_color_from_palette, round_and_format, create_custom_cmap, style_dataframe_custom, add_construction, display_date_of_update
 
 # def get_color(value, cmap):
 #     color_fraction = value
@@ -62,12 +62,12 @@ from functions import scraping_current_fbref, normalize_encoding, clean_age_colu
 #     text_color = 'white' if brightness < 0.7 else 'black'
 #     return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
 
-# def style_dfframe(df, selected_columns):
+# def style_dataframe(df, selected_columns):
 #     cm_coolwarm = cm.get_cmap('inferno')
 #     object_cmap = cm.get_cmap('gnuplot2')  # Choose a colormap for object columns
 
-#     # Create an empty dfFrame with the same shape as df
-#     styled_df = pd.dfFrame('', index=df.index, columns=df.columns)
+#     # Create an empty DataFrame with the same shape as df
+#     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
 #     for col in df.columns:
 #         if col == 'player':  # Skip the styling for the 'player' column
 #             continue
@@ -81,10 +81,10 @@ from functions import scraping_current_fbref, normalize_encoding, clean_age_colu
 #             styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
 #     return styled_df
 
-# @st.cache_df
-def process_df(matches_df, temp_default, matches_col_groups):
+# @st.cache_data
+def process_data(matches_data, temp_default, matches_col_groups):
     
-    df = pd.read_csv(matches_df)
+    df = pd.read_csv(matches_data)
     temp_df = pd.read_csv(temp_default)
 
     print("Shape of df before merging:", df.shape)
@@ -138,22 +138,22 @@ def process_df(matches_df, temp_default, matches_col_groups):
 
     print("Default columns:", MATCHES_DEFAULT_COLS)
 
-    date_of_update = datetime.fromtimestamp(os.path.getmtime(matches_df)).strftime('%d %B %Y')
+    date_of_update = datetime.fromtimestamp(os.path.getmtime(matches_data)).strftime('%d %B %Y')
 
     return df, MATCHES_DEFAULT_COLS, date_of_update
     
-# Function to load the df
-# @st.cache_df
-def load_df():
-    return process_df(matches_df, temp_default, matches_col_groups)
+# Function to load the data
+# @st.cache_data
+def load_data():
+    return process_data(matches_data, temp_default, matches_col_groups)
 
-# Function to filter df based on selected Teams and positions
-# @st.cache_df
-def filter_df(df, selected_Teams, selected_positions):
+# Function to filter data based on selected Teams and positions
+# @st.cache_data
+def filter_data(df, selected_Teams, selected_positions):
     return df[df['Team'].isin(selected_Teams) & df['Position'].isin(selected_positions)]
 
-# Function to group df based on selected options
-def group_df(df, selected_columns, grouping_option, aggregation_option='sum'):
+# Function to group data based on selected options
+def group_data(df, selected_columns, grouping_option, aggregation_option='sum'):
     aggregation_methods = {col: aggregation_option for col in selected_columns if df[col].dtype in [np.float64, np.int64]}
     if grouping_option == 'Position':
         grouped_df = df.groupby('Position').agg(aggregation_methods).reset_index()
@@ -172,7 +172,7 @@ def get_grouping_values_and_column(grouping_option, selected_positions, selected
     elif grouping_option == 'Team':
         return selected_Teams, 'Team'
     else:
-        # convert the selected_stats_for_plot dftypes to numeric
+        # convert the selected_stats_for_plot datatypes to numeric
         # grouped_df[selected_stats_for_plot] = grouped_df[selected_stats_for_plot].apply(pd.to_numeric, errors='coerce')
         top_players = grouped_df.nlargest(25, selected_stats_for_plot)
         return top_players['Player'].tolist(), 'Player'
@@ -233,17 +233,17 @@ def create_plot(selected_group, selected_columns, selected_positions, selected_T
 def most_recent_Team(Teams):
     return Teams.iloc[-1]
 
-def create_pivot_table(df, DEFAULT_COLUMNS, matches_col_groups):
+def create_pivot_table(data, DEFAULT_COLUMNS, matches_col_groups):
     # Debugging
-    st.write(f"df Shape: {df.shape}")
-    st.write(f"df Columns: {df.columns.tolist()}")
-    st.write(f"df Head: {df.head()}")
-    st.write(f"df Types: {df.dtypes}")
+    st.write(f"Data Shape: {data.shape}")
+    st.write(f"Data Columns: {data.columns.tolist()}")
+    st.write(f"Data Head: {data.head()}")
+    st.write(f"Data Types: {data.dtypes}")
     
     # Ensure 'Player' column is of type string
-    df['Player'] = df['Player'].astype(str)
+    data['Player'] = data['Player'].astype(str)
     
-    unique_players = df['Player'].unique()
+    unique_players = data['Player'].unique()
     st.write(f"Unique values in Player: {unique_players}")
 
     pivot_index = st.sidebar.selectbox('Select Index for Pivot Table', DEFAULT_COLUMNS)
@@ -252,21 +252,21 @@ def create_pivot_table(df, DEFAULT_COLUMNS, matches_col_groups):
     pivot_agg_func = st.sidebar.selectbox('Select Aggregation Function for Pivot Table', ['mean', 'sum', 'count', 'min', 'max'])
 
     selected_columns = matches_col_groups[selected_group]
-    selected_columns = [col for col in selected_columns if col in df.columns]
+    selected_columns = [col for col in selected_columns if col in data.columns]
 
     try:
-        pivot_table = pd.pivot_table(df, values=pivot_values, index=pivot_index, columns=selected_columns, aggfunc=pivot_agg_func)
+        pivot_table = pd.pivot_table(data, values=pivot_values, index=pivot_index, columns=selected_columns, aggfunc=pivot_agg_func)
         st.write(f"Pivot Table by {pivot_index}, {selected_columns}, and {pivot_values} with {pivot_agg_func} aggregation")
         st.write(pivot_table)
     except Exception as e:
         st.warning(f"An error occurred while creating the pivot table: {e}")
 
-def create_multi_index(df, DEFAULT_COLUMNS):
+def create_multi_index(data, DEFAULT_COLUMNS):
     index_level_1 = st.sidebar.selectbox('Select First Index for Multi-level', DEFAULT_COLUMNS)
     index_level_2 = st.sidebar.selectbox('Select Second Index for Multi-level', DEFAULT_COLUMNS)
     
-    multi_index_df = df.set_index([index_level_1, index_level_2])
-    st.write(f"dfFrame with Multi-level Indexing by {index_level_1} and {index_level_2}")
+    multi_index_df = data.set_index([index_level_1, index_level_2])
+    st.write(f"DataFrame with Multi-level Indexing by {index_level_1} and {index_level_2}")
     st.write(multi_index_df)
 
 def format_col_names(df, default_columns):
@@ -276,7 +276,7 @@ def format_col_names(df, default_columns):
     df.rename(columns={col: col.replace('_', ' ').title() for col in df.columns if col not in default_columns}, inplace=True)
     return df
 
-def style_dfframe_custom(df, selected_columns, custom_cmap=None):
+def style_dataframe_custom(df, selected_columns, custom_cmap=None):
     if custom_cmap:
         object_cmap = custom_cmap
     else:
@@ -284,7 +284,7 @@ def style_dfframe_custom(df, selected_columns, custom_cmap=None):
 
     Team_cmap = plt.cm.get_cmap('magma')
 
-    styled_df = pd.dfFrame('', index=df.index, columns=df.columns)
+    styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
 
     position_column = 'Position' if 'Position' in df.columns else 'Position' if 'Position' in df.columns else None
 
@@ -342,92 +342,92 @@ def main():
     "Passing Types": matches_pass_types
 }
 
-    # Load the df
-    df, DEFAULT_COLUMNS, date_of_update = load_df()
+    # Load the data
+    data, DEFAULT_COLUMNS, date_of_update = load_data()
 
-    # Display the date of last df update
+    # Display the date of last data update
     display_date_of_update(date_of_update)
 
-    # if Gw exist in df then rename it to GW
-    if 'Gw' in df.columns:
-        df.rename(columns={'Gw': 'GW'}, inplace=True)
+    # if Gw exist in data then rename it to GW
+    if 'Gw' in data.columns:
+        data.rename(columns={'Gw': 'GW'}, inplace=True)
 
-    # if Started exist in df rename is GS
-    if 'Started' in df.columns:
-        df.rename(columns={'Started': 'GS'}, inplace=True)
+    # if Started exist in data rename is GS
+    if 'Started' in data.columns:
+        data.rename(columns={'Started': 'GS'}, inplace=True)
 
     # Create a sidebar slider to select the GW range
-    GW_range = st.slider('GW range', min_value=df['GW'].min(), max_value=df['GW'].max(), value=(df['GW'].min(), df['GW'].max()), step=1, help="Select the range of gameweeks to display df for. This slider adjusts df globally for all tables and plots", key="GW_range")
+    GW_range = st.slider('GW range', min_value=data['GW'].min(), max_value=data['GW'].max(), value=(data['GW'].min(), data['GW'].max()), step=1, help="Select the range of gameweeks to display data for. This slider adjusts data globally for all tables and plots", key="GW_range")
     GW_range = list(GW_range)
 
-    print(df.columns.tolist())
+    print(data.columns.tolist())
 
-    # Filter the dfFrame by the selected GW range
-    df = df[(df['GW'] >= GW_range[0]) & (df['GW'] <= GW_range[1])]
+    # Filter the DataFrame by the selected GW range
+    data = data[(data['GW'] >= GW_range[0]) & (data['GW'] <= GW_range[1])]
 
     if GW_range[0] != GW_range[1]:
         selected_aggregation_method = st.sidebar.selectbox('Select Aggregation Method', ['mean', 'sum'], key="aggregation_method")
 
-        aggregation_functions = {col: selected_aggregation_method if df[col].dtype in [np.float64, np.int64] else 'first' for col in df.columns}
+        aggregation_functions = {col: selected_aggregation_method if data[col].dtype in [np.float64, np.int64] else 'first' for col in data.columns}
         aggregation_functions['Player'] = 'first'
         aggregation_functions['Team'] = most_recent_Team
         aggregation_functions['Position'] = 'first'
         aggregation_functions['GW'] = 'nunique'
         aggregation_functions['GS'] = 'sum'
 
-        df = df.groupby(['Player', 'Team', 'Position'], as_index=False).agg(aggregation_functions)
-        df.rename(columns={'GW': 'GP'}, inplace=True)
-        df['GS:GP'] = round(df['GS'] / df['GP'].max(), 2).apply(lambda x: f"{x:.2f}")
+        data = data.groupby(['Player', 'Team', 'Position'], as_index=False).agg(aggregation_functions)
+        data.rename(columns={'GW': 'GP'}, inplace=True)
+        data['GS:GP'] = round(data['GS'] / data['GP'].max(), 2).apply(lambda x: f"{x:.2f}")
 
         if 'GP' not in DEFAULT_COLUMNS:
             DEFAULT_COLUMNS.append('GP')
 
         DEFAULT_COLUMNS = ['Player', 'Team', 'Position', 'GS:GP'] + [col for col in DEFAULT_COLUMNS if col not in ['Player', 'Team', 'Position', 'GS:GP', 'GW']]
 
-    selected_Teams = create_sidebar_multiselect(df, 'Team', 'Select Teams', default_all=True, key_suffix="teams")
-    selected_positions = create_sidebar_multiselect(df, 'Position', 'Select Positions', default_all=True, key_suffix="positions")
+    selected_Teams = create_sidebar_multiselect(data, 'Team', 'Select Teams', default_all=True, key_suffix="teams")
+    selected_positions = create_sidebar_multiselect(data, 'Position', 'Select Positions', default_all=True, key_suffix="positions")
 
-    filtered_df = filter_df(df, selected_Teams, selected_positions)
+    filtered_data = filter_data(data, selected_Teams, selected_positions)
 
     matches_col_groups = {key.capitalize(): [col.capitalize() for col in value] for key, value in matches_col_groups.items()}
     selected_group = st.sidebar.selectbox("Select Stats Grouping", list(matches_col_groups.keys()))
     selected_columns = matches_col_groups[selected_group]
-    selected_columns = [col for col in selected_columns if col in df.columns]
+    selected_columns = [col for col in selected_columns if col in data.columns]
 
     grouping_option = st.sidebar.selectbox("Select Grouping Option", ['None', 'Position', 'Team'], key="grouping_option")
 
     if grouping_option == 'None':
-        grouped_df = filtered_df
+        grouped_data = filtered_data
         set_index_to_player = st.sidebar.checkbox('Set index to Player', False)
         if set_index_to_player:
-            grouped_df.set_index('Player', inplace=True)
+            grouped_data.set_index('Player', inplace=True)
 
     if grouping_option != 'None':
-        grouped_df = group_df(filtered_df, selected_columns, grouping_option, selected_aggregation_method)
-        print(f"Grouped df columns: {grouped_df.columns.tolist()}")
+        grouped_data = group_data(filtered_data, selected_columns, grouping_option, selected_aggregation_method)
+        print(f"Grouped Data columns: {grouped_data.columns.tolist()}")
 
-    grouped_df = grouped_df.applymap(round_and_format)
+    grouped_data = grouped_data.applymap(round_and_format)
     columns_to_show = list(DEFAULT_COLUMNS) + selected_columns
-    columns_to_show = [col for col in columns_to_show if col in grouped_df.columns]
+    columns_to_show = [col for col in columns_to_show if col in grouped_data.columns]
 
     if grouping_option != 'None':
         if grouping_option.capitalize() not in columns_to_show:
             columns_to_show.insert(0, grouping_option.capitalize())
 
-    styled_df = style_dfframe_custom(grouped_df[columns_to_show], columns_to_show, False)
+    styled_df = style_dataframe_custom(grouped_data[columns_to_show], columns_to_show, False)
 
     st.header(f"Premier League Players' Statistics ({selected_group})")
 
     # print columns as list
-    print("Grouped df Columns: ", print(grouped_df[columns_to_show].columns.tolist()))
+    print("Grouped Data Columns: ", print(grouped_data[columns_to_show].columns.tolist()))
 
-    print("Styled df Columns: ", print(styled_df.columns.tolist()))
+    print("Styled Data Columns: ", print(styled_df.columns.tolist()))
 
-    filtered_df = dfframe_explorer(grouped_df[columns_to_show])
+    filtered_df = dataframe_explorer(grouped_data[columns_to_show])
 
-    st.dfframe(filtered_df.style.apply(lambda _: styled_df, axis=None), use_container_width=True, height=(len(grouped_df) * 30) + 50 if grouping_option != 'None' else 35 * 20)
+    st.dataframe(filtered_df.style.apply(lambda _: styled_df, axis=None), use_container_width=True, height=(len(grouped_data) * 30) + 50 if grouping_option != 'None' else 35 * 20)
 
-    create_plot(selected_group, selected_columns, selected_positions, selected_Teams, grouped_df, grouping_option)
+    create_plot(selected_group, selected_columns, selected_positions, selected_Teams, grouped_data, grouping_option)
 
 if __name__ == "__main__":
     pr = cProfile.Profile()
