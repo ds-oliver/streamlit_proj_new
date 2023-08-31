@@ -377,16 +377,14 @@ def main():
     grouping_option = st.sidebar.selectbox("Select Grouping Option", ['None', 'Position', 'Team'], key="grouping_option")
 
     if grouping_option == 'None':
+        grouped_data = filtered_data
         set_index_to_player = st.sidebar.checkbox('Set index to Player', False)
+        if set_index_to_player:
+            grouped_data.set_index('Player', inplace=True)
 
     if grouping_option != 'None':
         grouped_data = group_data(filtered_data, selected_columns, grouping_option, selected_aggregation_method)
         print(f"Grouped Data columns: {grouped_data.columns.tolist()}")
-    else:
-        grouped_data = filtered_data
-
-        if set_index_to_player:
-            grouped_data.set_index('Player', inplace=True)
 
     grouped_data = grouped_data.applymap(round_and_format)
     columns_to_show = list(DEFAULT_COLUMNS) + selected_columns
@@ -405,9 +403,9 @@ def main():
 
     print("Styled Data Columns: ", print(styled_df.columns.tolist()))
 
-    st.table(styled_df)
+    filtered_df = dataframe_explorer(grouped_data[columns_to_show])
 
-    st.dataframe(grouped_data[columns_to_show].style.apply(lambda _: styled_df, axis=None), use_container_width=True, height=(len(grouped_data) * 30) + 50 if grouping_option != 'None' else 35 * 20)
+    st.dataframe(filtered_df.style.apply(lambda _: styled_df, axis=None), use_container_width=True, height=(len(grouped_data) * 30) + 50 if grouping_option != 'None' else 35 * 20)
 
     create_plot(selected_group, selected_columns, selected_positions, selected_Teams, grouped_data, grouping_option)
 
