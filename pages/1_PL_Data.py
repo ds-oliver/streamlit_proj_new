@@ -41,9 +41,9 @@ warnings.filterwarnings('ignore')
 scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 sys.path.append(scripts_path)
 
-print("Scripts path:", scripts_path)
+# print("Scripts path:", scripts_path)
 
-print(sys.path)
+# print(sys.path)
 
 st.set_page_config(
     layout="wide"
@@ -51,7 +51,7 @@ st.set_page_config(
 
 from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues, col_groups
 
-from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default, all_gws_data # this is the file we want to read in
+from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default, all_gws_data, matches_data # this is the file we want to read in
 
 from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, style_dataframe_v2, get_color, get_color_from_palette, round_and_format, create_custom_cmap, style_dataframe_custom, add_construction, display_date_of_update
 
@@ -81,14 +81,15 @@ from functions import scraping_current_fbref, normalize_encoding, clean_age_colu
 #             styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
 #     return styled_df
 
-@st.cache_data
+# @st.cache_data
 def process_data(all_gws_data, temp_default, col_groups):
     
-    df = pd.read_csv(all_gws_data)
+    df = pd.read_csv(matches_data)
     temp_df = pd.read_csv(temp_default)
-
     # capitalize the column names
     df.columns = [col.capitalize() for col in df.columns]
+
+    print(df.columns.tolist())
 
     df = df.merge(temp_df[['Player', 'Position', 'Team']], on='Player', suffixes=('_df', '_temp'))
     df['Position'] = df['Position_temp']

@@ -81,24 +81,29 @@ from functions import scraping_current_fbref, normalize_encoding, clean_age_colu
 #             styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
 #     return styled_df
 
-@st.cache_data
+# @st.cache_data
 def process_data(all_gws_data, temp_default, col_groups):
     
     df = pd.read_csv(pl_2018_2023)
     temp_df = pd.read_csv(temp_default)
 
+    print("Shape of df before merging:", df.shape)
+
+    # drop where position_1 is 'GK'
+    df = df[df['position_1'] != 'GK']
+
+    df = pd.merge(df, temp_df[['Player', 'Position', 'Team']], left_on='player', right_on='Player', how='left')
+    print("Shape of df after merging:", df.shape)
+
+    # drop the 'Player' and 'team' columns
+    df.drop(columns=['Player', 'team'], inplace=True)
+
+    df.rename(columns={'Position': 'Pos'}, inplace=True)
+
     # capitalize the column names
     df.columns = [col.capitalize() for col in df.columns]
 
-    df = df.merge(temp_df[['Player', 'Position', 'Team']], on='Player', suffixes=('_df', '_temp'))
-    df['Position'] = df['Position_temp']
-    df['Team'] = df['Team_temp']
-
-    # drop where position is GK
-    df = df[df['Position'] != 'GK']
     df = df[df['Position'].notna()]
-
-    df.drop(columns=['Position_df', 'Team_df', 'Age'], inplace=True)
 
     # rename 'fantrax position' column to 'position'
     # df.rename(columns={'fantrax position': 'position'}, inplace=True)
