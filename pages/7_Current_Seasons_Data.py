@@ -401,9 +401,9 @@ def main():
 
     filtered_data = filter_data(data, selected_Teams, selected_positions)
 
-    matches_col_groups = {key.capitalize(): [col.capitalize() for col in value] for key, value in col_groups.items()}
-    selected_group = st.sidebar.selectbox("Select Stats Grouping", list(col_groups.keys()))
-    selected_columns = col_groups[selected_group]
+    matches_col_groups = {key.capitalize(): [col.capitalize() for col in value] for key, value in matches_col_groups.items()}
+    selected_group = st.sidebar.selectbox("Select Stats Grouping", list(matches_col_groups.keys()))
+    selected_columns = matches_col_groups[selected_group]
     selected_columns = [col for col in selected_columns if col in data.columns]
 
     grouping_option = st.sidebar.selectbox("Select Grouping Option", ['None', 'Position', 'Team'], key="grouping_option")
