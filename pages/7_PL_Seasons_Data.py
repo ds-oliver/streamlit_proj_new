@@ -49,9 +49,9 @@ st.set_page_config(
     layout="wide"
 )
 
-from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues, col_groups
+from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues, col_groups, matches_drop_cols, matches_default_cols
 
-from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default, all_gws_data, pl_2018_2023 # this is the file we want to read in
+from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default, all_gws_data, pl_2018_2023, matches_data # this is the file we want to read in
 
 from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, style_dataframe_v2, get_color, get_color_from_palette, round_and_format, create_custom_cmap, style_dataframe_custom, add_construction, display_date_of_update
 
@@ -82,62 +82,70 @@ from functions import scraping_current_fbref, normalize_encoding, clean_age_colu
 #     return styled_df
 
 # @st.cache_data
-def process_data(all_gws_data, temp_default, col_groups):
+def process_data(matches_data, temp_default, col_groups):
     
-    df = pd.read_csv(pl_2018_2023)
+    df = pd.read_csv(matches_data)
     temp_df = pd.read_csv(temp_default)
 
     print("Shape of df before merging:", df.shape)
-
-    # drop where position_1 is 'GK'
-    df = df[df['position_1'] != 'GK']
+    print(df.columns.tolist())
 
     df = pd.merge(df, temp_df[['Player', 'Position', 'Team']], left_on='player', right_on='Player', how='left')
     print("Shape of df after merging:", df.shape)
+    print(df.columns.tolist())
 
     # drop the 'Player' and 'team' columns
     df.drop(columns=['Player', 'team'], inplace=True)
 
-    df.rename(columns={'Position': 'Pos'}, inplace=True)
-
     # capitalize the column names
     df.columns = [col.capitalize() for col in df.columns]
 
-    df = df[df['Position'].notna()]
+    df = df[df['Position'] != 'GK']
 
-    # rename 'fantrax position' column to 'position'
-    # df.rename(columns={'fantrax position': 'position'}, inplace=True)
+    df = df[df['Position'].notna()]
 
     print(df.columns.tolist())
 
-    # create timestamp so we can use to display the date of the last data update
-    date_of_update = datetime.fromtimestamp(os.path.getmtime(all_gws_data)).strftime('%d %B %Y')
+    # rename GW column to 'gw'
+    df.rename(columns={'Gameweek': 'GW'}, inplace=True)
+    
+    for col in matches_drop_cols:
+        if col in df.columns:
+            df.drop(columns=col, inplace=True)
 
-    df['Games'] = df['Gameweek'].max()
+    # Apply the replace method only if the value is a string
+    # df['team'] = df['team'].apply(lambda x: x.replace(' Player Stats', '') if isinstance(x, str) else x)
 
-    # rename Games_starts to GS, Goals_assists to G+A, any column name that starts with xg to xG
-    if 'Games_starts' in df.columns:
-        df.rename(columns={'Games_starts': 'GS'}, inplace=True)
-    if 'Goals_assists' in df.columns:
-        df.rename(columns={'Goals_assists': 'G+A'}, inplace=True)
-    if 'Gameweek' in df.columns:
-        df.rename(columns={'Gameweek': 'GW'}, inplace=True)
+    df.drop_duplicates(subset=['Player', 'GW'], inplace=True)
 
-    # sort df by GS then G+A
-    df.sort_values(by=['GS', 'G+A'], ascending=False, inplace=True)
+    print("Columns in df after processing:", df.columns.tolist())
 
-    # Define default columns
-    DEFAULT_COLUMNS = ['Player', 'Position', 'Team','GS']
+    # capitalize format for the columns
+    df.columns = [col.capitalize() for col in df.columns.tolist()]
 
     # rename any column name that starts with xg to xG
-    df.rename(columns={col: col.replace('Xg', 'xG') for col in df.columns if col.startswith('Xg')}, inplace=True)
+    df.rename(columns={col: col.replace('X', 'x') for col in df.columns if col.startswith('X')}, inplace=True)
 
-    return df, DEFAULT_COLUMNS, date_of_update, col_groups
+    # if the column name starts with x and is 2 letters in length capitalize the second letter, if it starts with x and is 3 letters in length capitalize the second and third letters
+    df.rename(columns={col: col[:2] + col[2:].capitalize() if col.startswith('x') and len(col) == 2 else col[:2] + col[2:4].capitalize() + col[4:] if col.startswith('x') and len(col) == 3 else col for col in df.columns if col.startswith('x')}, inplace=True)
+
+    print("Columns in df after capitalizing:", df.columns.tolist())
+
+    MATCHES_DEFAULT_COLS = matches_default_cols
+
+    # capitalize format for the columns
+    MATCHES_DEFAULT_COLS = [col.capitalize() if col != 'GW' else col for col in MATCHES_DEFAULT_COLS]
+
+    print("Default columns:", MATCHES_DEFAULT_COLS)
+
+    date_of_update = datetime.fromtimestamp(os.path.getmtime(matches_data)).strftime('%d %B %Y')
+
+    return df, MATCHES_DEFAULT_COLS, date_of_update
     
 # Function to load the data
 # @st.cache_data
 def load_data():
-    return process_data(all_gws_data, temp_default, col_groups)
+    return process_data(matches_data, temp_default, col_groups)
 
 # Function to filter data based on selected Teams and positions
 # @st.cache_data
@@ -338,14 +346,20 @@ def main():
     add_construction()
 
     # Load the data
-    data, DEFAULT_COLUMNS, date_of_update, col_groups = load_data()
+    data, DEFAULT_COLUMNS, date_of_update = load_data()
 
     # Display the date of last data update
     display_date_of_update(date_of_update)
 
+    # if Gw exist in data then rename it to GW
+    if 'Gw' in data.columns:
+        data.rename(columns={'Gw': 'GW'}, inplace=True)
+
     # Create a sidebar slider to select the GW range
     GW_range = st.slider('GW range', min_value=data['GW'].min(), max_value=data['GW'].max(), value=(data['GW'].min(), data['GW'].max()), step=1, help="Select the range of gameweeks to display data for. This slider adjusts data globally for all tables and plots", key="GW_range")
     GW_range = list(GW_range)
+
+    print(data.columns.tolist())
 
     # Filter the DataFrame by the selected GW range
     data = data[(data['GW'] >= GW_range[0]) & (data['GW'] <= GW_range[1])]
