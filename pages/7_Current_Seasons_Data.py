@@ -49,7 +49,7 @@ st.set_page_config(
     layout="wide"
 )
 
-from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues, col_groups, matches_drop_cols, matches_default_cols, matches_drop_cols, matches_default_cols, matches_standard_cols, matches_passing_cols, matches_pass_types, matches_defense_cols, matches_possession_cols, matches_misc_cols
+from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues, matches_col_groups, matches_drop_cols, matches_default_cols, matches_drop_cols, matches_default_cols, matches_standard_cols, matches_passing_cols, matches_pass_types, matches_defense_cols, matches_possession_cols, matches_misc_cols
 
 from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default, all_gws_data, pl_2018_2023, matches_data # this is the file we want to read in
 
@@ -82,7 +82,7 @@ from functions import scraping_current_fbref, normalize_encoding, clean_age_colu
 #     return styled_df
 
 # @st.cache_data
-def process_data(matches_data, temp_default, col_groups):
+def process_data(matches_data, temp_default, matches_col_groups):
     
     df = pd.read_csv(matches_data)
     temp_df = pd.read_csv(temp_default)
@@ -145,7 +145,7 @@ def process_data(matches_data, temp_default, col_groups):
 # Function to load the data
 # @st.cache_data
 def load_data():
-    return process_data(matches_data, temp_default, col_groups)
+    return process_data(matches_data, temp_default, matches_col_groups)
 
 # Function to filter data based on selected Teams and positions
 # @st.cache_data
@@ -233,7 +233,7 @@ def create_plot(selected_group, selected_columns, selected_positions, selected_T
 def most_recent_Team(Teams):
     return Teams.iloc[-1]
 
-def create_pivot_table(data, DEFAULT_COLUMNS, col_groups):
+def create_pivot_table(data, DEFAULT_COLUMNS, matches_col_groups):
     # Debugging
     st.write(f"Data Shape: {data.shape}")
     st.write(f"Data Columns: {data.columns.tolist()}")
@@ -247,11 +247,11 @@ def create_pivot_table(data, DEFAULT_COLUMNS, col_groups):
     st.write(f"Unique values in Player: {unique_players}")
 
     pivot_index = st.sidebar.selectbox('Select Index for Pivot Table', DEFAULT_COLUMNS)
-    selected_group = st.sidebar.selectbox('Select Column Group for Pivot Table', list(col_groups.keys()))
+    selected_group = st.sidebar.selectbox('Select Column Group for Pivot Table', list(matches_col_groups.keys()))
     pivot_values = st.sidebar.selectbox('Select Values for Pivot Table', DEFAULT_COLUMNS)
     pivot_agg_func = st.sidebar.selectbox('Select Aggregation Function for Pivot Table', ['mean', 'sum', 'count', 'min', 'max'])
 
-    selected_columns = col_groups[selected_group]
+    selected_columns = matches_col_groups[selected_group]
     selected_columns = [col for col in selected_columns if col in data.columns]
 
     try:
@@ -268,18 +268,6 @@ def create_multi_index(data, DEFAULT_COLUMNS):
     multi_index_df = data.set_index([index_level_1, index_level_2])
     st.write(f"DataFrame with Multi-level Indexing by {index_level_1} and {index_level_2}")
     st.write(multi_index_df)
-
-col_groups = {
-    "Standard": stats_cols,
-    "Shooting": shooting_cols,
-    "Passing": passing_cols,
-    "Defense": defense_cols,
-    "Possession": possession_cols,
-    "Miscellaneous": misc_cols,
-    "Passing Types": passing_types_cols,
-    "GCA": gca_cols,
-    "Playing Time": playing_time_cols,
-}
 
 def format_col_names(df, default_columns):
     # do not format the default columns
