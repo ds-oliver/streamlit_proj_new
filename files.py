@@ -30,3 +30,5 @@ data_out = 'data/data_out'
 scraped_big5_data = 'data/data_out/scraped_big5_data'
 
 fx_gif = 'media/download_fantrax_data_demo.gif'
+
+pl_2018_2023 = 'data/data_out/scraped_big5_data/pl_data/player_table_2018_to_2023.csv'
