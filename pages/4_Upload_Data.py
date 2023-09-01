@@ -9,6 +9,13 @@ from streamlit_extras.dataframe_explorer import dataframe_explorer
 from markdownlit import mdlit
 from streamlit_extras.metric_cards import style_metric_cards
 from streamlit_extras.stylable_container import stylable_container
+from streamlit_extras.add_vertical_space import add_vertical_space
+from streamlit_extras.customize_running import center_running
+
+from files import gw4_projections, fx_gif
+from functions import load_csv, add_construction, load_css
+
+load_css()
 
 filterwarnings('ignore')
 
@@ -22,8 +29,6 @@ st.set_page_config(
 scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 sys.path.append(scripts_path)
 
-from files import gw4_projections, fx_gif
-from functions import load_csv, add_construction
 
 def local_gif(file_path):
     with open(file_path, "rb") as file_:
@@ -62,7 +67,9 @@ def main():
     """-> To get your optimal lineup navigate to [Fantrax league home](https://www.fantrax.com/fantasy/league/d41pycnmlj3bmk8y/players;statusOrTeamFilter=ALL;pageNumber=1;positionOrGroup=SOCCER_NON_GOALIE;miscDisplayType=1)...
         Follow the GIF below to populate the Players' data correctly <-
         """
-        )
+        )   
+    
+    add_vertical_space(2)
 
     local_gif(fx_gif)
     

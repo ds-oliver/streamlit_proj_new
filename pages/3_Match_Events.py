@@ -53,7 +53,7 @@ from constants import stats_cols, shooting_cols, passing_cols, passing_types_col
 
 from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default, matches_data, shots_data # this is the file we want to read in
 
-from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, create_custom_cmap, style_dataframe_custom, style_tp_dataframe_custom, load_csv, add_construction, round_and_format
+from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, create_custom_cmap, style_dataframe_custom, style_tp_dataframe_custom, load_csv, add_construction, round_and_format, load_css
 
 def main():
     

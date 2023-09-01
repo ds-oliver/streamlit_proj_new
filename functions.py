@@ -24,6 +24,9 @@ from matplotlib.cm import get_cmap
 import matplotlib
 from collections import Counter
 
+df = pd.DataFrame()
+df2 = pd.DataFrame()
+
 sys.path.append(os.path.abspath(os.path.join('./scripts')))
 
 from constants import color1, color2, color3, color4, color5, cm
@@ -31,6 +34,12 @@ from constants import color1, color2, color3, color4, color5, cm
 def add_construction():
     return st.info(""":orange[This app is under construction]""", icon='🏗️')
 
+def load_css(file_name="style.css"):
+    with open("style.css") as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+def display_date_of_update(date_of_update):
+    st.write(f'Last data refresh: {date_of_update}')
 
 def load_data_from_db():
     """
@@ -968,7 +977,7 @@ def dropdown_for_player_stats(players_only_df, selected_player, selected_season,
         for i, selected_stat in enumerate(selected_stats)
     ]
 
-    return selected_player, selected_season, *selected_stats, seasons, all_seasons_selected
+    return selected_player, selected_season, *selected_stats
 
 def dropdown_for_player_stats(players_only_df, selected_player, selected_season, selected_stat1, selected_stat2, selected_stat3, selected_stat4, selected_stat5):
 
@@ -1471,7 +1480,7 @@ def display_date_of_update(date_of_update):
 
 # Function to load the data
 def load_data():
-    return process_data(pl_data_gw1, temp_default)
+    return process_data(df, df2)
 
 def get_color(value, cmap):
     color_fraction = value
@@ -1550,7 +1559,8 @@ def style_dataframe_custom(df, selected_columns, custom_cmap=None):
             "F": "background-color: #03071e"
         }
         styled_df[position_column] = df[position_column].apply(lambda x: position_colors[x])
-        styled_df['Player'] = df[position_column].apply(lambda x: position_colors[x])
+        if 'Player' in df.columns:
+            styled_df['Player'] = df[position_column].apply(lambda x: position_colors[x])
 
     for col in df.columns:
         if col in ['Player', position_column]:

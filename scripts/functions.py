@@ -34,6 +34,10 @@ from constants import color1, color2, color3, color4, color5, cm
 def add_construction():
     return st.info(""":orange[This app is under construction]""", icon='🏗️')
 
+def load_css(file_name="style.css"):
+    with open("style.css") as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
 def display_date_of_update(date_of_update):
     st.write(f'Last data refresh: {date_of_update}')
 
