@@ -43,6 +43,21 @@ def local_gif(file_path):
         unsafe_allow_html=True,
     )
 
+# function that will get the average projected points for top 10 players across all managers within the same positionitional limits
+def get_avg_proj_pts(players, projections, status):
+    
+    average_proj_pts = 0
+
+    for status in players['Status'].unique():
+        top_10, reserves, top_10_proj_pts = filter_by_status_and_position(players, projections, status)
+
+        print(f"Average projected points for {status} top 10 players: {top_10_proj_pts}")
+
+        average_proj_pts += top_10_proj_pts
+
+    return average_proj_pts
+
+
 def filter_by_status_and_position(players, projections, status):
     # Filter players by status
     filtered_players = players[players['Status'] == status]
@@ -80,21 +95,6 @@ def filter_by_status_and_position(players, projections, status):
 
     return top_10, reserves, top_10_proj_pts
 
-# function that will get the average projected points for top 10 players across all managers within the same positional limits
-def get_avg_proj_pts(players, projections, status):
-    
-    average_proj_pts = 0
-
-    for status in players['Status'].unique():
-        top_10, reserves, top_10_proj_pts = filter_by_status_and_position(players, projections, status)
-
-        print(f"Average projected points for {status} top 10 players: {top_10_proj_pts}")
-
-        average_proj_pts += top_10_proj_pts
-
-    return average_proj_pts
-
-
 def main():
     # Adding construction banner or any other initial setups
     add_construction()
@@ -119,27 +119,18 @@ def main():
         # Assuming 'gw4_projections' is a file path or URL
         projections = load_csv(gw4_projections)  # Replace with the actual path
 
-        #rename 'W (Thu)' values in Status column to 'Waivers'
-        players.rename('W (Thu)': 'Waivers', inplace=True)
+        # Checking if 'W (Thu)' is in the 'Status' column and renaming it if needed    
+        players['Status'].replace({'W (Thu)': 'Waivers'}, inplace=True)
 
         # Extracting unique statuses except 'W (Thu)'
         unique_statuses = [status for status in players['Status'].unique() if status != 'Waivers']
 
-        # capitalizing the first letter of each unique_statuses
-        unique_statuses = [status.capitalize() for status in unique_statuses]
-
         # get dataframe of players with status 'W (Thu)'
         available_players = players[players['Status'] == 'Waivers']
-
-        # drop Status column
-        available_players.drop(columns=['Status'], inplace=True)
 
         # Dropdown for user to select team
         st.write("### Select your Fantasy team from the dropdown below")
         status = st.selectbox('List of Teams', unique_statuses)
-
-        # lowercase the status
-        status = status.lower()
 
         with stylable_container(
             key="green_button",
@@ -169,22 +160,22 @@ def main():
                     st.dataframe(reserves, use_container_width=True)
 
                 with col2:
+                    # Explicitly set the status to 'Waivers' here
+                    status_waivers = 'Waivers'
                     
-                    status = 'Waivers'
-                    
-                    # call filter_by_status_and_position function to get top 10 players and reserves
-                    top_10, reserves, top_10_proj_pts = filter_by_status_and_position(players, projections, 'Waivers')
+                    # Call filter_by_status_and_positionition function to get top 10 players and reserves
+                    top_10_waivers, reserves_waivers, _ = filter_by_status_and_position(available_players, projections, status_waivers)
 
-                    st.write(f"### {status} Best XI")
-                    st.dataframe(top_10, use_container_width=True)
+                    st.write(f"### {status_waivers} Best XI")
+                    st.dataframe(top_10_waivers, use_container_width=True)
                     st.write("### Reserves")
-                    st.dataframe(reserves, use_container_width=True)
+                    st.dataframe(reserves_waivers, use_container_width=True)
 
                     col1, col2 = st.columns(2)
 
                     with col1:
 
-                        # call get_avg_proj_pts function to get the average projected points for top 10 players across all managers within the same positional limits
+                        # call get_avg_proj_pts function to get the average projected points for top 10 players across all managers within the same positionitional limits
                         average_proj_pts = get_avg_proj_pts(players, projections, status)
 
                         # show the total projected points for top 10 players as style_metric_cards

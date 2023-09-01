@@ -25,7 +25,6 @@ import matplotlib
 from collections import Counter
 from markdownlit import mdlit
 
-
 df = pd.DataFrame()
 df2 = pd.DataFrame()
 
@@ -34,7 +33,7 @@ sys.path.append(os.path.abspath(os.path.join('./scripts')))
 from constants import color1, color2, color3, color4, color5, cm
 
 def add_construction():
-    return st.info("""### 🏗️ :orange[This app is under construction]""")
+    return st.info("""#### 🏗️ :orange[This app is under construction]""")
 
 def load_css(file_name="style.css"):
     with open("style.css") as f:
