@@ -1,15 +1,17 @@
 @font-face {
     font-family: 'HackNerdFontMono-Regular';
     src: url('fonts/HackNerdFontMono-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
 }
 
 html,
 body,
 [class*="css"] {
     font-family: 'HackNerdFontMono-Regular', monospace;
+    /* monospace will be the fallback */
     font-size: 18px;
     font-weight: 500;
-    color: #091747;
+    color: #fefae0;
+    /* Keeping text color same as config.toml */
+    background-color: #130B04;
+    /* Keeping background color same as config.toml */
 }
