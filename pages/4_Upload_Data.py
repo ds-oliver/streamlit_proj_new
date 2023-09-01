@@ -15,16 +15,16 @@ from streamlit_extras.customize_running import center_running
 from files import gw4_projections, fx_gif
 from functions import load_csv, add_construction, load_css
 
-load_css()
-
-filterwarnings('ignore')
-
 st.set_page_config(
     page_title="Footy Magic",
-    page_icon="🧊",
+    page_icon=":soccer:",
     layout="wide",
     initial_sidebar_state="expanded",
 )
+
+load_css()
+
+filterwarnings('ignore')
 
 scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 sys.path.append(scripts_path)

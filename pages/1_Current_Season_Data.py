@@ -30,6 +30,16 @@ from markdownlit import mdlit
 from streamlit_extras.metric_cards import style_metric_cards
 from streamlit_extras.stylable_container import stylable_container
 
+st.set_page_config(
+    page_title="Footy Magic",
+    page_icon=":soccer:",
+    layout="wide",  
+    initial_sidebar_state="expanded",
+    menu_items={
+
+    }
+)
+
 def load_css(file_name):
     with open(file_name) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)

@@ -28,6 +28,15 @@ from markdownlit import mdlit
 from streamlit_extras.metric_cards import style_metric_cards
 from streamlit_extras.stylable_container import stylable_container
 
+st.set_page_config(
+    page_title="Footy Magic",
+    page_icon=":soccer:",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    menu_items={
+
+    }
+)
 
 # scraped data from : /Users/hogan/dev/fbref/scripts/rfx_scrape/match_results_project/premierleague/main/test-weekly-match-reports.py
 
@@ -45,6 +54,8 @@ print(sys.path)
 st.set_page_config(
     layout="wide"
 )
+
+load_css()
 
 from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues, matches_drop_cols, matches_default_cols, matches_standard_cols, matches_passing_cols, matches_pass_types, matches_defense_cols, matches_possession_cols, matches_misc_cols
 
