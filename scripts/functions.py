@@ -24,6 +24,9 @@ from matplotlib.cm import get_cmap
 import matplotlib
 from collections import Counter
 
+df = pd.DataFrame()
+df2 = pd.DataFrame()
+
 sys.path.append(os.path.abspath(os.path.join('./scripts')))
 
 from constants import color1, color2, color3, color4, color5, cm

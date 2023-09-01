@@ -26,9 +26,8 @@ def local_gif(file_path):
         data_url = base64.b64encode(contents).decode("utf-8")
 
     return st.markdown(
-        f'<img src="data:image/gif;base64,{data_url}" alt="download data">',
+        f'<img src="data:image/gif;base64,{data_url}" alt="download data" width="100%">',
         unsafe_allow_html=True,
-        
     )
 
 def filter_by_status_and_position(players, projections, status):
