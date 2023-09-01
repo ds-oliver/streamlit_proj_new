@@ -57,43 +57,79 @@ def get_avg_proj_pts(players, projections, status):
 
     return average_proj_pts
 
+def debug_filtering(projections, players):
+    # Ensure that the data frames are not empty
+    if projections.empty or players.empty:
+        print("Debug - One or both DataFrames are empty.")
+        return
+    
+    print("Debug - Projections before filtering:", projections.head())
+    print("Debug - Players before filtering:", players.head())
+
+    # Filter the projections DataFrame
+    projections_filtered = projections[projections['ProjFPts'] >= 10]
+    
+    # Debug: Show filtered projections
+    print("Debug - Projections after filtering:", projections_filtered.head())
+
+    # Filter the players DataFrame to keep only those in the filtered projections
+    available_players = players[players['Player'].isin(projections_filtered['Player'])]
+    
+    # Debug: Show filtered players
+    print("Debug - Players after filtering:", available_players.head())
+    
+    # Filter the available players to remove players that are not in the "Waivers" status
+    available_players = available_players[available_players['Status'] == 'Waivers']
+    
+    # Debug: Show filtered available_players
+    print("Debug - available_players:", available_players.head())
 
 def filter_by_status_and_position(players, projections, status):
+    print(f"Debug - Filtering by status: {status}")
+
+    if isinstance(status, str):
+        status = [status]
+    
     # Filter players by status
-    filtered_players = players[players['Status'] == status]
+    filtered_players = players[players['Status'].isin(status)]
+    print(f"Debug - Filtered Players count: {len(filtered_players)}")
+    
+    if filtered_players.empty:
+        print("Debug - No players found for this status.")
+        return pd.DataFrame(), pd.DataFrame(), 0
+    
+    # Filter projections based on the players list
     player_list = filtered_players['Player'].unique().tolist()
-
-    # Filter projections by the list of players with the selected status
     projections = projections[projections['Player'].isin(player_list)]
+    print(f"Debug - Projections count after filtering: {len(projections)}")
+    
+    if projections.empty:
+        print("Debug - No projections found for these players.")
+        return pd.DataFrame(), pd.DataFrame(), 0
 
-    # Positional limits for 'D': Defense, 'M': Midfield, 'F': Forward
     pos_limit = {'D': 5, 'M': 5, 'F': 3}
-
-    # Get the top players by position based on their projected fantasy points
     final_list = [
         projections[projections['Pos'] == pos].nlargest(limit, 'ProjFPts')
         for pos, limit in pos_limit.items()
     ]
-
-    # Get the top 10 players across all positions
+    
     top_10 = pd.concat(final_list).nlargest(10, 'ProjFPts')
-
-    # Sort by position and reset the index
     top_10.sort_values(by='Pos', key=lambda x: x.map({'D': 1, 'M': 2, 'F': 3}), inplace=True)
     top_10.reset_index(drop=True, inplace=True)
-
-    # Get the remaining players as reserves
-    # Here I reset the index before dropping
+    
     projections.reset_index(drop=True, inplace=True)
-    top_10.reset_index(drop=True, inplace=True)
-
-    # get total projected points for top 10 players 
+    reserves = projections[~projections['Player'].isin(top_10['Player'])].head(5).reset_index(drop=True)
+    
     top_10_proj_pts = top_10['ProjFPts'].sum()
 
-    # Using isin() to match players rather than index
-    reserves = (projections[~projections['Player'].isin(top_10['Player'])].reset_index(drop=True)).head(5)
-
     return top_10, reserves, top_10_proj_pts
+
+# Initialize session states
+if 'only_starters' not in st.session_state:
+    st.session_state.only_starters = False
+
+if 'lineup_clicked' not in st.session_state:
+    st.session_state.lineup_clicked = False
 
 def main():
     # Adding construction banner or any other initial setups
@@ -119,14 +155,27 @@ def main():
         # Assuming 'gw4_projections' is a file path or URL
         projections = load_csv(gw4_projections)  # Replace with the actual path
 
+        print(f"Number of rows in all players: {len(players)}")
+        
+        debug_filtering(projections, players)
+
+        print(f"Debug - Projections before filtering: {projections.head()}")
+        print(f"Debug - Players before filtering: {players.head()}")
         # Checking if 'W (Thu)' is in the 'Status' column and renaming it if needed    
-        players['Status'].replace({'W (Thu)': 'Waivers'}, inplace=True)
 
-        # Extracting unique statuses except 'W (Thu)'
-        unique_statuses = [status for status in players['Status'].unique() if status != 'Waivers']
+        # if value starts with "W " replace the entire value string with "Waivers"
+        players['Status'] = players['Status'].str.replace(r'^W.*', 'Waivers', regex=True)
 
-        # get dataframe of players with status 'W (Thu)'
-        available_players = players[players['Status'] == 'Waivers']
+        unique_statuses = players['Status'].unique()
+
+        print("Debug - unique_statuses:", unique_statuses)
+
+        # get dataframe of players with status 'Waivers' or 'FA' to Waivers
+        available_players = players[players['Status'].isin(['Waivers', 'FA'])]
+
+        print("Debug - available_players:", available_players.head())
+
+        print(f"Number of rows in available_players: {len(available_players)}")
 
         # Dropdown for user to select team
         st.write("### Select your Fantasy team from the dropdown below")
@@ -145,7 +194,9 @@ def main():
 
         
             # Button to process the selection
-            if st.button('Get my optimal lineup'):
+            if st.button('Get my optimal lineup') or st.session_state.lineup_clicked:
+                st.session_state.lineup_clicked = True  # set this to True once the button is clicked
+
                 # Displaying top 10 outfielders and reserves based on selected status
                 st.divider()
 
@@ -153,20 +204,48 @@ def main():
 
                 with col1:
                     
+                    # turn status to a list
+                    status = [status]
+                    
                     top_10, reserves, top_10_proj_pts = filter_by_status_and_position(players, projections, status)
-                    st.write(f"### {status} Best XI")
+
+                    # change status back to string
+                    status_x = status[0]
+
+                    st.write(f"### {status_x} Best XI")
                     st.dataframe(top_10, use_container_width=True)
                     st.write("### Reserves")
                     st.dataframe(reserves, use_container_width=True)
 
                 with col2:
                     # Explicitly set the status to 'Waivers' here
-                    status_waivers = 'Waivers'
+                    status_waivers_fa = ['Waivers', 'FA']
                     
-                    # Call filter_by_status_and_positionition function to get top 10 players and reserves
-                    top_10_waivers, reserves_waivers, _ = filter_by_status_and_position(available_players, projections, status_waivers)
+                                        # Debug print to check if 'available_players' is being fed into the function
+                    print("Debug - Filtering by status_waivers:", status_waivers_fa)
 
-                    st.write(f"### {status_waivers} Best XI")
+                    # top_10_waivers, reserves_waivers, _ = filter_by_status_and_position(available_players, projections, status_waivers_fa)
+
+                    status_waivers_fa_x = 'Waivers & FA'
+
+                    st.write(f"### {status_waivers_fa_x} Best XI")
+
+                    # Checkbox for "Only Starters?" that uses session_state
+                    st.session_state.only_starters = st.checkbox('Only Starters?', value=st.session_state.only_starters)
+
+                    if st.session_state.only_starters:
+                        available_players_filtered = available_players[available_players['ProjGS'] == 1]
+                    else:
+                        available_players_filtered = available_players.copy()
+
+                    # Get top 10 and reserves for waivers and FA
+                    top_10_waivers, reserves_waivers, _ = filter_by_status_and_position(available_players_filtered, projections, status_waivers_fa)
+
+                    # Debug print to check if 'top_10_waivers' and 'reserves_waivers' are empty
+                    print("Debug - top_10_waivers:", top_10_waivers)
+                    print("Debug - reserves_waivers:", reserves_waivers)
+
+                    # top_10_waivers_filtered = dataframe_explorer(top_10_waivers)
                     st.dataframe(top_10_waivers, use_container_width=True)
                     st.write("### Reserves")
                     st.dataframe(reserves_waivers, use_container_width=True)
@@ -175,8 +254,12 @@ def main():
 
                     with col1:
 
+                        status = [status]
+
                         # call get_avg_proj_pts function to get the average projected points for top 10 players across all managers within the same positionitional limits
                         average_proj_pts = get_avg_proj_pts(players, projections, status)
+
+                        status_x = status[0]
 
                         # show the total projected points for top 10 players as style_metric_cards
                         col1.metric(label="Total Projected FPts", value=top_10_proj_pts)
@@ -186,8 +269,6 @@ def main():
                         col2.metric(label="Average Projected FPts of Best XIs across the Division", value=average_proj_pts, delta=top_10_proj_pts - average_proj_pts)
 
                         style_metric_cards()
-
-
 
 
 if __name__ == "__main__":
