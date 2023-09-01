@@ -4,14 +4,37 @@
 }
 
 html,
-body,
-[class*="css"] {
+body {
     font-family: 'HackNerdFontMono-Regular', monospace;
     /* monospace will be the fallback */
     font-size: 18px;
     font-weight: 500;
     color: #fefae0;
-    /* Keeping text color same as config.toml */
     background-color: #130B04;
-    /* Keeping background color same as config.toml */
+}
+
+/* Streamlit specific selectors */
+.stButton>button,
+.stMarkdown,
+.stText,
+.stCode,
+.stTextArea textarea,
+.stTextInput input,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+li {
+    font-family: 'HackNerdFontMono-Regular', monospace;
+    color: #fefae0;
+}
+
+/* If your Streamlit app has tables */
+table,
+th,
+td {
+    font-family: 'HackNerdFontMono-Regular', monospace;
+    color: #fefae0;
 }
