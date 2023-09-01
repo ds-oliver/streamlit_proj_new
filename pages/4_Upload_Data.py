@@ -120,7 +120,7 @@ def main():
         projections = load_csv(gw4_projections)  # Replace with the actual path
 
         #rename 'W (Thu)' values in Status column to 'Waivers'
-        players['Status'] = players['Status'].replace({'W (Thu)': 'Waivers'})
+        players.rename('W (Thu)': 'Waivers', inplace=True)
 
         # Extracting unique statuses except 'W (Thu)'
         unique_statuses = [status for status in players['Status'].unique() if status != 'Waivers']
@@ -129,7 +129,7 @@ def main():
         unique_statuses = [status.capitalize() for status in unique_statuses]
 
         # get dataframe of players with status 'W (Thu)'
-        available_players = players[players['Status'] == 'W (Thu)']
+        available_players = players[players['Status'] == 'Waivers']
 
         # drop Status column
         available_players.drop(columns=['Status'], inplace=True)
