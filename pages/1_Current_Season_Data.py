@@ -46,7 +46,7 @@ def load_css(file_name):
 
 # Load the CSS file
 # In pages/script.py
-load_css("style.css")
+load_css()
 
 # scraped data from : /Users/hogan/dev/fbref/scripts/rfx_scrape/fbref-scrape-current-year.py
 

@@ -23,6 +23,8 @@ from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 from matplotlib.cm import get_cmap
 import matplotlib
 from collections import Counter
+from markdownlit import mdlit
+
 
 df = pd.DataFrame()
 df2 = pd.DataFrame()

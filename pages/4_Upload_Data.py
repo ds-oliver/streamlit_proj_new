@@ -64,8 +64,8 @@ def main():
     add_construction()
 
     mdlit(
-    """-> To get your optimal lineup navigate to [Fantrax league home](https://www.fantrax.com/fantasy/league/d41pycnmlj3bmk8y/players;statusOrTeamFilter=ALL;pageNumber=1;positionOrGroup=SOCCER_NON_GOALIE;miscDisplayType=1)...
-        Follow the GIF below to populate the Players' data correctly <-
+    """## -> To get your optimal lineup navigate to [Fantrax league home](https://www.fantrax.com/fantasy/league/d41pycnmlj3bmk8y/players;statusOrTeamFilter=ALL;pageNumber=1;positionOrGroup=SOCCER_NON_GOALIE;miscDisplayType=1)...
+        ## Follow the GIF below to populate the Players' data correctly <-
         """
         )   
     
@@ -80,6 +80,10 @@ def main():
         projections = load_csv(gw4_projections)
         
         unique_statuses = [status for status in players['Status'].unique() if status != 'W (Thu)']
+
+        # tell the user to select a their team from the dropdown below
+        st.write("### Select your team's status from the dropdown below")
+
         status = st.selectbox('Status', unique_statuses)
 
         if st.button('Get data'):
