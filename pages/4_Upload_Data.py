@@ -4,6 +4,11 @@ import os
 import sys
 from warnings import filterwarnings
 import base64
+import streamlit_extras
+from streamlit_extras.dataframe_explorer import dataframe_explorer
+from markdownlit import mdlit
+from streamlit_extras.metric_cards import style_metric_cards
+from streamlit_extras.stylable_container import stylable_container
 
 filterwarnings('ignore')
 
@@ -52,6 +57,12 @@ def filter_by_status_and_position(players, projections, status):
 
 def main():
     add_construction()
+
+    mdlit(
+    """-> To get your optimal lineup navigate to [Fantrax league home](https://www.fantrax.com/fantasy/league/d41pycnmlj3bmk8y/players;statusOrTeamFilter=ALL;pageNumber=1;positionOrGroup=SOCCER_NON_GOALIE;miscDisplayType=1)...
+        Follow the GIF below to populate the Players' data correctly <-
+        """
+        )
 
     local_gif(fx_gif)
     

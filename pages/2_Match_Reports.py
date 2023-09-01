@@ -23,6 +23,10 @@ import cProfile
 import pstats
 import io
 import matplotlib.colors as mcolors
+from streamlit_extras.dataframe_explorer import dataframe_explorer
+from markdownlit import mdlit
+from streamlit_extras.metric_cards import style_metric_cards
+from streamlit_extras.stylable_container import stylable_container
 
 
 # scraped data from : /Users/hogan/dev/fbref/scripts/rfx_scrape/match_results_project/premierleague/main/test-weekly-match-reports.py
