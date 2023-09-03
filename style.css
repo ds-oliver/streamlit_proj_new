@@ -1,19 +1,25 @@
+/* Declare the fonts */
 @font-face {
     font-family: 'iosevka-regular';
     src: url('fonts/iosevka-regular.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'FenomenSans-Regular';
+    src: url('fonts/FenomenSans-Regular.ttf') format('truetype');
+}
+
+/* General styling */
 html,
 body {
-    font-family: 'iosevka-regular', monospace;
-    /* monospace will be the fallback */
+    font-family: 'FenomenSans-Regular', sans-serif;
     font-size: 18px;
     font-weight: 500;
     color: #fefae0;
     background-color: #130B04;
 }
 
-/* Streamlit specific selectors */
+/* Streamlit specific selectors for text */
 .stButton>button,
 .stMarkdown,
 .stText,
@@ -27,14 +33,15 @@ h4,
 h5,
 p,
 li {
-    font-family: 'iosevka-regular', monospace;
+    font-family: 'FenomenSans-Regular', sans-serif;
     color: #fefae0;
 }
 
-/* If your Streamlit app has tables */
+/* Streamlit specific selectors for numbers, metrics, and data */
 table,
 th,
-td {
+td,
+.metric-value {
     font-family: 'iosevka-regular', monospace;
     color: #fefae0;
 }
@@ -80,7 +87,3 @@ td {
     text-align: left;
     padding: 8px;
 }
-
-/* .dataframe tr:nth-child(even) {
-    background-color: #f2f2f2;
-} */
