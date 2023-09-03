@@ -1,11 +1,11 @@
 @font-face {
-    font-family: 'HackNerdFontMono-Regular';
-    src: url('fonts/HackNerdFontMono-Regular.ttf') format('truetype');
+    font-family: 'iosevka-regular';
+    src: url('fonts/iosevka-regular.ttf') format('truetype');
 }
 
 html,
 body {
-    font-family: 'HackNerdFontMono-Regular', monospace;
+    font-family: 'iosevka-regular', monospace;
     /* monospace will be the fallback */
     font-size: 18px;
     font-weight: 500;
@@ -27,7 +27,7 @@ h4,
 h5,
 p,
 li {
-    font-family: 'HackNerdFontMono-Regular', monospace;
+    font-family: 'iosevka-regular', monospace;
     color: #fefae0;
 }
 
@@ -35,7 +35,7 @@ li {
 table,
 th,
 td {
-    font-family: 'HackNerdFontMono-Regular', monospace;
+    font-family: 'iosevka-regular', monospace;
     color: #fefae0;
 }
 
