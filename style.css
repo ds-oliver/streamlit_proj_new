@@ -14,6 +14,12 @@
     src: url('fonts/DylanCondensed-Medium.ttf') format('truetype');
 }
 
+/* Declare AvenirLTProBook.ttf */
+@font-face {
+    font-family: 'AvenirLTPro-Book';
+    src: url('fonts/AvenirLTPro-Book.ttf') format('truetype');
+}
+
 /* General styling */
 html,
 body {
