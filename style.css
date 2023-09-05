@@ -9,10 +9,9 @@
     src: url('fonts/FenomenSans-Regular.ttf') format('truetype');
 }
 
-/* Declare Dylan Condensed Medium.ttf */
 @font-face {
     font-family: 'Dylan Condensed Medium';
-    src: url('fonts/Dylan Condensed Medium.ttf') format('truetype');
+    src: url('fonts/Dylan\\ Condensed\\ Medium.ttf') format('truetype');
 }
 
 /* General styling */
