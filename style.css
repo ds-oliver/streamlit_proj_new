@@ -47,7 +47,7 @@ table,
 th,
 td,
 .metric-value {
-    font-family: 'DylanCondensed-Medium', monospace;
+    font-family: 'DylanCondensed-Medium', sans-serif;
     color: #fefae0;
 }
 
@@ -82,16 +82,14 @@ td,
 
 /* Styling for DataFrames */
 .dataframe {
-    /* Debug: if table turns green, the selector works */
-    background-color: green;
-    font-family: 'DylanCondensed-Medium', sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-    border: 1px solid #ddd;
+    font-family: 'DylanCondensed-Medium', sans-serif !important;
+    border-collapse: collapse !important;
+    width: 100% !important;
+    border: 1px solid #ddd !important;
 }
 
 .dataframe th,
 .dataframe td {
-    text-align: left;
-    padding: 8px;
+    text-align: left !important;
+    padding: 8px !important;
 }
