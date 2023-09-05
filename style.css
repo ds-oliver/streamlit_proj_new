@@ -9,10 +9,16 @@
     src: url('fonts/FenomenSans-Regular.ttf') format('truetype');
 }
 
+/* Declare Dylan Condensed Medium.ttf */
+@font-face {
+    font-family: 'Dylan Condensed Medium';
+    src: url('fonts/Dylan Condensed Medium.ttf') format('truetype');
+}
+
 /* General styling */
 html,
 body {
-    font-family: 'FenomenSans-Regular', sans-serif;
+    font-family: 'Dylan Condensed Medium', sans-serif;
     font-size: 18px;
     font-weight: 500;
     color: #fefae0;
@@ -33,7 +39,7 @@ h4,
 h5,
 p,
 li {
-    font-family: 'FenomenSans-Regular', sans-serif;
+    font-family: 'Dylan Condensed Medium', sans-serif;
     color: #fefae0;
 }
 
@@ -42,7 +48,7 @@ table,
 th,
 td,
 .metric-value {
-    font-family: 'FenomenSans-Regular', monospace;
+    font-family: 'Dylan Condensed Medium', monospace;
     color: #fefae0;
 }
 
