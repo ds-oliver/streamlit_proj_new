@@ -81,7 +81,29 @@ td,
 }
 
 /* Styling for DataFrames */
+/* Debug: this message should appear in red elements */
+*:not(body):not(html) {
+    border: 1px dashed red;
+}
+
+/* Declare the fonts */
+@font-face {
+    font-family: 'DylanCondensed-Medium';
+    src: url('fonts/DylanCondensed-Medium.ttf') format('truetype');
+}
+
+/* General styling */
+html,
+body {
+    font-family: 'DylanCondensed-Medium', sans-serif;
+    /* Debug: If the color changes, this rule is applied */
+    color: red;
+}
+
+/* Styling for DataFrames */
 .dataframe {
+    /* Debug: if table turns green, the selector works */
+    background-color: green;
     font-family: 'DylanCondensed-Medium', sans-serif;
     border-collapse: collapse;
     width: 100%;
