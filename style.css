@@ -10,14 +10,14 @@
 }
 
 @font-face {
-    font-family: 'Dylan Condensed Medium';
-    src: url('fonts/Dylan\\ Condensed\\ Medium.ttf') format('truetype');
+    font-family: 'DylanCondensed-Medium';
+    src: url('fonts/DylanCondensed-Medium.ttf') format('truetype');
 }
 
 /* General styling */
 html,
 body {
-    font-family: 'Dylan Condensed Medium', sans-serif;
+    font-family: 'DylanCondensed-Medium', sans-serif;
     font-size: 18px;
     font-weight: 500;
     color: #fefae0;
@@ -38,7 +38,7 @@ h4,
 h5,
 p,
 li {
-    font-family: 'Dylan Condensed Medium', sans-serif;
+    font-family: 'DylanCondensed-Medium', sans-serif;
     color: #fefae0;
 }
 
@@ -47,7 +47,7 @@ table,
 th,
 td,
 .metric-value {
-    font-family: 'Dylan Condensed Medium', monospace;
+    font-family: 'DylanCondensed-Medium', monospace;
     color: #fefae0;
 }
 
