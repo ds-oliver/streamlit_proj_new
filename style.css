@@ -82,6 +82,7 @@ td,
 
 /* Styling for DataFrames */
 .dataframe {
+    font-family: 'DylanCondensed-Medium', sans-serif;
     border-collapse: collapse;
     width: 100%;
     border: 1px solid #ddd;
