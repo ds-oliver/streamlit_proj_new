@@ -23,7 +23,7 @@
 /* General styling */
 html,
 body {
-    font-family: 'DylanCondensed-Medium', sans-serif;
+    font-family: 'AvenirLTPro-Book', sans-serif;
     font-size: 18px;
     font-weight: 500;
     color: #fefae0;
@@ -44,7 +44,7 @@ h4,
 h5,
 p,
 li {
-    font-family: 'DylanCondensed-Medium', sans-serif;
+    font-family: 'AvenirLTPro-Book', sans-serif;
     color: #fefae0;
 }
 
@@ -53,7 +53,7 @@ table,
 th,
 td,
 .metric-value {
-    font-family: 'DylanCondensed-Medium', sans-serif;
+    font-family: 'AvenirLTPro-Book', sans-serif;
     color: #fefae0;
 }
 
@@ -88,7 +88,7 @@ td,
 
 /* Styling for DataFrames */
 .dataframe {
-    font-family: 'DylanCondensed-Medium', sans-serif !important;
+    font-family: 'AvenirLTPro-Book', sans-serif !important;
     border-collapse: collapse !important;
     width: 100% !important;
     border: 1px solid #ddd !important;
