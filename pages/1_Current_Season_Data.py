@@ -89,7 +89,6 @@ print(sys.path)
 #             styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
 #     return styled_df
 
-@st.cache_data
 def process_data(matches_data, temp_default, matches_col_groups):
     
     df = pd.read_csv(matches_data)
