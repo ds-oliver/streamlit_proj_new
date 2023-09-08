@@ -1483,13 +1483,6 @@ def display_date_of_update(date_of_update):
 def load_data():
     return process_data(df, df2)
 
-def get_color(value, cmap):
-    color_fraction = value
-    rgba_color = cmap(color_fraction)
-    brightness = 0.299 * rgba_color[0] + 0.587 * rgba_color[1] + 0.114 * rgba_color[2]
-    text_color = 'white' if brightness < 0.7 else 'black'
-    return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
-
 def get_color_from_palette(value, palette_name='magma'):
     cmap = mpl_cm.get_cmap(palette_name)
     rgba_color = cmap(value)
@@ -1537,7 +1530,14 @@ def style_dataframe_v2(df, selected_columns):
 
     return styled_df
 
-def create_custom_cmap(*colors):
+def get_color_0(value, cmap):
+    color_fraction = value
+    rgba_color = cmap(color_fraction)
+    brightness = 0.299 * rgba_color[0] + 0.587 * rgba_color[1] + 0.114 * rgba_color[2]
+    text_color = 'white' if brightness < 0.7 else 'black'
+    return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
+
+def create_custom_cmap_1(*colors):
     custom_cmap = LinearSegmentedColormap.from_list('custom_cmap', colors)
     return custom_cmap
 
@@ -1545,11 +1545,11 @@ def style_dataframe_custom(df, selected_columns, custom_cmap=None):
     if custom_cmap:
         object_cmap = custom_cmap
     else:
-        object_cmap = create_custom_cmap()
+        object_cmap = create_custom_cmap()  # Assuming create_custom_cmap is defined elsewhere
 
     Team_cmap = plt.cm.get_cmap('magma')
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
-    
+
     position_column = 'Pos' if 'Pos' in df.columns else 'Position' if 'Position' in df.columns else None
 
     if position_column:
@@ -1592,7 +1592,25 @@ def style_dataframe_custom(df, selected_columns, custom_cmap=None):
 
     return styled_df
 
-def create_custom_cmap(base_cmap='magma', brightness_limit=1):
+
+def get_color(value, cmap):
+    color_fraction = value
+    rgba_color = cmap(color_fraction)
+    brightness = 0.299 * rgba_color[0] + 0.587 * rgba_color[1] + 0.114 * rgba_color[2]
+    text_color = 'white' if brightness < 0.7 else 'black'
+    return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
+
+def create_custom_cmap(*colors, base_cmap=None, brightness_limit=None):
+    if colors:
+        return LinearSegmentedColormap.from_list('custom_cmap', colors)
+    elif base_cmap and brightness_limit:
+        base = plt.cm.get_cmap(base_cmap)
+        color_list = [base(i) for i in range(256)]
+        color_list = [(r * brightness_limit, g * brightness_limit, b * brightness_limit, a) for r, g, b, a in color_list]
+        return LinearSegmentedColormap.from_list(base_cmap, color_list)
+
+
+def create_custom_cmap_0(base_cmap='magma', brightness_limit=1):
     base = plt.cm.get_cmap(base_cmap)
     color_list = [base(i) for i in range(256)]
     # Apply brightness limit
