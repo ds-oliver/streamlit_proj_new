@@ -364,7 +364,13 @@ def main():
         data.rename(columns={'Started': 'GS'}, inplace=True)
 
     # Create a sidebar slider to select the GW range
-    GW_range = st.slider('GW range', min_value=data['GW'].min(), max_value=data['GW'].max(), value=(data['GW'].min(), data['GW'].max()), step=1, help="Select the range of gameweeks to display data for. This slider adjusts data globally for all tables and plots", key="GW_range")
+    GW_range = st.slider('GW range',
+                         min_value=int(data['GW'].min()), 
+                         max_value=int(data['GW'].max()), 
+                         value=(int(data['GW'].min()), int(data['GW'].max())),
+                         step=1, 
+                         help="Select the range of gameweeks to display data for. This slider adjusts data globally for all tables and plots",
+                         key="GW_range")
     GW_range = list(GW_range)
 
     print(data.columns.tolist())

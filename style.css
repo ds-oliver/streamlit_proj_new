@@ -228,7 +228,7 @@ footer {
 
 
 /* Multi Select */
-.stMultiSelect>label {
+/* .stMultiSelect>label {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -257,7 +257,7 @@ footer {
 
 .stMultiSelect>div>div:hover {
     border: 2px solid #00B7C2;
-}
+} */
 
 
 .stSlider>div>div>div:first-child {
@@ -368,7 +368,7 @@ footer {
 }
 
 /* Select Box */
-.stSelectbox>label {
+/* .stSelectbox>label {
     background-color: #00B7C2;
     position: absolute;
     left: 0%;
@@ -400,7 +400,7 @@ footer {
 
 .stSelectbox>div>div:hover {
     border: 2px solid #00B7C2;
-}
+} */
 
 .stSlider {
     padding-left: 0.8rem;
