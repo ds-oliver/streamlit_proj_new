@@ -41,7 +41,7 @@ matches_defense_cols = ['tackles_won', 'tackles_def_3rd', 'tackles_mid_3rd', 'ta
 
 matches_possession_cols = ['carries_distance', 'carries_progressive_distance', 'carries_into_final_third', 'carries_into_penalty_area', 'miscontrols', 'dispossessed', 'passes_received', 'progressive_passes_received']
 
-matches_misc_cols = ['cards_yellow_red', 'fouls', 'fouled', 'offsides', 'pens_won', 'pens_conceded', 'own_goals', 'ball_recoveries', 'aerials_won', 'aerials_lost', 'aerials_won_pct', 'home', 'team', 'opponent']
+matches_misc_cols = ['cards_yellow_red', 'fouls', 'fouled', 'offsides', 'pens_won', 'pens_conceded', 'own_goals', 'ball_recoveries', 'aerials_won', 'aerials_lost', 'aerials_won_pct']
 
 col_groups = {
     "Standard": stats_cols,
