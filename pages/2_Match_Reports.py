@@ -309,7 +309,13 @@ def main():
         matches_df = matches_df[matches_df['Minutes'] > 55]
 
     # Create a sidebar slider to select the GW range
-    GW_range = st.sidebar.slider('GW range', min_value=matches_df['GW'].min(), max_value=matches_df['GW'].max(), value=(matches_df['GW'].min(), matches_df['GW'].max()), step=1, help="Select the range of gameweeks to display data for. This slider adjusts data globally for all tables and plots")
+    GW_range = st.sidebar.slider('GW range', 
+                             min_value=int(matches_df['GW'].min()), 
+                             max_value=int(matches_df['GW'].max()), 
+                             value=(int(matches_df['GW'].min()), int(matches_df['GW'].max())), 
+                             step=1, 
+                             help="Select the range of gameweeks to display data for. This slider adjusts data globally for all tables and plots")
+
     GW_range = list(GW_range)
 
     # Filter the DataFrame by the selected GW range

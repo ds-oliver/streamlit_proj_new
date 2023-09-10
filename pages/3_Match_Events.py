@@ -101,12 +101,16 @@ def main():
 
     # filter for selected gameweek
     shots_df = shots_df[shots_df['Gameweek'] == select_gw]
+
+    players_df['Team'] = players_df['Team'].apply(lambda x: x.replace(' Player Stats', '') if isinstance(x, str) else x)
+
+    players_df['Opponent'] = players_df['Opponent'].apply(lambda x: x.replace(' Player Stats', '') if isinstance(x, str) else x)
     
     # for each home team away team pair create a new column with 'Home Team vs. Away Team'
-    shots_df['Matchup'] = shots_df['Home_team'] + ' vs. ' + shots_df['Away_team']
+    players_df['Matchup'] = players_df['Team'] + ' vs. ' + players_df['Opponent']
 
     # offer selection of matches to show
-    select_match = st.selectbox('Select Match', shots_df['Matchup'].unique())
+    select_match = st.selectbox('Select Match', players_df['Matchup'].unique())
 
     # filter for selected match in players_df where players_df['team'] and players_df['opponent'] are in shots_df['matchup']
     players_df = players_df[(players_df['Team'].isin([select_match.split(' vs. ')[0], select_match.split(' vs. ')[1]])) & (players_df['Opponent'].isin([select_match.split(' vs. ')[0], select_match.split(' vs. ')[1]]))]
