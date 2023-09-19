@@ -284,13 +284,13 @@ def format_col_names(df, default_columns):
     df.rename(columns={col: col.replace('_', ' ').title() for col in df.columns if col not in default_columns}, inplace=True)
     return df
 
-def style_dataframe_custom(df, selected_columns, custom_cmap=None):
+def style_dataframe_custom(df, selected_columns, custom_cmap="afmhot"):
     if custom_cmap:
         object_cmap = custom_cmap
     else:
         object_cmap = create_custom_cmap()  # Customized color map
 
-    Team_cmap = plt.cm.get_cmap('coolwarm')
+    Team_cmap = plt.cm.get_cmap('afmhot')
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
 
     position_column = 'Position' if 'Position' in df.columns else None
