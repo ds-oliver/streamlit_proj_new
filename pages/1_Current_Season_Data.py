@@ -436,6 +436,13 @@ def main():
         if grouping_option.capitalize() not in columns_to_show:
             columns_to_show.insert(0, grouping_option.capitalize())
 
+    # create dictionary with columns names and respective data types
+    columns_data_types = {col: grouped_data[col].dtype for col in grouped_data.columns}
+
+    columns_data_types
+
+    print(columns_data_types)
+
     styled_df = style_dataframe_custom(grouped_data[columns_to_show], columns_to_show, False)
     st.header(f"Premier League Players' Statistics ({selected_group})")
     print("Grouped Data Columns: ", print(grouped_data[columns_to_show].columns.tolist()))
