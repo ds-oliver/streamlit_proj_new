@@ -290,7 +290,7 @@ def style_dataframe_custom(df, selected_columns, custom_cmap=None):
     else:
         object_cmap = create_custom_cmap()  # Customized color map
 
-    Team_cmap = plt.cm.get_cmap('magma')
+    Team_cmap = plt.cm.get_cmap('coolwarm')
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
 
     position_column = 'Position' if 'Position' in df.columns else None
