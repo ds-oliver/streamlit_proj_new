@@ -89,6 +89,7 @@ print(sys.path)
 #             styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
 #     return styled_df
 
+@st.cache_data
 def process_data(matches_data, temp_default, matches_col_groups):
     
     df = pd.read_csv(matches_data)
@@ -150,7 +151,7 @@ def process_data(matches_data, temp_default, matches_col_groups):
     return df, MATCHES_DEFAULT_COLS, date_of_update
     
 # Function to load the data
-# @st.cache_data
+@st.cache_data
 def load_data():
     return process_data(matches_data, temp_default, matches_col_groups)
 
