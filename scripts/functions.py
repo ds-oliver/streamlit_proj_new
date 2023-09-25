@@ -1661,6 +1661,7 @@ def style_tp_dataframe_custom(df, selected_columns, custom_cmap=None):
             styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / (max_val - min_val), object_cmap) if max_val != min_val else '')
 
     return styled_df
+
 def round_and_format(value):
     if isinstance(value, float):
         return "{:.2f}".format(value)

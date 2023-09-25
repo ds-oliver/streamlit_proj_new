@@ -63,32 +63,6 @@ print("Scripts path:", scripts_path)
 
 print(sys.path)
 
-# def get_color(value, cmap):
-#     color_fraction = value
-#     rgba_color = cmap(color_fraction)
-#     brightness = 0.299 * rgba_color[0] + 0.587 * rgba_color[1] + 0.114 * rgba_color[2]
-#     text_color = 'white' if brightness < 0.7 else 'black'
-#     return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
-
-# def style_dataframe(df, selected_columns):
-#     cm_coolwarm = cm.get_cmap('inferno')
-#     object_cmap = cm.get_cmap('gnuplot2')  # Choose a colormap for object columns
-
-#     # Create an empty DataFrame with the same shape as df
-#     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
-#     for col in df.columns:
-#         if col == 'player':  # Skip the styling for the 'player' column
-#             continue
-#         if df[col].dtype in [np.float64, np.int64] and col in selected_columns:
-#             min_val = df[col].min()
-#             max_val = df[col].max()
-#             range_val = max_val - min_val
-#             styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, cm_coolwarm))
-#         elif df[col].dtype == 'object':
-#             unique_values = df[col].unique().tolist()
-#             styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
-#     return styled_df
-
 @st.cache_data
 def process_data(matches_data, temp_default, matches_col_groups):
     
@@ -162,6 +136,10 @@ def filter_data(df, selected_Teams, selected_positions):
 
 # Function to group data based on selected options
 def group_data(df, selected_columns, grouping_option, aggregation_option='sum'):
+    # Convert selected_columns to numeric type before aggregation
+    for col in selected_columns:
+        df[col] = pd.to_numeric(df[col], errors='coerce')
+
     aggregation_methods = {col: aggregation_option for col in selected_columns if df[col].dtype in [np.float64, np.int64]}
     if grouping_option == 'Position':
         grouped_df = df.groupby('Position').agg(aggregation_methods).reset_index()
@@ -285,16 +263,12 @@ def format_col_names(df, default_columns):
     return df
 
 def style_dataframe_custom(df, selected_columns, custom_cmap="afmhot"):
-    if custom_cmap:
-        object_cmap = custom_cmap
-    else:
-        object_cmap = create_custom_cmap()  # Customized color map
-
-    Team_cmap = plt.cm.get_cmap('afmhot')
-    styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
-
+    object_cmap = plt.cm.get_cmap(custom_cmap)
+    styled_df = pd.DataFrame()
+    
+    # Handle Position color coding
     position_column = 'Position' if 'Position' in df.columns else None
-
+    
     if position_column:
         position_colors = {
             "D": "background-color: #6d597a",
@@ -302,39 +276,43 @@ def style_dataframe_custom(df, selected_columns, custom_cmap="afmhot"):
             "F": "background-color: #03071e"
         }
         styled_df[position_column] = df[position_column].apply(lambda x: position_colors.get(x, ''))
+        
         if 'Player' in df.columns:
             styled_df['Player'] = df[position_column].apply(lambda x: position_colors.get(x, ''))
-
+    
+    # Loop through selected columns
     for col in selected_columns:
         if col in ['Player', position_column]:
             continue
 
-        if isinstance(df[col], pd.Series):
-            unique_values = df[col].unique()
+        col_data = df[col]
+        
+        # Attempt to convert the column to floats
+        try:
+            col_data = col_data.astype(float)
+            min_val = col_data.min()
+            max_val = col_data.max()
+        except ValueError:
+            min_val = max_val = None
+        
+        unique_values = col_data.unique()
+        
+        # Handling categorical values
+        if len(unique_values) <= 3:
+            constant_colors = ["background-color: #eae2b7", "background-color: #FDFEFE", "background-color: #FDFAF9"]
+            most_common_value, _ = Counter(col_data).most_common(1)[0]
+            other_colors = [color for val, color in zip(unique_values, constant_colors[1:]) if val != most_common_value]
+            color_mapping = {most_common_value: constant_colors[0], **{val: color for val, color in zip([uv for uv in unique_values if uv != most_common_value], other_colors)}}
+            styled_df[col] = col_data.apply(lambda x: color_mapping.get(x, ''))
 
-            if len(unique_values) <= 3:
-                constant_colors = ["color: #eae2b7", "color: #FDFEFE", "color: #FDFAF9"]
-                most_common_value, _ = Counter(df[col]).most_common(1)[0]
-                other_colors = [color for val, color in zip(unique_values, constant_colors[1:]) if val != most_common_value]
-                color_mapping = {most_common_value: constant_colors[0], **{val: color for val, color in zip([uv for uv in unique_values if uv != most_common_value], other_colors)}}
-                styled_df[col] = df[col].apply(lambda x: color_mapping.get(x, ''))
-
-            elif 'Team' in df.columns:
-                n = len(unique_values)
-                for i, val in enumerate(unique_values):
-                    norm_i = i / (n - 1) if n > 1 else 0.5
-                    styled_df.loc[df[col] == val, col] = get_color(norm_i, Team_cmap)
-
-            else:
-                min_val = float(df[col].min())
-                max_val = float(df[col].max())
-                styled_df[col] = df[col].apply(lambda x: f'color: {matplotlib.colors.to_hex(object_cmap((float(x) - min_val) / (max_val - min_val)))}' if min_val != max_val else '')
-
-        else:
-            print(f"Skipping column {col} as it is not a Series object.")
-
+        # Handling continuous numerical values
+        elif min_val is not None and max_val is not None:
+            if min_val != max_val:
+                styled_df[col] = col_data.apply(
+                    lambda x: get_color((x - min_val) / (max_val - min_val), object_cmap)
+                )
+                    
     return styled_df
-
 
 def main():
     
@@ -410,9 +388,11 @@ def main():
 
     if grouping_option != 'None':
         grouped_data = group_data(filtered_data, selected_columns, grouping_option, selected_aggregation_method)
-        print(f"Grouped Data columns: {grouped_data.columns.tolist()}")
+        print(f"\nGrouped Data columns: {grouped_data.columns.tolist()}")
 
+    # Ensure index is unique
     if not grouped_data.index.is_unique:
+        print(f"\nIndex is not unique. Resetting index.")
         grouped_data.reset_index(drop=True, inplace=True)
 
     if not grouped_data.columns.is_unique:
@@ -433,17 +413,16 @@ def main():
     columns_to_show = [col for col in columns_to_show if col in grouped_data.columns]
 
     if grouping_option != 'None':
+        print(f"\nGrouping by: {grouping_option} \nGrouped Data columns: {grouped_data.columns.tolist()}")
         if grouping_option.capitalize() not in columns_to_show:
             columns_to_show.insert(0, grouping_option.capitalize())
 
     # create dictionary with columns names and respective data types
     columns_data_types = {col: grouped_data[col].dtype for col in grouped_data.columns}
 
-    columns_data_types
-
     print(columns_data_types)
 
-    styled_df = style_dataframe_custom(grouped_data[columns_to_show], columns_to_show, False)
+    styled_df = style_dataframe_custom(grouped_data[columns_to_show], columns_to_show)
     st.header(f"Premier League Players' Statistics ({selected_group})")
     print("Grouped Data Columns: ", print(grouped_data[columns_to_show].columns.tolist()))
     print("Styled Data Columns: ", print(styled_df.columns.tolist()))
@@ -466,7 +445,11 @@ def main():
     print("Index unique?", filtered_df.index.is_unique)
     print("Columns unique?", filtered_df.columns.is_unique)
 
-    st.dataframe(filtered_df.style.apply(lambda _: styled_df, axis=None), use_container_width=True, height=(len(grouped_data) * 30) + 50 if grouping_option != 'None' else 35 * 20)
+    st.dataframe(
+    filtered_df.style.apply(style_dataframe_custom, axis=None, selected_columns=selected_columns, custom_cmap="afmhot"),
+    use_container_width=True,
+    height=(len(grouped_data) * 30) + 50 if grouping_option != 'None' else 35 * 20
+    )
 
     create_plot(selected_group, selected_columns, selected_positions, selected_Teams, grouped_data, grouping_option)
 
