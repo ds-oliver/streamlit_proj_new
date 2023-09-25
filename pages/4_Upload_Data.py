@@ -12,7 +12,7 @@ from streamlit_extras.stylable_container import stylable_container
 from streamlit_extras.add_vertical_space import add_vertical_space
 from streamlit_extras.customize_running import center_running
 
-from files import gw4_projections, fx_gif
+from files import projections, fx_gif
 from functions import load_csv, add_construction, load_css
 
 st.set_page_config(
@@ -21,9 +21,6 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
-
-def add_construction():
-    return st.info("""#### 🏗️ :orange[This app is under construction]""")
 
 load_css()
 

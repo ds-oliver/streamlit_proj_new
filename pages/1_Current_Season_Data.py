@@ -131,8 +131,14 @@ def load_data():
 
 # Function to filter data based on selected Teams and positions
 # @st.cache_data
-def filter_data(df, selected_Teams, selected_positions):
-    return df[df['Team'].isin(selected_Teams) & df['Position'].isin(selected_positions)]
+def filter_data(df, selected_Team, selected_positions):
+    if selected_Team != 'All Teams':
+        df = df[df['Team'] == selected_Team]
+
+    df = df[df['Position'].isin(selected_positions)]
+
+    return df
+
 
 # Function to group data based on selected options
 def group_data(df, selected_columns, grouping_option, aggregation_option='sum'):
@@ -181,7 +187,7 @@ def add_bar_traces(fig, selected_stats_for_plot, grouping_values, grouped_df, gr
             )
         )
 
-def create_plot(selected_group, selected_columns, selected_positions, selected_Teams, grouped_df, grouping_option):
+def create_plot(selected_group, selected_columns, selected_positions, selected_Team, grouped_df, grouping_option):
     if selected_group and selected_columns:
         selected_stats_for_plot = st.multiselect('Select Statistics for Plotting', options=selected_columns)
         st.info('Note: If no grouping option is selected, the top 25 players by the first selected statistic is shown.')
@@ -191,15 +197,20 @@ def create_plot(selected_group, selected_columns, selected_positions, selected_T
             stat_colors = {stat: color for stat, color in zip(selected_stats_for_plot, colors)}
             
             fig = go.Figure()
-            grouping_values, grouping_column = get_grouping_values_and_column(grouping_option, selected_positions, selected_Teams, grouped_df, selected_stats_for_plot)
-            
+
+            # Filter the grouped_df based on selected_Team if it's not 'All Teams'
+            if selected_Team != 'All Teams':
+                grouped_df = grouped_df[grouped_df['Team'] == selected_Team]
+
+            grouping_values, grouping_column = get_grouping_values_and_column(grouping_option, selected_positions, selected_Team, grouped_df, selected_stats_for_plot)
+
             add_bar_traces(fig, selected_stats_for_plot, grouping_values, grouped_df, grouping_column, stat_colors)
+            
             if grouping_option == 'None':
-                    title = f'Plotting of Players for Selected Statistics'
+                title = f'Plotting of Players for Selected Statistics'
             else:
                 title = f'Plotting of Selected {grouping_option} for Selected Statistics'
 
-                
             fig.update_layout(
                 title=title,
                 xaxis_title=grouping_option if grouping_option != 'None' else 'Players',
@@ -351,7 +362,9 @@ def main():
     data = data[(data['GW'] >= GW_range[0]) & (data['GW'] <= GW_range[1])]
 
     if GW_range[0] != GW_range[1]:
-        selected_aggregation_method = st.sidebar.selectbox('Select Aggregation Method', ['mean', 'sum'], key="aggregation_method")
+        selected_aggregation_method = st.sidebar.selectbox('Select Aggregation Method', ['Mean', 'Sum'], key="aggregation_method")
+        # lowercase the selected_aggregation_method to pass it to agg()
+        selected_aggregation_method = selected_aggregation_method.lower()
         aggregation_functions = {col: selected_aggregation_method if data[col].dtype in [np.float64, np.int64] else 'first' for col in data.columns}
         aggregation_functions['Player'] = 'first'
         aggregation_functions['Team'] = most_recent_Team
@@ -368,10 +381,14 @@ def main():
 
         DEFAULT_COLUMNS = ['Player', 'Team', 'Position', 'GS:GP'] + [col for col in DEFAULT_COLUMNS if col not in ['Player', 'Team', 'Position', 'GS:GP', 'GW']]
 
-    selected_Teams = create_sidebar_multiselect(data, 'Team', 'Select Teams', default_all=True, key_suffix="teams")
+    all_teams = data['Team'].unique().tolist()
+    all_teams.sort()
+    all_teams = ['All Teams'] + all_teams  # Add 'All Teams' at the beginning
+    selected_Team = st.sidebar.selectbox('Select Team', all_teams)
+
     selected_positions = create_sidebar_multiselect(data, 'Position', 'Select Positions', default_all=True, key_suffix="positions")
 
-    filtered_data = filter_data(data, selected_Teams, selected_positions)
+    filtered_data = filter_data(data, selected_Team, selected_positions)
 
     matches_col_groups = {key.capitalize(): [col.capitalize() for col in value] for key, value in matches_col_groups.items()}
     selected_group = st.sidebar.selectbox("Select Stats Grouping", list(matches_col_groups.keys()))
@@ -451,7 +468,7 @@ def main():
     height=(len(grouped_data) * 30) + 50 if grouping_option != 'None' else 35 * 20
     )
 
-    create_plot(selected_group, selected_columns, selected_positions, selected_Teams, grouped_data, grouping_option)
+    create_plot(selected_group, selected_columns, selected_positions, selected_Team, grouped_data, grouping_option)
 
 
 if __name__ == "__main__":
