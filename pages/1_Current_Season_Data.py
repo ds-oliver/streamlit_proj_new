@@ -273,7 +273,7 @@ def format_col_names(df, default_columns):
     df.rename(columns={col: col.replace('_', ' ').title() for col in df.columns if col not in default_columns}, inplace=True)
     return df
 
-def style_dataframe_custom(df, selected_columns, custom_cmap="bwr"):
+def style_dataframe_custom(df, selected_columns, custom_cmap="gist_heat"):
     object_cmap = plt.cm.get_cmap(custom_cmap)
     styled_df = pd.DataFrame()
     
@@ -463,7 +463,7 @@ def main():
     print("Columns unique?", filtered_df.columns.is_unique)
 
     st.dataframe(
-    filtered_df.style.apply(style_dataframe_custom, axis=None, selected_columns=selected_columns, custom_cmap="afmhot"),
+    filtered_df.style.apply(style_dataframe_custom, axis=None, selected_columns=selected_columns, custom_cmap="gist_heat"),
     use_container_width=True,
     height=(len(grouped_data) * 30) + 50 if grouping_option != 'None' else 35 * 20
     )
