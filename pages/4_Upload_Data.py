@@ -192,7 +192,7 @@ def main():
         center_running()
         with st.spinner('Loading data...'):
             players = pd.read_csv(uploaded_file)
-            projections = load_csv(gw4_projections)
+            projections = load_csv(projections)
             
             debug_filtering(projections, players)
 
