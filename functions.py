@@ -1669,7 +1669,7 @@ def create_custom_cmap_0(base_cmap='magma', brightness_limit=1):
     color_list = [(r * brightness_limit, g * brightness_limit, b * brightness_limit, a) for r, g, b, a in color_list]
     return LinearSegmentedColormap.from_list(base_cmap, color_list)
 
-def style_tp_dataframe_custom(df, selected_columns, custom_cmap=None):
+def style_tp_dataframe_custom(df, selected_columns, custom_cmap="gist_heat"):
     if custom_cmap:
         object_cmap = custom_cmap
     else:
