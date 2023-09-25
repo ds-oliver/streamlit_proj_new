@@ -1,0 +1,55 @@
+gameweek,dayofweek,date,start_time,home_team,home_xg,score,away_xg,away_team,attendance,venue,referee,match_report,notes,season,home_score,away_score
+1,Fri,2023-08-11,20:00,Burnley,0.3,0–3,1.9,Manchester City,"21,572",Turf Moor,Craig Pawson,Match Report,,2023,0.0,3.0
+1,Sat,2023-08-12,12:30,Arsenal,0.8,2–1,1.2,Nott'ham Forest,"59,984",Emirates Stadium,Michael Oliver,Match Report,,2023,2.0,1.0
+1,Sat,2023-08-12,15:00,Everton,2.7,0–1,1.5,Fulham,"39,940",Goodison Park,Stuart Attwell,Match Report,,2023,0.0,1.0
+1,Sat,2023-08-12,15:00,Sheffield Utd,0.5,0–1,1.9,Crystal Palace,"31,194",Bramall Lane,John Brooks,Match Report,,2023,0.0,1.0
+1,Sat,2023-08-12,15:00,Brighton,4.0,4–1,1.5,Luton Town,"31,872",The American Express Community Stadium,David Coote,Match Report,,2023,4.0,1.0
+1,Sat,2023-08-12,15:00,Bournemouth,1.3,1–1,1.1,West Ham,"11,245",Vitality Stadium,Peter Bankes,Match Report,,2023,1.0,1.0
+1,Sat,2023-08-12,17:30,Newcastle Utd,3.3,5–1,1.8,Aston Villa,"52,207",St James' Park,Andy Madley,Match Report,,2023,5.0,1.0
+1,Sun,2023-08-13,14:00,Brentford,2.2,2–2,1.3,Tottenham,"17,066",Gtech Community Stadium,Robert Jones,Match Report,,2023,2.0,2.0
+1,Sun,2023-08-13,16:30,Chelsea,1.4,1–1,1.3,Liverpool,"40,096",Stamford Bridge,Anthony Taylor,Match Report,,2023,1.0,1.0
+1,Mon,2023-08-14,20:00,Manchester Utd,2.2,1–0,2.2,Wolves,"73,358",Old Trafford,Simon Hooper,Match Report,,2023,1.0,0.0
+2,Fri,2023-08-18,19:45,Nott'ham Forest,1.4,2–1,0.5,Sheffield Utd,"29,432",The City Ground,Peter Bankes,Match Report,,2023,2.0,1.0
+2,Sat,2023-08-19,15:00,Fulham,0.5,0–3,3.7,Brentford,"24,236",Craven Cottage,Darren Bond,Match Report,,2023,0.0,3.0
+2,Sat,2023-08-19,15:00,Liverpool,3.0,3–1,1.3,Bournemouth,"53,145",Anfield,Thomas Bramall,Match Report,,2023,3.0,1.0
+2,Sat,2023-08-19,15:00,Wolves,2.1,1–4,2.2,Brighton,"31,317",Molineux Stadium,Andy Madley,Match Report,,2023,1.0,4.0
+2,Sat,2023-08-19,17:30,Tottenham,1.7,2–0,2.1,Manchester Utd,"61,910",Tottenham Hotspur Stadium,Michael Oliver,Match Report,,2023,2.0,0.0
+2,Sat,2023-08-19,20:00,Manchester City,1.0,1–0,0.3,Newcastle Utd,,Etihad Stadium,Robert Jones,Match Report,,2023,1.0,0.0
+2,Sun,2023-08-20,14:00,Aston Villa,2.9,4–0,0.6,Everton,"41,694",Villa Park,Anthony Taylor,Match Report,,2023,4.0,0.0
+2,Sun,2023-08-20,16:30,West Ham,1.8,3–1,2.5,Chelsea,"62,451",London Stadium,John Brooks,Match Report,,2023,3.0,1.0
+2,Mon,2023-08-21,20:00,Crystal Palace,1.0,0–1,2.0,Arsenal,"24,189",Selhurst Park,David Coote,Match Report,,2023,0.0,1.0
+3,Fri,2023-08-25,20:00,Chelsea,2.2,3–0,0.4,Luton Town,"39,893",Stamford Bridge,Robert Jones,Match Report,,2023,3.0,0.0
+3,Sat,2023-08-26,12:30,Bournemouth,0.7,0–2,2.1,Tottenham,"10,567",Vitality Stadium,Tim Robinson,Match Report,,2023,0.0,2.0
+3,Sat,2023-08-26,15:00,Everton,1.3,0–1,1.1,Wolves,"38,851",Goodison Park,Craig Pawson,Match Report,,2023,0.0,1.0
+3,Sat,2023-08-26,15:00,Brentford,1.0,1–1,0.8,Crystal Palace,"16,997",Gtech Community Stadium,Peter Bankes,Match Report,,2023,1.0,1.0
+3,Sat,2023-08-26,15:00,Manchester Utd,2.8,3–2,1.2,Nott'ham Forest,"73,595",Old Trafford,Stuart Attwell,Match Report,,2023,3.0,2.0
+3,Sat,2023-08-26,15:00,Arsenal,3.2,2–2,0.6,Fulham,"59,961",Emirates Stadium,Paul Tierney,Match Report,,2023,2.0,2.0
+3,Sat,2023-08-26,17:30,Brighton,1.5,1–3,3.0,West Ham,"31,508",The American Express Community Stadium,Anthony Taylor,Match Report,,2023,1.0,3.0
+3,Sun,2023-08-27,14:00,Sheffield Utd,0.7,1–2,3.5,Manchester City,"31,336",Bramall Lane,Jarred Gillett,Match Report,,2023,1.0,2.0
+3,Sun,2023-08-27,14:00,Burnley,0.7,1–3,2.5,Aston Villa,"21,591",Turf Moor,Michael Salisbury,Match Report,,2023,1.0,3.0
+3,Sun,2023-08-27,16:30,Newcastle Utd,2.0,1–2,0.9,Liverpool,"52,214",St James' Park,John Brooks,Match Report,,2023,1.0,2.0
+4,Fri,2023-09-01,20:00,Luton Town,1.4,1–2,1.0,West Ham,"10,802",Kenilworth Road Stadium,Paul Tierney,Match Report,,2023,1.0,2.0
+4,Sat,2023-09-02,12:30,Sheffield Utd,1.2,2–2,2.5,Everton,"31,124",Bramall Lane,Andy Madley,Match Report,,2023,2.0,2.0
+4,Sat,2023-09-02,15:00,Chelsea,2.3,0–1,0.8,Nott'ham Forest,"39,820",Stamford Bridge,Tim Robinson,Match Report,,2023,0.0,1.0
+4,Sat,2023-09-02,15:00,Manchester City,2.2,5–1,1.4,Fulham,"52,899",Etihad Stadium,Michael Oliver,Match Report,,2023,5.0,1.0
+4,Sat,2023-09-02,15:00,Brentford,2.9,2–2,2.1,Bournemouth,"16,973",Gtech Community Stadium,Robert Madley,Match Report,,2023,2.0,2.0
+4,Sat,2023-09-02,15:00,Burnley,1.3,2–5,2.2,Tottenham,"21,750",Turf Moor,Darren England,Match Report,,2023,2.0,5.0
+4,Sat,2023-09-02,17:30,Brighton,1.3,3–1,1.2,Newcastle Utd,"31,620",The American Express Community Stadium,Stuart Attwell,Match Report,,2023,3.0,1.0
+4,Sun,2023-09-03,14:00,Liverpool,2.5,3–0,0.7,Aston Villa,"50,109",Anfield,Simon Hooper,Match Report,,2023,3.0,0.0
+4,Sun,2023-09-03,14:00,Crystal Palace,2.1,3–2,1.2,Wolves,"24,741",Selhurst Park,Robert Jones,Match Report,,2023,3.0,2.0
+4,Sun,2023-09-03,16:30,Arsenal,2.3,3–1,0.9,Manchester Utd,"60,192",Emirates Stadium,Anthony Taylor,Match Report,,2023,3.0,1.0
+5,Sat,2023-09-16,12:30,Wolves,0.6,1–3,2.5,Liverpool,"31,257",Molineux Stadium,Michael Oliver,Match Report,,2023,1.0,3.0
+5,Sat,2023-09-16,15:00,Fulham,1.0,1–0,1.1,Luton Town,"24,467",Craven Cottage,Michael Salisbury,Match Report,,2023,1.0,0.0
+5,Sat,2023-09-16,15:00,West Ham,0.9,1–3,3.6,Manchester City,"62,475",London Stadium,Andy Madley,Match Report,,2023,1.0,3.0
+5,Sat,2023-09-16,15:00,Aston Villa,3.0,3–1,1.2,Crystal Palace,"40,809",Villa Park,Darren England,Match Report,,2023,3.0,1.0
+5,Sat,2023-09-16,15:00,Manchester Utd,1.0,1–3,1.7,Brighton,"73,592",Old Trafford,Jarred Gillett,Match Report,,2023,1.0,3.0
+5,Sat,2023-09-16,15:00,Tottenham,2.1,2–1,0.7,Sheffield Utd,"61,706",Tottenham Hotspur Stadium,Peter Bankes,Match Report,,2023,2.0,1.0
+5,Sat,2023-09-16,17:30,Newcastle Utd,1.4,1–0,0.5,Brentford,"51,670",St James' Park,Craig Pawson,Match Report,,2023,1.0,0.0
+5,Sun,2023-09-17,14:00,Bournemouth,1.0,0–0,1.8,Chelsea,"10,421",Vitality Stadium,David Coote,Match Report,,2023,0.0,0.0
+5,Sun,2023-09-17,16:30,Everton,0.3,0–1,1.0,Arsenal,"39,217",Goodison Park,Simon Hooper,Match Report,,2023,0.0,1.0
+5,Mon,2023-09-18,19:45,Nott'ham Forest,0.7,1–1,0.5,Burnley,"28,958",The City Ground,Robert Jones,Match Report,,2023,1.0,1.0
+6,Sat,2023-09-23,15:00,Manchester City,1.3,2–0,1.0,Nott'ham Forest,"53,413",Etihad Stadium,Anthony Taylor,Match Report,,2023,2.0,0.0
+6,Sat,2023-09-23,15:00,Luton Town,2.1,1–1,0.6,Wolves,"10,893",Kenilworth Road Stadium,Joshua Smith,Match Report,,2023,1.0,1.0
+6,Sat,2023-09-23,15:00,Crystal Palace,0.3,0–0,0.6,Fulham,,Selhurst Park,Paul Tierney,Match Report,,2023,0.0,0.0
+6,Sat,2023-09-23,17:30,Brentford,1.0,1–3,1.9,Everton,,Gtech Community Stadium,Michael Oliver,Match Report,,2023,1.0,3.0
+6,Sat,2023-09-23,20:00,Burnley,1.1,0–1,1.0,Manchester Utd,,Turf Moor,Tony Harrington,Match Report,,2023,0.0,1.0
