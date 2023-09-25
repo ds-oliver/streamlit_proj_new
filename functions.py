@@ -1541,17 +1541,64 @@ def create_custom_cmap_1(*colors):
     custom_cmap = LinearSegmentedColormap.from_list('custom_cmap', colors)
     return custom_cmap
 
-def style_dataframe_custom(df, selected_columns, custom_cmap=None):
-    if custom_cmap:
-        object_cmap = custom_cmap
-    else:
-        object_cmap = create_custom_cmap()  # Assuming create_custom_cmap is defined elsewhere
+# def style_dataframe_custom(df, selected_columns, custom_cmap=None):
+#     if custom_cmap:
+#         object_cmap = custom_cmap
+#     else:
+#         object_cmap = create_custom_cmap()  # Assuming create_custom_cmap is defined elsewhere
 
-    Team_cmap = plt.cm.get_cmap('bwr')
-    styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
+#     Team_cmap = plt.cm.get_cmap('bwr')
+#     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
 
-    position_column = 'Pos' if 'Pos' in df.columns else 'Position' if 'Position' in df.columns else None
+#     position_column = 'Pos' if 'Pos' in df.columns else 'Position' if 'Position' in df.columns else None
 
+#     if position_column:
+#         position_colors = {
+#             "D": "background-color: #6d597a",
+#             "M": "background-color: #370617",
+#             "F": "background-color: #03071e"
+#         }
+#         styled_df[position_column] = df[position_column].apply(lambda x: position_colors.get(x, ''))
+#         if 'Player' in df.columns:
+#             styled_df['Player'] = df[position_column].apply(lambda x: position_colors.get(x, ''))
+
+#     for col in selected_columns:
+#         if col in ['Player', position_column]:
+#             continue
+
+#         try:
+#             unique_values = df[col].unique()
+#         except AttributeError as e:
+#             print(f"AttributeError occurred for column: {col}. Error message: {e}")
+#             continue
+
+#         if len(unique_values) <= 3:
+#             constant_colors = ["color: #eae2b7", "color: #FDFEFE", "color: #FDFAF9"]
+#             most_common_value, _ = Counter(df[col]).most_common(1)[0]
+#             other_colors = [color for val, color in zip(unique_values, constant_colors[1:]) if val != most_common_value]
+#             color_mapping = {most_common_value: constant_colors[0], **{val: color for val, color in zip([uv for uv in unique_values if uv != most_common_value], other_colors)}}
+#             styled_df[col] = df[col].apply(lambda x: color_mapping.get(x, ''))
+        
+#         elif 'Team' in df.columns:
+#             n = len(unique_values)
+#             for i, val in enumerate(unique_values):
+#                 norm_i = i / (n - 1) if n > 1 else 0.5
+#                 styled_df.loc[df[col] == val, col] = get_color(norm_i, Team_cmap)
+        
+#         else:
+#             min_val = float(df[col].min())
+#             max_val = float(df[col].max())
+#             styled_df[col] = df[col].apply(lambda x: f'color: {matplotlib.colors.to_hex(object_cmap((float(x) - min_val) / (max_val - min_val)))}' if min_val != max_val else '')
+
+#     return styled_df
+
+def style_dataframe_custom(df, selected_columns, custom_cmap="bwr"):
+    object_cmap = plt.cm.get_cmap(custom_cmap)
+    styled_df = pd.DataFrame()
+    
+    # Handle Position color coding
+    position_column = 'Position' if 'Position' in df.columns else None
+    
     if position_column:
         position_colors = {
             "D": "background-color: #6d597a",
@@ -1559,37 +1606,42 @@ def style_dataframe_custom(df, selected_columns, custom_cmap=None):
             "F": "background-color: #03071e"
         }
         styled_df[position_column] = df[position_column].apply(lambda x: position_colors.get(x, ''))
+        
         if 'Player' in df.columns:
             styled_df['Player'] = df[position_column].apply(lambda x: position_colors.get(x, ''))
-
+    
+    # Loop through selected columns
     for col in selected_columns:
         if col in ['Player', position_column]:
             continue
 
+        col_data = df[col]
+        
+        # Attempt to convert the column to floats
         try:
-            unique_values = df[col].unique()
-        except AttributeError as e:
-            print(f"AttributeError occurred for column: {col}. Error message: {e}")
-            continue
-
+            col_data = col_data.astype(float)
+            min_val = col_data.min()
+            max_val = col_data.max()
+        except ValueError:
+            min_val = max_val = None
+        
+        unique_values = col_data.unique()
+        
+        # Handling categorical values
         if len(unique_values) <= 3:
-            constant_colors = ["color: #eae2b7", "color: #FDFEFE", "color: #FDFAF9"]
-            most_common_value, _ = Counter(df[col]).most_common(1)[0]
+            constant_colors = ["background-color: #eae2b7", "background-color: #FDFEFE", "background-color: #FDFAF9"]
+            most_common_value, _ = Counter(col_data).most_common(1)[0]
             other_colors = [color for val, color in zip(unique_values, constant_colors[1:]) if val != most_common_value]
             color_mapping = {most_common_value: constant_colors[0], **{val: color for val, color in zip([uv for uv in unique_values if uv != most_common_value], other_colors)}}
-            styled_df[col] = df[col].apply(lambda x: color_mapping.get(x, ''))
-        
-        elif 'Team' in df.columns:
-            n = len(unique_values)
-            for i, val in enumerate(unique_values):
-                norm_i = i / (n - 1) if n > 1 else 0.5
-                styled_df.loc[df[col] == val, col] = get_color(norm_i, Team_cmap)
-        
-        else:
-            min_val = float(df[col].min())
-            max_val = float(df[col].max())
-            styled_df[col] = df[col].apply(lambda x: f'color: {matplotlib.colors.to_hex(object_cmap((float(x) - min_val) / (max_val - min_val)))}' if min_val != max_val else '')
+            styled_df[col] = col_data.apply(lambda x: color_mapping.get(x, ''))
 
+        # Handling continuous numerical values
+        elif min_val is not None and max_val is not None:
+            if min_val != max_val:
+                styled_df[col] = col_data.apply(
+                    lambda x: get_color((x - min_val) / (max_val - min_val), object_cmap)
+                )
+                    
     return styled_df
 
 
