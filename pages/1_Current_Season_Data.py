@@ -273,7 +273,7 @@ def format_col_names(df, default_columns):
     df.rename(columns={col: col.replace('_', ' ').title() for col in df.columns if col not in default_columns}, inplace=True)
     return df
 
-def style_dataframe_custom(df, selected_columns, custom_cmap="sns-bwr"):
+def style_dataframe_custom(df, selected_columns, custom_cmap="bwr"):
     object_cmap = plt.cm.get_cmap(custom_cmap)
     styled_df = pd.DataFrame()
     
