@@ -1436,8 +1436,8 @@ def get_color(value, cmap):
     return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
 
 def style_dataframe(df, selected_columns):
-    cm_coolwarm = cm.get_cmap('gnuplot2_r')
-    object_cmap = cm.get_cmap('gnuplot2')  # Choose a colormap for object columns
+    cm_sns-bwr = cm.get_cmap('sns-bwr')
+    object_cmap = cm.get_cmap('sns-bwr')  # Choose a colormap for object columns
 
     # Create an empty DataFrame with the same shape as df
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
@@ -1448,7 +1448,7 @@ def style_dataframe(df, selected_columns):
             min_val = df[col].min()
             max_val = df[col].max()
             range_val = max_val - min_val
-            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, cm_coolwarm))
+            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, cm_sns-bwr))
         elif df[col].dtype == 'object':
             unique_values = df[col].unique().tolist()
             styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
@@ -1483,21 +1483,14 @@ def display_date_of_update(date_of_update):
 def load_data():
     return process_data(df, df2)
 
-def get_color(value, cmap):
-    color_fraction = value
-    rgba_color = cmap(color_fraction)
-    brightness = 0.299 * rgba_color[0] + 0.587 * rgba_color[1] + 0.114 * rgba_color[2]
-    text_color = 'white' if brightness < 0.7 else 'black'
-    return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
-
-def get_color_from_palette(value, palette_name='magma'):
+def get_color_from_palette(value, palette_name='sns-bwr'):
     cmap = mpl_cm.get_cmap(palette_name)
     rgba_color = cmap(value)
     color_as_hex = mcolors.to_hex(rgba_color)
     return color_as_hex
 
 def style_dataframe_v2(df, selected_columns):
-    object_cmap = mpl_cm.get_cmap('magma')
+    object_cmap = mpl_cm.get_cmap('sns-bwr')
 
     # Create an empty DataFrame with the same shape as df
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
@@ -1524,20 +1517,27 @@ def style_dataframe_v2(df, selected_columns):
         unique_values = df[col].unique().tolist()
 
         if len(unique_values) <= 3:
-            constant_colors = [get_color(i / 2, mpl_cm.get_cmap('magma')) for i in range(len(unique_values))]
+            constant_colors = [get_color(i / 2, mpl_cm.get_cmap('sns-bwr')) for i in range(len(unique_values))]
             color_mapping = {val: color for val, color in zip(unique_values, constant_colors)}
             styled_df[col] = df[col].apply(lambda x: color_mapping[x])
         elif col_dtype in [np.float64, np.int64] and col in selected_columns:
             min_val = df[col].min()
             max_val = df[col].max()
             range_val = max_val - min_val
-            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, mpl_cm.get_cmap('magma')))
+            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, mpl_cm.get_cmap('sns-bwr')))
         elif col_dtype == 'object':
             styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
 
     return styled_df
 
-def create_custom_cmap(*colors):
+def get_color_0(value, cmap):
+    color_fraction = value
+    rgba_color = cmap(color_fraction)
+    brightness = 0.299 * rgba_color[0] + 0.587 * rgba_color[1] + 0.114 * rgba_color[2]
+    text_color = 'white' if brightness < 0.7 else 'black'
+    return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
+
+def create_custom_cmap_1(*colors):
     custom_cmap = LinearSegmentedColormap.from_list('custom_cmap', colors)
     return custom_cmap
 
@@ -1545,10 +1545,9 @@ def style_dataframe_custom(df, selected_columns, custom_cmap=None):
     if custom_cmap:
         object_cmap = custom_cmap
     else:
-        object_cmap = create_custom_cmap() # Customized color map
+        object_cmap = create_custom_cmap()  # Assuming create_custom_cmap is defined elsewhere
 
-    Team_cmap = plt.cm.get_cmap('magma')
-
+    Team_cmap = plt.cm.get_cmap('sns-bwr')
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
 
     position_column = 'Pos' if 'Pos' in df.columns else 'Position' if 'Position' in df.columns else None
@@ -1559,42 +1558,59 @@ def style_dataframe_custom(df, selected_columns, custom_cmap=None):
             "M": "background-color: #370617",
             "F": "background-color: #03071e"
         }
-        styled_df[position_column] = df[position_column].apply(lambda x: position_colors[x])
+        styled_df[position_column] = df[position_column].apply(lambda x: position_colors.get(x, ''))
         if 'Player' in df.columns:
-            styled_df['Player'] = df[position_column].apply(lambda x: position_colors[x])
+            styled_df['Player'] = df[position_column].apply(lambda x: position_colors.get(x, ''))
 
-    for col in df.columns:
+    for col in selected_columns:
         if col in ['Player', position_column]:
             continue
 
-        unique_values = df[col].unique()
-        if len(unique_values) <= 3:  # Columns with 3 or less unique values
-            # Columns with 3 or less unique values
-            constant_colors = ["color: #eae2b7", "color: #FDFEFE", "color: #FDFAF9"]
-            # Finding the most common value
-            most_common_value, _ = Counter(df[col]).most_common(1)[0]
-            # Assigning the rest of the colors
-            other_colors = [color for val, color in zip(unique_values, constant_colors[1:]) if val != most_common_value]
-            # Creating the color mapping, ensuring that most_common_value gets the first color
-            color_mapping = {most_common_value: constant_colors[0], **{val: color for val, color in zip([uv for uv in unique_values if uv != most_common_value], other_colors)}}
-            # Applying the color mapping, with a default value if a key is not found
-            styled_df[col] = df[col].apply(lambda x: color_mapping.get(x, ''))
+        try:
+            unique_values = df[col].unique()
+        except AttributeError as e:
+            print(f"AttributeError occurred for column: {col}. Error message: {e}")
+            continue
 
+        if len(unique_values) <= 3:
+            constant_colors = ["color: #eae2b7", "color: #FDFEFE", "color: #FDFAF9"]
+            most_common_value, _ = Counter(df[col]).most_common(1)[0]
+            other_colors = [color for val, color in zip(unique_values, constant_colors[1:]) if val != most_common_value]
+            color_mapping = {most_common_value: constant_colors[0], **{val: color for val, color in zip([uv for uv in unique_values if uv != most_common_value], other_colors)}}
+            styled_df[col] = df[col].apply(lambda x: color_mapping.get(x, ''))
+        
         elif 'Team' in df.columns:
             n = len(unique_values)
             for i, val in enumerate(unique_values):
-                norm_i = i / (n - 1) if n > 1 else 0.5  # Avoid division by zero
+                norm_i = i / (n - 1) if n > 1 else 0.5
                 styled_df.loc[df[col] == val, col] = get_color(norm_i, Team_cmap)
-
-
+        
         else:
-            min_val = float(df[col].min())  # Convert to float
-            max_val = float(df[col].max())  # Convert to float
+            min_val = float(df[col].min())
+            max_val = float(df[col].max())
             styled_df[col] = df[col].apply(lambda x: f'color: {matplotlib.colors.to_hex(object_cmap((float(x) - min_val) / (max_val - min_val)))}' if min_val != max_val else '')
 
     return styled_df
 
-def create_custom_cmap(base_cmap='magma', brightness_limit=1):
+
+def get_color(value, cmap):
+    color_fraction = value
+    rgba_color = cmap(color_fraction)
+    brightness = 0.299 * rgba_color[0] + 0.587 * rgba_color[1] + 0.114 * rgba_color[2]
+    text_color = 'white' if brightness < 0.7 else 'black'
+    return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
+
+def create_custom_cmap(*colors, base_cmap=None, brightness_limit=None):
+    if colors:
+        return LinearSegmentedColormap.from_list('custom_cmap', colors)
+    elif base_cmap and brightness_limit:
+        base = plt.cm.get_cmap(base_cmap)
+        color_list = [base(i) for i in range(256)]
+        color_list = [(r * brightness_limit, g * brightness_limit, b * brightness_limit, a) for r, g, b, a in color_list]
+        return LinearSegmentedColormap.from_list(base_cmap, color_list)
+
+
+def create_custom_cmap_0(base_cmap='magma', brightness_limit=1):
     base = plt.cm.get_cmap(base_cmap)
     color_list = [base(i) for i in range(256)]
     # Apply brightness limit
@@ -1607,7 +1623,7 @@ def style_tp_dataframe_custom(df, selected_columns, custom_cmap=None):
     else:
         object_cmap = create_custom_cmap()
 
-    Team_cmap = plt.cm.get_cmap('magma')
+    Team_cmap = plt.cm.get_cmap('sns-bwr')
 
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
 
@@ -1645,6 +1661,7 @@ def style_tp_dataframe_custom(df, selected_columns, custom_cmap=None):
             styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / (max_val - min_val), object_cmap) if max_val != min_val else '')
 
     return styled_df
+
 def round_and_format(value):
     if isinstance(value, float):
         return "{:.2f}".format(value)

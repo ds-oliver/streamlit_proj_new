@@ -1436,8 +1436,8 @@ def get_color(value, cmap):
     return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
 
 def style_dataframe(df, selected_columns):
-    cm_coolwarm = cm.get_cmap('coolwarm')
-    object_cmap = cm.get_cmap('coolwarm')  # Choose a colormap for object columns
+    cm_sns-bwr = cm.get_cmap('sns-bwr')
+    object_cmap = cm.get_cmap('sns-bwr')  # Choose a colormap for object columns
 
     # Create an empty DataFrame with the same shape as df
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
@@ -1448,7 +1448,7 @@ def style_dataframe(df, selected_columns):
             min_val = df[col].min()
             max_val = df[col].max()
             range_val = max_val - min_val
-            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, cm_coolwarm))
+            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, cm_sns-bwr))
         elif df[col].dtype == 'object':
             unique_values = df[col].unique().tolist()
             styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
@@ -1483,14 +1483,14 @@ def display_date_of_update(date_of_update):
 def load_data():
     return process_data(df, df2)
 
-def get_color_from_palette(value, palette_name='magma'):
+def get_color_from_palette(value, palette_name='sns-bwr'):
     cmap = mpl_cm.get_cmap(palette_name)
     rgba_color = cmap(value)
     color_as_hex = mcolors.to_hex(rgba_color)
     return color_as_hex
 
 def style_dataframe_v2(df, selected_columns):
-    object_cmap = mpl_cm.get_cmap('coolwarm')
+    object_cmap = mpl_cm.get_cmap('sns-bwr')
 
     # Create an empty DataFrame with the same shape as df
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
@@ -1517,14 +1517,14 @@ def style_dataframe_v2(df, selected_columns):
         unique_values = df[col].unique().tolist()
 
         if len(unique_values) <= 3:
-            constant_colors = [get_color(i / 2, mpl_cm.get_cmap('coolwarm')) for i in range(len(unique_values))]
+            constant_colors = [get_color(i / 2, mpl_cm.get_cmap('sns-bwr')) for i in range(len(unique_values))]
             color_mapping = {val: color for val, color in zip(unique_values, constant_colors)}
             styled_df[col] = df[col].apply(lambda x: color_mapping[x])
         elif col_dtype in [np.float64, np.int64] and col in selected_columns:
             min_val = df[col].min()
             max_val = df[col].max()
             range_val = max_val - min_val
-            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, mpl_cm.get_cmap('coolwarm')))
+            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, mpl_cm.get_cmap('sns-bwr')))
         elif col_dtype == 'object':
             styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
 
@@ -1547,7 +1547,7 @@ def style_dataframe_custom(df, selected_columns, custom_cmap=None):
     else:
         object_cmap = create_custom_cmap()  # Assuming create_custom_cmap is defined elsewhere
 
-    Team_cmap = plt.cm.get_cmap('coolwarm')
+    Team_cmap = plt.cm.get_cmap('sns-bwr')
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
 
     position_column = 'Pos' if 'Pos' in df.columns else 'Position' if 'Position' in df.columns else None
@@ -1623,7 +1623,7 @@ def style_tp_dataframe_custom(df, selected_columns, custom_cmap=None):
     else:
         object_cmap = create_custom_cmap()
 
-    Team_cmap = plt.cm.get_cmap('coolwarm')
+    Team_cmap = plt.cm.get_cmap('sns-bwr')
 
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
 
