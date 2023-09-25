@@ -1436,7 +1436,7 @@ def get_color(value, cmap):
     return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
 
 def style_dataframe(df, selected_columns):
-    cm_sns-bwr = cm.get_cmap('sns-bwr')
+    cm_sns_bwr = cm.get_cmap('sns-bwr')
     object_cmap = cm.get_cmap('sns-bwr')  # Choose a colormap for object columns
 
     # Create an empty DataFrame with the same shape as df
@@ -1448,7 +1448,7 @@ def style_dataframe(df, selected_columns):
             min_val = df[col].min()
             max_val = df[col].max()
             range_val = max_val - min_val
-            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, cm_sns-bwr))
+            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, cm_sns_bwr))
         elif df[col].dtype == 'object':
             unique_values = df[col].unique().tolist()
             styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
