@@ -424,7 +424,7 @@ def main():
 
     styled_df = style_dataframe_custom(grouped_data[columns_to_show], columns_to_show)
     st.header(f"Premier League Players' Statistics ({selected_group})")
-    print("Grouped Data Columns: ", print(grouped_data[columns_to_show].columns.tolist()))
+    print(f"Grouped Data Columns: {grouped_data[columns_to_show].columns.tolist()}")
     print("Styled Data Columns: ", print(styled_df.columns.tolist()))
     filtered_df = dataframe_explorer(grouped_data[columns_to_show])
 
