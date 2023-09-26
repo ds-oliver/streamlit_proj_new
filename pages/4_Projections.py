@@ -42,16 +42,16 @@ def local_gif(file_path):
 
 # function that will get the average projected points for top 10 players across all managers within the same positionitional limits
 # def get_avg_proj_pts(players, projections):
-    total_proj_pts = 0
-    num_statuses = len(players['Status'].unique())
+#     total_proj_pts = 0
+#     num_statuses = len(players['Status'].unique())
 
-    for status in players['Status'].unique():
-        top_10, _, top_10_proj_pts = filter_by_status_and_position(players, projections, status)
-        print(f"Average projected points for {status} top 10 players: {top_10_proj_pts}")
-        total_proj_pts += top_10_proj_pts
+#     for status in players['Status'].unique():
+#         top_10, _, top_10_proj_pts = filter_by_status_and_position(players, projections, status)
+#         print(f"Average projected points for {status} top 10 players: {top_10_proj_pts}")
+#         total_proj_pts += top_10_proj_pts
 
-    average_proj_pts = round((total_proj_pts / num_statuses), 1)
-    return average_proj_pts
+#     average_proj_pts = round((total_proj_pts / num_statuses), 1)
+#     return average_proj_pts
 
 def debug_filtering(projections, players):
     # Ensure that the data frames are not empty
@@ -208,15 +208,13 @@ def filter_available_players_by_projgs(players, projections, status, projgs_valu
 
     return best_combination, reserves
 
+
 # Initialize session states
 if 'only_starters' not in st.session_state:
     st.session_state.only_starters = False
 
 if 'lineup_clicked' not in st.session_state:
     st.session_state.lineup_clicked = False
-
-if 'ranking_type' not in st.session_state:
-    st.session_state.ranking_type = 'GW Projections'
 
 def main():
     # Adding construction banner or any other initial setups
@@ -238,6 +236,8 @@ def main():
             players = pd.read_csv(uploaded_file)
             projections = load_csv(proj_csv)
             ros_ranks_data = load_csv(ros_ranks)
+
+            projections = pd.merge(projections, ros_ranks, how='left', on='Player')
             
             debug_filtering(projections, players)
 
@@ -255,18 +255,8 @@ def main():
             
             with col_b:
                 st.session_state.only_starters = st.checkbox('Only Starters?', value=st.session_state.only_starters)
-                st.session_state.ranking_type = st.radio('Select ranking type:', ['GW Projections', 'ROS Rank'])
 
-            if st.session_state.ranking_type == 'GW Projections':
-                top_10_players, reserves = filter_by_status_and_position(available_players, projections, status)
-                top_10_proj_pts = top_10_players['ProjectedPoints'].sum()  # Assuming you have a 'ProjectedPoints' column
-            elif st.session_state.ranking_type == 'ROS Rank':
-                top_10_players, reserves = filter_by_status_and_position(available_players, ros_ranks_data, status)
-                top_10_proj_pts = top_10_players['ProjectedPoints'].sum()  # Assuming you have a 'ProjectedPoints' column
-            else:
-                st.error("Unexpected ranking type selected.")
-
-            if lineup_button:
+            if lineup_button or st.session_state.lineup_clicked:
                 center_running()
                 with st.spinner('Getting your optimal lineup...'):
                     st.session_state.lineup_clicked = True
@@ -275,12 +265,16 @@ def main():
                     col1, col2 = st.columns(2)
 
                     with col1:
+                        status_list = [status]
+                        top_10, reserves, top_10_proj_pts = filter_by_status_and_position(players, projections, status_list)
                         st.write(f"### {status} Best XI")
-                        st.dataframe(top_10_players)
+                        st.dataframe(top_10)
                         st.write("### Reserves")
                         st.dataframe(reserves)
 
                     with col2:
+                        available_players = pd.merge(available_players, projections[['Player', 'ProjGS']], on='Player', how='left')
+                        
                         if st.session_state.only_starters:
                             top_10_waivers, reserves_waivers = filter_available_players_by_projgs(available_players, projections, ['Waivers', 'FA'], 1)
                         else:
@@ -301,6 +295,15 @@ def main():
                         col2.metric(label="Average Projected FPts of Best XIs across the Division", value=average_proj_pts, delta=round((top_10_proj_pts - average_proj_pts), 1))
 
                     style_metric_cards()
+
+    # divider 
+    st.divider()
+
+    # add a button to "View all Projections" which will show the projections DataFrame
+    if st.button('View all Projections'):
+        projections = load_csv(proj_csv)
+
+        st.dataframe(projections, use_container_width=True)
 
 
 if __name__ == "__main__":
