@@ -5,6 +5,8 @@ import os
 # list comprehension that gets the file in 'data/projections/' where filename matches 'GW{is_number} Projections.csv' 
 projections = [f'data/projections/{file}' for file in os.listdir('data/projections/') if re.match(r'GW\d+ Projections.csv', file)][0]
 
+ros_ranks = [f'data/ros_ranks/{file}' for file in os.listdir('data/projections/') if re.match(r'Weekly ROS Ranks_GW\d+.csv', file)][0]
+
 big5_players_csv = 'data/data_out/scraped_big5_data/player_table_big5.csv'
 players_matches_csv = 'data/data_out/final_data/csv_files/results.csv'
 teams_matches_csv = 'data/data_out/final_data/csv_files/players.csv'

@@ -12,7 +12,7 @@ from streamlit_extras.stylable_container import stylable_container
 from streamlit_extras.add_vertical_space import add_vertical_space
 from streamlit_extras.customize_running import center_running
 
-from files import projections as proj_csv, fx_gif
+from files import projections as proj_csv, fx_gif, ros_ranks
 from functions import load_csv, add_construction, load_css
 
 st.set_page_config(
@@ -41,7 +41,7 @@ def local_gif(file_path):
     )
 
 # function that will get the average projected points for top 10 players across all managers within the same positionitional limits
-def get_avg_proj_pts(players, projections):
+# def get_avg_proj_pts(players, projections):
     total_proj_pts = 0
     num_statuses = len(players['Status'].unique())
 
@@ -52,7 +52,6 @@ def get_avg_proj_pts(players, projections):
 
     average_proj_pts = round((total_proj_pts / num_statuses), 1)
     return average_proj_pts
-
 
 def debug_filtering(projections, players):
     # Ensure that the data frames are not empty
@@ -85,87 +84,129 @@ def debug_filtering(projections, players):
     print("Debug - available_players:", filtered_available_players.head())
 
 def filter_by_status_and_position(players, projections, status):
-    print(f"Debug - Filtering by status: {status}")
-
     if isinstance(status, str):
         status = [status]
-    
-    # Filter players by status
+
     filtered_players = players[players['Status'].isin(status)]
-    print(f"Debug - Filtered Players count: {len(filtered_players)}")
-    
+
     if filtered_players.empty:
-        print("Debug - No players found for this status.")
         return pd.DataFrame(), pd.DataFrame(), 0
-    
-    # Filter projections based on the players list
+
     player_list = filtered_players['Player'].unique().tolist()
     projections = projections[projections['Player'].isin(player_list)]
-    print(f"Debug - Projections count after filtering: {len(projections)}")
-    
+
     if projections.empty:
-        print("Debug - No projections found for these players.")
         return pd.DataFrame(), pd.DataFrame(), 0
 
-    pos_limit = {'D': 5, 'M': 5, 'F': 3}
-    final_list = [
-        projections[projections['Pos'] == pos].nlargest(limit, 'ProjFPts')
-        for pos, limit in pos_limit.items()
-    ]
-    
-    top_10 = pd.concat(final_list).nlargest(10, 'ProjFPts')
-    top_10.sort_values(by='Pos', key=lambda x: x.map({'D': 1, 'M': 2, 'F': 3}), inplace=True)
-    top_10.reset_index(drop=True, inplace=True)
-    
-    projections.reset_index(drop=True, inplace=True)
-    reserves = projections[~projections['Player'].isin(top_10['Player'])].head(5).reset_index(drop=True)
-    
-    top_10_proj_pts = round((top_10['ProjFPts'].sum()), 1)
+    # Prioritize players with ProjGS not equal to 0
+    projections['Priority'] = projections['ProjGS'].apply(lambda x: 0 if x == 0 else 1)
+    projections.sort_values(by=['Priority', 'ProjFPts'], ascending=[False, False], inplace=True)
 
-    return top_10, reserves, top_10_proj_pts
+    pos_limits = {'D': (3, 5), 'M': (2, 5), 'F': (1, 3)}
+    max_players = 10
+    best_combination = None
+    best_score = 0
 
+    for d in range(pos_limits['D'][0], pos_limits['D'][1] + 1):
+        for m in range(pos_limits['M'][0], pos_limits['M'][1] + 1):
+            for f in range(pos_limits['F'][0], pos_limits['F'][1] + 1):
+                if d + m + f != max_players:
+                    continue
+
+                defenders = projections[projections['Pos'] == 'D'].nlargest(d, 'ProjFPts')
+                midfielders = projections[projections['Pos'] == 'M'].nlargest(m, 'ProjFPts')
+                forwards = projections[projections['Pos'] == 'F'].nlargest(f, 'ProjFPts')
+
+                current_combination = pd.concat([defenders, midfielders, forwards])
+                current_score = current_combination['ProjFPts'].sum()
+
+                if current_score > best_score:
+                    best_combination = current_combination
+                    best_score = current_score
+
+    print(f"Total Defenders: {len(best_combination[best_combination['Pos'] == 'D'])}")
+    print(f"Total Midfielders: {len(best_combination[best_combination['Pos'] == 'M'])}")
+    print(f"Total Forwards: {len(best_combination[best_combination['Pos'] == 'F'])}")
+
+    # Sort DataFrame by 'Pos' in the order 'D', 'M', 'F' and then by 'ProjFPts'
+    best_combination.sort_values(by=['Pos', 'ProjFPts'], key=lambda x: x.map({'D': 1, 'M': 2, 'F': 3}) if x.name == 'Pos' else x, ascending=[True, False], inplace=True)
+    best_combination.reset_index(drop=True, inplace=True)
+
+    reserves = projections[~projections['Player'].isin(best_combination['Player'])].head(5).reset_index(drop=True)
+    best_score = round(best_score, 1)
+
+    return best_combination, reserves, best_score
+
+
+# Function that will get the average projected points for top 10 players across all managers within the same positional limits
+def get_avg_proj_pts(players, projections):
+    total_proj_pts = 0
+    num_statuses = len(players['Status'].unique())
+
+    for status in players['Status'].unique():
+        top_10, _, top_10_proj_pts = filter_by_status_and_position(players, projections, status)
+        total_proj_pts += top_10_proj_pts
+
+    average_proj_pts = round((total_proj_pts / num_statuses), 1)
+    return average_proj_pts
+
+
+# Filter available players by their ProjGS and status
 def filter_available_players_by_projgs(players, projections, status, projgs_value):
-    print(f"Debug - Filtering by status: {status} and ProjGS: {projgs_value}")
-    
-    # Ensure 'status' is a list
     if isinstance(status, str):
         status = [status]
-    
-    # Filter players by status
-    filtered_players = players[players['Status'].isin(status)]
-    print(f"Debug - Filtered Players count: {len(filtered_players)}")
-    
-    if filtered_players.empty:
-        print("Debug - No players found for this status.")
-        return pd.DataFrame(), pd.DataFrame()
 
-    # Further filter by ProjGS value if specified
+    filtered_players = players[players['Status'].isin(status)]
+    
     if projgs_value is not None:
         filtered_players = filtered_players[filtered_players['ProjGS'] == projgs_value]
-        print(f"Debug - Further filtered by ProjGS to {len(filtered_players)} players")
-    
-    # Filter projections based on the filtered players list
-    player_list = filtered_players['Player'].unique().tolist()
-    projections = projections[projections['Player'].isin(player_list)]
-    print(f"Debug - Projections count after filtering: {len(projections)}")
-    
-    if projections.empty:
-        print("Debug - No projections found for these players.")
+
+    if filtered_players.empty:
         return pd.DataFrame(), pd.DataFrame()
 
-    pos_limit = {'D': 5, 'M': 5, 'F': 3}
-    final_list = [
-        projections[projections['Pos'] == pos].nlargest(limit, 'ProjFPts')
-        for pos, limit in pos_limit.items()
-    ]
-    
-    top_10 = pd.concat(final_list).nlargest(10, 'ProjFPts')
-    top_10.sort_values(by='Pos', key=lambda x: x.map({'D': 1, 'M': 2, 'F': 3}), inplace=True)
-    top_10.reset_index(drop=True, inplace=True)
-    
-    reserves = projections[~projections['Player'].isin(top_10['Player'])].head(5).reset_index(drop=True)
+    player_list = filtered_players['Player'].unique().tolist()
+    projections = projections[projections['Player'].isin(player_list)]
 
-    return top_10, reserves
+    if projections.empty:
+        return pd.DataFrame(), pd.DataFrame()
+
+    # Prioritize players with ProjGS not equal to 0
+    projections['Priority'] = projections['ProjGS'].apply(lambda x: 0 if x == 0 else 1)
+    projections.sort_values(by=['Priority', 'ProjFPts'], ascending=[False, False], inplace=True)
+
+    pos_limits = {'D': (3, 5), 'M': (2, 5), 'F': (1, 3)}
+    max_players = 10
+    best_combination = None
+    best_score = 0
+
+    for d in range(pos_limits['D'][0], pos_limits['D'][1] + 1):
+        for m in range(pos_limits['M'][0], pos_limits['M'][1] + 1):
+            for f in range(pos_limits['F'][0], pos_limits['F'][1] + 1):
+                if d + m + f != max_players:
+                    continue
+
+                defenders = projections[projections['Pos'] == 'D'].nlargest(d, 'ProjFPts')
+                midfielders = projections[projections['Pos'] == 'M'].nlargest(m, 'ProjFPts')
+                forwards = projections[projections['Pos'] == 'F'].nlargest(f, 'ProjFPts')
+
+                current_combination = pd.concat([defenders, midfielders, forwards])
+                current_score = current_combination['ProjFPts'].sum()
+
+                if current_score > best_score:
+                    best_combination = current_combination
+                    best_score = current_score
+
+    print(f"Total Defenders: {len(best_combination[best_combination['Pos'] == 'D'])}")
+    print(f"Total Midfielders: {len(best_combination[best_combination['Pos'] == 'M'])}")
+    print(f"Total Forwards: {len(best_combination[best_combination['Pos'] == 'F'])}")
+
+    # Sort DataFrame by 'Pos' in the order 'D', 'M', 'F' and then by 'ProjFPts'
+    best_combination.sort_values(by=['Pos', 'ProjFPts'], key=lambda x: x.map({'D': 1, 'M': 2, 'F': 3}) if x.name == 'Pos' else x, ascending=[True, False], inplace=True)
+    best_combination.reset_index(drop=True, inplace=True)
+
+    reserves = projections[~projections['Player'].isin(best_combination['Player'])].head(5).reset_index(drop=True)
+
+    return best_combination, reserves
 
 # Initialize session states
 if 'only_starters' not in st.session_state:
@@ -173,6 +214,9 @@ if 'only_starters' not in st.session_state:
 
 if 'lineup_clicked' not in st.session_state:
     st.session_state.lineup_clicked = False
+
+if 'ranking_type' not in st.session_state:
+    st.session_state.ranking_type = 'GW Projections'
 
 def main():
     # Adding construction banner or any other initial setups
@@ -193,7 +237,7 @@ def main():
         with st.spinner('Loading data...'):
             players = pd.read_csv(uploaded_file)
             projections = load_csv(proj_csv)
-            print(f"Filename: {proj_csv}")
+            ros_ranks_data = load_csv(ros_ranks)
             
             debug_filtering(projections, players)
 
@@ -211,8 +255,18 @@ def main():
             
             with col_b:
                 st.session_state.only_starters = st.checkbox('Only Starters?', value=st.session_state.only_starters)
+                st.session_state.ranking_type = st.radio('Select ranking type:', ['GW Projections', 'ROS Rank'])
 
-            if lineup_button or st.session_state.lineup_clicked:
+            if st.session_state.ranking_type == 'GW Projections':
+                top_10_players, reserves = filter_by_status_and_position(available_players, projections, status)
+                top_10_proj_pts = top_10_players['ProjectedPoints'].sum()  # Assuming you have a 'ProjectedPoints' column
+            elif st.session_state.ranking_type == 'ROS Rank':
+                top_10_players, reserves = filter_by_status_and_position(available_players, ros_ranks_data, status)
+                top_10_proj_pts = top_10_players['ProjectedPoints'].sum()  # Assuming you have a 'ProjectedPoints' column
+            else:
+                st.error("Unexpected ranking type selected.")
+
+            if lineup_button:
                 center_running()
                 with st.spinner('Getting your optimal lineup...'):
                     st.session_state.lineup_clicked = True
@@ -221,16 +275,12 @@ def main():
                     col1, col2 = st.columns(2)
 
                     with col1:
-                        status_list = [status]
-                        top_10, reserves, top_10_proj_pts = filter_by_status_and_position(players, projections, status_list)
                         st.write(f"### {status} Best XI")
-                        st.dataframe(top_10)
+                        st.dataframe(top_10_players)
                         st.write("### Reserves")
                         st.dataframe(reserves)
 
                     with col2:
-                        available_players = pd.merge(available_players, projections[['Player', 'ProjGS']], on='Player', how='left')
-                        
                         if st.session_state.only_starters:
                             top_10_waivers, reserves_waivers = filter_available_players_by_projgs(available_players, projections, ['Waivers', 'FA'], 1)
                         else:
@@ -251,15 +301,6 @@ def main():
                         col2.metric(label="Average Projected FPts of Best XIs across the Division", value=average_proj_pts, delta=round((top_10_proj_pts - average_proj_pts), 1))
 
                     style_metric_cards()
-
-    # divider 
-    st.divider()
-
-    # add a button to "View all Projections" which will show the projections DataFrame
-    if st.button('View all Projections'):
-        projections = load_csv(proj_csv)
-
-        st.dataframe(projections, use_container_width=True)
 
 
 if __name__ == "__main__":
