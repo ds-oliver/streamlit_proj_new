@@ -1652,6 +1652,7 @@ def get_color(value, cmap):
     text_color = 'white' if brightness < 0.7 else 'black'
     return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
 
+
 def create_custom_cmap(*colors, base_cmap=None, brightness_limit=None):
     if colors:
         return LinearSegmentedColormap.from_list('custom_cmap', colors)
@@ -1669,48 +1670,38 @@ def create_custom_cmap_0(base_cmap='magma', brightness_limit=1):
     color_list = [(r * brightness_limit, g * brightness_limit, b * brightness_limit, a) for r, g, b, a in color_list]
     return LinearSegmentedColormap.from_list(base_cmap, color_list)
 
-def style_tp_dataframe_custom(df, selected_columns, custom_cmap="gist_heat"):
-    if custom_cmap:
-        object_cmap = custom_cmap
-    else:
-        object_cmap = create_custom_cmap()
-
-    Team_cmap = plt.cm.get_cmap('gist_heat')
-
+def style_tp_dataframe_custom(df, selected_columns, custom_cmap_name="gist_heat"):
+    cmap = plt.cm.get_cmap(custom_cmap_name)
+    
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
-
-    # Handling Position and Player columns
+    
     position_column = 'Pos' if 'Pos' in df.columns else 'Position' if 'Position' in df.columns else None
-
+    position_colors = {"D": "background-color: #6d597a", "M": "background-color: #370617", "F": "background-color: #03071e"}
+    
     if position_column:
-        position_colors = {
-            "D": "background-color: #6d597a",
-            "M": "background-color: #370617",
-            "F": "background-color: #03071e"
-        }
-        styled_df[position_column] = df[position_column].apply(lambda x: position_colors.get(x, ''))
-        styled_df['Player'] = df[position_column].apply(lambda x: position_colors.get(x, ''))
+        styled_df[position_column] = df[position_column].map(position_colors.get)
+        styled_df['Player'] = df[position_column].map(position_colors.get)
 
     for col in df.columns:
         if col in ['Player', position_column]:
             continue
 
-        # Team column coloring based on rank or percentile
         if col == 'Team':
             team_rank = df['Team'].rank(method='min', ascending=False)
             max_rank = team_rank.max()
-            styled_df['Team'] = team_rank.apply(lambda x: get_color((x-1) / (max_rank-1), Team_cmap))
+            styled_df['Team'] = team_rank.apply(lambda x: get_color((x - 1) / (max_rank - 1), cmap))
 
         elif len(df[col].unique()) <= 3:
-            constant_colors = ["color: #eae2b7", "color: #FDFEFE", "color: #FDFAF9"]
+            df[col] = pd.to_numeric(df[col], errors='coerce')
+            constant_colors = {"#eae2b7": "color: #eae2b7", "#FDFEFE": "color: #FDFEFE", "#FDFAF9": "color: #FDFAF9"}
             most_common_value, _ = Counter(df[col]).most_common(1)[0]
-            other_colors = [color for val, color in zip(df[col].unique(), constant_colors[1:]) if val != most_common_value]
-            color_mapping = {most_common_value: constant_colors[0], **{val: color for val, color in zip([uv for uv in df[col].unique() if uv != most_common_value], other_colors)}}
-            styled_df[col] = df[col].apply(lambda x: color_mapping.get(x, ''))
+            color_mapping = {most_common_value: constant_colors["#eae2b7"]}
+            styled_df[col] = df[col].map(color_mapping.get)
 
         else:
+            df[col] = pd.to_numeric(df[col], errors='coerce')
             min_val, max_val = df[col].min(), df[col].max()
-            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / (max_val - min_val), object_cmap) if max_val != min_val else '')
+            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / (max_val - min_val), cmap) if max_val != min_val else '')
 
     return styled_df
 

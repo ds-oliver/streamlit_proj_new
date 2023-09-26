@@ -60,173 +60,105 @@ print(sys.path)
 def main():
     
     matches_col_groups = {
-    "Standard": matches_standard_cols,
-    "Passing": matches_passing_cols,
-    "Defense": matches_defense_cols,
-    "Possession": matches_possession_cols,
-    "Miscellaneous": matches_misc_cols,
-    "Passing Types": matches_pass_types
-}
+        "Standard": matches_standard_cols,
+        "Passing": matches_passing_cols,
+        "Defense": matches_defense_cols,
+        "Possession": matches_possession_cols,
+        "Miscellaneous": matches_misc_cols,
+        "Passing Types": matches_pass_types
+    }
+
     add_construction()
     
     st.title('Match Events')
     st.header('')
 
+    # create a dictionary of player names to positions
+    player_to_pos = dict(zip(
+        [player.lower() for player in load_csv(temp_default)['Player']],
+        [pos.lower() for pos in load_csv(temp_default)['Position']]
+    ))
+
     shots_df = load_csv(shots_data)
+
+    # print head of dataframe
+    print(f"Shots dataframe shape: {shots_df.head()}")
+
     players_df = load_csv(matches_data)
 
-    # capitalize columns
+    print(f"Players dataframe shape: {players_df.head()}")
+
+    # create position column in shots and players dataframes using player_to_pos dictionary
+    players_df['Position'] = players_df['player'].apply(lambda x: player_to_pos[x])
+
+    # Capitalize columns
     shots_df.columns = [col.capitalize() for col in shots_df.columns]
     players_df.columns = [col.capitalize() for col in players_df.columns]
 
-    print(shots_df.head())
-    print(players_df.head())
-
-    # filter for only data where outcome does not equal 'Off Target'
     shots_df = shots_df[shots_df['Outcome'] != 'Off Target']
 
-    # team_stats = players_df.groupby(['Team', 'Gameweek'], as_index=False).sum()
-
-    # team_stats.reset_index(drop=True, inplace=True)
-
-    # print(team_stats.head())
-
-    # Check if DataFrame is empty
     if shots_df.empty:
         st.warning("No data to display after filtering.")
         return
     
-    # provide dropdown for gameweek
     select_gw = st.selectbox('Select Gameweek', shots_df['Gameweek'].unique())
-
-    # filter for selected gameweek
     shots_df = shots_df[shots_df['Gameweek'] == select_gw]
 
-    players_df['Team'] = players_df['Team'].apply(lambda x: x.replace(' Player Stats', '') if isinstance(x, str) else x)
-
-    players_df['Opponent'] = players_df['Opponent'].apply(lambda x: x.replace(' Player Stats', '') if isinstance(x, str) else x)
+    players_df['Team'] = players_df['Team'].apply(lambda x: x.replace(' Player Stats', ''))
+    players_df['Opponent'] = players_df['Opponent'].apply(lambda x: x.replace(' Player Stats', ''))
     
-    # for each home team away team pair create a new column with 'Home Team vs. Away Team'
     players_df['Matchup'] = players_df['Team'] + ' vs. ' + players_df['Opponent']
-
-    # offer selection of matches to show
+    
     select_match = st.selectbox('Select Match', players_df['Matchup'].unique())
-
-    # filter for selected match in players_df where players_df['team'] and players_df['opponent'] are in shots_df['matchup']
-    players_df = players_df[(players_df['Team'].isin([select_match.split(' vs. ')[0], select_match.split(' vs. ')[1]])) & (players_df['Opponent'].isin([select_match.split(' vs. ')[0], select_match.split(' vs. ')[1]]))]
-
-    # print unique values of players_df['team'] and players_df['opponent']
-    print(players_df['Team'].unique())
-    print(players_df['Opponent'].unique())
+    
+    filter_condition = (players_df['Team'].isin([select_match.split(' vs. ')[0], select_match.split(' vs. ')[1]])) & \
+                       (players_df['Opponent'].isin([select_match.split(' vs. ')[0], select_match.split(' vs. ')[1]]))
+    players_df = players_df[filter_condition]
 
     matches_col_groups = {key.capitalize(): [col.capitalize() for col in value] for key, value in matches_col_groups.items()}
 
-    # select from matches_cols_groups
-    select_col_group = st.selectbox('Select Stats Category', matches_col_groups, key='matches_col_groups')
+    select_col_group = st.selectbox('Select Stats Category', list(matches_col_groups.keys()), key='matches_col_groups')
 
     selected_columns = matches_col_groups[select_col_group]
 
-    print(f"selected col group: {selected_columns}")
+    cols_to_show_as_mean = [col for col in selected_columns if '_pct' in col]
+    cols_to_show_as_sum = [col for col in selected_columns if '_pct' not in col]
+    
+    aggregation_functions = {col: 'mean' if col in cols_to_show_as_mean else 'sum' for col in selected_columns}
 
-    # if column name contains '_pct' add column to list of columns to show grouped by mean
-    cols_to_show_as_mean = []
-    cols_to_show_as_sum = []
-    if selected_columns:
-        print(f"select_col_group is not empty: {selected_columns}")
-        for col in selected_columns:
-            if '_pct' in col:
-                print('pct in select col group')
-                print(f"col: {col}") 
-                cols_to_show_as_mean.append(col) 
-            else:
-                cols_to_show_as_sum.append(col)
-    else:
-        print(f"select_col_group is empty: {selected_columns}")
-
-    print(f"cols to show as mean: {cols_to_show_as_mean}")
-    print(f"cols to show as sum: {cols_to_show_as_sum}")
-
-    aggregation_functions = {col: 'sum' if col in cols_to_show_as_sum else 'mean' for col in cols_to_show_as_mean}
-    # Create an aggregation function dictionary based on the above lists
-    aggregation_functions = {}
-    for col in selected_columns:
-        if col in cols_to_show_as_mean:
-            aggregation_functions[col] = 'mean'
-        elif col in cols_to_show_as_sum:
-            aggregation_functions[col] = 'sum'
-
-    # Use the above aggregation functions dictionary to aggregate your DataFrame
-    # Example assuming 'Team' and 'Gameweek' are the grouping columns
     team_df = players_df.groupby(['Team', 'Gameweek']).agg(aggregation_functions).reset_index()
-
-    # apply round_and_format to team_df
     team_df = team_df.applymap(round_and_format)
 
     columns_to_show_players = ['Player'] + [col for col in selected_columns if col in players_df.columns]
-
     columns_to_show_team = ['Team'] + [col for col in selected_columns if col in team_df.columns]
-    # divider
-    st.divider()
 
+    st.divider()
     col1, col2 = st.columns(2)
 
     with col1:
         home_team = select_match.split(' vs. ')[0]
         st.subheader(f'{home_team}')
-        st.write('*')
-        # filter home_team_stats for home_team
         home_team_stats = team_df[team_df['Team'] == home_team]
-        
-        # get players data from where players_df['team'] == home_team
         home_players_stats = players_df[players_df['Team'] == home_team]
-        # reset index
-        home_players_stats.reset_index(drop=True, inplace=True)
 
-        print(home_players_stats.head())
+        styled_home_players_stats_df = style_tp_dataframe_custom(home_players_stats[columns_to_show_players], columns_to_show_players)
+        styled_home_team_df = style_tp_dataframe_custom(home_team_stats[columns_to_show_team], columns_to_show_team)
 
-        styled_home_players_stats_df = style_tp_dataframe_custom(home_players_stats[columns_to_show_players], columns_to_show_players, False)
-
-        styled_home_team_df = style_tp_dataframe_custom(home_team_stats[columns_to_show_team], columns_to_show_team, False)
-
-        print(f"players columns: {columns_to_show_players}")
-        print(f"team columns: {columns_to_show_team}")
-
-        st.dataframe(home_team_stats[columns_to_show_team].style.apply(lambda _: styled_home_team_df, axis=None), height=(len(home_team_stats) * 35), width=1200)
-
-        st.dataframe(home_players_stats[columns_to_show_players].style.apply(lambda _: styled_home_players_stats_df, axis=None), height=(len(home_players_stats) * 35), width=1200)
+        st.dataframe(home_team_stats[columns_to_show_team].style.apply(lambda _: styled_home_team_df, axis=None))
+        st.dataframe(home_players_stats[columns_to_show_players].style.apply(lambda _: styled_home_players_stats_df, axis=None))
 
     with col2:
         away_team = select_match.split(' vs. ')[1]
         st.subheader(f'{away_team}')
-        st.write('*')
-        # get players data from where players_df['team'] == away_team
+        away_team_stats = team_df[team_df['Team'] == away_team]
         away_players_stats = players_df[players_df['Team'] == away_team]
-        # reset index
-        away_players_stats.reset_index(drop=True, inplace=True)
 
-        away_teams_stats = team_df[team_df['Team'] == away_team]
+        styled_away_players_stats_df = style_tp_dataframe_custom(away_players_stats[columns_to_show_players], columns_to_show_players)
+        styled_away_team_df = style_tp_dataframe_custom(away_team_stats[columns_to_show_team], columns_to_show_team)
 
-        # reset index
-        away_teams_stats.reset_index(drop=True, inplace=True)
-
-        print(away_teams_stats.head())
-
-        print(away_players_stats.head())
-
-        styled_home_players_df = style_tp_dataframe_custom(away_players_stats[columns_to_show_players], columns_to_show_players, False)
-
-        styled_away_team_df = style_tp_dataframe_custom(away_teams_stats[columns_to_show_team], columns_to_show_team, False)
-
-        print(columns_to_show_players)
-
-        # # set players column as index
-        # away_players.set_index('Player', inplace=True)
-
-        st.dataframe(away_teams_stats[columns_to_show_team].style.apply(lambda _: styled_away_team_df, axis=None), height=(len(away_teams_stats) * 35), width=1200)
-
-        st.dataframe(away_players_stats[columns_to_show_players].style.apply(lambda _: styled_home_players_df, axis=None), height=(len(away_players_stats) * 35), width=1200)
-
-        
+        st.dataframe(away_team_stats[columns_to_show_team].style.apply(lambda _: styled_away_team_df, axis=None))
+        st.dataframe(away_players_stats[columns_to_show_players].style.apply(lambda _: styled_away_players_stats_df, axis=None))
+    
 
 if __name__ == "__main__":
     main()
