@@ -193,6 +193,7 @@ def main():
         with st.spinner('Loading data...'):
             players = pd.read_csv(uploaded_file)
             projections = load_csv(proj_csv)
+            print(f"Filename: {proj_csv}")
             
             debug_filtering(projections, players)
 
