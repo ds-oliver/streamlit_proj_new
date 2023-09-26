@@ -256,7 +256,9 @@ def main():
 
     # add a button to "View all Projections" which will show the projections DataFrame
     if st.button('View all Projections'):
-        st.dataframe(projections)
+        projections = load_csv(proj_csv)
+
+        st.dataframe(projections, use_container_width=True)
 
 
 if __name__ == "__main__":
