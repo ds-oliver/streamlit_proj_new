@@ -46,6 +46,25 @@ st.set_page_config(
     }
 )
 
+js_code = """
+    <script>
+        setTimeout(function() {
+            // Select all elements with the class "glideDataEditor" and "wzg2m5k"
+            const elements = document.querySelectorAll(".glideDataEditor.wzg2m5k");
+
+            // Loop through all matched elements
+            elements.forEach((element) => {
+                // Update CSS variables
+                element.style.setProperty("--gdg-bg-header", "#370617");
+                element.style.setProperty("--gdg-bg-header-has-focus", "#370617");
+                element.style.setProperty("--gdg-bg-header-hovered", "#370617");
+            });
+        }, 1000);  // Execute after a delay of 1000 milliseconds
+    </script>
+"""
+
+st.markdown(js_code, unsafe_allow_html=True)
+
 load_css()
 
 warnings.filterwarnings('ignore')
