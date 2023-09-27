@@ -203,6 +203,20 @@ def create_top_performers_table(matches_df, selected_stat, selected_columns, per
 
     return top_performers_df
 
+def create_top_teams_table(teams_df, selected_stat):
+    top_teams_df = teams_df.copy()
+    cols_to_drop = [col for col in top_teams_df.columns if col not in ['Team', 'GP', 'Player Count', 'Subs Used']]
+    top_teams_df.drop(columns=cols_to_drop, inplace=True)
+
+    # Sort the dataframe by the selected stat in descending order
+    top_teams_df = top_teams_df.sort_values(by=selected_stat, ascending=False)
+
+    # reset the index
+    top_teams_df.reset_index(drop=True, inplace=True)
+
+    return top_teams_df
+
+
 def visualize_top_performers(top_performers_df, selected_stat):
     # plot the top performers just the players and the selected stat
     fig = px.bar(top_performers_df, x='player', y=selected_stat, color='team', color_discrete_sequence=px.colors.qualitative.Pastel)
@@ -282,7 +296,7 @@ def main():
     selected_group = st.sidebar.selectbox("Select Stats Grouping", list(matches_col_groups.keys()), help="This selection will be used to populate the Match Reports table.", key='group')
 
     # create radio button for 'Starting XI' or 'All Featured Players'
-    featured_players = st.sidebar.radio("Select Featured Players", ('Starting XI', '> 55 Minutes Played', 'All Featured Players'))
+    featured_players = st.sidebar.radio("Select Featured Players", ('All Featured Players', 'Starting XI', '> 55 Minutes Played'))
 
     selected_position = st.sidebar.selectbox('Select Position', ['All Positions'] + sorted(matches_df['Pos'].unique().tolist()))
 
@@ -304,7 +318,10 @@ def main():
     if 'Gw' in matches_df.columns:
         matches_df.rename(columns={'Gw': 'GW'}, inplace=True)
 
-    # Filter the DataFrame based on the radio button selected
+    # Filter the DataFrame based on the radio button selected, set it to All Featured Players by default
+    if featured_players == 'All Featured Players':
+        matches_df = matches_df
+
     if featured_players == '> 55 Minutes Played':
         matches_df = matches_df[matches_df['Minutes'] > 55]
 
@@ -356,11 +373,11 @@ def main():
         MATCHES_DEFAULT_COLS = ['Player', 'Pos', 'Team', 'GS:GP'] + [col for col in MATCHES_DEFAULT_COLS if col not in ['Player', 'Team', 'Pos', 'GS:GP']]
 
         # Now we create the dataframe grouped by Team before any filtering is applied, for teams_df we want Count of player
-        teams_df = matches_df.groupby(['Team'], as_index=False).agg({'Player': 'count'})
+        teams_df = matches_df.groupby(['Team'], as_index=False).agg({'Player': 'count', 'GP': 'first'})
         teams_df.rename(columns={'Player': 'Player Count'}, inplace=True)
 
         # Create Subs_Used column that takes count of players minus 11
-        teams_df['Subs_Used'] = teams_df['Player Count'] - 11
+        teams_df['Subs Used'] = teams_df['Player Count'] - 11
 
         # If the user selects 'Starting XI', filter the DataFrame accordingly
         if featured_players == 'Starting XI':
@@ -415,7 +432,10 @@ def main():
 
     # Now we show the teams_df dataframe
     st.subheader(f":orange[Teams]")
-    styled_teams_df = style_tp_dataframe_custom(teams_df, teams_df.columns.tolist(), "gist_heat")
+
+    top_teams_df = create_top_teams_table(teams_df, selected_stat)
+
+    styled_teams_df = style_tp_dataframe_custom(top_teams_df, top_teams_df.columns.tolist(), "gist_heat")
     st.dataframe(teams_df.style.apply(lambda _: styled_teams_df, axis=None), use_container_width=True, height=len(teams_df) * 40 + 50)
 
     # Create dataframe grouped by team
