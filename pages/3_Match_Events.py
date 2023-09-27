@@ -48,18 +48,22 @@ st.set_page_config(
 
 js_code = """
     <script>
-        setTimeout(function() {
-            // Select all elements with the class "glideDataEditor" and "wzg2m5k"
-            const elements = document.querySelectorAll(".glideDataEditor.wzg2m5k");
-
-            // Loop through all matched elements
-            elements.forEach((element) => {
-                // Update CSS variables
-                element.style.setProperty("--gdg-bg-header", "#370617");
-                element.style.setProperty("--gdg-bg-header-has-focus", "#370617");
-                element.style.setProperty("--gdg-bg-header-hovered", "#370617");
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.target.className.includes('glideDataEditor') && mutation.target.className.includes('wzg2m5k')) {
+                    mutation.target.style.setProperty('--gdg-bg-header', '#370617');
+                    mutation.target.style.setProperty('--gdg-bg-header-has-focus', '#370617');
+                    mutation.target.style.setProperty('--gdg-bg-header-hovered', '#370617');
+                }
             });
-        }, 1000);  // Execute after a delay of 1000 milliseconds
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: ['style']
+        });
     </script>
 """
 
