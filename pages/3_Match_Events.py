@@ -127,12 +127,19 @@ def main():
         return
     
     select_gw = st.selectbox('Select Gameweek', shots_df['Gameweek'].unique())
+
+    # filter by gameweek
+    
+
     shots_df = shots_df[shots_df['Gameweek'] == select_gw]
 
     players_df['Team'] = players_df['Team'].apply(lambda x: x.replace(' Player Stats', ''))
     players_df['Opponent'] = players_df['Opponent'].apply(lambda x: x.replace(' Player Stats', ''))
     
     players_df['Matchup'] = players_df['Team'] + ' vs. ' + players_df['Opponent']
+
+    # print unique matchups
+    print(f"Unique matchups: {players_df['Matchup'].unique()}")
     
     select_match = st.selectbox('Select Match', players_df['Matchup'].unique())
     
