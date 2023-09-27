@@ -355,6 +355,13 @@ def main():
         MATCHES_DEFAULT_COLS.remove('GP')
         MATCHES_DEFAULT_COLS = ['Player', 'Pos', 'Team', 'GS:GP'] + [col for col in MATCHES_DEFAULT_COLS if col not in ['Player', 'Team', 'Pos', 'GS:GP']]
 
+        # Now we create the dataframe grouped by Team before any filtering is applied, for teams_df we want Count of player
+        teams_df = matches_df.groupby(['Team'], as_index=False).agg({'Player': 'count'})
+        teams_df.rename(columns={'Player': 'Player Count'}, inplace=True)
+
+        # Create Subs_Used column that takes count of players minus 11
+        teams_df['Subs_Used'] = teams_df['Player Count'] - 11
+
         # If the user selects 'Starting XI', filter the DataFrame accordingly
         if featured_players == 'Starting XI':
             matches_df['GS:GP'] = matches_df['GS:GP'].astype(float).round(2)  # Convert the 'GS:GP' column to float
@@ -393,7 +400,7 @@ def main():
 
     st.divider()
     st.subheader(f":orange[Top Performers] by :red[{selected_stat} ({selected_aggregation_method})]")
-    st.write(f'**{selected_team}** players in the {percentile_value}th percentile by **:red[{selected_stat} ({selected_aggregation_method})]. Conditional formatting has been applied to Team column based on respective average {selected_stat} of the team.**')
+    st.write(f'**{selected_team}** players in the {percentile_value}th percentile by **:red[{selected_stat} ({selected_aggregation_method})]. Conditional formatting has been applied to Team value based on rank of {selected_stat} ({selected_aggregation_method})**')
 
     # Styling DataFrame
     styled_top_performers_df = style_tp_dataframe_custom(top_performers_df[columns_to_show], columns_to_show, "gist_heat")
@@ -404,7 +411,13 @@ def main():
     # 👈 Display the dataframe 👈
     st.dataframe(top_performers_df[columns_to_show].style.apply(lambda _: styled_top_performers_df, axis=None), use_container_width=True, height=len(top_performers_df) * 40 + 50)
 
+    st.divider()
 
+    # Now we show the teams_df dataframe
+    st.subheader(f":orange[Teams]")
+    st.dataframe(teams_df.style.apply(lambda _: styled_top_performers_df, axis=None), use_container_width=True, height=len(teams_df) * 40 + 50)
+
+    # Create dataframe grouped by team
     st.divider()
 
     # User selects the group and columns to show
