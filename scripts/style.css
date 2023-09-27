@@ -132,6 +132,15 @@ footer {
     visibility: hidden;
 }
 
+/* Changing header fill and font color */
+th[role="columnheader"] {
+    background-color: var(--primary-bg-color);
+    /* Fill color */
+    color: var(--primary-text-color);
+    /* Font color */
+    font-family: 'DylanCondensed-Medium', sans-serif;
+    /* Changing the font */
+}
 
 /* Form */
 .css-1h109da {
