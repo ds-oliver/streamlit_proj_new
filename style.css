@@ -112,7 +112,7 @@ td,
 /* Styling for the first td child within DataFrames */
 .dataframe td:first-child {
     font-family: 'DylanCondensed-Medium', sans-serif;
-    background-color: var(--primary-bg-color);
+    background-color: #850733;
     color: var(--primary-text-color);
 }
 
