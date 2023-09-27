@@ -128,7 +128,7 @@ def main():
     
     select_gw = st.selectbox('Select Gameweek', shots_df['Gameweek'].unique())
 
-    # filter by gameweek
+    # filter by select_gw
     
 
     shots_df = shots_df[shots_df['Gameweek'] == select_gw]
