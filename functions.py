@@ -1537,6 +1537,13 @@ def get_color_0(value, cmap):
     text_color = 'white' if brightness < 0.7 else 'black'
     return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
 
+def get_color(value, cmap):
+    color_fraction = value
+    rgba_color = cmap(color_fraction)
+    brightness = 0.299 * rgba_color[0] + 0.587 * rgba_color[1] + 0.114 * rgba_color[2]
+    text_color = 'white' if brightness < 0.7 else 'black'
+    return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
+
 def create_custom_cmap_1(*colors):
     custom_cmap = LinearSegmentedColormap.from_list('custom_cmap', colors)
     return custom_cmap
@@ -1644,15 +1651,6 @@ def style_dataframe_custom(df, selected_columns, custom_cmap="gist_heat"):
                     
     return styled_df
 
-
-def get_color(value, cmap):
-    color_fraction = value
-    rgba_color = cmap(color_fraction)
-    brightness = 0.299 * rgba_color[0] + 0.587 * rgba_color[1] + 0.114 * rgba_color[2]
-    text_color = 'white' if brightness < 0.7 else 'black'
-    return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
-
-
 def create_custom_cmap(*colors, base_cmap=None, brightness_limit=None):
     if colors:
         return LinearSegmentedColormap.from_list('custom_cmap', colors)
@@ -1684,9 +1682,6 @@ def style_tp_dataframe_custom(df, selected_columns, custom_cmap_name="gist_heat"
 
     for col in df.columns:
         if col in ['Player', position_column]:
-            continue
-        # if col == 'Team' and no Player column exists:
-        elif col == 'Team' and 'Player' not in df.columns:
             continue
         
         elif col == 'Team':

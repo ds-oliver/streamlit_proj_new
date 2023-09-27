@@ -273,6 +273,20 @@ def format_col_names(df, default_columns):
     df.rename(columns={col: col.replace('_', ' ').title() for col in df.columns if col not in default_columns}, inplace=True)
     return df
 
+def get_color(value, cmap):
+    color_fraction = value
+    rgba_color = cmap(color_fraction)
+    brightness = 0.299 * rgba_color[0] + 0.587 * rgba_color[1] + 0.114 * rgba_color[2]
+    
+    # Log values for debugging
+    print(f"Value: {value}, RGBA Color: {rgba_color}, Brightness: {brightness}")
+    
+    # Adjust the brightness threshold
+    text_color = 'white' if brightness < 0.75 else 'black'
+    
+    return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
+
+
 def style_dataframe_custom(df, selected_columns, custom_cmap="gist_heat"):
     object_cmap = plt.cm.get_cmap(custom_cmap)
     styled_df = pd.DataFrame()
