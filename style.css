@@ -1,3 +1,12 @@
+/* Variables for commonly used values */
+:root {
+    --primary-bg-color: #370617;
+    --primary-text-color: #fefae0;
+    --common-font: 'AvenirLTPro-Book', sans-serif;
+    --common-border: 1px solid #ddd;
+    --common-padding: 8px;
+}
+
 /* Declare the fonts */
 @font-face {
     font-family: 'iosevka-regular';
@@ -86,29 +95,31 @@ td,
     border-radius: 4px;
 }
 
-/* Styling for DataFrames */
+/* Base styling for all DataFrames */
 .dataframe {
-    font-family: 'AvenirLTPro-Book', sans-serif !important;
-    border-collapse: collapse !important;
-    width: 100% !important;
-    border: 1px solid #ddd !important;
+    font-family: var(--common-font);
+    border-collapse: collapse;
+    width: 100%;
+    border: var(--common-border);
 }
 
+/* Styling for th elements within DataFrames */
 .dataframe th {
-    font-family: 'AvenirLTPro-Book', sans-serif;
-    background-color: #370617;
-    color: #fefae0;
+    background-color: var(--primary-bg-color);
+    color: var(--primary-text-color);
 }
 
+/* Styling for the first td child within DataFrames */
 .dataframe td:first-child {
     font-family: 'DylanCondensed-Medium', sans-serif;
-    background-color: #370617;
-    color: #fefae0;
+    background-color: var(--primary-bg-color);
+    color: var(--primary-text-color);
 }
 
+/* General styling for td elements within DataFrames */
 .dataframe td {
-    text-align: left !important;
-    padding: 8px !important;
+    text-align: left;
+    padding: var(--common-padding);
 }
 
 /* New additions */
