@@ -80,7 +80,7 @@ td,
 /* Styling for buttons */
 .stButton>button {
     background-color: #370617;
-    color: white;
+    color: #fefae0;
     font-size: 16px;
     padding: 12px 24px;
     border-radius: 4px;
@@ -94,7 +94,18 @@ td,
     border: 1px solid #ddd !important;
 }
 
-.dataframe th,
+.dataframe th {
+    font-family: 'AvenirLTPro-Book', sans-serif;
+    background-color: #370617;
+    color: #fefae0;
+}
+
+.dataframe td:first-child {
+    font-family: 'DylanCondensed-Medium', sans-serif;
+    background-color: #370617;
+    color: #fefae0;
+}
+
 .dataframe td {
     text-align: left !important;
     padding: 8px !important;
@@ -275,7 +286,7 @@ footer {
 
 
 .stSlider>div>div>div>div {
-    background-color: white;
+    background-color: #fefae0;
 }
 
 .stSlider>label {
@@ -302,7 +313,7 @@ footer {
     font-size: 14px;
     text-overflow: none;
     z-index: 1;
-    white-space: nowrap;
+    #fefae0-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -356,7 +367,7 @@ footer {
 
 
 .css-15of2nd {
-    background-color: whitesmoke;
+    background-color: #fefae0smoke;
 }
 
 .stTextInput>div {
@@ -409,7 +420,7 @@ footer {
 }
 
 .css-uokr8j {
-    color: whitesmoke;
+    color: #fefae0smoke;
 }
 
 .stTimeInput>div>div {
@@ -491,7 +502,7 @@ footer {
 }
 
 .reportview-container>section:first-child>div>div:nth-child(2)>div:nth-child(2) {
-    border: solid whitesmoke 2px;
+    border: solid #fefae0smoke 2px;
 }
 
 
@@ -505,7 +516,7 @@ footer {
 
 .generated_download:hover {
     text-decoration: none;
-    color: whitesmoke;
+    color: #fefae0smoke;
 }
 
 div>div>div>img {
