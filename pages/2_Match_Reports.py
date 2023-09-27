@@ -203,20 +203,6 @@ def create_top_performers_table(matches_df, selected_stat, selected_columns, per
 
     return top_performers_df
 
-def create_top_teams_table(teams_df, selected_stat):
-    top_teams_df = teams_df.copy()
-    cols_to_drop = [col for col in top_teams_df.columns if col not in ['Team', 'GP', 'Player Count', 'Subs Used']]
-    top_teams_df.drop(columns=cols_to_drop, inplace=True)
-
-    # Sort the dataframe by the selected stat in descending order
-    top_teams_df = top_teams_df.sort_values(by=selected_stat, ascending=False)
-
-    # reset the index
-    top_teams_df.reset_index(drop=True, inplace=True)
-
-    return top_teams_df
-
-
 def visualize_top_performers(top_performers_df, selected_stat):
     # plot the top performers just the players and the selected stat
     fig = px.bar(top_performers_df, x='player', y=selected_stat, color='team', color_discrete_sequence=px.colors.qualitative.Pastel)
@@ -252,6 +238,26 @@ def round_and_format(value):
         return "{:.2f}".format(value)
     return value
 
+def create_top_teams_table(teams_df, selected_stat):
+    top_teams_df = teams_df.copy()
+    cols_to_drop = [col for col in top_teams_df.columns if col not in ['Team', 'GP', 'Player Count', 'Subs Used']]
+    top_teams_df.drop(columns=cols_to_drop, inplace=True)
+
+    # Sort the dataframe by the selected stat in descending order
+    top_teams_df = top_teams_df.sort_values(by=selected_stat, ascending=False)
+
+    # reset the index
+    top_teams_df.reset_index(drop=True, inplace=True)
+
+    return top_teams_df
+
+# Assuming 'teams_df' is your grouped dataframe and 'original_df' contains raw data
+def re_add_aggregated_column(teams_df, original_df, selected_stat):
+    aggregated_stat = original_df.groupby('Team')[selected_stat].sum().reset_index()
+    teams_df = pd.merge(teams_df, aggregated_stat, on='Team', how='left')
+    return teams_df
+
+
 def main():
 
     add_construction()
@@ -260,6 +266,8 @@ def main():
 
     # reorder the columns in MATCHES_DEFAULT_COLS so that its ['Player', 'Pos', 'Team', 'GW', 'Started']
     MATCHES_DEFAULT_COLS = ['Player', 'Pos', 'Team', 'GW', 'Started'] + [col for col in MATCHES_DEFAULT_COLS if col not in ['Player', 'Pos', 'Team', 'GW', 'Started']]
+
+    TEAMS_DEFAULT_COLUMNS = ['Team', 'GP', 'Player Count', 'Subs Used']
 
     # print MATCHES_DEFAULT_COLS
     print("MATCHES_DEFAULT_COLS:", MATCHES_DEFAULT_COLS)
@@ -379,6 +387,8 @@ def main():
         # Create Subs_Used column that takes count of players minus 11
         teams_df['Subs Used'] = teams_df['Player Count'] - 11
 
+        teams_df = re_add_aggregated_column(teams_df, matches_df, selected_stat)
+
         # If the user selects 'Starting XI', filter the DataFrame accordingly
         if featured_players == 'Starting XI':
             matches_df['GS:GP'] = matches_df['GS:GP'].astype(float).round(2)  # Convert the 'GS:GP' column to float
@@ -406,6 +416,8 @@ def main():
     # # User selects the stat
     # selected_stat = st.sidebar.selectbox("Select a Statistic", selectable_stats, index=default_stat_index, help="This selection will be used to populate the Top Performers table.")
     columns_to_show = MATCHES_DEFAULT_COLS + [selected_stat]
+
+    teams_columns_to_show = TEAMS_DEFAULT_COLUMNS + [selected_stat]
 
     # Create a DataFrame for players within the 90th percentile
     top_performers_df = create_top_performers_table(matches_df, selected_stat, columns_to_show)
@@ -435,7 +447,7 @@ def main():
 
     top_teams_df = create_top_teams_table(teams_df, selected_stat)
 
-    styled_teams_df = style_tp_dataframe_custom(top_teams_df, top_teams_df.columns.tolist(), "gist_heat")
+    styled_teams_df = style_tp_dataframe_custom(top_teams_df[teams_columns_to_show], teams_columns_to_show, "gist_heat")
     st.dataframe(teams_df.style.apply(lambda _: styled_teams_df, axis=None), use_container_width=True, height=len(teams_df) * 40 + 50)
 
     # Create dataframe grouped by team
