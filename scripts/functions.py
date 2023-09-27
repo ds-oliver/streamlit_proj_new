@@ -1685,7 +1685,10 @@ def style_tp_dataframe_custom(df, selected_columns, custom_cmap_name="gist_heat"
     for col in df.columns:
         if col in ['Player', position_column]:
             continue
-
+        # if col == 'Team' and no Player column exists:
+        if col == 'Team' and 'Player' not in df.columns:
+            continue
+        
         if col == 'Team':
             team_rank = df['Team'].rank(method='min', ascending=False)
             max_rank = team_rank.max()
