@@ -282,7 +282,7 @@ def get_color(value, cmap):
     print(f"Value: {value}, RGBA Color: {rgba_color}, Brightness: {brightness}")
     
     # Adjust the brightness threshold
-    text_color = 'white' if brightness < 0.5 else 'black'
+    text_color = 'white' if brightness < 0.8 else 'black'
     
     return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.5)'
 
