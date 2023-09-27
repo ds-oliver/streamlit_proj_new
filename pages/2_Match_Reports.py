@@ -415,7 +415,8 @@ def main():
 
     # Now we show the teams_df dataframe
     st.subheader(f":orange[Teams]")
-    st.dataframe(teams_df.style.apply(lambda _: styled_top_performers_df, axis=None), use_container_width=True, height=len(teams_df) * 40 + 50)
+    styled_teams_df = style_tp_dataframe_custom(teams_df, teams_df.columns.tolist(), "gist_heat")
+    st.dataframe(teams_df.style.apply(lambda _: styled_teams_df, axis=None), use_container_width=True, height=len(teams_df) * 40 + 50)
 
     # Create dataframe grouped by team
     st.divider()
