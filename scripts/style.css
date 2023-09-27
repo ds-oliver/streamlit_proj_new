@@ -96,29 +96,6 @@ td,
 }
 
 /* Base styling for all DataFrames */
-const canvas=document.querySelector('canvas');
-const ctx=canvas.getContext('2d');
-
-/* Base styling for all DataFrames */
-const style=getComputedStyle(document.body);
-const bgColor=style.getPropertyValue('--primary-bg-color').trim();
-const textColor=style.getPropertyValue('--primary-text-color').trim();
-
-/* Base styling for all DataFrames */
-canvas.width=508;
-canvas.height=72;
-
-/* Base styling for all DataFrames */
-ctx.fillStyle=bgColor; // Fill color for header from CSS variable
-ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-/* Base styling for all DataFrames */
-ctx.fillStyle=textColor; // Font color from CSS variable
-ctx.font='24px Arial';
-ctx.fillText('Player', 10, 30);
-ctx.fillText('Position', 100, 30);
-
-/* Base styling for all DataFrames */
 .dataframe {
     font-family: var(--common-font);
     border-collapse: collapse;
