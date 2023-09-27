@@ -278,65 +278,59 @@ def get_color(value, cmap):
     rgba_color = cmap(color_fraction)
     brightness = 0.299 * rgba_color[0] + 0.587 * rgba_color[1] + 0.114 * rgba_color[2]
     
-    # Log values for debugging
-    print(f"Value: {value}, RGBA Color: {rgba_color}, Brightness: {brightness}")
-    
     # Adjust the brightness threshold
-    text_color = 'white' if brightness < 0.8 else 'black'
+    text_color = 'white' if brightness < 0.7 else 'black'
     
-    return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.8)'
-
+    return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
 
 def style_dataframe_custom(df, selected_columns, custom_cmap="gist_heat"):
     object_cmap = plt.cm.get_cmap(custom_cmap)
     styled_df = pd.DataFrame()
-    
-    # Handle Position color coding
+
     position_column = 'Position' if 'Position' in df.columns else None
-    
     if position_column:
         position_colors = {
-            "D": "background-color: #6d597a",
-            "M": "background-color: #370617",
-            "F": "background-color: #03071e"
+            "D": "background-color: #6d597a; color: white",
+            "M": "background-color: #370617; color: white",
+            "F": "background-color: #03071e; color: white"
         }
         styled_df[position_column] = df[position_column].apply(lambda x: position_colors.get(x, ''))
-        
+
         if 'Player' in df.columns:
             styled_df['Player'] = df[position_column].apply(lambda x: position_colors.get(x, ''))
-    
-    # Loop through selected columns
+
     for col in selected_columns:
         if col in ['Player', position_column]:
             continue
 
         col_data = df[col]
-        
-        # Attempt to convert the column to floats
+
         try:
             col_data = col_data.astype(float)
             min_val = col_data.min()
             max_val = col_data.max()
         except ValueError:
             min_val = max_val = None
-        
-        unique_values = col_data.unique()
-        
-        # Handling categorical values
-        if len(unique_values) <= 3:
-            constant_colors = ["background-color: #eae2b7", "background-color: #FDFEFE", "background-color: #FDFAF9"]
-            most_common_value, _ = Counter(col_data).most_common(1)[0]
-            other_colors = [color for val, color in zip(unique_values, constant_colors[1:]) if val != most_common_value]
-            color_mapping = {most_common_value: constant_colors[0], **{val: color for val, color in zip([uv for uv in unique_values if uv != most_common_value], other_colors)}}
-            styled_df[col] = col_data.apply(lambda x: color_mapping.get(x, ''))
 
-        # Handling continuous numerical values
+        unique_values = col_data.unique()
+
+        if len(unique_values) <= 3:
+            constant_colors = ["#130B04", "#eae2b7", "#FDFAF9"]
+            most_common_value, _ = Counter(col_data).most_common(1)[0]
+            other_values = [uv for uv in unique_values if uv != most_common_value]
+            text_colors = ['black' if color == "#eae2b7" else 'white' for color in constant_colors]
+
+            color_mapping = {
+                val: f"background-color: {color}; color: {text}" 
+                for val, color, text in zip([most_common_value] + other_values, constant_colors, text_colors)
+            }
+
+            styled_df[col] = col_data.apply(lambda x: color_mapping.get(x, ''))
         elif min_val is not None and max_val is not None:
             if min_val != max_val:
                 styled_df[col] = col_data.apply(
                     lambda x: get_color((x - min_val) / (max_val - min_val), object_cmap)
                 )
-                    
     return styled_df
 
 def main():

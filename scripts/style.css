@@ -45,6 +45,16 @@ body {
     background-color: #130B04;
 }
 
+html,
+body {
+    font-family: 'AvenirLTPro-Book', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: #eae2b7;
+    background-color: #FDFEFE;
+    background-color: #FDFAF9
+}
+
 /* Streamlit specific selectors for text */
 .stButton>button,
 .stMarkdown,
