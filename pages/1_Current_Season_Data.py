@@ -315,10 +315,10 @@ def style_dataframe_custom(df, selected_columns, custom_cmap="gist_heat"):
         unique_values = col_data.unique()
 
         if len(unique_values) <= 3:
-            constant_colors = ["#130B04", "#eae2b7", "#FDFAF9"]
+            constant_colors = ["#060301", "#eae2b7", "#FDFAF9"]
             most_common_value, _ = Counter(col_data).most_common(1)[0]
             other_values = [uv for uv in unique_values if uv != most_common_value]
-            text_colors = ['white' if color == "#130B04" else 'black' for color in constant_colors]
+            text_colors = ['white' if color == "#060301" else 'black' for color in constant_colors]
 
             color_mapping = {
                 val: f"background-color: {color}; color: {text}" 
