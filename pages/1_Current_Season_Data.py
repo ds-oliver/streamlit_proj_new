@@ -398,9 +398,13 @@ def main():
 
     data = data[(data['GW'] >= GW_range[0]) & (data['GW'] <= GW_range[1])]
 
+    # Convert to numeric only if it's not one of these columns
+    exclude_cols = ['Player', 'Team', 'Position', 'Nation', 'Season']
     for col in data.columns:
-        if pd.api.types.is_object_dtype(data[col]):
-            data[col] = pd.to_numeric(data[col], errors='coerce')
+        if col not in exclude_cols:
+            if pd.api.types.is_object_dtype(data[col]):
+                print(f"Converting {col} to numeric")
+                data[col] = pd.to_numeric(data[col], errors='coerce')
 
     if GW_range[0] != GW_range[1]:
         selected_aggregation_method = st.sidebar.selectbox('Select Aggregation Method', ['Mean', 'Sum'], key="aggregation_method")
@@ -460,7 +464,7 @@ def main():
             grouped_data.set_index('Player', inplace=True)
 
     if grouping_option != 'None':
-        grouped_data = group_data(df, selected_columns, 'Team', exclude_cols=['Player', 'Team', 'Position'])
+        grouped_data = group_data(filtered_data, selected_columns, grouping_option, exclude_cols=exclude_cols)
 
     ensure_unique_columns(grouped_data)
 
