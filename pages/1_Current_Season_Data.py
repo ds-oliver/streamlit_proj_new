@@ -131,44 +131,6 @@ def load_data():
 
 # Function to filter data based on selected Teams and positions
 # @st.cache_data
-def filter_data(df, selected_Team, selected_positions):
-    if selected_Team != 'All Teams':
-        df = df[df['Team'] == selected_Team]
-
-    df = df[df['Position'].isin(selected_positions)]
-
-    return df
-
-
-# Function to group data based on selected options
-def group_data(df, selected_columns, grouping_option, aggregation_option='sum'):
-    # Convert selected_columns to numeric type before aggregation
-    for col in selected_columns:
-        df[col] = pd.to_numeric(df[col], errors='coerce')
-
-    aggregation_methods = {col: aggregation_option for col in selected_columns if df[col].dtype in [np.float64, np.int64]}
-    if grouping_option == 'Position':
-        grouped_df = df.groupby('Position').agg(aggregation_methods).reset_index()
-    elif grouping_option == 'Team':
-        grouped_df = df.groupby('Team').agg(aggregation_methods).reset_index()
-    else:
-        grouped_df = df
-        
-    return grouped_df
-
-def get_grouping_values_and_column(grouping_option, selected_positions, selected_Teams, grouped_df, selected_stats_for_plot):
-    grouped_df[selected_stats_for_plot] = grouped_df[selected_stats_for_plot].apply(pd.to_numeric, errors='coerce')
-
-    if grouping_option == 'Position':
-        return selected_positions, 'Position'
-    elif grouping_option == 'Team':
-        return selected_Teams, 'Team'
-    else:
-        # convert the selected_stats_for_plot datatypes to numeric
-        # grouped_df[selected_stats_for_plot] = grouped_df[selected_stats_for_plot].apply(pd.to_numeric, errors='coerce')
-        top_players = grouped_df.nlargest(25, selected_stats_for_plot)
-        return top_players['Player'].tolist(), 'Player'
-
 def add_bar_traces(fig, selected_stats_for_plot, grouping_values, grouped_df, grouping_column, stat_colors):
     for stat in selected_stats_for_plot:
         x_values = []
@@ -333,8 +295,58 @@ def style_dataframe_custom(df, selected_columns, custom_cmap="gist_heat"):
                 )
     return styled_df
 
+# Function to group data based on selected options
+def group_data(df, selected_columns, grouping_option, aggregation_option='sum'):
+    # Convert selected_columns to numeric type before aggregation
+    for col in selected_columns:
+        df[col] = pd.to_numeric(df[col], errors='coerce')
+
+    aggregation_methods = {col: aggregation_option for col in selected_columns if df[col].dtype in [np.float64, np.int64]}
+    if grouping_option == 'Position':
+        grouped_df = df.groupby('Position').agg(aggregation_methods).reset_index()
+    elif grouping_option == 'Team':
+        grouped_df = df.groupby('Team').agg(aggregation_methods).reset_index()
+    else:
+        grouped_df = df
+        
+    return grouped_df
+
+def get_grouping_values_and_column(grouping_option, selected_positions, selected_Teams, grouped_df, selected_stats_for_plot):
+    grouped_df[selected_stats_for_plot] = grouped_df[selected_stats_for_plot].apply(pd.to_numeric, errors='coerce')
+
+    if grouping_option == 'Position':
+        return selected_positions, 'Position'
+    elif grouping_option == 'Team':
+        return selected_Teams, 'Team'
+    else:
+        # convert the selected_stats_for_plot datatypes to numeric
+        # grouped_df[selected_stats_for_plot] = grouped_df[selected_stats_for_plot].apply(pd.to_numeric, errors='coerce')
+        top_players = grouped_df.nlargest(25, selected_stats_for_plot)
+        return top_players['Player'].tolist(), 'Player'
+
+def filter_data(df, selected_Team, selected_positions):
+    if selected_Team != 'All Teams':
+        df = df[df['Team'] == selected_Team]
+
+    df = df[df['Position'].isin(selected_positions)]
+
+    return df
+
+
+def ensure_unique_columns(df):
+    unique_cols = []
+    seen = set()
+    for col in df.columns:
+        unique_col = col
+        count = 1
+        while unique_col in seen:
+            unique_col = f"{col}_{count}"
+            count += 1
+        seen.add(unique_col)
+        unique_cols.append(unique_col)
+    df.columns = unique_cols
+
 def main():
-    
     add_construction()
 
     matches_col_groups = {
@@ -347,14 +359,10 @@ def main():
     }
 
     data, DEFAULT_COLUMNS, date_of_update = load_data()
-
     display_date_of_update(date_of_update)
 
-    if 'Gw' in data.columns:
-        data.rename(columns={'Gw': 'GW'}, inplace=True)
-
-    if 'Started' in data.columns:
-        data.rename(columns={'Started': 'GS'}, inplace=True)
+    column_rename_dict = {'Gw': 'GW', 'Started': 'GS'}
+    data.rename(columns=column_rename_dict, inplace=True)
 
     GW_range = st.slider('GW range',
                          min_value=int(data['GW'].min()), 
@@ -365,15 +373,19 @@ def main():
                          key="GW_range")
     GW_range = list(GW_range)
 
-    print(data.columns.tolist())
-
     data = data[(data['GW'] >= GW_range[0]) & (data['GW'] <= GW_range[1])]
+
+    for col in data.columns:
+        if pd.api.types.is_object_dtype(data[col]):
+            data[col] = pd.to_numeric(data[col], errors='coerce')
 
     if GW_range[0] != GW_range[1]:
         selected_aggregation_method = st.sidebar.selectbox('Select Aggregation Method', ['Mean', 'Sum'], key="aggregation_method")
-        # lowercase the selected_aggregation_method to pass it to agg()
         selected_aggregation_method = selected_aggregation_method.lower()
-        aggregation_functions = {col: selected_aggregation_method if data[col].dtype in [np.float64, np.int64] else 'first' for col in data.columns}
+        
+        aggregation_functions = {
+            col: selected_aggregation_method if pd.api.types.is_numeric_dtype(data[col]) else 'first' for col in data.columns
+        }
         aggregation_functions['Player'] = 'first'
         aggregation_functions['Team'] = most_recent_Team
         aggregation_functions['Position'] = 'first'
@@ -391,7 +403,7 @@ def main():
 
     all_teams = data['Team'].unique().tolist()
     all_teams.sort()
-    all_teams = ['All Teams'] + all_teams  # Add 'All Teams' at the beginning
+    all_teams = ['All Teams'] + all_teams
     selected_Team = st.sidebar.selectbox('Select Team', all_teams)
 
     selected_positions = create_sidebar_multiselect(data, 'Position', 'Select Positions', default_all=True, key_suffix="positions")
@@ -413,25 +425,8 @@ def main():
 
     if grouping_option != 'None':
         grouped_data = group_data(filtered_data, selected_columns, grouping_option, selected_aggregation_method)
-        print(f"\nGrouped Data columns: {grouped_data.columns.tolist()}")
 
-    # Ensure index is unique
-    if not grouped_data.index.is_unique:
-        print(f"\nIndex is not unique. Resetting index.")
-        grouped_data.reset_index(drop=True, inplace=True)
-
-    if not grouped_data.columns.is_unique:
-        unique_cols = []
-        seen = set()
-        for col in grouped_data.columns:
-            unique_col = col
-            count = 1
-            while unique_col in seen:
-                unique_col = f"{col}_{count}"
-                count += 1
-            seen.add(unique_col)
-            unique_cols.append(unique_col)
-        grouped_data.columns = unique_cols
+    ensure_unique_columns(grouped_data)
 
     grouped_data = grouped_data.applymap(round_and_format)
     columns_to_show = list(DEFAULT_COLUMNS) + selected_columns
