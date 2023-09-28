@@ -1426,7 +1426,13 @@ def create_sidebar_multiselect(df, column_name, title='Select Options', default_
     # Create a multiselect in the sidebar with the unique values
     selected_options = st.sidebar.multiselect(title, options, default=default_options, key=unique_key)
 
+    # If no options are selected, default to all available options
+    if not selected_options:
+        st.sidebar.warning(f"You have not selected any {title}. Defaulting to 'All'.")
+        selected_options = options
+
     return selected_options
+
 
 def get_color(value, cmap):
     color_fraction = value
