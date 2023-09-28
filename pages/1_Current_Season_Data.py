@@ -330,10 +330,15 @@ def get_grouping_values_and_column(grouping_option, selected_positions, selected
         return top_players['Player'].tolist(), 'Player'
 
 def filter_data(df, selected_Team, selected_positions):
+    print("Debug from inside filter_data function: selected_Team and selected_positions are: ", selected_Team, selected_positions)
     if selected_Team != 'All Teams':
         df = df[df['Team'] == selected_Team]
+        # print shape of df after filtering
+        print("Shape of df after filtering by Team:", df.shape)
 
     df = df[df['Position'].isin(selected_positions)]
+    # print shape of df after filtering
+    print("Shape of df after filtering by Team and then by Position:", df.shape)
 
     return df
 
