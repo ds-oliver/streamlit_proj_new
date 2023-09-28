@@ -447,7 +447,14 @@ def main():
 
     print(columns_data_types)
 
+    print("Debug: Displaying first few rows of grouped_data before styling")
+    print(grouped_data.head())  # Debugging line to check if grouped_data has data
+
     styled_df = style_dataframe_custom(grouped_data[columns_to_show], columns_to_show)
+
+    print("Debug: Displaying first few rows of styled_df")
+    print(styled_df.head())  # Debugging line to check if styled_df has data
+ 
     st.header(f"Premier League Players' Statistics ({selected_group})")
     print(f"Grouped Data Columns: {grouped_data[columns_to_show].columns.tolist()}")
     print("Styled Data Columns: ", print(styled_df.columns.tolist()))
