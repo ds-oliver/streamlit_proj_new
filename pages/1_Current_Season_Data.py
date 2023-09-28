@@ -278,7 +278,13 @@ def style_dataframe_custom(df, selected_columns, custom_cmap="gist_heat"):
 
         if len(unique_values) <= 3:
             constant_colors = ["#060301", "#eae2b7", "#FDFAF9"]
-            most_common_value, _ = Counter(col_data).most_common(1)[0]
+
+            most_common_list = Counter(col_data).most_common(1)
+            if most_common_list:
+                most_common_value, _ = most_common_list[0]
+            else:
+                most_common_value = None
+
             other_values = [uv for uv in unique_values if uv != most_common_value]
             text_colors = ['white' if color == "#060301" else 'black' for color in constant_colors]
 
@@ -294,7 +300,6 @@ def style_dataframe_custom(df, selected_columns, custom_cmap="gist_heat"):
                     lambda x: get_color((x - min_val) / (max_val - min_val), object_cmap)
                 )
     return styled_df
-
 # Function to group data based on selected options
 def group_data(df, selected_columns, grouping_option, aggregation_option='sum'):
     # Convert selected_columns to numeric type before aggregation
