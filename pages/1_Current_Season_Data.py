@@ -366,6 +366,10 @@ def main():
     data, DEFAULT_COLUMNS, date_of_update = load_data()
     display_date_of_update(date_of_update)
 
+        # Insert after data is loaded and filtered
+    print("Debug: Displaying first few rows of original data")
+    print(data.head())
+
     column_rename_dict = {'Gw': 'GW', 'Started': 'GS'}
     data.rename(columns=column_rename_dict, inplace=True)
 
@@ -413,7 +417,16 @@ def main():
 
     selected_positions = create_sidebar_multiselect(data, 'Position', 'Select Positions', default_all=True, key_suffix="positions")
 
+    # Insert to display the selected filters
+    print("Debug: Selected Team and Positions")
+    print(f"Selected Team: {selected_Team}")
+    print(f"Selected Positions: {selected_positions}")
+
     filtered_data = filter_data(data, selected_Team, selected_positions)
+
+        # Insert after filtering
+    print("Debug: Displaying first few rows of filtered_data")
+    print(filtered_data.head())
 
     matches_col_groups = {key.capitalize(): [col.capitalize() for col in value] for key, value in matches_col_groups.items()}
     selected_group = st.sidebar.selectbox("Select Stats Grouping", list(matches_col_groups.keys()))
