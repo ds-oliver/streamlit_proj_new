@@ -334,11 +334,11 @@ def filter_data(df, selected_Team, selected_positions):
     if selected_Team != 'All Teams':
         df = df[df['Team'] == selected_Team]
         # print shape of df after filtering
-        print("Shape of df after filtering by Team:", df.shape)
+        print("Debug from inside filter_data function: Shape of df after filtering by Team:", df.shape)
 
     df = df[df['Position'].isin(selected_positions)]
     # print shape of df after filtering
-    print("Shape of df after filtering by Team and then by Position:", df.shape)
+    print("Debug from inside filter_data function: Shape of df after filtering by Team and then by Position:", df.shape)
 
     return df
 
