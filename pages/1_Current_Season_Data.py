@@ -301,12 +301,17 @@ def style_dataframe_custom(df, selected_columns, custom_cmap="gist_heat"):
                 )
     return styled_df
 # Function to group data based on selected options
-def group_data(df, selected_columns, grouping_option, aggregation_option='sum'):
-    # Convert selected_columns to numeric type before aggregation
+def group_data(df, selected_columns, grouping_option, aggregation_option='sum', exclude_cols=None):
+    if exclude_cols is None:
+        exclude_cols = []
+        
+    # Convert selected_columns to numeric type before aggregation, skipping those in exclude_cols
     for col in selected_columns:
-        df[col] = pd.to_numeric(df[col], errors='coerce')
+        if col not in exclude_cols:
+            df[col] = pd.to_numeric(df[col], errors='coerce')
 
     aggregation_methods = {col: aggregation_option for col in selected_columns if df[col].dtype in [np.float64, np.int64]}
+    
     if grouping_option == 'Position':
         grouped_df = df.groupby('Position').agg(aggregation_methods).reset_index()
     elif grouping_option == 'Team':
@@ -315,6 +320,7 @@ def group_data(df, selected_columns, grouping_option, aggregation_option='sum'):
         grouped_df = df
         
     return grouped_df
+
 
 def get_grouping_values_and_column(grouping_option, selected_positions, selected_Teams, grouped_df, selected_stats_for_plot):
     grouped_df[selected_stats_for_plot] = grouped_df[selected_stats_for_plot].apply(pd.to_numeric, errors='coerce')
@@ -454,7 +460,7 @@ def main():
             grouped_data.set_index('Player', inplace=True)
 
     if grouping_option != 'None':
-        grouped_data = group_data(filtered_data, selected_columns, grouping_option, selected_aggregation_method)
+        grouped_data = group_data(df, selected_columns, 'Team', exclude_cols=['Player', 'Team', 'Position'])
 
     ensure_unique_columns(grouped_data)
 
