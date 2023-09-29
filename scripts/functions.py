@@ -1551,7 +1551,7 @@ def get_color(value, cmap):
     # Adjust the brightness threshold
     text_color = 'white' if brightness < 0.6 else 'black'
     
-    return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
+    return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.6)'
 
 def create_custom_cmap_1(*colors):
     custom_cmap = LinearSegmentedColormap.from_list('custom_cmap', colors)
