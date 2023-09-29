@@ -1612,7 +1612,7 @@ def create_custom_cmap_1(*colors):
 
 #     return styled_df
 
-def style_dataframe_custom(df, selected_columns, custom_cmap="copper"):
+def style_dataframe_custom(df, selected_columns, custom_cmap="copper", inverse_cmap=False):
     object_cmap = plt.cm.get_cmap(custom_cmap)
     styled_df = pd.DataFrame()
 
@@ -1664,8 +1664,9 @@ def style_dataframe_custom(df, selected_columns, custom_cmap="copper"):
         elif min_val is not None and max_val is not None:
             if min_val != max_val:
                 styled_df[col] = col_data.apply(
-                    lambda x: get_color((x - min_val) / (max_val - min_val), object_cmap)
+                    lambda x: get_color((1 - (x - min_val) / (max_val - min_val)) if inverse_cmap else (x - min_val) / (max_val - min_val), object_cmap)
                 )
+
     return styled_df
 
 def create_custom_cmap(*colors, base_cmap=None, brightness_limit=None):
@@ -1698,7 +1699,11 @@ def rank_players_by_multiple_stats(df, stat_columns):
     for col in stat_columns:
         if col in df.columns:
             rank_col_name = f"{col}_Rank"
-            df[rank_col_name] = df[col].rank(ascending=False, method='min').astype(int)
+            ranks = df[col].rank(ascending=False, method='min')
+            if ranks.isna().any():
+                df[rank_col_name] = ranks
+            else:
+                df[rank_col_name] = ranks.astype(int)
     return df
 
 
