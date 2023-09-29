@@ -137,10 +137,20 @@ def main():
     players_df['Team'] = players_df['Team'].apply(lambda x: x.replace(' Player Stats', ''))
     players_df['Opponent'] = players_df['Opponent'].apply(lambda x: x.replace(' Player Stats', ''))
     
-    players_df['Matchup'] = players_df['Team'] + ' vs. ' + players_df['Opponent']
+    players_df['Matchup'] = np.where(players_df['Team'] < players_df['Opponent'], 
+                                            players_df['Team'] + ' vs. ' + players_df['Opponent'], 
+                                            players_df['Opponent'] + ' vs. ' + players_df['Team'])
+
+    # Extract unique matchups
+    unique_matchups = players_df['Matchup'].drop_duplicates()
+
+    # Display unique matchups for the selected gameweek
+    st.write("Unique matchups for selected gameweek:")
+    for matchup in unique_matchups:
+        st.write(matchup)
 
     # print head(25) of dataframe
-    print(f"Shots dataframe shape: {players_df.head(25)}")
+    print(f"Players dataframe shape: {players_df.head(25)}")
 
 
     # print unique matchups
