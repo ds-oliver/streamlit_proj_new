@@ -462,12 +462,16 @@ def main():
     print(filtered_data.sort_values(by='Goals', ascending=False).head(25))
 
     show_as_rank = st.sidebar.radio('Show stats values as:', ['Original Values', 'Relative Percentile'])
-    inverse_cmap = True if show_as_rank == 'Relative Percentile' else False
+    # inverse_cmap = True if show_as_rank == 'Relative Percentile' else False
 
     if show_as_rank == 'Relative Percentile':
         print(f"Debug: 'Relative Percentile' selected for show_as_rank, here is dataframe sorted descending by column Goals:")
         print(filtered_data.sort_values(by='Goals', ascending=False).head(25))
-        filtered_data = percentile_players_by_multiple_stats(filtered_data, selected_columns)
+            # Replace this line with your percentile calculation code
+        grouped_data = percentile_players_by_multiple_stats(grouped_data, selected_columns)
+
+        # Style DataFrame with divergent color map for percentiles
+        styled_df = style_dataframe_custom(grouped_data[columns_to_show], columns_to_show, custom_cmap=custom_divergent_cmap, inverse_cmap=False, is_percentile=True)
         
         # Update selected_columns to show the ranked columns
         selected_columns = [f"{col}_Pct" for col in selected_columns if f"{col}_Pct" in filtered_data.columns]
