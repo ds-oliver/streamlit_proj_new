@@ -29,12 +29,14 @@ from streamlit_extras.dataframe_explorer import dataframe_explorer
 from markdownlit import mdlit
 from streamlit_extras.metric_cards import style_metric_cards
 from streamlit_extras.stylable_container import stylable_container
+from matplotlib.colors import LinearSegmentedColormap
+
 
 from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues, matches_col_groups, matches_drop_cols, matches_default_cols, matches_drop_cols, matches_default_cols, matches_standard_cols, matches_passing_cols, matches_pass_types, matches_defense_cols, matches_possession_cols, matches_misc_cols
 
 from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default, all_gws_data, pl_2018_2023, matches_data # this is the file we want to read in
 
-from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, style_dataframe_v2, get_color, get_color_from_palette, round_and_format, create_custom_cmap, style_dataframe_custom, add_construction, display_date_of_update, load_css, get_color
+from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, style_dataframe_v2, get_color, get_color_from_palette, round_and_format, create_custom_cmap, style_dataframe_custom, add_construction, display_date_of_update, load_css
 
 st.set_page_config(
     page_title="Footy Magic",
@@ -366,8 +368,17 @@ def ensure_unique_columns(df):
         unique_cols.append(unique_col)
     df.columns = unique_cols
 
+def create_custom_sequential_cmap(*colors):
+    return LinearSegmentedColormap.from_list('custom_sequential_cmap', colors)
+
 def main():
     add_construction()
+
+    # Colors provided
+    colors = ['#6d597a', '#08071d', '#370618', '#140b04']
+
+    # Create custom colormap
+    custom_cmap = create_custom_sequential_cmap(*colors)
 
     matches_col_groups = {
         "Standard": matches_standard_cols,
@@ -514,7 +525,7 @@ def main():
     print("Columns unique?", filtered_df.columns.is_unique)
 
     st.dataframe(
-    filtered_df.style.apply(style_dataframe_custom, axis=None, selected_columns=selected_columns, custom_cmap="copper"),
+    filtered_df.style.apply(style_dataframe_custom, axis=None, selected_columns=selected_columns, custom_cmap=custom_cmap),
     use_container_width=True,
     height=(len(grouped_data) * 30) + 50 if grouping_option != 'None' else 35 * 20
     )
