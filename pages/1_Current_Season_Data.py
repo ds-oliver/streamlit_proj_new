@@ -455,11 +455,20 @@ def main():
     selected_group = st.sidebar.selectbox("Select Stats Grouping", list(matches_col_groups.keys()))
     selected_columns = matches_col_groups[selected_group]
     selected_columns = [col for col in selected_columns if col in data.columns]
-    
+
+    print(f"Debug: Here is dataframe sorted descending by column Goals before Relative Rank selection:")
+    print(filtered_data.sort_values(by='Goals', ascending=False).head(25))
+
     show_as_rank = st.sidebar.radio('Show stats values as:', ['Original Values', 'Relative Rank'])
+    inverse_cmap = True if show_as_rank == 'Relative Rank' else False
 
     if show_as_rank == 'Relative Rank':
+        print(f"Debug: 'Relative Rank' selected for show_as_rank, here is dataframe sorted descending by column Goals:")
+        print(filtered_data.sort_values(by='Goals', ascending=False).head(25))
         filtered_data = rank_players_by_multiple_stats(filtered_data, selected_columns)
+        
+        # Update selected_columns to show the ranked columns
+        selected_columns = [f"{col}_Rank" for col in selected_columns if f"{col}_Rank" in filtered_data.columns]
 
     grouping_option = st.sidebar.selectbox("Select Grouping Option", ['None', 'Position', 'Team'], key="grouping_option")
 
@@ -487,7 +496,7 @@ def main():
     print("Debug: Displaying first few rows of grouped_data before styling")
     print(grouped_data.head())
 
-    styled_df = style_dataframe_custom(grouped_data[columns_to_show], columns_to_show)
+    styled_df = style_dataframe_custom(grouped_data[columns_to_show], columns_to_show, custom_cmap=custom_cmap, inverse_cmap=inverse_cmap)
 
     print("Debug: Displaying first few rows of styled_df")
     print(styled_df.head())
@@ -514,7 +523,7 @@ def main():
     print("Columns unique?", filtered_df.columns.is_unique)
 
     st.dataframe(
-        filtered_df.style.apply(style_dataframe_custom, axis=None, selected_columns=selected_columns, custom_cmap=custom_cmap),
+        filtered_df.style.apply(style_dataframe_custom, axis=None, selected_columns=selected_columns, custom_cmap=custom_cmap, inverse_cmap=inverse_cmap),
         use_container_width=True,
         height=(len(grouped_data) * 30) + 50 if grouping_option != 'None' else 35 * 20
     )
