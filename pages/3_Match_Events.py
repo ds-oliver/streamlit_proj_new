@@ -139,6 +139,10 @@ def main():
     
     players_df['Matchup'] = players_df['Team'] + ' vs. ' + players_df['Opponent']
 
+    # print head(25) of dataframe
+    print(f"Shots dataframe shape: {players_df.head(25)}")
+
+
     # print unique matchups
     print(f"Unique matchups: {players_df['Matchup'].unique()}")
     
