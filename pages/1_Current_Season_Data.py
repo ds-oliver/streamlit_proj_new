@@ -245,7 +245,7 @@ def get_color(value, cmap):
     
     return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
 
-def style_dataframe_custom(df, selected_columns, custom_cmap="gist_heat"):
+def style_dataframe_custom(df, selected_columns, custom_cmap="YlGnBu"):
     object_cmap = plt.cm.get_cmap(custom_cmap)
     styled_df = pd.DataFrame()
 
