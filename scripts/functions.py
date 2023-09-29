@@ -24,6 +24,8 @@ from matplotlib.cm import get_cmap
 import matplotlib
 from collections import Counter
 from markdownlit import mdlit
+from scipy.stats import percentileofscore
+
 
 df = pd.DataFrame()
 df2 = pd.DataFrame()
@@ -1706,6 +1708,19 @@ def rank_players_by_multiple_stats(df, stat_columns):
                 df[rank_col_name] = ranks.astype(int)
     return df
 
+def percentile_players_by_multiple_stats(df, stat_columns):
+    """
+    Shows players' statistics as percentiles based on multiple selected statistics.
+    :param df: DataFrame containing player statistics
+    :param stat_columns: List of column names of the statistics to show as percentiles
+    :return: DataFrame with added 'Percentile' columns for each selected statistic
+    """
+    df = df.copy()
+    for col in stat_columns:
+        if col in df.columns:
+            percentile_col_name = f"{col}_Percentile"
+            df[percentile_col_name] = df[col].apply(lambda x: percentileofscore(df[col], x))
+    return df
 
 def style_tp_dataframe_custom(df, selected_columns, custom_cmap_name="copper"):
     cmap = plt.cm.get_cmap(custom_cmap_name)

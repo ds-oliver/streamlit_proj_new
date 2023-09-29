@@ -30,13 +30,13 @@ from markdownlit import mdlit
 from streamlit_extras.metric_cards import style_metric_cards
 from streamlit_extras.stylable_container import stylable_container
 from matplotlib.colors import LinearSegmentedColormap
+from scipy.stats import percentileofscore
 
-
-from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues, matches_col_groups, matches_drop_cols, matches_default_cols, matches_drop_cols, matches_default_cols, matches_standard_cols, matches_passing_cols, matches_pass_types, matches_defense_cols, matches_possession_cols, matches_misc_cols, colors
+from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues, matches_col_groups, matches_drop_cols, matches_default_cols, matches_drop_cols, matches_default_cols, matches_standard_cols, matches_passing_cols, matches_pass_types, matches_defense_cols, matches_possession_cols, matches_misc_cols, colors, divergent_colors
 
 from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default, all_gws_data, pl_2018_2023, matches_data # this is the file we want to read in
 
-from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, style_dataframe_v2, get_color, get_color_from_palette, round_and_format, create_custom_cmap, style_dataframe_custom, add_construction, display_date_of_update, load_css, create_custom_sequential_cmap, rank_players_by_multiple_stats
+from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, style_dataframe_v2, get_color, get_color_from_palette, round_and_format, create_custom_cmap, style_dataframe_custom, add_construction, display_date_of_update, load_css, create_custom_sequential_cmap, rank_players_by_multiple_stats, percentile_players_by_multiple_stats
 
 st.set_page_config(
     page_title="Footy Magic",
@@ -374,6 +374,8 @@ def main():
     # Colors provided
     custom_cmap = create_custom_sequential_cmap(*colors)
 
+    custom_divergent_cmap = create_custom_sequential_cmap(*divergent_colors)
+
     matches_col_groups = {
         "Standard": matches_standard_cols,
         "Passing": matches_passing_cols,
@@ -456,16 +458,16 @@ def main():
     selected_columns = matches_col_groups[selected_group]
     selected_columns = [col for col in selected_columns if col in data.columns]
 
-    print(f"Debug: Here is dataframe sorted descending by column Goals before Relative Rank selection:")
+    print(f"Debug: Here is dataframe sorted descending by column Goals before Relative Percentile selection:")
     print(filtered_data.sort_values(by='Goals', ascending=False).head(25))
 
-    show_as_rank = st.sidebar.radio('Show stats values as:', ['Original Values', 'Relative Rank'])
-    inverse_cmap = True if show_as_rank == 'Relative Rank' else False
+    show_as_rank = st.sidebar.radio('Show stats values as:', ['Original Values', 'Relative Percentile'])
+    inverse_cmap = True if show_as_rank == 'Relative Percentile' else False
 
-    if show_as_rank == 'Relative Rank':
-        print(f"Debug: 'Relative Rank' selected for show_as_rank, here is dataframe sorted descending by column Goals:")
+    if show_as_rank == 'Relative Percentile':
+        print(f"Debug: 'Relative Percentile' selected for show_as_rank, here is dataframe sorted descending by column Goals:")
         print(filtered_data.sort_values(by='Goals', ascending=False).head(25))
-        filtered_data = rank_players_by_multiple_stats(filtered_data, selected_columns)
+        filtered_data = percentile_players_by_multiple_stats(filtered_data, selected_columns)
         
         # Update selected_columns to show the ranked columns
         selected_columns = [f"{col}_Rank" for col in selected_columns if f"{col}_Rank" in filtered_data.columns]

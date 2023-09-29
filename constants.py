@@ -3,6 +3,8 @@ import seaborn as sns
 # constants.py
 colors = ['#140b04', '#1c1625', '#B82A2A']
 
+divergent_colors = ['#100993', '#140b04', '#1c1625', '#B82A2A']
+
 fbref_cats = ['stats', 'shooting', 'passing', 'passing_types', 'gca', 'defense', 'possession', 'playingtime', 'misc']
 
 fbref_leagues = ['Big5', 'ENG', 'ESP', 'ITA', 'GER', 'FRA']
