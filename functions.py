@@ -1698,7 +1698,11 @@ def rank_players_by_multiple_stats(df, stat_columns):
     for col in stat_columns:
         if col in df.columns:
             rank_col_name = f"{col}_Rank"
-            df[rank_col_name] = df[col].rank(ascending=False, method='min').astype(int)
+            ranks = df[col].rank(ascending=False, method='min')
+            if ranks.isna().any():
+                df[rank_col_name] = ranks
+            else:
+                df[rank_col_name] = ranks.astype(int)
     return df
 
 
