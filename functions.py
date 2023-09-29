@@ -1619,9 +1619,9 @@ def style_dataframe_custom(df, selected_columns, custom_cmap="copper"):
     position_column = 'Position' if 'Position' in df.columns else None
     if position_column:
         position_colors = {
-            "D": "background-color: #FFA07A; color: black",
-            "M": "background-color: #8B4513; color: white",
-            "F": "background-color: #F4A460; color: black"
+            "D": "background-color: #6d597a; color: white",
+            "M": "background-color: #08071d; color: white",
+            "F": "background-color: #370618; color: white"
         }
         styled_df[position_column] = df[position_column].apply(lambda x: position_colors.get(x, ''))
 
