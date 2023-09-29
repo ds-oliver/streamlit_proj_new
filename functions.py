@@ -1547,15 +1547,15 @@ def get_color_0(value, cmap):
     text_color = 'white' if brightness < 0.7 else 'black'
     return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
 
-def get_color(value, cmap):
-    color_fraction = value
-    rgba_color = cmap(color_fraction)
-    brightness = 0.299 * rgba_color[0] + 0.587 * rgba_color[1] + 0.114 * rgba_color[2]
+# def get_color(value, cmap):
+#     color_fraction = value
+#     rgba_color = cmap(color_fraction)
+#     brightness = 0.299 * rgba_color[0] + 0.587 * rgba_color[1] + 0.114 * rgba_color[2]
     
-    # Adjust the brightness threshold
-    text_color = 'white' if brightness < 0.75 else 'black'
+#     # Adjust the brightness threshold
+#     text_color = 'white' if brightness < 0.75 else 'black'
     
-    return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
+#     return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
 
 def create_custom_cmap_1(*colors):
     custom_cmap = LinearSegmentedColormap.from_list('custom_cmap', colors)
@@ -1619,9 +1619,9 @@ def style_dataframe_custom(df, selected_columns, custom_cmap="copper"):
     position_column = 'Position' if 'Position' in df.columns else None
     if position_column:
         position_colors = {
-            "D": "background-color: #6d597a; color: white",
-            "M": "background-color: #370617; color: white",
-            "F": "background-color: #03071e; color: white"
+            "D": "background-color: #FFA07A; color: black",
+            "M": "background-color: #8B4513; color: white",
+            "F": "background-color: #F4A460; color: black"
         }
         styled_df[position_column] = df[position_column].apply(lambda x: position_colors.get(x, ''))
 
@@ -1644,8 +1644,8 @@ def style_dataframe_custom(df, selected_columns, custom_cmap="copper"):
         unique_values = col_data.unique()
 
         if len(unique_values) <= 3:
-            constant_colors = ["#003366", "#228B22", "#8E4585"]
-            text_colors = ['white', 'white', 'white']
+            constant_colors = ["#FFA07A", "#8B4513", "#F4A460"]
+            text_colors = ['black', 'white', 'black']
 
             most_common_list = Counter(col_data).most_common(1)
             if most_common_list:
@@ -1677,6 +1677,8 @@ def create_custom_cmap(*colors, base_cmap=None, brightness_limit=None):
         color_list = [(r * brightness_limit, g * brightness_limit, b * brightness_limit, a) for r, g, b, a in color_list]
         return LinearSegmentedColormap.from_list(base_cmap, color_list)
 
+def create_custom_sequential_cmap(*colors):
+    return LinearSegmentedColormap.from_list('custom_sequential_cmap', colors)
 
 def create_custom_cmap_0(base_cmap='magma', brightness_limit=1):
     base = plt.cm.get_cmap(base_cmap)
