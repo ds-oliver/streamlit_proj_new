@@ -371,9 +371,10 @@ def ensure_unique_columns(df):
 def main():
     add_construction()
 
+    print("Debug: Beginning of main function")
+
     # Colors provided
     custom_cmap = create_custom_sequential_cmap(*colors)
-
     custom_divergent_cmap = create_custom_sequential_cmap(*divergent_colors)
 
     matches_col_groups = {
@@ -382,14 +383,13 @@ def main():
         "Defense": matches_defense_cols,
         "Possession": matches_possession_cols,
         "Miscellaneous": matches_misc_cols,
-        "Passing Types": matches_pass_types
+        "Passing Types": matches_pass_types,
     }
 
     data, DEFAULT_COLUMNS, date_of_update = load_data()
     display_date_of_update(date_of_update)
 
-    print("Debug: Displaying first few rows of original data")
-    print(data.head())
+    print("Debug: Initial columns in 'data':", data.columns.tolist())
 
     column_rename_dict = {'Gw': 'GW', 'Started': 'GS'}
     data.rename(columns=column_rename_dict, inplace=True)
@@ -405,6 +405,7 @@ def main():
 
     data = data[(data['GW'] >= GW_range[0]) & (data['GW'] <= GW_range[1])]
 
+    # Data type conversion
     exclude_cols = ['Player', 'Team', 'Position', 'Nation', 'Season']
     for col in data.columns:
         if col not in exclude_cols:
@@ -412,9 +413,9 @@ def main():
                 print(f"Converting {col} to numeric")
                 data[col] = pd.to_numeric(data[col], errors='coerce')
 
+    # Aggregation
     selected_aggregation_method = st.sidebar.selectbox('Select Aggregation Method', ['Mean', 'Sum'], key="aggregation_method")
     selected_aggregation_method = selected_aggregation_method.lower()
-
     aggregation_functions = {
         col: selected_aggregation_method if pd.api.types.is_numeric_dtype(data[col]) else 'first' for col in data.columns
     }
@@ -439,9 +440,6 @@ def main():
     selected_Team = st.sidebar.selectbox('Select Team', all_teams)
 
     all_positions = data['Position'].unique().tolist()
-
-    print("Debug: All Positions\nHere is output from data['Position'].unique().tolist()", all_positions)
-
     selected_positions = create_sidebar_multiselect(data, 'Position', 'Select Positions', default_all=True, key_suffix="positions")
 
     print("Debug: Selected Team and Positions")
@@ -449,7 +447,6 @@ def main():
     print(f"Selected Positions: {selected_positions}")
 
     filtered_data = filter_data(data, selected_Team, selected_positions)
-
     print("Debug: Displaying first few rows of filtered_data")
     print(filtered_data.head())
 
@@ -458,23 +455,27 @@ def main():
     selected_columns = matches_col_groups[selected_group]
     selected_columns = [col for col in selected_columns if col in data.columns]
 
-    print(f"Debug: Here is dataframe sorted descending by column Goals before Relative Percentile selection:")
-    print(filtered_data.sort_values(by='Goals', ascending=False).head(25))
-
     show_as_rank = st.sidebar.radio('Show stats values as:', ['Original Values', 'Relative Percentile'])
-    # inverse_cmap = True if show_as_rank == 'Relative Percentile' else False
+
+    print("Debug: Columns in filtered_data:", filtered_data.columns.tolist())
+    print("Debug: selected_columns:", selected_columns)
 
     if show_as_rank == 'Relative Percentile':
-        print(f"Debug: 'Relative Percentile' selected for show_as_rank, here is dataframe sorted descending by column Goals:")
-        print(filtered_data.sort_values(by='Goals', ascending=False).head(25))
-            # Replace this line with your percentile calculation code
-        grouped_data = percentile_players_by_multiple_stats(grouped_data, selected_columns)
+        grouped_data = percentile_players_by_multiple_stats(filtered_data, selected_columns)
+        print("Debug: Columns in grouped_data after percentile calculation:", grouped_data.columns.tolist())
+        selected_columns = [f"{col}_Pct" for col in selected_columns if f"{col}_Pct" in grouped_data.columns]
+        missing_columns = [col for col in selected_columns if col not in grouped_data.columns]
+        if missing_columns:
+            print(f"Warning: Missing columns {missing_columns} in grouped_data")
+        styled_df = style_dataframe_custom(grouped_data[selected_columns], selected_columns, custom_cmap=custom_divergent_cmap, inverse_cmap=False, is_percentile=True)
+    else:
+        grouped_data = filtered_data
+        missing_columns = [col for col in selected_columns if col not in grouped_data.columns]
+        if missing_columns:
+            print(f"Warning: Missing columns {missing_columns} in grouped_data")
+        styled_df = style_dataframe_custom(grouped_data[selected_columns], selected_columns, custom_cmap=custom_cmap, inverse_cmap=False)
 
-        # Style DataFrame with divergent color map for percentiles
-        styled_df = style_dataframe_custom(grouped_data[columns_to_show], columns_to_show, custom_cmap=custom_divergent_cmap, inverse_cmap=False, is_percentile=True)
-        
-        # Update selected_columns to show the ranked columns
-        selected_columns = [f"{col}_Pct" for col in selected_columns if f"{col}_Pct" in filtered_data.columns]
+    print("Debug: Final Selected Columns:", selected_columns)
 
     grouping_option = st.sidebar.selectbox("Select Grouping Option", ['None', 'Position', 'Team'], key="grouping_option")
 
@@ -483,8 +484,7 @@ def main():
         set_index_to_player = st.sidebar.checkbox('Set index to Player', False)
         if set_index_to_player:
             grouped_data.set_index('Player', inplace=True)
-
-    if grouping_option != 'None':
+    else:
         grouped_data = group_data(filtered_data, selected_columns, grouping_option, exclude_cols=exclude_cols)
 
     ensure_unique_columns(grouped_data)
@@ -496,22 +496,20 @@ def main():
     print(f"\nGrouping by: {grouping_option} \nGrouped Data columns: {grouped_data.columns.tolist()}")
 
     columns_data_types = {col: grouped_data[col].dtype for col in grouped_data.columns}
-
     print(columns_data_types)
 
     print("Debug: Displaying first few rows of grouped_data before styling")
     print(grouped_data.head())
 
-    styled_df = style_dataframe_custom(grouped_data[columns_to_show], columns_to_show, custom_cmap=custom_cmap, inverse_cmap=inverse_cmap)
-
+    styled_df = style_dataframe_custom(grouped_data[columns_to_show], columns_to_show, custom_cmap=custom_cmap, inverse_cmap=False)
     print("Debug: Displaying first few rows of styled_df")
     print(styled_df.head())
 
     st.header(f"Premier League Players' Statistics ({selected_group})")
     print(f"Grouped Data Columns: {grouped_data[columns_to_show].columns.tolist()}")
     print("Styled Data Columns: ", print(styled_df.columns.tolist()))
-    filtered_df = dataframe_explorer(grouped_data[columns_to_show])
 
+    filtered_df = dataframe_explorer(grouped_data[columns_to_show])
     filtered_df.reset_index(drop=True, inplace=True)
 
     unique_cols = []
@@ -529,7 +527,7 @@ def main():
     print("Columns unique?", filtered_df.columns.is_unique)
 
     st.dataframe(
-        filtered_df.style.apply(style_dataframe_custom, axis=None, selected_columns=selected_columns, custom_cmap=custom_cmap, inverse_cmap=inverse_cmap),
+        filtered_df.style.apply(style_dataframe_custom, axis=None, selected_columns=selected_columns, custom_cmap=custom_cmap, inverse_cmap=False),
         use_container_width=True,
         height=(len(grouped_data) * 30) + 50 if grouping_option != 'None' else 35 * 20
     )
