@@ -286,7 +286,7 @@ def style_dataframe_custom(df, selected_columns, custom_cmap="gist_heat"):
                 most_common_value = None
 
             other_values = [uv for uv in unique_values if uv != most_common_value]
-            text_colors = ['white' if color == "#060301" else 'black' for color in constant_colors]
+            text_colors = ['black' if color == "#FDFAF9" else 'white' for color in constant_colors]
 
             color_mapping = {
                 val: f"background-color: {color}; color: {text}" 
