@@ -245,7 +245,7 @@ def get_color(value, cmap):
     
     return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
 
-def style_dataframe_custom(df, selected_columns, custom_cmap="YlGnBu"):
+def style_dataframe_custom(df, selected_columns, custom_cmap="copper"):
     object_cmap = plt.cm.get_cmap(custom_cmap)
     styled_df = pd.DataFrame()
 
@@ -514,7 +514,7 @@ def main():
     print("Columns unique?", filtered_df.columns.is_unique)
 
     st.dataframe(
-    filtered_df.style.apply(style_dataframe_custom, axis=None, selected_columns=selected_columns, custom_cmap="YlGnBu"),
+    filtered_df.style.apply(style_dataframe_custom, axis=None, selected_columns=selected_columns, custom_cmap="copper"),
     use_container_width=True,
     height=(len(grouped_data) * 30) + 50 if grouping_option != 'None' else 35 * 20
     )

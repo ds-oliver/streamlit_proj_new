@@ -1442,8 +1442,8 @@ def get_color(value, cmap):
     return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
 
 def style_dataframe(df, selected_columns):
-    cm_sns_YlGnBu = cm.get_cmap('YlGnBu')
-    object_cmap = cm.get_cmap('YlGnBu')  # Choose a colormap for object columns
+    cm_sns_copper = cm.get_cmap('copper')
+    object_cmap = cm.get_cmap('copper')  # Choose a colormap for object columns
 
     # Create an empty DataFrame with the same shape as df
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
@@ -1454,7 +1454,7 @@ def style_dataframe(df, selected_columns):
             min_val = df[col].min()
             max_val = df[col].max()
             range_val = max_val - min_val
-            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, cm_sns_YlGnBu))
+            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, cm_sns_copper))
         elif df[col].dtype == 'object':
             unique_values = df[col].unique().tolist()
             styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
@@ -1489,14 +1489,14 @@ def display_date_of_update(date_of_update):
 def load_data():
     return process_data(df, df2)
 
-def get_color_from_palette(value, palette_name='YlGnBu'):
+def get_color_from_palette(value, palette_name='copper'):
     cmap = mpl_cm.get_cmap(palette_name)
     rgba_color = cmap(value)
     color_as_hex = mcolors.to_hex(rgba_color)
     return color_as_hex
 
 def style_dataframe_v2(df, selected_columns):
-    object_cmap = mpl_cm.get_cmap('YlGnBu')
+    object_cmap = mpl_cm.get_cmap('copper')
 
     # Create an empty DataFrame with the same shape as df
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
@@ -1523,14 +1523,14 @@ def style_dataframe_v2(df, selected_columns):
         unique_values = df[col].unique().tolist()
 
         if len(unique_values) <= 3:
-            constant_colors = [get_color(i / 2, mpl_cm.get_cmap('YlGnBu')) for i in range(len(unique_values))]
+            constant_colors = [get_color(i / 2, mpl_cm.get_cmap('copper')) for i in range(len(unique_values))]
             color_mapping = {val: color for val, color in zip(unique_values, constant_colors)}
             styled_df[col] = df[col].apply(lambda x: color_mapping[x])
         elif col_dtype in [np.float64, np.int64] and col in selected_columns:
             min_val = df[col].min()
             max_val = df[col].max()
             range_val = max_val - min_val
-            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, mpl_cm.get_cmap('YlGnBu')))
+            styled_df[col] = df[col].apply(lambda x: get_color((x - min_val) / range_val, mpl_cm.get_cmap('copper')))
         elif col_dtype == 'object':
             styled_df[col] = df[col].apply(lambda x: get_color(unique_values.index(x) / len(unique_values), object_cmap))
 
@@ -1563,7 +1563,7 @@ def create_custom_cmap_1(*colors):
 #     else:
 #         object_cmap = create_custom_cmap()  # Assuming create_custom_cmap is defined elsewhere
 
-#     Team_cmap = plt.cm.get_cmap('YlGnBu')
+#     Team_cmap = plt.cm.get_cmap('copper')
 #     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
 
 #     position_column = 'Pos' if 'Pos' in df.columns else 'Position' if 'Position' in df.columns else None
@@ -1608,7 +1608,7 @@ def create_custom_cmap_1(*colors):
 
 #     return styled_df
 
-def style_dataframe_custom(df, selected_columns, custom_cmap="YlGnBu"):
+def style_dataframe_custom(df, selected_columns, custom_cmap="copper"):
     object_cmap = plt.cm.get_cmap(custom_cmap)
     styled_df = pd.DataFrame()
 
@@ -1681,7 +1681,7 @@ def create_custom_cmap_0(base_cmap='magma', brightness_limit=1):
     color_list = [(r * brightness_limit, g * brightness_limit, b * brightness_limit, a) for r, g, b, a in color_list]
     return LinearSegmentedColormap.from_list(base_cmap, color_list)
 
-def style_tp_dataframe_custom(df, selected_columns, custom_cmap_name="YlGnBu"):
+def style_tp_dataframe_custom(df, selected_columns, custom_cmap_name="copper"):
     cmap = plt.cm.get_cmap(custom_cmap_name)
     
     styled_df = pd.DataFrame('', index=df.index, columns=df.columns)
