@@ -212,8 +212,8 @@ def main():
         away_players_stats = players_df[players_df['Team'] == away_team]
         away_players_stats.set_index(['Player', 'Position'], inplace=True)
 
-        styled_away_players_stats_df = style_tp_dataframe_custom(away_players_stats[columns_to_show_players], columns_to_show_players)
-        styled_away_team_df = style_tp_dataframe_custom(away_team_stats[columns_to_show_team], columns_to_show_team)
+        styled_away_players_stats_df = style_dataframe_custom(away_players_stats[columns_to_show_players], columns_to_show_players)
+        styled_away_team_df = style_dataframe_custom(away_team_stats[columns_to_show_team], columns_to_show_team)
 
         st.dataframe(away_team_stats[columns_to_show_team].style.apply(lambda _: styled_away_team_df, axis=None))
         st.dataframe(away_players_stats[columns_to_show_players].style.apply(lambda _: styled_away_players_stats_df, axis=None))
