@@ -470,7 +470,7 @@ def main():
         filtered_data = percentile_players_by_multiple_stats(filtered_data, selected_columns)
         
         # Update selected_columns to show the ranked columns
-        selected_columns = [f"{col}_Rank" for col in selected_columns if f"{col}_Rank" in filtered_data.columns]
+        selected_columns = [f"{col}_Pct" for col in selected_columns if f"{col}_Pct" in filtered_data.columns]
 
     grouping_option = st.sidebar.selectbox("Select Grouping Option", ['None', 'Position', 'Team'], key="grouping_option")
 

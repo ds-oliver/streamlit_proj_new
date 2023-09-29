@@ -1718,7 +1718,7 @@ def percentile_players_by_multiple_stats(df, stat_columns):
     df = df.copy()
     for col in stat_columns:
         if col in df.columns:
-            percentile_col_name = f"{col}_Percentile"
+            percentile_col_name = f"{col}_Pct"
             df[percentile_col_name] = df[col].apply(lambda x: percentileofscore(df[col], x))
     return df
 
