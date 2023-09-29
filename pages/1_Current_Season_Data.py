@@ -514,7 +514,7 @@ def main():
     print("Columns unique?", filtered_df.columns.is_unique)
 
     st.dataframe(
-    filtered_df.style.apply(style_dataframe_custom, axis=None, selected_columns=selected_columns, custom_cmap="gist_heat"),
+    filtered_df.style.apply(style_dataframe_custom, axis=None, selected_columns=selected_columns, custom_cmap="YlGnBu"),
     use_container_width=True,
     height=(len(grouped_data) * 30) + 50 if grouping_option != 'None' else 35 * 20
     )
