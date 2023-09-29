@@ -241,9 +241,9 @@ def get_color(value, cmap):
     brightness = 0.299 * rgba_color[0] + 0.587 * rgba_color[1] + 0.114 * rgba_color[2]
     
     # Adjust the brightness threshold
-    text_color = 'white' if brightness < 0.6 else 'black'
+    text_color = 'white' if brightness < 0.75 else 'black'
     
-    return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.6)'
+    return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
 
 def style_dataframe_custom(df, selected_columns, custom_cmap="gist_heat"):
     object_cmap = plt.cm.get_cmap(custom_cmap)
