@@ -36,7 +36,7 @@ from constants import stats_cols, shooting_cols, passing_cols, passing_types_col
 
 from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default, all_gws_data, pl_2018_2023, matches_data # this is the file we want to read in
 
-from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, style_dataframe_v2, get_color, get_color_from_palette, round_and_format, create_custom_cmap, style_dataframe_custom, add_construction, display_date_of_update, load_css, create_custom_sequential_cmap
+from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, style_dataframe_v2, get_color, get_color_from_palette, round_and_format, create_custom_cmap, style_dataframe_custom, add_construction, display_date_of_update, load_css, create_custom_sequential_cmap, rank_players_by_multiple_stats
 
 st.set_page_config(
     page_title="Footy Magic",
@@ -372,9 +372,6 @@ def main():
     add_construction()
 
     # Colors provided
-    colors = ['#6d597a', '#08071d', '#370618', '#140b04']
-
-    # Create custom colormap
     custom_cmap = create_custom_sequential_cmap(*colors)
 
     matches_col_groups = {
@@ -389,7 +386,6 @@ def main():
     data, DEFAULT_COLUMNS, date_of_update = load_data()
     display_date_of_update(date_of_update)
 
-        # Insert after data is loaded and filtered
     print("Debug: Displaying first few rows of original data")
     print(data.head())
 
@@ -407,7 +403,6 @@ def main():
 
     data = data[(data['GW'] >= GW_range[0]) & (data['GW'] <= GW_range[1])]
 
-    # Convert to numeric only if it's not one of these columns
     exclude_cols = ['Player', 'Team', 'Position', 'Nation', 'Season']
     for col in data.columns:
         if col not in exclude_cols:
@@ -415,27 +410,26 @@ def main():
                 print(f"Converting {col} to numeric")
                 data[col] = pd.to_numeric(data[col], errors='coerce')
 
-    if GW_range[0] != GW_range[1]:
-        selected_aggregation_method = st.sidebar.selectbox('Select Aggregation Method', ['Mean', 'Sum'], key="aggregation_method")
-        selected_aggregation_method = selected_aggregation_method.lower()
-        
-        aggregation_functions = {
-            col: selected_aggregation_method if pd.api.types.is_numeric_dtype(data[col]) else 'first' for col in data.columns
-        }
-        aggregation_functions['Player'] = 'first'
-        aggregation_functions['Team'] = most_recent_Team
-        aggregation_functions['Position'] = 'first'
-        aggregation_functions['GW'] = 'nunique'
-        aggregation_functions['GS'] = 'sum'
+    selected_aggregation_method = st.sidebar.selectbox('Select Aggregation Method', ['Mean', 'Sum'], key="aggregation_method")
+    selected_aggregation_method = selected_aggregation_method.lower()
 
-        data = data.groupby(['Player', 'Team', 'Position'], as_index=False).agg(aggregation_functions)
-        data.rename(columns={'GW': 'GP'}, inplace=True)
-        data['GS:GP'] = round(data['GS'] / data['GP'].max(), 2).apply(lambda x: f"{x:.2f}")
+    aggregation_functions = {
+        col: selected_aggregation_method if pd.api.types.is_numeric_dtype(data[col]) else 'first' for col in data.columns
+    }
+    aggregation_functions['Player'] = 'first'
+    aggregation_functions['Team'] = most_recent_Team
+    aggregation_functions['Position'] = 'first'
+    aggregation_functions['GW'] = 'nunique'
+    aggregation_functions['GS'] = 'sum'
 
-        if 'GP' not in DEFAULT_COLUMNS:
-            DEFAULT_COLUMNS.append('GP')
+    data = data.groupby(['Player', 'Team', 'Position'], as_index=False).agg(aggregation_functions)
+    data.rename(columns={'GW': 'GP'}, inplace=True)
+    data['GS:GP'] = round(data['GS'] / data['GP'].max(), 2).apply(lambda x: f"{x:.2f}")
 
-        DEFAULT_COLUMNS = ['Player', 'Team', 'Position', 'GS:GP'] + [col for col in DEFAULT_COLUMNS if col not in ['Player', 'Team', 'Position', 'GS:GP', 'GW']]
+    if 'GP' not in DEFAULT_COLUMNS:
+        DEFAULT_COLUMNS.append('GP')
+
+    DEFAULT_COLUMNS = ['Player', 'Team', 'Position', 'GS:GP'] + [col for col in DEFAULT_COLUMNS if col not in ['Player', 'Team', 'Position', 'GS:GP', 'GW']]
 
     all_teams = data['Team'].unique().tolist()
     all_teams.sort()
@@ -448,14 +442,12 @@ def main():
 
     selected_positions = create_sidebar_multiselect(data, 'Position', 'Select Positions', default_all=True, key_suffix="positions")
 
-    # Insert to display the selected filters
     print("Debug: Selected Team and Positions")
     print(f"Selected Team: {selected_Team}")
     print(f"Selected Positions: {selected_positions}")
 
     filtered_data = filter_data(data, selected_Team, selected_positions)
 
-        # Insert after filtering
     print("Debug: Displaying first few rows of filtered_data")
     print(filtered_data.head())
 
@@ -463,6 +455,11 @@ def main():
     selected_group = st.sidebar.selectbox("Select Stats Grouping", list(matches_col_groups.keys()))
     selected_columns = matches_col_groups[selected_group]
     selected_columns = [col for col in selected_columns if col in data.columns]
+    
+    show_as_rank = st.sidebar.radio('Show stats values as:', ['Original Values', 'Relative Rank'])
+
+    if show_as_rank == 'Relative Rank':
+        filtered_data = rank_players_by_multiple_stats(filtered_data, selected_columns)
 
     grouping_option = st.sidebar.selectbox("Select Grouping Option", ['None', 'Position', 'Team'], key="grouping_option")
 
@@ -481,24 +478,20 @@ def main():
     columns_to_show = list(DEFAULT_COLUMNS) + selected_columns
     columns_to_show = [col for col in columns_to_show if col in grouped_data.columns]
 
-    if grouping_option != 'None':
-        print(f"\nGrouping by: {grouping_option} \nGrouped Data columns: {grouped_data.columns.tolist()}")
-        if grouping_option.capitalize() not in columns_to_show:
-            columns_to_show.insert(0, grouping_option.capitalize())
+    print(f"\nGrouping by: {grouping_option} \nGrouped Data columns: {grouped_data.columns.tolist()}")
 
-    # create dictionary with columns names and respective data types
     columns_data_types = {col: grouped_data[col].dtype for col in grouped_data.columns}
 
     print(columns_data_types)
 
     print("Debug: Displaying first few rows of grouped_data before styling")
-    print(grouped_data.head())  # Debugging line to check if grouped_data has data
+    print(grouped_data.head())
 
     styled_df = style_dataframe_custom(grouped_data[columns_to_show], columns_to_show)
 
     print("Debug: Displaying first few rows of styled_df")
-    print(styled_df.head())  # Debugging line to check if styled_df has data
- 
+    print(styled_df.head())
+
     st.header(f"Premier League Players' Statistics ({selected_group})")
     print(f"Grouped Data Columns: {grouped_data[columns_to_show].columns.tolist()}")
     print("Styled Data Columns: ", print(styled_df.columns.tolist()))
@@ -506,7 +499,6 @@ def main():
 
     filtered_df.reset_index(drop=True, inplace=True)
 
-    # Ensure columns are unique
     unique_cols = []
     seen = set()
     for col in filtered_df.columns:
@@ -517,14 +509,14 @@ def main():
             count += 1
         seen.add(unique_col)
         unique_cols.append(unique_col)
-        
+
     print("Index unique?", filtered_df.index.is_unique)
     print("Columns unique?", filtered_df.columns.is_unique)
 
     st.dataframe(
-    filtered_df.style.apply(style_dataframe_custom, axis=None, selected_columns=selected_columns, custom_cmap=custom_cmap),
-    use_container_width=True,
-    height=(len(grouped_data) * 30) + 50 if grouping_option != 'None' else 35 * 20
+        filtered_df.style.apply(style_dataframe_custom, axis=None, selected_columns=selected_columns, custom_cmap=custom_cmap),
+        use_container_width=True,
+        height=(len(grouped_data) * 30) + 50 if grouping_option != 'None' else 35 * 20
     )
 
     create_plot(selected_group, selected_columns, selected_positions, selected_Team, grouped_data, grouping_option)

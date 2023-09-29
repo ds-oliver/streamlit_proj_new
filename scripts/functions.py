@@ -1644,8 +1644,8 @@ def style_dataframe_custom(df, selected_columns, custom_cmap="copper"):
         unique_values = col_data.unique()
 
         if len(unique_values) <= 3:
-            constant_colors = ["#FFA07A", "#8B4513", "#F4A460"]
-            text_colors = ['black', 'white', 'black']
+            constant_colors = ["#140b04", "#1c1625", "#460202"]
+            text_colors = ['white', 'white', 'white']
 
             most_common_list = Counter(col_data).most_common(1)
             if most_common_list:
@@ -1686,6 +1686,21 @@ def create_custom_cmap_0(base_cmap='magma', brightness_limit=1):
     # Apply brightness limit
     color_list = [(r * brightness_limit, g * brightness_limit, b * brightness_limit, a) for r, g, b, a in color_list]
     return LinearSegmentedColormap.from_list(base_cmap, color_list)
+
+def rank_players_by_multiple_stats(df, stat_columns):
+    """
+    Ranks players based on multiple selected statistics.
+    :param df: DataFrame containing player statistics
+    :param stat_columns: List of column names of the statistics to rank by
+    :return: DataFrame with added 'Rank' columns for each selected statistic
+    """
+    df = df.copy()
+    for col in stat_columns:
+        if col in df.columns:
+            rank_col_name = f"{col}_Rank"
+            df[rank_col_name] = df[col].rank(ascending=False, method='min').astype(int)
+    return df
+
 
 def style_tp_dataframe_custom(df, selected_columns, custom_cmap_name="copper"):
     cmap = plt.cm.get_cmap(custom_cmap_name)

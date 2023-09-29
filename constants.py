@@ -1,7 +1,7 @@
 import seaborn as sns
 
 # constants.py
-colors = ['#6d597a', '#08071d', '#370618', '#140b04']
+colors = ['#140b04', '#1c1625', '#370618', '#460202']
 
 fbref_cats = ['stats', 'shooting', 'passing', 'passing_types', 'gca', 'defense', 'possession', 'playingtime', 'misc']
 
