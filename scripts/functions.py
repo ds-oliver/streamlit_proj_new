@@ -1614,7 +1614,18 @@ def create_custom_cmap_1(*colors):
 
 #     return styled_df
 
-def style_dataframe_custom(df, selected_columns, custom_cmap="copper", inverse_cmap=False):
+
+def style_dataframe_custom(df, selected_columns, custom_cmap="copper", inverse_cmap=False, is_percentile=False):
+    """
+    Style the DataFrame based on the selected columns and color map.
+    
+    :param df: DataFrame to style
+    :param selected_columns: List of columns to style
+    :param custom_cmap: Color map name
+    :param inverse_cmap: Whether to inverse the color map
+    :param is_percentile: Whether to use divergent color map for percentiles
+    :return: DataFrame Styler object
+    """
     object_cmap = plt.cm.get_cmap(custom_cmap)
     styled_df = pd.DataFrame()
 
