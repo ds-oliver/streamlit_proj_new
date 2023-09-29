@@ -144,11 +144,6 @@ def main():
     # Extract unique matchups
     unique_matchups = players_df['Matchup'].drop_duplicates()
 
-    # Display unique matchups for the selected gameweek
-    st.write("Unique matchups for selected gameweek:")
-    for matchup in unique_matchups:
-        st.write(matchup)
-
     # print head(25) of dataframe
     print(f"Players dataframe shape: {players_df.head(25)}")
 
