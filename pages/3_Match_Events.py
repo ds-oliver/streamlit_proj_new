@@ -132,6 +132,7 @@ def main():
     
 
     shots_df = shots_df[shots_df['Gameweek'] == select_gw]
+    players_df = players_df[players_df['Gameweek'] == select_gw]
 
     players_df['Team'] = players_df['Team'].apply(lambda x: x.replace(' Player Stats', ''))
     players_df['Opponent'] = players_df['Opponent'].apply(lambda x: x.replace(' Player Stats', ''))
