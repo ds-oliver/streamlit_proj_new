@@ -197,8 +197,8 @@ def main():
         home_players_stats.set_index(['Player', 'Position'], inplace=True)
 
 
-        styled_home_players_stats_df = style_tp_dataframe_custom(home_players_stats[columns_to_show_players], columns_to_show_players)
-        styled_home_team_df = style_tp_dataframe_custom(home_team_stats[columns_to_show_team], columns_to_show_team)
+        styled_home_players_stats_df = style_dataframe_custom(home_players_stats[columns_to_show_players], columns_to_show_players)
+        styled_home_team_df = style_dataframe_custom(home_team_stats[columns_to_show_team], columns_to_show_team)
 
         st.dataframe(home_team_stats[columns_to_show_team].style.apply(lambda _: styled_home_team_df, axis=None))
         st.dataframe(home_players_stats[columns_to_show_players].style.apply(lambda _: styled_home_players_stats_df, axis=None))
