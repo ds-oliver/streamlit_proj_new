@@ -241,7 +241,7 @@ def get_color(value, cmap):
     brightness = 0.299 * rgba_color[0] + 0.587 * rgba_color[1] + 0.114 * rgba_color[2]
     
     # Adjust the brightness threshold
-    text_color = 'white' if brightness < 0.7 else 'black'
+    text_color = 'white' if brightness < 0.6 else 'black'
     
     return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
 
@@ -277,7 +277,7 @@ def style_dataframe_custom(df, selected_columns, custom_cmap="gist_heat"):
         unique_values = col_data.unique()
 
         if len(unique_values) <= 3:
-            constant_colors = ["#060301", "#eae2b7", "#FDFAF9"]
+            constant_colors = ["#060301", "#6d0301", "#FDFAF9"]
 
             most_common_list = Counter(col_data).most_common(1)
             if most_common_list:

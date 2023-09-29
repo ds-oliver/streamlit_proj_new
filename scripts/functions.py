@@ -1640,7 +1640,7 @@ def style_dataframe_custom(df, selected_columns, custom_cmap="gist_heat"):
         unique_values = col_data.unique()
 
         if len(unique_values) <= 3:
-            constant_colors = ["#060301", "#eae2b7", "#FDFAF9"]
+            constant_colors = ["#060301", "#6d0301", "#FDFAF9"]
 
             most_common_list = Counter(col_data).most_common(1)
             if most_common_list:
