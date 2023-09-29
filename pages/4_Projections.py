@@ -12,8 +12,9 @@ from streamlit_extras.stylable_container import stylable_container
 from streamlit_extras.add_vertical_space import add_vertical_space
 from streamlit_extras.customize_running import center_running
 
+from constants import colors
 from files import projections as proj_csv, fx_gif, ros_ranks
-from functions import load_csv, add_construction, load_css
+from functions import load_csv, add_construction, load_css, create_custom_sequential_cmap
 
 st.set_page_config(
     page_title="Footy Magic",
@@ -219,6 +220,8 @@ if 'lineup_clicked' not in st.session_state:
 def main():
     # Adding construction banner or any other initial setups
     add_construction()
+
+    custom_cmap = create_custom_sequential_cmap(*colors)
 
     mdlit(
     """### To get your optimal lineup head to -> @(https://www.fantrax.com/fantasy/league/d41pycnmlj3bmk8y/players;statusOrTeamFilter=ALL;pageNumber=1;positionOrGroup=SOCCER_NON_GOALIE;miscDisplayType=1) & follow the GIF below to populate and download the Players' data.

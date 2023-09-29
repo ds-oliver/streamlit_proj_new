@@ -28,11 +28,11 @@ from markdownlit import mdlit
 from streamlit_extras.metric_cards import style_metric_cards
 from streamlit_extras.stylable_container import stylable_container
 
-from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues, matches_drop_cols, matches_default_cols, matches_standard_cols, matches_passing_cols, matches_pass_types, matches_defense_cols, matches_possession_cols, matches_misc_cols, matches_col_groups
+from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues, matches_drop_cols, matches_default_cols, matches_standard_cols, matches_passing_cols, matches_pass_types, matches_defense_cols, matches_possession_cols, matches_misc_cols, matches_col_groups, colors
 
 from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default, matches_data, shots_data # this is the file we want to read in
 
-from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, create_custom_cmap, style_dataframe_custom, style_tp_dataframe_custom, load_csv, add_construction, round_and_format, load_css
+from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, create_custom_cmap, style_dataframe_custom, style_tp_dataframe_custom, load_csv, add_construction, round_and_format, load_css, create_custom_sequential_cmap
 
 # logger = st.logger
 
@@ -77,6 +77,8 @@ print("Scripts path:", scripts_path)
 print(sys.path)
 
 def main():
+    
+    custom_cmap = create_custom_sequential_cmap(*colors)
     
     matches_col_groups = {
         "Standard": matches_standard_cols,
@@ -197,8 +199,8 @@ def main():
         home_players_stats.set_index(['Player', 'Position'], inplace=True)
 
 
-        styled_home_players_stats_df = style_dataframe_custom(home_players_stats[columns_to_show_players], columns_to_show_players)
-        styled_home_team_df = style_dataframe_custom(home_team_stats[columns_to_show_team], columns_to_show_team)
+        styled_home_players_stats_df = style_dataframe_custom(home_players_stats[columns_to_show_players], columns_to_show_players, custom_cmap=custom_cmap)
+        styled_home_team_df = style_dataframe_custom(home_team_stats[columns_to_show_team], columns_to_show_team, custom_cmap=custom_cmap)
 
         st.dataframe(home_team_stats[columns_to_show_team].style.apply(lambda _: styled_home_team_df, axis=None))
         st.dataframe(home_players_stats[columns_to_show_players].style.apply(lambda _: styled_home_players_stats_df, axis=None))
@@ -212,8 +214,8 @@ def main():
         away_players_stats = players_df[players_df['Team'] == away_team]
         away_players_stats.set_index(['Player', 'Position'], inplace=True)
 
-        styled_away_players_stats_df = style_dataframe_custom(away_players_stats[columns_to_show_players], columns_to_show_players)
-        styled_away_team_df = style_dataframe_custom(away_team_stats[columns_to_show_team], columns_to_show_team)
+        styled_away_players_stats_df = style_dataframe_custom(away_players_stats[columns_to_show_players], columns_to_show_players, custom_cmap=custom_cmap)
+        styled_away_team_df = style_dataframe_custom(away_team_stats[columns_to_show_team], columns_to_show_team, custom_cmap=custom_cmap)
 
         st.dataframe(away_team_stats[columns_to_show_team].style.apply(lambda _: styled_away_team_df, axis=None))
         st.dataframe(away_players_stats[columns_to_show_players].style.apply(lambda _: styled_away_players_stats_df, axis=None))

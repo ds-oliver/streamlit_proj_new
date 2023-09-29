@@ -28,11 +28,11 @@ from markdownlit import mdlit
 from streamlit_extras.metric_cards import style_metric_cards
 from streamlit_extras.stylable_container import stylable_container
 
-from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues, matches_drop_cols, matches_default_cols, matches_standard_cols, matches_passing_cols, matches_pass_types, matches_defense_cols, matches_possession_cols, matches_misc_cols
+from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues, matches_drop_cols, matches_default_cols, matches_standard_cols, matches_passing_cols, matches_pass_types, matches_defense_cols, matches_possession_cols, matches_misc_cols, colors
 
 from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default, matches_data, shots_data # this is the file we want to read in
 
-from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, create_custom_cmap, style_dataframe_custom, style_tp_dataframe_custom, add_construction, load_css
+from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, create_custom_cmap, style_dataframe_custom, style_tp_dataframe_custom, add_construction, load_css, create_custom_sequential_cmap
 
 st.set_page_config(
     page_title="Footy Magic",
@@ -261,6 +261,9 @@ def re_add_aggregated_column(teams_df, original_df, selected_stat):
 def main():
 
     add_construction()
+
+    custom_cmap = create_custom_sequential_cmap(*colors)
+
     # Load the data
     matches_df, shots_df, date_of_update, MATCHES_DEFAULT_COLS = process_data()
 
@@ -432,7 +435,7 @@ def main():
     st.write(f'**{selected_team}** players in the {percentile_value}th percentile by **:red[{selected_stat} ({selected_aggregation_method})]. Conditional formatting has been applied to Team value based on rank of {selected_stat} ({selected_aggregation_method})**')
 
     # Styling DataFrame
-    styled_top_performers_df = style_tp_dataframe_custom(top_performers_df[columns_to_show], columns_to_show, "gist_heat")
+    styled_top_performers_df = style_dataframe_custom(top_performers_df[columns_to_show], columns_to_show, custom_cmap=custom_cmap)
 
     top_performers_df[selected_stat] = top_performers_df[selected_stat].apply(lambda x: f"{x:.2f}")
     top_performers_df = top_performers_df.applymap(round_and_format)
@@ -447,7 +450,7 @@ def main():
 
     top_teams_df = create_top_teams_table(teams_df, selected_stat)
 
-    styled_teams_df = style_tp_dataframe_custom(top_teams_df[teams_columns_to_show], teams_columns_to_show, "gist_heat")
+    styled_teams_df = style_dataframe_custom(top_teams_df[teams_columns_to_show], teams_columns_to_show, custom_cmap=custom_cmap)
     st.dataframe(teams_df.style.apply(lambda _: styled_teams_df, axis=None), use_container_width=True, height=len(teams_df) * 40 + 50)
 
     # Create dataframe grouped by team
@@ -466,7 +469,7 @@ def main():
     st.info(f'**:green[{matches_df.shape[0]}]** players found within the parameters selected', icon='ℹ')
 
     # Styling DataFrame
-    styled_df = style_tp_dataframe_custom(matches_df[columns_to_show], columns_to_show, "gist_heat")
+    styled_df = style_dataframe_custom(matches_df[columns_to_show], columns_to_show, custom_cmap=custom_cmap)
 
     # display the dataframe
     # 👈 round the values of the columns 👈
