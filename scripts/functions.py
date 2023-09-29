@@ -1438,8 +1438,12 @@ def get_color(value, cmap):
     color_fraction = value
     rgba_color = cmap(color_fraction)
     brightness = 0.299 * rgba_color[0] + 0.587 * rgba_color[1] + 0.114 * rgba_color[2]
-    text_color = 'white' if brightness < 0.7 else 'black'
+    
+    # Adjust the brightness threshold
+    text_color = 'white' if brightness < 0.75 else 'black'
+    
     return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
+
 
 def style_dataframe(df, selected_columns):
     cm_sns_copper = cm.get_cmap('copper')
@@ -1640,7 +1644,8 @@ def style_dataframe_custom(df, selected_columns, custom_cmap="copper"):
         unique_values = col_data.unique()
 
         if len(unique_values) <= 3:
-            constant_colors = ["#060301", "#6d0301", "#FDFAF9"]
+            constant_colors = ["#003366", "#228B22", "#8E4585"]
+            text_colors = ['white', 'white', 'white']
 
             most_common_list = Counter(col_data).most_common(1)
             if most_common_list:
@@ -1649,7 +1654,6 @@ def style_dataframe_custom(df, selected_columns, custom_cmap="copper"):
                 most_common_value = None
 
             other_values = [uv for uv in unique_values if uv != most_common_value]
-            text_colors = ['white' if color == "#060301" else 'black' for color in constant_colors]
 
             color_mapping = {
                 val: f"background-color: {color}; color: {text}" 

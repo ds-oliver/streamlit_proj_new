@@ -245,61 +245,61 @@ def get_color(value, cmap):
     
     return f'color: {text_color}; background-color: rgba({",".join(map(str, (np.array(rgba_color[:3]) * 255).astype(int)))}, 0.7)'
 
-def style_dataframe_custom(df, selected_columns, custom_cmap="copper"):
-    object_cmap = plt.cm.get_cmap(custom_cmap)
-    styled_df = pd.DataFrame()
+# def style_dataframe_custom(df, selected_columns, custom_cmap="copper"):
+#     object_cmap = plt.cm.get_cmap(custom_cmap)
+#     styled_df = pd.DataFrame()
 
-    position_column = 'Position' if 'Position' in df.columns else None
-    if position_column:
-        position_colors = {
-            "D": "background-color: #6d597a; color: white",
-            "M": "background-color: #370617; color: white",
-            "F": "background-color: #03071e; color: white"
-        }
-        styled_df[position_column] = df[position_column].apply(lambda x: position_colors.get(x, ''))
+#     position_column = 'Position' if 'Position' in df.columns else None
+#     if position_column:
+#         position_colors = {
+#             "D": "background-color: #6d597a; color: white",
+#             "M": "background-color: #370617; color: white",
+#             "F": "background-color: #03071e; color: white"
+#         }
+#         styled_df[position_column] = df[position_column].apply(lambda x: position_colors.get(x, ''))
 
-        if 'Player' in df.columns:
-            styled_df['Player'] = df[position_column].apply(lambda x: position_colors.get(x, ''))
+#         if 'Player' in df.columns:
+#             styled_df['Player'] = df[position_column].apply(lambda x: position_colors.get(x, ''))
 
-    for col in selected_columns:
-        if col in ['Player', position_column]:
-            continue
+#     for col in selected_columns:
+#         if col in ['Player', position_column]:
+#             continue
 
-        col_data = df[col]
+#         col_data = df[col]
 
-        try:
-            col_data = col_data.astype(float)
-            min_val = col_data.min()
-            max_val = col_data.max()
-        except ValueError:
-            min_val = max_val = None
+#         try:
+#             col_data = col_data.astype(float)
+#             min_val = col_data.min()
+#             max_val = col_data.max()
+#         except ValueError:
+#             min_val = max_val = None
 
-        unique_values = col_data.unique()
+#         unique_values = col_data.unique()
 
-        if len(unique_values) <= 3:
-            constant_colors = ["#060301", "#6d0301", "#FDFAF9"]
+#         if len(unique_values) <= 3:
+#             constant_colors = ["#060301", "#6d0301", "#FDFAF9"]
 
-            most_common_list = Counter(col_data).most_common(1)
-            if most_common_list:
-                most_common_value, _ = most_common_list[0]
-            else:
-                most_common_value = None
+#             most_common_list = Counter(col_data).most_common(1)
+#             if most_common_list:
+#                 most_common_value, _ = most_common_list[0]
+#             else:
+#                 most_common_value = None
 
-            other_values = [uv for uv in unique_values if uv != most_common_value]
-            text_colors = ['black' if color == "#FDFAF9" else 'white' for color in constant_colors]
+#             other_values = [uv for uv in unique_values if uv != most_common_value]
+#             text_colors = ['black' if color == "#FDFAF9" else 'white' for color in constant_colors]
 
-            color_mapping = {
-                val: f"background-color: {color}; color: {text}" 
-                for val, color, text in zip([most_common_value] + other_values, constant_colors, text_colors)
-            }
+#             color_mapping = {
+#                 val: f"background-color: {color}; color: {text}" 
+#                 for val, color, text in zip([most_common_value] + other_values, constant_colors, text_colors)
+#             }
 
-            styled_df[col] = col_data.apply(lambda x: color_mapping.get(x, ''))
-        elif min_val is not None and max_val is not None:
-            if min_val != max_val:
-                styled_df[col] = col_data.apply(
-                    lambda x: get_color((x - min_val) / (max_val - min_val), object_cmap)
-                )
-    return styled_df
+#             styled_df[col] = col_data.apply(lambda x: color_mapping.get(x, ''))
+#         elif min_val is not None and max_val is not None:
+#             if min_val != max_val:
+#                 styled_df[col] = col_data.apply(
+#                     lambda x: get_color((x - min_val) / (max_val - min_val), object_cmap)
+#                 )
+#     return styled_df
 
 # Function to group data based on selected options
 def group_data(df, selected_columns, grouping_option, aggregation_option='sum', exclude_cols=None):
