@@ -300,6 +300,7 @@ def style_dataframe_custom(df, selected_columns, custom_cmap="gist_heat"):
                     lambda x: get_color((x - min_val) / (max_val - min_val), object_cmap)
                 )
     return styled_df
+
 # Function to group data based on selected options
 def group_data(df, selected_columns, grouping_option, aggregation_option='sum', exclude_cols=None):
     if exclude_cols is None:
