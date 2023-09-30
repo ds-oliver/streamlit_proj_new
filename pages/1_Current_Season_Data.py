@@ -318,14 +318,14 @@ def rename_columns(df, rename_dict):
     print("Debug: Beginning of rename_columns function")
     print("Debug: rename_dict value is:", rename_dict)
 
-    # Lowercase all column names
-    df.columns = [col.lower() for col in df.columns]
+    # Lowercase all column names, except for 'Position'
+    df.columns = [col.lower() if col != 'Position' else col for col in df.columns]
 
     # Remove '_Pct' from column names where applicable
-    df.rename(columns={col: col.replace('_Pct', '') for col in df.columns if '_Pct' in col}, inplace=True)
+    df.rename(columns={col: col.replace('_Pct', '') for col in df.columns if '_Pct' in col and col != 'Position'}, inplace=True)
 
-    # Rename columns based on the rename_dict
-    cols_to_rename = {col: rename_dict[col] for col in df.columns if col in rename_dict}
+    # Rename columns based on the rename_dict, except for 'Position'
+    cols_to_rename = {col: rename_dict[col] for col in df.columns if col in rename_dict and col != 'Position'}
     df.rename(columns=cols_to_rename, inplace=True)
 
     # Count the number of columns renamed
