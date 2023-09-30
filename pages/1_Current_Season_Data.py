@@ -315,14 +315,24 @@ def group_data(df, selected_columns, grouping_option, aggregation_option='sum', 
     return grouped_df
 
 def rename_columns(df, rename_dict):
-    # if col in df.columns contains '_Pct' then remove '_Pct' from the column name then rename the column based on the rename_dict
-    for col in df.columns:
-        if '_Pct' in col:
-            df.rename(columns={col: col.replace('_Pct', '')}, inplace=True)
-            df.rename(columns=rename_dict, inplace=True)
-        else:
-            df.rename(columns=rename_dict, inplace=True)
-    return df
+    print("Debug: Beginning of rename_columns function")
+    print("Debug: rename_dict value is:", rename_dict)
+
+    # Lowercase all column names
+    df.columns = [col.lower() for col in df.columns]
+
+    # Remove '_Pct' from column names where applicable
+    df.rename(columns={col: col.replace('_Pct', '') for col in df.columns if '_Pct' in col}, inplace=True)
+
+    # Rename columns based on the rename_dict
+    cols_to_rename = {col: rename_dict[col] for col in df.columns if col in rename_dict}
+    df.rename(columns=cols_to_rename, inplace=True)
+
+    # Count the number of columns renamed
+    cols_renamed = len(cols_to_rename)
+
+    return df, cols_renamed
+
 
 def get_grouping_values_and_column(grouping_option, selected_positions, selected_Teams, grouped_df, selected_stats_for_plot):
     grouped_df[selected_stats_for_plot] = grouped_df[selected_stats_for_plot].apply(pd.to_numeric, errors='coerce')
@@ -463,11 +473,16 @@ def main():
 
     grouped_data = grouped_data.applymap(round_and_format)
 
+    # print columns before renaming
+    print("Columns in grouped_data before renaming:", grouped_data.columns.tolist())
+
     # Rename columns using the rename_columns function
-    grouped_data = rename_columns(grouped_data, matches_rename_dict)
+    grouped_data, cols_renamed = rename_columns(grouped_data, matches_rename_dict)
+
+    print(f"Number of columns renamed: {cols_renamed}")
 
     # print the columns in grouped_data to make sure they are all capitalized
-    print("Columns in grouped_data:", grouped_data.columns.tolist())
+    print("Columns in grouped_data after renaming:", grouped_data.columns.tolist())
 
     columns_to_show = [col for col in columns_to_show if col in grouped_data.columns]
 

@@ -52,7 +52,6 @@ matches_rename_dict = {
     'GW': 'GW',
     'started': 'Started',
     'team': 'Team',
-    'Pos': 'Pos',
     'goals': 'Goals',
     'assists': 'Assists',
     'pens_made': 'Pens Made',
