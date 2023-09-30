@@ -433,7 +433,18 @@ def main():
     if show_as_rank == 'Relative Percentile':
         grouped_data = percentile_players_by_multiple_stats(filtered_data, selected_columns)
         columns_to_show = [f"{col}_Pct" if f"{col}_Pct" in grouped_data.columns else col for col in columns_to_show]
-        print("Debug: columns_to_show value after transforming dataframe values in percentile_players_by_multiple_stats() is:", columns_to_show)
+        
+        # Convert percentile columns to numeric if they are not
+        for col in columns_to_show:
+            if "_Pct" in col:
+                grouped_data[col] = pd.to_numeric(grouped_data[col], errors='coerce')
+        
+        # Sort the DataFrame by percentile columns in descending order
+        percentile_columns = [col for col in grouped_data.columns if "_Pct" in col]
+        grouped_data.sort_values(by=percentile_columns, ascending=False, inplace=True)
+        
+        # Reset index for better interactive sorting
+        grouped_data.reset_index(drop=True, inplace=True)
 
     else:
         grouped_data = filtered_data

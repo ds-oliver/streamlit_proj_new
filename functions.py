@@ -1719,6 +1719,7 @@ def rank_players_by_multiple_stats(df, stat_columns):
                 df[rank_col_name] = ranks.astype(int)
     return df
 
+@st.cache_data
 def percentile_players_by_multiple_stats(df, stat_columns):
     """
     Shows players' statistics as percentiles based on multiple selected statistics.
