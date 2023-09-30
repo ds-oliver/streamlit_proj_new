@@ -326,7 +326,7 @@ def get_grouping_values_and_column(grouping_option, selected_positions, selected
         # convert the selected_stats_for_plot datatypes to numeric
         top_players = grouped_df.nlargest(25, selected_stats_for_plot)
         return top_players['Player'].tolist(), 'Player'
-
+@st.cache_data
 def filter_data(df, selected_Team, selected_positions):
     print("Debug from inside filter_data function: selected_Team and selected_positions are: ", selected_Team, selected_positions)
     
@@ -376,29 +376,17 @@ def main():
     data, DEFAULT_COLUMNS, date_of_update = load_data()
     display_date_of_update(date_of_update)
 
-    column_rename_dict = {'Gw': 'GW', 'Started': 'GS'}
-    data.rename(columns=column_rename_dict, inplace=True)
+    data.rename(columns={'Gw': 'GW', 'Started': 'GS'}, inplace=True)
 
     GW_range = st.slider('GW range', min_value=int(data['GW'].min()), max_value=int(data['GW'].max()), value=(int(data['GW'].min()), int(data['GW'].max())), step=1)
     GW_range = list(GW_range)
 
     data = data[(data['GW'] >= GW_range[0]) & (data['GW'] <= GW_range[1])]
+    data['Position'] = data['Position'].str.upper()
 
-    exclude_cols = ['Player', 'Team', 'Position', 'Nation', 'Season']
-    for col in data.columns:
-        if col not in exclude_cols:
-            if pd.api.types.is_object_dtype(data[col]):
-                data[col] = pd.to_numeric(data[col], errors='coerce')
-
-    selected_aggregation_method = st.sidebar.selectbox('Select Aggregation Method', ['Mean', 'Sum'])
-    selected_aggregation_method = selected_aggregation_method.lower()
+    selected_aggregation_method = st.sidebar.selectbox('Select Aggregation Method', ['Mean', 'Sum']).lower()
     aggregation_functions = {col: selected_aggregation_method if pd.api.types.is_numeric_dtype(data[col]) else 'first' for col in data.columns}
-
-    aggregation_functions['Player'] = 'first'
-    aggregation_functions['Team'] = most_recent_Team
-    aggregation_functions['Position'] = 'first'
-    aggregation_functions['GW'] = 'nunique'
-    aggregation_functions['GS'] = 'sum'
+    aggregation_functions.update({'Player': 'first', 'Team': most_recent_Team, 'Position': 'first', 'GW': 'nunique', 'GS': 'sum'})
 
     data = data.groupby(['Player', 'Team', 'Position'], as_index=False).agg(aggregation_functions)
     data.rename(columns={'GW': 'GP'}, inplace=True)
@@ -409,78 +397,46 @@ def main():
 
     DEFAULT_COLUMNS = ['Player', 'Team', 'Position', 'GS:GP'] + [col for col in DEFAULT_COLUMNS if col not in ['Player', 'Team', 'Position', 'GS:GP', 'GW']]
 
-    all_teams = data['Team'].unique().tolist()
-    all_teams.sort()
-    all_teams = ['All Teams'] + all_teams
-    selected_Team = st.sidebar.selectbox('Select Team', all_teams)
+    all_teams = sorted(data['Team'].unique().tolist())
+    selected_Team = st.sidebar.selectbox('Select Team', ['All Teams'] + all_teams)
 
     all_positions = data['Position'].unique().tolist()
     selected_positions = create_sidebar_multiselect(data, 'Position', 'Select Positions', default_all=True)
 
     filtered_data = filter_data(data, selected_Team, selected_positions)
-
-    matches_col_groups = {key.capitalize(): [col.capitalize() for col in value] for key, value in matches_col_groups.items()}
     selected_group = st.sidebar.selectbox("Select Stats Grouping", list(matches_col_groups.keys()))
-    selected_columns = matches_col_groups[selected_group]
-    selected_columns = [col for col in selected_columns if col in data.columns]
+    selected_columns = [col for col in matches_col_groups[selected_group] if col in data.columns]
 
     columns_to_show = list(DEFAULT_COLUMNS) + selected_columns
     columns_to_show = [col for col in columns_to_show if col in filtered_data.columns]
 
     show_as_rank = st.sidebar.radio('Show stats values as:', ['Original Values', 'Relative Percentile'])
-    grouping_option = st.sidebar.selectbox("Select Grouping Option", ['None', 'Position', 'Team'])
-
     if show_as_rank == 'Relative Percentile':
-        grouped_data = percentile_players_by_multiple_stats(filtered_data, selected_columns)
-        columns_to_show = [f"{col}_Pct" if f"{col}_Pct" in grouped_data.columns else col for col in columns_to_show]
-        
-        # Convert percentile columns to numeric if they are not
-        for col in columns_to_show:
-            if "_Pct" in col:
-                grouped_data[col] = pd.to_numeric(grouped_data[col], errors='coerce')
-        
-        # Sort the DataFrame by percentile columns in descending order
-        percentile_columns = [col for col in grouped_data.columns if "_Pct" in col]
-        grouped_data.sort_values(by=percentile_columns, ascending=False, inplace=True)
-        
-        # Reset index for better interactive sorting
-        grouped_data.reset_index(drop=True, inplace=True)
-
+        grouped_data = percentile_players_by_multiple_stats(filtered_data, selected_columns).sort_values(by=selected_columns, ascending=False)
     else:
         grouped_data = filtered_data
 
+    grouping_option = st.sidebar.selectbox("Select Grouping Option", ['None', 'Position', 'Team'])
     if grouping_option != 'None':
-        grouped_data = group_data(grouped_data, selected_columns, grouping_option, exclude_cols=exclude_cols)  # Here, grouped_data is already either percentile-transformed or the original filtered_data
+        grouped_data = group_data(grouped_data, selected_columns, grouping_option)
     else:
         set_index_to_player = st.sidebar.checkbox('Set index to Player', False)
         if set_index_to_player:
             grouped_data.set_index('Player', inplace=True)
 
     ensure_unique_columns(grouped_data)
-
     grouped_data = grouped_data.applymap(round_and_format)
     columns_to_show = [col for col in columns_to_show if col in grouped_data.columns]
 
-    # print debug with columns_to_show value
-    print("Debug: columns_to_show value is:", columns_to_show)
-
-    # Determine which colormap and inversion settings to use based on the show_as_rank setting
     final_cmap = custom_divergent_cmap if show_as_rank == 'Relative Percentile' else custom_cmap
     is_percentile = (show_as_rank == 'Relative Percentile')
 
-    # print debug with is_percentile value
-    print("Debug: is_percentile value is:", is_percentile)
-
-    # Reapply the styling at the end, using the appropriate colormap and settings
     styled_df = style_dataframe_custom(grouped_data[columns_to_show], columns_to_show, custom_cmap=final_cmap, inverse_cmap=False, is_percentile=is_percentile)
 
     st.header(f"Premier League Players' Statistics ({selected_group})")
 
     filtered_df = dataframe_explorer(grouped_data[columns_to_show])
     filtered_df.reset_index(drop=True, inplace=True)
-
-    # print filtered_df columns to list
-    print("Columns in filtered_df:", filtered_df.columns.tolist())
 
     st.dataframe(
         filtered_df.style.apply(lambda _: styled_df, axis=None),
@@ -490,20 +446,20 @@ def main():
         
     create_plot(selected_group, selected_columns, selected_positions, selected_Team, grouped_data, grouping_option)
 
-
 if __name__ == "__main__":
-    pr = cProfile.Profile()
-    pr.enable()
+    # pr = cProfile.Profile()
+    # pr.enable()
 
-    main() # This calls your main function
+    main()  # This calls your main function
 
-    pr.disable()
-    s = io.StringIO()
-    sortby = 'cumulative'
-    ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
-    ps.print_stats()
+    # pr.disable()
+    # s = io.StringIO()
+    # sortby = 'cumulative'
+    # ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
+    # ps.print_stats()
 
-    with open('profile_output.txt', 'w') as f:
-        f.write(s.getvalue())
+    # with open('profile_output.txt', 'w') as f:
+    #     f.write(s.getvalue())
+
 
 
