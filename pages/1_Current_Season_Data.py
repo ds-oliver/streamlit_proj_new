@@ -61,9 +61,9 @@ warnings.filterwarnings('ignore')
 scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 sys.path.append(scripts_path)
 
-print("Scripts path:", scripts_path)
+# print("Scripts path:", scripts_path)
 
-print(sys.path)
+# print(sys.path)
 
 @st.cache_data
 def process_data(matches_data, temp_default, matches_col_groups):
@@ -375,16 +375,11 @@ def main():
 
     data, DEFAULT_COLUMNS, date_of_update = load_data()
     display_date_of_update(date_of_update)
-    print("Debug: Initial columns in 'data':", data.columns.tolist())
 
     column_rename_dict = {'Gw': 'GW', 'Started': 'GS'}
     data.rename(columns=column_rename_dict, inplace=True)
 
-    GW_range = st.slider('GW range',
-                         min_value=int(data['GW'].min()), 
-                         max_value=int(data['GW'].max()), 
-                         value=(int(data['GW'].min()), int(data['GW'].max())),
-                         step=1)
+    GW_range = st.slider('GW range', min_value=int(data['GW'].min()), max_value=int(data['GW'].max()), value=(int(data['GW'].min()), int(data['GW'].max())), step=1)
     GW_range = list(GW_range)
 
     data = data[(data['GW'] >= GW_range[0]) & (data['GW'] <= GW_range[1])]
@@ -393,14 +388,12 @@ def main():
     for col in data.columns:
         if col not in exclude_cols:
             if pd.api.types.is_object_dtype(data[col]):
-                print(f"Converting {col} to numeric")
                 data[col] = pd.to_numeric(data[col], errors='coerce')
 
     selected_aggregation_method = st.sidebar.selectbox('Select Aggregation Method', ['Mean', 'Sum'])
     selected_aggregation_method = selected_aggregation_method.lower()
-    aggregation_functions = {
-        col: selected_aggregation_method if pd.api.types.is_numeric_dtype(data[col]) else 'first' for col in data.columns
-    }
+    aggregation_functions = {col: selected_aggregation_method if pd.api.types.is_numeric_dtype(data[col]) else 'first' for col in data.columns}
+
     aggregation_functions['Player'] = 'first'
     aggregation_functions['Team'] = most_recent_Team
     aggregation_functions['Position'] = 'first'
@@ -424,79 +417,66 @@ def main():
     all_positions = data['Position'].unique().tolist()
     selected_positions = create_sidebar_multiselect(data, 'Position', 'Select Positions', default_all=True)
 
-    print("Debug: Selected Team and Positions")
-    print(f"Selected Team: {selected_Team}")
-    print(f"Selected Positions: {selected_positions}")
-
     filtered_data = filter_data(data, selected_Team, selected_positions)
-    print("Debug: Displaying first few rows of filtered_data")
-    print(filtered_data.head())
 
     matches_col_groups = {key.capitalize(): [col.capitalize() for col in value] for key, value in matches_col_groups.items()}
     selected_group = st.sidebar.selectbox("Select Stats Grouping", list(matches_col_groups.keys()))
     selected_columns = matches_col_groups[selected_group]
     selected_columns = [col for col in selected_columns if col in data.columns]
 
-    show_as_rank = st.sidebar.radio('Show stats values as:', ['Original Values', 'Relative Percentile'])
+    columns_to_show = list(DEFAULT_COLUMNS) + selected_columns
+    columns_to_show = [col for col in columns_to_show if col in filtered_data.columns]
 
-    grouped_data = pd.DataFrame()
+    show_as_rank = st.sidebar.radio('Show stats values as:', ['Original Values', 'Relative Percentile'])
+    grouping_option = st.sidebar.selectbox("Select Grouping Option", ['None', 'Position', 'Team'])
 
     if show_as_rank == 'Relative Percentile':
         grouped_data = percentile_players_by_multiple_stats(filtered_data, selected_columns)
-        print("Debug: Columns in grouped_data after percentile calculation:", grouped_data.columns.tolist())
-        selected_columns = [f"{col}_Pct" for col in selected_columns if f"{col}_Pct" in grouped_data.columns]
-        DEFAULT_COLUMNS = [f"{col}_Pct" if f"{col}_Pct" in grouped_data.columns else col for col in DEFAULT_COLUMNS]
-        styled_df = style_dataframe_custom(grouped_data[selected_columns], selected_columns, custom_cmap=custom_divergent_cmap, inverse_cmap=False, is_percentile=True)
+        columns_to_show = [f"{col}_Pct" if f"{col}_Pct" in grouped_data.columns else col for col in columns_to_show]
+        print("Debug: columns_to_show value after transforming dataframe values in percentile_players_by_multiple_stats() is:", columns_to_show)
+
     else:
         grouped_data = filtered_data
-        styled_df = style_dataframe_custom(grouped_data[selected_columns], selected_columns, custom_cmap=custom_cmap, inverse_cmap=False, is_percentile=False)
 
-    print("Debug: Final Selected Columns:", selected_columns)
-
-    grouping_option = st.sidebar.selectbox("Select Grouping Option", ['None', 'Position', 'Team'])
-
-    if grouping_option == 'None':
-        grouped_data = filtered_data
+    if grouping_option != 'None':
+        grouped_data = group_data(grouped_data, selected_columns, grouping_option, exclude_cols=exclude_cols)  # Here, grouped_data is already either percentile-transformed or the original filtered_data
+    else:
         set_index_to_player = st.sidebar.checkbox('Set index to Player', False)
         if set_index_to_player:
             grouped_data.set_index('Player', inplace=True)
-    else:
-        grouped_data = group_data(filtered_data, selected_columns, grouping_option, exclude_cols=exclude_cols)
 
     ensure_unique_columns(grouped_data)
 
     grouped_data = grouped_data.applymap(round_and_format)
-    columns_to_show = list(DEFAULT_COLUMNS) + selected_columns
     columns_to_show = [col for col in columns_to_show if col in grouped_data.columns]
 
-    print(f"\nGrouping by: {grouping_option} \nGrouped Data columns: {grouped_data.columns.tolist()}")
+    # print debug with columns_to_show value
+    print("Debug: columns_to_show value is:", columns_to_show)
 
-    columns_data_types = {col: grouped_data[col].dtype for col in grouped_data.columns}
-    print(columns_data_types)
+    # Determine which colormap and inversion settings to use based on the show_as_rank setting
+    final_cmap = custom_divergent_cmap if show_as_rank == 'Relative Percentile' else custom_cmap
+    is_percentile = (show_as_rank == 'Relative Percentile')
 
-    print("Debug: Displaying first few rows of grouped_data before styling")
-    print(grouped_data.head())
+    # print debug with is_percentile value
+    print("Debug: is_percentile value is:", is_percentile)
 
-    styled_df = style_dataframe_custom(grouped_data[columns_to_show], columns_to_show, custom_cmap=custom_cmap, inverse_cmap=False)
-    print("Debug: Displaying first few rows of styled_df")
-    print(styled_df.head())
+    # Reapply the styling at the end, using the appropriate colormap and settings
+    styled_df = style_dataframe_custom(grouped_data[columns_to_show], columns_to_show, custom_cmap=final_cmap, inverse_cmap=False, is_percentile=is_percentile)
 
     st.header(f"Premier League Players' Statistics ({selected_group})")
-
-    print("Debug: columns_to_show", columns_to_show)
-    print("Debug: grouped_data[columns_to_show].head(25)", grouped_data[columns_to_show].head(25))
 
     filtered_df = dataframe_explorer(grouped_data[columns_to_show])
     filtered_df.reset_index(drop=True, inplace=True)
 
-    print("Debug: filtered_df.head(25)", filtered_df.head(25))
+    # print filtered_df columns to list
+    print("Columns in filtered_df:", filtered_df.columns.tolist())
 
     st.dataframe(
-        filtered_df.style.apply(style_dataframe_custom, axis=None, selected_columns=selected_columns, custom_cmap=custom_cmap, inverse_cmap=False),
+        filtered_df.style.apply(lambda _: styled_df, axis=None),
         use_container_width=True,
-        height=(len(grouped_data) * 30) + 50 if grouping_option != 'None' else 35 * 20
+        height=(len(filtered_df) * 30) + 50 if grouping_option != 'None' else 35 * 20
     )
-
+        
     create_plot(selected_group, selected_columns, selected_positions, selected_Team, grouped_data, grouping_option)
 
 
