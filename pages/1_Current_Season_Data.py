@@ -32,7 +32,7 @@ from streamlit_extras.stylable_container import stylable_container
 from matplotlib.colors import LinearSegmentedColormap
 from scipy.stats import percentileofscore
 
-from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues, matches_col_groups, matches_drop_cols, matches_default_cols, matches_drop_cols, matches_default_cols, matches_standard_cols, matches_passing_cols, matches_pass_types, matches_defense_cols, matches_possession_cols, matches_misc_cols, colors, divergent_colors, matches_rename_dict
+from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues, matches_col_groups, matches_drop_cols, matches_default_cols, matches_drop_cols, matches_default_cols, matches_standard_cols, matches_passing_cols, matches_pass_types, matches_defense_cols, matches_possession_cols, matches_misc_cols, matches_standard_cols_rename, matches_defense_cols_rename, matches_passing_cols_rename, matches_possession_cols_rename, matches_misc_cols_rename, matches_pass_types_rename, colors, divergent_colors, matches_rename_dict, colors, divergent_colors, matches_rename_dict
 
 from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default, all_gws_data, pl_2018_2023, matches_data # this is the file we want to read in
 
@@ -314,45 +314,27 @@ def group_data(df, selected_columns, grouping_option, aggregation_option='sum', 
         
     return grouped_df
 
-def rename_columns(df, rename_dict, matches_col_groups):
+def rename_columns(df, rename_dict, col_groups):
     print("Debug: Beginning of rename_columns function")
-    print("Debug: rename_dict value is:", rename_dict)
+    print(f"Debug: rename_dict value is: {rename_dict}")
 
-    # Store the original set of column names
-    original_columns = set(df.columns)
+    # Capitalize the keys and values in rename_dict
+    rename_dict = {k.capitalize(): v for k, v in rename_dict.items()}
 
-    # Normalize the case of DataFrame columns to lowercase
-    df.columns = [col.lower() for col in df.columns]
+    # Identify columns that are in the DataFrame but not in the rename_dict (and vice versa)
+    cols_lost = set(df.columns) - set(rename_dict.keys())
+    new_cols = set(rename_dict.values()) - set(df.columns)
+    print(f"\nDebug: Columns lost: {cols_lost} \n\nNew columns: {new_cols}")
 
-    # Normalize the case of the keys in rename_dict to lowercase
-    rename_dict = {k.lower(): v for k, v in rename_dict.items()}
-
-    # Remove '_Pct' from column names where applicable
-    df.rename(columns={col: col.replace('_Pct', '') for col in df.columns if '_Pct' in col}, inplace=True)
-
-    # Rename columns based on the normalized rename_dict
-    cols_to_rename = {col: rename_dict[col] for col in df.columns if col in rename_dict}
-    df.rename(columns=cols_to_rename, inplace=True)
-
-    # Count the number of columns renamed
-    cols_renamed = len(cols_to_rename)
-
-    # Verify that no columns were lost
-    renamed_columns = set(df.columns)
-    if original_columns == renamed_columns:
-        print("Debug: No columns were lost during the renaming process.")
-    else:
-        lost_columns = original_columns - renamed_columns
-        new_columns = renamed_columns - original_columns
-        print(f"Debug: Columns lost: {lost_columns}, New columns: {new_columns}")
-
-    # Update matches_col_groups to reflect the renamed columns
+    # Update the column groups before renaming DataFrame columns
     updated_col_groups = {}
-    for group, cols in matches_col_groups.items():
-        updated_cols = [rename_dict.get(col.lower(), col) for col in cols]
-        updated_col_groups[group] = updated_cols
+    for group, cols in col_groups.items():
+        updated_col_groups[group] = [rename_dict.get(col.capitalize(), col) for col in cols]
 
-    return df, cols_renamed, updated_col_groups
+    # Rename columns in the DataFrame
+    df.rename(columns=rename_dict, inplace=True)
+
+    return df, len(rename_dict), updated_col_groups
 
 def get_grouping_values_and_column(grouping_option, selected_positions, selected_Teams, grouped_df, selected_stats_for_plot):
     grouped_df[selected_stats_for_plot] = grouped_df[selected_stats_for_plot].apply(pd.to_numeric, errors='coerce')
@@ -396,6 +378,22 @@ def ensure_unique_columns(df):
         unique_cols.append(unique_col)
     df.columns = unique_cols
 
+def create_rename_dict(old_cols_list, new_cols_list):
+    """
+    Create a dictionary mapping old column names to new column names based on provided lists.
+
+    Parameters:
+        old_cols_list (list): List of old column names.
+        new_cols_list (list): List of new column names.
+
+    Returns:
+        dict: Dictionary mapping old column names to new column names.
+    """
+    if len(old_cols_list) != len(new_cols_list):
+        raise ValueError("The length of old_cols_list must be the same as new_cols_list.")
+
+    return dict(zip(old_cols_list, new_cols_list))
+
 def main():
     add_construction()
     print("Debug: Beginning of main function")
@@ -403,13 +401,14 @@ def main():
     custom_cmap = create_custom_sequential_cmap(*colors)
     custom_divergent_cmap = create_custom_sequential_cmap(*divergent_colors)
 
+    # Updating the column groups to use renamed columns
     matches_col_groups = {
-        "Standard": matches_standard_cols,
-        "Passing": matches_passing_cols,
-        "Defense": matches_defense_cols,
-        "Possession": matches_possession_cols,
-        "Miscellaneous": matches_misc_cols,
-        "Passing Types": matches_pass_types,
+        "Standard": matches_standard_cols_rename,
+        "Passing": matches_passing_cols_rename,
+        "Defense": matches_defense_cols_rename,
+        "Possession": matches_possession_cols_rename,
+        "Miscellaneous": matches_misc_cols_rename,
+        "Passing Types": matches_pass_types_rename,
     }
 
     data, DEFAULT_COLUMNS, date_of_update = load_data()
@@ -458,7 +457,6 @@ def main():
 
     filtered_data = filter_data(data, selected_Team, selected_positions)
 
-    matches_col_groups = {key.capitalize(): [col.capitalize() for col in value] for key, value in matches_col_groups.items()}
     selected_group = st.sidebar.selectbox("Select Stats Grouping", list(matches_col_groups.keys()))
     selected_columns = matches_col_groups[selected_group]
     selected_columns = [col for col in selected_columns if col in data.columns]
@@ -471,14 +469,6 @@ def main():
 
     if show_as_rank == 'Relative Percentile':
         grouped_data = percentile_players_by_multiple_stats(filtered_data, selected_columns)
-        columns_to_show = [f"{col}_Pct" if f"{col}_Pct" in grouped_data.columns else col for col in columns_to_show]
-        for col in columns_to_show:
-            if "_Pct" in col:
-                grouped_data[col] = pd.to_numeric(grouped_data[col], errors='coerce')
-        percentile_columns = [col for col in grouped_data.columns if "_Pct" in col]
-        grouped_data.sort_values(by=percentile_columns, ascending=False, inplace=True)
-        grouped_data.reset_index(drop=True, inplace=True)
-
     else:
         grouped_data = filtered_data
 
@@ -493,24 +483,8 @@ def main():
 
     grouped_data = grouped_data.applymap(round_and_format)
 
-    print("Columns in grouped_data before renaming:", grouped_data.columns.tolist())
-
-    # Rename columns using the rename_columns function
-    grouped_data, cols_renamed, updated_matches_col_groups = rename_columns(grouped_data, matches_rename_dict, matches_col_groups)
-    matches_col_groups = updated_matches_col_groups  # Update the matches_col_groups
-
-    print(f"Number of columns renamed: {cols_renamed}")
-
-    print("Columns in grouped_data after renaming:", grouped_data.columns.tolist())
-
-    columns_to_show = [col for col in columns_to_show if col in grouped_data.columns]
-
-    print("Debug: columns_to_show value is:", columns_to_show)
-
     final_cmap = custom_divergent_cmap if show_as_rank == 'Relative Percentile' else custom_cmap
     is_percentile = (show_as_rank == 'Relative Percentile')
-
-    print("Debug: is_percentile value is:", is_percentile)
 
     styled_df = style_dataframe_custom(grouped_data[columns_to_show], columns_to_show, custom_cmap=final_cmap, inverse_cmap=False, is_percentile=is_percentile)
 
@@ -518,8 +492,6 @@ def main():
 
     filtered_df = dataframe_explorer(grouped_data[columns_to_show])
     filtered_df.reset_index(drop=True, inplace=True)
-
-    print("Columns in filtered_df:", filtered_df.columns.tolist())
 
     st.dataframe(
         filtered_df.style.apply(lambda _: styled_df, axis=None),
