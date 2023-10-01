@@ -1701,6 +1701,15 @@ def create_custom_cmap_0(base_cmap='magma', brightness_limit=1):
     color_list = [(r * brightness_limit, g * brightness_limit, b * brightness_limit, a) for r, g, b, a in color_list]
     return LinearSegmentedColormap.from_list(base_cmap, color_list)
 
+def debug_dataframe(df, debug_message="Debugging DataFrame"):
+    """
+    Function to debug and evaluate DataFrame attributes.
+    """
+    print(f"\n{debug_message}")
+    print(f"Shape: {df.shape}")
+    print(f"Columns: {df.columns.tolist()}")
+    print(f"Data Types:\n{df.dtypes}")
+
 def rank_players_by_multiple_stats(df, stat_columns):
     """
     Ranks players based on multiple selected statistics.

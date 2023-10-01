@@ -36,7 +36,7 @@ from constants import stats_cols, shooting_cols, passing_cols, passing_types_col
 
 from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default, all_gws_data, pl_2018_2023, matches_data # this is the file we want to read in
 
-from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, style_dataframe_v2, get_color, get_color_from_palette, round_and_format, create_custom_cmap, style_dataframe_custom, add_construction, display_date_of_update, load_css, create_custom_sequential_cmap, rank_players_by_multiple_stats, percentile_players_by_multiple_stats
+from functions import scraping_current_fbref, normalize_encoding, clean_age_column, create_sidebar_multiselect, style_dataframe_v2, get_color, get_color_from_palette, round_and_format, create_custom_cmap, style_dataframe_custom, add_construction, display_date_of_update, load_css, create_custom_sequential_cmap, rank_players_by_multiple_stats, percentile_players_by_multiple_stats, debug_dataframe
 
 st.set_page_config(
     page_title="Footy Magic",
@@ -412,6 +412,8 @@ def main():
     }
 
     data, DEFAULT_COLUMNS, date_of_update = load_data()
+    debug_dataframe(data, "Debugging initial data (DataFrame: data)")
+
     display_date_of_update(date_of_update)
 
     column_rename_dict = {'Gw': 'GW', 'Started': 'GS'}
@@ -421,6 +423,8 @@ def main():
     GW_range = list(GW_range)
 
     data = data[(data['GW'] >= GW_range[0]) & (data['GW'] <= GW_range[1])]
+    debug_dataframe(data, "Debugging data after filtering by GW range (DataFrame: data)")
+
 
     exclude_cols = ['Player', 'Team', 'Position', 'Nation', 'Season']
     for col in data.columns:
@@ -456,6 +460,7 @@ def main():
     selected_positions = create_sidebar_multiselect(data, 'Position', 'Select Positions', default_all=True)
 
     filtered_data = filter_data(data, selected_Team, selected_positions)
+    debug_dataframe(filtered_data, "Debugging data after team and position filtering (DataFrame: filtered_data)")
 
     selected_group = st.sidebar.selectbox("Select Stats Grouping", list(matches_col_groups.keys()))
     selected_columns = matches_col_groups[selected_group]
@@ -482,6 +487,7 @@ def main():
     ensure_unique_columns(grouped_data)
 
     grouped_data = grouped_data.applymap(round_and_format)
+    debug_dataframe(grouped_data, "Debugging grouped data after applymap (DataFrame: grouped_data)")
 
     final_cmap = custom_divergent_cmap if show_as_rank == 'Relative Percentile' else custom_cmap
     is_percentile = (show_as_rank == 'Relative Percentile')
