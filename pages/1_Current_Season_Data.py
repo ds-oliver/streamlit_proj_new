@@ -32,7 +32,7 @@ from streamlit_extras.stylable_container import stylable_container
 from matplotlib.colors import LinearSegmentedColormap
 from scipy.stats import percentileofscore
 
-from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues, matches_col_groups, matches_drop_cols, matches_default_cols, matches_drop_cols, matches_default_cols, matches_standard_cols, matches_passing_cols, matches_pass_types, matches_defense_cols, matches_possession_cols, matches_misc_cols, matches_standard_cols_rename, matches_defense_cols_rename, matches_passing_cols_rename, matches_possession_cols_rename, matches_misc_cols_rename, matches_pass_types_rename, colors, divergent_colors, matches_rename_dict, colors, divergent_colors, matches_rename_dict
+from constants import stats_cols, shooting_cols, passing_cols, passing_types_cols, gca_cols, defense_cols, possession_cols, playing_time_cols, misc_cols, fbref_cats, fbref_leagues, matches_col_groups, matches_drop_cols, matches_default_cols, matches_drop_cols, matches_default_cols, matches_standard_cols, matches_passing_cols, matches_pass_types, matches_defense_cols, matches_possession_cols, matches_misc_cols, matches_default_cols_rename, matches_standard_cols_rename, matches_defense_cols_rename, matches_passing_cols_rename, matches_possession_cols_rename, matches_misc_cols_rename, matches_pass_types_rename, colors, divergent_colors, matches_rename_dict, colors, divergent_colors, matches_rename_dict
 
 from files import pl_data_gw1, temp_gw1_fantrax_default as temp_default, all_gws_data, pl_2018_2023, matches_data # this is the file we want to read in
 
@@ -66,70 +66,61 @@ sys.path.append(scripts_path)
 # print(sys.path)
 
 # @st.cache_data
-def process_data(matches_data, temp_default, matches_col_groups):
-    
+# Function to create rename dictionary
+def create_rename_dict(old_cols_list, new_cols_list):
+    if len(old_cols_list) != len(new_cols_list):
+        raise ValueError("The length of old_cols_list must be the same as new_cols_list.")
+    rename_dict = dict(zip(old_cols_list, new_cols_list))
+    return rename_dict
+
+# Function to process data
+def process_data(matches_data, temp_default, matches_drop_cols, matches_default_cols):
     df = pd.read_csv(matches_data)
     temp_df = pd.read_csv(temp_default)
-
-    print("Shape of df before merging:", df.shape)
-    print(df.columns.tolist())
-
+    
+    # Merging DataFrames
     df = pd.merge(df, temp_df[['Player', 'Position', 'Team']], left_on='player', right_on='Player', how='left')
-    print("Shape of df after merging:", df.shape)
-    print(df.columns.tolist())
-
-    # drop the 'Player' and 'team' columns
+    
+    # Drop unnecessary columns
     df.drop(columns=['Player', 'team'], inplace=True)
-
-    # capitalize the column names
-    # df.columns = [col.capitalize() for col in df.columns]
-
+    
+    # Filter out rows where Position is 'GK' or NaN
     df = df[df['Position'] != 'GK']
-
     df = df[df['Position'].notna()]
 
-    print("Debug from process_data(): Column names in 'df' dataframe ", df.columns.tolist())
-
-    # rename GW column to 'gw'
-    df.rename(columns={'Gameweek': 'GW'}, inplace=True)
+    # Rename 'gameweek' to 'GW'
+    df.rename(columns={'gameweek': 'GW'}, inplace=True)
     
+    # Drop columns specified in matches_drop_cols
     for col in matches_drop_cols:
         if col in df.columns:
             df.drop(columns=col, inplace=True)
 
-    # Apply the replace method only if the value is a string
-    # df['team'] = df['team'].apply(lambda x: x.replace(' Player Stats', '') if isinstance(x, str) else x)
+    # Remove duplicate rows
+    df.drop_duplicates(subset=['player', 'GW'], inplace=True)
 
-    df.drop_duplicates(subset=['Player', 'GW'], inplace=True)
-
-    print("Columns in df after processing:", df.columns.tolist())
-
-    # capitalize format for the columns
-    df.columns = [col.capitalize() for col in df.columns.tolist()]
-
-    # rename any column name that starts with xg to xG
-    df.rename(columns={col: col.replace('X', 'x') for col in df.columns if col.startswith('X')}, inplace=True)
-
-    # if the column name starts with x and is 2 letters in length capitalize the second letter, if it starts with x and is 3 letters in length capitalize the second and third letters
-    df.rename(columns={col: col[:2] + col[2:].capitalize() if col.startswith('x') and len(col) == 2 else col[:2] + col[2:4].capitalize() + col[4:] if col.startswith('x') and len(col) == 3 else col for col in df.columns if col.startswith('x')}, inplace=True)
-
-    print("Columns in df after capitalizing:", df.columns.tolist())
-
-    MATCHES_DEFAULT_COLS = matches_default_cols
-
-    # capitalize format for the columns
-    MATCHES_DEFAULT_COLS = [col.capitalize() if col != 'GW' else col for col in MATCHES_DEFAULT_COLS]
-
-    print("Default columns:", MATCHES_DEFAULT_COLS)
-
-    date_of_update = datetime.fromtimestamp(os.path.getmtime(matches_data)).strftime('%d %B %Y')
-
-    return df, MATCHES_DEFAULT_COLS, date_of_update
+    # Combine all rename dictionaries into one
+    all_rename_dicts = {**matches_default_cols_rename, **matches_standard_cols_rename, **matches_passing_cols_rename,**matches_pass_types_rename, **matches_defense_cols_rename, **matches_possession_cols_rename, **matches_misc_cols_rename}
     
+    # Rename columns based on the combined dictionary
+    df.rename(columns=all_rename_dicts, inplace=True)
+
+    # Handle x-prefixed columns
+    # df.rename(columns={col: col.replace('X', 'x') for col in df.columns if col.startswith('X')}, inplace=True)
+    # df.rename(columns={col: col[:2] + col[2:].capitalize() if col.startswith('x') and len(col) == 2 else col[:2] + col[2:4].capitalize() + col[4:] if col.startswith('x') and len(col) == 3 else col for col in df.columns if col.startswith('x')}, inplace=True)
+
+    # Update MATCHES_DEFAULT_COLS based on matches_default_cols
+    MATCHES_DEFAULT_COLS = [col if col != 'GW' else col for col in matches_default_cols]
+    
+    # Get the date of last update
+    date_of_update = datetime.fromtimestamp(os.path.getmtime(matches_data)).strftime('%d %B %Y')
+    
+    return df, MATCHES_DEFAULT_COLS, date_of_update
+ 
 # Function to load the data
-@st.cache_data
+# @st.cache_data
 def load_data():
-    return process_data(matches_data, temp_default, matches_col_groups)
+    return process_data(matches_data, temp_default, matches_drop_cols, matches_default_cols)
 
 # Function to filter data based on selected Teams and positions
 # @st.cache_data
@@ -347,7 +338,8 @@ def get_grouping_values_and_column(grouping_option, selected_positions, selected
         # convert the selected_stats_for_plot datatypes to numeric
         top_players = grouped_df.nlargest(25, selected_stats_for_plot)
         return top_players['Player'].tolist(), 'Player'
-@st.cache_data
+
+# @st.cache_data
 def filter_data(df, selected_Team, selected_positions):
     print("Debug from inside filter_data function: selected_Team and selected_positions are: ", selected_Team, selected_positions)
     
@@ -377,34 +369,6 @@ def ensure_unique_columns(df):
         seen.add(unique_col)
         unique_cols.append(unique_col)
     df.columns = unique_cols
-
-def create_rename_dict(old_cols_list, new_cols_list):
-    """
-    Create a dictionary mapping old column names to new column names based on provided lists.
-
-    Parameters:
-        old_cols_list (list): List of old column names.
-        new_cols_list (list): List of new column names.
-
-    Returns:
-        dict: Dictionary mapping old column names to new column names.
-    """
-
-    print("Debug: Entering create_rename_dict function.")
-    
-    if len(old_cols_list) != len(new_cols_list):
-        print("Debug: Length mismatch between old_cols_list and new_cols_list.")
-        raise ValueError("The length of old_cols_list must be the same as new_cols_list.")
-
-    print(f"Debug: old_cols_list: {old_cols_list}")
-    print(f"Debug: new_cols_list: {new_cols_list}")
-
-    rename_dict = dict(zip(old_cols_list, new_cols_list))
-    
-    print(f"Debug: Created rename_dict: {rename_dict}")
-
-    return rename_dict
-
 
 def main():
     add_construction()
