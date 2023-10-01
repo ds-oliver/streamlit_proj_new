@@ -314,25 +314,45 @@ def group_data(df, selected_columns, grouping_option, aggregation_option='sum', 
         
     return grouped_df
 
-def rename_columns(df, rename_dict):
+def rename_columns(df, rename_dict, matches_col_groups):
     print("Debug: Beginning of rename_columns function")
     print("Debug: rename_dict value is:", rename_dict)
 
-    # Lowercase all column names, except for 'Position'
-    df.columns = [col.lower() if col != 'Position' else col for col in df.columns]
+    # Store the original set of column names
+    original_columns = set(df.columns)
+
+    # Normalize the case of DataFrame columns to lowercase
+    df.columns = [col.lower() for col in df.columns]
+
+    # Normalize the case of the keys in rename_dict to lowercase
+    rename_dict = {k.lower(): v for k, v in rename_dict.items()}
 
     # Remove '_Pct' from column names where applicable
-    df.rename(columns={col: col.replace('_Pct', '') for col in df.columns if '_Pct' in col and col != 'Position'}, inplace=True)
+    df.rename(columns={col: col.replace('_Pct', '') for col in df.columns if '_Pct' in col}, inplace=True)
 
-    # Rename columns based on the rename_dict, except for 'Position'
-    cols_to_rename = {col: rename_dict[col] for col in df.columns if col in rename_dict and col != 'Position'}
+    # Rename columns based on the normalized rename_dict
+    cols_to_rename = {col: rename_dict[col] for col in df.columns if col in rename_dict}
     df.rename(columns=cols_to_rename, inplace=True)
 
     # Count the number of columns renamed
     cols_renamed = len(cols_to_rename)
 
-    return df, cols_renamed
+    # Verify that no columns were lost
+    renamed_columns = set(df.columns)
+    if original_columns == renamed_columns:
+        print("Debug: No columns were lost during the renaming process.")
+    else:
+        lost_columns = original_columns - renamed_columns
+        new_columns = renamed_columns - original_columns
+        print(f"Debug: Columns lost: {lost_columns}, New columns: {new_columns}")
 
+    # Update matches_col_groups to reflect the renamed columns
+    updated_col_groups = {}
+    for group, cols in matches_col_groups.items():
+        updated_cols = [rename_dict.get(col.lower(), col) for col in cols]
+        updated_col_groups[group] = updated_cols
+
+    return df, cols_renamed, updated_col_groups
 
 def get_grouping_values_and_column(grouping_option, selected_positions, selected_Teams, grouped_df, selected_stats_for_plot):
     grouped_df[selected_stats_for_plot] = grouped_df[selected_stats_for_plot].apply(pd.to_numeric, errors='coerce')
@@ -473,15 +493,14 @@ def main():
 
     grouped_data = grouped_data.applymap(round_and_format)
 
-    # print columns before renaming
     print("Columns in grouped_data before renaming:", grouped_data.columns.tolist())
 
     # Rename columns using the rename_columns function
-    grouped_data, cols_renamed = rename_columns(grouped_data, matches_rename_dict)
+    grouped_data, cols_renamed, updated_matches_col_groups = rename_columns(grouped_data, matches_rename_dict, matches_col_groups)
+    matches_col_groups = updated_matches_col_groups  # Update the matches_col_groups
 
     print(f"Number of columns renamed: {cols_renamed}")
 
-    # print the columns in grouped_data to make sure they are all capitalized
     print("Columns in grouped_data after renaming:", grouped_data.columns.tolist())
 
     columns_to_show = [col for col in columns_to_show if col in grouped_data.columns]
