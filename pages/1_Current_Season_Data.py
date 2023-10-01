@@ -65,7 +65,7 @@ sys.path.append(scripts_path)
 
 # print(sys.path)
 
-@st.cache_data
+# @st.cache_data
 def process_data(matches_data, temp_default, matches_col_groups):
     
     df = pd.read_csv(matches_data)
@@ -82,13 +82,13 @@ def process_data(matches_data, temp_default, matches_col_groups):
     df.drop(columns=['Player', 'team'], inplace=True)
 
     # capitalize the column names
-    df.columns = [col.capitalize() for col in df.columns]
+    # df.columns = [col.capitalize() for col in df.columns]
 
     df = df[df['Position'] != 'GK']
 
     df = df[df['Position'].notna()]
 
-    print(df.columns.tolist())
+    print("Debug from process_data(): Column names in 'df' dataframe ", df.columns.tolist())
 
     # rename GW column to 'gw'
     df.rename(columns={'Gameweek': 'GW'}, inplace=True)
@@ -389,30 +389,70 @@ def create_rename_dict(old_cols_list, new_cols_list):
     Returns:
         dict: Dictionary mapping old column names to new column names.
     """
+
+    print("Debug: Entering create_rename_dict function.")
+    
     if len(old_cols_list) != len(new_cols_list):
+        print("Debug: Length mismatch between old_cols_list and new_cols_list.")
         raise ValueError("The length of old_cols_list must be the same as new_cols_list.")
 
-    return dict(zip(old_cols_list, new_cols_list))
+    print(f"Debug: old_cols_list: {old_cols_list}")
+    print(f"Debug: new_cols_list: {new_cols_list}")
+
+    rename_dict = dict(zip(old_cols_list, new_cols_list))
+    
+    print(f"Debug: Created rename_dict: {rename_dict}")
+
+    return rename_dict
+
 
 def main():
     add_construction()
+
     print("Debug: Beginning of main function")
+    # print timestamp
+    print("Timestamp:", datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
 
     custom_cmap = create_custom_sequential_cmap(*colors)
     custom_divergent_cmap = create_custom_sequential_cmap(*divergent_colors)
 
     # Updating the column groups to use renamed columns
     matches_col_groups = {
-        "Standard": matches_standard_cols_rename,
-        "Passing": matches_passing_cols_rename,
-        "Defense": matches_defense_cols_rename,
-        "Possession": matches_possession_cols_rename,
-        "Miscellaneous": matches_misc_cols_rename,
-        "Passing Types": matches_pass_types_rename,
+        "Standard": list(matches_standard_cols_rename.values()),
+        "Passing": list(matches_passing_cols_rename.values()),
+        "Defense": list(matches_defense_cols_rename.values()),
+        "Possession": list(matches_possession_cols_rename.values()),
+        "Miscellaneous": list(matches_misc_cols_rename.values()),
+        "Passing Types": list(matches_pass_types_rename.values()),
     }
 
     data, DEFAULT_COLUMNS, date_of_update = load_data()
     debug_dataframe(data, "Debugging initial data (DataFrame: data)")
+
+    # Debugging information
+    print("Debugging initial data (DataFrame: data)")
+    print("Shape:", data.shape)
+    print("Columns:", data.columns.tolist())
+    print("Data Types:", data.dtypes)
+    
+    # Rename columns based on the renaming dictionaries
+    renaming_dicts = [
+        matches_standard_cols_rename,
+        matches_passing_cols_rename,
+        matches_defense_cols_rename,
+        matches_possession_cols_rename,
+        matches_misc_cols_rename,
+        matches_pass_types_rename
+    ]
+    
+    for rename_dict in renaming_dicts:
+        data.rename(columns={k: v for k, v in rename_dict.items() if k in data.columns}, inplace=True)
+    
+    # Debugging information after renaming
+    print("Debugging data after renaming (DataFrame: data)")
+    print("Shape:", data.shape)
+    print("Columns:", data.columns.tolist())
+    print("Data Types:", data.dtypes)
 
     display_date_of_update(date_of_update)
 
@@ -424,7 +464,6 @@ def main():
 
     data = data[(data['GW'] >= GW_range[0]) & (data['GW'] <= GW_range[1])]
     debug_dataframe(data, "Debugging data after filtering by GW range (DataFrame: data)")
-
 
     exclude_cols = ['Player', 'Team', 'Position', 'Nation', 'Season']
     for col in data.columns:
