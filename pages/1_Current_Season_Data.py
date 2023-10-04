@@ -67,60 +67,6 @@ sys.path.append(scripts_path)
 
 # @st.cache_data
 # Function to create rename dictionary
-def create_rename_dict(old_cols_list, new_cols_list):
-    if len(old_cols_list) != len(new_cols_list):
-        raise ValueError("The length of old_cols_list must be the same as new_cols_list.")
-    rename_dict = dict(zip(old_cols_list, new_cols_list))
-    return rename_dict
-
-# Function to process data
-def process_data(matches_data, temp_default, matches_drop_cols, matches_default_cols):
-    df = pd.read_csv(matches_data)
-    temp_df = pd.read_csv(temp_default)
-    
-    # Merging DataFrames
-    df = pd.merge(df, temp_df[['Player', 'Position', 'Team']], left_on='player', right_on='Player', how='left')
-    
-    # Drop unnecessary columns
-    df.drop(columns=['Player', 'team'], inplace=True)
-    
-    # Filter out rows where Position is 'GK' or NaN
-    df = df[df['Position'] != 'GK']
-    df = df[df['Position'].notna()]
-
-    # Rename 'gameweek' to 'GW'
-    df.rename(columns={'gameweek': 'GW'}, inplace=True)
-    
-    # Drop columns specified in matches_drop_cols
-    for col in matches_drop_cols:
-        if col in df.columns:
-            df.drop(columns=col, inplace=True)
-
-    # Remove duplicate rows
-    df.drop_duplicates(subset=['player', 'GW'], inplace=True)
-
-    # Combine all rename dictionaries into one
-    all_rename_dicts = {**matches_default_cols_rename, **matches_standard_cols_rename, **matches_passing_cols_rename,**matches_pass_types_rename, **matches_defense_cols_rename, **matches_possession_cols_rename, **matches_misc_cols_rename}
-    
-    # Rename columns based on the combined dictionary
-    df.rename(columns=all_rename_dicts, inplace=True)
-
-    # Handle x-prefixed columns
-    # df.rename(columns={col: col.replace('X', 'x') for col in df.columns if col.startswith('X')}, inplace=True)
-    # df.rename(columns={col: col[:2] + col[2:].capitalize() if col.startswith('x') and len(col) == 2 else col[:2] + col[2:4].capitalize() + col[4:] if col.startswith('x') and len(col) == 3 else col for col in df.columns if col.startswith('x')}, inplace=True)
-
-    # Update MATCHES_DEFAULT_COLS based on matches_default_cols
-    MATCHES_DEFAULT_COLS = [col if col != 'GW' else col for col in matches_default_cols]
-    
-    # Get the date of last update
-    date_of_update = datetime.fromtimestamp(os.path.getmtime(matches_data)).strftime('%d %B %Y')
-    
-    return df, MATCHES_DEFAULT_COLS, date_of_update
- 
-# Function to load the data
-# @st.cache_data
-def load_data():
-    return process_data(matches_data, temp_default, matches_drop_cols, matches_default_cols)
 
 # Function to filter data based on selected Teams and positions
 # @st.cache_data
@@ -370,6 +316,63 @@ def ensure_unique_columns(df):
         unique_cols.append(unique_col)
     df.columns = unique_cols
 
+def create_rename_dict(old_cols_list, new_cols_list):
+    if len(old_cols_list) != len(new_cols_list):
+        raise ValueError("The length of old_cols_list must be the same as new_cols_list.")
+    rename_dict = dict(zip(old_cols_list, new_cols_list))
+    return rename_dict
+
+# Function to process data
+@st.cache_data
+def process_data(matches_data, temp_default, matches_drop_cols, matches_default_cols):
+    df = pd.read_csv(matches_data)
+    temp_df = pd.read_csv(temp_default)
+    
+    # Merging DataFrames
+    df = pd.merge(df, temp_df[['Player', 'Position', 'Team']], left_on='player', right_on='Player', how='left')
+    
+    # Drop unnecessary columns
+    df.drop(columns=['Player', 'team'], inplace=True)
+    
+    # Filter out rows where Position is 'GK' or NaN
+    df = df[df['Position'] != 'GK']
+    df = df[df['Position'].notna()]
+
+    # Rename 'gameweek' to 'GW'
+    df.rename(columns={'gameweek': 'GW'}, inplace=True)
+    
+    # Drop columns specified in matches_drop_cols
+    for col in matches_drop_cols:
+        if col in df.columns:
+            df.drop(columns=col, inplace=True)
+
+    # Remove duplicate rows
+    df.drop_duplicates(subset=['player', 'GW'], inplace=True)
+
+    # Combine all rename dictionaries into one
+    all_rename_dicts = {**matches_default_cols_rename, **matches_standard_cols_rename, **matches_passing_cols_rename,**matches_pass_types_rename, **matches_defense_cols_rename, **matches_possession_cols_rename, **matches_misc_cols_rename}
+    
+    # Rename columns based on the combined dictionary
+    df.rename(columns=all_rename_dicts, inplace=True)
+
+    # Handle x-prefixed columns
+    # df.rename(columns={col: col.replace('X', 'x') for col in df.columns if col.startswith('X')}, inplace=True)
+    # df.rename(columns={col: col[:2] + col[2:].capitalize() if col.startswith('x') and len(col) == 2 else col[:2] + col[2:4].capitalize() + col[4:] if col.startswith('x') and len(col) == 3 else col for col in df.columns if col.startswith('x')}, inplace=True)
+
+    # Update MATCHES_DEFAULT_COLS based on matches_default_cols
+    MATCHES_DEFAULT_COLS = [col if col != 'GW' else col for col in matches_default_cols]
+    
+    # Get the date of last update
+    date_of_update = datetime.fromtimestamp(os.path.getmtime(matches_data)).strftime('%d %B %Y')
+    
+    return df, MATCHES_DEFAULT_COLS, date_of_update
+ 
+# Function to load the data
+@st.cache_data
+def load_data():
+    return process_data(matches_data, temp_default, matches_drop_cols, matches_default_cols)
+
+
 def main():
     add_construction()
 
@@ -392,31 +395,6 @@ def main():
 
     data, DEFAULT_COLUMNS, date_of_update = load_data()
     debug_dataframe(data, "Debugging initial data (DataFrame: data)")
-
-    # Debugging information
-    print("Debugging initial data (DataFrame: data)")
-    print("Shape:", data.shape)
-    print("Columns:", data.columns.tolist())
-    print("Data Types:", data.dtypes)
-    
-    # Rename columns based on the renaming dictionaries
-    renaming_dicts = [
-        matches_standard_cols_rename,
-        matches_passing_cols_rename,
-        matches_defense_cols_rename,
-        matches_possession_cols_rename,
-        matches_misc_cols_rename,
-        matches_pass_types_rename
-    ]
-    
-    for rename_dict in renaming_dicts:
-        data.rename(columns={k: v for k, v in rename_dict.items() if k in data.columns}, inplace=True)
-    
-    # Debugging information after renaming
-    print("Debugging data after renaming (DataFrame: data)")
-    print("Shape:", data.shape)
-    print("Columns:", data.columns.tolist())
-    print("Data Types:", data.dtypes)
 
     display_date_of_update(date_of_update)
 
