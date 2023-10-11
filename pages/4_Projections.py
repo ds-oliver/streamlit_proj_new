@@ -159,6 +159,10 @@ def filter_by_status_and_position(players, projections, status):
     reserves = projections[~projections['Player'].isin(best_combination['Player'])].head(5).reset_index(drop=True)
     best_score = round(best_score, 1)
 
+    # Drop the 'Priority' column before returning
+    best_combination.drop(columns=['Priority'], inplace=True, errors='ignore')
+    reserves.drop(columns=['Priority'], inplace=True, errors='ignore')
+
     return best_combination, reserves, best_score
 
 
@@ -216,6 +220,10 @@ def filter_available_players_by_projgs(players, projections, status, projgs_valu
     best_combination.reset_index(drop=True, inplace=True)
 
     reserves = projections[~projections['Player'].isin(best_combination['Player'])].head(5).reset_index(drop=True)
+
+    # Drop the 'Priority' column before returning
+    best_combination.drop(columns=['Priority'], inplace=True, errors='ignore')
+    reserves.drop(columns=['Priority'], inplace=True, errors='ignore')
 
     return best_combination, reserves
 
