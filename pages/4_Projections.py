@@ -374,6 +374,12 @@ def main():
                     # divider 
                     st.divider()
 
+                    # drop value_score column
+                    value_score_df.drop(columns=['Value Score'], inplace=True)
+
+                    # reset the index
+                    value_score_df.reset_index(drop=True, inplace=True)
+
                     # show the value_score_df
                     st.dataframe(value_score_df, use_container_width=True)
 
