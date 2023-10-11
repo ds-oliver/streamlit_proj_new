@@ -162,19 +162,6 @@ def filter_by_status_and_position(players, projections, status):
     return best_combination, reserves, best_score
 
 
-# Function that will get the average projected points for top 10 players across all managers within the same positional limits
-def get_avg_proj_pts(players, projections):
-    total_proj_pts = 0
-    num_statuses = len(players['Status'].unique())
-
-    for status in players['Status'].unique():
-        top_10, _, top_10_proj_pts = filter_by_status_and_position(players, projections, status)
-        total_proj_pts += top_10_proj_pts
-
-    average_proj_pts = round((total_proj_pts / num_statuses), 1)
-    return average_proj_pts
-
-
 # Filter available players by their ProjGS and status
 def filter_available_players_by_projgs(players, projections, status, projgs_value):
     if isinstance(status, str):
@@ -232,6 +219,58 @@ def filter_available_players_by_projgs(players, projections, status, projgs_valu
 
     return best_combination, reserves
 
+# Function that will get the average projected points for top 10 players across all managers within the same positional limits
+def get_avg_proj_pts(players, projections):
+    total_proj_pts = 0
+    num_statuses = len(players['Status'].unique())
+
+    for status in players['Status'].unique():
+        top_10, _, top_10_proj_pts = filter_by_status_and_position(players, projections, status)
+        total_proj_pts += top_10_proj_pts
+
+    average_proj_pts = round((total_proj_pts / num_statuses), 1)
+    return average_proj_pts
+
+def get_filtered_players(players, projections, status, projgs_value=None):
+    """
+    Filter players based on their status and optionally their ProjGS values.
+    
+    Args:
+    - players (pd.DataFrame): DataFrame containing player information.
+    - projections (pd.DataFrame): DataFrame containing projections for players.
+    - status (str or list): Player status values to filter by.
+    - projgs_value (int, optional): ProjGS value to filter players by. Defaults to None.
+    
+    Returns:
+    - pd.DataFrame: Filtered player projections.
+    - pd.DataFrame: Filtered player reserves.
+    """
+
+    if isinstance(status, str):
+        status = [status]
+
+    # Filter players by their status
+    filtered_players = players[players['Status'].isin(status)]
+    
+    # Optionally filter players by their ProjGS values
+    if projgs_value is not None:
+        filtered_players = filtered_players[filtered_players['ProjGS'] == projgs_value]
+
+    if filtered_players.empty:
+        return pd.DataFrame(), pd.DataFrame()
+
+    # Get a list of filtered player names
+    player_list = filtered_players['Player'].unique().tolist()
+
+    # Filter the projections DataFrame using the player list
+    filtered_projections = projections[projections['Player'].isin(player_list)]
+
+    # Prioritize players based on their ProjGS values
+    filtered_projections['Priority'] = filtered_projections['ProjGS'].apply(lambda x: 0 if x == 0 else 1)
+    filtered_projections.sort_values(by=['Priority', 'ProjFPts'], ascending=[False, False], inplace=True)
+
+    return filtered_projections, filtered_players
+
 
 # Initialize session states
 if 'only_starters' not in st.session_state:
@@ -239,6 +278,156 @@ if 'only_starters' not in st.session_state:
 
 if 'lineup_clicked' not in st.session_state:
     st.session_state.lineup_clicked = False
+
+# def main():
+#     # Adding construction banner or any other initial setups
+#     add_construction()
+
+#     custom_cmap = create_custom_sequential_cmap(*colors)
+
+#     mdlit(
+#     """### To get your optimal lineup head to -> @(https://www.fantrax.com/fantasy/league/d41pycnmlj3bmk8y/players;statusOrTeamFilter=ALL;pageNumber=1;positionOrGroup=SOCCER_NON_GOALIE;miscDisplayType=1) & follow the GIF below to populate and download the Players' data.
+#         """
+#         )   
+
+#     add_vertical_space(2)
+#     local_gif(fx_gif)
+
+#     uploaded_file = st.file_uploader("Upload a file", type="csv")
+
+#     if uploaded_file:
+#         center_running()
+#         with st.spinner('Loading data...'):
+#             players = pd.read_csv(uploaded_file)
+#             projections = load_csv(proj_csv)
+#             ros_ranks_data = load_csv(ros_ranks)
+
+#             if 'Pos' in players.columns:
+#                 players.rename(columns={'Pos': 'Position'}, inplace=True)
+
+#             if 'Pos' in projections.columns:
+#                 projections.rename(columns={'Pos': 'Position'}, inplace=True)
+
+#             projections = pd.merge(projections, ros_ranks_data, how='left', on='Player', suffixes=('', '_y'))
+
+#             # drop columns with suffix _y
+#             projections = projections[projections.columns.drop(list(projections.filter(regex='_y')))]
+
+#             # drop Pos, +/- is exist from both projections and players dataframes
+#             cols_to_drop = ['Pos', '+/-']
+
+#             # drop if they exist using list comprehension
+#             projections = projections.drop([col for col in projections.columns if col in cols_to_drop], axis=1)
+#             players = players.drop([col for col in players.columns if col in cols_to_drop], axis=1)
+
+#             # fillna ROS Rank with 200
+#             projections['ROS Rank'].fillna(200, inplace=True)
+            
+#             debug_filtering(projections, players)
+
+#             players['Status'] = players['Status'].apply(lambda x: 'Waivers' if x.startswith('W (') else x)
+#             unique_statuses = players['Status'].unique()
+#             available_players = players[players['Status'].isin(['Waivers', 'FA'])]
+
+#             # print unique statuses in available players
+#             print("Unique statuses in available players:", unique_statuses)
+
+#             col_a, col_b = st.columns(2)
+            
+#             with col_a:
+#                 st.write("### Select your Fantasy team from the dropdown below")
+#                 status = st.selectbox('List of Teams', unique_statuses)
+#                 with stylable_container(key="green_button", css_styles="..."):
+#                     lineup_button = st.button('Get my optimal lineup')
+            
+#             with col_b:
+#                 st.session_state.only_starters = st.checkbox('Only Starters?', value=st.session_state.only_starters)
+
+#             if lineup_button or st.session_state.lineup_clicked:
+#                 center_running()
+#                 with st.spinner('Getting your optimal lineup...'):
+#                     st.session_state.lineup_clicked = True
+#                     st.divider()
+                    
+#                     col1, col2 = st.columns(2)
+
+#                     cols_to_exclude = ['Waivers', 'FA']
+
+#                     with col1:
+#                         status_list = [status]
+#                         top_10, reserves, top_10_proj_pts = filter_by_status_and_position(players, projections, status_list)
+#                         st.write(f"### {status} Best XI")
+#                         st.dataframe(top_10)
+#                         st.write("### Reserves")
+#                         st.dataframe(reserves)
+
+#                     with col2:
+#                         available_players = pd.merge(available_players, projections[['Player', 'ProjGS']], on='Player', how='left')
+                        
+#                         if st.session_state.only_starters:
+#                             top_10_waivers, reserves_waivers = filter_available_players_by_projgs(available_players, projections, ['Waivers', 'FA'], 1)
+#                         else:
+#                             top_10_waivers, reserves_waivers = filter_available_players_by_projgs(available_players, projections, ['Waivers', 'FA'], None)
+                        
+#                         st.write("### Waivers & FA Best XI")
+#                         st.dataframe(top_10_waivers)
+#                         st.write("### Reserves")
+#                         st.dataframe(reserves_waivers)
+
+#                     col1, col2 = st.columns(2)
+                    
+#                     with col1:
+#                         average_proj_pts = get_avg_proj_pts(players, projections)
+#                         col1.metric(label="Total Projected FPts", value=top_10_proj_pts)
+
+#                         # calculate teams average ROS Rank
+#                         average_ros_rank = round(top_10['ROS Rank'].mean(), 1)
+#                         col1.metric(label="Starting XI ROS Rank Average", value=average_ros_rank)
+
+#                         # calculate value score which is the average ros rank minus 200 multiplied by mean projected points of the starting XI
+#                         value_score = round((200 - average_ros_rank) * top_10_proj_pts, 1)
+#                         col1.metric(label="Starting XI Value Score", value=value_score)
+
+#                         # calculate value score for each manager or status and rank them
+#                         value_score_df = pd.DataFrame(columns=['Status', 'Value Score'])
+#                         for status in players['Status'].unique():
+#                             top_10, _, top_10_proj_pts = filter_by_status_and_position(players, projections, status)
+#                             average_ros_rank = round(top_10['ROS Rank'].mean(), 1)
+#                             value_score = round((200 - average_ros_rank) * top_10_proj_pts, 1)
+#                             value_score_df.loc[len(value_score_df)] = [status, value_score]
+
+#                         # sort the value scores
+#                         value_score_df.sort_values(by=['Value Score'], ascending=False, inplace=True)
+
+#                         # rank the value scores
+#                         value_score_df['Roster Rank'] = value_score_df['Value Score'].rank(method='dense', ascending=False).astype(int)
+
+
+#                     with col2:
+#                         col2.metric(label="Average Projected FPts of Best XIs across the Division", value=average_proj_pts, delta=round((top_10_proj_pts - average_proj_pts), 1))
+
+#                     style_metric_cards(background_color=colors[0], border_color=colors[1], border_size_px=2)
+                    
+#                     # divider 
+#                     st.divider()
+
+#                     # drop value_score column
+#                     value_score_df.drop(columns=['Value Score'], inplace=True)
+
+#                     # reset the index
+#                     value_score_df.reset_index(drop=True, inplace=True)
+
+#                     # show the value_score_df
+#                     st.dataframe(value_score_df, use_container_width=True)
+
+#     # divider 
+#     st.divider()
+
+#     # add a button to "View all Projections" which will show the projections DataFrame
+#     if st.button('View all Projections'):
+#         projections = load_csv(proj_csv)
+
+#         st.dataframe(projections, use_container_width=True)
 
 def main():
     # Adding construction banner or any other initial setups
@@ -249,7 +438,7 @@ def main():
     mdlit(
     """### To get your optimal lineup head to -> @(https://www.fantrax.com/fantasy/league/d41pycnmlj3bmk8y/players;statusOrTeamFilter=ALL;pageNumber=1;positionOrGroup=SOCCER_NON_GOALIE;miscDisplayType=1) & follow the GIF below to populate and download the Players' data.
         """
-        )   
+        )
 
     add_vertical_space(2)
     local_gif(fx_gif)
@@ -270,39 +459,28 @@ def main():
                 projections.rename(columns={'Pos': 'Position'}, inplace=True)
 
             projections = pd.merge(projections, ros_ranks_data, how='left', on='Player', suffixes=('', '_y'))
-
-            # drop columns with suffix _y
             projections = projections[projections.columns.drop(list(projections.filter(regex='_y')))]
 
-            # drop Pos, +/- is exist from both projections and players dataframes
             cols_to_drop = ['Pos', '+/-']
-
-            # drop if they exist using list comprehension
             projections = projections.drop([col for col in projections.columns if col in cols_to_drop], axis=1)
             players = players.drop([col for col in players.columns if col in cols_to_drop], axis=1)
-
-            # fillna ROS Rank with 200
             projections['ROS Rank'].fillna(200, inplace=True)
-            
+
             debug_filtering(projections, players)
-
-
 
             players['Status'] = players['Status'].apply(lambda x: 'Waivers' if x.startswith('W (') else x)
             unique_statuses = players['Status'].unique()
             available_players = players[players['Status'].isin(['Waivers', 'FA'])]
-
-            # print unique statuses in available players
             print("Unique statuses in available players:", unique_statuses)
 
             col_a, col_b = st.columns(2)
-            
+
             with col_a:
                 st.write("### Select your Fantasy team from the dropdown below")
                 status = st.selectbox('List of Teams', unique_statuses)
                 with stylable_container(key="green_button", css_styles="..."):
                     lineup_button = st.button('Get my optimal lineup')
-            
+
             with col_b:
                 st.session_state.only_starters = st.checkbox('Only Starters?', value=st.session_state.only_starters)
 
@@ -311,85 +489,61 @@ def main():
                 with st.spinner('Getting your optimal lineup...'):
                     st.session_state.lineup_clicked = True
                     st.divider()
-                    
-                    col1, col2 = st.columns(2)
 
-                    cols_to_exclude = ['Waivers', 'FA']
+                    col1, col2 = st.columns(2)
+                    status_list = [status]
+
+                    # Use get_filtered_players for filtering by team status
+                    filtered_players, filtered_projections = get_filtered_players(players, projections, status_list)
+                    top_10, reserves, top_10_proj_pts = filter_by_status_and_position(filtered_players, filtered_projections, status_list)
 
                     with col1:
-                        status_list = [status]
-                        top_10, reserves, top_10_proj_pts = filter_by_status_and_position(players, projections, status_list)
                         st.write(f"### {status} Best XI")
                         st.dataframe(top_10)
                         st.write("### Reserves")
                         st.dataframe(reserves)
 
                     with col2:
-                        available_players = pd.merge(available_players, projections[['Player', 'ProjGS']], on='Player', how='left')
-                        
-                        if st.session_state.only_starters:
-                            top_10_waivers, reserves_waivers = filter_available_players_by_projgs(available_players, projections, ['Waivers', 'FA'], 1)
-                        else:
-                            top_10_waivers, reserves_waivers = filter_available_players_by_projgs(available_players, projections, ['Waivers', 'FA'], None)
-                        
+                        projgs_value = 1 if st.session_state.only_starters else None
+                        filtered_available_players, filtered_projections = get_filtered_players(available_players, projections, ['Waivers', 'FA'], projgs_value)
+                        top_10_waivers, reserves_waivers = filter_by_status_and_position(filtered_available_players, filtered_projections, ['Waivers', 'FA'])
+
                         st.write("### Waivers & FA Best XI")
                         st.dataframe(top_10_waivers)
                         st.write("### Reserves")
                         st.dataframe(reserves_waivers)
 
                     col1, col2 = st.columns(2)
-                    
+
                     with col1:
                         average_proj_pts = get_avg_proj_pts(players, projections)
                         col1.metric(label="Total Projected FPts", value=top_10_proj_pts)
-
-                        # calculate teams average ROS Rank
                         average_ros_rank = round(top_10['ROS Rank'].mean(), 1)
                         col1.metric(label="Starting XI ROS Rank Average", value=average_ros_rank)
-
-                        # calculate value score which is the average ros rank minus 200 multiplied by mean projected points of the starting XI
                         value_score = round((200 - average_ros_rank) * top_10_proj_pts, 1)
                         col1.metric(label="Starting XI Value Score", value=value_score)
 
-                        # calculate value score for each manager or status and rank them
                         value_score_df = pd.DataFrame(columns=['Status', 'Value Score'])
                         for status in players['Status'].unique():
                             top_10, _, top_10_proj_pts = filter_by_status_and_position(players, projections, status)
                             average_ros_rank = round(top_10['ROS Rank'].mean(), 1)
                             value_score = round((200 - average_ros_rank) * top_10_proj_pts, 1)
                             value_score_df.loc[len(value_score_df)] = [status, value_score]
-
-                        # sort the value scores
                         value_score_df.sort_values(by=['Value Score'], ascending=False, inplace=True)
-
-                        # rank the value scores
                         value_score_df['Roster Rank'] = value_score_df['Value Score'].rank(method='dense', ascending=False).astype(int)
-
 
                     with col2:
                         col2.metric(label="Average Projected FPts of Best XIs across the Division", value=average_proj_pts, delta=round((top_10_proj_pts - average_proj_pts), 1))
 
                     style_metric_cards(background_color=colors[0], border_color=colors[1], border_size_px=2)
-                    
-                    # divider 
                     st.divider()
-
-                    # drop value_score column
                     value_score_df.drop(columns=['Value Score'], inplace=True)
-
-                    # reset the index
                     value_score_df.reset_index(drop=True, inplace=True)
-
-                    # show the value_score_df
                     st.dataframe(value_score_df, use_container_width=True)
 
-    # divider 
     st.divider()
-
-    # add a button to "View all Projections" which will show the projections DataFrame
     if st.button('View all Projections'):
         projections = load_csv(proj_csv)
-
         st.dataframe(projections, use_container_width=True)
 
 
