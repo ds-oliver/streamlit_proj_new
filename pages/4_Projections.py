@@ -338,11 +338,12 @@ def main():
                         col2.metric(label="Average Projected FPts of Best XIs across the Division", value=average_proj_pts, delta=round((top_10_proj_pts - average_proj_pts), 1))
 
                     style_metric_cards()
-    # divider 
-    st.divider()
+                    
+                    # divider 
+                    st.divider()
 
-    # show the value_score_df
-    st.dataframe(value_score_df, use_container_width=True)
+                    # show the value_score_df
+                    st.dataframe(value_score_df, use_container_width=True)
 
     # divider 
     st.divider()
