@@ -256,6 +256,9 @@ def main():
             # drop if they exist using list comprehension
             projections = projections.drop([col for col in projections.columns if col in cols_to_drop], axis=1)
             players = players.drop([col for col in players.columns if col in cols_to_drop], axis=1)
+
+            # fillna ROS Rank with 200
+            projections['ROS Rank'].fillna(200, inplace=True)
             
             debug_filtering(projections, players)
 
