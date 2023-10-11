@@ -239,13 +239,16 @@ def main():
             projections = load_csv(proj_csv)
             ros_ranks_data = load_csv(ros_ranks)
 
-            projections = pd.merge(projections, ros_ranks_data, how='left', on='Player')
-
             if 'Pos' in players.columns:
                 players.rename(columns={'Pos': 'Position'}, inplace=True)
 
             if 'Pos' in projections.columns:
                 projections.rename(columns={'Pos': 'Position'}, inplace=True)
+
+            projections = pd.merge(projections, ros_ranks_data, how='left', on='Player', suffixes=('', '_y'))
+
+            # drop columns with suffix _y
+            projections = projections[projections.columns.drop(list(projections.filter(regex='_y')))]
             
             debug_filtering(projections, players)
 
