@@ -382,8 +382,9 @@ def main():
                         print(f"ROS Rank difference: {ros_rank_diff}")
 
                         value_score = round((200 - average_ros_rank) * top_10_proj_pts, 0)
-                        # 
-                        value_score = value_score
+                        # normalize the value score by dividing by the average projected points of the best XIs across the division
+                        value_score = value_score / average_proj_pts
+                        print(f"Value score: {value_score}")
                         st.metric(label="🔥 Total Projected FPts", value=top_10_proj_pts)
                         st.metric(label="🌟 Average XI ROS Rank", value=round(top_10['ROS Rank'].mean(), 1))
                         st.metric(label="📊 Value Score", value=round((200 - average_ros_rank) * top_10_proj_pts, 1))
