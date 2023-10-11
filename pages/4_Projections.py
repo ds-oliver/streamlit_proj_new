@@ -261,7 +261,9 @@ def main():
             
             debug_filtering(projections, players)
 
-            players['Status'] = players['Status'].str.replace(r'^W.*', 'Waivers', regex=True)
+
+
+            players['Status'] = players['Status'].str.replace(r'^W \(', 'Waivers', regex=True)
             unique_statuses = players['Status'].unique()
             available_players = players[players['Status'].isin(['Waivers', 'FA'])]
 
@@ -286,6 +288,8 @@ def main():
                     st.divider()
                     
                     col1, col2 = st.columns(2)
+
+                    cols_to_exclude = ['Waivers', 'FA']
 
                     with col1:
                         status_list = [status]
