@@ -29,6 +29,31 @@ filterwarnings('ignore')
 scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 sys.path.append(scripts_path)
 
+def apply_styles(box_shadow, background_color, border_size_px, border_color, border_radius_px, border_left_color):
+    # Determine box shadow string based on the box_shadow argument
+    box_shadow_str = (
+        "box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;"
+        if box_shadow
+        else "box-shadow: none !important;"
+    )
+    # Inject CSS via a markdown block
+    st.markdown(
+        f"""
+        <style>
+            div[data-testid="metric-container"] {{
+                background-color: {background_color};
+                border: {border_size_px}px solid {border_color};
+                padding: 5% 5% 5% 10%;
+                border-radius: {border_radius_px}px;
+                border-left: 0.5rem solid {border_left_color} !important;
+                {box_shadow_str}
+            }}
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
 def local_gif(file_path):
     with open(file_path, "rb") as file_:
         contents = file_.read()
@@ -323,7 +348,7 @@ def main():
                         col1.metric(label="Starting XI ROS Rank Average", value=average_ros_rank)
 
                         # calculate value score which is the average ros rank minus 200 multiplied by mean projected points of the starting XI
-                        value_score = round(((200 - average_ros_rank) * top_10_proj_pts) / 100, 1)
+                        value_score = round((200 - average_ros_rank) * top_10_proj_pts, 1)
                         col1.metric(label="Starting XI Value Score", value=value_score)
 
                         # calculate value score for each manager or status and rank them
@@ -332,7 +357,14 @@ def main():
                             top_10, _, top_10_proj_pts = filter_by_status_and_position(players, projections, status)
                             average_ros_rank = round(top_10['ROS Rank'].mean(), 1)
                             value_score = round((200 - average_ros_rank) * top_10_proj_pts, 1)
-                            value_score_df = value_score_df.append({'Status': status, 'Value Score': value_score}, ignore_index=True) 
+                            value_score_df.loc[len(value_score_df)] = [status, value_score]
+
+                        # sort the value scores
+                        value_score_df.sort_values(by=['Value Score'], ascending=False, inplace=True)
+
+                        # rank the value scores
+                        value_score_df['Roster Rank'] = value_score_df['Value Score'].rank(method='dense', ascending=False).astype(int)
+
 
                     with col2:
                         col2.metric(label="Average Projected FPts of Best XIs across the Division", value=average_proj_pts, delta=round((top_10_proj_pts - average_proj_pts), 1))
