@@ -231,7 +231,7 @@ def get_avg_proj_pts(players, projections):
     num_statuses = len(players['Status'].unique())
 
     for status in players['Status'].unique():
-        top_10, _, top_10_proj_pts = filter_by_status_and_position(players, projections, status)
+        top_10, _, top_10_proj_pts, _ = filter_by_status_and_position(players, projections, status)
         total_proj_pts += top_10_proj_pts
 
     average_proj_pts = round((total_proj_pts / num_statuses), 1)
