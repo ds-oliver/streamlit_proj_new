@@ -165,7 +165,6 @@ def filter_by_status_and_position(players, projections, status):
 
     return best_combination, reserves, best_score
 
-
 # Filter available players by their ProjGS and status
 def filter_available_players_by_projgs(players, projections, status, projgs_value):
     if isinstance(status, str):
@@ -253,7 +252,10 @@ def get_filtered_players(players, projections, status, projgs_value=None):
     - pd.DataFrame: Filtered player projections.
     - pd.DataFrame: Filtered player reserves.
     """
-
+    if 'Status' not in players.columns:
+        print("Warning: 'Status' column is not present in the players dataframe.")
+        return pd.DataFrame(), pd.DataFrame(), 0
+    
     if isinstance(status, str):
         status = [status]
 
@@ -278,14 +280,6 @@ def get_filtered_players(players, projections, status, projgs_value=None):
     filtered_projections.sort_values(by=['Priority', 'ProjFPts'], ascending=[False, False], inplace=True)
 
     return filtered_projections, filtered_players
-
-
-# Initialize session states
-if 'only_starters' not in st.session_state:
-    st.session_state.only_starters = False
-
-if 'lineup_clicked' not in st.session_state:
-    st.session_state.lineup_clicked = False
 
 # def main():
 #     # Adding construction banner or any other initial setups
@@ -556,4 +550,11 @@ def main():
 
 
 if __name__ == "__main__":
+    # Initialize session states
+    if 'only_starters' not in st.session_state:
+        st.session_state.only_starters = False
+
+    if 'lineup_clicked' not in st.session_state:
+        st.session_state.lineup_clicked = False
+        
     main()
