@@ -29,7 +29,7 @@ filterwarnings('ignore')
 scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 sys.path.append(scripts_path)
 
-
+@st.cache_data
 def local_gif(file_path):
     with open(file_path, "rb") as file_:
         contents = file_.read()
@@ -265,6 +265,9 @@ def main():
             players['Status'] = players['Status'].str.replace(r'^W.*', 'Waivers', regex=True)
             unique_statuses = players['Status'].unique()
             available_players = players[players['Status'].isin(['Waivers', 'FA'])]
+
+            # print unique statuses in available players
+            print("Unique statuses in available players:", available_players['Status'].unique())
 
             col_a, col_b = st.columns(2)
             
