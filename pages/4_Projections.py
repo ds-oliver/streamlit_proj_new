@@ -350,9 +350,9 @@ def main():
                     status_list = [status]
                     top_10, reserves, top_10_proj_pts = filter_by_status_and_position(players, projections, status_list)
                     st.write(f"### 🥇 {status} Best XI")
-                    st.table(top_10.style.applymap(color_positive_green))
+                    st.dataframe(top_10)
                     st.write("### 🔄 Reserves")
-                    st.table(reserves.style.applymap(color_positive_green))
+                    st.dataframe(reserves)
 
                 with col2:
                     available_players = pd.merge(available_players, projections[['Player', 'ProjGS']], on='Player', how='left')
@@ -360,13 +360,16 @@ def main():
                         available_players, projections, ['Waivers', 'FA'], 1 if st.session_state.only_starters else None
                     )
                     st.write("### 🚀 Waivers & FA Best XI")
-                    st.table(top_10_waivers.style.applymap(color_positive_green))
+                    st.dataframe(top_10_waivers)
                     st.write("### 🔄 Reserves")
-                    st.table(reserves_waivers.style.applymap(color_positive_green))
+                    st.dataframe(reserves_waivers)
 
                 average_proj_pts = get_avg_proj_pts(players, projections)
                 
                 with st.expander("Performance Metrics"):
+                    average_proj_pts = get_avg_proj_pts(players, projections)
+                    average_ros_rank = round(top_10['ROS Rank'].mean(), 1)
+                    value_score = round((200 - average_ros_rank) * top_10_proj_pts, 1)
                     st.metric(label="🔥 Total Projected FPts", value=top_10_proj_pts)
                     st.metric(label="🌟 Average XI ROS Rank", value=round(top_10['ROS Rank'].mean(), 1))
                     st.metric(label="📊 Value Score", value=round((200 - average_ros_rank) * top_10_proj_pts, 1))
@@ -374,6 +377,15 @@ def main():
                         label="💹 Average Projected FPts of Best XIs across the Division",
                         value=average_proj_pts, delta=round((top_10_proj_pts - average_proj_pts), 1)
                     )
+
+                    value_score_df = pd.DataFrame(columns=['Status', 'Value Score'])
+                    for status in players['Status'].unique():
+                        top_10, _, top_10_proj_pts = filter_by_status_and_position(players, projections, status)
+                        average_ros_rank = round(top_10['ROS Rank'].mean(), 1)
+                        value_score = round((200 - average_ros_rank) * top_10_proj_pts, 1)
+                        value_score_df.loc[len(value_score_df)] = [status, value_score]
+                    value_score_df.sort_values(by=['Value Score'], ascending=False, inplace=True)
+                    value_score_df['Roster Rank'] = value_score_df['Value Score'].rank(method='dense', ascending=False).astype(int)
 
             st.divider()
 
