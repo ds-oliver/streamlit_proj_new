@@ -239,7 +239,7 @@ def main():
             projections = load_csv(proj_csv)
             ros_ranks_data = load_csv(ros_ranks)
 
-            projections = pd.merge(projections, ros_ranks, how='left', on='Player')
+            projections = pd.merge(projections, ros_ranks_data, how='left', on='Player')
             
             debug_filtering(projections, players)
 
