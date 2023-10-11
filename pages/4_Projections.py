@@ -295,12 +295,10 @@ def main():
 
     custom_cmap = create_custom_sequential_cmap(*colors)
 
-    st.markdown(
-    """### To get your optimal lineup head to -> 
-    [Fantrax Link](https://www.fantrax.com/fantasy/league/d41pycnmlj3bmk8y/players;statusOrTeamFilter=ALL;pageNumber=1;positionOrGroup=SOCCER_NON_GOALIE;miscDisplayType=1)
-    & follow the GIF below to populate and download the Players' data.
-    """, unsafe_allow_html=True
-    )
+    mdlit(
+    """### To get your optimal lineup head to -> @(https://www.fantrax.com/fantasy/league/d41pycnmlj3bmk8y/players;statusOrTeamFilter=ALL;pageNumber=1;positionOrGroup=SOCCER_NON_GOALIE;miscDisplayType=1) & follow the GIF below to populate and download the Players' data.
+        """
+        ) 
 
     add_vertical_space(2)
     local_gif(fx_gif)
