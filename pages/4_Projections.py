@@ -289,7 +289,7 @@ def main():
                     col1, col2 = st.columns(2)
 
                     with col1:
-                        status_list = [status]
+                        status_list = [status] - ['Waivers', 'FA']
                         top_10, reserves, top_10_proj_pts = filter_by_status_and_position(players, projections, status_list)
                         st.write(f"### {status} Best XI")
                         st.dataframe(top_10)
