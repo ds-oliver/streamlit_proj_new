@@ -268,7 +268,7 @@ def main():
             available_players = players[players['Status'].isin(['Waivers', 'FA'])]
 
             # print unique statuses in available players
-            print("Unique statuses in available players:", available_players['Status'].unique())
+            print("Unique statuses in available players:", unique_statuses)
 
             col_a, col_b = st.columns(2)
             
@@ -337,7 +337,7 @@ def main():
                     with col2:
                         col2.metric(label="Average Projected FPts of Best XIs across the Division", value=average_proj_pts, delta=round((top_10_proj_pts - average_proj_pts), 1))
 
-                    style_metric_cards(background_color=colors[0], font_color=colors[1], font_size="1.5em", font_weight="bold", font_family="sans-serif", border_radius="10px", padding="0.5em 1em", margin="0.5em 0", box_shadow="0 0 10px 0 rgba(0, 0, 0, 0.2)", transition="all 0.5s ease-in-out")
+                    style_metric_cards(background_color=colors[0], border_color=colors[1], border_size_px=2)
                     
                     # divider 
                     st.divider()
