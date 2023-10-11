@@ -389,54 +389,32 @@ def main():
                     with col1:
                         average_proj_pts = get_avg_proj_pts(players, projections)
                         col1.metric(label="Total Projected FPts", value=top_10_proj_pts)
-
-                        # calculate teams average ROS Rank
                         average_ros_rank = round(top_10['ROS Rank'].mean(), 1)
                         col1.metric(label="Starting XI ROS Rank Average", value=average_ros_rank)
-
-                        # calculate value score which is the average ros rank minus 200 multiplied by mean projected points of the starting XI
                         value_score = round((200 - average_ros_rank) * top_10_proj_pts, 1)
                         col1.metric(label="Starting XI Value Score", value=value_score)
 
-                        # calculate value score for each manager or status and rank them
                         value_score_df = pd.DataFrame(columns=['Status', 'Value Score'])
                         for status in players['Status'].unique():
                             top_10, _, top_10_proj_pts = filter_by_status_and_position(players, projections, status)
                             average_ros_rank = round(top_10['ROS Rank'].mean(), 1)
                             value_score = round((200 - average_ros_rank) * top_10_proj_pts, 1)
                             value_score_df.loc[len(value_score_df)] = [status, value_score]
-
-                        # sort the value scores
                         value_score_df.sort_values(by=['Value Score'], ascending=False, inplace=True)
-
-                        # rank the value scores
                         value_score_df['Roster Rank'] = value_score_df['Value Score'].rank(method='dense', ascending=False).astype(int)
-
 
                     with col2:
                         col2.metric(label="Average Projected FPts of Best XIs across the Division", value=average_proj_pts, delta=round((top_10_proj_pts - average_proj_pts), 1))
 
                     style_metric_cards(background_color=colors[0], border_color=colors[1], border_size_px=2)
-                    
-                    # divider 
                     st.divider()
-
-                    # drop value_score column
                     value_score_df.drop(columns=['Value Score'], inplace=True)
-
-                    # reset the index
                     value_score_df.reset_index(drop=True, inplace=True)
-
-                    # show the value_score_df
                     st.dataframe(value_score_df, use_container_width=True)
 
-    # divider 
     st.divider()
-
-    # add a button to "View all Projections" which will show the projections DataFrame
     if st.button('View all Projections'):
         projections = load_csv(proj_csv)
-
         st.dataframe(projections, use_container_width=True)
 
 # def main():
