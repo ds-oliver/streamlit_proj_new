@@ -355,7 +355,7 @@ def main():
                     st.dataframe(reserves)
 
                 with col2:
-                    available_players = pd.merge(available_players, projections[['Player', 'ProjGS', 'ROS Ranks']], on='Player', how='left')
+                    available_players = pd.merge(available_players, projections[['Player', 'ProjGS']], on='Player', how='left')
                     top_10_waivers, reserves_waivers = filter_available_players_by_projgs(
                         available_players, projections, ['Waivers', 'FA'], 1 if st.session_state.only_starters else None
                     )
