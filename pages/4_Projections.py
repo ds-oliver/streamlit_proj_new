@@ -375,15 +375,16 @@ def main():
                     with st.expander("Performance Metrics"):
                         average_proj_pts = get_avg_proj_pts(players, projections)
                         average_ros_rank_of_roster = round(roster['ROS Rank'].mean(), 1)
+                        max_roster_ros_rank = round(roster['ROS Rank'].max(), 1)
                         # take difference between average ROS rank of roster and average ROS rank of top 5 FAs so that the higher the difference, the better the roster
-                        ros_rank_diff = round(average_ros_rank_of_roster - avg_ros_of_top_fas, 1)
+                        ros_rank_diff = round(max_roster_ros_rank - avg_ros_of_top_fas, 1)
                         print(f"Average ROS Rank of roster: {average_ros_rank_of_roster}")
                         print(f"Average ROS Rank of top 5 FAs: {avg_ros_of_top_fas}")
                         print(f"ROS Rank difference: {ros_rank_diff}")
 
                         value_score = round((200 - average_ros_rank_of_roster) * top_10_proj_pts, 0)
                         # normalize the value score by dividing by the average projected points of the best XIs across the division
-                        value_score = value_score / average_proj_pts
+                        value_score = value_score / max_roster_ros_rank
 
                         # work in ros_rank_diff into the value score
                         value_score = value_score + ros_rank_diff
