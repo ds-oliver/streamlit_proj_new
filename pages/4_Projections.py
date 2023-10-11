@@ -249,6 +249,13 @@ def main():
 
             # drop columns with suffix _y
             projections = projections[projections.columns.drop(list(projections.filter(regex='_y')))]
+
+            # drop Pos, +/- is exist from both projections and players dataframes
+            cols_to_drop = ['Pos', '+/-']
+
+            # drop if they exist using list comprehension
+            projections = projections.drop([col for col in projections.columns if col in cols_to_drop], axis=1)
+            players = players.drop([col for col in players.columns if col in cols_to_drop], axis=1)
             
             debug_filtering(projections, players)
 
