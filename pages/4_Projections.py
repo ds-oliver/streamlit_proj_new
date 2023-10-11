@@ -323,7 +323,7 @@ def main():
                         col1.metric(label="Starting XI ROS Rank Average", value=average_ros_rank)
 
                         # calculate value score which is the average ros rank minus 200 multiplied by mean projected points of the starting XI
-                        value_score = round(((200 - average_ros_rank) * top_10_proj_pts) / 10, 1)
+                        value_score = round(((200 - average_ros_rank) * top_10_proj_pts) / 100, 1)
                         col1.metric(label="Starting XI Value Score", value=value_score)
 
                         # calculate value score for each manager or status and rank them
