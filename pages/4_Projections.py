@@ -510,6 +510,10 @@ def main():
                     with col2:
                         projgs_value = 1 if st.session_state.only_starters else None
                         filtered_available_players, filtered_projections = get_filtered_players(available_players, projections, ['Waivers', 'FA'], projgs_value)
+                    
+                        # Log to check if the filtered players dataframe contains the 'Status' column
+                        print(f"Debug - filtered_available_players columns: {filtered_available_players.columns}")
+
                         top_10_waivers, reserves_waivers = filter_by_status_and_position(filtered_available_players, filtered_projections, ['Waivers', 'FA'])
 
                         st.write("### Waivers & FA Best XI")
