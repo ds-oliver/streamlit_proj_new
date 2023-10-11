@@ -250,18 +250,20 @@ def get_filtered_players(players, projections, status, projgs_value=None):
     
     Returns:
     - pd.DataFrame: Filtered player projections.
-    - pd.DataFrame: Filtered player reserves.
+    - pd.DataFrame: Filtered player information.
     """
+    # Check for the presence of 'Status' column and return early if not found.
     if 'Status' not in players.columns:
         print("Warning: 'Status' column is not present in the players dataframe.")
-        return pd.DataFrame(), pd.DataFrame(), 0
-    
+        return pd.DataFrame(), pd.DataFrame()
+
+    # Convert status to list if it's a string
     if isinstance(status, str):
         status = [status]
 
     # Filter players by their status
     filtered_players = players[players['Status'].isin(status)]
-    
+
     # Optionally filter players by their ProjGS values
     if projgs_value is not None:
         filtered_players = filtered_players[filtered_players['ProjGS'] == projgs_value]
@@ -556,5 +558,5 @@ if __name__ == "__main__":
 
     if 'lineup_clicked' not in st.session_state:
         st.session_state.lineup_clicked = False
-        
+
     main()
