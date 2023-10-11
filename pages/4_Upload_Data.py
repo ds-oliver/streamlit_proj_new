@@ -12,7 +12,7 @@ from streamlit_extras.stylable_container import stylable_container
 from streamlit_extras.add_vertical_space import add_vertical_space
 from streamlit_extras.customize_running import center_running
 
-from files import projections as proj_csv, fx_gif
+from files import projections as proj_csv, fx_gif, ros_ranks
 from functions import load_csv, add_construction, load_css
 
 st.set_page_config(
