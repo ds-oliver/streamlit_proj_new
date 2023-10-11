@@ -100,7 +100,6 @@ def debug_filtering(projections, players):
     
     waivers_fa = ['Waivers', 'FA']
 
-
     # Filter the available players to remove players that are not in the "Waivers" or "FA" status
     filtered_available_players = players[players['Status'].isin(waivers_fa)]
     
@@ -282,6 +281,13 @@ def get_filtered_players(players, projections, status, projgs_value=None):
     filtered_projections.sort_values(by=['Priority', 'ProjFPts'], ascending=[False, False], inplace=True)
 
     return filtered_projections, filtered_players
+
+# Initialize session states
+if 'only_starters' not in st.session_state:
+    st.session_state.only_starters = False
+
+if 'lineup_clicked' not in st.session_state:
+    st.session_state.lineup_clicked = False
 
 # def main():
 #     # Adding construction banner or any other initial setups
@@ -556,11 +562,11 @@ def main():
 
 
 if __name__ == "__main__":
-    # Initialize session states
-    if 'only_starters' not in st.session_state:
-        st.session_state.only_starters = False
+    # # Initialize session states
+    # if 'only_starters' not in st.session_state:
+    #     st.session_state.only_starters = False
 
-    if 'lineup_clicked' not in st.session_state:
-        st.session_state.lineup_clicked = False
+    # if 'lineup_clicked' not in st.session_state:
+    #     st.session_state.lineup_clicked = False
 
     main()
