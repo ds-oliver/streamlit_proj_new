@@ -263,7 +263,7 @@ def main():
 
 
 
-            players['Status'] = players['Status'].str.replace(r'^W \(*', 'Waivers', regex=True)
+            players['Status'] = players['Status'].apply(lambda x: 'Waivers' if x.startswith('W (') else x)
             unique_statuses = players['Status'].unique()
             available_players = players[players['Status'].isin(['Waivers', 'FA'])]
 
