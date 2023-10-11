@@ -185,9 +185,9 @@ def filter_available_players_by_projgs(players, projections, status, projgs_valu
                 if d + m + f != max_players:
                     continue
 
-                defenders = projections[projections['Pos'] == 'D'].nlargest(d, 'ProjFPts')
-                midfielders = projections[projections['Pos'] == 'M'].nlargest(m, 'ProjFPts')
-                forwards = projections[projections['Pos'] == 'F'].nlargest(f, 'ProjFPts')
+                defenders = projections[projections['Position'] == 'D'].nlargest(d, 'ProjFPts')
+                midfielders = projections[projections['Position'] == 'M'].nlargest(m, 'ProjFPts')
+                forwards = projections[projections['Position'] == 'F'].nlargest(f, 'ProjFPts')
 
                 current_combination = pd.concat([defenders, midfielders, forwards])
                 current_score = current_combination['ProjFPts'].sum()
@@ -196,12 +196,12 @@ def filter_available_players_by_projgs(players, projections, status, projgs_valu
                     best_combination = current_combination
                     best_score = current_score
 
-    print(f"Total Defenders: {len(best_combination[best_combination['Pos'] == 'D'])}")
-    print(f"Total Midfielders: {len(best_combination[best_combination['Pos'] == 'M'])}")
-    print(f"Total Forwards: {len(best_combination[best_combination['Pos'] == 'F'])}")
+    print(f"Total Defenders: {len(best_combination[best_combination['Position'] == 'D'])}")
+    print(f"Total Midfielders: {len(best_combination[best_combination['Position'] == 'M'])}")
+    print(f"Total Forwards: {len(best_combination[best_combination['Position'] == 'F'])}")
 
     # Sort DataFrame by 'Pos' in the order 'D', 'M', 'F' and then by 'ProjFPts'
-    best_combination.sort_values(by=['Pos', 'ProjFPts'], key=lambda x: x.map({'D': 1, 'M': 2, 'F': 3}) if x.name == 'Pos' else x, ascending=[True, False], inplace=True)
+    best_combination.sort_values(by=['Position', 'ProjFPts'], key=lambda x: x.map({'D': 1, 'M': 2, 'F': 3}) if x.name == 'Position' else x, ascending=[True, False], inplace=True)
     best_combination.reset_index(drop=True, inplace=True)
 
     reserves = projections[~projections['Player'].isin(best_combination['Player'])].head(5).reset_index(drop=True)
