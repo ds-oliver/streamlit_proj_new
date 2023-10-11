@@ -369,11 +369,19 @@ def main():
                 col_c, col_d = st.columns(2)
 
                 with col_c:
+                    
+                    avg_ros_of_top_10 = available_players.sort_values(by=['ROS Rank'], ascending=True).head(10)['ROS Rank'].mean()
+                    st.write(f"### 📊 Average ROS Rank of Top 10 Available Players: {round(avg_ros_of_top_10, 1)}")
                 
                     with st.expander("Performance Metrics"):
                         average_proj_pts = get_avg_proj_pts(players, projections)
                         average_ros_rank = round(top_10['ROS Rank'].mean(), 1)
-                        value_score = round((200 - average_ros_rank) * top_10_proj_pts, 1)
+                        # we need to calculate how much value is in the available players by getting the average ROS Rank of the top 10 available players
+                        
+
+                        value_score = round((200 - average_ros_rank) * top_10_proj_pts, 0)
+                        # 
+                        value_score = value_score
                         st.metric(label="🔥 Total Projected FPts", value=top_10_proj_pts)
                         st.metric(label="🌟 Average XI ROS Rank", value=round(top_10['ROS Rank'].mean(), 1))
                         st.metric(label="📊 Value Score", value=round((200 - average_ros_rank) * top_10_proj_pts, 1))
