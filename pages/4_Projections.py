@@ -368,9 +368,9 @@ def main():
 
                 col_c, col_d = st.columns(2)
                 
-                with st.expander("Performance Metrics"):
-                    with col_c:
-                    
+                with col_c:
+                    with st.expander("Performance Metrics"):
+
                         avg_ros_of_top_fas = available_players.sort_values(by=['ROS Rank'], ascending=True).head(5)['ROS Rank'].mean()
                         average_proj_pts = get_avg_proj_pts(players, projections)
                         average_ros_rank_of_roster = round(roster['ROS Rank'].mean(), 1)
@@ -408,8 +408,8 @@ def main():
                         st.metric(label="📊 Value Score", value=value_score)
                         st.metric(label="💹 Avg Projected FPts of Best XIs across the Division", value=average_proj_pts, delta=round((top_10_proj_pts - average_proj_pts), 1))
 
-                    with col_d:
-
+                with col_d:
+                    with st.expander("Value Score Rankings"):
                         # sort the value score dataframe by the value score column ascending
                         value_score_df.sort_values(by=['Value Score'], ascending=True, inplace=True)
                         st.dataframe(value_score_df)
