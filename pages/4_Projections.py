@@ -375,41 +375,42 @@ def main():
                     with st.expander("Performance Metrics"):
                         average_proj_pts = get_avg_proj_pts(players, projections)
                         average_ros_rank_of_roster = round(roster['ROS Rank'].mean(), 1)
-                        max_roster_ros_rank = round(roster['ROS Rank'].max(), 1)
-                        # take difference between average ROS rank of roster and average ROS rank of top 5 FAs so that the higher the difference, the better the roster
-                        ros_rank_diff = round(max_roster_ros_rank - avg_ros_of_top_fas, 1)
-                        print(f"Average ROS Rank of roster: {average_ros_rank_of_roster}")
-                        print(f"Average ROS Rank of top 5 FAs: {avg_ros_of_top_fas}")
-                        print(f"ROS Rank difference: {ros_rank_diff}")
+                        ros_rank_diff = round(average_ros_rank_of_roster - avg_ros_of_top_fas, 1)
 
-                        value_score = round((200 - average_ros_rank_of_roster) * top_10_proj_pts, 0)
-                        # normalize the value score by dividing by the average projected points of the best XIs across the division
-                        value_score = value_score / max_roster_ros_rank
+                        # Compute the performance index for the top 10
+                        top_10['performance_index'] = top_10['ProjFPts'] / top_10['ROS Rank']
+                        performance_index_avg = top_10['performance_index'].mean()
 
-                        # work in ros_rank_diff into the value score
-                        value_score = value_score + ros_rank_diff
+                        # Compute the value score
+                        value_score = performance_index_avg * ros_rank_diff
 
-                        print(f"Value score: {value_score}")
-                        st.metric(label="🔥 Total Projected FPts", value=top_10_proj_pts)
-                        st.metric(label="🌟 Average XI ROS Rank", value=round(top_10['ROS Rank'].mean(), 1))
-                        st.metric(label="📊 Value Score", value=round((200 - average_ros_rank_of_roster) * top_10_proj_pts, 1))
-                        st.metric(
-                            label="💹 Average Projected FPts of Best XIs across the Division",
-                            value=average_proj_pts, delta=round((top_10_proj_pts - average_proj_pts), 1)
-                        )
-
+                        # Initialize the dataframe for value scores
                         value_score_df = pd.DataFrame(columns=['Status', 'Value Score'])
+
                         for status in players['Status'].unique():
                             top_10, _, top_10_proj_pts, _ = filter_by_status_and_position(players, projections, status)
                             average_ros_rank_of_roster = round(top_10['ROS Rank'].mean(), 1)
-                            value_score = round((200 - average_ros_rank_of_roster) * top_10_proj_pts, 1)
-                            value_score_df.loc[len(value_score_df)] = [status, value_score]
+                            top_10['performance_index'] = top_10['ProjFPts'] / top_10['ROS Rank']
+                            performance_index_avg = top_10['performance_index'].mean()
+                            value_score_for_status = performance_index_avg * (average_ros_rank_of_roster - avg_ros_of_top_fas)
+                            value_score_df.loc[len(value_score_df)] = [status, value_score_for_status]
+                        
+                        # Normalize value score using MinMax scaling
+                        min_value_score = value_score_df['Value Score'].min()
+                        max_value_score = value_score_df['Value Score'].max()
+                        value_score_df['Value Score'] = (value_score_df['Value Score'] - min_value_score) / (max_value_score - min_value_score)
+
+                        # Rank the statuses based on the normalized value score
                         value_score_df.sort_values(by=['Value Score'], ascending=False, inplace=True)
                         value_score_df['Roster Rank'] = value_score_df['Value Score'].rank(method='dense', ascending=False).astype(int)
+                        
+                        st.metric(label="🔥 Total Projected FPts", value=top_10_proj_pts)
+                        st.metric(label="🌟 Average XI ROS Rank", value=average_ros_rank_of_roster)
+                        st.metric(label="📊 Value Score", value=value_score)
+                        st.metric(label="💹 Avg Projected FPts of Best XIs across the Division", value=average_proj_pts, delta=round((top_10_proj_pts - average_proj_pts), 1))
 
-                with col_d:
-                    with st.expander("📈 Value Score Rankings"):
-                        st.dataframe(value_score_df)
+                        with st.expander("📈 Value Score Rankings"):
+                            st.dataframe(value_score_df)
 
             st.divider()
 
