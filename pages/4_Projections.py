@@ -381,7 +381,7 @@ def main():
                         print(f"Average ROS Rank of top 5 FAs: {avg_ros_of_top_fas}")
                         print(f"ROS Rank difference: {ros_rank_diff}")
 
-                        value_score = round((200 - average_ros_rank) * top_10_proj_pts, 0)
+                        value_score = round((200 - average_ros_rank_of_roster) * top_10_proj_pts, 0)
                         # normalize the value score by dividing by the average projected points of the best XIs across the division
                         value_score = value_score / average_proj_pts
 
@@ -391,7 +391,7 @@ def main():
                         print(f"Value score: {value_score}")
                         st.metric(label="🔥 Total Projected FPts", value=top_10_proj_pts)
                         st.metric(label="🌟 Average XI ROS Rank", value=round(top_10['ROS Rank'].mean(), 1))
-                        st.metric(label="📊 Value Score", value=round((200 - average_ros_rank) * top_10_proj_pts, 1))
+                        st.metric(label="📊 Value Score", value=round((200 - average_ros_rank_of_roster) * top_10_proj_pts, 1))
                         st.metric(
                             label="💹 Average Projected FPts of Best XIs across the Division",
                             value=average_proj_pts, delta=round((top_10_proj_pts - average_proj_pts), 1)
@@ -400,8 +400,8 @@ def main():
                         value_score_df = pd.DataFrame(columns=['Status', 'Value Score'])
                         for status in players['Status'].unique():
                             top_10, _, top_10_proj_pts, _ = filter_by_status_and_position(players, projections, status)
-                            average_ros_rank = round(top_10['ROS Rank'].mean(), 1)
-                            value_score = round((200 - average_ros_rank) * top_10_proj_pts, 1)
+                            average_ros_rank_of_roster = round(top_10['ROS Rank'].mean(), 1)
+                            value_score = round((200 - average_ros_rank_of_roster) * top_10_proj_pts, 1)
                             value_score_df.loc[len(value_score_df)] = [status, value_score]
                         value_score_df.sort_values(by=['Value Score'], ascending=False, inplace=True)
                         value_score_df['Roster Rank'] = value_score_df['Value Score'].rank(method='dense', ascending=False).astype(int)
