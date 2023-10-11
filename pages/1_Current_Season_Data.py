@@ -86,7 +86,7 @@ def add_bar_traces(fig, selected_stats_for_plot, grouping_values, grouped_df, gr
                 textposition='outside',
                 marker_color=stat_colors[stat]
             )
-        )
+    )   
 
 def create_plot(selected_group, selected_columns, selected_positions, selected_Team, grouped_df, grouping_option):
     if selected_group and selected_columns:
