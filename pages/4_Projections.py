@@ -323,7 +323,7 @@ def main():
                         col1.metric(label="Starting XI ROS Rank Average", value=average_ros_rank)
 
                         # calculate value score which is the average ros rank minus 200 multiplied by mean projected points of the starting XI
-                        value_score = round((200 - average_ros_rank) * top_10_proj_pts, 1)
+                        value_score = round(((200 - average_ros_rank) * top_10_proj_pts) / 10, 1)
                         col1.metric(label="Starting XI Value Score", value=value_score)
 
                         # calculate value score for each manager or status and rank them
@@ -337,7 +337,7 @@ def main():
                     with col2:
                         col2.metric(label="Average Projected FPts of Best XIs across the Division", value=average_proj_pts, delta=round((top_10_proj_pts - average_proj_pts), 1))
 
-                    style_metric_cards()
+                    style_metric_cards(background_color=colors[0], font_color=colors[1], font_size="1.5em", font_weight="bold", font_family="sans-serif", border_radius="10px", padding="0.5em 1em", margin="0.5em 0", box_shadow="0 0 10px 0 rgba(0, 0, 0, 0.2)", transition="all 0.5s ease-in-out")
                     
                     # divider 
                     st.divider()
