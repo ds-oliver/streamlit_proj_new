@@ -29,7 +29,6 @@ filterwarnings('ignore')
 scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 sys.path.append(scripts_path)
 
-@st.cache_data
 def local_gif(file_path):
     with open(file_path, "rb") as file_:
         contents = file_.read()
