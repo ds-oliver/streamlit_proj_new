@@ -162,7 +162,7 @@ def filter_by_status_and_position(players, projections, status):
     best_combination.drop(columns=['Priority'], inplace=True, errors='ignore')
     reserves.drop(columns=['Priority'], inplace=True, errors='ignore')
 
-    return best_combination, reserves, best_score
+    return best_combination, reserves, best_score, projections
 
 # Filter available players by their ProjGS and status
 def filter_available_players_by_projgs(players, projections, status, projgs_value):
@@ -348,7 +348,7 @@ def main():
 
                 with col1:
                     status_list = [status]
-                    top_10, reserves, top_10_proj_pts = filter_by_status_and_position(players, projections, status_list)
+                    top_10, reserves, top_10_proj_pts, roster = filter_by_status_and_position(players, projections, status_list)
                     st.write(f"### 🥇 {status} Best XI")
                     st.dataframe(top_10)
                     st.write("### 🔄 Reserves")
@@ -356,7 +356,6 @@ def main():
 
                 with col2:
                     available_players = pd.merge(available_players, projections[['Player', 'ProjGS', 'ROS Rank']], on='Player', how='left')
-                    print("Debug - Available players columns:", available_players.columns)
                     top_10_waivers, reserves_waivers = filter_available_players_by_projgs(
                         available_players, projections, ['Waivers', 'FA'], 1 if st.session_state.only_starters else None
                     )
@@ -371,14 +370,16 @@ def main():
 
                 with col_c:
                     
-                    avg_ros_of_top_10 = available_players.sort_values(by=['ROS Rank'], ascending=True).head(10)['ROS Rank'].mean()
-                    st.write(f"### 📊 Average ROS Rank of Top 10 Available Players: {round(avg_ros_of_top_10, 1)}")
+                    avg_ros_of_top_fas = available_players.sort_values(by=['ROS Rank'], ascending=True).head(5)['ROS Rank'].mean()
                 
                     with st.expander("Performance Metrics"):
                         average_proj_pts = get_avg_proj_pts(players, projections)
-                        average_ros_rank = round(top_10['ROS Rank'].mean(), 1)
-                        # we need to calculate how much value is in the available players by getting the average ROS Rank of the top 10 available players
-                        
+                        average_ros_rank_of_roster = round(roster['ROS Rank'].mean(), 1)
+                        # take difference between average ROS rank of roster and average ROS rank of top 5 FAs so that the higher the difference, the better the roster
+                        ros_rank_diff = round(average_ros_rank_of_roster - avg_ros_of_top_fas, 1)
+                        print(f"Average ROS Rank of roster: {average_ros_rank_of_roster}")
+                        print(f"Average ROS Rank of top 5 FAs: {avg_ros_of_top_fas}")
+                        print(f"ROS Rank difference: {ros_rank_diff}")
 
                         value_score = round((200 - average_ros_rank) * top_10_proj_pts, 0)
                         # 
