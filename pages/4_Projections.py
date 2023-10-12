@@ -62,7 +62,6 @@ def apply_styles(box_shadow, background_color, border_size_px, border_color, bor
         unsafe_allow_html=True,
     )
 
-
 def local_gif(file_path):
     with open(file_path, "rb") as file_:
         contents = file_.read()
@@ -72,19 +71,6 @@ def local_gif(file_path):
         f'<img src="data:image/gif;base64,{data_url}" alt="download data" width="100%">',
         unsafe_allow_html=True,
     )
-
-# function that will get the average projected points for top 10 players across all managers within the same positionitional limits
-# def get_avg_proj_pts(players, projections):
-#     total_proj_pts = 0
-#     num_statuses = len(players['Status'].unique())
-
-#     for status in players['Status'].unique():
-#         top_10, _, top_10_proj_pts = filter_by_status_and_position(players, projections, status)
-#         print(f"Average projected points for {status} top 10 players: {top_10_proj_pts}")
-#         total_proj_pts += top_10_proj_pts
-
-#     average_proj_pts = round((total_proj_pts / num_statuses), 1)
-#     return average_proj_pts
 
 def debug_filtering(projections, players):
     # Ensure that the data frames are not empty

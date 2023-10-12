@@ -35,7 +35,7 @@ sys.path.append(os.path.abspath(os.path.join('./scripts')))
 from constants import color1, color2, color3, color4, color5, cm
 
 def add_construction():
-    return st.info("""🏗️ **:orange[This app is under construction]**""")
+    return st.info("""🏗️ **:orange[This app is under construction and might break, please let the author know if you break the app]**""")
 
 def load_css(file_name="style.css"):
     with open("style.css") as f:
