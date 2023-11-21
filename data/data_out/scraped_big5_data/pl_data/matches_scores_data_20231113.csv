@@ -1,0 +1,121 @@
+gameweek,dayofweek,date,start_time,home_team,home_xg,score,away_xg,away_team,attendance,venue,referee,match_report,notes,season,home_score,away_score,matchup_id
+1,Sat,2023-08-12,12:30,ARS,0.8,2–1,1.2,NOT,"59,984",Emirates Stadium,Michael Oliver,Match Report,,2023,2.0,1.0,1
+1,Sat,2023-08-12,15:00,BHA,4.0,4–1,1.5,LUT,"31,872",The American Express Community Stadium,David Coote,Match Report,,2023,4.0,1.0,2
+1,Sat,2023-08-12,15:00,BOU,1.3,1–1,1.1,WHU,"11,245",Vitality Stadium,Peter Bankes,Match Report,,2023,1.0,1.0,3
+1,Sun,2023-08-13,14:00,BRF,2.2,2–2,1.3,TOT,"17,066",Gtech Community Stadium,Robert Jones,Match Report,,2023,2.0,2.0,4
+1,Fri,2023-08-11,20:00,BUR,0.3,0–3,1.9,MCI,"21,572",Turf Moor,Craig Pawson,Match Report,,2023,0.0,3.0,5
+1,Sun,2023-08-13,16:30,CHE,1.4,1–1,1.3,LIV,"40,096",Stamford Bridge,Anthony Taylor,Match Report,,2023,1.0,1.0,6
+1,Sat,2023-08-12,15:00,EVE,2.7,0–1,1.5,FUL,"39,940",Goodison Park,Stuart Attwell,Match Report,,2023,0.0,1.0,7
+1,Mon,2023-08-14,20:00,MUN,2.2,1–0,2.2,WOL,"73,358",Old Trafford,Simon Hooper,Match Report,,2023,1.0,0.0,8
+1,Sat,2023-08-12,17:30,NEW,3.3,5–1,1.8,AVL,"52,207",St James' Park,Andy Madley,Match Report,,2023,5.0,1.0,9
+1,Sat,2023-08-12,15:00,SHU,0.5,0–1,1.9,CRY,"31,194",Bramall Lane,John Brooks,Match Report,,2023,0.0,1.0,10
+10,Sat,2023-10-28,15:00,ARS,2.8,5–0,0.0,SHU,"60,153",Emirates Stadium,Tim Robinson,Match Report,,2023,5.0,0.0,11
+10,Sun,2023-10-29,14:00,AVL,2.3,3–1,0.5,LUT,"41,785",Villa Park,John Brooks,Match Report,,2023,3.0,1.0,12
+10,Sun,2023-10-29,14:00,BHA,1.4,1–1,0.7,FUL,"31,550",The American Express Community Stadium,Michael Salisbury,Match Report,,2023,1.0,1.0,13
+10,Sat,2023-10-28,15:00,BOU,1.1,2–1,0.8,BUR,"11,152",Vitality Stadium,Samuel Barrott,Match Report,,2023,2.0,1.0,14
+10,Sat,2023-10-28,12:30,CHE,1.9,0–2,2.2,BRF,"39,575",Stamford Bridge,Simon Hooper,Match Report,,2023,0.0,2.0,15
+10,Fri,2023-10-27,20:00,CRY,0.6,1–2,1.1,TOT,"25,074",Selhurst Park,Andy Madley,Match Report,,2023,1.0,2.0,16
+10,Sun,2023-10-29,14:00,LIV,3.2,3–0,0.4,NOT,"50,143",Anfield,Chris Kavanagh,Match Report,,2023,3.0,0.0,17
+10,Sun,2023-10-29,15:30,MUN,0.9,0–3,4.0,MCI,"73,502",Old Trafford,Paul Tierney,Match Report,,2023,0.0,3.0,18
+10,Sun,2023-10-29,13:00,WHU,0.7,0–1,0.8,EVE,"62,469",London Stadium,Stuart Attwell,Match Report,,2023,0.0,1.0,19
+10,Sat,2023-10-28,17:30,WOL,0.9,2–2,2.2,NEW,"31,584",Molineux Stadium,Anthony Taylor,Match Report,,2023,2.0,2.0,20
+11,Sat,2023-11-04,15:00,BRF,1.5,3–2,1.8,WHU,"17,103",Gtech Community Stadium,Thomas Bramall,Match Report,,2023,3.0,2.0,21
+11,Sat,2023-11-04,15:00,BUR,1.1,0–2,1.3,CRY,"21,578",Turf Moor,Peter Bankes,Match Report,,2023,0.0,2.0,22
+11,Sat,2023-11-04,15:00,EVE,0.7,1–1,0.5,BHA,"38,683",Goodison Park,Tim Robinson,Match Report,,2023,1.0,1.0,23
+11,Sat,2023-11-04,12:30,FUL,1.0,0–1,0.7,MUN,"24,415",Craven Cottage,John Brooks,Match Report,,2023,0.0,1.0,24
+11,Sun,2023-11-05,16:30,LUT,0.8,1–1,2.6,LIV,"11,049",Kenilworth Road Stadium,Andy Madley,Match Report,,2023,1.0,1.0,25
+11,Sat,2023-11-04,15:00,MCI,1.9,6–1,0.9,BOU,"53,358",Etihad Stadium,Craig Pawson,Match Report,,2023,6.0,1.0,26
+11,Sat,2023-11-04,17:30,NEW,1.0,1–0,0.6,ARS,"52,194",St James' Park,Stuart Attwell,Match Report,,2023,1.0,0.0,27
+11,Sun,2023-11-05,14:00,NOT,0.4,2–0,1.2,AVL,"29,313",The City Ground,Jarred Gillett,Match Report,,2023,2.0,0.0,28
+11,Sat,2023-11-04,15:00,SHU,1.0,2–1,1.2,WOL,"29,454",Bramall Lane,Robert Jones,Match Report,,2023,2.0,1.0,29
+11,Mon,2023-11-06,20:00,TOT,0.9,1–4,4.1,CHE,"61,726",Tottenham Hotspur Stadium,Michael Oliver,Match Report,,2023,1.0,4.0,30
+12,Sat,2023-11-11,15:00,ARS,1.9,3–1,0.4,BUR,,Emirates Stadium,Michael Oliver,Match Report,,2023,3.0,1.0,31
+12,Sun,2023-11-12,14:00,AVL,3.0,3–1,0.8,FUL,,Villa Park,Simon Hooper,Match Report,,2023,3.0,1.0,32
+12,Sun,2023-11-12,14:00,BHA,1.5,1–1,0.7,SHU,"31,367",The American Express Community Stadium,John Brooks,Match Report,,2023,1.0,1.0,33
+12,Sat,2023-11-11,17:30,BOU,2.6,2–0,0.5,NEW,"11,201",Vitality Stadium,Chris Kavanagh,Match Report,,2023,2.0,0.0,34
+12,Sun,2023-11-12,16:30,CHE,2.9,4–4,2.9,MCI,"39,532",Stamford Bridge,Anthony Taylor,Match Report,,2023,4.0,4.0,35
+12,Sat,2023-11-11,15:00,CRY,2.0,2–3,1.6,EVE,"25,103",Selhurst Park,Samuel Barrott,Match Report,,2023,2.0,3.0,36
+12,Sun,2023-11-12,14:00,LIV,1.4,3–0,1.5,BRF,"50,151",Anfield,Paul Tierney,Match Report,,2023,3.0,0.0,37
+12,Sat,2023-11-11,15:00,MUN,2.1,1–0,0.4,LUT,"73,599",Old Trafford,Graham Scott,Match Report,,2023,1.0,0.0,38
+12,Sun,2023-11-12,14:00,WHU,1.5,3–2,1.6,NOT,"62,470",London Stadium,Michael Salisbury,Match Report,,2023,3.0,2.0,39
+12,Sat,2023-11-11,12:30,WOL,2.1,2–1,0.7,TOT,,Molineux Stadium,Tim Robinson,Match Report,,2023,2.0,1.0,40
+2,Sun,2023-08-20,14:00,AVL,2.9,4–0,0.6,EVE,"41,694",Villa Park,Anthony Taylor,Match Report,,2023,4.0,0.0,41
+2,Mon,2023-08-21,20:00,CRY,1.0,0–1,2.0,ARS,"24,189",Selhurst Park,David Coote,Match Report,,2023,0.0,1.0,42
+2,Sat,2023-08-19,15:00,FUL,0.5,0–3,3.7,BRF,"24,236",Craven Cottage,Darren Bond,Match Report,,2023,0.0,3.0,43
+2,Sat,2023-08-19,15:00,LIV,3.0,3–1,1.3,BOU,"53,145",Anfield,Thomas Bramall,Match Report,,2023,3.0,1.0,44
+2,Tue,2023-10-03,19:30,LUT,1.3,1–2,1.1,BUR,"10,918",Kenilworth Road Stadium,Peter Bankes,Match Report,,2023,1.0,2.0,45
+2,Sat,2023-08-19,20:00,MCI,1.0,1–0,0.3,NEW,,Etihad Stadium,Robert Jones,Match Report,,2023,1.0,0.0,46
+2,Fri,2023-08-18,19:45,NOT,1.4,2–1,0.5,SHU,"29,432",The City Ground,Peter Bankes,Match Report,,2023,2.0,1.0,47
+2,Sat,2023-08-19,17:30,TOT,1.7,2–0,2.1,MUN,"61,910",Tottenham Hotspur Stadium,Michael Oliver,Match Report,,2023,2.0,0.0,48
+2,Sun,2023-08-20,16:30,WHU,1.8,3–1,2.5,CHE,"62,451",London Stadium,John Brooks,Match Report,,2023,3.0,1.0,49
+2,Sat,2023-08-19,15:00,WOL,2.1,1–4,2.2,BHA,"31,317",Molineux Stadium,Andy Madley,Match Report,,2023,1.0,4.0,50
+3,Sat,2023-08-26,15:00,ARS,3.2,2–2,0.6,FUL,"59,961",Emirates Stadium,Paul Tierney,Match Report,,2023,2.0,2.0,51
+3,Sat,2023-08-26,17:30,BHA,1.5,1–3,3.0,WHU,"31,508",The American Express Community Stadium,Anthony Taylor,Match Report,,2023,1.0,3.0,52
+3,Sat,2023-08-26,12:30,BOU,0.7,0–2,2.1,TOT,"10,567",Vitality Stadium,Tim Robinson,Match Report,,2023,0.0,2.0,53
+3,Sat,2023-08-26,15:00,BRF,1.0,1–1,0.8,CRY,"16,997",Gtech Community Stadium,Peter Bankes,Match Report,,2023,1.0,1.0,54
+3,Sun,2023-08-27,14:00,BUR,0.7,1–3,2.5,AVL,"21,591",Turf Moor,Michael Salisbury,Match Report,,2023,1.0,3.0,55
+3,Fri,2023-08-25,20:00,CHE,2.2,3–0,0.4,LUT,"39,893",Stamford Bridge,Robert Jones,Match Report,,2023,3.0,0.0,56
+3,Sat,2023-08-26,15:00,EVE,1.3,0–1,1.1,WOL,"38,851",Goodison Park,Craig Pawson,Match Report,,2023,0.0,1.0,57
+3,Sat,2023-08-26,15:00,MUN,2.8,3–2,1.2,NOT,"73,595",Old Trafford,Stuart Attwell,Match Report,,2023,3.0,2.0,58
+3,Sun,2023-08-27,16:30,NEW,2.0,1–2,0.9,LIV,"52,214",St James' Park,John Brooks,Match Report,,2023,1.0,2.0,59
+3,Sun,2023-08-27,14:00,SHU,0.7,1–2,3.5,MCI,"31,336",Bramall Lane,Jarred Gillett,Match Report,,2023,1.0,2.0,60
+4,Sun,2023-09-03,16:30,ARS,2.3,3–1,0.9,MUN,"60,192",Emirates Stadium,Anthony Taylor,Match Report,,2023,3.0,1.0,61
+4,Sat,2023-09-02,17:30,BHA,1.3,3–1,1.2,NEW,"31,620",The American Express Community Stadium,Stuart Attwell,Match Report,,2023,3.0,1.0,62
+4,Sat,2023-09-02,15:00,BRF,2.9,2–2,2.1,BOU,"16,973",Gtech Community Stadium,Robert Madley,Match Report,,2023,2.0,2.0,63
+4,Sat,2023-09-02,15:00,BUR,1.3,2–5,2.2,TOT,"21,750",Turf Moor,Darren England,Match Report,,2023,2.0,5.0,64
+4,Sat,2023-09-02,15:00,CHE,2.3,0–1,0.8,NOT,"39,820",Stamford Bridge,Tim Robinson,Match Report,,2023,0.0,1.0,65
+4,Sun,2023-09-03,14:00,CRY,2.1,3–2,1.2,WOL,"24,741",Selhurst Park,Robert Jones,Match Report,,2023,3.0,2.0,66
+4,Sun,2023-09-03,14:00,LIV,2.5,3–0,0.7,AVL,"50,109",Anfield,Simon Hooper,Match Report,,2023,3.0,0.0,67
+4,Fri,2023-09-01,20:00,LUT,1.4,1–2,1.0,WHU,"10,802",Kenilworth Road Stadium,Paul Tierney,Match Report,,2023,1.0,2.0,68
+4,Sat,2023-09-02,15:00,MCI,2.2,5–1,1.4,FUL,"52,899",Etihad Stadium,Michael Oliver,Match Report,,2023,5.0,1.0,69
+4,Sat,2023-09-02,12:30,SHU,1.2,2–2,2.5,EVE,"31,124",Bramall Lane,Andy Madley,Match Report,,2023,2.0,2.0,70
+5,Sat,2023-09-16,15:00,AVL,3.0,3–1,1.2,CRY,"40,809",Villa Park,Darren England,Match Report,,2023,3.0,1.0,71
+5,Sun,2023-09-17,14:00,BOU,1.0,0–0,1.8,CHE,"10,421",Vitality Stadium,David Coote,Match Report,,2023,0.0,0.0,72
+5,Sun,2023-09-17,16:30,EVE,0.3,0–1,1.0,ARS,"39,217",Goodison Park,Simon Hooper,Match Report,,2023,0.0,1.0,73
+5,Sat,2023-09-16,15:00,FUL,1.0,1–0,1.1,LUT,"24,467",Craven Cottage,Michael Salisbury,Match Report,,2023,1.0,0.0,74
+5,Sat,2023-09-16,15:00,MUN,1.0,1–3,1.7,BHA,"73,592",Old Trafford,Jarred Gillett,Match Report,,2023,1.0,3.0,75
+5,Sat,2023-09-16,17:30,NEW,1.4,1–0,0.5,BRF,"51,670",St James' Park,Craig Pawson,Match Report,,2023,1.0,0.0,76
+5,Mon,2023-09-18,19:45,NOT,0.7,1–1,0.5,BUR,"28,958",The City Ground,Robert Jones,Match Report,,2023,1.0,1.0,77
+5,Sat,2023-09-16,15:00,TOT,2.1,2–1,0.7,SHU,"61,706",Tottenham Hotspur Stadium,Peter Bankes,Match Report,,2023,2.0,1.0,78
+5,Sat,2023-09-16,15:00,WHU,0.9,1–3,3.6,MCI,"62,475",London Stadium,Andy Madley,Match Report,,2023,1.0,3.0,79
+5,Sat,2023-09-16,12:30,WOL,0.6,1–3,2.5,LIV,"31,257",Molineux Stadium,Michael Oliver,Match Report,,2023,1.0,3.0,80
+6,Sun,2023-09-24,14:00,ARS,1.8,2–2,1.4,TOT,"60,156",Emirates Stadium,Robert Jones,Match Report,,2023,2.0,2.0,81
+6,Sun,2023-09-24,14:00,BHA,1.9,3–1,1.1,BOU,"31,617",The American Express Community Stadium,John Brooks,Match Report,,2023,3.0,1.0,82
+6,Sat,2023-09-23,17:30,BRF,1.0,1–3,1.9,EVE,"16,981",Gtech Community Stadium,Michael Oliver,Match Report,,2023,1.0,3.0,83
+6,Sat,2023-09-23,20:00,BUR,1.1,0–1,1.0,MUN,"21,593",Turf Moor,Tony Harrington,Match Report,,2023,0.0,1.0,84
+6,Sun,2023-09-24,14:00,CHE,1.3,0–1,1.0,AVL,"39,700",Stamford Bridge,Jarred Gillett,Match Report,,2023,0.0,1.0,85
+6,Sat,2023-09-23,15:00,CRY,0.3,0–0,0.6,FUL,"25,072",Selhurst Park,Paul Tierney,Match Report,,2023,0.0,0.0,86
+6,Sun,2023-09-24,14:00,LIV,3.0,3–1,1.1,WHU,"50,136",Anfield,Chris Kavanagh,Match Report,,2023,3.0,1.0,87
+6,Sat,2023-09-23,15:00,LUT,2.1,1–1,0.6,WOL,"10,893",Kenilworth Road Stadium,Joshua Smith,Match Report,,2023,1.0,1.0,88
+6,Sat,2023-09-23,15:00,MCI,1.3,2–0,1.0,NOT,"53,413",Etihad Stadium,Anthony Taylor,Match Report,,2023,2.0,0.0,89
+6,Sun,2023-09-24,16:30,SHU,0.9,0–8,3.9,NEW,"31,127",Bramall Lane,Stuart Attwell,Match Report,,2023,0.0,8.0,90
+7,Sat,2023-09-30,12:30,AVL,1.6,6–1,1.7,BHA,"40,636",Villa Park,Andy Madley,Match Report,,2023,6.0,1.0,91
+7,Sat,2023-09-30,15:00,BOU,0.6,0–4,3.4,ARS,"11,193",Vitality Stadium,Michael Salisbury,Match Report,,2023,0.0,4.0,92
+7,Sat,2023-09-30,15:00,EVE,2.9,1–2,0.9,LUT,"39,289",Goodison Park,Anthony Taylor,Match Report,,2023,1.0,2.0,93
+7,Mon,2023-10-02,20:00,FUL,1.1,0–2,1.7,CHE,"24,445",Craven Cottage,Tim Robinson,Match Report,,2023,0.0,2.0,94
+7,Sat,2023-09-30,15:00,MUN,1.3,0–1,0.9,CRY,"73,428",Old Trafford,Chris Kavanagh,Match Report,,2023,0.0,1.0,95
+7,Sat,2023-09-30,15:00,NEW,3.2,2–0,0.6,BUR,"51,687",St James' Park,Thomas Bramall,Match Report,,2023,2.0,0.0,96
+7,Sun,2023-10-01,14:00,NOT,0.5,1–1,1.6,BRF,"29,004",The City Ground,Paul Tierney,Match Report,,2023,1.0,1.0,97
+7,Sat,2023-09-30,17:30,TOT,2.2,2–1,1.3,LIV,"62,001",Tottenham Hotspur Stadium,Simon Hooper,Match Report,,2023,2.0,1.0,98
+7,Sat,2023-09-30,15:00,WHU,2.1,2–0,1.1,SHU,"62,459",London Stadium,Graham Scott,Match Report,,2023,2.0,0.0,99
+7,Sat,2023-09-30,15:00,WOL,0.4,2–1,0.9,MCI,"31,415",Molineux Stadium,Craig Pawson,Match Report,,2023,2.0,1.0,100
+8,Sun,2023-10-08,16:30,ARS,0.4,1–0,0.5,MCI,"60,233",Emirates Stadium,Michael Oliver,Match Report,,2023,1.0,0.0,101
+8,Sun,2023-10-08,14:00,BHA,2.3,2–2,2.3,LIV,"31,752",The American Express Community Stadium,Anthony Taylor,Match Report,,2023,2.0,2.0,102
+8,Sat,2023-10-07,15:00,BUR,0.7,1–4,1.9,CHE,"21,654",Turf Moor,Stuart Attwell,Match Report,,2023,1.0,4.0,103
+8,Sat,2023-10-07,17:30,CRY,0.8,0–0,1.0,NOT,"25,017",Selhurst Park,Craig Pawson,Match Report,,2023,0.0,0.0,104
+8,Sat,2023-10-07,15:00,EVE,2.4,3–0,0.7,BOU,"38,815",Goodison Park,David Coote,Match Report,,2023,3.0,0.0,105
+8,Sat,2023-10-07,15:00,FUL,2.2,3–1,0.6,SHU,"24,361",Craven Cottage,Samuel Barrott,Match Report,,2023,3.0,1.0,106
+8,Sat,2023-10-07,12:30,LUT,0.8,0–1,1.9,TOT,"10,290",Kenilworth Road Stadium,John Brooks,Match Report,,2023,0.0,1.0,107
+8,Sat,2023-10-07,15:00,MUN,1.4,2–1,0.9,BRF,"73,453",Old Trafford,Andy Madley,Match Report,,2023,2.0,1.0,108
+8,Sun,2023-10-08,14:00,WHU,1.2,2–2,2.0,NEW,"62,473",London Stadium,Peter Bankes,Match Report,,2023,2.0,2.0,109
+8,Sun,2023-10-08,14:00,WOL,1.7,1–1,1.6,AVL,"31,425",Molineux Stadium,Robert Jones,Match Report,,2023,1.0,1.0,110
+9,Sun,2023-10-22,16:30,AVL,1.9,4–1,1.1,WHU,"41,734",Villa Park,David Coote,Match Report,,2023,4.0,1.0,111
+9,Sat,2023-10-21,15:00,BOU,0.6,1–2,2.4,WOL,"11,175",Vitality Stadium,Paul Tierney,Match Report,,2023,1.0,2.0,112
+9,Sat,2023-10-21,15:00,BRF,3.1,3–0,1.1,BUR,"17,029",Gtech Community Stadium,Joshua Smith,Match Report,,2023,3.0,0.0,113
+9,Sat,2023-10-21,17:30,CHE,1.3,2–2,1.0,ARS,"39,723",Stamford Bridge,Chris Kavanagh,Match Report,,2023,2.0,2.0,114
+9,Sat,2023-10-21,12:30,LIV,2.2,2–0,0.1,EVE,"50,201",Anfield,Craig Pawson,Match Report,,2023,2.0,0.0,115
+9,Sat,2023-10-21,15:00,MCI,0.8,2–1,0.8,BHA,"53,466",Etihad Stadium,Robert Jones,Match Report,,2023,2.0,1.0,116
+9,Sat,2023-10-21,15:00,NEW,2.4,4–0,1.2,CRY,"52,189",St James' Park,Tim Robinson,Match Report,,2023,4.0,0.0,117
+9,Sat,2023-10-21,15:00,NOT,2.9,2–2,1.7,LUT,"29,361",The City Ground,Samuel Barrott,Match Report,,2023,2.0,2.0,118
+9,Sat,2023-10-21,20:00,SHU,1.4,1–2,1.1,MUN,"31,543",Bramall Lane,Michael Oliver,Match Report,,2023,1.0,2.0,119
+9,Mon,2023-10-23,20:00,TOT,1.5,2–0,1.0,FUL,"61,286",Tottenham Hotspur Stadium,Anthony Taylor,Match Report,,2023,2.0,0.0,120
